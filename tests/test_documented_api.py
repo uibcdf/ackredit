@@ -21,6 +21,10 @@ ROOT = Path(__file__).resolve().parents[1]
 # MOLSYSSUITE_GUIDE.md is a synchronized copy owned by another repository.
 EXCLUDED = {"MOLSYSSUITE_GUIDE.md"}
 
+# Archived reports quote the defective code they describe. That evidence must stay
+# exactly as it was written, so it is not held to the current API.
+EXCLUDED_DIRS = (Path("devguide") / "archive",)
+
 PACKAGE = "ackredit"
 
 
@@ -50,7 +54,10 @@ def _documented_snippets():
     """All (label, source) pairs found in repository documentation."""
     found = []
     for path in sorted(ROOT.rglob("*.md")):
+        relative = path.relative_to(ROOT)
         if ".git" in path.parts or path.name in EXCLUDED:
+            continue
+        if any(relative.is_relative_to(directory) for directory in EXCLUDED_DIRS):
             continue
         for line, source in _markdown_blocks(path):
             found.append((f"{path.relative_to(ROOT)}:{line}", source))
