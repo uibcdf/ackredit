@@ -1,18 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "flowcite"
 version = "0.5.0"
 description = "FlowCite — trace what you used, cite what matters."
 readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = { text = "MIT" }
 authors = [
   { name = "UIBCDF Development Team" }
 ]
-license = { text = "MIT" }
-requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
 web = ["flask"]
 full = ["flask"]
+test = [
+  "pytest>=8",
+  "ruff==0.16.5",
+]
 
 [project.urls]
 Homepage = "https://github.com/uibcdf/flowcite"
@@ -21,10 +29,20 @@ Repository = "https://github.com/uibcdf/flowcite"
 [project.scripts]
 flowcite = "flowcite.cli:main"
 
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+[tool.setuptools.packages.find]
+include = ["flowcite*"]
 
-[tool.setuptools]
-packages = ["flowcite"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+# Root integration guides are synchronized, read-only copies. Their canonical
+# repositories own formatting; MolSysSuite checks byte drift (uibcdf/molsyssuite#12).
+extend-exclude = [
+    "MOLSYSSUITE_GUIDE.md",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
