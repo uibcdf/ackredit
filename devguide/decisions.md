@@ -15,6 +15,12 @@
     `credit_bound()`). Crediting is *not* automatic: deciding per code path is the
     differentiator against DueCredit, and silently crediting every bound item would
     report citations a run never needed.
+5.  **Context-local scope, not process-global:** the current scope lives in a
+    `contextvars.ContextVar` rather than a class attribute, so threads and asyncio tasks
+    are isolated without the caller opting in. `scoped_usage` delegates to the `scope`
+    context manager instead of duplicating its logic, so the isolation has a single
+    implementation. The collector uses a reentrant lock for compound updates and writes
+    its session file atomically via a temporary file and `os.replace`.
 
 ## Pending Decisions
 1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?

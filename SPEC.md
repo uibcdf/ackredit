@@ -179,6 +179,11 @@ def export_duecredit_json():
 - All tracking is in-memory and per-process.
 - No external calls are required.
 - Registry can be imported at package init time.
+- The current scope is held in a `ContextVar`, so scopes are isolated per thread and
+  per asyncio task. Concurrent workflows cannot cross-attribute citations, and a scope
+  cannot leak to whatever runs next in the same worker.
+- The collector guards its compound updates with a reentrant lock, and writes the
+  session file atomically, so a reader or a crash never observes a partial document.
 
 ---
 

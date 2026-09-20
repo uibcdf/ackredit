@@ -22,12 +22,13 @@ working, a test or a reproducible command backs it.
   by `tests/test_packaging.py`.
 - **Documentation:** the Sphinx site builds with no warnings, and every documented Python
   snippet is checked against the real API by `tests/test_documented_api.py`.
+- **Concurrency:** scopes are isolated per thread and per asyncio task, the collector
+  serializes its compound updates, and the session file is written atomically. Guarded by
+  `tests/test_thread_safety.py`.
 
 ## Known defects
 
-- **`scope` is not thread safe.** `scope._current_scope` is a class attribute, so
-  concurrent workflows cross-attribute citations and the scope leaks after a thread
-  finishes. Reproduced with three threads. Needs `contextvars`.
+None currently recorded. Open reports live in `devguide/pending_bugs/`.
 
 ## Work in progress towards 1.0.0
 

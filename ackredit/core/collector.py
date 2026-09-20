@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
+import tempfile
+import threading
 from pathlib import Path
 
 
@@ -16,11 +19,18 @@ class Collector:
     # Persistence
     _persistence_path: Path | None = None
 
+    # Guards every compound read-modify-write on the structures above, and
+    # serializes writes to the session file. Reentrant because credit_bound()
+    # calls track_item() while already holding it.
+    _lock = threading.RLock()
+
     @classmethod
     def enable_persistence(cls, path: str | Path) -> None:
-        cls._persistence_path = Path(path)
-        # Load existing if present
-        if cls._persistence_path.exists():
+        with cls._lock:
+            cls._persistence_path = Path(path)
+            # Load existing if present
+            if not cls._persistence_path.exists():
+                return
             try:
                 data = json.loads(cls._persistence_path.read_text())
                 cls.used_targets.update(data.get("used_targets", []))
@@ -36,30 +46,49 @@ class Collector:
 
     @classmethod
     def _save_state(cls) -> None:
-        if cls._persistence_path:
-            # Convert sets to lists for JSON
-            tree_serializable = {}
-            for target, content in cls.usage_tree.items():
-                tree_serializable[target] = {
-                    "items": list(content["items"]),
-                    "children": list(content["children"]),
-                }
+        """Write the session file atomically, so a reader or a crash never sees
+        a half-written document. Callers already hold the lock."""
+        if not cls._persistence_path:
+            return
 
-            data = {
-                "used_targets": list(cls.used_targets),
-                "used_items": cls.used_items,
-                "usage_tree": tree_serializable,
+        # Convert sets to lists for JSON
+        tree_serializable = {}
+        for target, content in cls.usage_tree.items():
+            tree_serializable[target] = {
+                "items": list(content["items"]),
+                "children": list(content["children"]),
             }
-            cls._persistence_path.write_text(json.dumps(data, indent=2))
+
+        data = {
+            "used_targets": list(cls.used_targets),
+            "used_items": cls.used_items,
+            "usage_tree": tree_serializable,
+        }
+
+        path = cls._persistence_path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        descriptor, temporary = tempfile.mkstemp(
+            dir=str(path.parent), prefix=f".{path.name}.", suffix=".tmp"
+        )
+        try:
+            with os.fdopen(descriptor, "w") as handle:
+                json.dump(data, handle, indent=2)
+                handle.flush()
+                os.fsync(handle.fileno())
+            os.replace(temporary, path)
+        except Exception:
+            Path(temporary).unlink(missing_ok=True)
+            raise
 
     @classmethod
     def track_target(cls, target: str, parent: str | None = None) -> None:
-        cls.used_targets.add(target)
-        cls.usage_tree.setdefault(target, {"items": set(), "children": set()})
-        if parent:
-            cls.usage_tree.setdefault(parent, {"items": set(), "children": set()})
-            cls.usage_tree[parent]["children"].add(target)
-        cls._save_state()
+        with cls._lock:
+            cls.used_targets.add(target)
+            cls.usage_tree.setdefault(target, {"items": set(), "children": set()})
+            if parent:
+                cls.usage_tree.setdefault(parent, {"items": set(), "children": set()})
+                cls.usage_tree[parent]["children"].add(target)
+            cls._save_state()
 
     @classmethod
     def track_item(cls, item_id: str, used_by: str | None = None) -> None:
@@ -68,15 +97,16 @@ class Collector:
 
             used_by = get_current_scope()
 
-        cls.used_items.setdefault(item_id, [])
-        if used_by is not None:
-            if used_by not in cls.used_items[item_id]:
-                cls.used_items[item_id].append(used_by)
+        with cls._lock:
+            cls.used_items.setdefault(item_id, [])
+            if used_by is not None:
+                if used_by not in cls.used_items[item_id]:
+                    cls.used_items[item_id].append(used_by)
 
-            # Update usage tree
-            cls.usage_tree.setdefault(used_by, {"items": set(), "children": set()})
-            cls.usage_tree[used_by]["items"].add(item_id)
-        cls._save_state()
+                # Update usage tree
+                cls.usage_tree.setdefault(used_by, {"items": set(), "children": set()})
+                cls.usage_tree[used_by]["items"].add(item_id)
+            cls._save_state()
 
     @classmethod
     def credit_bound(cls, target: str) -> list[str]:
@@ -93,14 +123,16 @@ class Collector:
         """
         from .registry import Registry
 
-        item_ids = Registry.bound_items(target)
-        for item_id in item_ids:
-            cls.track_item(item_id, used_by=target)
-        return item_ids
+        with cls._lock:
+            item_ids = Registry.bound_items(target)
+            for item_id in item_ids:
+                cls.track_item(item_id, used_by=target)
+            return item_ids
 
     @classmethod
     def get_used_items(cls) -> dict[str, list[str]]:
-        return cls.used_items.copy()
+        with cls._lock:
+            return {item: list(callers) for item, callers in cls.used_items.items()}
 
     @classmethod
     def get_usage_tree(cls) -> dict[str, dict[str, set[str]]]:
@@ -111,6 +143,11 @@ class Collector:
         """
         Merge multiple saved session files into the current collector state.
         """
+        with cls._lock:
+            cls._aggregate_locked(paths)
+
+    @classmethod
+    def _aggregate_locked(cls, paths: list[str | Path]) -> None:
         for path in paths:
             path = Path(path)
             if not path.exists():

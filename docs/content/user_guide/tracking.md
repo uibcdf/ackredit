@@ -59,6 +59,28 @@ def run_analysis():
         ackredit.track_item("dataset:1")
 ```
 
+### Concurrency
+
+Scopes are context-local: each thread, and each asyncio task, keeps its own current
+scope. Parallel workflows can therefore track independently without crossing
+attribution, and no scope leaks to whatever runs next in a reused worker.
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+
+
+def analyse(case):
+    with ackredit.scope(f"case_{case}"):
+        ackredit.track_item("dataset:reference")
+
+
+with ThreadPoolExecutor(max_workers=8) as pool:
+    list(pool.map(analyse, range(8)))
+```
+
+Session persistence is safe under the same conditions: the file is written atomically, so
+a concurrent reader or an interrupted run never sees a half-written document.
+
 ## Manual Tracking
 You can manually track any item at any point in your code.
 
