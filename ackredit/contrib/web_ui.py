@@ -3,20 +3,19 @@ from __future__ import annotations
 import threading
 import time
 
+from depdigest import dep_digest
+
 from ..core.collector import get_used_items
 from ..core.registry import Registry
 
 
+@dep_digest("flask")
 def serve_ui(port: int = 8080):
     """
     Start a temporary local web server to display citations.
     This is a conceptual stub for the 0.4.0 release.
     """
-    try:
-        from flask import Flask, render_template_string
-    except ImportError:
-        print("Flask is required for serve_ui(). Please install it.")
-        return
+    from flask import Flask, render_template_string
 
     app = Flask(__name__)
 

@@ -7,6 +7,8 @@ from importlib.abc import MetaPathFinder
 from importlib.util import find_spec
 from pathlib import Path
 
+from .._private.smonitor.emitter import warn
+from .._private.smonitor.warnings import PackageMetadataWarning
 from .collector import get_used_items, track_item
 from .registry import Registry, register_item
 
@@ -117,7 +119,7 @@ class InjectionsFinder(MetaPathFinder):
                     )
                     track_item(item_id, used_by=fullname)
             except metadata.PackageNotFoundError:
-                pass
+                warn(PackageMetadataWarning(extra={"package": fullname}))
 
 
 _IMPORT_HOOKS_ENABLED = False

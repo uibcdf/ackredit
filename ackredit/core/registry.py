@@ -6,6 +6,18 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Dict, Literal, TypedDict
 
+from .._private.smonitor.emitter import warn
+from .._private.smonitor.exceptions import (
+    BibtexFileNotFoundError,
+    ItemIdMissingError,
+)
+from .._private.smonitor.warnings import (
+    BibtexFieldWarning,
+    MetadataCacheWarning,
+    MetadataFetchWarning,
+    PluginLoadWarning,
+)
+
 
 class CitationItem(TypedDict, total=False):
     id: str
@@ -37,7 +49,7 @@ class Registry:
     @classmethod
     def register_item(cls, **item: Any) -> None:
         if "id" not in item:
-            raise ValueError("Item must have an 'id'")
+            raise ItemIdMissingError(extra={"keys": sorted(item)})
         item_id = item["id"]
         cls.items[item_id] = item  # type: ignore
 
@@ -77,7 +89,7 @@ class Registry:
         """
         path = Path(file_path)
         if not path.exists():
-            raise FileNotFoundError(f"BibTeX file not found: {path}")
+            raise BibtexFileNotFoundError(extra={"path": str(path)})
 
         content = path.read_text()
 
@@ -132,8 +144,17 @@ class Registry:
         if cache_file.exists():
             try:
                 data = json.loads(cache_file.read_text())
-            except Exception:
-                pass
+            except Exception as error:
+                warn(
+                    MetadataCacheWarning(
+                        extra={
+                            "path": str(cache_file),
+                            "operation": "read",
+                            "error_type": type(error).__name__,
+                            "error": str(error),
+                        }
+                    )
+                )
 
         # 2. Try network (Crossref first, then DataCite)
         if not data:
@@ -174,15 +195,34 @@ class Registry:
                             },
                             "container-title": [dc_data.get("publisher", "")],
                         }
-                except Exception:
-                    pass
+                except Exception as error:
+                    warn(
+                        MetadataFetchWarning(
+                            extra={
+                                "item_id": item_id,
+                                "doi": doi,
+                                "source": "Crossref and DataCite",
+                                "error_type": type(error).__name__,
+                                "error": str(error),
+                            }
+                        )
+                    )
 
             # Save to cache if we found something
             if data:
                 try:
                     cache_file.write_text(json.dumps(data))
-                except Exception:
-                    pass
+                except Exception as error:
+                    warn(
+                        MetadataCacheWarning(
+                            extra={
+                                "path": str(cache_file),
+                                "operation": "write",
+                                "error_type": type(error).__name__,
+                                "error": str(error),
+                            }
+                        )
+                    )
 
         # 3. Apply metadata
         if data:
@@ -242,9 +282,18 @@ class Registry:
                 register_func = entry_point.load()
                 # The function is expected to call ackredit.register_item or ackredit.bind
                 register_func()
-            except Exception:
-                # Fail silently to avoid breaking the host application
-                pass
+            except Exception as error:
+                # Never propagate: a broken third-party pack must not take the
+                # host application down. It is reported, not hidden.
+                warn(
+                    PluginLoadWarning(
+                        extra={
+                            "plugin": getattr(entry_point, "name", str(entry_point)),
+                            "error_type": type(error).__name__,
+                            "error": str(error),
+                        }
+                    )
+                )
 
     @classmethod
     def _parse_entry(cls, entry_type: str, body: str) -> None:
@@ -296,6 +345,7 @@ class Registry:
                     item["year"] = int(value)
                 except ValueError:
                     item["year"] = value
+                    warn(BibtexFieldWarning(extra={"item_id": item_id, "value": value}))
             else:
                 # Direct mapping or standard keys
                 fc_key_map = {"journaltitle": "journal", "date": "year"}

@@ -6,6 +6,11 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
+from depdigest import get_info
+from smonitor import signal
+
+from .._private.smonitor.emitter import warn
+from .._private.smonitor.warnings import PdfCompilationWarning, PdfToolWarning
 from ..formats import bibtex, csl_json, jsonfmt, latex, markdown, provenance, text
 from .collector import get_used_items
 from .registry import Registry
@@ -13,6 +18,20 @@ from .registry import Registry
 logger = logging.getLogger(__name__)
 
 
+def dependency_info(format: str = "table"):
+    """Report which optional dependencies this environment provides.
+
+    Ackredit's core needs none of them; each unlocks one optional feature.
+    ``format`` is ``"table"`` for people, or ``"dict"`` or ``"json"`` for a
+    machine, following the ``depdigest.get_info@1.0`` schema.
+    """
+    return get_info("ackredit", format=format)
+
+
+@signal(
+    tags=["ackredit", "report"],
+    extra_factory=lambda args, kwargs: {"format": kwargs.get("format", "markdown")},
+)
 def report(format: str = "markdown", **kwargs: Any) -> str:
     used = get_used_items()
     items = Registry.items
@@ -35,6 +54,12 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     return text.render(used, items)
 
 
+@signal(
+    tags=["ackredit", "report"],
+    extra_factory=lambda args, kwargs: {
+        "path": str(args[0]) if args else str(kwargs.get("path"))
+    },
+)
 def dump(
     path: str | Path, formats: list[str] | None = None, build_pdf: bool = False
 ) -> None:
@@ -88,14 +113,22 @@ def compile_pdf(directory: str | Path) -> None:
     tex_file = dir_path / "ackredit_report.tex"
 
     if not tex_file.exists():
-        logger.error(f"Cannot compile PDF: {tex_file} not found.")
+        warn(
+            PdfCompilationWarning(
+                extra={
+                    "directory": str(dir_path),
+                    "tool": "pdflatex",
+                    "status": f"no LaTeX source at {tex_file.name}",
+                }
+            )
+        )
         return
 
     pdflatex = shutil.which("pdflatex")
     bibtex = shutil.which("bibtex")
 
     if not pdflatex:
-        logger.warning("pdflatex not found in PATH. PDF compilation skipped.")
+        warn(PdfToolWarning(extra={"tool": "pdflatex"}))
         return
 
     try:
@@ -137,5 +170,13 @@ def compile_pdf(directory: str | Path) -> None:
 
         logger.info(f"PDF successfully compiled: {dir_path / 'ackredit_report.pdf'}")
 
-    except subprocess.CalledProcessError as e:
-        logger.error(f"PDF compilation failed: {e.stderr.decode()}")
+    except subprocess.CalledProcessError as error:
+        warn(
+            PdfCompilationWarning(
+                extra={
+                    "directory": str(dir_path),
+                    "tool": Path(error.cmd[0]).name if error.cmd else "pdflatex",
+                    "status": error.returncode,
+                }
+            )
+        )

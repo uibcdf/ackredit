@@ -4,6 +4,9 @@ import ast
 import inspect
 from typing import Callable
 
+from .._private.smonitor.emitter import warn
+from .._private.smonitor.warnings import SourceInspectionWarning
+
 
 class CitationCallVisitor(ast.NodeVisitor):
     """
@@ -41,7 +44,16 @@ def inspect_function(func: Callable, targets: set[str]) -> set[str]:
         visitor = CitationCallVisitor(targets)
         visitor.visit(tree)
         return visitor.found
-    except Exception:
+    except Exception as error:
+        warn(
+            SourceInspectionWarning(
+                extra={
+                    "function": getattr(func, "__qualname__", repr(func)),
+                    "error_type": type(error).__name__,
+                    "error": str(error),
+                }
+            )
+        )
         return set()
 
 

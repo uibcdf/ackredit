@@ -21,13 +21,16 @@
     context manager instead of duplicating its logic, so the isolation has a single
     implementation. The collector uses a reentrant lock for compound updates and writes
     its session file atomically via a temporary file and `os.replace`.
+6.  **Suite infrastructure adopted (`uibcdf/ackredit#6`):** SMonitor provides the
+    diagnostics and DepDigest the optional-dependency handling. Sixteen paths that lost
+    their reason — eleven `except Exception: pass`, two `print()` calls and three logger
+    lines nothing configured — now emit catalog codes carrying typed facts. This
+    supersedes the "Zero Core Dependencies" pillar, since `depdigest` requires `smonitor`
+    and both arrive together; in suite context they add nothing a host does not already
+    have.
 
 ## Pending Decisions
 1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?
 2.  **Import Hooks:** How aggressive should we be in intercepting third-party imports?
 3.  **Nested Scope:** How should the Collector behave if a tracked function calls another tracked function? Should citations be duplicated or hierarchized?
-4.  **Suite infrastructure adoption:** Ackredit is to adopt SMonitor for structured
-    diagnostics, replacing the current silent `except Exception: pass` paths, and DepDigest
-    for its optional dependencies. This changes the historical "zero core dependencies"
-    pillar and is a design change, not part of the governance retrofit; it needs its own
-    issue cross-linking `uibcdf/molsyssuite#28`.
+

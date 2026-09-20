@@ -18,8 +18,10 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# MOLSYSSUITE_GUIDE.md is a synchronized copy owned by another repository.
-EXCLUDED = {"MOLSYSSUITE_GUIDE.md"}
+# Every guide synchronized from another repository carries this marker. Their
+# content is owned and reviewed there, and their snippets describe that library's
+# API rather than ours, so they are not held to Ackredit's.
+VENDORED_MARKER = "SYNCHRONIZED MOLSYSSUITE GUIDE — DO NOT EDIT COMPONENT COPIES."
 
 # Archived reports quote the defective code they describe. That evidence must stay
 # exactly as it was written, so it is not held to the current API.
@@ -55,9 +57,11 @@ def _documented_snippets():
     found = []
     for path in sorted(ROOT.rglob("*.md")):
         relative = path.relative_to(ROOT)
-        if ".git" in path.parts or path.name in EXCLUDED:
+        if ".git" in path.parts:
             continue
         if any(relative.is_relative_to(directory) for directory in EXCLUDED_DIRS):
+            continue
+        if VENDORED_MARKER in path.read_text(encoding="utf-8"):
             continue
         for line, source in _markdown_blocks(path):
             found.append((f"{path.relative_to(ROOT)}:{line}", source))

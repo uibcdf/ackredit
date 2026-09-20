@@ -22,6 +22,9 @@ working, a test or a reproducible command backs it.
   by `tests/test_packaging.py`.
 - **Documentation:** the Sphinx site builds with no warnings, and every documented Python
   snippet is checked against the real API by `tests/test_documented_api.py`.
+- **Diagnostics:** every failure path emits an SMonitor catalog code with typed facts
+  instead of being swallowed; optional dependencies are declared to DepDigest and
+  reported by `dependency_info()`. Guarded by `tests/test_smonitor_integration.py`.
 - **Concurrency:** scopes are isolated per thread and per asyncio task, the collector
   serializes its compound updates, and the session file is written atomically. Guarded by
   `tests/test_thread_safety.py`.

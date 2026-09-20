@@ -20,6 +20,10 @@ evidence in that component and cross-link it, as
 [`cross_component_feedback.md`](https://github.com/uibcdf/molsyssuite/blob/main/devguide/cross_component_feedback.md)
 requires.
 
+`SMONITOR_GUIDE.md` and `DEPDIGEST_GUIDE.md` are synchronized copies of the guides
+Ackredit consumes, and govern how diagnostics and optional dependencies are written here.
+Diagnostics are catalog-driven: never hardcode a message, and never swallow a failure.
+
 `standards/ACKREDIT_GUIDE.md` is the canonical integration guide Ackredit owns and
 distributes to its host libraries. Edit it here; consumer copies are synchronized from the
 central registry and are never repaired locally.

@@ -12,7 +12,10 @@ license = { text = "MIT" }
 authors = [
   { name = "UIBCDF Development Team" }
 ]
-dependencies = []
+dependencies = [
+  "smonitor>=0.13.0",
+  "depdigest>=0.10.0",
+]
 
 [project.optional-dependencies]
 web = ["flask"]
@@ -48,8 +51,15 @@ line-length = 88
 # Root integration guides are synchronized, read-only copies. Their canonical
 # repositories own formatting; MolSysSuite checks byte drift (uibcdf/molsyssuite#12).
 extend-exclude = [
+    "DEPDIGEST_GUIDE.md",
     "MOLSYSSUITE_GUIDE.md",
+    "SMONITOR_GUIDE.md",
 ]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# ensure_configured() must run before the package's own imports, so they are
+# deliberately not at the top of the file.
+"ackredit/__init__.py" = ["E402"]

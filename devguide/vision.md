@@ -28,6 +28,11 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
 
 ## Design Pillars
 *   **Invisible and Optional:** If Ackredit is not installed, the host library must continue to function without changes.
-*   **Zero Core Dependencies:** The Ackredit core must be pure Python to facilitate its inclusion in any environment.
+*   **Lean core on shared infrastructure:** Ackredit depends only on the MolSysSuite
+    infrastructure components, `smonitor` and `depdigest`, both pure Python. This
+    supersedes the original "Zero Core Dependencies" pillar: reimplementing diagnostics
+    and optional-dependency handling inside a library that sits in every host is the
+    duplication the suite exists to prevent. Everything beyond those two stays in
+    `optional-dependencies`.
 *   **Extensible:** Anyone can add new output formats or injections for third-party libraries.
 

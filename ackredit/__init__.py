@@ -1,6 +1,14 @@
 """
-Ackredit — trace what you used, cite what matters.
+Ackredit — acknowledge what you used, credit what matters.
 """
+
+from smonitor.integrations import ensure_configured
+
+from ._private.smonitor import PACKAGE_ROOT
+
+# Activate diagnostics before anything else runs, so a failure during the imports
+# below is reported through the catalog rather than lost.
+ensure_configured(PACKAGE_ROOT)
 
 from .contrib.duecredit_compat import export_to_duecredit
 from .contrib.jupyter import summary
@@ -26,7 +34,7 @@ from .core.registry import (
     load_plugins,
     register_item,
 )
-from .core.report import compile_pdf, dump, report
+from .core.report import compile_pdf, dependency_info, dump, report
 
 enable_persistence = Collector.enable_persistence
 aggregate = Collector.aggregate
@@ -51,6 +59,7 @@ __all__ = [
     "report",
     "dump",
     "compile_pdf",
+    "dependency_info",
     "auto_track_calls",
     "scope",
     "summary",

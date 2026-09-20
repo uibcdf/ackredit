@@ -6,6 +6,13 @@ import tempfile
 import threading
 from pathlib import Path
 
+from .._private.smonitor.emitter import warn
+from .._private.smonitor.warnings import (
+    SessionLoadWarning,
+    SessionMergeWarning,
+    SessionSaveWarning,
+)
+
 
 class Collector:
     # set of target names actually used
@@ -41,8 +48,16 @@ class Collector:
                         "items": set(content.get("items", [])),
                         "children": set(content.get("children", [])),
                     }
-            except Exception:
-                pass
+            except Exception as error:
+                warn(
+                    SessionLoadWarning(
+                        extra={
+                            "path": str(cls._persistence_path),
+                            "error_type": type(error).__name__,
+                            "error": str(error),
+                        }
+                    )
+                )
 
     @classmethod
     def _save_state(cls) -> None:
@@ -76,9 +91,17 @@ class Collector:
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temporary, path)
-        except Exception:
+        except Exception as error:
             Path(temporary).unlink(missing_ok=True)
-            raise
+            warn(
+                SessionSaveWarning(
+                    extra={
+                        "path": str(path),
+                        "error_type": type(error).__name__,
+                        "error": str(error),
+                    }
+                )
+            )
 
     @classmethod
     def track_target(cls, target: str, parent: str | None = None) -> None:
@@ -174,7 +197,15 @@ class Collector:
                     cls.usage_tree[target]["children"].update(
                         content.get("children", [])
                     )
-            except Exception:
+            except Exception as error:
+                warn(
+                    SessionMergeWarning(
+                        extra={
+                            "path": str(path),
+                            "reason": f"{type(error).__name__}: {error}",
+                        }
+                    )
+                )
                 continue
         cls._save_state()
 

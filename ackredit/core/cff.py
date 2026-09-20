@@ -4,6 +4,9 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List
 
+from .._private.smonitor.emitter import warn
+from .._private.smonitor.warnings import CitationFileWarning
+
 
 def parse_cff(content: str) -> Dict[str, Any]:
     """
@@ -58,6 +61,16 @@ def find_and_parse_cff(package_path: Path) -> Dict[str, Any] | None:
         if p.exists():
             try:
                 return parse_cff(p.read_text())
-            except Exception:
+            except Exception as error:
+                warn(
+                    CitationFileWarning(
+                        extra={
+                            "package": package_path.name,
+                            "path": str(p),
+                            "error_type": type(error).__name__,
+                            "error": str(error),
+                        }
+                    )
+                )
                 continue
     return None
