@@ -9,6 +9,12 @@
     the supported Python range, the synchronized `MOLSYSSUITE_GUIDE.md` and the issue-backed
     reporting lifecycle. Admission and registration in the central `suite.toml` are tracked
     in `uibcdf/molsyssuite#28`.
+4.  **Bindings are declarations, credited only on request:** `bind()` was write-only
+    dead state, read by nothing. It now has a reader (`bound_items`) and an opt-in
+    runtime effect (`scoped_usage(..., credit_bound=True)`, `scope(..., credit_bound=True)`,
+    `credit_bound()`). Crediting is *not* automatic: deciding per code path is the
+    differentiator against DueCredit, and silently crediting every bound item would
+    report citations a run never needed.
 
 ## Pending Decisions
 1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?

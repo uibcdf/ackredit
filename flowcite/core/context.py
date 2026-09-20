@@ -12,19 +12,27 @@ class scope:
     Usage:
         with flowcite.scope("my_algorithm"):
             flowcite.track_item("paper_id")
+
+    With ``credit_bound=True`` the items declared for the scope name by
+    :func:`flowcite.bind` are credited on entry, mirroring the option of
+    :func:`flowcite.scoped_usage` for blocks that are not whole functions.
     """
 
     _current_scope: Optional[str] = None
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, credit_bound: bool = False):
         self.name = name
+        self.credit_bound = credit_bound
         self._previous_scope: Optional[str] = None
 
     def __enter__(self):
-        from .collector import track_target
+        from .collector import Collector, track_target
 
         # Passing current scope as parent for the new scope
         track_target(self.name, parent=scope._current_scope)
+
+        if self.credit_bound:
+            Collector.credit_bound(self.name)
 
         self._previous_scope = scope._current_scope
         scope._current_scope = self.name

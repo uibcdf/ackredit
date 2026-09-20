@@ -15,6 +15,31 @@ def run_analysis():
     pass
 ```
 
+### Crediting bound items automatically
+
+`bind` declares which items a target *may* require. By default those declarations
+are inert at runtime, so that only what a code path actually reached is reported.
+When a function's citations do not depend on the path taken, opt in with
+`credit_bound=True`:
+
+```python
+import flowcite
+
+flowcite.register_item(id="paper:base", type="article", title="Base method")
+flowcite.bind("my_library.analysis", ["paper:base"])
+
+
+@flowcite.scoped_usage("my_library.analysis", credit_bound=True)
+def run_analysis(mode="basic"):
+    # 'paper:base' is credited on every call
+    if mode == "advanced":
+        flowcite.track_item("paper:advanced")
+```
+
+You can read declarations back at any time with
+`flowcite.bound_items("my_library.analysis")`, or apply them explicitly with
+`flowcite.credit_bound("my_library.analysis")`.
+
 ## Using Context Managers
 For more granular tracking within a function, use the `scope` context manager.
 

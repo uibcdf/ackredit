@@ -49,6 +49,20 @@ class Registry:
                 cls.bindings[target].append(it)
 
     @classmethod
+    def bound_items(cls, target: str) -> list[str]:
+        """
+        Return the item ids declared for *target* by :func:`bind`.
+
+        These are the *potential* citations of a code entity, not the ones a run
+        actually used. Tracking is what records actual use; see
+        :func:`flowcite.track_item` and the ``credit_bound`` option of
+        :func:`flowcite.scoped_usage`.
+
+        The returned list is a copy, so callers cannot mutate the registry.
+        """
+        return list(cls.bindings.get(target, []))
+
+    @classmethod
     def add_injection(cls, target_module: str, items: list[str]) -> None:
         cls.injections.setdefault(target_module, [])
         for it in items:
@@ -298,6 +312,10 @@ def register_item(**item: Any) -> None:
 
 def bind(target: str, items: list[str]) -> None:
     Registry.bind(target, items)
+
+
+def bound_items(target: str) -> list[str]:
+    return Registry.bound_items(target)
 
 
 def add_injection(target_module: str, items: list[str]) -> None:

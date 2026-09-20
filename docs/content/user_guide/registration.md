@@ -19,6 +19,23 @@ flowcite.register_item(
 )
 ```
 
+## Binding Items to Code
+
+Registering an item says it exists. **Binding** says which code entity may require it:
+
+```python
+import flowcite
+
+flowcite.bind("my_library.analysis.run", ["paper:2024"])
+flowcite.bound_items("my_library.analysis.run")
+# -> ["paper:2024"]
+```
+
+A binding is a declaration of *potential* citations, so it credits nothing by
+itself. See [Tracking Usage](tracking.md) for how a run turns declarations into
+actual citations, either explicitly with `track_item` or automatically with
+`credit_bound=True`.
+
 ## Automatic DOI Enrichment
 If you only have a DOI, FlowCite can automatically fetch the remaining metadata from **Crossref** or **DataCite**.
 

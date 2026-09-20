@@ -48,6 +48,15 @@ registry.bind(
 
 This says: “if someone uses `topomt.mouths.detect_mouths`, these are the items they might need to cite.”
 
+Bindings are declarations, not credits. Read them back with `bound_items`:
+
+```python
+from flowcite import bound_items
+
+bound_items("topomt.mouths.detect_mouths")
+# -> ["topomt:2024:base-paper", "topomt:github:repo"]
+```
+
 ---
 
 ## 3. Dynamic Tracking (what *was* cited)
@@ -68,7 +77,30 @@ def detect_mouths(surface, mode="basic"):
         track_item("topomt:2025:advanced-mouths", used_by="topomt.mouths.detect_mouths")
 ```
 
-This pattern (static + dynamic) comes from your requirement and goes beyond the typical “function → citations” mapping.
+This pattern (static + dynamic) goes beyond the typical “function → citations” mapping.
+
+### When the citations are not conditional
+
+If every run of a function needs the same items, repeating them inside the body is
+noise. Pass `credit_bound=True` and the bound items are credited whenever the
+function runs:
+
+```python
+from flowcite import bind, scoped_usage, track_item
+
+bind(target="topomt.mouths.detect_mouths", items=["topomt:2024:base-paper"])
+
+
+@scoped_usage(target="topomt.mouths.detect_mouths", credit_bound=True)
+def detect_mouths(surface, mode="basic"):
+    # the base paper is credited automatically
+    if mode == "advanced":
+        track_item("topomt:2025:advanced-mouths")
+```
+
+It is off by default on purpose: crediting bound items silently would report
+citations a given run never needed, which is exactly what FlowCite exists to avoid.
+The `scope` context manager takes the same option.
 
 ---
 

@@ -79,6 +79,26 @@ class Collector:
         cls._save_state()
 
     @classmethod
+    def credit_bound(cls, target: str) -> list[str]:
+        """
+        Credit every item bound to *target*, as if each had been tracked by it.
+
+        This is the opt-in bridge between static registration and runtime
+        tracking: :func:`flowcite.bind` declares what a target *may* require, and
+        this records that those items were in fact used. It is never applied
+        automatically, because deciding per code path is what separates FlowCite
+        from a plain "function used, therefore cite everything" mapping.
+
+        Returns the item ids that were credited.
+        """
+        from .registry import Registry
+
+        item_ids = Registry.bound_items(target)
+        for item_id in item_ids:
+            cls.track_item(item_id, used_by=target)
+        return item_ids
+
+    @classmethod
     def get_used_items(cls) -> dict[str, list[str]]:
         return cls.used_items.copy()
 
@@ -128,6 +148,10 @@ def track_target(target: str, parent: str | None = None) -> None:
 
 def track_item(item_id: str, used_by: str | None = None) -> None:
     Collector.track_item(item_id, used_by=used_by)
+
+
+def credit_bound(target: str) -> list[str]:
+    return Collector.credit_bound(target)
 
 
 def get_used_items() -> dict[str, list[str]]:

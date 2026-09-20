@@ -52,8 +52,13 @@ class Registry:
     @classmethod
     def bind(cls, target: str, items: list[str]): ...
     @classmethod
+    def bound_items(cls, target: str) -> list[str]: ...
+    @classmethod
     def add_injection(cls, target_module: str, items: list[str]): ...
 ```
+
+`bind` declares what a target *may* require; `bound_items` reads those declarations
+back. Bindings are never credited on their own — see section 5.
 
 ---
 
@@ -86,12 +91,14 @@ from .core import Collector
 from .core import Registry
 
 
-def scoped_usage(target: str):
+def scoped_usage(target: str, credit_bound: bool = False):
     """Mark that this target was used in this workflow."""
 
     def deco(fn):
         def wrapper(*args, **kwargs):
             Collector.track_target(target)
+            if credit_bound:
+                Collector.credit_bound(target)
             return fn(*args, **kwargs)
 
         return wrapper
@@ -105,6 +112,13 @@ def track_item(item_id: str, used_by: str | None = None):
 ```
 
 Developers can call `track_item(...)` inside conditional branches — this is the key difference vs a pure “function used → all citations” approach.
+
+`credit_bound` is the opt-in bridge back to the coarse mapping: when a target's
+citations do not depend on the code path taken, `bind` alone carries them and the
+function body needs no bookkeeping. It is off by default, because enabling it
+silently would credit items a given run never needed and erase the distinction
+above. The same option exists on the `scope` context manager, and
+`Collector.credit_bound(target)` applies it directly.
 
 ---
 
