@@ -29,6 +29,7 @@ __all__ = [
     "load_plugins",
     "track_item",
     "track_target",
+    "get_used_items",
     "scoped_usage",
     "report",
     "dump",

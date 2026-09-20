@@ -19,5 +19,5 @@ def mark_import(module_name: str) -> None:
     for item_id in item_ids:
         track_item(item_id, used_by=module_name)
 
-# (Esto deja abierta la puerta para más adelante hacer un import hook, o para que TopoMT llame directamente
-# flowcite.core.injections.mark_import("mdtraj") cuando detecte que lo usó.)
+# This leaves the door open for a future import hook, or for a host library to call
+# flowcite.core.injections.mark_import("mdtraj") directly when it detects that use.

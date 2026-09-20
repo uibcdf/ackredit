@@ -4,11 +4,11 @@ import sys
 from flowcite.core.hooks import InjectionsFinder
 
 def test_metadata_discovery():
-    # En lugar de confiar en el import real (que puede estar cacheado)
-    # probamos directamente el método de descubrimiento del finder
+    # Rather than relying on a real import, which may already be cached,
+    # exercise the finder's discovery method directly
     finder = InjectionsFinder()
     
-    # Probamos con 'pytest' que sabemos que tiene metadatos y está instalado
+    # Use 'pytest': it is installed and is known to expose package metadata
     finder._discover_and_register('pytest')
     
     from flowcite import get_used_items

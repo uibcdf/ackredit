@@ -1,7 +1,7 @@
 from flowcite import scope, track_item, get_used_items
 
 def test_context_manager_scope():
-    # Usamos un scope
+    # Enter a scope
     with scope("my_block"):
         track_item("paper:block")
     
@@ -18,7 +18,7 @@ def test_nested_scopes():
     used = get_used_items()
     assert "outer" in used["paper:outer"]
     assert "inner" in used["paper:inner"]
-    # Verificamos que al salir del inner, vuelve al outer
+    # Leaving the inner scope must restore the outer one
     with scope("top"):
         with scope("sub"):
             pass

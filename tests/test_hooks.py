@@ -2,30 +2,29 @@ import sys
 from flowcite import add_injection, enable_import_hooks, get_used_items
 
 def test_import_hook():
-    # Registramos una inyección para un módulo que no esté cargado (o uno ficticio)
-    # Para el test, usaremos uno que sepamos que no está en sys.modules o lo borramos
-    module_name = 'math' # math siempre está, pero podemos probar la lógica
+    # Register an injection for a module that is not loaded yet, or a fictitious one
+    module_name = 'math'  # always importable, enough to exercise the logic
     add_injection(module_name, ['paper:math'])
     
     enable_import_hooks()
     
-    # Forzamos la 'importación' (o el trigger del finder)
-    # En un entorno real, 'import math' dispararía find_spec
-    import math
+    # Force the import so the finder is triggered; in a real run 'import math'
+    # would call find_spec
+    import math  # noqa: F401  # importing is the action under test
     
-    # El finder debería haber activado la cita
+    # The finder should have triggered the citation
     used = get_used_items()
-    # Nota: Si 'math' ya estaba cargado, el finder no se dispara para find_spec 
-    # a menos que sea un módulo nuevo. Para el test, vamos a usar un nombre falso.
+    # Note: if 'math' was already loaded, find_spec is not called again, so the
+    # finder does not fire. Use a fictitious name to exercise the path reliably.
     
     fake_module = 'non_existent_science_lib'
     add_injection(fake_module, ['paper:fake'])
     
-    # Intentamos importar el falso
+    # Try to import the fictitious module
     try:
         __import__(fake_module)
     except ImportError:
-        pass # No nos importa que falle el import, queremos ver si el finder se activó
+        pass  # A failing import is fine; we only check that the finder fired
     
     used = get_used_items()
     assert 'paper:fake' in used

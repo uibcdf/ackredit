@@ -49,8 +49,10 @@ class CitationsHTML:
                 display_title = f"<a href='{link}' target='_blank' style='text-decoration: none; color: #007bff;'>{display_title}</a>"
             
             details = []
-            if authors: details.append(f"<i>{authors}</i>")
-            if year: details.append(f"({year})")
+            if authors:
+                details.append(f"<i>{authors}</i>")
+            if year:
+                details.append(f"({year})")
             
             html.append("<tr style='border-bottom: 1px solid #eee;'>")
             html.append(f"<td style='padding: 8px;'>{display_title}</td>")

@@ -4,13 +4,12 @@ import shutil
 import subprocess
 import logging
 from pathlib import Path
+from typing import Any
 from .collector import get_used_items
 from .registry import Registry
 from ..formats import markdown, text, bibtex, jsonfmt, csl_json, provenance, latex
 
 logger = logging.getLogger(__name__)
-
-from typing import Any
 
 def report(format: str = "markdown", **kwargs: Any) -> str:
     used = get_used_items()
