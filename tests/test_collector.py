@@ -1,4 +1,4 @@
-from flowcite.core.collector import Collector, track_item, track_target
+from ackredit.core.collector import Collector, track_item, track_target
 
 
 def test_tracking():

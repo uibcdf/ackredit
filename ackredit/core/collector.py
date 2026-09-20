@@ -84,9 +84,9 @@ class Collector:
         Credit every item bound to *target*, as if each had been tracked by it.
 
         This is the opt-in bridge between static registration and runtime
-        tracking: :func:`flowcite.bind` declares what a target *may* require, and
+        tracking: :func:`ackredit.bind` declares what a target *may* require, and
         this records that those items were in fact used. It is never applied
-        automatically, because deciding per code path is what separates FlowCite
+        automatically, because deciding per code path is what separates Ackredit
         from a plain "function used, therefore cite everything" mapping.
 
         Returns the item ids that were credited.

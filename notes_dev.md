@@ -1,18 +1,18 @@
 ## Behavior expected
 
 ```python
-import flowcite
+import ackredit
 
-flowcite.register_item(...)
-flowcite.bind(...)
-flowcite.scoped_usage(...)
-print(flowcite.report())
+ackredit.register_item(...)
+ackredit.bind(...)
+ackredit.scoped_usage(...)
+print(ackredit.report())
 ```
 
 compatibility
 
 ```python
-from flowcite.contrib.duecredit_compat import (
+from ackredit.contrib.duecredit_compat import (
     export_duecredit_json,
     inject_into_duecredit,
 )
@@ -22,7 +22,7 @@ in a third-party library should work as intended:
 
 ```python
 try:
-    from flowcite import scoped_usage, track_item
+    from ackredit import scoped_usage, track_item
 except ImportError:
 
     def scoped_usage(target=None):
@@ -39,7 +39,7 @@ except ImportError:
 
 ```python
 try:
-    from flowcite import scoped_usage, track_item
+    from ackredit import scoped_usage, track_item
 except ImportError:
     # graceful fallbacks
     def scoped_usage(target=None):

@@ -3,7 +3,7 @@ import urllib.request
 
 doi = "10.1038/s41592-021-01121-x"
 url = f"https://api.crossref.org/works/{doi}"
-headers = {"User-Agent": "FlowCite/0.1.0"}
+headers = {"User-Agent": "Ackredit/0.1.0"}
 req = urllib.request.Request(url, headers=headers)
 try:
     with urllib.request.urlopen(req) as response:

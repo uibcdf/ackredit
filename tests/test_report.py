@@ -1,6 +1,6 @@
-from flowcite.core.collector import track_item
-from flowcite.core.registry import register_item
-from flowcite.core.report import report
+from ackredit.core.collector import track_item
+from ackredit.core.registry import register_item
+from ackredit.core.report import report
 
 
 def test_markdown_report():

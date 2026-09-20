@@ -28,9 +28,9 @@ def serve_ui(port: int = 8080):
         # Simple HTML template
         html = """
         <html>
-        <head><title>FlowCite Live Dashboard</title></head>
+        <head><title>Ackredit Live Dashboard</title></head>
         <body style='font-family: sans-serif; padding: 20px;'>
-            <h1>FlowCite Live Citation Dashboard</h1>
+            <h1>Ackredit Live Citation Dashboard</h1>
             <table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%;'>
                 <tr><th>Item</th><th>Type</th><th>DOI</th><th>Used By</th></tr>
                 {% for id, callers in used.items() %}
@@ -47,7 +47,7 @@ def serve_ui(port: int = 8080):
         """
         return render_template_string(html, used=used, items=items)
 
-    print(f"Starting FlowCite UI at http://127.0.0.1:{port}")
+    print(f"Starting Ackredit UI at http://127.0.0.1:{port}")
     # We run in a thread to not block the script
     thread = threading.Thread(
         target=lambda: app.run(port=port, debug=False, use_reloader=False)

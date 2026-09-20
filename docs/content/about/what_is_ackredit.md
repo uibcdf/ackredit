@@ -1,6 +1,6 @@
-# What is FlowCite?
+# What is Ackredit?
 
-**FlowCite** is a lightweight Python library designed to provide **runtime-aware citation and acknowledgement tracking** for scientific software and workflows.
+**Ackredit** is a lightweight Python library designed to provide **runtime-aware citation and acknowledgement tracking** for scientific software and workflows.
 
 ## The Challenge
 Scientific research increasingly relies on a complex stack of libraries, algorithms, and datasets. Typical citation practices are often imprecise:
@@ -8,8 +8,8 @@ Scientific research increasingly relies on a complex stack of libraries, algorit
 *   Datasets or sub-modules go uncredited because they are buried deep in the execution path.
 *   Citation lists in READMEs are static and often overwhelming.
 
-## The FlowCite Approach
-FlowCite solves this by tracking what is **actually executed** at runtime. It allows developers to:
+## The Ackredit Approach
+Ackredit solves this by tracking what is **actually executed** at runtime. It allows developers to:
 1.  **Register items** (papers, repositories, datasets) with their metadata (DOIs, authors, etc.).
 2.  **Bind items** to specific functions, methods, or code blocks.
 3.  **Track dynamically** only those items that were triggered during a session.

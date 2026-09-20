@@ -1,4 +1,4 @@
-from flowcite import dump, register_item, track_item
+from ackredit import dump, register_item, track_item
 
 
 def test_pdf_compilation(tmp_path):
@@ -11,6 +11,6 @@ def test_pdf_compilation(tmp_path):
     dump(report_dir, build_pdf=True)
 
     # Check if PDF exists
-    pdf_file = report_dir / "flowcite_report.pdf"
+    pdf_file = report_dir / "ackredit_report.pdf"
     assert pdf_file.exists()
     assert pdf_file.stat().st_size > 0

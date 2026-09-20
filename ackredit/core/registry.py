@@ -55,8 +55,8 @@ class Registry:
 
         These are the *potential* citations of a code entity, not the ones a run
         actually used. Tracking is what records actual use; see
-        :func:`flowcite.track_item` and the ``credit_bound`` option of
-        :func:`flowcite.scoped_usage`.
+        :func:`ackredit.track_item` and the ``credit_bound`` option of
+        :func:`ackredit.scoped_usage`.
 
         The returned list is a copy, so callers cannot mutate the registry.
         """
@@ -108,7 +108,7 @@ class Registry:
 
     @classmethod
     def _get_cache_dir(cls) -> Path:
-        cache_dir = Path.home() / ".cache" / "flowcite"
+        cache_dir = Path.home() / ".cache" / "ackredit"
         cache_dir.mkdir(parents=True, exist_ok=True)
         return cache_dir
 
@@ -141,7 +141,7 @@ class Registry:
             try:
                 url = f"https://api.crossref.org/works/{doi}"
                 headers = {
-                    "User-Agent": "FlowCite/0.4.0 (https://github.com/uibcdf/flowcite)"
+                    "User-Agent": "Ackredit/0.4.0 (https://github.com/uibcdf/ackredit)"
                 }
                 req = urllib.request.Request(url, headers=headers)
                 with urllib.request.urlopen(req, timeout=5) as response:
@@ -223,7 +223,7 @@ class Registry:
         """
         Discover and load citation plugins using Python entry points.
         External packages can register citations by adding to their pyproject.toml:
-        [project.entry-points."flowcite.citations"]
+        [project.entry-points."ackredit.citations"]
         anything = "my_package.citations:register"
         """
         from importlib import metadata
@@ -232,15 +232,15 @@ class Registry:
 
         # In Python 3.10+, entry_points() returns a SelectableGroups object
         if hasattr(eps, "select"):
-            plugins = eps.select(group="flowcite.citations")
+            plugins = eps.select(group="ackredit.citations")
         else:
             # Fallback for older versions if necessary
-            plugins = eps.get("flowcite.citations", [])
+            plugins = eps.get("ackredit.citations", [])
 
         for entry_point in plugins:
             try:
                 register_func = entry_point.load()
-                # The function is expected to call flowcite.register_item or flowcite.bind
+                # The function is expected to call ackredit.register_item or ackredit.bind
                 register_func()
             except Exception:
                 # Fail silently to avoid breaking the host application

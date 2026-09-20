@@ -12,6 +12,6 @@ dist/
 # Sphinx build output
 docs/_build/
 
-# FlowCite runtime and demo artifacts
+# Ackredit runtime and demo artifacts
 session_cache.json
 citation_package/

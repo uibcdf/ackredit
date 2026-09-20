@@ -1,6 +1,6 @@
-# FlowCite Developer Bible
+# Ackredit Developer Bible
 
-This directory is the single source of truth for FlowCite development. It contains
+This directory is the single source of truth for Ackredit development. It contains
 strategic definitions, technical specifications, the current state of the project, and
 the issue-backed lifecycle of bugs and proposals.
 
@@ -9,7 +9,7 @@ and [`../AGENTS.md`](../AGENTS.md) for the ownership boundary.
 
 ## Orientation
 
-1.  **[Vision and Concept](vision.md):** What is FlowCite? What is it for? What is its differential value?
+1.  **[Vision and Concept](vision.md):** What is Ackredit? What is it for? What is its differential value?
 2.  **[Project Status](status.md):** What is already working? What is work-in-progress? What is missing?
 3.  **[Roadmap](roadmap.md):** Where are we going and what are the next milestones?
 4.  **[Decision Log](decisions.md):** Why were things done this way? What decisions are still pending?

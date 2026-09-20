@@ -6,7 +6,7 @@
 *   [x] Add the Context Manager for granular tracking.
 
 ## Phase 2: Automation & Metadata (0.2.0) - [DONE]
-*   [x] Launch `flowcite.contrib.jupyter` for rich visualization.
+*   [x] Launch `ackredit.contrib.jupyter` for rich visualization.
 *   [x] Auto-discovery of `CITATION.cff` and package metadata.
 *   [x] DOI Enrichment (Crossref).
 *   [x] Session Persistence and Auto-reminders.

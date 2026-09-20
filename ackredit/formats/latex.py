@@ -50,7 +50,7 @@ def render(
         [
             "",
             f"\\bibliographystyle{{{style}}}",
-            "\\bibliography{flowcite_report}",
+            "\\bibliography{ackredit_report}",
             "",
             "\\end{document}",
             "",

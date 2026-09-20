@@ -1,6 +1,6 @@
 """Runtime behaviour of bind(): introspection and opt-in crediting."""
 
-from flowcite import (
+from ackredit import (
     Registry,
     bind,
     bound_items,
@@ -116,7 +116,7 @@ def test_scope_credits_bindings_when_opted_in():
 
 
 def test_credited_bindings_appear_in_the_provenance_tree():
-    from flowcite import report
+    from ackredit import report
 
     register_item(id="bi:prov", type="article", title="Provenance paper")
     bind("bi.prov_target", ["bi:prov"])

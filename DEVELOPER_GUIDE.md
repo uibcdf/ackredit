@@ -1,15 +1,15 @@
 ---
-title: FlowCite Developer Guide
+title: Ackredit Developer Guide
 version: 0.5.0
 authors: [UIBCDF Development Team]
 license: MIT
 ---
 
-# FlowCite Developer Guide
+# Ackredit Developer Guide
 
 ## 1. Introduction
 
-FlowCite helps you make your scientific library “self-citing”: every time users call specific functions or instantiate specific classes, FlowCite can record **what they should cite** — and it will only report the items that were **actually used** in that run.
+Ackredit helps you make your scientific library “self-citing”: every time users call specific functions or instantiate specific classes, Ackredit can record **what they should cite** — and it will only report the items that were **actually used** in that run.
 
 This guide shows how to:
 1. register citation items (static),
@@ -22,7 +22,7 @@ This guide shows how to:
 ## 2. Static Registration (what *could* be cited)
 
 ```python
-from flowcite import registry
+from ackredit import registry
 
 registry.register_item(
     id="topomt:2024:base-paper",
@@ -51,7 +51,7 @@ This says: “if someone uses `topomt.mouths.detect_mouths`, these are the items
 Bindings are declarations, not credits. Read them back with `bound_items`:
 
 ```python
-from flowcite import bound_items
+from ackredit import bound_items
 
 bound_items("topomt.mouths.detect_mouths")
 # -> ["topomt:2024:base-paper", "topomt:github:repo"]
@@ -64,7 +64,7 @@ bound_items("topomt.mouths.detect_mouths")
 Inside the function, decide which items apply:
 
 ```python
-from flowcite import scoped_usage, track_item
+from ackredit import scoped_usage, track_item
 
 
 @scoped_usage(target="topomt.mouths.detect_mouths")
@@ -86,7 +86,7 @@ noise. Pass `credit_bound=True` and the bound items are credited whenever the
 function runs:
 
 ```python
-from flowcite import bind, scoped_usage, track_item
+from ackredit import bind, scoped_usage, track_item
 
 bind(target="topomt.mouths.detect_mouths", items=["topomt:2024:base-paper"])
 
@@ -99,45 +99,45 @@ def detect_mouths(surface, mode="basic"):
 ```
 
 It is off by default on purpose: crediting bound items silently would report
-citations a given run never needed, which is exactly what FlowCite exists to avoid.
+citations a given run never needed, which is exactly what Ackredit exists to avoid.
 The `scope` context manager takes the same option.
 
 ---
 
-## 4. Injections for non-FlowCite libraries
+## 4. Injections for non-Ackredit libraries
 
-If your library uses an external package that does **not** use FlowCite, you can still credit it:
+If your library uses an external package that does **not** use Ackredit, you can still credit it:
 
 ```python
-from flowcite import injections
+from ackredit import injections
 
 # say your library uses mdtraj internally
 injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
 ```
 
-FlowCite can then mark that if `mdtraj` was imported or used, the corresponding item should appear in the final report — similar to DueCredit injections. citeturn0search1
+Ackredit can then mark that if `mdtraj` was imported or used, the corresponding item should appear in the final report — similar to DueCredit injections. citeturn0search1
 
 ---
 
 ## 5. Reporting in multiple formats
 
 ```python
-import flowcite
+import ackredit
 
 # Markdown (notebooks, README-like)
-print(flowcite.report(format="markdown"))
+print(ackredit.report(format="markdown"))
 
 # Plain text (logs, CLI)
-print(flowcite.report(format="text"))
+print(ackredit.report(format="text"))
 
 # BibTeX (papers)
-print(flowcite.report(format="bibtex"))
+print(ackredit.report(format="bibtex"))
 
 # JSON (further processing)
-print(flowcite.report(format="json"))
+print(ackredit.report(format="json"))
 ```
 
-You can also add your own renderer under `flowcite/formats/yourformat.py` and register it.
+You can also add your own renderer under `ackredit/formats/yourformat.py` and register it.
 
 ---
 
@@ -147,9 +147,9 @@ In your scientific library you can do:
 
 ```python
 try:
-    from flowcite import scoped_usage, track_item
+    from ackredit import scoped_usage, track_item
 except ImportError:
-    # define no-ops so library works without flowcite
+    # define no-ops so library works without ackredit
     def scoped_usage(target=None):
         def deco(fn):
             return fn
@@ -166,19 +166,19 @@ This mirrors how DueCredit is often used — the host library does not break if 
 
 ## 7. Future: DueCredit compatibility
 
-To help users who already have workflows built around `duecredit`, FlowCite can provide:
+To help users who already have workflows built around `duecredit`, Ackredit can provide:
 
-- an exporter that returns FlowCite data shaped like DueCredit’s summary;
-- or a small contrib module that, if `duecredit` is installed, calls its API to add FlowCite-collected items.
+- an exporter that returns Ackredit data shaped like DueCredit’s summary;
+- or a small contrib module that, if `duecredit` is installed, calls its API to add Ackredit-collected items.
 
-This keeps FlowCite independent but interoperable.
+This keeps Ackredit independent but interoperable.
 
 ---
 
 ## 8. Minimal Working Example
 
 ```python
-from flowcite import registry, scoped_usage, track_item
+from ackredit import registry, scoped_usage, track_item
 
 # 1) register items
 registry.register_item(
@@ -200,11 +200,11 @@ def run(method="a"):
 run()
 
 # 4) report
-import flowcite
+import ackredit
 
-print(flowcite.report(format="markdown"))
+print(ackredit.report(format="markdown"))
 ```
 
 ---
 
-> **FlowCite** — inspired by DueCredit, extended for conditional, branch-aware scientific workflows.
+> **Ackredit** — inspired by DueCredit, extended for conditional, branch-aware scientific workflows.

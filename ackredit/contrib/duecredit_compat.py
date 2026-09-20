@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def export_to_duecredit():
     """
-    Forward all citations collected by FlowCite to DueCredit (if installed).
+    Forward all citations collected by Ackredit to DueCredit (if installed).
     This allows interoperability between the two systems.
     """
     try:
@@ -32,7 +32,7 @@ def export_to_duecredit():
             continue
 
         description = item.get("title", item_id)
-        path = "flowcite." + item_id
+        path = "ackredit." + item_id
 
         try:
             if "doi" in item:

@@ -1,4 +1,4 @@
-from flowcite import get_used_items, scope, track_item
+from ackredit import get_used_items, scope, track_item
 
 
 def test_context_manager_scope():

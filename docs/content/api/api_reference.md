@@ -1,11 +1,11 @@
 # API Reference
 
-This page provides an overview of the FlowCite public API.
+This page provides an overview of the Ackredit public API.
 
 ## Main Module
 
 ```{eval-rst}
-.. automodule:: flowcite
+.. automodule:: ackredit
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,34 +15,34 @@ This page provides an overview of the FlowCite public API.
 
 ### Registry
 ```{eval-rst}
-.. automodule:: flowcite.core.registry
+.. automodule:: ackredit.core.registry
    :members:
    :undoc-members:
 ```
 
 ### Collector
 ```{eval-rst}
-.. automodule:: flowcite.core.collector
+.. automodule:: ackredit.core.collector
    :members:
    :undoc-members:
 ```
 
 ### Report & Dump
 ```{eval-rst}
-.. automodule:: flowcite.core.report
+.. automodule:: ackredit.core.report
    :members:
    :undoc-members:
 ```
 
 ## Decorators & Context
 ```{eval-rst}
-.. automodule:: flowcite.core.decorators
+.. automodule:: ackredit.core.decorators
    :members:
    :undoc-members:
 ```
 
 ```{eval-rst}
-.. automodule:: flowcite.core.context
+.. automodule:: ackredit.core.context
    :members:
    :undoc-members:
 ```

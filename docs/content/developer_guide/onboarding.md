@@ -1,12 +1,12 @@
 # Onboarding & Development Workflow
 
-Welcome to the FlowCite team! This guide will help you get your environment ready for contribution.
+Welcome to the Ackredit team! This guide will help you get your environment ready for contribution.
 
 ## Setup
 1.  **Clone the repo:**
     ```bash
-    git clone https://github.com/uibcdf/flowcite
-    cd flowcite
+    git clone https://github.com/uibcdf/ackredit
+    cd ackredit
     ```
 2.  **Environment:** We recommend using Python 3.10+. No external dependencies are required for the core, but `pytest` is needed for development.
     ```bash
@@ -14,7 +14,7 @@ Welcome to the FlowCite team! This guide will help you get your environment read
     ```
 
 ## Development Cycle
-1.  **Iterate:** Make your changes in `flowcite/`.
+1.  **Iterate:** Make your changes in `ackredit/`.
 2.  **Test:** Always run the tests before committing.
     ```bash
     pytest
@@ -27,6 +27,6 @@ Welcome to the FlowCite team! This guide will help you get your environment read
 -   **No Dependencies:** Avoid adding external dependencies to `[project.dependencies]` unless absolutely necessary and discussed in `decisions.md`.
 
 ## Project Structure
--   `flowcite/core/`: The "brain". Registry, Collector, and main logic.
--   `flowcite/formats/`: Renderers for different outputs.
+-   `ackredit/core/`: The "brain". Registry, Collector, and main logic.
+-   `ackredit/formats/`: Renderers for different outputs.
 -   `tests/`: Where the magic is verified.

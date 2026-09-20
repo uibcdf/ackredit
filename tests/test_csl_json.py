@@ -1,6 +1,6 @@
 import json
 
-from flowcite import register_item, report, track_item
+from ackredit import register_item, report, track_item
 
 
 def test_csl_json_export():

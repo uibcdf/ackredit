@@ -8,7 +8,7 @@ from .core.report import dump, report
 
 def main():
     parser = argparse.ArgumentParser(
-        description="FlowCite CLI - Citation management for scientific workflows."
+        description="Ackredit CLI - Citation management for scientific workflows."
     )
     subparsers = parser.add_subparsers(dest="command", help="Commands")
 

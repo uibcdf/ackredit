@@ -1,9 +1,9 @@
 # Injections
 
-FlowCite can also register items for external libraries that are not FlowCite-aware. Use:
+Ackredit can also register items for external libraries that are not Ackredit-aware. Use:
 
 ```python
-from flowcite import add_injection
+from ackredit import add_injection
 
 add_injection("mdtraj", ["external:mdtraj:paper"])
 ```

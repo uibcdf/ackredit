@@ -1,6 +1,6 @@
-# FlowCite
+# Ackredit
 
-Welcome to the FlowCite documentation.
+Welcome to the Ackredit documentation.
 
 ```{toctree}
 :maxdepth: 2

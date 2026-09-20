@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "flowcite"
+name = "ackredit"
 version = "0.5.0"
-description = "FlowCite — trace what you used, cite what matters."
+description = "Ackredit — trace what you used, cite what matters."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = { text = "MIT" }
@@ -23,14 +23,14 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/uibcdf/flowcite"
-Repository = "https://github.com/uibcdf/flowcite"
+Homepage = "https://github.com/uibcdf/ackredit"
+Repository = "https://github.com/uibcdf/ackredit"
 
 [project.scripts]
-flowcite = "flowcite.cli:main"
+ackredit = "ackredit.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["flowcite*"]
+include = ["ackredit*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

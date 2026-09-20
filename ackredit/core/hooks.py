@@ -23,8 +23,8 @@ def _exit_reminder():
 
     n_items = len(used)
     msg = (
-        f"\n\033[94mℹ️  FlowCite: Your analysis utilized {n_items} components requiring citation.\033[0m\n"
-        f"   Run `flowcite.report()` or `flowcite.summary()` to view the full list.\n"
+        f"\n\033[94mℹ️  Ackredit: Your analysis utilized {n_items} components requiring citation.\033[0m\n"
+        f"   Run `ackredit.report()` or `ackredit.summary()` to view the full list.\n"
     )
     # Print to stderr to avoid interfering with redirected stdout
     print(msg, file=sys.stderr)
@@ -42,14 +42,14 @@ def enable_auto_reminder():
 
 class InjectionsFinder(MetaPathFinder):
     """
-    A finder that triggers FlowCite tracking when a registered injection is imported.
+    A finder that triggers Ackredit tracking when a registered injection is imported.
     """
 
     def __init__(self):
         self._triggered = set()
 
     def find_spec(self, fullname, path, target=None):
-        if fullname.startswith("flowcite"):
+        if fullname.startswith("ackredit"):
             return None
 
         # 0. Standard Injections

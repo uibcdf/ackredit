@@ -11,7 +11,7 @@ def scoped_usage(target: str, credit_bound: bool = False):
     Decorator to mark that this target (function/method) was used in the workflow.
 
     With ``credit_bound=True`` the items declared for *target* by
-    :func:`flowcite.bind` are credited whenever the function runs. Use it when a
+    :func:`ackredit.bind` are credited whenever the function runs. Use it when a
     function's citations do not depend on the code path taken, so the coarse case
     needs no bookkeeping inside the body::
 
@@ -23,7 +23,7 @@ def scoped_usage(target: str, credit_bound: bool = False):
                 track_item("paper:advanced")
 
     It stays off by default. Deciding what to credit per branch, with
-    :func:`flowcite.track_item`, is what distinguishes FlowCite from a plain
+    :func:`ackredit.track_item`, is what distinguishes Ackredit from a plain
     "function used, therefore cite everything" mapping, and enabling it silently
     would credit items a given run never needed.
     """

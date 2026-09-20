@@ -1,4 +1,4 @@
-from flowcite import add_injection, enable_import_hooks, get_used_items
+from ackredit import add_injection, enable_import_hooks, get_used_items
 
 
 def test_import_hook():

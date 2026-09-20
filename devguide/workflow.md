@@ -1,6 +1,6 @@
 # Workflow and Standards
 
-FlowCite follows the MolSysSuite common baseline. The suite owns the shared rules; see
+Ackredit follows the MolSysSuite common baseline. The suite owns the shared rules; see
 [`../MOLSYSSUITE_GUIDE.md`](../MOLSYSSUITE_GUIDE.md). Local rules may be stricter, but they
 must not silently contradict a common policy.
 
@@ -12,10 +12,10 @@ Routine development uses Python 3.13; the supported user range is Python 3.11 to
 Some advanced features require additional software:
 
 1.  **PDF Compilation:** Requires `pdflatex` and `bibtex` to be installed on the system (e.g., via TeX Live or MiKTeX).
-2.  **Web UI:** Requires the `flask` Python package (install via `pip install flowcite[web]`).
+2.  **Web UI:** Requires the `flask` Python package (install via `pip install ackredit[web]`).
 
 ## Golden Rules
-1.  **Do not break optionality:** Any change must ensure that `flowcite` can be used optionally by another library.
+1.  **Do not break optionality:** Any change must ensure that `ackredit` can be used optionally by another library.
 2.  **Mandatory Tests:** Every new feature or bug fix must include a test in `/tests`.
 3.  **Strict Typing:** All new code must use type hints.
 4.  **Lean core:** Keep the runtime footprint small and put extra features behind

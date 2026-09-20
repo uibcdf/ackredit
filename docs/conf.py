@@ -1,4 +1,4 @@
-project = "FlowCite"
+project = "Ackredit"
 author = "UIBCDF Development Team"
 copyright = "2025, UIBCDF"
 

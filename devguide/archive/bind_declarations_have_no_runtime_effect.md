@@ -1,6 +1,6 @@
 ---
 summary: bind() stored declarations that nothing ever read, leaving half the model inert.
-issue: uibcdf/flowcite#1
+issue: uibcdf/ackredit#1
 status: resolved
 opened: 2026-09-20
 closed: 2026-09-20
@@ -90,3 +90,11 @@ Met by commit `cb24ed2`:
 - `tests/test_bindings.py` covers introspection, the copy guarantee, coexistence with
   conditional `track_item`, the no-op and idempotent cases, the context manager, and
   that credited bindings reach the provenance tree.
+
+## Correction (2026-09-20)
+
+The repository was renamed from `flowcite` to `ackredit` after this record was
+archived. The owning issue keeps its number and is now `uibcdf/ackredit#1`; the
+front matter was updated to follow that identity. The analysis above is left as
+written, because the defect it describes occurred under the former name and
+rewriting it would misstate the history.

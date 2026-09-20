@@ -1,5 +1,5 @@
 """
-FlowCite — trace what you used, cite what matters.
+Ackredit — trace what you used, cite what matters.
 """
 
 from .contrib.duecredit_compat import export_to_duecredit

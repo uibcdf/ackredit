@@ -13,7 +13,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
 
     csl_items = []
 
-    # Mapping FlowCite types to CSL types
+    # Mapping Ackredit types to CSL types
     # Reference: https://docs.citationstyles.org/en/stable/specification.html#appendix-iii-types
     type_map = {
         "article": "article-journal",
@@ -40,7 +40,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         if authors:
             csl_authors = []
             for auth in authors:
-                # FlowCite currently stores authors as strings.
+                # Ackredit currently stores authors as strings.
                 # CSL prefers structured names, but supports 'literal'.
                 csl_authors.append({"literal": auth})
             csl_item["author"] = csl_authors

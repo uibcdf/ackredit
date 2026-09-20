@@ -10,12 +10,12 @@ class scope:
     """
     Context manager to mark a specific code block as a named scope.
     Usage:
-        with flowcite.scope("my_algorithm"):
-            flowcite.track_item("paper_id")
+        with ackredit.scope("my_algorithm"):
+            ackredit.track_item("paper_id")
 
     With ``credit_bound=True`` the items declared for the scope name by
-    :func:`flowcite.bind` are credited on entry, mirroring the option of
-    :func:`flowcite.scoped_usage` for blocks that are not whole functions.
+    :func:`ackredit.bind` are credited on entry, mirroring the option of
+    :func:`ackredit.scoped_usage` for blocks that are not whole functions.
     """
 
     _current_scope: Optional[str] = None

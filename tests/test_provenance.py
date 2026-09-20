@@ -1,4 +1,4 @@
-from flowcite import register_item, report, scope, scoped_usage, track_item
+from ackredit import register_item, report, scope, scoped_usage, track_item
 
 
 @scoped_usage("outer_func")

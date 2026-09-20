@@ -1,19 +1,19 @@
 # Installation
 
-FlowCite can be installed using `pip`. It is designed to be lightweight and has zero mandatory dependencies for its core functionality.
+Ackredit can be installed using `pip`. It is designed to be lightweight and has zero mandatory dependencies for its core functionality.
 
 ## Standard Installation
 ```bash
-pip install flowcite
+pip install ackredit
 ```
 
 ## Extra Features
 Some advanced features require additional Python dependencies:
 
 ### Web UI
-To enable the interactive dashboard (`flowcite.serve_ui()`):
+To enable the interactive dashboard (`ackredit.serve_ui()`):
 ```bash
-pip install "flowcite[web]"
+pip install "ackredit[web]"
 ```
 
 ## System Requirements (Optional)

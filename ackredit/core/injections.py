@@ -21,4 +21,4 @@ def mark_import(module_name: str) -> None:
 
 
 # This leaves the door open for a future import hook, or for a host library to call
-# flowcite.core.injections.mark_import("mdtraj") directly when it detects that use.
+# ackredit.core.injections.mark_import("mdtraj") directly when it detects that use.

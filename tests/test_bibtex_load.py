@@ -1,4 +1,4 @@
-from flowcite import Registry, load_bibtex
+from ackredit import Registry, load_bibtex
 
 
 def test_load_bibtex_file(tmp_path):

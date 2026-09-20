@@ -1,9 +1,9 @@
 # Developer Guide
 
-Welcome to the FlowCite developer documentation. This section contains the "Bible" of the project, serving as the single source of truth for its vision, technical decisions, and roadmap.
+Welcome to the Ackredit developer documentation. This section contains the "Bible" of the project, serving as the single source of truth for its vision, technical decisions, and roadmap.
 
 ## Essential Reading
-1.  **[Vision and Concept](what_is_flowcite.md):** What is FlowCite? What is its differential value?
+1.  **[Vision and Concept](what_is_ackredit.md):** What is Ackredit? What is its differential value?
 2.  **[Project Status](status.md):** What is already working and what is next?
 3.  **[Roadmap](roadmap.md):** Where are we going and what are the next milestones?
 

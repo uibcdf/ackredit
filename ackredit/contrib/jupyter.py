@@ -75,6 +75,6 @@ def summary():
     """
     Returns a rich HTML representation of the tracked citations.
     Usage in a notebook:
-        flowcite.summary()
+        ackredit.summary()
     """
     return CitationsHTML(get_used_items(), Registry.items)

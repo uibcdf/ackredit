@@ -65,7 +65,7 @@ def dump(
         path.mkdir(parents=True, exist_ok=True)
         for fmt in formats:
             ext = ext_map.get(fmt, "txt")
-            filename = f"flowcite_report.{ext}"
+            filename = f"ackredit_report.{ext}"
             file_path = path / filename
             content = report(format=fmt)
             file_path.write_text(content)
@@ -81,11 +81,11 @@ def dump(
 
 def compile_pdf(directory: str | Path) -> None:
     """
-    Attempt to compile flowcite_report.tex into a PDF using pdflatex.
+    Attempt to compile ackredit_report.tex into a PDF using pdflatex.
     Requires pdflatex and bibtex to be installed on the system.
     """
     dir_path = Path(directory)
-    tex_file = dir_path / "flowcite_report.tex"
+    tex_file = dir_path / "ackredit_report.tex"
 
     if not tex_file.exists():
         logger.error(f"Cannot compile PDF: {tex_file} not found.")
@@ -109,7 +109,7 @@ def compile_pdf(directory: str | Path) -> None:
 
         if bibtex:
             subprocess.run(
-                [bibtex, "flowcite_report"],
+                [bibtex, "ackredit_report"],
                 cwd=dir_path,
                 check=True,
                 capture_output=True,
@@ -131,11 +131,11 @@ def compile_pdf(directory: str | Path) -> None:
 
         # Cleanup auxiliary files
         for ext in ["aux", "log", "out", "blg", "bbl"]:
-            aux_file = dir_path / f"flowcite_report.{ext}"
+            aux_file = dir_path / f"ackredit_report.{ext}"
             if aux_file.exists():
                 aux_file.unlink()
 
-        logger.info(f"PDF successfully compiled: {dir_path / 'flowcite_report.pdf'}")
+        logger.info(f"PDF successfully compiled: {dir_path / 'ackredit_report.pdf'}")
 
     except subprocess.CalledProcessError as e:
         logger.error(f"PDF compilation failed: {e.stderr.decode()}")

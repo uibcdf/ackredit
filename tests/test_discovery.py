@@ -1,5 +1,5 @@
-from flowcite import get_used_items
-from flowcite.core.hooks import InjectionsFinder
+from ackredit import get_used_items
+from ackredit.core.hooks import InjectionsFinder
 
 
 def test_metadata_discovery():

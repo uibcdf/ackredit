@@ -1,15 +1,15 @@
 ---
-title: FlowCite Technical Specification
+title: Ackredit Technical Specification
 version: 0.5.0
 authors: [UIBCDF Development Team]
 license: MIT
 ---
 
-# FlowCite Technical Specification
+# Ackredit Technical Specification
 
 ## 1. Scope
 
-FlowCite provides runtime-aware citation tracking for scientific workflows.  
+Ackredit provides runtime-aware citation tracking for scientific workflows.  
 It is inspired by the goals of **DueCredit** but focuses on explicit per-branch tracking, broader item types, and notebook-friendly reporting.
 
 ---
@@ -19,7 +19,7 @@ It is inspired by the goals of **DueCredit** but focuses on explicit per-branch 
 1. **Item** — a structured piece of crediting information (paper, repo, website, dataset, software).
 2. **Binding** — a declaration that a code entity (function/class/module) *may* require certain items.
 3. **Tracking** — a runtime event that says “this item was actually used in this run.”
-4. **Injection** — a binding for a module/package that is not FlowCite-aware (DueCredit-style).
+4. **Injection** — a binding for a module/package that is not Ackredit-aware (DueCredit-style).
 
 ---
 
@@ -154,8 +154,8 @@ def report(format: str = "markdown") -> str:
 
 ## 7. Optional Dependency Behavior
 
-- If `flowcite` is **not installed**, host libraries should wrap imports in `try/except ImportError` and define no-op shims for `scoped_usage` and `track_item`.
-- If `flowcite` **is installed**, the decorated functions will actually record usage.
+- If `ackredit` is **not installed**, host libraries should wrap imports in `try/except ImportError` and define no-op shims for `scoped_usage` and `track_item`.
+- If `ackredit` **is installed**, the decorated functions will actually record usage.
 - This mirrors the optional pattern used by DueCredit. citeturn0search1turn0search9
 
 ---
@@ -166,11 +166,11 @@ def report(format: str = "markdown") -> str:
 
 ```python
 def export_duecredit_json():
-    """Return FlowCite-collected items in a structure compatible with duecredit summary."""
+    """Return Ackredit-collected items in a structure compatible with duecredit summary."""
     ...
 ```
 
-- Or provide a compatibility layer in `contrib/duecredit_compat.py` that, if `duecredit` is installed, forwards FlowCite’s collected items into DueCredit’s reporting engine.
+- Or provide a compatibility layer in `contrib/duecredit_compat.py` that, if `duecredit` is installed, forwards Ackredit’s collected items into DueCredit’s reporting engine.
 
 ---
 
@@ -182,4 +182,4 @@ def export_duecredit_json():
 
 ---
 
-> FlowCite is inspired by DueCredit but optimized for conditional, branch-based scientific workflows.
+> Ackredit is inspired by DueCredit but optimized for conditional, branch-based scientific workflows.

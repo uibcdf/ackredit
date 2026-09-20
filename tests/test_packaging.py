@@ -19,7 +19,7 @@ def _pyproject() -> dict:
 def _packages_on_disk() -> set[str]:
     return {
         ".".join(path.relative_to(ROOT).parts[:-1])
-        for path in (ROOT / "flowcite").rglob("__init__.py")
+        for path in (ROOT / "ackredit").rglob("__init__.py")
     }
 
 
@@ -34,9 +34,9 @@ def test_package_discovery_is_declarative():
 
 
 def test_every_subpackage_is_shipped():
-    """Regression guard: packages = ["flowcite"] shipped only __init__ and cli.
+    """Regression guard: packages = ["ackredit"] shipped only __init__ and cli.
 
-    An installed wheel then raised ModuleNotFoundError for flowcite.core on
+    An installed wheel then raised ModuleNotFoundError for ackredit.core on
     import, while the test suite passed from the repository root.
     """
     include = _pyproject()["tool"]["setuptools"]["packages"]["find"]["include"]
@@ -56,8 +56,8 @@ def test_the_subpackages_we_expect_are_present():
     on_disk = _packages_on_disk()
 
     assert {
-        "flowcite",
-        "flowcite.core",
-        "flowcite.formats",
-        "flowcite.contrib",
+        "ackredit",
+        "ackredit.core",
+        "ackredit.formats",
+        "ackredit.contrib",
     } <= on_disk

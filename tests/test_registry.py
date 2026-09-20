@@ -1,4 +1,4 @@
-from flowcite.core.registry import Registry, bind, register_item
+from ackredit.core.registry import Registry, bind, register_item
 
 
 def test_register_and_bind():

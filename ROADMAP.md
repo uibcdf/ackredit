@@ -1,17 +1,17 @@
 ---
-title: FlowCite — Workflow-Aware Citation & Acknowledgement Library
+title: Ackredit — Workflow-Aware Citation & Acknowledgement Library
 version: 0.5.0
 authors: [UIBCDF Development Team]
 license: MIT
 ---
 
-# FlowCite — Workflow-Aware Citation & Acknowledgement Library
+# Ackredit — Workflow-Aware Citation & Acknowledgement Library
 
 ## 1. Project Definition
 
-**FlowCite** is a lightweight library to be embedded in scientific Python packages (TopoMT, MolSysMT, etc.) so that users can obtain, at the end of a workflow, an accurate list of **citations, software acknowledgements, repositories, and web resources** corresponding to the functionality they actually used.
+**Ackredit** is a lightweight library to be embedded in scientific Python packages (TopoMT, MolSysMT, etc.) so that users can obtain, at the end of a workflow, an accurate list of **citations, software acknowledgements, repositories, and web resources** corresponding to the functionality they actually used.
 
-FlowCite is conceptually in the same family as **DueCredit** (automatic, usage-based citation collection) but:
+Ackredit is conceptually in the same family as **DueCredit** (automatic, usage-based citation collection) but:
 
 - it makes the distinction between **static registration** and **dynamic tracking per code path** explicit;
 - it broadens the notion of “item” (papers, repos, websites, datasets, notes);
@@ -28,12 +28,12 @@ FlowCite is conceptually in the same family as **DueCredit** (automatic, usage-b
    - During runtime, code paths explicitly call `track_item(...)` to mark what was *actually used*.
 
 2. **Injections (DueCredit-inspired)**
-   - Allow registering items for 3rd-party libraries that are **not** FlowCite-aware.
-   - Useful when a host package wants to credit its dependencies even if they don’t ship FlowCite hooks.
+   - Allow registering items for 3rd-party libraries that are **not** Ackredit-aware.
+   - Useful when a host package wants to credit its dependencies even if they don’t ship Ackredit hooks.
 
 3. **Optional dependency model**
-   - Host libraries should work even if FlowCite is not installed.
-   - FlowCite should no-op gracefully in that case.
+   - Host libraries should work even if Ackredit is not installed.
+   - Ackredit should no-op gracefully in that case.
 
 4. **Multiple output formats**
    - Markdown and plain text for notebooks/scripts.
@@ -41,14 +41,14 @@ FlowCite is conceptually in the same family as **DueCredit** (automatic, usage-b
    - JSON for programmatic post-processing.
 
 5. **Compatibility / future interoperability with DueCredit**
-   - Provide mappings or exporters so FlowCite-collected items can be rendered in a format expected by a DueCredit-based reporter.
+   - Provide mappings or exporters so Ackredit-collected items can be rendered in a format expected by a DueCredit-based reporter.
 
 ---
 
 ## 3. Package Structure
 
 ```text
-flowcite/
+ackredit/
   __init__.py
   core/
     registry.py        # static item and binding registration
@@ -76,7 +76,7 @@ docs/
 **1) Developer registers items and binds them**
 
 ```python
-from flowcite import registry
+from ackredit import registry
 
 registry.register_item(
     id="topomt:2024:concavity",
@@ -94,7 +94,7 @@ registry.bind(target="topomt.features.detect_pockets", items=["topomt:2024:conca
 **2) Developer optionally defines an injection for a 3rd-party tool**
 
 ```python
-from flowcite import injections
+from ackredit import injections
 
 injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
 ```
@@ -102,7 +102,7 @@ injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
 **3) At runtime, the function decides which item applies**
 
 ```python
-from flowcite import scoped_usage, track_item
+from ackredit import scoped_usage, track_item
 
 
 @scoped_usage(target="topomt.features.detect_pockets")
@@ -115,9 +115,9 @@ def detect_pockets(surface, mode="basic"):
 **4) User asks for report**
 
 ```python
-import flowcite
+import ackredit
 
-print(flowcite.report(format="markdown"))
+print(ackredit.report(format="markdown"))
 ```
 
 ---
@@ -136,4 +136,4 @@ print(flowcite.report(format="markdown"))
 
 ## 6. Tagline
 
-> **FlowCite** — trace what you used, cite what matters.
+> **Ackredit** — trace what you used, cite what matters.

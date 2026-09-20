@@ -4,14 +4,14 @@ from __future__ import annotations
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     """
     Render used items in BibTeX format.
-    Supports basic mapping from FlowCite types to BibTeX entry types.
+    Supports basic mapping from Ackredit types to BibTeX entry types.
     """
     if not used:
         return ""
 
     entries: list[str] = []
 
-    # Mapping FlowCite types to BibTeX types
+    # Mapping Ackredit types to BibTeX types
     type_map = {
         "article": "article",
         "software": "software",

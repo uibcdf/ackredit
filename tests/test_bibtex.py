@@ -1,4 +1,4 @@
-from flowcite import register_item, report, track_item
+from ackredit import register_item, report, track_item
 
 
 def test_bibtex_article():
@@ -23,15 +23,15 @@ def test_bibtex_article():
 
 def test_bibtex_software():
     register_item(
-        id="flowcite:repo",
+        id="ackredit:repo",
         type="software",
-        title="FlowCite Tool",
-        url="https://github.com/uibcdf/flowcite",
+        title="Ackredit Tool",
+        url="https://github.com/uibcdf/ackredit",
         note="A tracking tool",
     )
-    track_item("flowcite:repo")
+    track_item("ackredit:repo")
     bib = report(format="bibtex")
 
-    assert "@software{flowcite_repo" in bib
-    assert "url = {https://github.com/uibcdf/flowcite}" in bib
+    assert "@software{ackredit_repo" in bib
+    assert "url = {https://github.com/uibcdf/ackredit}" in bib
     assert "note = {A tracking tool}" in bib

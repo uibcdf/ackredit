@@ -1,14 +1,14 @@
 # Generating Reports
 
-Once your workflow has finished, FlowCite provides multiple ways to view and export the collected citations.
+Once your workflow has finished, Ackredit provides multiple ways to view and export the collected citations.
 
 ## Jupyter Notebook Summary
 In a notebook, you can see a stylized HTML table with clickable links.
 
 ```python
-import flowcite
+import ackredit
 
-flowcite.summary()
+ackredit.summary()
 ```
 
 ## Standard Formats
@@ -23,24 +23,24 @@ Use `report(format=...)` to get a string in any of these formats:
 Save multiple formats at once to a directory.
 
 ```python
-import flowcite
+import ackredit
 
-flowcite.dump("my_citations", formats=["markdown", "bibtex", "provenance", "latex"])
+ackredit.dump("my_citations", formats=["markdown", "bibtex", "provenance", "latex"])
 ```
 
 ### Automatic PDF Generation
-If you have `pdflatex` installed, FlowCite can compile the LaTeX report into a PDF automatically.
+If you have `pdflatex` installed, Ackredit can compile the LaTeX report into a PDF automatically.
 
 ```python
-flowcite.dump("my_citations", build_pdf=True)
+ackredit.dump("my_citations", build_pdf=True)
 ```
 
 ## Collaborative Workflows (Aggregation)
 If you run analysis in a parallel cluster, you can merge multiple session files into one.
 
 ```python
-import flowcite
+import ackredit
 
-flowcite.aggregate(["node1.json", "node2.json", "node3.json"])
-print(flowcite.report())
+ackredit.aggregate(["node1.json", "node2.json", "node3.json"])
+print(ackredit.report())
 ```

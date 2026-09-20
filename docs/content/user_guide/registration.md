@@ -1,14 +1,14 @@
 # Registering Items
 
-Before citations can be tracked, FlowCite needs to know about them. Items can be registered manually or loaded from existing BibTeX files.
+Before citations can be tracked, Ackredit needs to know about them. Items can be registered manually or loaded from existing BibTeX files.
 
 ## Manual Registration
 You can register an item using the `register_item` function.
 
 ```python
-import flowcite
+import ackredit
 
-flowcite.register_item(
+ackredit.register_item(
     id="paper:2024",
     type="article",
     title="An Amazing Scientific Paper",
@@ -24,10 +24,10 @@ flowcite.register_item(
 Registering an item says it exists. **Binding** says which code entity may require it:
 
 ```python
-import flowcite
+import ackredit
 
-flowcite.bind("my_library.analysis.run", ["paper:2024"])
-flowcite.bound_items("my_library.analysis.run")
+ackredit.bind("my_library.analysis.run", ["paper:2024"])
+ackredit.bound_items("my_library.analysis.run")
 # -> ["paper:2024"]
 ```
 
@@ -37,27 +37,27 @@ actual citations, either explicitly with `track_item` or automatically with
 `credit_bound=True`.
 
 ## Automatic DOI Enrichment
-If you only have a DOI, FlowCite can automatically fetch the remaining metadata from **Crossref** or **DataCite**.
+If you only have a DOI, Ackredit can automatically fetch the remaining metadata from **Crossref** or **DataCite**.
 
 ```python
-import flowcite
+import ackredit
 
 # Register only with DOI
-flowcite.register_item(id="paper: AF2", doi="10.1038/s41586-021-03819-2")
+ackredit.register_item(id="paper: AF2", doi="10.1038/s41586-021-03819-2")
 
 # Fetch metadata automatically
-flowcite.enrich_all()
+ackredit.enrich_all()
 ```
-*Note: Metadata results are cached locally in `~/.cache/flowcite` to speed up future sessions.*
+*Note: Metadata results are cached locally in `~/.cache/ackredit` to speed up future sessions.*
 
 ## Loading from BibTeX
 For libraries with many references, you can load an entire `.bib` file directly.
 
 ```python
-import flowcite
+import ackredit
 from pathlib import Path
 
 bib_file = Path("my_library/citations.bib")
-flowcite.load_bibtex(bib_file)
+ackredit.load_bibtex(bib_file)
 ```
 "

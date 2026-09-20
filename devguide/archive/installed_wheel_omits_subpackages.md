@@ -1,6 +1,6 @@
 ---
 summary: A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported.
-issue: uibcdf/flowcite#2
+issue: uibcdf/ackredit#2
 status: resolved
 opened: 2026-09-20
 closed: 2026-09-20
@@ -74,3 +74,11 @@ Met by commit `8e36ce7`, with the guard added when this record was filed:
 - `tests/test_packaging.py` fails if the literal list returns, checking the declared
   discovery patterns against the packages present on disk rather than building a
   wheel, so the guard stays fast and needs no build backend.
+
+## Correction (2026-09-20)
+
+The repository was renamed from `flowcite` to `ackredit` after this record was
+archived. The owning issue keeps its number and is now `uibcdf/ackredit#2`; the
+front matter was updated to follow that identity. The analysis above is left as
+written, because the defect it describes occurred under the former name and
+rewriting it would misstate the history.
