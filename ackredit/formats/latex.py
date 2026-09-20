@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from ._latex import escape
+from .bibtex import _cite_key
+
 
 def render(
     used: dict[str, list[str]], items: dict[str, dict], style: str = "plainnat"
@@ -31,18 +34,12 @@ def render(
     for item_id, used_by in used.items():
         item = items.get(item_id, {"title": item_id})
         title = item.get("title", item_id)
-        # escape special latex chars
-        title = (
-            title.replace("&", "\\&")
-            .replace("%", "\\%")
-            .replace("#", "\\#")
-            .replace("_", "\\_")
-        )
+        title = escape(str(title))
 
-        safe_key = item_id.replace(":", "_").replace(" ", "_")
+        safe_key = _cite_key(item_id)
         lines.append(f"    \\item \\textbf{{{title}}} \\citep{{{safe_key}}}")
         if used_by:
-            used_str = ", ".join(used_by).replace("_", "\\_")
+            used_str = escape(", ".join(used_by))
             lines.append(f"    \\\\ \\textit{{(Used via: {used_str})}}")
     lines.append("\\end{itemize}")
 

@@ -15,6 +15,17 @@ from .registry import Registry, register_item
 _REMINDER_ENABLED = False
 
 
+def _split_authors(value: str | None) -> list[str]:
+    """Split the legacy metadata Author field into individual names.
+
+    PEP 621 renders `authors` into one comma-separated string. Kept whole it
+    becomes a single BibTeX name with many commas, which aborts bibtex.
+    """
+    if not value:
+        return []
+    return [name.strip() for name in value.split(",") if name.strip()]
+
+
 def _exit_reminder():
     """
     Function called at exit to remind the user about collected citations.
@@ -113,7 +124,7 @@ class InjectionsFinder(MetaPathFinder):
                         id=item_id,
                         type="software",
                         title=meta.get("Name", fullname),
-                        authors=[meta.get("Author")] if meta.get("Author") else [],
+                        authors=_split_authors(meta.get("Author")),
                         url=meta.get("Home-page") or meta.get("Project-URL"),
                         version=meta.get("Version"),
                     )

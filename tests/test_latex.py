@@ -22,5 +22,5 @@ def test_latex_generation():
 
     # Check item rendering (with escaped chars)
     assert "\\textbf{MolSysMT Paper \\& Stuff}" in tex_str
-    assert "\\citep{molsysmt_2024}" in tex_str
+    assert "\\citep{molsysmt-2024}" in tex_str
     assert "\\textit{(Used via: main\\_script)}" in tex_str

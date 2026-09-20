@@ -1,5 +1,22 @@
 from __future__ import annotations
 
+from ._latex import escape
+
+
+def _bibtex_name(name: str) -> str:
+    """Brace-protect a name BibTeX cannot parse.
+
+    BibTeX reads at most two commas in a name ("von Last, Jr, First"); more than
+    that is an error that aborts the run. Double braces make the whole string one
+    literal name, the standard idiom for corporate and irregular names.
+    """
+    return f"{{{name}}}" if name.count(",") > 1 else name
+
+
+def _cite_key(item_id: str) -> str:
+    """Return a citation key that is safe as a printed natbib label."""
+    return item_id.replace(":", "-").replace(" ", "-").replace("_", "-")
+
 
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     """
@@ -28,7 +45,11 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             item = {"title": item_id, "id": item_id}
 
         item_id = item.get("id", item_id)
-        key = item_id.replace(":", "_").replace(" ", "_")
+        # A hyphen, not an underscore: when an entry has no author, natbib
+        # derives the printed label from the key, and a bare underscore there is
+        # read in math mode and aborts the compilation. Auto-discovered items
+        # frequently have no author.
+        key = _cite_key(item_id)
 
         fc_type = item.get("type", "other")
         bib_type = type_map.get(fc_type, "misc")
@@ -40,8 +61,13 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             val = item.get(fc_key)
             if val:
                 if isinstance(val, list):
-                    val = " and ".join(val)
-                fields.append(f"  {bib_key} = {{{val}}}")
+                    parts = [str(part) for part in val]
+                    if fc_key == "authors":
+                        parts = [_bibtex_name(part) for part in parts]
+                    val = " and ".join(parts)
+                # A TeX engine reads these values; a bare '&' in a journal name
+                # silently mangles the compiled bibliography.
+                fields.append(f"  {bib_key} = {{{escape(str(val))}}}")
 
         add_field("title", "title")
         add_field("author", "authors")

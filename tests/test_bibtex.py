@@ -14,7 +14,7 @@ def test_bibtex_article():
     track_item("molsysmt:2024")
     bib = report(format="bibtex")
 
-    assert "@article{molsysmt_2024" in bib
+    assert "@article{molsysmt-2024" in bib
     assert "title = {MolSysMT Paper}" in bib
     assert "author = {Diego and Other Author}" in bib
     assert "doi = {10.1234/msm.2024}" in bib
@@ -32,6 +32,6 @@ def test_bibtex_software():
     track_item("ackredit:repo")
     bib = report(format="bibtex")
 
-    assert "@software{ackredit_repo" in bib
+    assert "@software{ackredit-repo" in bib
     assert "url = {https://github.com/uibcdf/ackredit}" in bib
     assert "note = {A tracking tool}" in bib
