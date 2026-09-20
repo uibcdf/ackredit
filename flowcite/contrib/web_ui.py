@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 import threading
 import time
+
 from ..core.collector import get_used_items
 from ..core.registry import Registry
+
 
 def serve_ui(port: int = 8080):
     """
@@ -17,11 +20,11 @@ def serve_ui(port: int = 8080):
 
     app = Flask(__name__)
 
-    @app.route('/')
+    @app.route("/")
     def index():
         used = get_used_items()
         items = Registry.items
-        
+
         # Simple HTML template
         html = """
         <html>
@@ -46,7 +49,9 @@ def serve_ui(port: int = 8080):
 
     print(f"Starting FlowCite UI at http://127.0.0.1:{port}")
     # We run in a thread to not block the script
-    thread = threading.Thread(target=lambda: app.run(port=port, debug=False, use_reloader=False))
+    thread = threading.Thread(
+        target=lambda: app.run(port=port, debug=False, use_reloader=False)
+    )
     thread.daemon = True
     thread.start()
-    time.sleep(1) # Give it a second to start
+    time.sleep(1)  # Give it a second to start

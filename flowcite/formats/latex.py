@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-def render(used: dict[str, list[str]], items: dict[str, dict], style: str = "plainnat") -> str:
+
+def render(
+    used: dict[str, list[str]], items: dict[str, dict], style: str = "plainnat"
+) -> str:
     """
     Render used items as a complete, compilable LaTeX document containing a bibliography.
     """
@@ -20,7 +23,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict], style: str = "pla
         "",
         "\\section*{Acknowledgments \\& Software Citations}",
         "This work was supported by the following software, algorithms, and datasets:\\\\",
-        ""
+        "",
     ]
 
     # We use a \nocite{*} approach with an embedded filecontents block for the bibtex
@@ -29,22 +32,29 @@ def render(used: dict[str, list[str]], items: dict[str, dict], style: str = "pla
         item = items.get(item_id, {"title": item_id})
         title = item.get("title", item_id)
         # escape special latex chars
-        title = title.replace("&", "\\&").replace("%", "\\%").replace("#", "\\#").replace("_", "\\_")
-        
+        title = (
+            title.replace("&", "\\&")
+            .replace("%", "\\%")
+            .replace("#", "\\#")
+            .replace("_", "\\_")
+        )
+
         safe_key = item_id.replace(":", "_").replace(" ", "_")
         lines.append(f"    \\item \\textbf{{{title}}} \\citep{{{safe_key}}}")
         if used_by:
             used_str = ", ".join(used_by).replace("_", "\\_")
             lines.append(f"    \\\\ \\textit{{(Used via: {used_str})}}")
     lines.append("\\end{itemize}")
-    
-    lines.extend([
-        "",
-        f"\\bibliographystyle{{{style}}}",
-        "\\bibliography{flowcite_report}",
-        "",
-        "\\end{document}",
-        ""
-    ])
+
+    lines.extend(
+        [
+            "",
+            f"\\bibliographystyle{{{style}}}",
+            "\\bibliography{flowcite_report}",
+            "",
+            "\\end{document}",
+            "",
+        ]
+    )
 
     return "\n".join(lines)

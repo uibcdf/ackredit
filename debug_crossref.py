@@ -1,6 +1,5 @@
 import json
 import urllib.request
-import sys
 
 doi = "10.1038/s41592-021-01121-x"
 url = f"https://api.crossref.org/works/{doi}"

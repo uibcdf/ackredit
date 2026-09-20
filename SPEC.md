@@ -28,6 +28,7 @@ It is inspired by the goals of **DueCredit** but focuses on explicit per-branch 
 ```python
 from typing import TypedDict, Literal
 
+
 class CitationItem(TypedDict, total=False):
     id: str
     type: Literal["article", "software", "repo", "web", "dataset", "other"]
@@ -39,11 +40,12 @@ class CitationItem(TypedDict, total=False):
     note: str
     how_to_cite: str
 
+
 # registry: static info
 class Registry:
     items: dict[str, CitationItem] = {}
-    bindings: dict[str, list[str]] = {}      # target -> [item_id, ...]
-    injections: dict[str, list[str]] = {}    # external module -> [item_id, ...]
+    bindings: dict[str, list[str]] = {}  # target -> [item_id, ...]
+    injections: dict[str, list[str]] = {}  # external module -> [item_id, ...]
 
     @classmethod
     def register_item(cls, **item): ...
@@ -83,14 +85,19 @@ Collector may also, on import of an injected module, mark the corresponding item
 from .core import Collector
 from .core import Registry
 
+
 def scoped_usage(target: str):
     """Mark that this target was used in this workflow."""
+
     def deco(fn):
         def wrapper(*args, **kwargs):
             Collector.track_target(target)
             return fn(*args, **kwargs)
+
         return wrapper
+
     return deco
+
 
 def track_item(item_id: str, used_by: str | None = None):
     """Mark that this specific item must be credited in this run."""
@@ -109,18 +116,23 @@ def report(format: str = "markdown") -> str:
     used = Collector.used_items
     # fetch item definitions
     from .core import Registry
+
     items = Registry.items
     if format == "markdown":
         from .formats.markdown import render
+
         return render(used, items)
     elif format == "bibtex":
         from .formats.bibtex import render
+
         return render(used, items)
     elif format == "json":
         from .formats.jsonfmt import render
+
         return render(used, items)
     else:
         from .formats.text import render
+
         return render(used, items)
 ```
 

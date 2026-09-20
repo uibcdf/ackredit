@@ -85,13 +85,10 @@ registry.register_item(
     authors=["Prada, D.", "et al."],
     year=2024,
     doi="10.1234/topomt.2024.001",
-    note="Core method for concavity/convexity classification."
+    note="Core method for concavity/convexity classification.",
 )
 
-registry.bind(
-    target="topomt.features.detect_pockets",
-    items=["topomt:2024:concavity"]
-)
+registry.bind(target="topomt.features.detect_pockets", items=["topomt:2024:concavity"])
 ```
 
 **2) Developer optionally defines an injection for a 3rd-party tool**
@@ -99,16 +96,14 @@ registry.bind(
 ```python
 from flowcite import injections
 
-injections.register(
-    target_module="mdtraj",
-    items=["external:mdtraj:paper"]
-)
+injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
 ```
 
 **3) At runtime, the function decides which item applies**
 
 ```python
 from flowcite import scoped_usage, track_item
+
 
 @scoped_usage(target="topomt.features.detect_pockets")
 def detect_pockets(surface, mode="basic"):
@@ -121,6 +116,7 @@ def detect_pockets(surface, mode="basic"):
 
 ```python
 import flowcite
+
 print(flowcite.report(format="markdown"))
 ```
 

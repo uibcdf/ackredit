@@ -1,6 +1,6 @@
-from .registry import register_item, bind, add_injection, Registry
-from .collector import track_item, track_target, get_used_items
+from .collector import get_used_items, track_item, track_target
 from .decorators import scoped_usage
+from .registry import Registry, add_injection, bind, register_item
 from .report import report
 
 __all__ = [

@@ -1,11 +1,14 @@
 from __future__ import annotations
+
 from ..core.collector import get_used_items
 from ..core.registry import Registry
+
 
 class CitationsHTML:
     """
     Object that implements _repr_html_ for rich display in Jupyter Notebooks.
     """
+
     def __init__(self, used: dict[str, list[str]], items: dict[str, dict]):
         self.used = used
         self.items = items
@@ -23,7 +26,7 @@ class CitationsHTML:
             "<th style='padding: 8px;'>Details</th>",
             "<th style='padding: 8px;'>Used by</th>",
             "</tr></thead>",
-            "<tbody>"
+            "<tbody>",
         ]
 
         for item_id, used_by in self.used.items():
@@ -33,35 +36,40 @@ class CitationsHTML:
             authors = item.get("authors", [])
             if isinstance(authors, list):
                 authors = ", ".join(authors)
-            
+
             doi = item.get("doi")
             url = item.get("url")
-            
+
             # Format Title & Link
             link = None
             if doi:
                 link = f"https://doi.org/{doi}"
             elif url:
                 link = url
-            
+
             display_title = f"<b>{title}</b>"
             if link:
                 display_title = f"<a href='{link}' target='_blank' style='text-decoration: none; color: #007bff;'>{display_title}</a>"
-            
+
             details = []
             if authors:
                 details.append(f"<i>{authors}</i>")
             if year:
                 details.append(f"({year})")
-            
+
             html.append("<tr style='border-bottom: 1px solid #eee;'>")
             html.append(f"<td style='padding: 8px;'>{display_title}</td>")
-            html.append(f"<td style='padding: 8px; font-size: 0.9em;'>{'<br>'.join(details)}</td>")
-            html.append(f"<td style='padding: 8px; font-size: 0.8em; color: #666;'>{', '.join(used_by) if used_by else '-'}</td>")
+            html.append(
+                f"<td style='padding: 8px; font-size: 0.9em;'>{'<br>'.join(details)}</td>"
+            )
+            html.append(
+                f"<td style='padding: 8px; font-size: 0.8em; color: #666;'>{', '.join(used_by) if used_by else '-'}</td>"
+            )
             html.append("</tr>")
 
         html.append("</tbody></table></div>")
         return "".join(html)
+
 
 def summary():
     """

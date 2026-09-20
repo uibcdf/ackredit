@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     if not used:
         return "No items were tracked in this session."
@@ -13,4 +14,3 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             s += f" [used by: {', '.join(used_by)}]"
         parts.append(s)
     return "\n".join(parts)
-

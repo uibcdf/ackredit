@@ -13,17 +13,30 @@ Since version 0.3.0, FlowCite supports **Auto-Discovery** and **Import Hooks**. 
 ```python
 try:
     from flowcite import registry, scoped_usage, track_item, report
+
     FLOWCITE_INSTALLED = True
 except ImportError:
     FLOWCITE_INSTALLED = False
+
     # No-op shims
-    def registry_register_item(*args, **kwargs): pass
-    def registry_bind(*args, **kwargs): pass
+    def registry_register_item(*args, **kwargs):
+        pass
+
+    def registry_bind(*args, **kwargs):
+        pass
+
     def scoped_usage(target=None):
-        def deco(fn): return fn
+        def deco(fn):
+            return fn
+
         return deco
-    def track_item(*args, **kwargs): pass
-    def report(*args, **kwargs): return "FlowCite not installed."
+
+    def track_item(*args, **kwargs):
+        pass
+
+    def report(*args, **kwargs):
+        return "FlowCite not installed."
+
 
 # Exporting clean names for the host library
 if FLOWCITE_INSTALLED:
@@ -46,7 +59,7 @@ register_item(
     type="article",
     title="MolSysMT: A modern library for molecular systems analysis",
     authors=["Diego", "et al."],
-    year=2024
+    year=2024,
 )
 
 bind(target="molsysmt.basic.convert", items=["molsysmt:paper:2024"])
@@ -58,6 +71,7 @@ Use the decorators and tracking functions in your modules:
 
 ```python
 from .._flowcite import scoped_usage, track_item
+
 
 @scoped_usage(target="molsysmt.basic.convert")
 def convert(item, to_form):
@@ -71,6 +85,7 @@ Expose a reporting function for the end user:
 
 ```python
 from ._flowcite import report
+
 
 def cite(format="markdown"):
     return report(format=format)

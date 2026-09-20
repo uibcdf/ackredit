@@ -1,6 +1,7 @@
-from flowcite.core.registry import register_item
 from flowcite.core.collector import track_item
+from flowcite.core.registry import register_item
 from flowcite.core.report import report
+
 
 def test_markdown_report():
     register_item(id="paper:1", type="article", title="Paper 1", year=2024)

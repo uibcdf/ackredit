@@ -1,5 +1,7 @@
 import json
-from flowcite import register_item, track_item, report
+
+from flowcite import register_item, report, track_item
+
 
 def test_csl_json_export():
     register_item(
@@ -9,14 +11,14 @@ def test_csl_json_export():
         authors=["Diego", "Other Author"],
         year=2024,
         doi="10.1234/msm.2024",
-        journal="Nature Molecular Systems"
+        journal="Nature Molecular Systems",
     )
     track_item("molsysmt:2024")
-    
+
     # Render CSL
     csl_str = report(format="csl-json")
     csl = json.loads(csl_str)
-    
+
     assert isinstance(csl, list)
     item = csl[0]
     assert item["id"] == "molsysmt:2024"

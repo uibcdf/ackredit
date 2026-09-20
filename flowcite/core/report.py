@@ -1,15 +1,17 @@
 from __future__ import annotations
 
+import logging
 import shutil
 import subprocess
-import logging
 from pathlib import Path
 from typing import Any
+
+from ..formats import bibtex, csl_json, jsonfmt, latex, markdown, provenance, text
 from .collector import get_used_items
 from .registry import Registry
-from ..formats import markdown, text, bibtex, jsonfmt, csl_json, provenance, latex
 
 logger = logging.getLogger(__name__)
+
 
 def report(format: str = "markdown", **kwargs: Any) -> str:
     used = get_used_items()
@@ -33,7 +35,9 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     return text.render(used, items)
 
 
-def dump(path: str | Path, formats: list[str] | None = None, build_pdf: bool = False) -> None:
+def dump(
+    path: str | Path, formats: list[str] | None = None, build_pdf: bool = False
+) -> None:
     """
     Save citation reports in multiple formats to a file or directory.
     If path is a directory, it will save multiple files (e.g., report.md, report.bib).
@@ -42,9 +46,9 @@ def dump(path: str | Path, formats: list[str] | None = None, build_pdf: bool = F
     """
     if formats is None:
         formats = ["markdown", "bibtex", "provenance", "latex"]
-    
+
     path = Path(path)
-    
+
     # Extensions map
     ext_map = {
         "markdown": "md",
@@ -54,7 +58,7 @@ def dump(path: str | Path, formats: list[str] | None = None, build_pdf: bool = F
         "csl": "csl.json",
         "provenance": "txt",
         "latex": "tex",
-        "text": "txt"
+        "text": "txt",
     }
 
     if path.is_dir() or not path.suffix:
@@ -65,7 +69,7 @@ def dump(path: str | Path, formats: list[str] | None = None, build_pdf: bool = F
             file_path = path / filename
             content = report(format=fmt)
             file_path.write_text(content)
-        
+
         if build_pdf:
             compile_pdf(path)
     else:
@@ -82,7 +86,7 @@ def compile_pdf(directory: str | Path) -> None:
     """
     dir_path = Path(directory)
     tex_file = dir_path / "flowcite_report.tex"
-    
+
     if not tex_file.exists():
         logger.error(f"Cannot compile PDF: {tex_file} not found.")
         return
@@ -96,27 +100,42 @@ def compile_pdf(directory: str | Path) -> None:
 
     try:
         # Standard compilation sequence: pdflatex -> bibtex -> pdflatex -> pdflatex
-        subprocess.run([pdflatex, "-interaction=nonstopmode", tex_file.name], 
-                       cwd=dir_path, check=True, capture_output=True)
-        
+        subprocess.run(
+            [pdflatex, "-interaction=nonstopmode", tex_file.name],
+            cwd=dir_path,
+            check=True,
+            capture_output=True,
+        )
+
         if bibtex:
-            subprocess.run([bibtex, "flowcite_report"], 
-                           cwd=dir_path, check=True, capture_output=True)
-            
-            subprocess.run([pdflatex, "-interaction=nonstopmode", tex_file.name], 
-                           cwd=dir_path, check=True, capture_output=True)
-            
-            subprocess.run([pdflatex, "-interaction=nonstopmode", tex_file.name], 
-                           cwd=dir_path, check=True, capture_output=True)
-        
+            subprocess.run(
+                [bibtex, "flowcite_report"],
+                cwd=dir_path,
+                check=True,
+                capture_output=True,
+            )
+
+            subprocess.run(
+                [pdflatex, "-interaction=nonstopmode", tex_file.name],
+                cwd=dir_path,
+                check=True,
+                capture_output=True,
+            )
+
+            subprocess.run(
+                [pdflatex, "-interaction=nonstopmode", tex_file.name],
+                cwd=dir_path,
+                check=True,
+                capture_output=True,
+            )
+
         # Cleanup auxiliary files
         for ext in ["aux", "log", "out", "blg", "bbl"]:
             aux_file = dir_path / f"flowcite_report.{ext}"
             if aux_file.exists():
                 aux_file.unlink()
-                
+
         logger.info(f"PDF successfully compiled: {dir_path / 'flowcite_report.pdf'}")
-        
+
     except subprocess.CalledProcessError as e:
         logger.error(f"PDF compilation failed: {e.stderr.decode()}")
-

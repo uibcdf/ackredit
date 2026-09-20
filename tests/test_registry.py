@@ -1,4 +1,5 @@
-from flowcite.core.registry import Registry, register_item, bind
+from flowcite.core.registry import Registry, bind, register_item
+
 
 def test_register_and_bind():
     register_item(id="paper:1", type="article", title="Paper 1")

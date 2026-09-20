@@ -8,6 +8,7 @@ The `@scoped_usage` decorator is the easiest way to track when a function is cal
 ```python
 import flowcite
 
+
 @flowcite.scoped_usage("my_library.analysis")
 def run_analysis():
     # This automatically marks 'my_library.analysis' as used
@@ -20,6 +21,7 @@ For more granular tracking within a function, use the `scope` context manager.
 ```python
 import flowcite
 
+
 def run_analysis():
     with flowcite.scope("data_loading"):
         # Marks 'data_loading' as a sub-scope
@@ -31,6 +33,7 @@ You can manually track any item at any point in your code.
 
 ```python
 import flowcite
+
 
 def compute():
     # Perform algorithm...

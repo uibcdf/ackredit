@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     """
     Render used items in BibTeX format.
@@ -9,7 +10,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         return ""
 
     entries: list[str] = []
-    
+
     # Mapping FlowCite types to BibTeX types
     type_map = {
         "article": "article",
@@ -17,7 +18,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         "repo": "misc",
         "web": "misc",
         "dataset": "dataset",
-        "other": "misc"
+        "other": "misc",
     }
 
     for item_id in used:
@@ -25,15 +26,15 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         if not item:
             # If item not in registry, create a minimal misc entry
             item = {"title": item_id, "id": item_id}
-        
+
         item_id = item.get("id", item_id)
         key = item_id.replace(":", "_").replace(" ", "_")
-        
+
         fc_type = item.get("type", "other")
         bib_type = type_map.get(fc_type, "misc")
-        
+
         fields: list[str] = []
-        
+
         # Helper to add fields
         def add_field(bib_key: str, fc_key: str):
             val = item.get(fc_key)
@@ -48,7 +49,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         add_field("doi", "doi")
         add_field("url", "url")
         add_field("note", "note")
-        
+
         # Type specific additions
         if fc_type == "article":
             add_field("journal", "journal")

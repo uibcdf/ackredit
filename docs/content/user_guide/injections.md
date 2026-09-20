@@ -4,5 +4,6 @@ FlowCite can also register items for external libraries that are not FlowCite-aw
 
 ```python
 from flowcite import add_injection
+
 add_injection("mdtraj", ["external:mdtraj:paper"])
 ```

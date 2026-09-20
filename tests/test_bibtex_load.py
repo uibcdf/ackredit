@@ -1,6 +1,5 @@
-import pytest
-from pathlib import Path
-from flowcite import load_bibtex, Registry
+from flowcite import Registry, load_bibtex
+
 
 def test_load_bibtex_file(tmp_path):
     bib_content = """
@@ -21,9 +20,9 @@ def test_load_bibtex_file(tmp_path):
 """
     bib_file = tmp_path / "refs.bib"
     bib_file.write_text(bib_content)
-    
+
     load_bibtex(bib_file)
-    
+
     # Check paper1
     assert "paper1" in Registry.items
     item1 = Registry.items["paper1"]
@@ -32,7 +31,7 @@ def test_load_bibtex_file(tmp_path):
     assert "Doe, Jane" in item1["authors"]
     assert item1["year"] == 2024
     assert item1["doi"] == "10.1234/js.2024"
-    
+
     # Check tool1
     assert "tool1" in Registry.items
     item2 = Registry.items["tool1"]

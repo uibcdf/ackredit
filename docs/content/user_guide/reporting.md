@@ -7,6 +7,7 @@ In a notebook, you can see a stylized HTML table with clickable links.
 
 ```python
 import flowcite
+
 flowcite.summary()
 ```
 
@@ -23,6 +24,7 @@ Save multiple formats at once to a directory.
 
 ```python
 import flowcite
+
 flowcite.dump("my_citations", formats=["markdown", "bibtex", "provenance", "latex"])
 ```
 
@@ -38,6 +40,7 @@ If you run analysis in a parallel cluster, you can merge multiple session files 
 
 ```python
 import flowcite
+
 flowcite.aggregate(["node1.json", "node2.json", "node3.json"])
 print(flowcite.report())
 ```

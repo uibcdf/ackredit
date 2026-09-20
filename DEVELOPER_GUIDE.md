@@ -30,19 +30,19 @@ registry.register_item(
     title="TopoMT: a toolkit for macromolecular topography",
     authors=["Prada, D."],
     year=2024,
-    note="Main description of the TopoMT approach."
+    note="Main description of the TopoMT approach.",
 )
 
 registry.register_item(
     id="topomt:github:repo",
     type="repo",
     title="TopoMT GitHub repository",
-    url="https://github.com/uibcdf/topomt"
+    url="https://github.com/uibcdf/topomt",
 )
 
 registry.bind(
     target="topomt.mouths.detect_mouths",
-    items=["topomt:2024:base-paper", "topomt:github:repo"]
+    items=["topomt:2024:base-paper", "topomt:github:repo"],
 )
 ```
 
@@ -56,6 +56,7 @@ Inside the function, decide which items apply:
 
 ```python
 from flowcite import scoped_usage, track_item
+
 
 @scoped_usage(target="topomt.mouths.detect_mouths")
 def detect_mouths(surface, mode="basic"):
@@ -79,10 +80,7 @@ If your library uses an external package that does **not** use FlowCite, you can
 from flowcite import injections
 
 # say your library uses mdtraj internally
-injections.register(
-    target_module="mdtraj",
-    items=["external:mdtraj:paper"]
-)
+injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
 ```
 
 FlowCite can then mark that if `mdtraj` was imported or used, the corresponding item should appear in the final report — similar to DueCredit injections. citeturn0search1
@@ -123,7 +121,9 @@ except ImportError:
     def scoped_usage(target=None):
         def deco(fn):
             return fn
+
         return deco
+
     def track_item(*args, **kwargs):
         pass
 ```
@@ -150,11 +150,10 @@ from flowcite import registry, scoped_usage, track_item
 
 # 1) register items
 registry.register_item(
-    id="example:2024:paper",
-    type="article",
-    title="Example research article"
+    id="example:2024:paper", type="article", title="Example research article"
 )
 registry.bind(target="example.run", items=["example:2024:paper"])
+
 
 # 2) runtime tracking
 @scoped_usage(target="example.run")
@@ -164,11 +163,13 @@ def run(method="a"):
         track_item("example:2024:paper-b", used_by="example.run")
     print("Running analysis...")
 
+
 # 3) run workflow
 run()
 
 # 4) report
 import flowcite
+
 print(flowcite.report(format="markdown"))
 ```
 

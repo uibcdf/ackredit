@@ -1,16 +1,15 @@
-import pytest
-from pathlib import Path
-from flowcite import register_item, track_item, dump
+from flowcite import dump, register_item, track_item
+
 
 def test_pdf_compilation(tmp_path):
     # Register and track
     register_item(id="paper:1", title="Test Paper", authors=["Author A"], year=2024)
     track_item("paper:1")
-    
+
     # Dump with PDF build
     report_dir = tmp_path / "report"
     dump(report_dir, build_pdf=True)
-    
+
     # Check if PDF exists
     pdf_file = report_dir / "flowcite_report.pdf"
     assert pdf_file.exists()

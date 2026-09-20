@@ -1,5 +1,4 @@
-from flowcite import Registry, register_item, enrich_all
-import json
+from flowcite import Registry, enrich_all, register_item
 
 register_item(id="test", doi="10.1038/nmeth.1618")
 print(f"Before: {Registry.items['test']}")

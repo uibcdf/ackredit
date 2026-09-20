@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import re
 import json
+import re
 import urllib.request
 from pathlib import Path
-from typing import TypedDict, Literal, Any, Dict, List
+from typing import Any, Dict, Literal, TypedDict
 
 
 class CitationItem(TypedDict, total=False):
@@ -64,32 +64,32 @@ class Registry:
         path = Path(file_path)
         if not path.exists():
             raise FileNotFoundError(f"BibTeX file not found: {path}")
-        
+
         content = path.read_text()
-        
+
         pos = 0
         while True:
-            match = re.search(r'@(\w+)\s*\{', content[pos:])
+            match = re.search(r"@(\w+)\s*\{", content[pos:])
             if not match:
                 break
-            
+
             entry_type = match.group(1).lower()
             start_bracket = pos + match.end()
-            
+
             # Find matching closing bracket
             bracket_count = 1
             end_pos = start_bracket
             while bracket_count > 0 and end_pos < len(content):
-                if content[end_pos] == '{':
+                if content[end_pos] == "{":
                     bracket_count += 1
-                elif content[end_pos] == '}':
+                elif content[end_pos] == "}":
                     bracket_count -= 1
                 end_pos += 1
-            
+
             if bracket_count == 0:
-                entry_body = content[start_bracket:end_pos-1]
+                entry_body = content[start_bracket : end_pos - 1]
                 cls._parse_entry(entry_type, entry_body)
-            
+
             pos = end_pos
 
     @classmethod
@@ -111,22 +111,24 @@ class Registry:
         doi = item["doi"]
         safe_doi = doi.replace("/", "_")
         cache_file = cls._get_cache_dir() / f"{safe_doi}.json"
-        
+
         data = None
-        
+
         # 1. Try cache
         if cache_file.exists():
             try:
                 data = json.loads(cache_file.read_text())
             except Exception:
                 pass
-        
+
         # 2. Try network (Crossref first, then DataCite)
         if not data:
             # 2a. Try Crossref
             try:
                 url = f"https://api.crossref.org/works/{doi}"
-                headers = {"User-Agent": "FlowCite/0.4.0 (https://github.com/uibcdf/flowcite)"}
+                headers = {
+                    "User-Agent": "FlowCite/0.4.0 (https://github.com/uibcdf/flowcite)"
+                }
                 req = urllib.request.Request(url, headers=headers)
                 with urllib.request.urlopen(req, timeout=5) as response:
                     data = json.loads(response.read().decode())["message"]
@@ -136,17 +138,31 @@ class Registry:
                     url = f"https://api.datacite.org/dois/{doi}"
                     req = urllib.request.Request(url, headers=headers)
                     with urllib.request.urlopen(req, timeout=5) as response:
-                        dc_data = json.loads(response.read().decode())["data"]["attributes"]
+                        dc_data = json.loads(response.read().decode())["data"][
+                            "attributes"
+                        ]
                         # Map DataCite to a Crossref-like format for consistency in the rest of the function
                         data = {
-                            "title": [dc_data.get("title")] if dc_data.get("title") else [t.get("title") for t in dc_data.get("titles", [])[:1]],
-                            "author": [{"family": a.get("familyName", a.get("name")), "given": a.get("givenName", "")} for a in dc_data.get("creators", [])],
-                            "issued": {"date-parts": [[dc_data.get("publicationYear")]]},
-                            "container-title": [dc_data.get("publisher", "")]
+                            "title": [dc_data.get("title")]
+                            if dc_data.get("title")
+                            else [
+                                t.get("title") for t in dc_data.get("titles", [])[:1]
+                            ],
+                            "author": [
+                                {
+                                    "family": a.get("familyName", a.get("name")),
+                                    "given": a.get("givenName", ""),
+                                }
+                                for a in dc_data.get("creators", [])
+                            ],
+                            "issued": {
+                                "date-parts": [[dc_data.get("publicationYear")]]
+                            },
+                            "container-title": [dc_data.get("publisher", "")],
                         }
                 except Exception:
                     pass
-            
+
             # Save to cache if we found something
             if data:
                 try:
@@ -159,7 +175,7 @@ class Registry:
             # Update title if missing
             if "title" not in item or not item["title"]:
                 item["title"] = data.get("title", [item_id])[0]
-            
+
             # Update authors if missing
             if "authors" not in item or not item["authors"]:
                 authors = []
@@ -169,19 +185,18 @@ class Registry:
                     authors.append(f"{family}, {given}".strip(", "))
                 if authors:
                     item["authors"] = authors
-            
+
             # Update year if missing
             if "year" not in item or not item["year"]:
                 issued = data.get("issued", {}).get("date-parts", [[None]])[0][0]
                 if issued:
                     item["year"] = int(issued)
-            
+
             # Update journal if missing
             if "journal" not in item or not item["journal"]:
                 container = data.get("container-title", [])
                 if container:
                     item["journal"] = container[0]
-
 
     @classmethod
     def enrich_all(cls) -> None:
@@ -198,14 +213,15 @@ class Registry:
         anything = "my_package.citations:register"
         """
         from importlib import metadata
+
         eps = metadata.entry_points()
-        
+
         # In Python 3.10+, entry_points() returns a SelectableGroups object
-        if hasattr(eps, 'select'):
-            plugins = eps.select(group='flowcite.citations')
+        if hasattr(eps, "select"):
+            plugins = eps.select(group="flowcite.citations")
         else:
             # Fallback for older versions if necessary
-            plugins = eps.get('flowcite.citations', [])
+            plugins = eps.get("flowcite.citations", [])
 
         for entry_point in plugins:
             try:
@@ -219,13 +235,13 @@ class Registry:
     @classmethod
     def _parse_entry(cls, entry_type: str, body: str) -> None:
         # First line is usually the ID/Key
-        lines = body.split(',', 1)
+        lines = body.split(",", 1)
         if not lines:
             return
-        
+
         item_id = lines[0].strip()
         fields_str = lines[1] if len(lines) > 1 else ""
-        
+
         # Normalize type
         fc_type_map = {
             "article": "article",
@@ -234,30 +250,32 @@ class Registry:
             "webpage": "web",
             "online": "web",
             "dataset": "dataset",
-            "repository": "repo"
+            "repository": "repo",
         }
         fc_type = fc_type_map.get(entry_type, "other")
-        
-        item: Dict[str, Any] = {
-            "id": item_id,
-            "type": fc_type
-        }
-        
+
+        item: Dict[str, Any] = {"id": item_id, "type": fc_type}
+
         # Parse fields
         field_pattern = re.compile(r'(\w+)\s*=\s*(\{.*?\}|".*?"|[^,]+)', re.DOTALL)
-        
+
         for field_match in field_pattern.finditer(fields_str):
             key = field_match.group(1).lower()
             value = field_match.group(2).strip()
-            
+
             # Remove enclosing braces or quotes
-            if (value.startswith('{') and value.endswith('}')) or (value.startswith('"') and value.endswith('"')):
+            if (value.startswith("{") and value.endswith("}")) or (
+                value.startswith('"') and value.endswith('"')
+            ):
                 value = value[1:-1]
-            
+
             # Special handling for authors
             if key == "author" or key == "authors":
                 # Split by ' and '
-                authors = [a.strip() for a in re.split(r'\s+and\s+', value, flags=re.IGNORECASE)]
+                authors = [
+                    a.strip()
+                    for a in re.split(r"\s+and\s+", value, flags=re.IGNORECASE)
+                ]
                 item["authors"] = authors
             elif key == "year":
                 try:
@@ -266,13 +284,10 @@ class Registry:
                     item["year"] = value
             else:
                 # Direct mapping or standard keys
-                fc_key_map = {
-                    "journaltitle": "journal",
-                    "date": "year"
-                }
+                fc_key_map = {"journaltitle": "journal", "date": "year"}
                 final_key = fc_key_map.get(key, key)
                 item[final_key] = value
-        
+
         cls.register_item(**item)
 
 
@@ -288,11 +303,14 @@ def bind(target: str, items: list[str]) -> None:
 def add_injection(target_module: str, items: list[str]) -> None:
     Registry.add_injection(target_module, items)
 
+
 def load_bibtex(file_path: str | Path) -> None:
     Registry.load_bibtex(file_path)
 
+
 def enrich_all() -> None:
     Registry.enrich_all()
+
 
 def load_plugins() -> None:
     Registry.load_plugins()

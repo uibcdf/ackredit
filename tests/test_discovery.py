@@ -1,16 +1,17 @@
-from flowcite import enable_import_hooks, get_used_items
-
-import sys
+from flowcite import get_used_items
 from flowcite.core.hooks import InjectionsFinder
+
 
 def test_metadata_discovery():
     # Rather than relying on a real import, which may already be cached,
     # exercise the finder's discovery method directly
     finder = InjectionsFinder()
-    
+
     # Use 'pytest': it is installed and is known to expose package metadata
-    finder._discover_and_register('pytest')
-    
-    from flowcite import get_used_items
+    finder._discover_and_register("pytest")
+
     used = get_used_items()
-    assert any(k.startswith('metadata:pytest') or k.startswith('discovered:pytest') for k in used.keys())
+    assert any(
+        k.startswith("metadata:pytest") or k.startswith("discovered:pytest")
+        for k in used.keys()
+    )

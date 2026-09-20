@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 import json
+
 
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     """
@@ -10,7 +12,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         return "[]"
 
     csl_items = []
-    
+
     # Mapping FlowCite types to CSL types
     # Reference: https://docs.citationstyles.org/en/stable/specification.html#appendix-iii-types
     type_map = {
@@ -19,14 +21,14 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         "repo": "webpage",
         "web": "webpage",
         "dataset": "dataset",
-        "other": "document"
+        "other": "document",
     }
 
     for item_id in used:
         item = items.get(item_id)
         if not item:
             item = {"title": item_id, "id": item_id}
-            
+
         csl_item = {
             "id": item.get("id", item_id),
             "type": type_map.get(item.get("type", "other"), "document"),
@@ -38,7 +40,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         if authors:
             csl_authors = []
             for auth in authors:
-                # FlowCite currently stores authors as strings. 
+                # FlowCite currently stores authors as strings.
                 # CSL prefers structured names, but supports 'literal'.
                 csl_authors.append({"literal": auth})
             csl_item["author"] = csl_authors

@@ -15,7 +15,7 @@ flowcite.register_item(
     authors=["Smith, J.", "Doe, A."],
     year=2024,
     doi="10.1234/amazing.2024",
-    journal="Nature Methods"
+    journal="Nature Methods",
 )
 ```
 
