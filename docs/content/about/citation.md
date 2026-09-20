@@ -1,3 +1,4 @@
+(About_Citation)=
 # Citation
 
 If you use Ackredit in a scientific publication, please cite:

@@ -76,9 +76,9 @@ docs/
 **1) Developer registers items and binds them**
 
 ```python
-from ackredit import registry
+from ackredit import bind, register_item
 
-registry.register_item(
+register_item(
     id="topomt:2024:concavity",
     type="article",
     title="Unified topographic analysis of macromolecular surfaces",
@@ -88,15 +88,15 @@ registry.register_item(
     note="Core method for concavity/convexity classification.",
 )
 
-registry.bind(target="topomt.features.detect_pockets", items=["topomt:2024:concavity"])
+bind(target="topomt.features.detect_pockets", items=["topomt:2024:concavity"])
 ```
 
 **2) Developer optionally defines an injection for a 3rd-party tool**
 
 ```python
-from ackredit import injections
+from ackredit import add_injection
 
-injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
+add_injection(target_module="mdtraj", items=["external:mdtraj:paper"])
 ```
 
 **3) At runtime, the function decides which item applies**

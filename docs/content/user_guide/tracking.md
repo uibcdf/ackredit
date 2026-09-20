@@ -1,9 +1,10 @@
+(User_Tracking)=
 # Tracking Usage
 
 Ackredit allows you to track usage at different levels of granularity, from whole functions to specific blocks of code.
 
 ## Using Decorators
-The `@scoped_usage` decorator is the easiest way to track when a function is called.
+The {func}`ackredit.scoped_usage` decorator is the easiest way to track when a function is called.
 
 ```python
 import ackredit
@@ -36,12 +37,17 @@ def run_analysis(mode="basic"):
         ackredit.track_item("paper:advanced")
 ```
 
-You can read declarations back at any time with
-`ackredit.bound_items("my_library.analysis")`, or apply them explicitly with
-`ackredit.credit_bound("my_library.analysis")`.
+Read declarations back at any time with {func}`ackredit.bound_items`, or apply them
+explicitly with {func}`ackredit.credit_bound`.
+
+:::{seealso}
+{ref}`User_Registration` explains how items and bindings are declared in the first
+place, and {ref}`User_Reporting` covers turning what was tracked into a citation
+report.
+:::
 
 ## Using Context Managers
-For more granular tracking within a function, use the `scope` context manager.
+For more granular tracking within a function, use the {class}`ackredit.scope` context manager.
 
 ```python
 import ackredit

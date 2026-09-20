@@ -1,3 +1,4 @@
+(API_Reference)=
 # API Reference
 
 This page provides an overview of the Ackredit public API.

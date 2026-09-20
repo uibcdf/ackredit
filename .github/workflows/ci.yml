@@ -32,3 +32,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install -e '.[test]'
       - run: pytest
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -e '.[docs]'
+      # -W turns warnings into errors: a broken cross-reference, an unrenderable
+      # docstring or a toctree that matches nothing fails the build.
+      - run: python -m sphinx -b html -W docs docs/_build/html

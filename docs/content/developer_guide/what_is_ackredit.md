@@ -1,3 +1,4 @@
+(Dev_WhatIsAckredit)=
 # Vision and Concept: The Ackredit Bible
 
 ## What is Ackredit?
@@ -18,7 +19,7 @@ Ackredit is a core support library within the **MolSysSuite** ecosystem. It sits
 *   `smonitor` (Session monitoring)
 *   `pyunitwizard` (Unit conversion)
 
-All these libraries, including Ackredit, share a common purpose: providing robust infrastructure for scientific host libraries like `molsysmt`. 
+All these libraries, including Ackredit, share a common purpose: providing robust infrastructure for scientific host libraries like `molsysmt`.
 
 ### Integration Pattern
 Following the suite's standard, host libraries should centralize Ackredit usage through a `_ackredit.py` file. This ensures:

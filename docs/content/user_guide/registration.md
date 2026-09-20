@@ -1,9 +1,10 @@
+(User_Registration)=
 # Registering Items
 
 Before citations can be tracked, Ackredit needs to know about them. Items can be registered manually or loaded from existing BibTeX files.
 
 ## Manual Registration
-You can register an item using the `register_item` function.
+You can register an item using {func}`ackredit.register_item`.
 
 ```python
 import ackredit
@@ -32,7 +33,7 @@ ackredit.bound_items("my_library.analysis.run")
 ```
 
 A binding is a declaration of *potential* citations, so it credits nothing by
-itself. See [Tracking Usage](tracking.md) for how a run turns declarations into
+itself. Read declarations back with {func}`ackredit.bound_items`. See {ref}`User_Tracking` for how a run turns declarations into
 actual citations, either explicitly with `track_item` or automatically with
 `credit_bound=True`.
 

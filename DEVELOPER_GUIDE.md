@@ -22,9 +22,9 @@ This guide shows how to:
 ## 2. Static Registration (what *could* be cited)
 
 ```python
-from ackredit import registry
+from ackredit import bind, register_item
 
-registry.register_item(
+register_item(
     id="topomt:2024:base-paper",
     type="article",
     title="TopoMT: a toolkit for macromolecular topography",
@@ -33,14 +33,14 @@ registry.register_item(
     note="Main description of the TopoMT approach.",
 )
 
-registry.register_item(
+register_item(
     id="topomt:github:repo",
     type="repo",
     title="TopoMT GitHub repository",
     url="https://github.com/uibcdf/topomt",
 )
 
-registry.bind(
+bind(
     target="topomt.mouths.detect_mouths",
     items=["topomt:2024:base-paper", "topomt:github:repo"],
 )
@@ -109,58 +109,13 @@ The `scope` context manager takes the same option.
 If your library uses an external package that does **not** use Ackredit, you can still credit it:
 
 ```python
-from ackredit import injections
+from ackredit import add_injection
 
 # say your library uses mdtraj internally
-injections.register(target_module="mdtraj", items=["external:mdtraj:paper"])
+add_injection(target_module="mdtraj", items=["external:mdtraj:paper"])
 ```
 
-Ackredit can then mark that if `mdtraj` was imported or used, the corresponding item should appear in the final report — similar to DueCredit injections. citeturn0search1
-
----
-
-## 5. Reporting in multiple formats
-
-```python
-import ackredit
-
-# Markdown (notebooks, README-like)
-print(ackredit.report(format="markdown"))
-
-# Plain text (logs, CLI)
-print(ackredit.report(format="text"))
-
-# BibTeX (papers)
-print(ackredit.report(format="bibtex"))
-
-# JSON (further processing)
-print(ackredit.report(format="json"))
-```
-
-You can also add your own renderer under `ackredit/formats/yourformat.py` and register it.
-
----
-
-## 6. Optional dependency pattern
-
-In your scientific library you can do:
-
-```python
-try:
-    from ackredit import scoped_usage, track_item
-except ImportError:
-    # define no-ops so library works without ackredit
-    def scoped_usage(target=None):
-        def deco(fn):
-            return fn
-
-        return deco
-
-    def track_item(*args, **kwargs):
-        pass
-```
-
-This mirrors how DueCredit is often used — the host library does not break if the citation tool is absent. citeturn0search9
+Ackredit can then mark that if `mdtraj` was imported or used, the corresponding item should appear in the final report — similar to DueCredit injections.
 
 ---
 
@@ -178,13 +133,11 @@ This keeps Ackredit independent but interoperable.
 ## 8. Minimal Working Example
 
 ```python
-from ackredit import registry, scoped_usage, track_item
+from ackredit import bind, register_item, scoped_usage, track_item
 
 # 1) register items
-registry.register_item(
-    id="example:2024:paper", type="article", title="Example research article"
-)
-registry.bind(target="example.run", items=["example:2024:paper"])
+register_item(id="example:2024:paper", type="article", title="Example research article")
+bind(target="example.run", items=["example:2024:paper"])
 
 
 # 2) runtime tracking

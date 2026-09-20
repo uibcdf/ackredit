@@ -1,3 +1,4 @@
+(User_Reporting)=
 # Generating Reports
 
 Once your workflow has finished, Ackredit provides multiple ways to view and export the collected citations.

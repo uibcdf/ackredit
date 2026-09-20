@@ -9,7 +9,7 @@ license: MIT
 
 ## 1. Scope
 
-Ackredit provides runtime-aware citation tracking for scientific workflows.  
+Ackredit provides runtime-aware citation tracking for scientific workflows.
 It is inspired by the goals of **DueCredit** but focuses on explicit per-branch tracking, broader item types, and notebook-friendly reporting.
 
 ---
@@ -156,7 +156,7 @@ def report(format: str = "markdown") -> str:
 
 - If `ackredit` is **not installed**, host libraries should wrap imports in `try/except ImportError` and define no-op shims for `scoped_usage` and `track_item`.
 - If `ackredit` **is installed**, the decorated functions will actually record usage.
-- This mirrors the optional pattern used by DueCredit. citeturn0search1turn0search9
+- This mirrors the optional pattern used by DueCredit.
 
 ---
 

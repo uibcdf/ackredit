@@ -74,7 +74,9 @@ class CitationsHTML:
 def summary():
     """
     Returns a rich HTML representation of the tracked citations.
-    Usage in a notebook:
+
+    Usage in a notebook::
+
         ackredit.summary()
     """
     return CitationsHTML(get_used_items(), Registry.items)

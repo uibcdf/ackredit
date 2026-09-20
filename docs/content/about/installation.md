@@ -1,3 +1,4 @@
+(About_Installation)=
 # Installation
 
 Ackredit can be installed using `pip`. It is designed to be lightweight and has zero mandatory dependencies for its core functionality.

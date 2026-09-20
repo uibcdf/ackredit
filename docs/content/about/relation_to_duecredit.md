@@ -1,3 +1,4 @@
+(About_RelationToDueCredit)=
 # Relation to DueCredit
 
 Ackredit is conceptually related to the DueCredit project: both aim to collect and report citations

@@ -1,3 +1,4 @@
+(About_WhatIsAckredit)=
 # What is Ackredit?
 
 **Ackredit** is a lightweight Python library designed to provide **runtime-aware citation and acknowledgement tracking** for scientific software and workflows.

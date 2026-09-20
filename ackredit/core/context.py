@@ -9,7 +9,9 @@ if TYPE_CHECKING:
 class scope:
     """
     Context manager to mark a specific code block as a named scope.
-    Usage:
+
+    Usage::
+
         with ackredit.scope("my_algorithm"):
             ackredit.track_item("paper_id")
 

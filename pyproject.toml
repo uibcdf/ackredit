@@ -21,6 +21,13 @@ test = [
   "pytest>=8",
   "ruff==0.16.5",
 ]
+docs = [
+  "sphinx",
+  "pydata-sphinx-theme",
+  "sphinx-copybutton",
+  "sphinx-design",
+  "myst-nb",
+]
 
 [project.urls]
 Homepage = "https://github.com/uibcdf/ackredit"
