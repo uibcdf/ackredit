@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (14)
+### Resolved (15)
 
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
 - [`auto_track_calls_credits_code_that_never_ran.md`](auto_track_calls_credits_code_that_never_ran.md) — [#13](https://github.com/uibcdf/ackredit/issues/13) — auto_track_calls credited citations at import time, and could not read a class method at all. *(resolved, reproduced)*
@@ -18,6 +18,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
 - [`not_thread_safe.md`](not_thread_safe.md) — [#5](https://github.com/uibcdf/ackredit/issues/5) — Concurrent workflows cross-attributed citations and corrupted the session file. *(resolved, reproduced)*
+- [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`version_missing_and_its_gate_dead.md`](version_missing_and_its_gate_dead.md) — [#11](https://github.com/uibcdf/ackredit/issues/11) — The package stated no version, and the CI step checking it printed a traceback on a green run. *(resolved, reproduced)*
 

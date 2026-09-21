@@ -2,24 +2,29 @@
 Ackredit — acknowledge what you used, credit what matters.
 """
 
-from importlib.metadata import PackageNotFoundError, version
+# Everything this module imports for its own setup is bound to a private name.
+# A public one would join the namespace and become something a user can depend
+# on: `version` in particular sits one tab-completion from `__version__` and
+# answers, plausibly and wrongly, what a citation tool's own version is.
+from importlib.metadata import PackageNotFoundError as _PackageNotFoundError
+from importlib.metadata import version as _distribution_version
 
 try:
-    __version__ = version("ackredit")
-except PackageNotFoundError:
+    __version__ = _distribution_version("ackredit")
+except _PackageNotFoundError:
     # Running from a source tree that was never installed.
     try:
         from ._version import __version__
     except ImportError:
         __version__ = "0.0.0+unknown"
 
-from smonitor.integrations import ensure_configured
+from smonitor.integrations import ensure_configured as _ensure_smonitor_configured
 
-from ._private.smonitor import PACKAGE_ROOT
+from ._private.smonitor import PACKAGE_ROOT as _SMONITOR_PACKAGE_ROOT
 
 # Activate diagnostics before anything else runs, so a failure during the imports
 # below is reported through the catalog rather than lost.
-ensure_configured(PACKAGE_ROOT)
+_ensure_smonitor_configured(_SMONITOR_PACKAGE_ROOT)
 
 from .contrib.duecredit_compat import export_to_duecredit
 from .contrib.jupyter import summary
@@ -55,6 +60,7 @@ load_plugins()
 
 __all__ = [
     "__version__",
+    "Collector",
     "Registry",
     "register_item",
     "bind",

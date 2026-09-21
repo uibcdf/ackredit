@@ -93,7 +93,7 @@ import os
 
 import ackredit
 
-ackredit.Collector.enable_persistence(f"citations/session_{os.getpid()}.json")
+ackredit.enable_persistence(f"citations/session_{os.getpid()}.json")
 ```
 
 ```python
@@ -101,7 +101,7 @@ from glob import glob
 
 import ackredit
 
-ackredit.Collector.aggregate(glob("citations/session_*.json"))
+ackredit.aggregate(glob("citations/session_*.json"))
 print(ackredit.report())
 ```
 
