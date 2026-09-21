@@ -57,6 +57,7 @@ jobs:
       - name: Test import module
         shell: bash -l {0}
         run: |
+          set -euo pipefail
           cd
           echo 'import ackredit; print("Version of the package: {}".format(ackredit.__version__))' | python
 

@@ -2,6 +2,17 @@
 Ackredit — acknowledge what you used, credit what matters.
 """
 
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("ackredit")
+except PackageNotFoundError:
+    # Running from a source tree that was never installed.
+    try:
+        from ._version import __version__
+    except ImportError:
+        __version__ = "0.0.0+unknown"
+
 from smonitor.integrations import ensure_configured
 
 from ._private.smonitor import PACKAGE_ROOT
@@ -43,6 +54,7 @@ aggregate = Collector.aggregate
 load_plugins()
 
 __all__ = [
+    "__version__",
     "Registry",
     "register_item",
     "bind",

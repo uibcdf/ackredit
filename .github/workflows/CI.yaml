@@ -61,6 +61,7 @@ jobs:
       - name: Info conda
         shell: bash -l {0}
         run: |
+          set -euo pipefail
           micromamba activate test
           micromamba info
           micromamba list
@@ -73,6 +74,10 @@ jobs:
       - name: Test import module
         shell: bash -l {0}
         run: |
+          # Without -e a failing line does not stop the script, and GitHub reads
+          # the exit status of the last one. This check printed a traceback and
+          # reported success.
+          set -euo pipefail
           echo "::group::Importing module from home directory"
           cd
           pwd

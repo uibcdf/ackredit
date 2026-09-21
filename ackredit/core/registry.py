@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import urllib.request
@@ -17,6 +18,33 @@ from .._private.smonitor.warnings import (
     MetadataFetchWarning,
     PluginLoadWarning,
 )
+
+
+def _cache_name(doi: str) -> str:
+    """A file name that belongs to exactly one DOI.
+
+    Replacing "/" with "_" was lossy: a DOI suffix may contain either, so
+    "10.1234/a/b" and "10.1234/a_b" shared one file and one work's metadata was
+    served for the other. The digest is of the DOI itself, so distinct DOIs
+    cannot collide, and the readable prefix keeps the directory inspectable.
+    """
+    digest = hashlib.sha256(doi.encode("utf-8")).hexdigest()[:16]
+    readable = re.sub(r"[^A-Za-z0-9._-]+", "-", doi)
+    # Collapse runs of dots: a name carrying ".." is confusing to read in a
+    # cache directory even where it cannot traverse one.
+    readable = re.sub(r"\.{2,}", ".", readable)[:60].strip("-.")
+    return f"{readable}.{digest}" if readable else digest
+
+
+def _user_agent() -> str:
+    """Announce the version actually running.
+
+    Crossref routes by user agent, so a version that does not exist is worse
+    than none. This was pinned at 0.4.0 while the package moved on.
+    """
+    from .. import __version__
+
+    return f"Ackredit/{__version__} (https://github.com/uibcdf/ackredit)"
 
 
 class CitationItem(TypedDict, total=False):
@@ -135,8 +163,7 @@ class Registry:
             return
 
         doi = item["doi"]
-        safe_doi = doi.replace("/", "_")
-        cache_file = cls._get_cache_dir() / f"{safe_doi}.json"
+        cache_file = cls._get_cache_dir() / f"{_cache_name(doi)}.json"
 
         data = None
 
@@ -161,9 +188,7 @@ class Registry:
             # 2a. Try Crossref
             try:
                 url = f"https://api.crossref.org/works/{doi}"
-                headers = {
-                    "User-Agent": "Ackredit/0.4.0 (https://github.com/uibcdf/ackredit)"
-                }
+                headers = {"User-Agent": _user_agent()}
                 req = urllib.request.Request(url, headers=headers)
                 with urllib.request.urlopen(req, timeout=5) as response:
                     data = json.loads(response.read().decode())["message"]
@@ -177,12 +202,15 @@ class Registry:
                             "attributes"
                         ]
                         # Map DataCite to a Crossref-like format for consistency in the rest of the function
+                        # DataCite has `titles: [{title: ...}]`; there is no
+                        # scalar `title` attribute in its schema.
+                        titles = [
+                            entry.get("title")
+                            for entry in dc_data.get("titles", [])
+                            if entry.get("title")
+                        ]
                         data = {
-                            "title": [dc_data.get("title")]
-                            if dc_data.get("title")
-                            else [
-                                t.get("title") for t in dc_data.get("titles", [])[:1]
-                            ],
+                            "title": titles[:1],
                             "author": [
                                 {
                                     "family": a.get("familyName", a.get("name")),

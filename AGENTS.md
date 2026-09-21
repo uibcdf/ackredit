@@ -8,10 +8,9 @@ canonical source, never in this repository.
 
 ## MolSysSuite membership
 
-Ackredit is a UIBCDF development intended as a MolSysSuite component. Its admission and
-registration in `suite.toml` are tracked centrally in `uibcdf/molsyssuite#28`; until that
-theme is accepted, this repository adopts the common policies without yet appearing in the
-central registry, and `check_repository.py` reports it as `UNREGISTERED`.
+Ackredit is a registered MolSysSuite component, incubating as a primary support library.
+Its admission is tracked centrally in `uibcdf/molsyssuite#28`; membership does not imply
+stable product contracts or authorization for Python 3.14.
 
 Keep Ackredit-specific implementation, tests, releases and product issues here. Report
 suite-wide rules, shared tooling problems and cross-repository proposals in
@@ -23,6 +22,9 @@ requires.
 `SMONITOR_GUIDE.md` and `DEPDIGEST_GUIDE.md` are synchronized copies of the guides
 Ackredit consumes, and govern how diagnostics and optional dependencies are written here.
 Diagnostics are catalog-driven: never hardcode a message, and never swallow a failure.
+
+`GH_RUN_RECEPTOR_GUIDE.md` is the required synchronized guide for compact, faithful
+GitHub Actions inspection. The canonical gh-run-receptor repository owns its text.
 
 `standards/ACKREDIT_GUIDE.md` is the canonical integration guide Ackredit owns and
 distributes to its host libraries. Edit it here; consumer copies are synchronized from the

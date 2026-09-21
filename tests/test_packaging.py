@@ -61,3 +61,13 @@ def test_the_subpackages_we_expect_are_present():
         "ackredit.formats",
         "ackredit.contrib",
     } <= on_disk
+
+
+def test_the_package_states_its_version():
+    """The first thing a user reports in a bug, and what a citation of Ackredit
+    itself needs. It was absent, and the CI check for it could not fail."""
+    import ackredit
+
+    assert ackredit.__version__
+    assert ackredit.__version__ != "0.0.0+unknown"
+    assert "__version__" in ackredit.__all__

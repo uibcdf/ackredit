@@ -1,3 +1,8 @@
+<!--
+SYNCHRONIZED MOLSYSSUITE GUIDE — DO NOT EDIT COMPONENT COPIES.
+Canonical source: https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDIT_GUIDE.md
+-->
+
 # Ackredit Integration Guide
 
 This guide explains how to integrate **Ackredit** into a host library (e.g., `molsysmt`) following the **MolSysSuite** standards.
