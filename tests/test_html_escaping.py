@@ -12,6 +12,9 @@ This is the HTML twin of `test_latex_escaping.py`. Every field the renderers
 interpolate is covered here, because the defect was that none of them were.
 """
 
+import re
+from pathlib import Path
+
 import pytest
 
 import ackredit
@@ -136,8 +139,25 @@ def test_safe_link_admits_only_what_can_be_followed(url, expected):
 
 def test_the_dashboard_escapes_too():
     """The second HTML renderer, which used to depend on the Flask version."""
+    pytest.importorskip("jinja2")
     used = {"x:1": [f"run {HOSTILE}"]}
     items = {"x:1": {"title": f"T {HOSTILE}", "type": "article", "doi": f"d {HOSTILE}"}}
     html = _render_dashboard(used, items)
     assert HOSTILE not in html
     assert html.count("&lt;script&gt;") == 3
+
+
+def test_the_dashboard_guard_is_not_skipped_in_ci():
+    """A guard that never runs is worse than no guard.
+
+    `jinja2` reaches a user's environment with Flask. It is declared in the test
+    environment so the test above runs there rather than being skipped into
+    silence.
+    """
+    env = (
+        Path(__file__).resolve().parents[1] / "devtools/conda-envs/test_env.yaml"
+    ).read_text(encoding="utf-8")
+    assert re.search(r"^- jinja2\b", env, re.MULTILINE), (
+        "devtools/conda-envs/test_env.yaml must declare jinja2, or the dashboard "
+        "escaping guard is skipped in CI"
+    )
