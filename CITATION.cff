@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use Ackredit, please cite the software using this metadata."
+title: Ackredit
+type: software
+authors:
+  - family-names: Prada-Gracia
+    given-names: Diego
+    orcid: "https://orcid.org/0000-0003-3375-870X"
+    affiliation: Hospital Infantil de México Federico Gómez (HIMFG) – UIBCDF
+  - family-names: Moreno-Vargas
+    given-names: Liliana M.
+    orcid: "https://orcid.org/0000-0003-2812-1499"
+    affiliation: Hospital Infantil de México Federico Gómez (HIMFG) – UIBCDF
+version: 0.6.0
+date-released: 2026-09-21
+url: "https://github.com/uibcdf/ackredit"
+repository-code: "https://github.com/uibcdf/ackredit"
+license: MIT
+abstract: >-
+  Runtime citation and acknowledgement tracking for scientific Python workflows.
+  Ackredit records which algorithms, datasets and dependencies a run actually
+  reached, and turns that into a citation report with full provenance.
+keywords:
+  - citation
+  - acknowledgement
+  - provenance
+  - reproducibility
+  - scientific Python
+  - MolSysSuite

@@ -9,8 +9,14 @@ description = "Ackredit — trace what you used, cite what matters."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = { text = "MIT" }
+# These must agree with CITATION.cff, which is the authority a citing tool reads.
+# tests/test_self_citation.py asserts they do.
 authors = [
-  { name = "UIBCDF Development Team" }
+  { name = "Diego Prada-Gracia" },
+  { name = "Liliana M. Moreno-Vargas" },
+]
+maintainers = [
+  { name = "UIBCDF Development Team" },
 ]
 dependencies = [
   "smonitor>=0.13.0",
@@ -41,6 +47,14 @@ Repository = "https://github.com/uibcdf/ackredit"
 
 [project.scripts]
 ackredit = "ackredit.cli:main"
+
+# CITATION.cff travels inside the package. find_and_parse_cff looks in the
+# package directory and its parent, and in an installed wheel the parent is
+# site-packages, so a copy at the repository root is invisible to anyone who
+# did not clone. tests/test_self_citation.py checks the built wheel, not the
+# checkout, because an editable install hides exactly this.
+[tool.setuptools.package-data]
+ackredit = ["CITATION.cff"]
 
 [tool.setuptools.packages.find]
 include = ["ackredit*"]

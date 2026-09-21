@@ -4,8 +4,9 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (21)
+### Resolved (22)
 
+- [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
 - [`an_unknown_format_returns_a_different_one.md`](an_unknown_format_returns_a_different_one.md) — [#15](https://github.com/uibcdf/ackredit/issues/15) — A typo in a format name silently produced plain text, written to a file named for neither. *(resolved, reproduced)*
 - [`auto_track_calls_credits_code_that_never_ran.md`](auto_track_calls_credits_code_that_never_ran.md) — [#13](https://github.com/uibcdf/ackredit/issues/13) — auto_track_calls credited citations at import time, and could not read a class method at all. *(resolved, reproduced)*
