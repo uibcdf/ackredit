@@ -11,3 +11,4 @@ dependencies:
 - myst-nb
 - smonitor
 - depdigest
+- pyyaml

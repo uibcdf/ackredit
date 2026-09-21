@@ -30,14 +30,26 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
 
     entries: list[str] = []
 
-    # Mapping Ackredit types to BibTeX types
+    # Ackredit's types mapped onto BibTeX's own vocabulary. `@software` and
+    # `@dataset` come from biblatex and are not defined by a BibTeX style, so a
+    # BibTeX run warns and falls back to a default layout, losing the distinction
+    # entirely. Emitting `@misc` and carrying the kind in `howpublished` keeps it,
+    # renders it to the reader, and compiles without warnings under any style.
     type_map = {
         "article": "article",
-        "software": "software",
+        "software": "misc",
         "repo": "misc",
         "web": "misc",
-        "dataset": "dataset",
+        "dataset": "misc",
         "other": "misc",
+    }
+
+    # What `howpublished` should say for a type that BibTeX has no entry for.
+    kind_map = {
+        "software": "Software",
+        "dataset": "Dataset",
+        "repo": "Software repository",
+        "web": "Web resource",
     }
 
     for item_id in used:
@@ -84,6 +96,10 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             fields.append(f"  {bib_key} = {{{escaped}}}")
 
         add_field("title", "title")
+
+        # Name the kind BibTeX cannot express in its entry type.
+        if kind := kind_map.get(fc_type):
+            fields.append(f"  howpublished = {{{kind}}}")
         add_field("author", "authors")
         add_field("year", "year")
         add_field("doi", "doi")

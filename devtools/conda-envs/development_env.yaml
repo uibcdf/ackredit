@@ -19,6 +19,7 @@ dependencies:
 # Suite infrastructure
 - smonitor
 - depdigest
+- pyyaml
 # Optional features Ackredit can use when present
 - flask
 - duecredit
