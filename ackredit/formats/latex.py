@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from ._latex import escape
+from ._latex import escape, is_latex_source
 from .bibtex import _cite_key
 
 
@@ -34,7 +34,7 @@ def render(
     for item_id, used_by in used.items():
         item = items.get(item_id, {"title": item_id})
         title = item.get("title", item_id)
-        title = escape(str(title))
+        title = escape(str(title), latex_source=is_latex_source(item))
 
         safe_key = _cite_key(item_id)
         lines.append(f"    \\item \\textbf{{{title}}} \\citep{{{safe_key}}}")

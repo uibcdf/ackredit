@@ -1,16 +1,18 @@
 from __future__ import annotations
 
-from ._latex import escape
+from ._latex import escape, is_latex_source
 
 
 def _bibtex_name(name: str) -> str:
     """Brace-protect a name BibTeX cannot parse.
 
-    BibTeX reads at most two commas in a name ("von Last, Jr, First"); more than
-    that is an error that aborts the run. Double braces make the whole string one
-    literal name, the standard idiom for corporate and irregular names.
+    BibTeX's three-part form is "von Last, Jr, First", so two commas are valid and
+    only a third is an error that aborts the run. Double braces make the whole
+    string one literal name, the standard idiom for corporate and irregular names,
+    at the cost of its sorting key and initials — so it is used only when BibTeX
+    genuinely cannot read the name.
     """
-    return f"{{{name}}}" if name.count(",") > 1 else name
+    return f"{{{name}}}" if name.count(",") > 2 else name
 
 
 def _cite_key(item_id: str) -> str:
@@ -51,6 +53,8 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         # frequently have no author.
         key = _cite_key(item_id)
 
+        latex_source = is_latex_source(item)
+
         fc_type = item.get("type", "other")
         bib_type = type_map.get(fc_type, "misc")
 
@@ -59,15 +63,25 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         # Helper to add fields
         def add_field(bib_key: str, fc_key: str):
             val = item.get(fc_key)
-            if val:
-                if isinstance(val, list):
-                    parts = [str(part) for part in val]
-                    if fc_key == "authors":
-                        parts = [_bibtex_name(part) for part in parts]
-                    val = " and ".join(parts)
-                # A TeX engine reads these values; a bare '&' in a journal name
-                # silently mangles the compiled bibliography.
-                fields.append(f"  {bib_key} = {{{escape(str(val))}}}")
+            if not val:
+                return
+
+            # A TeX engine reads these values; a bare '&' in a journal name
+            # silently mangles the compiled bibliography. An item parsed from a
+            # .bib file is already LaTeX and is passed through untouched.
+            #
+            # Brace protection is applied after escaping, never before: its
+            # braces are BibTeX syntax rather than content, and escaping them
+            # would turn the protection into a literal pair of characters.
+            if isinstance(val, list):
+                parts = [escape(str(part), latex_source=latex_source) for part in val]
+                if fc_key == "authors":
+                    parts = [_bibtex_name(part) for part in parts]
+                escaped = " and ".join(parts)
+            else:
+                escaped = escape(str(val), latex_source=latex_source)
+
+            fields.append(f"  {bib_key} = {{{escaped}}}")
 
         add_field("title", "title")
         add_field("author", "authors")

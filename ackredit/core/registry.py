@@ -352,6 +352,9 @@ class Registry:
                 final_key = fc_key_map.get(key, key)
                 item[final_key] = value
 
+        # Parsed out of a .bib file, so its fields are LaTeX as the author
+        # wrote them and must not be escaped again on the way out.
+        item["_source"] = "bibtex"
         cls.register_item(**item)
 
 

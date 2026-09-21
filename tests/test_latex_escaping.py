@@ -19,13 +19,22 @@ SPECIALS = [
     ("C# and F#", r"C\# and F\#"),
 ]
 
-PRESERVED = [
-    # Already escaped by the author, or by a .bib file we loaded.
-    r"already \& escaped",
-    r"already \% escaped",
-    # Intentional mathematics in a scientific title.
+# Text a .bib file already carries in LaTeX form. Nothing here may be touched,
+# and none of it is distinguishable from prose by looking at the characters:
+# only the item's provenance separates "$\alpha$-helix" from "Cost in $ per unit".
+LATEX_SOURCE = [
     r"$\alpha$-helix",
     r"\textbf{bold}",
+    r"already \& escaped",
+    r"50\% yield",
+]
+
+# Values this module produced. Escaping must be idempotent so a field that passes
+# through two renderers is not escaped twice.
+ALREADY_ESCAPED = [
+    r"already \& escaped",
+    r"already \% escaped",
+    r"a\textasciitilde{}b",
 ]
 
 
@@ -34,9 +43,35 @@ def test_specials_are_escaped(raw, expected):
     assert escape(raw) == expected
 
 
-@pytest.mark.parametrize("raw", PRESERVED)
-def test_intentional_latex_is_left_alone(raw):
+@pytest.mark.parametrize("raw", LATEX_SOURCE)
+def test_latex_source_is_never_touched(raw):
+    """Provenance decides, not the characters."""
+    assert escape(raw, latex_source=True) == raw
+
+
+@pytest.mark.parametrize("raw", ALREADY_ESCAPED)
+def test_escaping_what_this_module_produced_changes_nothing(raw):
     assert escape(raw) == raw
+
+
+@pytest.mark.parametrize(
+    "raw,expected",
+    [
+        ("Cost in $ per sample", r"Cost in \$ per sample"),
+        ("a~b", r"a\textasciitilde{}b"),
+        ("x^2", r"x\textasciicircum{}2"),
+        ("A {curly} title", r"A \{curly\} title"),
+    ],
+)
+def test_plain_text_specials_are_escaped_too(raw, expected):
+    """These were left alone while escaping guessed per character. An unpaired
+    dollar is never intentional mathematics; it opens math mode and aborts."""
+    assert escape(raw) == expected
+
+
+def test_a_backslash_does_not_re_escape_its_own_replacement():
+    """Sequential replacement turned this into 'C:\\textbackslash\\{\\}path'."""
+    assert escape(r"C:\path") == r"C:\textbackslash{}path"
 
 
 @pytest.mark.parametrize("raw,_expected", SPECIALS)
@@ -100,9 +135,26 @@ def test_citation_keys_are_safe_as_printed_labels():
     assert "key_check" not in rendered
 
 
+@pytest.mark.parametrize(
+    "name,protected",
+    [
+        ("Smith, John", False),
+        # "von Last, Jr, First" is BibTeX's own three-part form: two commas, valid.
+        ("van der Berg, Jr, Johannes", False),
+        ("A Person, B Person, C Person, D Person", True),
+    ],
+)
+def test_only_a_name_bibtex_cannot_read_is_brace_protected(name, protected):
+    """Protection costs the name its sorting key and initials, so it is used
+    only when BibTeX genuinely cannot parse it."""
+    from ackredit.formats.bibtex import _bibtex_name
+
+    assert _bibtex_name(name).startswith("{") is protected
+
+
 def test_an_unparseable_author_name_is_brace_protected():
-    """BibTeX reads at most two commas in a name; more is an error that aborts
-    the run. Package metadata hands us whole comma-separated author lists."""
+    """BibTeX reads at most two commas in a name; a third is an error that
+    aborts the run. Package metadata hands us whole comma-separated lists."""
     register_item(
         id="many:commas",
         type="article",
@@ -129,13 +181,89 @@ def test_ordinary_author_names_are_not_brace_protected():
     assert "author = {Smith, John}" in entry
 
 
-def test_metadata_author_strings_are_split_into_names():
+@pytest.mark.parametrize(
+    "raw,expected",
+    [
+        # Every part carries a space, so these are people, not one name.
+        ("Ana Ruiz, Luis Gómez", ["Ana Ruiz", "Luis Gómez"]),
+        # "Last, First": splitting would invent an author who does not exist.
+        ("Prada, Diego", ["Prada, Diego"]),
+        ("Prada Gracia, Diego", ["Prada Gracia, Diego"]),
+        ("Smith, J., Doe, A.", ["Smith, J., Doe, A."]),
+        # No comma at all.
+        ("Travis E. Oliphant et al.", ["Travis E. Oliphant et al."]),
+        (None, []),
+        ("", []),
+    ],
+)
+def test_a_free_text_author_field_is_split_only_when_it_is_safe(raw, expected):
     from ackredit.core.hooks import _split_authors
 
-    assert _split_authors("Ana Ruiz, Luis Gómez, Others") == [
-        "Ana Ruiz",
-        "Luis Gómez",
-        "Others",
-    ]
-    assert _split_authors(None) == []
-    assert _split_authors("") == []
+    assert _split_authors(raw) == expected
+
+
+def test_author_email_is_preferred_because_it_is_unambiguous():
+    """`Name <email>` pairs can be parsed exactly; free text cannot."""
+    from ackredit.core.hooks import _authors_from_metadata
+
+    meta = {
+        "Author-email": "Adam Turner <aa@example.org>, Georg Brandl <georg@example.org>",
+        "Author": "Turner, Adam",
+    }
+    assert _authors_from_metadata(meta) == ["Adam Turner", "Georg Brandl"]
+
+
+def test_free_text_author_is_used_when_there_is_no_structured_field():
+    from ackredit.core.hooks import _authors_from_metadata
+
+    assert _authors_from_metadata({"Author": "Prada, Diego"}) == ["Prada, Diego"]
+    assert _authors_from_metadata({}) == []
+
+
+def test_a_bib_file_survives_a_round_trip_untouched(tmp_path):
+    """Provenance exists for this: a .bib file's fields are already LaTeX, and
+    escaping them again would turn its '\\&' into a literal backslash."""
+    from ackredit import load_bibtex
+    from ackredit.core.collector import Collector
+    from ackredit.core.registry import Registry
+
+    Collector.used_items.clear()
+    Collector.usage_tree.clear()
+    Registry.items.clear()
+
+    source = tmp_path / "in.bib"
+    source.write_text(
+        "@article{roundtrip,\n"
+        "  title = {Surfaces \\& Pockets at 50\\% with $\\alpha$-helix},\n"
+        "  author = {Prada, Diego},\n"
+        "  year = {2024}\n"
+        "}\n"
+    )
+
+    load_bibtex(str(source))
+    track_item("roundtrip")
+    rendered = report(format="bibtex")
+
+    assert r"Surfaces \& Pockets at 50\% with $\alpha$-helix" in rendered
+    assert r"\\&" not in rendered
+    # The provenance marker is internal and must not reach any output.
+    assert "_source" not in rendered
+
+
+def test_the_provenance_marker_never_reaches_a_report(tmp_path):
+    from ackredit.core.collector import Collector
+    from ackredit.core.registry import Registry
+
+    Collector.used_items.clear()
+    Collector.usage_tree.clear()
+    Registry.items.clear()
+
+    source = tmp_path / "in.bib"
+    source.write_text("@article{marker, title = {A Title}, year = {2024}}\n")
+    from ackredit import load_bibtex
+
+    load_bibtex(str(source))
+    track_item("marker")
+
+    for fmt in ("markdown", "text", "bibtex", "json", "csl-json", "latex"):
+        assert "_source" not in report(format=fmt), fmt

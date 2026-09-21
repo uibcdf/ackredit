@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import atexit
+import re
 import sys
 from importlib import metadata
 from importlib.abc import MetaPathFinder
@@ -15,15 +16,48 @@ from .registry import Registry, register_item
 _REMINDER_ENABLED = False
 
 
-def _split_authors(value: str | None) -> list[str]:
-    """Split the legacy metadata Author field into individual names.
+# "Name <email>" pairs, whose separator is unambiguous because the address
+# delimits each entry. This is what PEP 621 `authors` renders into.
+_NAME_AND_EMAIL = re.compile(r"\s*([^<>,]+?)\s*<[^<>]*>\s*,?")
 
-    PEP 621 renders `authors` into one comma-separated string. Kept whole it
-    becomes a single BibTeX name with many commas, which aborts bibtex.
+
+def _authors_from_metadata(meta) -> list[str]:
+    """Read authorship without inventing any.
+
+    `Author-email` carries `Name <email>` pairs and can be parsed exactly, so it
+    is preferred whenever present. `Author` is free text where a comma may
+    separate two people or may separate one person's surname from their given
+    name, and the two cases are not distinguishable:
+
+        "Ana Ruiz, Luis Gomez"   two people
+        "Prada, Diego"           one person, written Last, First
+
+    Splitting the second invents an author who does not exist, which is worse for
+    a citation tool than a clumsy single entry. So `Author` is split only when
+    every part carries a space, which no `Last, First` pair does, and is
+    otherwise kept whole. A name BibTeX cannot parse is brace-protected at
+    render time rather than guessed at here.
     """
+    for field in ("Author-email", "Maintainer-email"):
+        if raw := meta.get(field):
+            if names := [name for name in _NAME_AND_EMAIL.findall(raw) if name]:
+                return names
+
+    raw = meta.get("Author") or meta.get("Maintainer")
+    if not raw:
+        return []
+    return _split_authors(raw)
+
+
+def _split_authors(value: str | None) -> list[str]:
+    """Split a free-text author field only when doing so cannot invent a person."""
     if not value:
         return []
-    return [name.strip() for name in value.split(",") if name.strip()]
+    parts = [part.strip() for part in value.split(",")]
+    parts = [part for part in parts if part]
+    if len(parts) > 1 and all(" " in part for part in parts):
+        return parts
+    return [value.strip()]
 
 
 def _exit_reminder():
@@ -124,7 +158,7 @@ class InjectionsFinder(MetaPathFinder):
                         id=item_id,
                         type="software",
                         title=meta.get("Name", fullname),
-                        authors=_split_authors(meta.get("Author")),
+                        authors=_authors_from_metadata(meta),
                         url=meta.get("Home-page") or meta.get("Project-URL"),
                         version=meta.get("Version"),
                     )
