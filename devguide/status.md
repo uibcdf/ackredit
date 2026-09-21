@@ -58,6 +58,12 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
   several processes may write one journal without losing events — verified with four and
   with eight. NFS does not provide that guarantee, so a network filesystem wants one
   journal per process, merged with `aggregate`.
+- **A session file names items without describing them.** The journal records events —
+  which id was credited and by what — while the metadata lives in the registry of the
+  process that declared it. So `ackredit report session.json` lists the ids a run
+  credited and cannot give their titles, authors or DOIs; a full bibliography comes from
+  `report()` or `dump()` inside the process that did the work. Documented in
+  `docs/content/user_guide/reporting.md` rather than worked around.
 - **`@software` and `@dataset` are not defined by `plainnat.bst`.** BibTeX warns and
   degrades those entries rather than failing. Choosing a style or mapping the types is a
   separate question, noted in `devguide/archive/bibtex_does_not_escape_latex.md`.

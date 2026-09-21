@@ -109,3 +109,35 @@ import ackredit
 ackredit.aggregate(["node1.json", "node2.json", "node3.json"])
 print(ackredit.report())
 ```
+
+## From the command line
+
+Ackredit installs an `ackredit` command that works on a session file a run left behind,
+so a report can be produced after the fact, from a job that has already finished.
+
+```bash
+ackredit report session.json --format bibtex
+ackredit dump session.json reports/ --pdf
+ackredit aggregate run-*.json --output all.json
+```
+
+`report` accepts any format `ackredit.available_formats()` offers, including one a plugin
+registered. `aggregate` names on stderr any file it could not read, says how many of the
+files it was given were actually merged, and exits non-zero when something you asked for
+did not happen.
+
+Reading never writes. A session file that does not exist is an error, not an empty report.
+
+**What a session file can tell you.** A session is a journal of events — which id was
+credited, and by what — and not the metadata of the items. That metadata lives in the
+registry of the process that declared it, which is why a report produced inside your
+workflow carries titles, authors and DOIs. A command line opening a file on its own has no
+host library to import, so it names the items the run credited and cannot describe them:
+
+```
+- **molsysmt:software**
+  - Used by: molsysmt.basic.convert
+```
+
+For a full bibliography, call `ackredit.report()` in the process that did the work, or
+`ackredit.dump()` at the end of it.
