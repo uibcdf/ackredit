@@ -10,12 +10,49 @@ from depdigest import get_info
 from smonitor import signal
 
 from .._private.smonitor.emitter import warn
+from .._private.smonitor.exceptions import UnknownFormatError
 from .._private.smonitor.warnings import PdfCompilationWarning, PdfToolWarning
 from ..formats import bibtex, csl_json, jsonfmt, latex, markdown, provenance, text
 from .collector import get_used_items
 from .registry import Registry
 
 logger = logging.getLogger(__name__)
+
+
+# One table, so the renderer and the file extension cannot disagree about which
+# formats exist. `csl` stays as an alias for `csl-json` because it was published;
+# an alias resolves to its canonical name before anything uses it.
+_RENDERERS = {
+    "markdown": (markdown.render, "md"),
+    "text": (text.render, "txt"),
+    "bibtex": (bibtex.render, "bib"),
+    "json": (jsonfmt.render, "json"),
+    "csl-json": (csl_json.render, "csl.json"),
+    "provenance": (provenance.render, "txt"),
+    "latex": (latex.render, "tex"),
+}
+
+_ALIASES = {"csl": "csl-json"}
+
+
+def available_formats() -> list[str]:
+    """The formats :func:`report` and :func:`dump` accept, canonical names only."""
+    return sorted(_RENDERERS)
+
+
+def _resolve_format(name: str) -> str:
+    """Return the canonical name, or refuse and say what exists.
+
+    An unknown name used to fall through to plain text, so a typo in "bibtex"
+    produced a citation list that looked like a report and was not the one asked
+    for.
+    """
+    canonical = _ALIASES.get(name, name)
+    if canonical not in _RENDERERS:
+        raise UnknownFormatError(
+            extra={"format": name, "available": ", ".join(available_formats())}
+        )
+    return canonical
 
 
 def dependency_info(format: str = "table"):
@@ -33,25 +70,14 @@ def dependency_info(format: str = "table"):
     extra_factory=lambda args, kwargs: {"format": kwargs.get("format", "markdown")},
 )
 def report(format: str = "markdown", **kwargs: Any) -> str:
+    canonical = _resolve_format(format)
+    render, _ = _RENDERERS[canonical]
     used = get_used_items()
     items = Registry.items
 
-    if format == "markdown":
-        return markdown.render(used, items)
-    if format == "text":
-        return text.render(used, items)
-    if format == "bibtex":
-        return bibtex.render(used, items)
-    if format == "json":
-        return jsonfmt.render(used, items)
-    if format == "csl-json" or format == "csl":
-        return csl_json.render(used, items)
-    if format == "provenance":
-        return provenance.render(used, items)
-    if format == "latex":
-        return latex.render(used, items, **kwargs)
-    # default fallback
-    return text.render(used, items)
+    if canonical == "latex":
+        return render(used, items, **kwargs)
+    return render(used, items)
 
 
 @signal(
@@ -74,22 +100,10 @@ def dump(
 
     path = Path(path)
 
-    # Extensions map
-    ext_map = {
-        "markdown": "md",
-        "bibtex": "bib",
-        "json": "json",
-        "csl-json": "csl.json",
-        "csl": "csl.json",
-        "provenance": "txt",
-        "latex": "tex",
-        "text": "txt",
-    }
-
     if path.is_dir() or not path.suffix:
         path.mkdir(parents=True, exist_ok=True)
         for fmt in formats:
-            ext = ext_map.get(fmt, "txt")
+            _, ext = _RENDERERS[_resolve_format(fmt)]
             filename = f"ackredit_report.{ext}"
             file_path = path / filename
             content = report(format=fmt)

@@ -130,6 +130,13 @@ CODES = {
         "dev_message": "load_bibtex could not stat '{path}'.",
         "dev_hint": "Relative paths resolve against the current working directory.",
     },
+    "ACKREDIT-E004": {
+        "title": "Unknown report format",
+        "user_message": "'{format}' is not a report format Ackredit knows.",
+        "user_hint": "Use one of: {available}, or ask ackredit.available_formats().",
+        "dev_message": "No renderer registered for '{format}'.",
+        "dev_hint": "An unknown name used to fall through to plain text, so a typo produced a report that was not the one requested.",
+    },
     # DepDigest raises this one and renders its own prose, because it knows the
     # install channels. The template must not invent fields DepDigest does not
     # pass: '{pypi}' would reach the user literally.
@@ -166,6 +173,7 @@ _ERRORS = {
     "ItemIdMissingError": "ACKREDIT-E001",
     "BibtexFileNotFoundError": "ACKREDIT-E002",
     "MissingDependencyError": "ACKREDIT-E003",
+    "UnknownFormatError": "ACKREDIT-E004",
 }
 
 CATALOG = {

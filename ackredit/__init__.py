@@ -50,7 +50,13 @@ from .core.registry import (
     load_plugins,
     register_item,
 )
-from .core.report import compile_pdf, dependency_info, dump, report
+from .core.report import (
+    available_formats,
+    compile_pdf,
+    dependency_info,
+    dump,
+    report,
+)
 
 enable_persistence = Collector.enable_persistence
 aggregate = Collector.aggregate
@@ -76,6 +82,7 @@ __all__ = [
     "scoped_usage",
     "report",
     "dump",
+    "available_formats",
     "compile_pdf",
     "dependency_info",
     "auto_track_calls",

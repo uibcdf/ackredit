@@ -35,6 +35,12 @@ class BibtexFileNotFoundError(AckreditError, FileNotFoundError):
     catalog_key = "BibtexFileNotFoundError"
 
 
+class UnknownFormatError(AckreditError, ValueError):
+    """Also a ValueError, which is what a bad argument value normally raises."""
+
+    catalog_key = "UnknownFormatError"
+
+
 class MissingDependencyError(AckreditError, ImportError):
     """Also an ImportError, which is what the optional-dependency pattern expects."""
 
@@ -46,4 +52,5 @@ __all__ = [
     "BibtexFileNotFoundError",
     "ItemIdMissingError",
     "MissingDependencyError",
+    "UnknownFormatError",
 ]

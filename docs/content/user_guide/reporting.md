@@ -3,6 +3,16 @@
 
 Once your workflow has finished, Ackredit provides multiple ways to view and export the collected citations.
 
+Ask which formats exist rather than guessing. A name Ackredit does not know is refused
+with `ACKREDIT-E004`, naming the ones it does, rather than quietly producing a different
+format:
+
+```python
+import ackredit
+
+ackredit.available_formats()
+```
+
 ## Jupyter Notebook Summary
 In a notebook, you can see a stylized HTML table with clickable links.
 
