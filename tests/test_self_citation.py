@@ -174,3 +174,23 @@ def test_the_shipped_file_is_what_is_parsed(cff):
 
     assert parsed["title"] == cff["title"]
     assert len(parsed["authors"]) == len(cff["authors"])
+
+
+def test_the_citation_page_agrees_with_the_citation_file(cff):
+    """The page told users to cite "Prada, D. et al." for a two-author work.
+
+    It named one of the two authors, abbreviated the other away, and gave a
+    title and a year that `CITATION.cff` does not say. A library that asks every
+    project to keep an accurate citation record cannot get its own wrong.
+    """
+    page = (ROOT / "docs/content/about/citation.md").read_text(encoding="utf-8")
+
+    for author in cff["authors"]:
+        family = author["family-names"]
+        assert family in page, (
+            f"{family} is an author in CITATION.cff and is missing from the "
+            f"citation page, so the page credits fewer people than the record"
+        )
+
+    year = str(cff["date-released"])[:4]
+    assert year in page, f"the page does not carry the released year {year}"

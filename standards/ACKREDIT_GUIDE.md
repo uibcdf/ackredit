@@ -111,15 +111,21 @@ In your host library's `__init__.py` or a dedicated setup file, register your it
 from ._ackredit import bind, register_item
 
 register_item(
-    id="molsysmt:paper:2024",
-    type="article",
-    title="MolSysMT: A modern library for molecular systems analysis",
-    authors=["Diego", "et al."],
-    year=2024,
+    id="molsysmt:software",
+    type="software",
+    title="MolSysMT",
+    authors=["Prada-Gracia, Diego", "Moreno-Vargas, Liliana M."],
+    doi="10.5281/zenodo.1298752",
 )
 
-bind(target="molsysmt.basic.convert", items=["molsysmt:paper:2024"])
+bind(target="molsysmt.basic.convert", items=["molsysmt:software"])
 ```
+
+Copy the fields from the work's own record — its `CITATION.cff`, its DOI, its published
+author list — and never write one from memory. In particular, **never write a truncation
+as a name**. Putting `"et al."` at the end of the list makes BibTeX credit a person
+surnamed "al." with the given name "et", and that reaches a manuscript. List the authors,
+and let the bibliography style decide how many of them to print.
 
 ## 3. Dynamic Tracking
 
@@ -131,7 +137,7 @@ from .._ackredit import scoped_usage, track_item
 
 @scoped_usage(target="molsysmt.basic.convert")
 def convert(item, to_form):
-    track_item("molsysmt:paper:2024")
+    track_item("molsysmt:software")
     # implementation...
 ```
 
@@ -216,7 +222,10 @@ By following this pattern, the host library remains functional even if Ackredit 
 3.  **Bind the unconditional, track the conditional.** If a citation depends on the path
     taken, call `track_item` on that branch. `credit_bound=True` is for the coarse case
     and credits on every call, which is why it is opt-in.
-4.  **Do not silence the integration.** The `try`/`except ImportError` is deliberately
+4.  **Never write a truncation as a name.** `"et al."`, `"and others"` and `"..."` are
+    rendering decisions, not people. Written into `authors`, BibTeX turns them into a
+    person and the bibliography credits someone who does not exist.
+5.  **Do not silence the integration.** The `try`/`except ImportError` is deliberately
     quiet, so a host with Ackredit installed but mis-integrated is indistinguishable from
     one without it. Assert `ACKREDIT_INSTALLED` where it matters — section 6.
 

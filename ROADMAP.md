@@ -82,7 +82,7 @@ register_item(
     id="topomt:2024:concavity",
     type="article",
     title="Unified topographic analysis of macromolecular surfaces",
-    authors=["Prada, D.", "et al."],
+    authors=["Prada-Gracia, Diego", "Moreno-Vargas, Liliana M."],
     year=2024,
     doi="10.1234/topomt.2024.001",
     note="Core method for concavity/convexity classification.",
