@@ -60,20 +60,46 @@ def _split_authors(value: str | None) -> list[str]:
 
 
 def _exit_reminder():
-    """
-    Function called at exit to remind the user about collected citations.
+    """Say, once, that this run used work worth citing.
+
+    This is a `print` rather than an SMonitor code on purpose. The catalog
+    carries diagnostics — something went wrong and here is what and why — and a
+    host filters, escalates and reports them as such. This is not one: nothing
+    failed, and routing a courtesy at the end of a run through the warning
+    machinery would let a host's warning configuration turn it into an error.
     """
     used = get_used_items()
     if not used:
         return
 
-    n_items = len(used)
-    msg = (
-        f"\n\033[94mℹ️  Ackredit: Your analysis utilized {n_items} components requiring citation.\033[0m\n"
-        f"   Run `ackredit.report()` or `ackredit.summary()` to view the full list.\n"
-    )
-    # Print to stderr to avoid interfering with redirected stdout
-    print(msg, file=sys.stderr)
+    count = len(used)
+    if count == 1:
+        headline = "Ackredit: this run used 1 work that asks to be cited."
+        detail = (
+            "ackredit.report() lists it; ackredit.summary() shows it in a notebook."
+        )
+    else:
+        headline = f"Ackredit: this run used {count} works that ask to be cited."
+        detail = (
+            "ackredit.report() lists them; ackredit.summary() shows them in a notebook."
+        )
+
+    # Colour only for a terminal. Written unconditionally, the escapes land as
+    # literal ^[[94m in every redirected log, batch job and CI record.
+    if _is_a_terminal(sys.stderr):
+        headline = f"\033[94m{headline}\033[0m"
+
+    # stderr, so a redirected stdout carrying real output is left alone.
+    print(f"\n{headline}\n   {detail}\n", file=sys.stderr)
+
+
+def _is_a_terminal(stream) -> bool:
+    """Whether *stream* is a terminal, for a stream that may not say."""
+    try:
+        return bool(stream.isatty())
+    except (AttributeError, ValueError):
+        # A closed stream raises ValueError; a substitute may have no isatty.
+        return False
 
 
 def enable_auto_reminder():
@@ -84,6 +110,18 @@ def enable_auto_reminder():
     if not _REMINDER_ENABLED:
         atexit.register(_exit_reminder)
         _REMINDER_ENABLED = True
+
+
+def disable_auto_reminder():
+    """Undo :func:`enable_auto_reminder`, leaving the process as it was.
+
+    Enabling was process-wide and could not be undone, so a notebook user who
+    called it to try it had changed the interpreter for as long as it lived.
+    Calling this without having enabled anything, or twice, does nothing.
+    """
+    global _REMINDER_ENABLED
+    atexit.unregister(_exit_reminder)
+    _REMINDER_ENABLED = False
 
 
 class InjectionsFinder(MetaPathFinder):
@@ -224,3 +262,19 @@ def enable_import_hooks():
     if not _IMPORT_HOOKS_ENABLED:
         sys.meta_path.insert(0, InjectionsFinder())
         _IMPORT_HOOKS_ENABLED = True
+
+
+def disable_import_hooks():
+    """Remove the finder :func:`enable_import_hooks` installed.
+
+    Every Ackredit finder goes, not just the first, so the process is left as it
+    was however many were inserted. Imports that already happened keep whatever
+    they credited; this stops the watching, it does not undo the crediting.
+
+    Calling this without having enabled anything, or twice, does nothing.
+    """
+    global _IMPORT_HOOKS_ENABLED
+    sys.meta_path[:] = [
+        finder for finder in sys.meta_path if not isinstance(finder, InjectionsFinder)
+    ]
+    _IMPORT_HOOKS_ENABLED = False

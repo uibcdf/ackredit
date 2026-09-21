@@ -28,9 +28,8 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
-Nineteen names are stable and fourteen provisional. This is the only place those counts
+Twenty-two names are stable and thirteen provisional. This is the only place those counts
 are written; everything else links here, so they cannot drift apart.
-
 
 | name | status | why |
 | --- | --- | --- |
@@ -50,6 +49,9 @@ are written; everything else links here, so they cannot drift apart.
 | `load_bibtex` | stable | Its provenance behaviour is decided and guarded: fields from a `.bib` file are LaTeX already and are never re-escaped. |
 | `session` | stable | Decision 7. The context manager is how a session is entered. |
 | `current_session` | stable | Decision 7. The session the module functions are recording into. |
+| `enable_auto_reminder` | stable | Says once, at exit, that the run used work worth citing. `uibcdf/ackredit#34` gave it the counterpart that was its only recorded reason to be provisional. |
+| `disable_auto_reminder` | stable | The counterpart. Idempotent, and calling it without having enabled anything does nothing. |
+| `disable_import_hooks` | stable | Removes every Ackredit finder from `sys.meta_path`. What it undoes is the watching, not the crediting that already happened, and that is the whole of its contract. |
 | `__version__` | stable | Derived from the tag by Versioningit and guarded against the packaging metadata. |
 | `enable_persistence` | stable | Was exported as a bound method of `Collector`, which bound a public name to a provisional class; `uibcdf/ackredit#33` gave it a function like its siblings. |
 | `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
@@ -58,14 +60,13 @@ are written; everything else links here, so they cannot drift apart.
 | `Collector` | provisional | Its state is a read-only view onto the current session now. `get_used_items` is the supported reader; the class remains exported for the code that predates the session. |
 | `aggregate` | provisional | Merging several runs is the least exercised part of the design, and how it should behave across machines is open. |
 | `auto_track_calls` | provisional | Detection is per function, not per branch, so a run that takes a path never reaching the detected call is credited anyway. That coarseness is documented, not resolved. |
-| `enable_import_hooks` | provisional | It installs a process-wide finder and has no counterpart that removes it. The order in which sources of citation metadata win also changed in `uibcdf/ackredit#28`. |
+| `enable_import_hooks` | provisional | The order in which sources of citation metadata win changed in `uibcdf/ackredit#28`. How aggressive the hook should be is decided for now, not settled. |
 | `summary` | provisional | Returns an object whose only contract is `_repr_html_`. What else that object should offer is unexplored. |
 | `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |
 | `compile_pdf` | provisional | `@software` and `@dataset` are undefined in common `.bst` styles, so what a compiled report contains is not settled. |
 | `enrich_all` | provisional | Reaches the network. There is no policy yet on rate limits, offline behaviour or how long a cached answer is good for. |
 | `export_to_duecredit` | provisional | A bridge to another project's API, which we do not control. |
 | `load_plugins` | provisional | The promise is the entry-point group name, `ackredit.citations`, and no real plugin has used it yet. |
-| `enable_auto_reminder` | provisional | Registers a process-exit side effect with no way to unregister it. |
 | `serve_ui` | provisional | Its own docstring calls it a conceptual stub. |
 
 `tests/test_api_stability.py` holds this table to `__all__`, so a name cannot join the

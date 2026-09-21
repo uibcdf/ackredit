@@ -46,7 +46,12 @@ from .core.collector import (
 )
 from .core.context import scope
 from .core.decorators import scoped_usage
-from .core.hooks import enable_auto_reminder, enable_import_hooks
+from .core.hooks import (
+    disable_auto_reminder,
+    disable_import_hooks,
+    enable_auto_reminder,
+    enable_import_hooks,
+)
 from .core.inspection import auto_track_calls
 from .core.registry import (
     Registry,
@@ -99,6 +104,8 @@ __all__ = [
     "session",
     "summary",
     "serve_ui",
+    "disable_auto_reminder",
+    "disable_import_hooks",
     "enable_auto_reminder",
     "enable_import_hooks",
     "enable_persistence",
