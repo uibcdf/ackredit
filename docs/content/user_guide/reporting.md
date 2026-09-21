@@ -47,13 +47,15 @@ import ackredit
 
 def render(used, items):
     """used: item id -> the names that credited it. items: the registry."""
-    return "\n".join(f"{item_id}: {items[item_id]['title']}" for item_id in sorted(used))
+    return "\n".join(
+        f"{item_id}: {items[item_id]['title']}" for item_id in sorted(used)
+    )
 
 
 ackredit.register_format("titles", render, "txt")
 
 print(ackredit.report(format="titles"))
-ackredit.dump("reports", formats=["titles"])   # writes ackredit_report.txt
+ackredit.dump("reports", formats=["titles"])  # writes ackredit_report.txt
 ```
 
 To ship one from a package, declare an entry point that registers it. Ackredit finds it
