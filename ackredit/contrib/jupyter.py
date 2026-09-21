@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from ..core.collector import get_used_items
 from ..core.registry import Registry
+from ..formats._html import escape, safe_link
 
 
 class CitationsHTML:
@@ -31,31 +32,33 @@ class CitationsHTML:
 
         for item_id, used_by in self.used.items():
             item = self.items.get(item_id, {"title": item_id})
-            title = item.get("title", item_id)
+            title = escape(item.get("title", item_id))
             year = item.get("year", "")
             authors = item.get("authors", [])
             if isinstance(authors, list):
-                authors = ", ".join(authors)
+                authors = ", ".join(str(author) for author in authors)
 
+            # A DOI builds its own https link; a url is taken as given, so it is
+            # the one that has to prove it can be followed safely.
             doi = item.get("doi")
-            url = item.get("url")
-
-            # Format Title & Link
-            link = None
-            if doi:
-                link = f"https://doi.org/{doi}"
-            elif url:
-                link = url
+            link = f"https://doi.org/{doi}" if doi else safe_link(item.get("url"))
 
             display_title = f"<b>{title}</b>"
             if link:
-                display_title = f"<a href='{link}' target='_blank' style='text-decoration: none; color: #007bff;'>{display_title}</a>"
+                display_title = (
+                    f"<a href='{escape(link)}' target='_blank' "
+                    f"style='text-decoration: none; color: #007bff;'>{display_title}</a>"
+                )
 
             details = []
             if authors:
-                details.append(f"<i>{authors}</i>")
+                details.append(f"<i>{escape(authors)}</i>")
             if year:
-                details.append(f"({year})")
+                details.append(f"({escape(year)})")
+
+            callers = (
+                ", ".join(escape(caller) for caller in used_by) if used_by else "-"
+            )
 
             html.append("<tr style='border-bottom: 1px solid #eee;'>")
             html.append(f"<td style='padding: 8px;'>{display_title}</td>")
@@ -63,7 +66,7 @@ class CitationsHTML:
                 f"<td style='padding: 8px; font-size: 0.9em;'>{'<br>'.join(details)}</td>"
             )
             html.append(
-                f"<td style='padding: 8px; font-size: 0.8em; color: #666;'>{', '.join(used_by) if used_by else '-'}</td>"
+                f"<td style='padding: 8px; font-size: 0.8em; color: #666;'>{callers}</td>"
             )
             html.append("</tr>")
 

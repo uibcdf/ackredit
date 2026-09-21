@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (24)
+### Resolved (25)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -18,6 +18,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`documented_api_does_not_exist.md`](documented_api_does_not_exist.md) — [#3](https://github.com/uibcdf/ackredit/issues/3) — Documentation taught imports that raise ImportError, and the integration guide's except clause hid it. *(resolved, reproduced)*
 - [`doi_cache_key_collides.md`](doi_cache_key_collides.md) — [#12](https://github.com/uibcdf/ackredit/issues/12) — Two DOIs could share one cache file, so one work's metadata was served for another. *(resolved, reproduced)*
 - [`example_host_libraries.md`](example_host_libraries.md) — [#23](https://github.com/uibcdf/ackredit/issues/23) — Two host libraries in the repository, integrated for real, used by the documentation and the tests. *(resolved, reproduced)*
+- [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
 - [`migrate_static_version_to_versioningit.md`](migrate_static_version_to_versioningit.md) — [#20](https://github.com/uibcdf/ackredit/issues/20) — Migrate Ackredit from a static package version to canonical Versioningit tags. *(resolved, reproduced)*
