@@ -4,9 +4,32 @@
 Ackredit depends only on the MolSysSuite infrastructure components, `smonitor` and
 `depdigest`. Both are pure Python and are distributed through the `uibcdf` conda channel.
 
-## From source
+Ackredit is not on a package channel yet. That is a decision rather than an omission:
+the API is still settling, and a published package is a commitment to what it contains.
+Until the release before 1.0.0, **a Git tag is the release**, and installing one is two
+commands.
 
-Ackredit is not published yet, so this is the way to install it today:
+## A released version
+
+```bash
+conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest pyyaml pip
+conda activate work
+pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.6.0"
+```
+
+The first command brings the suite dependencies from the `uibcdf` channel, which is where
+they live; they are not on PyPI. `--no-deps` stops pip looking for them there.
+
+Check it arrived whole:
+
+```python
+import ackredit
+
+ackredit.__version__  # '0.6.0'
+ackredit.dependency_info()  # what optional features this environment supports
+```
+
+## For working on Ackredit itself
 
 ```bash
 git clone https://github.com/uibcdf/ackredit.git
@@ -16,14 +39,18 @@ conda activate ackredit
 pip install --no-deps -e .
 ```
 
-The environment file brings the suite dependencies from the `uibcdf` channel. `--no-deps`
-keeps pip from trying to resolve them again from PyPI, where they are not published.
+An editable install reports a development version such as `0.6.0+3.gabc1234`, which says
+how far past the tag it is. It is not the release, and it is not meant to be cited as one.
 
-## Once released
+## Once published
 
 ```bash
 conda install -c uibcdf ackredit
 ```
+
+This will work from the release before 1.0.0 onwards, and not before. The packaging is
+built and verified — see `devtools/conda-build/README.md` — so what remains is the
+decision to publish.
 
 ## Extra features
 

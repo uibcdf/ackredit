@@ -56,6 +56,19 @@
     that coherence. What was actually missing was documentation — `bind` had 13 mentions
     in the user-facing docs, `credit_bound` 11, and `track_target` none — so the
     distinction between an item and a target is now written down instead.
+11. **Tags now, channel later (2026-09-21):** releases are cut as Git tags and no conda
+    package is published until the release before 1.0.0. The machinery exists and is
+    verified, so publishing is a decision rather than a task.
+
+    Why defer: a published package is a commitment to what it contains, and the API is
+    still moving — themes C and F may both change it. Publishing early would mean
+    superseding artifacts on the channel to correct decisions that were always going to
+    be revised, and the release policy is deliberately unforgiving about republished
+    identity.
+
+    What it costs: a host library can integrate from a tag and produce the evidence theme
+    C exists for, but cannot ship an integration depending on an unresolvable package. The
+    tag route is documented and verified, so nothing is blocked that matters yet.
 
 ## Pending Decisions
 1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?

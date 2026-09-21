@@ -52,8 +52,23 @@ Everything below exists to make that commitment honest rather than optimistic.
 
 ### Theme A — Ackredit can be installed
 
-Nothing downstream can start until this is true, and it is the only theme that blocks
-every other one.
+**Publication is deliberately deferred to the release before 1.0.0.** Until then the tag
+is the release artifact: an exact version installs from it, into an environment that has
+the dependencies.
+
+```bash
+conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest pyyaml pip
+conda activate work
+pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.6.0"
+```
+
+Verified: that yields `0.6.0` in `site-packages`, discovering its own `CITATION.cff`.
+
+This revises what this theme claimed. It does not block every other one; what it blocks is
+narrower and worth stating exactly. A host library can integrate Ackredit from a tag and
+produce the evidence theme C is for — but it cannot *release* an integration that depends
+on a package nobody can resolve. So theme C can run to the point of evidence and stops
+short of a shipped integration, which is the right trade while the API is still moving.
 
 - [x] a conda recipe under `devtools/conda-build/`, `noarch: python`, and a build
       environment;
@@ -62,9 +77,9 @@ every other one.
 - [x] a build verified locally: the `noarch` package passes the recipe's own tests and
       installs into a clean conda environment where it reports its version, discovers
       itself and renders a report;
-- [ ] **published**, which needs the channel token and is a release decision rather than
-      an implementation one;
-- [ ] the installation documentation rewritten around what works once it is published.
+- [ ] **published to the channel**, deferred by decision to the release before 1.0.0;
+- [ ] the installation documentation rewritten around the published package, which must
+      not be written before it exists.
 
 Coordination: `uibcdf/molsyssuite#27` standardises staging for components whose
 publication order is coupled. Nothing depends on Ackredit, so there is no cycle here; the
