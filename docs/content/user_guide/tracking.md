@@ -59,6 +59,35 @@ def run_analysis():
         ackredit.track_item("dataset:1")
 ```
 
+### Sessions
+
+Everything tracked belongs to a session. There is one by default, so nothing above needs
+any ceremony. Where two things in one process want their own answer — cells in a
+notebook, a host library keeping its tracking apart from its user's, two analyses
+reported separately — enter one:
+
+```python
+import ackredit
+
+with ackredit.session("first analysis") as run:
+    analyse(dataset)
+    first = ackredit.report()
+
+with ackredit.session("second analysis"):
+    analyse(other_dataset)
+    second = ackredit.report()
+```
+
+Each report describes only its own block, and what was tracked outside is untouched.
+Pass `inherit=True` to start from what the enclosing session already holds.
+
+Declarations are not scoped this way on purpose. {func}`ackredit.register_item` and
+{func}`ackredit.bind` say what *could* be cited, which a host library states once at
+import; a session records what *was* used.
+
+Entering a session is context-local, so a thread or asyncio task that does not enter one
+keeps recording where it was — the same rule as {class}`ackredit.scope`.
+
 ### Concurrency
 
 Scopes are context-local: each thread, and each asyncio task, keeps its own current

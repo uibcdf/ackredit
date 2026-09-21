@@ -58,6 +58,7 @@ from .core.report import (
     dump,
     report,
 )
+from .core.session import Session, current_session, session
 
 enable_persistence = Collector.enable_persistence
 aggregate = Collector.aggregate
@@ -69,6 +70,7 @@ __all__ = [
     "__version__",
     "Collector",
     "Registry",
+    "Session",
     "register_item",
     "bind",
     "bound_items",
@@ -88,7 +90,9 @@ __all__ = [
     "compile_pdf",
     "dependency_info",
     "auto_track_calls",
+    "current_session",
     "scope",
+    "session",
     "summary",
     "serve_ui",
     "enable_auto_reminder",

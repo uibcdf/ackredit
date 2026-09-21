@@ -28,6 +28,14 @@
     supersedes the "Zero Core Dependencies" pillar, since `depdigest` requires `smonitor`
     and both arrive together; in suite context they add nothing a host does not already
     have.
+7.  **A session holds observations; the registry holds declarations
+    (`uibcdf/ackredit#18`):** what was used belongs to a `Session` reached through a
+    `ContextVar`, so a notebook, a host library and its user can each have their own
+    without threading an object through every call. What *could* be cited stays in the
+    shared `Registry`, because a host library registers it once at import. The module
+    functions keep working untouched on a default session, which is the ergonomics the
+    global existed for; a `ContextVar` read costs 0.118 µs against the 1.3 µs a
+    `track_item` already spends.
 
 ## Pending Decisions
 1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?

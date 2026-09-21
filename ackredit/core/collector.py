@@ -10,26 +10,43 @@ from .._private.smonitor.warnings import (
     SessionSaveWarning,
 )
 from . import session
+from .session import current_session
 
 
-class Collector:
-    # set of target names actually used
-    used_targets: set[str] = set()
-    # item_id -> list of targets that caused it
-    used_items: dict[str, list[str]] = {}
+class _CollectorState(type):
+    """Reads the current session's state through the names Collector always had.
 
-    # Hierarchical tracking: target -> { 'items': set(), 'children': set() }
-    usage_tree: dict[str, dict[str, set[str]]] = {}
+    The state used to be class attributes, one set per interpreter. It belongs to
+    a session now, but `Collector.used_items` is a published name and reads the
+    same from outside; what changes is which session answers.
+    """
 
-    # Persistence. The session is a journal: one appended line per event, so the
-    # cost of tracking one more item does not depend on how many came before.
-    _persistence_path: Path | None = None
-    _journal: int | None = None
+    @property
+    def used_targets(cls) -> set[str]:
+        return current_session().used_targets
 
-    # Guards every compound read-modify-write on the structures above, and
-    # serializes writes to the session file. Reentrant because credit_bound()
-    # calls track_item() while already holding it.
-    _lock = threading.RLock()
+    @property
+    def used_items(cls) -> dict[str, list[str]]:
+        return current_session().used_items
+
+    @property
+    def usage_tree(cls) -> dict[str, dict[str, set[str]]]:
+        return current_session().usage_tree
+
+    @property
+    def _persistence_path(cls) -> Path | None:
+        return current_session().journal_path
+
+    @property
+    def _lock(cls) -> threading.RLock:
+        return current_session().lock
+
+
+class Collector(metaclass=_CollectorState):
+    @staticmethod
+    def session():
+        """The session these classmethods are acting on."""
+        return current_session()
 
     @classmethod
     def enable_persistence(cls, path: str | Path) -> None:
@@ -39,19 +56,20 @@ class Collector:
         process is also writing is safe on a local filesystem rather than
         destructive. See `ackredit.core.session` for the guarantee and its limit.
         """
-        with cls._lock:
+        state = current_session()
+        with state.lock:
             cls.close_persistence()
             target = Path(path)
 
             if target.exists():
                 try:
-                    state = session.read(target)
-                    cls.used_targets.update(state["used_targets"])
-                    for item, callers in state["used_items"].items():
-                        known = cls.used_items.setdefault(item, [])
+                    stored = session.read(target)
+                    state.used_targets.update(stored["used_targets"])
+                    for item, callers in stored["used_items"].items():
+                        known = state.used_items.setdefault(item, [])
                         known.extend(c for c in callers if c not in known)
-                    for name, node in state["usage_tree"].items():
-                        current = cls.usage_tree.setdefault(
+                    for name, node in stored["usage_tree"].items():
+                        current = state.usage_tree.setdefault(
                             name, {"items": set(), "children": set()}
                         )
                         current["items"].update(node["items"])
@@ -68,8 +86,8 @@ class Collector:
                     )
 
             try:
-                cls._journal = session.open_journal(target)
-                cls._persistence_path = target
+                state._journal = session.open_journal(target)
+                state.journal_path = target
             except OSError as error:
                 warn(
                     SessionSaveWarning(
@@ -85,26 +103,27 @@ class Collector:
     def close_persistence(cls) -> None:
         """Close the journal, paying the single fsync that makes it durable
         against the machine failing rather than only the process."""
-        with cls._lock:
-            if cls._journal is not None:
-                session.close_journal(cls._journal)
-            cls._journal = None
-            cls._persistence_path = None
+        state = current_session()
+        with state.lock:
+            if state._journal is not None:
+                session.close_journal(state._journal)
+            state._journal = None
+            state.journal_path = None
 
     @classmethod
-    def _record(cls, append, *arguments) -> None:
-        """Append one event, if a journal is open. Callers already hold the lock.
+    def _record(cls, state, append, *arguments) -> None:
+        """Append one event, if a journal is open. Callers hold the session lock.
 
         A failure here must not cost the caller their tracking, which lives in
         memory regardless, so it is reported and the journal is closed rather
         than retried on every subsequent event.
         """
-        if cls._journal is None:
+        if state._journal is None:
             return
         try:
-            append(cls._journal, *arguments)
+            append(state._journal, *arguments)
         except OSError as error:
-            path = str(cls._persistence_path)
+            path = str(state.journal_path)
             cls.close_persistence()
             warn(
                 SessionSaveWarning(
@@ -118,13 +137,14 @@ class Collector:
 
     @classmethod
     def track_target(cls, target: str, parent: str | None = None) -> None:
-        with cls._lock:
-            cls.used_targets.add(target)
-            cls.usage_tree.setdefault(target, {"items": set(), "children": set()})
+        state = current_session()
+        with state.lock:
+            state.used_targets.add(target)
+            state.usage_tree.setdefault(target, {"items": set(), "children": set()})
             if parent:
-                cls.usage_tree.setdefault(parent, {"items": set(), "children": set()})
-                cls.usage_tree[parent]["children"].add(target)
-            cls._record(session.append_target, target, parent)
+                state.usage_tree.setdefault(parent, {"items": set(), "children": set()})
+                state.usage_tree[parent]["children"].add(target)
+            cls._record(state, session.append_target, target, parent)
 
     @classmethod
     def track_item(cls, item_id: str, used_by: str | None = None) -> None:
@@ -133,16 +153,19 @@ class Collector:
 
             used_by = get_current_scope()
 
-        with cls._lock:
-            cls.used_items.setdefault(item_id, [])
+        state = current_session()
+        with state.lock:
+            state.used_items.setdefault(item_id, [])
             if used_by is not None:
-                if used_by not in cls.used_items[item_id]:
-                    cls.used_items[item_id].append(used_by)
+                if used_by not in state.used_items[item_id]:
+                    state.used_items[item_id].append(used_by)
 
                 # Update usage tree
-                cls.usage_tree.setdefault(used_by, {"items": set(), "children": set()})
-                cls.usage_tree[used_by]["items"].add(item_id)
-            cls._record(session.append_item, item_id, used_by)
+                state.usage_tree.setdefault(
+                    used_by, {"items": set(), "children": set()}
+                )
+                state.usage_tree[used_by]["items"].add(item_id)
+            cls._record(state, session.append_item, item_id, used_by)
 
     @classmethod
     def credit_bound(cls, target: str) -> list[str]:
@@ -159,7 +182,8 @@ class Collector:
         """
         from .registry import Registry
 
-        with cls._lock:
+        state = current_session()
+        with state.lock:
             item_ids = Registry.bound_items(target)
             for item_id in item_ids:
                 cls.track_item(item_id, used_by=target)
@@ -167,19 +191,21 @@ class Collector:
 
     @classmethod
     def get_used_items(cls) -> dict[str, list[str]]:
-        with cls._lock:
-            return {item: list(callers) for item, callers in cls.used_items.items()}
+        state = current_session()
+        with state.lock:
+            return {item: list(callers) for item, callers in state.used_items.items()}
 
     @classmethod
     def get_usage_tree(cls) -> dict[str, dict[str, set[str]]]:
-        return cls.usage_tree
+        return current_session().usage_tree
 
     @classmethod
     def aggregate(cls, paths: list[str | Path]) -> None:
         """
         Merge multiple saved session files into the current collector state.
         """
-        with cls._lock:
+        state = current_session()
+        with state.lock:
             cls._aggregate_locked(paths)
 
     @classmethod
@@ -189,12 +215,13 @@ class Collector:
         Reads both a journal and the whole-document format written before
         journals existed, so a session saved by an earlier version still merges.
         """
+        state = current_session()
         for path in paths:
             path = Path(path)
             if not path.exists():
                 continue
             try:
-                state = session.read(path)
+                stored = session.read(path)
             except Exception as error:
                 warn(
                     SessionMergeWarning(
@@ -206,12 +233,12 @@ class Collector:
                 )
                 continue
 
-            cls.used_targets.update(state["used_targets"])
-            for item_id, callers in state["used_items"].items():
-                known = cls.used_items.setdefault(item_id, [])
+            state.used_targets.update(stored["used_targets"])
+            for item_id, callers in stored["used_items"].items():
+                known = state.used_items.setdefault(item_id, [])
                 known.extend(caller for caller in callers if caller not in known)
-            for name, node in state["usage_tree"].items():
-                current = cls.usage_tree.setdefault(
+            for name, node in stored["usage_tree"].items():
+                current = state.usage_tree.setdefault(
                     name, {"items": set(), "children": set()}
                 )
                 current["items"].update(node["items"])

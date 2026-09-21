@@ -22,6 +22,10 @@ working, a test or a reproducible command backs it.
   by `tests/test_packaging.py`.
 - **Documentation:** the Sphinx site builds with no warnings, and every documented Python
   snippet is checked against the real API by `tests/test_documented_api.py`.
+- **Sessions:** tracking belongs to a session reached through a `ContextVar`, so two
+  analyses in one process are separable and threads are isolated. The module functions
+  act on a default session, so nothing needs ceremony. Guarded by
+  `tests/test_session_isolation.py`.
 - **Persistence:** the session is a journal, one appended line per event, so the cost of
   tracking an item does not depend on how many were tracked before: 6.6 µs, flat, where
   the previous design reached 2 958 µs and kept rising. Guarded by

@@ -26,8 +26,11 @@ from __future__ import annotations
 
 import json
 import os
+import threading
+from contextlib import contextmanager
+from contextvars import ContextVar
 from pathlib import Path
-from typing import Any, Dict, Iterable
+from typing import Any, Dict, Iterable, Iterator, Optional
 
 SCHEMA = "ackredit.session@1"
 
@@ -37,7 +40,14 @@ TARGET = "t"
 
 
 def open_journal(path: Path) -> int:
-    """Open *path* for appending, creating it and its directory if needed."""
+    """Open *path* for appending, creating it and its directory if needed.
+
+    The schema line is written when the file is empty. Several processes opening
+    a new journal at the same moment may each see it empty and each write one,
+    which is harmless: a reader identifies the format from the first line and
+    folds only lines carrying an event. Serialising this would need a lock
+    across processes, which is a high price for a cosmetic duplicate.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
     if os.fstat(descriptor).st_size == 0:
@@ -152,3 +162,94 @@ def _from_document(data: Dict[str, Any]) -> Dict[str, Any]:
             for target, content in data.get("usage_tree", {}).items()
         },
     }
+
+
+class Session:
+    """What one run tracked, and where it is being journalled.
+
+    Declarations live in :class:`ackredit.Registry` and are shared: a host
+    library registers what it *could* cite once, at import. Observations live
+    here and are per run: what was actually reached.
+    """
+
+    def __init__(self, name: str = "default"):
+        self.name = name
+        self.used_targets: set[str] = set()
+        self.used_items: Dict[str, list[str]] = {}
+        self.usage_tree: Dict[str, Dict[str, set]] = {}
+
+        self.journal_path: Optional[Path] = None
+        self._journal: Optional[int] = None
+
+        # Guards compound read-modify-write on the structures above. Reentrant
+        # because credit_bound() tracks items while already holding it.
+        self.lock = threading.RLock()
+
+    def clear(self) -> None:
+        """Forget what was tracked, keeping any journal open."""
+        with self.lock:
+            self.used_targets.clear()
+            self.used_items.clear()
+            self.usage_tree.clear()
+
+    def __repr__(self) -> str:  # pragma: no cover - diagnostics only
+        return (
+            f"<ackredit.Session {self.name!r}: "
+            f"{len(self.used_items)} items, {len(self.used_targets)} targets>"
+        )
+
+
+# The session the module-level functions act on. A ContextVar rather than a
+# plain global, so a thread or an asyncio task that enters a session does not
+# change what any other one sees — the same mechanism `scope` uses, and for the
+# same reason.
+_DEFAULT = Session("default")
+_current: ContextVar[Session] = ContextVar("ackredit_session", default=_DEFAULT)
+
+
+def current_session() -> Session:
+    """The session the tracking functions are recording into."""
+    return _current.get()
+
+
+@contextmanager
+def session(name: str = "session", inherit: bool = False) -> Iterator[Session]:
+    """Track into a fresh session for the duration of the block.
+
+    ``ackredit.report()`` inside the block describes only what happened inside
+    it; outside, the enclosing session is untouched::
+
+        with ackredit.session() as run:
+            analyse(dataset)
+            print(run_report := ackredit.report())
+
+    With ``inherit=True`` the new session starts from a copy of what the
+    enclosing one has tracked, for reporting on "everything so far plus this".
+
+    Entering a session is context-local, so a thread or task that does not enter
+    it keeps recording where it was.
+    """
+    fresh = Session(name)
+    if inherit:
+        enclosing = _current.get()
+        with enclosing.lock:
+            fresh.used_targets = set(enclosing.used_targets)
+            fresh.used_items = {
+                item: list(callers) for item, callers in enclosing.used_items.items()
+            }
+            fresh.usage_tree = {
+                target: {
+                    "items": set(node["items"]),
+                    "children": set(node["children"]),
+                }
+                for target, node in enclosing.usage_tree.items()
+            }
+
+    token = _current.set(fresh)
+    try:
+        yield fresh
+    finally:
+        _current.reset(token)
+        if fresh._journal is not None:
+            close_journal(fresh._journal)
+            fresh._journal = None
