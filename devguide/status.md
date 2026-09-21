@@ -33,13 +33,26 @@ working, a test or a reproducible command backs it.
 
 None currently recorded. Open reports live in `devguide/pending_bugs/`.
 
+## Known limitations, deliberately out of scope
+
+- **Two processes cannot share one session file.** Each save replaces the whole document,
+  so a shared path means the last writer wins. This is reported as `ACKREDIT-W014` rather
+  than absorbed (`uibcdf/ackredit#8`), and the supported pattern is one file per process
+  merged with `aggregate`, which is verified by `tests/test_session_sharing.py`. No file
+  locking is attempted, and none is planned.
+- **`@software` and `@dataset` are not defined by `plainnat.bst`.** BibTeX warns and
+  degrades those entries rather than failing. Choosing a style or mapping the types is a
+  separate question, noted in `devguide/archive/bibtex_does_not_escape_latex.md`.
+
 ## Work in progress towards 1.0.0
 
 - **API hardening:** finalizing stable interfaces for long-term support.
-- **MolSysSuite membership:** the repository follows the common baseline; central
-  registration is tracked in `uibcdf/molsyssuite#28`.
-- **Suite infrastructure adoption:** SMonitor for structured diagnostics in place of the
-  current silent `except Exception: pass` paths, and DepDigest for optional dependencies.
+- **MolSysSuite membership:** the repository follows the common baseline and its CI uses
+  the suite's conda environments. Central registration is tracked in
+  `uibcdf/molsyssuite#28`, and until it is granted two things stay blocked: the README
+  badges, which the central generator produces only for a registered member and whose
+  role badge would otherwise assert a membership that has not been granted; and
+  `molsyssuite-policy.yml`, which reports `UNREGISTERED` by design.
 
 ## Future strategic concepts
 

@@ -81,6 +81,34 @@ with ThreadPoolExecutor(max_workers=8) as pool:
 Session persistence is safe under the same conditions: the file is written atomically, so
 a concurrent reader or an interrupted run never sees a half-written document.
 
+### Parallel processes
+
+Threads share one collector; separate processes do not. Each save replaces the whole
+session file, so two processes given the same path do not merge — the last one to write
+wins, and the other's citations are gone. Give every process its own file and merge them
+at the end:
+
+```python
+import os
+
+import ackredit
+
+ackredit.Collector.enable_persistence(f"citations/session_{os.getpid()}.json")
+```
+
+```python
+from glob import glob
+
+import ackredit
+
+ackredit.Collector.aggregate(glob("citations/session_*.json"))
+print(ackredit.report())
+```
+
+The same merge is available from the command line with `ackredit merge`. If two processes
+do share a path, Ackredit reports `ACKREDIT-W014` rather than losing the citations
+silently, but the data already lost cannot be recovered.
+
 ## Manual Tracking
 You can manually track any item at any point in your code.
 

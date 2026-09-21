@@ -34,6 +34,13 @@ CODES = {
         "dev_message": "aggregate skipped '{path}': {reason}.",
         "dev_hint": "A missing file is skipped silently by design; this code covers unreadable ones.",
     },
+    "ACKREDIT-W014": {
+        "title": "Session file is being written by someone else",
+        "user_message": "Another process is writing the citation session at '{path}', so citations are being lost.",
+        "user_hint": "Give each process its own session file and merge them afterwards with aggregate(), or 'ackredit merge'.",
+        "dev_message": "'{path}' changed between two writes of this process; each write replaces the whole document.",
+        "dev_hint": "Detected by comparing the file's stat against this process's last write; last writer wins, so the loser's items disappear.",
+    },
     # --- Discovery -----------------------------------------------------------
     "ACKREDIT-W004": {
         "title": "CITATION.cff could not be parsed",
@@ -142,6 +149,7 @@ _WARNINGS = {
     "SessionLoadWarning": "ACKREDIT-W001",
     "SessionSaveWarning": "ACKREDIT-W002",
     "SessionMergeWarning": "ACKREDIT-W003",
+    "SessionSharedWarning": "ACKREDIT-W014",
     "CitationFileWarning": "ACKREDIT-W004",
     "PackageMetadataWarning": "ACKREDIT-W005",
     "MetadataFetchWarning": "ACKREDIT-W006",

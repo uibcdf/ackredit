@@ -6,11 +6,12 @@ import tempfile
 import threading
 from pathlib import Path
 
-from .._private.smonitor.emitter import warn
+from .._private.smonitor.emitter import warn, warn_once
 from .._private.smonitor.warnings import (
     SessionLoadWarning,
     SessionMergeWarning,
     SessionSaveWarning,
+    SessionSharedWarning,
 )
 
 
@@ -26,6 +27,12 @@ class Collector:
     # Persistence
     _persistence_path: Path | None = None
 
+    # Stat of this process's own last write. Every save replaces the whole
+    # document, so if the file changed underneath us another writer is racing us
+    # and one of the two sets of citations is being discarded. Comparing a stat
+    # costs one syscall and reads nothing.
+    _persistence_stamp: tuple[int, int] | None = None
+
     # Guards every compound read-modify-write on the structures above, and
     # serializes writes to the session file. Reentrant because credit_bound()
     # calls track_item() while already holding it.
@@ -35,6 +42,7 @@ class Collector:
     def enable_persistence(cls, path: str | Path) -> None:
         with cls._lock:
             cls._persistence_path = Path(path)
+            cls._persistence_stamp = None
             # Load existing if present
             if not cls._persistence_path.exists():
                 return
@@ -81,6 +89,7 @@ class Collector:
         }
 
         path = cls._persistence_path
+        cls._warn_if_another_writer(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         descriptor, temporary = tempfile.mkstemp(
             dir=str(path.parent), prefix=f".{path.name}.", suffix=".tmp"
@@ -91,6 +100,7 @@ class Collector:
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temporary, path)
+            cls._persistence_stamp = cls._stamp(path)
         except Exception as error:
             Path(temporary).unlink(missing_ok=True)
             warn(
@@ -102,6 +112,28 @@ class Collector:
                     }
                 )
             )
+
+    @staticmethod
+    def _stamp(path: Path) -> tuple[int, int] | None:
+        try:
+            status = path.stat()
+        except OSError:
+            return None
+        return (status.st_mtime_ns, status.st_size)
+
+    @classmethod
+    def _warn_if_another_writer(cls, path: Path) -> None:
+        """Report a session file that someone else is also replacing.
+
+        Each write replaces the whole document, so two processes sharing a path
+        do not merge: the last one wins and the other's citations disappear,
+        leaving a file that is perfectly valid and quietly incomplete.
+        """
+        if cls._persistence_stamp is None:
+            return
+        if cls._stamp(path) == cls._persistence_stamp:
+            return
+        warn_once(SessionSharedWarning(extra={"path": str(path)}))
 
     @classmethod
     def track_target(cls, target: str, parent: str | None = None) -> None:

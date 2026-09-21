@@ -46,6 +46,10 @@ class SessionMergeWarning(AckreditWarning):
     catalog_key = "SessionMergeWarning"
 
 
+class SessionSharedWarning(AckreditWarning):
+    catalog_key = "SessionSharedWarning"
+
+
 class CitationFileWarning(AckreditWarning):
     catalog_key = "CitationFileWarning"
 
@@ -99,6 +103,7 @@ __all__ = [
     "PluginLoadWarning",
     "SessionLoadWarning",
     "SessionMergeWarning",
+    "SessionSharedWarning",
     "SessionSaveWarning",
     "SourceInspectionWarning",
 ]
