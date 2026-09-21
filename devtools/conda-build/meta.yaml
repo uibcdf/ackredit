@@ -1,0 +1,52 @@
+{% set name = "ackredit" %}
+
+package:
+  name: {{ name|lower }}
+  version: "{{ environ['GIT_DESCRIBE_TAG'] }}"
+
+source:
+  path: ../..
+
+build:
+  number: "{{ environ.get('ACKREDIT_CONDA_BUILD_NUMBER', '0') }}"
+  # Pure Python, no compiled extensions: one architecture-independent package
+  # installs on linux, osx and win. The run constraint below makes the same
+  # package valid across the supported interpreters. No build matrix.
+  noarch: python
+  entry_points:
+    - ackredit = ackredit.cli:main
+
+requirements:
+  host:
+    - python >=3.11,<3.14
+    - pip
+    - setuptools >=61.0
+    - versioningit >=3.0
+  run:
+    - python >=3.11,<3.14
+    - smonitor >=0.13.0
+    - depdigest >=0.10.0
+    - pyyaml >=6
+
+test:
+  imports:
+    - ackredit
+  commands:
+    # The version the package reports must be the one it was built as.
+    - python -c "import importlib.metadata as md, os, ackredit; expected=os.environ['PKG_VERSION']; assert md.version('ackredit') == expected; assert ackredit.__version__ == expected"
+    # Ackredit must find its own CITATION.cff from the installed package. This
+    # runs against the built artifact, which is where the absence hid: under an
+    # editable install the repository root is the package's parent, so
+    # discovery succeeded from a checkout while the wheel carried nothing.
+    - python -c "from pathlib import Path; import ackredit; from ackredit.core.cff import find_and_parse_cff; found = find_and_parse_cff(Path(ackredit.__file__).parent); assert found and found['title'] == 'Ackredit', found; assert found['authors'], 'discovered with no authors'"
+    # A report renders end to end from a clean installation.
+    - python -c "import ackredit; ackredit.register_item(id='smoke:1', type='article', title='Smoke'); ackredit.track_item('smoke:1'); assert 'Smoke' in ackredit.report()"
+    - ackredit --help
+
+about:
+  home: https://github.com/uibcdf/ackredit
+  license: MIT
+  license_file: LICENSE
+  summary: Runtime citation and acknowledgement tracking for scientific Python workflows.
+  dev_url: https://github.com/uibcdf/ackredit
+  doc_url: https://uibcdf.org/ackredit

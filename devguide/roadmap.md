@@ -55,16 +55,22 @@ Everything below exists to make that commitment honest rather than optimistic.
 Nothing downstream can start until this is true, and it is the only theme that blocks
 every other one.
 
-- a conda recipe under `devtools/conda-build/`, `noarch: python`, and a build environment;
-- `build_and_upload_conda_packages.yaml`, publishing to the `uibcdf` channel;
-- an installation verified in a clean environment from the published package, not from a
-  checkout;
-- the installation documentation rewritten around what actually works then.
+- [x] a conda recipe under `devtools/conda-build/`, `noarch: python`, and a build
+      environment;
+- [x] `build_and_upload_conda_packages.yaml`, staging first and promoting only what was
+      verified;
+- [x] a build verified locally: the `noarch` package passes the recipe's own tests and
+      installs into a clean conda environment where it reports its version, discovers
+      itself and renders a report;
+- [ ] **published**, which needs the channel token and is a release decision rather than
+      an implementation one;
+- [ ] the installation documentation rewritten around what works once it is published.
 
-Coordination: publishing a member with suite dependencies touches the staging protocol
-discussed in `uibcdf/molsyssuite#27`.
+Coordination: `uibcdf/molsyssuite#27` standardises staging for components whose
+publication order is coupled. Nothing depends on Ackredit, so there is no cycle here; the
+staging step is adopted for verification rather than coordination.
 
-### Theme B — Ackredit can be cited
+### Theme B — Ackredit can be cited — **done**
 
 A citation tracker that ships no `CITATION.cff` cannot be discovered by its own
 auto-discovery. Verified: `find_and_parse_cff` finds nothing for Ackredit, and the package

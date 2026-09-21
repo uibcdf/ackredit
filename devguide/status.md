@@ -66,10 +66,14 @@ Organised as themes with exit criteria in [`roadmap.md`](roadmap.md), rather tha
 fixed number of releases. The minor rises when behaviour a caller can see changes, so how
 many land before 1.0.0 is an outcome rather than a plan.
 
-- **Distribution:** Ackredit is published to no channel, so it can only be installed
-  from source. This blocks every other theme (roadmap A).
-- **Self-citation:** Ackredit ships no `CITATION.cff`, so its own auto-discovery cannot
-  find it, and its package metadata declares no author beyond the team name (roadmap B).
+- **Distribution:** the conda recipe, build environment and staging-and-promotion
+  workflow exist and are verified — a `noarch` package builds, passes the recipe's own
+  tests, and installs into a clean environment where it reports its version, discovers
+  itself and renders a report. Nothing is published yet: that needs the channel token and
+  is a release decision (roadmap A).
+- **Self-citation:** done. Ackredit ships `CITATION.cff` inside the package, finds
+  itself from an installed distribution, and its metadata names the same authors
+  (`uibcdf/ackredit#21`).
 - **Adoption:** no host library has integrated the guide yet. Every defect found in it so
   far was found by reading it rather than using it (roadmap C).
 - **API hardening:** the shape questions are decided (`uibcdf/ackredit#16`); what remains

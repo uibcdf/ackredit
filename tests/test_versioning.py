@@ -123,13 +123,28 @@ def test_a_development_version_is_marked_as_one():
         pytest.skip("no tag to measure distance from")
 
     commits_since_tag = int(distance.stdout.strip().rsplit("-", 2)[1])
-    if commits_since_tag == 0:
-        assert "+" not in derived, derived
-    else:
-        assert "+" in derived, (
-            f"{derived} is {commits_since_tag} commits past its tag and does not "
-            "say so; a development build must not be mistaken for the release"
+    dirty = bool(
+        subprocess.run(
+            ["git", "status", "--porcelain"],
+            capture_output=True,
+            text=True,
+            cwd=ROOT,
+        ).stdout.strip()
+    )
+
+    if commits_since_tag == 0 and not dirty:
+        assert "+" not in derived, (
+            f"{derived} is exactly the tag in a clean tree and should be the "
+            "bare release identifier"
         )
+    else:
+        reason = "dirty" if dirty else f"{commits_since_tag} commits past its tag"
+        assert "+" in derived, (
+            f"{derived} is {reason} and does not say so; a development build "
+            "must not be mistaken for the release"
+        )
+        if dirty:
+            assert derived.endswith(".dirty"), derived
 
 
 def test_the_version_is_not_the_unknown_fallback():
