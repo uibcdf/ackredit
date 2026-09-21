@@ -79,8 +79,13 @@ def test_a_nonconforming_tag_is_refused(tag):
     assert re.match(regex, tag) is None
 
 
-def test_the_public_version_matches_what_versioningit_derives():
-    """The one assertion that catches the two drifting apart."""
+def test_the_public_version_comes_from_the_tag():
+    """The assertion that catches the release identifier drifting from the tag.
+
+    Only the part before `+` is compared. The suffix is distance and revision,
+    which changes with every commit in a checkout, so asserting the whole string
+    would fail on the next commit and teach everyone to ignore this file.
+    """
     result = subprocess.run(
         [sys.executable, "-m", "versioningit", str(ROOT)],
         capture_output=True,
@@ -91,10 +96,40 @@ def test_the_public_version_matches_what_versioningit_derives():
 
     derived = result.stdout.strip()
 
-    assert ackredit.__version__ == derived, (
+    assert ackredit.__version__.split("+")[0] == derived.split("+")[0], (
         f"the package reports {ackredit.__version__} while the tag derives "
-        f"{derived}; the built metadata and the public version have drifted"
+        f"{derived}; the release identifier has drifted from the tag"
     )
+
+
+def test_a_development_version_is_marked_as_one():
+    """A build away from a tag must not look like the release itself."""
+    result = subprocess.run(
+        [sys.executable, "-m", "versioningit", str(ROOT)],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        pytest.skip("versioningit could not derive a version here")
+
+    derived = result.stdout.strip()
+    distance = subprocess.run(
+        ["git", "describe", "--tags", "--long"],
+        capture_output=True,
+        text=True,
+        cwd=ROOT,
+    )
+    if distance.returncode != 0:
+        pytest.skip("no tag to measure distance from")
+
+    commits_since_tag = int(distance.stdout.strip().rsplit("-", 2)[1])
+    if commits_since_tag == 0:
+        assert "+" not in derived, derived
+    else:
+        assert "+" in derived, (
+            f"{derived} is {commits_since_tag} commits past its tag and does not "
+            "say so; a development build must not be mistaken for the release"
+        )
 
 
 def test_the_version_is_not_the_unknown_fallback():
