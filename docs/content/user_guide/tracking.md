@@ -59,6 +59,24 @@ def run_analysis():
         ackredit.track_item("dataset:1")
 ```
 
+### Items and targets
+
+Two words appear throughout this API and mean different things.
+
+An **item** is something citable: a paper, a dataset, a piece of software. It is what a
+report is made of, and {func}`ackredit.track_item` is what credits one.
+
+A **target** is a named unit of your code: a function, a method, a block. Ackredit records
+which targets ran so a report can say *why* an item was credited, and so the provenance
+tree can show one target calling another. Every function taking a `target` argument —
+{func}`ackredit.bind`, {func}`ackredit.scoped_usage`, {func}`ackredit.bound_items`,
+{func}`ackredit.credit_bound` — means that.
+
+You rarely call {func}`ackredit.track_target` yourself: entering a
+{class}`ackredit.scope`, or calling a function wrapped in
+{func}`ackredit.scoped_usage`, records the target for you. It is public for
+instrumentation that does not go through either.
+
 ### Sessions
 
 Everything tracked belongs to a session. There is one by default, so nothing above needs

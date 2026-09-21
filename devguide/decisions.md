@@ -36,6 +36,26 @@
     functions keep working untouched on a default session, which is the ergonomics the
     global existed for; a `ContextVar` read costs 0.118 µs against the 1.3 µs a
     `track_item` already spends.
+8.  **`dump` keeps compiling the PDF (`uibcdf/ackredit#16`):** it renders files and
+    optionally runs `pdflatex`, which are unrelated failures. Separating them was
+    considered and refused: the argument against was that a missing system binary failed
+    obscurely, and that stopped being true when `ACKREDIT-W011` and `W012` started
+    explaining it. `dump(path, build_pdf=True)` is the one call a user wants at the end of
+    a run, and `compile_pdf` is already exported for anyone who wants the two steps apart.
+
+9.  **`format` stays a string (`uibcdf/ackredit#16`):** an enum would be checkable and
+    discoverable, at the cost of an import for a value that is a name. Command lines,
+    configuration files and JSON all carry strings, and the real defect — an unknown name
+    silently producing a different format — was closed in `uibcdf/ackredit#15` with a
+    refusal and `available_formats()`.
+
+10. **The `target` vocabulary stays (`uibcdf/ackredit#16`):** `track_target` reads as a
+    pair with `track_item` without being one, which suggested renaming it. The evidence
+    refused that: `target` already means "a named unit of code" in seven public
+    functions, so `track_target` is consistent with all of them and renaming would break
+    that coherence. What was actually missing was documentation — `bind` had 13 mentions
+    in the user-facing docs, `credit_bound` 11, and `track_target` none — so the
+    distinction between an item and a target is now written down instead.
 
 ## Pending Decisions
 1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?
