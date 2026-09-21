@@ -17,23 +17,16 @@ content costs nothing and removes the chance of using the wrong one.
 
 A URL is a third thing. Escaping ``javascript:alert(1)`` produces a perfectly
 well-formed attribute holding a live script, so a link is *validated*, not
-escaped: :func:`safe_link` returns a URL only when its scheme can be followed
-without running anything.
+escaped. That validation is not about HTML at all — the Markdown renderer needs
+exactly the same answer — so it lives in ``_links.py`` and is re-exported here,
+where it was written.
 """
 
 from __future__ import annotations
 
 import html
 
-# Schemes a citation link may use. A DOI or a landing page is fetched over HTTP;
-# anything else in this position is not a reference to a work.
-_ALLOWED_SCHEMES = ("http://", "https://")
-
-# Browsers strip ASCII whitespace and control characters from a URL before
-# resolving its scheme, so "java\tscript:alert(1)" is a javascript: URL to them.
-# They are removed here for the same reason, and only for the test.
-_STRIPPED = {code: None for code in range(0x21)}
-_STRIPPED[0x7F] = None
+from ._links import safe_link
 
 
 def escape(value: object) -> str:
@@ -41,16 +34,4 @@ def escape(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
-def safe_link(url: object) -> str | None:
-    """Return *url* if it can be linked, or ``None`` if it must not be.
-
-    A rejected URL is not repaired and not silently swapped for another: the
-    caller renders the title as plain text, so the citation is still shown and
-    only the link is withheld.
-    """
-    if not url:
-        return None
-    candidate = str(url)
-    if not candidate.translate(_STRIPPED).lower().startswith(_ALLOWED_SCHEMES):
-        return None
-    return candidate
+__all__ = ["escape", "safe_link"]
