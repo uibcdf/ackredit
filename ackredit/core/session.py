@@ -20,6 +20,12 @@ losing or interleaving events. Measured with eight processes and 4000 events:
 no loss, no corrupt line. That guarantee is a local-filesystem one; NFS does not
 provide it, so a network filesystem still wants one journal per process, which
 `aggregate` merges.
+
+Reading one that is still being written is a different matter: the file can grow
+between the stat and the read, so the last line may arrive partially. Nothing
+before it ever does, and a closed journal has no partial line at all. `read`
+skips an unparseable line rather than refusing the journal, which covers this
+and covers the torn tail an interrupted run leaves.
 """
 
 from __future__ import annotations
@@ -178,6 +184,12 @@ class Session:
         self.used_items: Dict[str, list[str]] = {}
         self.usage_tree: Dict[str, Dict[str, set]] = {}
 
+        # An index over the lists in used_items. The list preserves the order
+        # callers appeared in, which reports show; membership on it is linear,
+        # and an item credited from many call sites made recording O(n squared).
+        # `record_item` is the only writer of both, so they cannot drift.
+        self._callers: Dict[str, set] = {}
+
         self.journal_path: Optional[Path] = None
         self._journal: Optional[int] = None
 
@@ -191,6 +203,44 @@ class Session:
             self.used_targets.clear()
             self.used_items.clear()
             self.usage_tree.clear()
+            self._callers.clear()
+
+    def record_item(self, item_id: str, used_by: str | None) -> bool:
+        """Credit *item_id*, optionally to *used_by*. Callers hold the lock.
+
+        Returns whether this changed anything, so the journal records state
+        changes rather than calls: crediting the same pair in a loop writes one
+        line, not one per iteration.
+        """
+        changed = item_id not in self.used_items
+        callers = self.used_items.setdefault(item_id, [])
+        seen = self._callers.setdefault(item_id, set())
+
+        if used_by is not None:
+            if used_by not in seen:
+                seen.add(used_by)
+                callers.append(used_by)
+                changed = True
+            node = self.usage_tree.setdefault(
+                used_by, {"items": set(), "children": set()}
+            )
+            node["items"].add(item_id)
+
+        return changed
+
+    def record_target(self, target: str, parent: str | None) -> bool:
+        """Record that *target* ran. Callers hold the lock."""
+        changed = target not in self.used_targets
+        self.used_targets.add(target)
+        self.usage_tree.setdefault(target, {"items": set(), "children": set()})
+        if parent:
+            node = self.usage_tree.setdefault(
+                parent, {"items": set(), "children": set()}
+            )
+            if target not in node["children"]:
+                node["children"].add(target)
+                changed = True
+        return changed
 
     def __repr__(self) -> str:  # pragma: no cover - diagnostics only
         return (
@@ -236,6 +286,9 @@ def session(name: str = "session", inherit: bool = False) -> Iterator[Session]:
             fresh.used_targets = set(enclosing.used_targets)
             fresh.used_items = {
                 item: list(callers) for item, callers in enclosing.used_items.items()
+            }
+            fresh._callers = {
+                item: set(callers) for item, callers in enclosing._callers.items()
             }
             fresh.usage_tree = {
                 target: {

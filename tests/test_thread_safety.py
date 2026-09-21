@@ -14,6 +14,7 @@ import ackredit
 from ackredit.core import session
 from ackredit.core.collector import Collector
 from ackredit.core.context import get_current_scope
+from ackredit.core.session import current_session
 
 # Every rendezvous is bounded. A concurrency test that deadlocks on failure hides
 # the failure instead of reporting it, so barriers time out and raise BrokenBarrierError.
@@ -22,9 +23,7 @@ TIMEOUT = 10.0
 
 def _isolated():
     """Clear the process-wide collector so a test sees only its own tracking."""
-    Collector.used_items.clear()
-    Collector.used_targets.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     Collector.close_persistence()
 
 
@@ -172,9 +171,14 @@ def test_no_journal_line_is_ever_torn(tmp_path):
         def worker(index: int):
             for step in range(40):
                 ackredit.track_item(f"it_{index}_{step}", used_by=f"c{index}")
-                for line in journal.read_text().splitlines():
-                    if not line.strip():
-                        continue
+                lines = [
+                    line for line in journal.read_text().splitlines() if line.strip()
+                ]
+                # Every line but the last, which may still be arriving: a reader
+                # of a growing file can see it partially, because the file can
+                # extend between the stat and the read. session.read() skips it
+                # by design, and the closed journal is checked below.
+                for line in lines[:-1]:
                     try:
                         json.loads(line)
                     except Exception as error:  # noqa: BLE001 - recorded, not swallowed
@@ -183,7 +187,12 @@ def test_no_journal_line_is_ever_torn(tmp_path):
         with ThreadPoolExecutor(max_workers=8) as pool:
             list(pool.map(worker, range(8)))
 
-        assert not torn, f"{len(torn)} reads saw a torn line"
+        assert not torn, f"{len(torn)} reads saw a torn line before the last"
+
+        Collector.close_persistence()
+        complete = [line for line in journal.read_text().splitlines() if line.strip()]
+        for line in complete:
+            json.loads(line)  # a closed journal has no partial line at all
         assert len(session.read(journal)["used_items"]) == 8 * 40
     finally:
         Collector.close_persistence()

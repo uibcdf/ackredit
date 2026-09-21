@@ -10,16 +10,14 @@ import pytest
 
 import ackredit
 from ackredit._private.smonitor.exceptions import UnknownFormatError
-from ackredit.core.collector import Collector
 from ackredit.core.registry import Registry
 from ackredit.core.report import _ALIASES, _RENDERERS
+from ackredit.core.session import current_session
 
 
 @pytest.fixture(autouse=True)
 def _one_item():
-    Collector.used_items.clear()
-    Collector.used_targets.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     Registry.items.clear()
     ackredit.register_item(id="x:1", title="A Title", authors=["Ana Ruiz"], year=2024)
     ackredit.track_item("x:1")

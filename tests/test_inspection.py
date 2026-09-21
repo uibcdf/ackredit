@@ -13,6 +13,7 @@ import ackredit
 from ackredit._private.smonitor.warnings import SourceInspectionWarning
 from ackredit.core.collector import Collector
 from ackredit.core.inspection import auto_track_calls
+from ackredit.core.session import current_session
 
 
 def mdtraj_load():
@@ -21,9 +22,7 @@ def mdtraj_load():
 
 @pytest.fixture(autouse=True)
 def _isolated():
-    Collector.used_items.clear()
-    Collector.used_targets.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     yield
 
 

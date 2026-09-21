@@ -9,6 +9,7 @@ manuscript.
 import pytest
 
 from ackredit import register_item, report, track_item
+from ackredit.core.session import current_session
 from ackredit.formats._latex import escape
 
 SPECIALS = [
@@ -224,11 +225,9 @@ def test_a_bib_file_survives_a_round_trip_untouched(tmp_path):
     """Provenance exists for this: a .bib file's fields are already LaTeX, and
     escaping them again would turn its '\\&' into a literal backslash."""
     from ackredit import load_bibtex
-    from ackredit.core.collector import Collector
     from ackredit.core.registry import Registry
 
-    Collector.used_items.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     Registry.items.clear()
 
     source = tmp_path / "in.bib"
@@ -251,11 +250,9 @@ def test_a_bib_file_survives_a_round_trip_untouched(tmp_path):
 
 
 def test_the_provenance_marker_never_reaches_a_report(tmp_path):
-    from ackredit.core.collector import Collector
     from ackredit.core.registry import Registry
 
-    Collector.used_items.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     Registry.items.clear()
 
     source = tmp_path / "in.bib"

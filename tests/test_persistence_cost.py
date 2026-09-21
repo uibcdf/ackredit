@@ -17,14 +17,13 @@ import pytest
 import ackredit
 from ackredit.core import session
 from ackredit.core.collector import Collector
+from ackredit.core.session import current_session
 
 
 @pytest.fixture(autouse=True)
 def _isolated():
     Collector.close_persistence()
-    Collector.used_items.clear()
-    Collector.used_targets.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     yield
     Collector.close_persistence()
 
@@ -42,8 +41,7 @@ def _cost_per_item(journal, count):
 def test_the_cost_per_item_does_not_grow_with_the_session(tmp_path):
     small = _cost_per_item(tmp_path / "small.jsonl", 200)
 
-    Collector.used_items.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     large = _cost_per_item(tmp_path / "large.jsonl", 2000)
 
     # Ten times the items. Under the old design this ratio was about 2.5; a
@@ -118,3 +116,54 @@ def test_a_session_written_before_journals_still_loads(tmp_path):
 
     assert state["used_items"] == {"old:1": ["old.target"]}
     assert state["used_targets"] == {"old.target"}
+
+
+def test_crediting_one_more_caller_costs_the_same_at_ten_thousand():
+    """`used_by not in callers` scanned a list, so an item reached from many
+    call sites got slower with every one: 4.3 µs at 500 callers, 47.4 at 8 000.
+
+    This is the realistic shape. The items credited most often are the central
+    ones — a library's own paper, a numerical method — and `used_by` is a
+    qualified function name, so every call site is another entry to scan.
+    """
+    current_session().clear()
+    ackredit.register_item(id="hot:item", title="Cited from everywhere")
+
+    def cost(count, offset):
+        start = time.perf_counter()
+        for index in range(count):
+            ackredit.track_item("hot:item", used_by=f"caller{offset + index}")
+        return (time.perf_counter() - start) / count
+
+    few = cost(500, 0)
+    many = cost(5000, 10_000)
+
+    assert many < few * 3, (
+        f"{few * 1e6:.1f} µs/call with 500 callers became {many * 1e6:.1f} µs "
+        "with 5 000; the cost is growing with the callers again"
+    )
+
+
+def test_the_order_callers_appeared_in_is_kept():
+    """Reports show it, so the index may not replace the list."""
+    current_session().clear()
+
+    for caller in ("gamma", "alpha", "beta", "alpha"):
+        ackredit.track_item("ordered:item", used_by=caller)
+
+    assert ackredit.get_used_items()["ordered:item"] == ["gamma", "alpha", "beta"]
+
+
+def test_the_journal_records_changes_not_calls(tmp_path):
+    """Crediting the same pair in a loop is one fact, not five thousand."""
+    current_session().clear()
+    journal = tmp_path / "repeated.jsonl"
+    Collector.enable_persistence(journal)
+    for _ in range(5000):
+        ackredit.track_item("same:item", used_by="same.caller")
+    Collector.close_persistence()
+
+    lines = [line for line in journal.read_text().splitlines() if line.strip()]
+
+    assert len(lines) == 2  # the schema header, and one event
+    assert session.read(journal)["used_items"] == {"same:item": ["same.caller"]}

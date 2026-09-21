@@ -5,7 +5,7 @@ notebook could not start a fresh count between cells, a host library could not
 keep its tracking apart from its user's, and nothing could produce two reports
 in one process. The only available workaround was reaching into internals:
 
-    Collector.used_items.clear()
+    current_session().clear()
 
 Declarations and observations are scoped differently on purpose. `Registry`
 holds what *could* be cited and stays shared, because a host library registers

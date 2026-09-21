@@ -20,6 +20,7 @@ import pytest
 import ackredit
 from ackredit.core import session
 from ackredit.core.collector import Collector
+from ackredit.core.session import current_session
 
 WORKER = textwrap.dedent(
     """
@@ -40,9 +41,7 @@ WORKER = textwrap.dedent(
 @pytest.fixture(autouse=True)
 def _isolated():
     Collector.close_persistence()
-    Collector.used_items.clear()
-    Collector.used_targets.clear()
-    Collector.usage_tree.clear()
+    current_session().clear()
     yield
     Collector.close_persistence()
 
@@ -130,7 +129,7 @@ def test_reopening_a_journal_adopts_what_it_holds(tmp_path):
     ackredit.track_item("before:1", used_by="caller")
     Collector.close_persistence()
 
-    Collector.used_items.clear()
+    current_session().clear()
     Collector.enable_persistence(journal)
 
     assert "before:1" in ackredit.get_used_items()

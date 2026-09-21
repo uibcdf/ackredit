@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import threading
 from pathlib import Path
+from types import MappingProxyType
+from typing import Mapping
 
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.warnings import (
@@ -11,6 +13,26 @@ from .._private.smonitor.warnings import (
 )
 from . import session
 from .session import current_session
+
+
+def _merge(state, stored) -> None:
+    """Fold a read session into *state*, through the session's own writers.
+
+    Going through `record_item` and `record_target` is what keeps the caller
+    index and the ordered list from drifting: they have one writer, not three.
+    """
+    for target in stored["used_targets"]:
+        state.record_target(target, None)
+    for item_id, callers in stored["used_items"].items():
+        if callers:
+            for caller in callers:
+                state.record_item(item_id, caller)
+        else:
+            state.record_item(item_id, None)
+    for name, node in stored["usage_tree"].items():
+        current = state.usage_tree.setdefault(name, {"items": set(), "children": set()})
+        current["items"].update(node["items"])
+        current["children"].update(node["children"])
 
 
 class _CollectorState(type):
@@ -26,8 +48,17 @@ class _CollectorState(type):
         return current_session().used_targets
 
     @property
-    def used_items(cls) -> dict[str, list[str]]:
-        return current_session().used_items
+    def used_items(cls) -> Mapping[str, list[str]]:
+        """Read-only, because the session indexes it.
+
+        A list preserves the order callers appeared in and a set makes
+        membership constant; `Session.record_item` writes both. Clearing or
+        assigning through this view would leave the index describing entries
+        that are gone, and the drift is silent — a caller already in the stale
+        index is never re-added. A view turns that into an immediate error.
+        Use `ackredit.current_session().clear()` to forget what was tracked.
+        """
+        return MappingProxyType(current_session().used_items)
 
     @property
     def usage_tree(cls) -> dict[str, dict[str, set[str]]]:
@@ -63,17 +94,7 @@ class Collector(metaclass=_CollectorState):
 
             if target.exists():
                 try:
-                    stored = session.read(target)
-                    state.used_targets.update(stored["used_targets"])
-                    for item, callers in stored["used_items"].items():
-                        known = state.used_items.setdefault(item, [])
-                        known.extend(c for c in callers if c not in known)
-                    for name, node in stored["usage_tree"].items():
-                        current = state.usage_tree.setdefault(
-                            name, {"items": set(), "children": set()}
-                        )
-                        current["items"].update(node["items"])
-                        current["children"].update(node["children"])
+                    _merge(state, session.read(target))
                 except Exception as error:
                     warn(
                         SessionLoadWarning(
@@ -139,12 +160,8 @@ class Collector(metaclass=_CollectorState):
     def track_target(cls, target: str, parent: str | None = None) -> None:
         state = current_session()
         with state.lock:
-            state.used_targets.add(target)
-            state.usage_tree.setdefault(target, {"items": set(), "children": set()})
-            if parent:
-                state.usage_tree.setdefault(parent, {"items": set(), "children": set()})
-                state.usage_tree[parent]["children"].add(target)
-            cls._record(state, session.append_target, target, parent)
+            if state.record_target(target, parent):
+                cls._record(state, session.append_target, target, parent)
 
     @classmethod
     def track_item(cls, item_id: str, used_by: str | None = None) -> None:
@@ -155,17 +172,8 @@ class Collector(metaclass=_CollectorState):
 
         state = current_session()
         with state.lock:
-            state.used_items.setdefault(item_id, [])
-            if used_by is not None:
-                if used_by not in state.used_items[item_id]:
-                    state.used_items[item_id].append(used_by)
-
-                # Update usage tree
-                state.usage_tree.setdefault(
-                    used_by, {"items": set(), "children": set()}
-                )
-                state.usage_tree[used_by]["items"].add(item_id)
-            cls._record(state, session.append_item, item_id, used_by)
+            if state.record_item(item_id, used_by):
+                cls._record(state, session.append_item, item_id, used_by)
 
     @classmethod
     def credit_bound(cls, target: str) -> list[str]:
@@ -233,16 +241,7 @@ class Collector(metaclass=_CollectorState):
                 )
                 continue
 
-            state.used_targets.update(stored["used_targets"])
-            for item_id, callers in stored["used_items"].items():
-                known = state.used_items.setdefault(item_id, [])
-                known.extend(caller for caller in callers if caller not in known)
-            for name, node in stored["usage_tree"].items():
-                current = state.usage_tree.setdefault(
-                    name, {"items": set(), "children": set()}
-                )
-                current["items"].update(node["items"])
-                current["children"].update(node["children"])
+            _merge(state, stored)
 
 
 def close_persistence() -> None:
