@@ -13,15 +13,11 @@ import pytest
 
 import ackredit
 from ackredit._private.smonitor.exceptions import UnknownFormatError
-from ackredit.core.registry import Registry
 from ackredit.core.report import _ALIASES, _RENDERERS
-from ackredit.core.session import current_session
 
 
 @pytest.fixture(autouse=True)
-def _one_item():
-    current_session().clear()
-    Registry.items.clear()
+def _one_item(clean_registry):
     ackredit.register_item(id="x:1", title="A Title", authors=["Ana Ruiz"], year=2024)
     ackredit.track_item("x:1")
     yield

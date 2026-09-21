@@ -17,20 +17,14 @@ import pytest
 import ackredit
 from ackredit.contrib.jupyter import summary
 from ackredit.contrib.web_ui import _render_dashboard
-from ackredit.core.registry import Registry
-from ackredit.core.session import current_session
 from ackredit.formats._html import escape, safe_link
 
 HOSTILE = "<script>alert('x')</script>"
 
 
 @pytest.fixture(autouse=True)
-def _clean():
-    current_session().clear()
-    Registry.items.clear()
+def _clean(clean_registry):
     yield
-    current_session().clear()
-    Registry.items.clear()
 
 
 def render(**fields) -> str:

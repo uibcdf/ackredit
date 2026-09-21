@@ -18,8 +18,6 @@ from pathlib import Path
 import pytest
 
 import ackredit
-from ackredit.core.registry import Registry
-from ackredit.core.session import current_session
 from ackredit.core.standard_injections import STANDARD_INJECTIONS
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,12 +38,8 @@ def is_truncation(name: str) -> bool:
 
 
 @pytest.fixture(autouse=True)
-def _clean():
-    current_session().clear()
-    Registry.items.clear()
+def _clean(clean_registry):
     yield
-    current_session().clear()
-    Registry.items.clear()
 
 
 @pytest.mark.parametrize("pkg,item", ITEMS, ids=IDS)

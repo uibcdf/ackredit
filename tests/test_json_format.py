@@ -12,8 +12,6 @@ import json
 import pytest
 
 import ackredit
-from ackredit.core.registry import Registry
-from ackredit.core.session import current_session
 
 FULL_ITEM = {
     "id": "a:1",
@@ -30,12 +28,8 @@ FULL_ITEM = {
 
 
 @pytest.fixture(autouse=True)
-def _clean():
-    current_session().clear()
-    Registry.items.clear()
+def _clean(clean_registry):
     yield
-    current_session().clear()
-    Registry.items.clear()
 
 
 def report_for(**item) -> dict:

@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (28)
+### Resolved (29)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -29,6 +29,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`shape_of_the_public_api_for_1_0.md`](shape_of_the_public_api_for_1_0.md) — [#16](https://github.com/uibcdf/ackredit/issues/16) — Five 1.0 API questions decided: two changed, three kept with the reason written down. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
+- [`tests_share_tracking_state.md`](tests_share_tracking_state.md) — [#30](https://github.com/uibcdf/ackredit/issues/30) — The suite depended on the order its files ran in, so a test could pass for the reason of the test before it. *(resolved, measured)*
 - [`the_documentation_build_is_not_repeatable.md`](the_documentation_build_is_not_repeatable.md) — [#29](https://github.com/uibcdf/ackredit/issues/29) — Sphinx scanned its own output directory, so a clean documentation build passed and the next one failed. *(resolved, measured)*
 - [`the_guide_reaches_nobody.md`](the_guide_reaches_nobody.md) — [#24](https://github.com/uibcdf/ackredit/issues/24) — The integration guide reached no repository and opened without saying what Ackredit is. *(resolved, reproduced)*
 - [`the_json_format_is_not_a_citation.md`](the_json_format_is_not_a_citation.md) — [#27](https://github.com/uibcdf/ackredit/issues/27) — The advertised json report emitted six fixed keys, dropping the DOI, the authors, the journal and the URL. *(resolved, measured)*

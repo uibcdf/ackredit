@@ -96,13 +96,8 @@ def test_the_cited_version_matches_the_latest_tag(cff):
     )
 
 
-def test_a_citing_workflow_produces_a_usable_entry():
+def test_a_citing_workflow_produces_a_usable_entry(clean_registry):
     """End to end: discover, register, track, render."""
-    from ackredit.core.registry import Registry
-    from ackredit.core.session import current_session
-
-    current_session().clear()
-    Registry.items.clear()
 
     discovered = find_and_parse_cff(Path(ackredit.__file__).parent)
     ackredit.register_item(
