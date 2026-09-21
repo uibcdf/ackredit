@@ -35,6 +35,14 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
 
 ## Known limitations, deliberately out of scope
 
+- **CI runs on Linux only.** `smonitor` and `depdigest` are published to the `uibcdf`
+  channel as `linux-64` builds with per-interpreter ABI pins, so a macOS environment
+  cannot be solved. Both recipes already declare `noarch: python` at HEAD, so their next
+  release restores the lane; noted upstream in `uibcdf/molsyssuite#29`. The macOS lane
+  is removed rather than left failing, so the CI keeps meaning something.
+- **Python is 3.11 to 3.13.** Adopting 3.14 is governed by the transition in
+  `uibcdf/molsyssuite#29` and waits on the same two dependencies, which are capped at
+  `<3.14`. Ackredit is registered behind DepDigest in that dependency order.
 - **Two processes cannot share one session file.** Each save replaces the whole document,
   so a shared path means the last writer wins. This is reported as `ACKREDIT-W014` rather
   than absorbed (`uibcdf/ackredit#8`), and the supported pattern is one file per process

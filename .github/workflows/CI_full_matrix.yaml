@@ -18,7 +18,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        # Linux only, for now. smonitor and depdigest are published to the
+        # uibcdf channel as linux-64 builds with per-interpreter ABI pins, so a
+        # macOS environment cannot be solved at all. Both recipes already
+        # declare `noarch: python` at HEAD, so their next release resolves this
+        # and macos-latest can be restored; tracked upstream through
+        # uibcdf/molsyssuite#29. A lane that cannot pass teaches everyone to
+        # ignore the CI, which is the defect reported in
+        # uibcdf/molsyssuite#33.
+        os: [ubuntu-latest]
         python-version: ["3.11", "3.12", "3.13"]
 
     steps:
