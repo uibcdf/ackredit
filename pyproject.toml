@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "versioningit>=3.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "ackredit"
-version = "0.5.0"
+dynamic = ["version"]
 description = "Ackredit — trace what you used, cite what matters."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
@@ -73,3 +73,30 @@ select = ["E4", "E7", "E9", "F", "I"]
 # ensure_configured() must run before the package's own imports, so they are
 # deliberately not at the top of the file.
 "ackredit/__init__.py" = ["E402"]
+
+# The version has one source of truth: the Git tag. A static literal in this file
+# and a tag are two sources kept in step by hand, and they drift the first time
+# someone forgets.
+[tool.versioningit]
+default-version = "0.0.0+unknown"
+
+[tool.versioningit.format]
+distance = "{base_version}+{distance}.{vcs}{rev}"
+dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+
+[tool.versioningit.vcs]
+method = "git"
+match = ["*"]
+default-tag = "0.0.0"
+
+# The canonical MolSysSuite release identifier, from suite.toml's
+# `policies.release-version.versioningit-pattern`. `require-match` is what makes
+# it a gate: a tag like `v1.2.3`, `1.2.3rc1` or `01.2.3` fails the build instead
+# of quietly producing some other version.
+[tool.versioningit.tag2version]
+regex = '^(?P<version>(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*))$'
+require-match = true
+
+[tool.versioningit.write]
+file = "ackredit/_version.py"

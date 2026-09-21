@@ -15,3 +15,6 @@ docs/_build/
 # Ackredit runtime and demo artifacts
 session_cache.json
 citation_package/
+
+# Written by versioningit at build time
+ackredit/_version.py

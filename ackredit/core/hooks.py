@@ -3,7 +3,6 @@ from __future__ import annotations
 import atexit
 import re
 import sys
-from importlib import metadata
 from importlib.abc import MetaPathFinder
 from importlib.util import find_spec
 from pathlib import Path
@@ -149,7 +148,12 @@ class InjectionsFinder(MetaPathFinder):
             )
             track_item(item_id, used_by=fullname)
         else:
-            # Fallback: metadata discovery
+            # Fallback: metadata discovery. Imported here rather than at module
+            # level: importlib.metadata pulls in email.message, zipfile and
+            # inspect, about half the cost of importing Ackredit, and this path
+            # only runs when import hooks are enabled.
+            from importlib import metadata
+
             try:
                 meta = metadata.metadata(fullname)
                 if meta:

@@ -2,20 +2,25 @@
 Ackredit — acknowledge what you used, credit what matters.
 """
 
-# Everything this module imports for its own setup is bound to a private name.
-# A public one would join the namespace and become something a user can depend
-# on: `version` in particular sits one tab-completion from `__version__` and
-# answers, plausibly and wrongly, what a citation tool's own version is.
-from importlib.metadata import PackageNotFoundError as _PackageNotFoundError
-from importlib.metadata import version as _distribution_version
-
+# The build writes `_version.py`, so an installed distribution reports the same
+# string either way — but reading it costs nothing, while `importlib.metadata`
+# pulls in `email.message`, `zipfile` and `inspect`. Measured here: 55 to 65 ms
+# of a 118 ms import, about half. Ackredit is an optional dependency living
+# inside host libraries, so every host would pay that before doing any work.
+#
+# Everything imported for this module's own setup is bound to a private name. A
+# public one becomes something a user can depend on, and `version` in particular
+# sits one tab-completion from `__version__` while answering, plausibly and
+# wrongly, what a citation tool's own version is.
 try:
-    __version__ = _distribution_version("ackredit")
-except _PackageNotFoundError:
-    # Running from a source tree that was never installed.
+    from ._version import __version__
+except ImportError:  # pragma: no cover - a source tree with no build
     try:
-        from ._version import __version__
-    except ImportError:
+        from importlib.metadata import version as _distribution_version
+
+        __version__ = _distribution_version("ackredit")
+    except Exception:
+        # Nothing here may keep the package from importing.
         __version__ = "0.0.0+unknown"
 
 from smonitor.integrations import ensure_configured as _ensure_smonitor_configured
