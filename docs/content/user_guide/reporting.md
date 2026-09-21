@@ -27,8 +27,14 @@ Use `report(format=...)` to get a string in any of these formats:
 *   `markdown` (Rich markdown with links)
 *   `bibtex` (Standard BibTeX file content)
 *   `csl-json` (For Zotero, Mendeley, and EndNote)
+*   `json` (Every registered field, plus what used it; for your own tooling)
 *   `provenance` (Hierarchical tree showing *why* each item was cited)
 *   `latex` (A complete, compilable LaTeX document)
+*   `text` (Plain text, for a log or a terminal)
+
+This list is the whole list. `ackredit.available_formats()` returns it at runtime, and
+asking for a name that is not here raises `ACKREDIT-E004` rather than quietly returning a
+different report. A test keeps this page and that function in agreement.
 
 ## Consolidating Results (`dump`)
 Save multiple formats at once to a directory.

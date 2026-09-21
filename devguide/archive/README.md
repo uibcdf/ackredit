@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (26)
+### Resolved (27)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -30,6 +30,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
 - [`the_guide_reaches_nobody.md`](the_guide_reaches_nobody.md) — [#24](https://github.com/uibcdf/ackredit/issues/24) — The integration guide reached no repository and opened without saying what Ackredit is. *(resolved, reproduced)*
+- [`the_json_format_is_not_a_citation.md`](the_json_format_is_not_a_citation.md) — [#27](https://github.com/uibcdf/ackredit/issues/27) — The advertised json report emitted six fixed keys, dropping the DOI, the authors, the journal and the URL. *(resolved, measured)*
 - [`track_item_scans_its_callers.md`](track_item_scans_its_callers.md) — [#19](https://github.com/uibcdf/ackredit/issues/19) — track_item tested caller membership against a list, so an item reached from many call sites got slower with every one. *(resolved, reproduced)*
 - [`version_missing_and_its_gate_dead.md`](version_missing_and_its_gate_dead.md) — [#11](https://github.com/uibcdf/ackredit/issues/11) — The package stated no version, and the CI step checking it printed a traceback on a green run. *(resolved, reproduced)*
 

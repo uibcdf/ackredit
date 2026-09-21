@@ -6,6 +6,9 @@ plausible: a plain-text citation list looks like a report, so nothing prompted
 anyone to check until a `.bib` reached a TeX engine.
 """
 
+import re
+from pathlib import Path
+
 import pytest
 
 import ackredit
@@ -87,3 +90,22 @@ def test_the_renderer_and_the_extension_cannot_disagree():
     for name, (render, extension) in _RENDERERS.items():
         assert callable(render), name
         assert extension and not extension.startswith("."), name
+
+
+def test_the_documentation_lists_every_format_and_no_others():
+    """`json` and `text` existed, worked and were documented nowhere.
+
+    Nothing pointed at `json`, so nobody looked at it, and it silently dropped
+    the DOI and the authors for as long as it existed (#27).
+    """
+    page = (
+        Path(__file__).resolve().parents[1] / "docs/content/user_guide/reporting.md"
+    ).read_text(encoding="utf-8")
+
+    listed = set(re.findall(r"^\*\s+`([a-z-]+)`", page, re.MULTILINE))
+    available = set(ackredit.available_formats())
+
+    assert listed == available, (
+        f"documented but gone: {sorted(listed - available)}; "
+        f"available but undocumented: {sorted(available - listed)}"
+    )
