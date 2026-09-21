@@ -109,6 +109,36 @@ The same merge is available from the command line with `ackredit merge`. If two 
 do share a path, Ackredit reports `ACKREDIT-W014` rather than losing the citations
 silently, but the data already lost cannot be recovered.
 
+### Detecting what a function needs from its own source
+
+When a function's citations follow from the calls it makes,
+{func}`ackredit.auto_track_calls` reads its source once and credits the matching items
+whenever it runs:
+
+```python
+import ackredit
+
+
+def convert(item, to_form):
+    mdtraj_load(item)
+
+
+convert = ackredit.auto_track_calls(convert, {"mdtraj_load": "external:mdtraj"})
+```
+
+Nothing is credited until `convert` is called. The source only decides *what* would be
+cited; running the function decides *whether*.
+
+:::{note}
+Detection is per function, not per branch. A function that runs but takes a path that
+never reaches the detected call is credited anyway — the same coarseness as
+`credit_bound=True`. Where the citations depend on the path taken, call
+{func}`ackredit.track_item` on the branch that needs them.
+
+A function whose source cannot be read, such as one defined in a REPL or provided by a C
+extension, is returned unchanged and reports `ACKREDIT-W010`.
+:::
+
 ## Manual Tracking
 You can manually track any item at any point in your code.
 
