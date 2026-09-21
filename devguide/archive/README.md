@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (40)
+### Resolved (41)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -20,6 +20,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`documentation_build_is_broken.md`](documentation_build_is_broken.md) — [#4](https://github.com/uibcdf/ackredit/issues/4) — The Sphinx build aborted on a missing linkify dependency, and four further defects hid behind it. *(resolved, reproduced)*
 - [`documented_api_does_not_exist.md`](documented_api_does_not_exist.md) — [#3](https://github.com/uibcdf/ackredit/issues/3) — Documentation taught imports that raise ImportError, and the integration guide's except clause hid it. *(resolved, reproduced)*
 - [`doi_cache_key_collides.md`](doi_cache_key_collides.md) — [#12](https://github.com/uibcdf/ackredit/issues/12) — Two DOIs could share one cache file, so one work's metadata was served for another. *(resolved, reproduced)*
+- [`enrichment_stores_what_it_is_given.md`](enrichment_stores_what_it_is_given.md) — [#41](https://github.com/uibcdf/ackredit/issues/41) — Fetched metadata was applied unguarded, so entities became characters, a nameless creator became an author, and a record with no title ended the run. *(resolved, measured)*
 - [`example_host_libraries.md`](example_host_libraries.md) — [#23](https://github.com/uibcdf/ackredit/issues/23) — Two host libraries in the repository, integrated for real, used by the documentation and the tests. *(resolved, reproduced)*
 - [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*

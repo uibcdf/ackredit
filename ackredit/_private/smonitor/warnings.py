@@ -66,6 +66,10 @@ class FormatPluginWarning(AckreditWarning):
     catalog_key = "FormatPluginWarning"
 
 
+class MetadataRecordWarning(AckreditWarning):
+    catalog_key = "MetadataRecordWarning"
+
+
 class PluginLoadWarning(AckreditWarning):
     catalog_key = "PluginLoadWarning"
 
@@ -98,6 +102,7 @@ __all__ = [
     "FormatPluginWarning",
     "MetadataCacheWarning",
     "MetadataFetchWarning",
+    "MetadataRecordWarning",
     "PackageMetadataWarning",
     "PdfCompilationWarning",
     "PdfToolWarning",

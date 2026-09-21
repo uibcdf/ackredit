@@ -115,6 +115,13 @@ CODES = {
         "dev_message": "Entry point '{plugin}' in group 'ackredit.formats' raised {error_type}: {error}.",
         "dev_hint": "A name already taken raises ACKREDIT-E005 and arrives here; plugin failures never propagate.",
     },
+    "ACKREDIT-W015": {
+        "title": "Metadata record could not be read",
+        "user_message": "The metadata retrieved for DOI '{doi}' could not be read, so '{item_id}' keeps what was already known.",
+        "user_hint": "Fill the title and authors in register_item() if they matter.",
+        "dev_message": "Applying the record for '{item_id}' failed: {error_type}: {error}.",
+        "dev_hint": "A malformed record is data, not a defect here; enrichment must never cost a caller their run.",
+    },
     # --- Errors --------------------------------------------------------------
     "ACKREDIT-E001": {
         "title": "Citation item has no id",
@@ -181,6 +188,7 @@ _WARNINGS = {
     "PdfCompilationWarning": "ACKREDIT-W012",
     "DueCreditExportWarning": "ACKREDIT-W013",
     "FormatPluginWarning": "ACKREDIT-W014",
+    "MetadataRecordWarning": "ACKREDIT-W015",
 }
 
 _ERRORS = {

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import re
 import urllib.request
@@ -16,6 +17,7 @@ from .._private.smonitor.warnings import (
     BibtexFieldWarning,
     MetadataCacheWarning,
     MetadataFetchWarning,
+    MetadataRecordWarning,
     PluginLoadWarning,
 )
 
@@ -34,6 +36,39 @@ def _cache_name(doi: str) -> str:
     # cache directory even where it cannot traverse one.
     readable = re.sub(r"\.{2,}", ".", readable)[:60].strip("-.")
     return f"{readable}.{digest}" if readable else digest
+
+
+def _first(values: Any) -> Any:
+    """The first element of *values*, unescaped, or None if there is none.
+
+    `data.get("title", [item_id])[0]` used the default only when the key was
+    absent, and an empty list is not absent: a record carrying `"title": []`
+    raised IndexError out of enrichment.
+    """
+    if not isinstance(values, (list, tuple)) or not values:
+        return None
+    first = values[0]
+    return html.unescape(first) if isinstance(first, str) else first
+
+
+def _record_authors(creators: Any) -> list[str]:
+    """Names from a fetched record, dropping the ones that name nobody.
+
+    DataCite's mapping yields `family=None` for a creator with neither a
+    `familyName` nor a `name`, and formatting that produced an author called
+    "None"; a Crossref creator with empty fields produced an empty author the
+    same way. Either is the invented authorship closed in `uibcdf/ackredit#26`,
+    arriving from the network rather than from our own table.
+    """
+    names = []
+    for creator in creators or []:
+        if not isinstance(creator, dict):
+            continue
+        family = html.unescape(str(creator.get("family") or "")).strip()
+        given = html.unescape(str(creator.get("given") or "")).strip()
+        if name := ", ".join(part for part in (family, given) if part):
+            names.append(name)
+    return names
 
 
 def _user_agent() -> str:
@@ -254,31 +289,50 @@ class Registry:
 
         # 3. Apply metadata
         if data:
-            # Update title if missing
-            if "title" not in item or not item["title"]:
-                item["title"] = data.get("title", [item_id])[0]
+            try:
+                cls._apply_record(item, data)
+            except Exception as error:
+                # A malformed record is data, not a defect here. It used to
+                # raise out of this function and end the caller's run, and
+                # `enrich_all` stopped on it, leaving every later item alone.
+                warn(
+                    MetadataRecordWarning(
+                        extra={
+                            "item_id": item_id,
+                            "doi": doi,
+                            "error_type": type(error).__name__,
+                            "error": str(error),
+                        }
+                    )
+                )
 
-            # Update authors if missing
-            if "authors" not in item or not item["authors"]:
-                authors = []
-                for auth in data.get("author", []):
-                    given = auth.get("given", "")
-                    family = auth.get("family", "")
-                    authors.append(f"{family}, {given}".strip(", "))
-                if authors:
-                    item["authors"] = authors
+    @staticmethod
+    def _apply_record(item: dict, data: dict) -> None:
+        """Fill what the item is missing from a fetched record.
 
-            # Update year if missing
-            if "year" not in item or not item["year"]:
-                issued = data.get("issued", {}).get("date-parts", [[None]])[0][0]
-                if issued:
-                    item["year"] = int(issued)
+        Text arrives HTML-escaped. Crossref returns the Matplotlib paper's
+        journal as "Computing in Science &amp; Engineering", and stored as
+        written it reached BibTeX as `\&amp;`, which a bibliography prints. It
+        is unescaped here rather than on the way into the cache, so the cache
+        stays a faithful copy of what the API answered and a file written before
+        this is repaired when it is read.
+        """
+        if not item.get("title"):
+            if title := _first(data.get("title")):
+                item["title"] = title
 
-            # Update journal if missing
-            if "journal" not in item or not item["journal"]:
-                container = data.get("container-title", [])
-                if container:
-                    item["journal"] = container[0]
+        if not item.get("authors"):
+            if authors := _record_authors(data.get("author")):
+                item["authors"] = authors
+
+        if not item.get("year"):
+            parts = _first(data.get("issued", {}).get("date-parts"))
+            if year := _first(parts):
+                item["year"] = int(year)
+
+        if not item.get("journal"):
+            if journal := _first(data.get("container-title")):
+                item["journal"] = journal
 
     @classmethod
     def enrich_all(cls) -> None:
