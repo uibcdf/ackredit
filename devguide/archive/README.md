@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (35)
+### Resolved (36)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -26,6 +26,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`no_public_name_says_what_it_promises.md`](no_public_name_says_what_it_promises.md) — [#31](https://github.com/uibcdf/ackredit/issues/31) — __all__ stated what was public and nothing stated what was kept, so seven untested names sat beside the ones the library is built on. *(resolved, measured)*
 - [`not_thread_safe.md`](not_thread_safe.md) — [#5](https://github.com/uibcdf/ackredit/issues/5) — Concurrent workflows cross-attributed citations and corrupted the session file. *(resolved, reproduced)*
 - [`one_tracking_session_per_interpreter.md`](one_tracking_session_per_interpreter.md) — [#18](https://github.com/uibcdf/ackredit/issues/18) — Tracking state was class attributes, one set per interpreter; it now belongs to a session. *(resolved, reproduced)*
+- [`output_formats_are_not_extensible.md`](output_formats_are_not_extensible.md) — [#36](https://github.com/uibcdf/ackredit/issues/36) — The vision promised that anyone could add an output format, and only a private module dict existed. *(resolved, measured)*
 - [`persistence_rewrites_everything_on_every_item.md`](persistence_rewrites_everything_on_every_item.md) — [#17](https://github.com/uibcdf/ackredit/issues/17) — Persistence rewrote the whole document on every item, making a run O(n squared). *(resolved, reproduced)*
 - [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*

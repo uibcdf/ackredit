@@ -108,6 +108,13 @@ CODES = {
         "dev_message": "due.cite failed for '{item_id}': {error_type}: {error}.",
         "dev_hint": "Export continues with the remaining items.",
     },
+    "ACKREDIT-W014": {
+        "title": "Report format plugin failed to load",
+        "user_message": "The report format provided by '{plugin}' could not be loaded, so it is unavailable.",
+        "user_hint": "Report this to the package that provides the plugin; the built-in formats are unaffected.",
+        "dev_message": "Entry point '{plugin}' in group 'ackredit.formats' raised {error_type}: {error}.",
+        "dev_hint": "A name already taken raises ACKREDIT-E005 and arrives here; plugin failures never propagate.",
+    },
     # --- Errors --------------------------------------------------------------
     "ACKREDIT-E001": {
         "title": "Citation item has no id",
@@ -129,6 +136,20 @@ CODES = {
         "user_hint": "Use one of: {available}, or ask ackredit.available_formats().",
         "dev_message": "No renderer registered for '{format}'.",
         "dev_hint": "An unknown name used to fall through to plain text, so a typo produced a report that was not the one requested.",
+    },
+    "ACKREDIT-E005": {
+        "title": "Report format name already taken",
+        "user_message": "'{format}' is already a report format and cannot be replaced.",
+        "user_hint": "Choose a name nobody has taken; ackredit.available_formats() lists them.",
+        "dev_message": "register_format refused '{format}': the name is already registered.",
+        "dev_hint": "Replacing a format would let a request succeed and return a report that is not the one asked for, which is the defect closed in ACKREDIT-E004.",
+    },
+    "ACKREDIT-E006": {
+        "title": "Report format cannot be registered",
+        "user_message": "A report format could not be registered: {reason}.",
+        "user_hint": "A format needs a lower-case name, a callable that renders it, and a file extension.",
+        "dev_message": "register_format rejected name={format!r}: {reason}.",
+        "dev_hint": "Names are matched exactly, so one style is enforced at registration rather than guessed at lookup.",
     },
     # DepDigest raises this one and renders its own prose, because it knows the
     # install channels. The template must not invent fields DepDigest does not
@@ -159,6 +180,7 @@ _WARNINGS = {
     "PdfToolWarning": "ACKREDIT-W011",
     "PdfCompilationWarning": "ACKREDIT-W012",
     "DueCreditExportWarning": "ACKREDIT-W013",
+    "FormatPluginWarning": "ACKREDIT-W014",
 }
 
 _ERRORS = {
@@ -166,6 +188,8 @@ _ERRORS = {
     "BibtexFileNotFoundError": "ACKREDIT-E002",
     "MissingDependencyError": "ACKREDIT-E003",
     "UnknownFormatError": "ACKREDIT-E004",
+    "FormatNameTakenError": "ACKREDIT-E005",
+    "InvalidFormatError": "ACKREDIT-E006",
 }
 
 CATALOG = {

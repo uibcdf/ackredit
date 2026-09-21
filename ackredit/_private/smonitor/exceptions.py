@@ -41,6 +41,18 @@ class UnknownFormatError(AckreditError, ValueError):
     catalog_key = "UnknownFormatError"
 
 
+class FormatNameTakenError(AckreditError, ValueError):
+    """Registering a format over one that exists. Also a ValueError."""
+
+    catalog_key = "FormatNameTakenError"
+
+
+class InvalidFormatError(AckreditError, ValueError):
+    """A format whose name, renderer or extension cannot be used."""
+
+    catalog_key = "InvalidFormatError"
+
+
 class MissingDependencyError(AckreditError, ImportError):
     """Also an ImportError, which is what the optional-dependency pattern expects."""
 
@@ -50,6 +62,8 @@ class MissingDependencyError(AckreditError, ImportError):
 __all__ = [
     "AckreditError",
     "BibtexFileNotFoundError",
+    "FormatNameTakenError",
+    "InvalidFormatError",
     "ItemIdMissingError",
     "MissingDependencyError",
     "UnknownFormatError",

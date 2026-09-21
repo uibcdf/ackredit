@@ -1,17 +1,26 @@
 from __future__ import annotations
 
 import logging
+import re
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from depdigest import get_info
 from smonitor import signal
 
 from .._private.smonitor.emitter import warn
-from .._private.smonitor.exceptions import UnknownFormatError
-from .._private.smonitor.warnings import PdfCompilationWarning, PdfToolWarning
+from .._private.smonitor.exceptions import (
+    FormatNameTakenError,
+    InvalidFormatError,
+    UnknownFormatError,
+)
+from .._private.smonitor.warnings import (
+    FormatPluginWarning,
+    PdfCompilationWarning,
+    PdfToolWarning,
+)
 from ..formats import bibtex, csl_json, jsonfmt, latex, markdown, provenance, text
 from .collector import get_used_items
 from .registry import Registry
@@ -34,9 +43,97 @@ _RENDERERS = {
 
 _ALIASES = {"csl": "csl-json"}
 
+# Entry-point group, mirroring `ackredit.citations`. An entry point loads a
+# callable that registers, so one package can ship several formats.
+_PLUGIN_GROUP = "ackredit.formats"
+
+# Names keep one style, so `available_formats()` stays coherent and the case
+# confusion refused in the unknown-format work cannot enter through a plugin:
+# lookups match exactly, so "BibTeX" would be a second, silently different name.
+_NAME = re.compile(r"^[a-z0-9][a-z0-9._-]*$")
+
+_PLUGINS_LOADED = False
+
+
+def register_format(name: str, renderer: Callable, extension: str) -> None:
+    """Add an output format, for this process.
+
+    *renderer* is called as ``renderer(used, items)`` — a mapping of item id to
+    the names that credited it, and the registry of items — and returns the
+    report as text. *extension* is what :func:`dump` names the file, without a
+    leading dot::
+
+        def render(used, items):
+            return ", ".join(sorted(used))
+
+        ackredit.register_format("ids", render, "txt")
+        ackredit.report(format="ids")
+
+    A package ships one by declaring an entry point that calls this::
+
+        [project.entry-points."ackredit.formats"]
+        anything = "my_package.formats:register"
+
+    **A name that exists is never replaced**, built-in or from another plugin.
+    Letting a third party take over ``bibtex`` would make a request succeed and
+    return a report that is not the one asked for, which is the defect
+    ``ACKREDIT-E004`` exists to prevent.
+    """
+    reason = None
+    if not isinstance(name, str) or not _NAME.match(name):
+        reason = "a name must be lower case, and start with a letter or a digit"
+    elif not callable(renderer):
+        reason = "the renderer is not callable"
+    elif not isinstance(extension, str) or not extension.strip(". "):
+        reason = "a file extension is required, without a leading dot"
+
+    if reason is not None:
+        raise InvalidFormatError(extra={"format": name, "reason": reason})
+
+    if name in _RENDERERS or name in _ALIASES:
+        raise FormatNameTakenError(extra={"format": name})
+
+    _RENDERERS[name] = (renderer, extension.strip(". "))
+
+
+def _load_plugins_once() -> None:
+    """Discover formats other packages provide, the first time it matters.
+
+    Lazily, because requiring a call before ``report(format="mine")`` works
+    would make an unknown-format refusal the normal first experience of the
+    feature. Once, because it scans the installed distributions.
+
+    The flag is set before the work, not after: a plugin's register function may
+    itself ask what formats exist, and that would otherwise recurse. The import
+    hook marks a package the same way and for the same reason.
+    """
+    global _PLUGINS_LOADED
+    if _PLUGINS_LOADED:
+        return
+    _PLUGINS_LOADED = True
+
+    from importlib import metadata
+
+    for entry_point in metadata.entry_points(group=_PLUGIN_GROUP):
+        try:
+            entry_point.load()()
+        except Exception as error:
+            # Never propagate: a broken third-party format must not take the
+            # host down, and the built-in formats are unaffected.
+            warn(
+                FormatPluginWarning(
+                    extra={
+                        "plugin": getattr(entry_point, "name", str(entry_point)),
+                        "error_type": type(error).__name__,
+                        "error": str(error),
+                    }
+                )
+            )
+
 
 def available_formats() -> list[str]:
     """The formats :func:`report` and :func:`dump` accept, canonical names only."""
+    _load_plugins_once()
     return sorted(_RENDERERS)
 
 
@@ -47,6 +144,7 @@ def _resolve_format(name: str) -> str:
     produced a citation list that looked like a report and was not the one asked
     for.
     """
+    _load_plugins_once()
     canonical = _ALIASES.get(name, name)
     if canonical not in _RENDERERS:
         raise UnknownFormatError(

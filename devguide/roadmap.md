@@ -142,10 +142,10 @@ The last theme, and the one that earns the number.
       changing what a name does follows the same route as removing it;
 - [x] **the three entries standing under "Pending Decisions"** since the beginning, which
       the implementation had settled long ago, recorded as decisions 12 to 14;
-- [ ] **the extension point for output formats**, the one decision this opened rather
-      than closed. `devguide/vision.md` promises that anyone can add an output format and
-      nothing implements it; whichever way it goes decides whether `_RENDERERS` is
-      implementation or surface, so it cannot be left to 1.0.0;
+- [x] **the extension point for output formats**, the one decision theme F opened rather
+      than closed, built in `uibcdf/ackredit#36`: `register_format` and an
+      `ackredit.formats` entry-point group, with a registered name never replaced. That
+      settles `_RENDERERS` as implementation;
 - [ ] **the decisions reviewed once more against what adoption taught**, which waits on
       theme C by definition.
 

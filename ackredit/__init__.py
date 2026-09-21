@@ -68,6 +68,7 @@ from .core.report import (
     compile_pdf,
     dependency_info,
     dump,
+    register_format,
     report,
 )
 from .core.session import Session, current_session, session
@@ -80,6 +81,7 @@ __all__ = [
     "Collector",
     "Registry",
     "Session",
+    "register_format",
     "register_item",
     "bind",
     "bound_items",

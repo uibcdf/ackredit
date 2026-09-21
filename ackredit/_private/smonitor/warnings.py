@@ -62,6 +62,10 @@ class MetadataCacheWarning(AckreditWarning):
     catalog_key = "MetadataCacheWarning"
 
 
+class FormatPluginWarning(AckreditWarning):
+    catalog_key = "FormatPluginWarning"
+
+
 class PluginLoadWarning(AckreditWarning):
     catalog_key = "PluginLoadWarning"
 
@@ -91,6 +95,7 @@ __all__ = [
     "BibtexFieldWarning",
     "CitationFileWarning",
     "DueCreditExportWarning",
+    "FormatPluginWarning",
     "MetadataCacheWarning",
     "MetadataFetchWarning",
     "PackageMetadataWarning",

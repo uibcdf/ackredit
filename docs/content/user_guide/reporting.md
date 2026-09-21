@@ -32,9 +32,55 @@ Use `report(format=...)` to get a string in any of these formats:
 *   `latex` (A complete, compilable LaTeX document)
 *   `text` (Plain text, for a log or a terminal)
 
-This list is the whole list. `ackredit.available_formats()` returns it at runtime, and
-asking for a name that is not here raises `ACKREDIT-E004` rather than quietly returning a
-different report. A test keeps this page and that function in agreement.
+This list is the built-in list. `ackredit.available_formats()` returns it at runtime,
+together with any format a plugin added, and asking for a name that is not there raises
+`ACKREDIT-E004` rather than quietly returning a different report. A test keeps this page
+and that function in agreement.
+
+## Adding your own format
+
+A renderer takes what the run credited and returns text:
+
+```python
+import ackredit
+
+
+def render(used, items):
+    """used: item id -> the names that credited it. items: the registry."""
+    return "\n".join(f"{item_id}: {items[item_id]['title']}" for item_id in sorted(used))
+
+
+ackredit.register_format("titles", render, "txt")
+
+print(ackredit.report(format="titles"))
+ackredit.dump("reports", formats=["titles"])   # writes ackredit_report.txt
+```
+
+To ship one from a package, declare an entry point that registers it. Ackredit finds it
+the first time a report is asked for, so nothing needs to be called first:
+
+```toml
+[project.entry-points."ackredit.formats"]
+titles = "my_package.formats:register"
+```
+
+```python
+# my_package/formats.py
+def register():
+    ackredit.register_format("titles", render, "txt")
+```
+
+Two rules are worth knowing before you choose a name.
+
+**A name that exists is never replaced**, built-in or from another plugin: registering
+over one raises `ACKREDIT-E005`. A format that could take over `bibtex` would let a
+request succeed and return a report that is not the one asked for.
+
+**Names are lower case**, matching the built-in ones, and are matched exactly. `BibTeX`
+is refused with `ACKREDIT-E006` rather than accepted as a second name for the same thing.
+
+A plugin that fails to load is reported as `ACKREDIT-W014` and costs nothing else: the
+built-in formats and every other plugin still work.
 
 ## Consolidating Results (`dump`)
 Save multiple formats at once to a directory.

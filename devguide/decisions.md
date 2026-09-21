@@ -123,16 +123,29 @@
     `devguide/archive/shipped_citation_data_is_not_true.md` — schema added for a case
     nobody has is how it drifts from the code that was supposed to use it.
 
+16. **Output formats are extensible (`uibcdf/ackredit#36`):** the one entry that stood
+    under "Pending Decisions" after theme F, and the one theme F could not close over,
+    because it decided whether `_RENDERERS` is implementation or surface.
+
+    It is implementation, and `register_format` is the surface in front of it, with an
+    `ackredit.formats` entry-point group mirroring `ackredit.citations`. Plugins load
+    lazily, the first time the format table is consulted, because requiring a call before
+    `report(format="mine")` works would make an unknown-format refusal the normal first
+    experience of the feature.
+
+    The rule that carries the decision: **a registered name is never replaced**, built-in
+    or from another plugin. Letting a third party take over `bibtex` would make a request
+    succeed and return a report that is not the one asked for, which is the defect
+    `uibcdf/ackredit#15` closed. For the same reason names are held to one lower-case
+    style at registration: lookups match exactly, so `BibTeX` would become a second,
+    silently different format rather than an alias.
+
+    Why build it rather than drop the claim: a citation tracker whose report is the
+    product should let a group render that report the way its journal, its institution or
+    its pipeline needs, without forking. The cost is one public name and three catalog
+    codes.
+
 ## Pending Decisions
 
-1.  **An extension point for output formats.** `devguide/vision.md` lists "Extensible:
-    anyone can add new output formats or injections" as a design pillar. Injections are
-    extensible: `add_injection` is public and the `ackredit.citations` entry-point group
-    lets another package ship a citation pack. Formats are not. `_RENDERERS` is a private
-    module dict, there is no `register_format`, and no entry-point group resolves one, so
-    a third party can only add a format by reaching into a private name.
-
-    Either an `ackredit.formats` entry-point group is built, mirroring
-    `ackredit.citations`, or the pillar stops claiming it. Theme F requires this settled
-    before 1.0.0, because whichever way it goes decides whether `_RENDERERS` is
-    implementation or surface.
+None. `devguide/roadmap.md` carries what is left before 1.0.0, and the open questions
+there are measurements and adoption rather than decisions.

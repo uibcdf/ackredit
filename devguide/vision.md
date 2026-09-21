@@ -38,5 +38,9 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
     in every host is the duplication the suite exists to prevent. Everything beyond those
     three stays in `optional-dependencies`, and adding a fourth is a decision to record,
     not a convenience.
-*   **Extensible:** Anyone can add new output formats or injections for third-party libraries.
+*   **Extensible:** Anyone can add new output formats or injections for third-party
+    libraries, through a public function and an entry-point group each:
+    `register_format` with `ackredit.formats`, and `add_injection` with
+    `ackredit.citations`. A registered name is never replaced, so an extension adds to the
+    library and cannot quietly change what it already does.
 
