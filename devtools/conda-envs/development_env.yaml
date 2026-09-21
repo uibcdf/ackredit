@@ -1,0 +1,25 @@
+channels:
+- uibcdf
+- conda-forge
+dependencies:
+- python >=3.11,<3.14
+- pip
+# Testing
+- pytest
+- pytest-cov
+- pytest-xdist
+# Documentation
+- sphinx
+- pydata-sphinx-theme
+- sphinx-copybutton
+- sphinx-design
+- myst-nb
+- jupyterlab
+# Suite infrastructure
+- smonitor
+- depdigest
+# Optional features Ackredit can use when present
+- flask
+- duecredit
+- pip:
+  - ruff==0.16.5

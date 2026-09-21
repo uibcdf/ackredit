@@ -1,0 +1,14 @@
+channels:
+- uibcdf
+- conda-forge
+dependencies:
+- python >=3.11,<3.14
+- pip
+- pytest
+- pytest-cov
+- pytest-xdist
+- codecov
+# Suite infrastructure. These are core dependencies of Ackredit and are
+# published to the uibcdf conda channel, not to PyPI.
+- smonitor
+- depdigest

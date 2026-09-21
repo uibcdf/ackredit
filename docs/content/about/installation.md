@@ -1,24 +1,48 @@
 (About_Installation)=
 # Installation
 
-Ackredit can be installed using `pip`. It is designed to be lightweight and has zero mandatory dependencies for its core functionality.
+Ackredit depends only on the MolSysSuite infrastructure components, `smonitor` and
+`depdigest`. Both are pure Python and are distributed through the `uibcdf` conda channel.
 
-## Standard Installation
+## From source
+
+Ackredit is not published yet, so this is the way to install it today:
+
 ```bash
-pip install ackredit
+git clone https://github.com/uibcdf/ackredit.git
+cd ackredit
+conda env create -f devtools/conda-envs/development_env.yaml -n ackredit
+conda activate ackredit
+pip install --no-deps -e .
 ```
 
-## Extra Features
-Some advanced features require additional Python dependencies:
+The environment file brings the suite dependencies from the `uibcdf` channel. `--no-deps`
+keeps pip from trying to resolve them again from PyPI, where they are not published.
 
-### Web UI
-To enable the interactive dashboard (`ackredit.serve_ui()`):
+## Once released
+
 ```bash
-pip install "ackredit[web]"
+conda install -c uibcdf ackredit
 ```
 
-## System Requirements (Optional)
-To use the automatic **PDF compilation** feature, you need a working LaTeX distribution installed on your system:
+## Extra features
+
+The core reporting works without any of these; each one unlocks a single optional
+feature. Ask what the current environment supports with `ackredit.dependency_info()`.
+
+| Feature | Needs | Install |
+| --- | --- | --- |
+| Interactive dashboard, `serve_ui()` | `flask` | `conda install -c conda-forge flask` |
+| DueCredit bridge, `export_to_duecredit()` | `duecredit` | `conda install -c conda-forge duecredit` |
+
+## System requirements (optional)
+
+The automatic **PDF compilation** in `dump(build_pdf=True)` shells out to `pdflatex` and
+`bibtex`, which are system binaries rather than Python packages:
+
 *   **Linux:** `sudo apt install texlive-latex-extra` (or similar)
 *   **macOS:** [MacTeX](https://tug.org/mactex/)
 *   **Windows:** [MiKTeX](https://miktex.org/)
+
+Without them the LaTeX and BibTeX files are still written, and Ackredit reports that the
+PDF step was skipped.

@@ -1,0 +1,13 @@
+channels:
+- uibcdf
+- conda-forge
+dependencies:
+- python >=3.11,<3.14
+- pip
+- sphinx
+- pydata-sphinx-theme
+- sphinx-copybutton
+- sphinx-design
+- myst-nb
+- smonitor
+- depdigest

@@ -50,6 +50,10 @@ python devtools/devguide_index.py --check
 
 Routine development uses Python 3.13; the supported user range is Python 3.11 to 3.13.
 
+`smonitor` and `depdigest` are core dependencies published to the `uibcdf` conda channel
+and not to PyPI, so environments come from `devtools/conda-envs/` and the package is
+installed with `pip install --no-deps`. A pip-only lane cannot resolve them.
+
 ## Reporting
 
 Follow [`devguide/reporting_protocol.md`](devguide/reporting_protocol.md) for every durable
