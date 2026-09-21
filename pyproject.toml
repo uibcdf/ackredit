@@ -58,6 +58,12 @@ extend-exclude = [
     "GH_RUN_RECEPTOR_GUIDE.md",
     "MOLSYSSUITE_GUIDE.md",
     "SMONITOR_GUIDE.md",
+    # Archived reports quote the defective code and the real output they
+    # describe. Reformatting that evidence would misrepresent what happened:
+    # Python prints single quotes, and a record saying otherwise is no longer a
+    # record. The same reason excludes this directory from the documented-API
+    # check in tests/test_documented_api.py.
+    "devguide/archive",
 ]
 
 [tool.ruff.lint]

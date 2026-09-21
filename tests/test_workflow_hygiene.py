@@ -54,3 +54,38 @@ def test_a_multi_line_step_stops_at_the_first_failure(label, script):
         f"{label}: a multi-line run: needs `set -e`, or a failing command in the "
         "middle leaves the step green"
     )
+
+
+def test_the_installed_ruff_matches_the_pinned_one():
+    """A local gate running a different Ruff is not the gate CI runs.
+
+    This was found the hard way: a locally green `ruff format --check` under
+    0.16.1 failed CI under the pinned 0.16.5, because the two format Python
+    inside Markdown differently.
+    """
+    import re
+    import subprocess
+    import sys
+    import tomllib
+
+    pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    pins = [
+        dependency
+        for group in pyproject["project"]["optional-dependencies"].values()
+        for dependency in group
+        if dependency.startswith("ruff==")
+    ]
+    assert pins, "no pinned Ruff to compare against"
+    pinned = pins[0].split("==", 1)[1]
+
+    result = subprocess.run(
+        [sys.executable, "-m", "ruff", "--version"], capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        pytest.skip("ruff is not importable in this environment")
+    running = re.search(r"(\d+\.\d+\.\d+)", result.stdout).group(1)
+
+    assert running == pinned, (
+        f"ruff {running} is installed but the suite policy pins {pinned}; "
+        "the local format gate does not match CI"
+    )
