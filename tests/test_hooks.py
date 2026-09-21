@@ -1,4 +1,25 @@
+import sys
+
+import pytest
+
 from ackredit import add_injection, enable_import_hooks, get_used_items
+from ackredit.core import hooks
+
+
+@pytest.fixture(autouse=True)
+def _remove_the_finder_afterwards():
+    """`enable_import_hooks` has no counterpart: it inserts a finder into
+    sys.meta_path and nothing takes it out. Left there, every later find_spec in
+    the suite runs discovery and emits diagnostics for modules no test chose.
+
+    That missing counterpart is why `enable_import_hooks` is provisional; here
+    the suite puts sys.meta_path back itself.
+    """
+    original = list(sys.meta_path)
+    enabled = hooks._IMPORT_HOOKS_ENABLED
+    yield
+    sys.meta_path[:] = original
+    hooks._IMPORT_HOOKS_ENABLED = enabled
 
 
 def test_import_hook():

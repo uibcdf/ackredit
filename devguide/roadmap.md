@@ -128,10 +128,30 @@ The local work is small: `pyproject.toml`, two workflows, three environment file
 
 The last theme, and the one that earns the number.
 
-- every public name marked stable or provisional, and the provisional ones justified;
-- a deprecation policy: what a removal requires and how long it is announced;
-- the decisions already recorded in `devguide/decisions.md` reviewed once more against
-  what adoption taught.
+- [x] **every public name marked stable or provisional**, with a reason for each
+      provisional one, in `docs/content/about/stability.md`. Seventeen stable, sixteen
+      provisional. `tests/test_api_stability.py` holds the page to `__all__`, so a name
+      cannot join the public surface without a decision about what it promises, and a
+      name cannot be called stable while no test exercises it;
+- [x] **the seven public names nothing tested** — `compile_pdf`, `dependency_info`,
+      `enable_auto_reminder`, `enrich_all`, `export_to_duecredit`, `load_plugins` and
+      `serve_ui` — exercised in `tests/test_optional_surface.py`, so "provisional" is a
+      judgement rather than a gap;
+- [x] **a deprecation policy**: a stable name is removed only in a major release, after
+      at least two minor releases carrying a deprecation code that names the replacement;
+      changing what a name does follows the same route as removing it;
+- [x] **the three entries standing under "Pending Decisions"** since the beginning, which
+      the implementation had settled long ago, recorded as decisions 12 to 14;
+- [ ] **the extension point for output formats**, the one decision this opened rather
+      than closed. `devguide/vision.md` promises that anyone can add an output format and
+      nothing implements it; whichever way it goes decides whether `_RENDERERS` is
+      implementation or surface, so it cannot be left to 1.0.0;
+- [ ] **the decisions reviewed once more against what adoption taught**, which waits on
+      theme C by definition.
+
+A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
+stability commitment would make the commitment meaningless, so that list is the real
+measure of how far this theme has to go.
 
 ---
 

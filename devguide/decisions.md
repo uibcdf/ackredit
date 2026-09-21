@@ -70,8 +70,69 @@
     C exists for, but cannot ship an integration depending on an unresolvable package. The
     tag route is documented and verified, so nothing is blocked that matters yet.
 
-## Pending Decisions
-1.  **External Dependencies:** Should we use an external library for BibTeX (more robust but adds a dependency) or write our own parser (lightweight but limited)?
-2.  **Import Hooks:** How aggressive should we be in intercepting third-party imports?
-3.  **Nested Scope:** How should the Collector behave if a tracked function calls another tracked function? Should citations be duplicated or hierarchized?
+12. **Ackredit reads BibTeX itself, and does not read YAML itself
+    (`uibcdf/ackredit#31`):** recorded as pending since the beginning and settled by the
+    implementation long ago. `load_bibtex` is Ackredit's own parser; `CITATION.cff` is
+    read with PyYAML.
 
+    The two went opposite ways for the same reason. The `.bib` subset Ackredit reads is
+    entries, fields and braces, produced by reference managers, and a construct the parser
+    does not handle fails where you can see it. YAML is not like that: the specification
+    has constructs that a partial reader accepts and resolves to something else, so a
+    hand-rolled reader returns a confident wrong answer. A citation library can afford to
+    fail; it cannot afford to be quietly wrong.
+
+13. **Import hooks observe and never act (`uibcdf/ackredit#28`, `#31`):** also recorded as
+    pending since the beginning. The hook is opt-in — nothing happens until
+    `enable_import_hooks()` is called — it only watches `find_spec` and never imports
+    anything itself, it credits a top-level distribution once per process, and a failure
+    inside it never propagates to the import that triggered it.
+
+    Which source wins was the open part and is decided in `uibcdf/ackredit#28`: what the
+    host explicitly asked for, then the package's own `CITATION.cff`, then Ackredit's
+    shipped table, then package metadata.
+
+14. **Nested scopes are hierarchized, not duplicated (`uibcdf/ackredit#31`):** the third
+    entry recorded as pending and settled by the implementation. An item credited inside a
+    nested scope is attributed to the innermost target, and the provenance tree shows the
+    path that reached it:
+
+    ```
+    └── outer
+        ├── (Cite: A)
+        └── inner
+            └── (Cite: A)
+    ```
+
+    A caller is recorded once however many times it credits the same item, so entering a
+    scope in a loop does not inflate anything. Duplication was the alternative and it
+    loses the tree, which is what distinguishes this library's report from a list.
+
+15. **Stable and provisional, with a deprecation policy (`uibcdf/ackredit#31`):** every
+    name in `__all__` is classified in `docs/content/about/stability.md`, and
+    `tests/test_api_stability.py` holds the page to `__all__`, so a name cannot join the
+    public surface without a decision about what it promises.
+
+    Seventeen names are stable and sixteen provisional. A provisional name reaches 1.0.0
+    either promoted or removed: shipping one inside a stability commitment would make the
+    commitment meaningless.
+
+    The policy adds a rule worth stating here, because it constrains future work: a
+    deprecation adds its SMonitor code with the path that emits it, not in advance. That
+    is the same reasoning that refused a truncation marker in
+    `devguide/archive/shipped_citation_data_is_not_true.md` — schema added for a case
+    nobody has is how it drifts from the code that was supposed to use it.
+
+## Pending Decisions
+
+1.  **An extension point for output formats.** `devguide/vision.md` lists "Extensible:
+    anyone can add new output formats or injections" as a design pillar. Injections are
+    extensible: `add_injection` is public and the `ackredit.citations` entry-point group
+    lets another package ship a citation pack. Formats are not. `_RENDERERS` is a private
+    module dict, there is no `register_format`, and no entry-point group resolves one, so
+    a third party can only add a format by reaching into a private name.
+
+    Either an `ackredit.formats` entry-point group is built, mirroring
+    `ackredit.citations`, or the pillar stops claiming it. Theme F requires this settled
+    before 1.0.0, because whichever way it goes decides whether `_RENDERERS` is
+    implementation or surface.

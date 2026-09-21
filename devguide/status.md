@@ -20,8 +20,10 @@ working, a test or a reproducible command backs it.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
   by `tests/test_packaging.py`.
-- **Documentation:** the Sphinx site builds with no warnings, and every documented Python
-  snippet is checked against the real API by `tests/test_documented_api.py`.
+- **Documentation:** the Sphinx site builds with no warnings, twice in a row, and every
+  documented Python snippet is checked against the real API by
+  `tests/test_documented_api.py`. The documented report formats, the citation page and the
+  stability classification are each held to the code they describe.
 - **Sessions:** tracking belongs to a session reached through a `ContextVar`, so two
   analyses in one process are separable and threads are isolated. The module functions
   act on a default session, so nothing needs ceremony. Guarded by
@@ -76,9 +78,12 @@ many land before 1.0.0 is an outcome rather than a plan.
   (`uibcdf/ackredit#21`).
 - **Adoption:** no host library has integrated the guide yet. Every defect found in it so
   far was found by reading it rather than using it (roadmap C).
-- **API hardening:** the shape questions are decided (`uibcdf/ackredit#16`); what remains
-  is marking each public name stable or provisional, and a deprecation policy
-  (roadmap F).
+- **API hardening:** the shape questions are decided (`uibcdf/ackredit#16`), every public
+  name is classified stable or provisional in `docs/content/about/stability.md`, and the
+  deprecation policy is written (`uibcdf/ackredit#31`). Sixteen of the thirty-three names
+  are provisional, and each reaches 1.0.0 either promoted or removed. One decision was
+  opened rather than closed: whether output formats get an extension point, or the vision
+  stops promising one (roadmap F).
 - **MolSysSuite membership:** the repository follows the common baseline and its CI uses
   the suite's conda environments. Central registration is tracked in
   `uibcdf/molsyssuite#28`, and until it is granted two things stay blocked: the README
