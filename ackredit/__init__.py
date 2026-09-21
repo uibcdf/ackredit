@@ -31,6 +31,7 @@ from .contrib.jupyter import summary
 from .contrib.web_ui import serve_ui
 from .core.collector import (
     Collector,
+    close_persistence,
     credit_bound,
     get_used_items,
     track_item,
@@ -83,6 +84,7 @@ __all__ = [
     "report",
     "dump",
     "available_formats",
+    "close_persistence",
     "compile_pdf",
     "dependency_info",
     "auto_track_calls",

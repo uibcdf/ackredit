@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (16)
+### Resolved (17)
 
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
 - [`an_unknown_format_returns_a_different_one.md`](an_unknown_format_returns_a_different_one.md) — [#15](https://github.com/uibcdf/ackredit/issues/15) — A typo in a format name silently produced plain text, written to a file named for neither. *(resolved, reproduced)*
@@ -19,6 +19,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
 - [`not_thread_safe.md`](not_thread_safe.md) — [#5](https://github.com/uibcdf/ackredit/issues/5) — Concurrent workflows cross-attributed citations and corrupted the session file. *(resolved, reproduced)*
+- [`persistence_rewrites_everything_on_every_item.md`](persistence_rewrites_everything_on_every_item.md) — [#17](https://github.com/uibcdf/ackredit/issues/17) — Persistence rewrote the whole document on every item, making a run O(n squared). *(resolved, reproduced)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`version_missing_and_its_gate_dead.md`](version_missing_and_its_gate_dead.md) — [#11](https://github.com/uibcdf/ackredit/issues/11) — The package stated no version, and the CI step checking it printed a traceback on a green run. *(resolved, reproduced)*

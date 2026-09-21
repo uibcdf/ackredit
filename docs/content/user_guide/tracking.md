@@ -83,10 +83,11 @@ a concurrent reader or an interrupted run never sees a half-written document.
 
 ### Parallel processes
 
-Threads share one collector; separate processes do not. Each save replaces the whole
-session file, so two processes given the same path do not merge — the last one to write
-wins, and the other's citations are gone. Give every process its own file and merge them
-at the end:
+Threads share one collector. Separate processes do not, but the session file is a
+journal that is appended to, so several may write the same one without losing events.
+That guarantee comes from the operating system and holds on a local filesystem; a network
+filesystem such as NFS does not provide it, so on a cluster give every process its own
+journal and merge them at the end:
 
 ```python
 import os
@@ -105,9 +106,12 @@ ackredit.aggregate(glob("citations/session_*.json"))
 print(ackredit.report())
 ```
 
-The same merge is available from the command line with `ackredit merge`. If two processes
-do share a path, Ackredit reports `ACKREDIT-W014` rather than losing the citations
-silently, but the data already lost cannot be recovered.
+The same merge is available from the command line with `ackredit merge`, and merging
+journals is concatenation, so it costs nothing to do at the end of a large run.
+
+Call `ackredit.close_persistence()` when the run finishes. Each event is already flushed
+when it is recorded, so nothing is lost if the process dies; closing pays the single
+`fsync` that makes the journal durable against the machine failing as well.
 
 ### Detecting what a function needs from its own source
 

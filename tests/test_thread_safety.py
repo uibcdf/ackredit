@@ -11,6 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 import pytest
 
 import ackredit
+from ackredit.core import session
 from ackredit.core.collector import Collector
 from ackredit.core.context import get_current_scope
 
@@ -24,7 +25,7 @@ def _isolated():
     Collector.used_items.clear()
     Collector.used_targets.clear()
     Collector.usage_tree.clear()
-    Collector._persistence_path = None
+    Collector.close_persistence()
 
 
 def test_scopes_are_isolated_between_threads():
@@ -155,37 +156,46 @@ def test_no_tracked_item_is_lost_under_contention():
     assert len(ackredit.get_used_items()["shared:item"]) == threads * per_thread
 
 
-def test_the_session_file_is_never_seen_half_written(tmp_path):
+def test_no_journal_line_is_ever_torn(tmp_path):
+    """Threads append to one journal. A reader must find whole lines, always.
+
+    The session used to be a document rewritten in full, and a concurrent
+    reader saw a truncated one in 316 of 480 attempts. An appended line either
+    is there or is not.
+    """
     _isolated()
-    session = tmp_path / "session.json"
-    Collector.enable_persistence(session)
+    journal = tmp_path / "session.jsonl"
+    Collector.enable_persistence(journal)
     try:
-        corrupt = []
+        torn = []
 
         def worker(index: int):
             for step in range(40):
                 ackredit.track_item(f"it_{index}_{step}", used_by=f"c{index}")
-                try:
-                    json.loads(session.read_text())
-                except Exception as error:  # noqa: BLE001 - recorded, not swallowed
-                    corrupt.append(f"{index}/{step}: {error}")
+                for line in journal.read_text().splitlines():
+                    if not line.strip():
+                        continue
+                    try:
+                        json.loads(line)
+                    except Exception as error:  # noqa: BLE001 - recorded, not swallowed
+                        torn.append(f"{index}/{step}: {error}")
 
         with ThreadPoolExecutor(max_workers=8) as pool:
             list(pool.map(worker, range(8)))
 
-        assert not corrupt, f"{len(corrupt)} reads saw an invalid session file"
-        assert json.loads(session.read_text())["used_items"]
+        assert not torn, f"{len(torn)} reads saw a torn line"
+        assert len(session.read(journal)["used_items"]) == 8 * 40
     finally:
-        Collector._persistence_path = None
+        Collector.close_persistence()
 
 
 def test_no_temporary_files_are_left_behind(tmp_path):
     _isolated()
-    session = tmp_path / "session.json"
-    Collector.enable_persistence(session)
+    journal = tmp_path / "session.jsonl"
+    Collector.enable_persistence(journal)
     try:
         for index in range(20):
             ackredit.track_item(f"leftover_probe_{index}")
-        assert [p.name for p in tmp_path.iterdir()] == ["session.json"]
+        assert [p.name for p in tmp_path.iterdir()] == ["session.jsonl"]
     finally:
-        Collector._persistence_path = None
+        Collector.close_persistence()

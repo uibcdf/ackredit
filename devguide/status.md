@@ -22,6 +22,10 @@ working, a test or a reproducible command backs it.
   by `tests/test_packaging.py`.
 - **Documentation:** the Sphinx site builds with no warnings, and every documented Python
   snippet is checked against the real API by `tests/test_documented_api.py`.
+- **Persistence:** the session is a journal, one appended line per event, so the cost of
+  tracking an item does not depend on how many were tracked before: 6.6 µs, flat, where
+  the previous design reached 2 958 µs and kept rising. Guarded by
+  `tests/test_persistence_cost.py`.
 - **Diagnostics:** every failure path emits an SMonitor catalog code with typed facts
   instead of being swallowed; optional dependencies are declared to DepDigest and
   reported by `dependency_info()`. Guarded by `tests/test_smonitor_integration.py`.
@@ -43,11 +47,11 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
 - **Python is 3.11 to 3.13.** Adopting 3.14 is governed by the transition in
   `uibcdf/molsyssuite#29` and waits on the same two dependencies, which are capped at
   `<3.14`. Ackredit is registered behind DepDigest in that dependency order.
-- **Two processes cannot share one session file.** Each save replaces the whole document,
-  so a shared path means the last writer wins. This is reported as `ACKREDIT-W014` rather
-  than absorbed (`uibcdf/ackredit#8`), and the supported pattern is one file per process
-  merged with `aggregate`, which is verified by `tests/test_session_sharing.py`. No file
-  locking is attempted, and none is planned.
+- **Sharing one session across processes needs a local filesystem.** The session is an
+  append-only journal, and POSIX makes an `O_APPEND` write below `PIPE_BUF` atomic, so
+  several processes may write one journal without losing events — verified with four and
+  with eight. NFS does not provide that guarantee, so a network filesystem wants one
+  journal per process, merged with `aggregate`.
 - **`@software` and `@dataset` are not defined by `plainnat.bst`.** BibTeX warns and
   degrades those entries rather than failing. Choosing a style or mapping the types is a
   separate question, noted in `devguide/archive/bibtex_does_not_escape_latex.md`.
