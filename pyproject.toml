@@ -27,8 +27,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# One extra per optional feature, and `full` as the union of them. Every entry
+# here must be a library declared in ackredit/_depdigest.py, and every library
+# declared there must appear here, or `dependency_info()` reports a feature the
+# user was given no way to install. Guarded by tests/test_packaging.py.
 web = ["flask"]
-full = ["flask"]
+duecredit = ["duecredit"]
+full = ["flask", "duecredit"]
 test = [
   "pytest>=8",
   "ruff==0.16.5",

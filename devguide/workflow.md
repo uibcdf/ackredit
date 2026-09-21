@@ -29,7 +29,7 @@ Some advanced features require additional software:
 ```bash
 ruff check .
 ruff format --check .
-pytest
+pytest --receptor=llm
 python devtools/devguide_index.py --check
 ```
 
@@ -46,5 +46,7 @@ never reformat or edit it here.
     `pending_bugs/` and `pending_proposals/` for tracked work.
 2.  Open the owning GitHub issue first, following
     [`reporting_protocol.md`](reporting_protocol.md).
-3.  Create a branch for the specific task.
-4.  Validate with the four local gates above before committing.
+3.  Validate with the four local gates above before committing.
+4.  Land the work on `main`. This repository has no reviewer, so a branch and a pull
+    request add a step that nothing acts on; the issue carries the state and the archived
+    record carries the reasoning.
