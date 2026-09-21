@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (32)
+### Resolved (33)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -27,6 +27,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`not_thread_safe.md`](not_thread_safe.md) — [#5](https://github.com/uibcdf/ackredit/issues/5) — Concurrent workflows cross-attributed citations and corrupted the session file. *(resolved, reproduced)*
 - [`one_tracking_session_per_interpreter.md`](one_tracking_session_per_interpreter.md) — [#18](https://github.com/uibcdf/ackredit/issues/18) — Tracking state was class attributes, one set per interpreter; it now belongs to a session. *(resolved, reproduced)*
 - [`persistence_rewrites_everything_on_every_item.md`](persistence_rewrites_everything_on_every_item.md) — [#17](https://github.com/uibcdf/ackredit/issues/17) — Persistence rewrote the whole document on every item, making a run O(n squared). *(resolved, reproduced)*
+- [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
 - [`shape_of_the_public_api_for_1_0.md`](shape_of_the_public_api_for_1_0.md) — [#16](https://github.com/uibcdf/ackredit/issues/16) — Five 1.0 API questions decided: two changed, three kept with the reason written down. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*

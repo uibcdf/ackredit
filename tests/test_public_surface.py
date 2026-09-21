@@ -64,3 +64,23 @@ def test_the_two_state_holders_are_exported_alike():
     not the other was an accident of which import line each arrived on."""
     assert "Registry" in ackredit.__all__
     assert "Collector" in ackredit.__all__
+
+
+@pytest.mark.parametrize("name", sorted(ackredit.__all__))
+def test_no_public_name_is_a_bound_method(name):
+    """`ackredit.enable_persistence` *was* `Collector.enable_persistence`.
+
+    Its sibling `close_persistence` was a function, so `help()` described one as
+    a method of a class and the other as a function, for two calls used
+    together. Worse, an alias binds a public name to the identity of `Collector`,
+    a class the stability page calls provisional and whose state is now only a
+    view onto the current session.
+
+    A public name is a function or a class. If it is a method, the class it
+    belongs to is part of the promise whether that was intended or not.
+    """
+    obj = getattr(ackredit, name)
+    assert not isinstance(obj, types.MethodType), (
+        f"ackredit.{name} is {obj.__qualname__}, a bound method. Give it a "
+        f"delegating function beside the others in ackredit/core/collector.py"
+    )

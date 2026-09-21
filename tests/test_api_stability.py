@@ -92,3 +92,58 @@ def test_the_deprecation_policy_says_what_a_removal_requires():
     assert len(policy) == 2, "the page states no deprecation policy"
     assert "major release" in policy[1]
     assert "two minor releases" in policy[1]
+
+
+def test_the_page_counts_its_own_table():
+    """The counts were written in four documents and would drift in three."""
+    written = {
+        word: number
+        for number, word in enumerate(
+            "zero one two three four five six seven eight nine ten eleven twelve "
+            "thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty "
+            "twenty-one twenty-two twenty-three twenty-four twenty-five twenty-six "
+            "twenty-seven twenty-eight twenty-nine thirty thirty-one thirty-two "
+            "thirty-three".split()
+        )
+    }
+    claim = re.search(r"([\w-]+) names are stable and ([\w-]+) provisional", PAGE)
+    assert claim, "the stability page does not count its own table"
+
+    assert written[claim.group(1).lower()] == len(STABLE)
+    assert written[claim.group(2).lower()] == len(PROVISIONAL)
+
+
+def test_nobody_else_writes_the_counts():
+    """One source, so the other documents cannot disagree with the table."""
+    for relative in (
+        "devguide/decisions.md",
+        "devguide/roadmap.md",
+        "devguide/status.md",
+    ):
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        assert not re.search(r"[\w-]+ names are stable", text), (
+            f"{relative} states a count that will drift from the table"
+        )
+
+
+def test_the_session_file_contract_is_stated_and_true():
+    """`enable_persistence` writes a file that outlives the process. What
+    Ackredit promises about reading it back is promised apart from the names."""
+    assert "reads every session format it has ever written" in PAGE
+
+    # The claim, exercised: the whole-document format written before the journal.
+    import json
+    import tempfile
+
+    from ackredit.core import session
+
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as handle:
+        json.dump(
+            {"used_items": {"a:1": ["run"]}, "used_targets": ["run"], "usage_tree": {}},
+            handle,
+        )
+        path = Path(handle.name)
+
+    state = session.read(path)
+    assert state["used_items"] == {"a:1": ["run"]}
+    path.unlink()

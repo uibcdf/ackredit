@@ -80,8 +80,8 @@ many land before 1.0.0 is an outcome rather than a plan.
   far was found by reading it rather than using it (roadmap C).
 - **API hardening:** the shape questions are decided (`uibcdf/ackredit#16`), every public
   name is classified stable or provisional in `docs/content/about/stability.md`, and the
-  deprecation policy is written (`uibcdf/ackredit#31`). Sixteen of the thirty-three names
-  are provisional, and each reaches 1.0.0 either promoted or removed. One decision was
+  deprecation policy is written (`uibcdf/ackredit#31`). Each provisional name reaches
+  1.0.0 either promoted or removed; the page carries how many are left. One decision was
   opened rather than closed: whether output formats get an extension point, or the vision
   stops promising one (roadmap F).
 - **MolSysSuite membership:** the repository follows the common baseline and its CI uses

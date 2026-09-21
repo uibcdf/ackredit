@@ -113,9 +113,9 @@
     `tests/test_api_stability.py` holds the page to `__all__`, so a name cannot join the
     public surface without a decision about what it promises.
 
-    Seventeen names are stable and sixteen provisional. A provisional name reaches 1.0.0
-    either promoted or removed: shipping one inside a stability commitment would make the
-    commitment meaningless.
+    A provisional name reaches 1.0.0 either promoted or removed: shipping one inside a
+    stability commitment would make the commitment meaningless. The page carries the
+    counts, and is the only place they are written.
 
     The policy adds a rule worth stating here, because it constrains future work: a
     deprecation adds its SMonitor code with the path that emits it, not in advance. That

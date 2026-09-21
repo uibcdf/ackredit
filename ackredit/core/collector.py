@@ -244,9 +244,19 @@ class Collector(metaclass=_CollectorState):
             _merge(state, stored)
 
 
+def enable_persistence(path: str | Path) -> None:
+    """Record every tracked event to *path*, and adopt what it already holds."""
+    Collector.enable_persistence(path)
+
+
 def close_persistence() -> None:
     """Close the session journal, paying its single fsync."""
     Collector.close_persistence()
+
+
+def aggregate(paths: list[str | Path]) -> None:
+    """Merge saved session files into what this run has tracked."""
+    Collector.aggregate(paths)
 
 
 def track_target(target: str, parent: str | None = None) -> None:

@@ -28,6 +28,10 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
+Nineteen names are stable and fourteen provisional. This is the only place those counts
+are written; everything else links here, so they cannot drift apart.
+
+
 | name | status | why |
 | --- | --- | --- |
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
@@ -47,11 +51,11 @@ meaningless. Every provisional name below says why it is one.
 | `session` | stable | Decision 7. The context manager is how a session is entered. |
 | `current_session` | stable | Decision 7. The session the module functions are recording into. |
 | `__version__` | stable | Derived from the tag by Versioningit and guarded against the packaging metadata. |
+| `enable_persistence` | stable | Was exported as a bound method of `Collector`, which bound a public name to a provisional class; `uibcdf/ackredit#33` gave it a function like its siblings. |
+| `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
 | `Session` | provisional | Exported so a session can be named in a type hint. Which of its attributes are part of the promise is not settled, and the journal it writes is `ackredit.session@1` with no migration story yet. |
 | `Registry` | provisional | Direct access to shared declaration state. `register_item` and `bound_items` are the supported surface; this is the class behind them. |
 | `Collector` | provisional | Its state is a read-only view onto the current session now. `get_used_items` is the supported reader; the class remains exported for the code that predates the session. |
-| `enable_persistence` | provisional | Exported as a bound method of `Collector` rather than a function, and the journal schema has no migration story. Both want settling before they are frozen. |
-| `close_persistence` | provisional | The counterpart of `enable_persistence` and provisional with it. |
 | `aggregate` | provisional | Merging several runs is the least exercised part of the design, and how it should behave across machines is open. |
 | `auto_track_calls` | provisional | Detection is per function, not per branch, so a run that takes a path never reaching the detected call is credited anyway. That coarseness is documented, not resolved. |
 | `enable_import_hooks` | provisional | It installs a process-wide finder and has no counterpart that removes it. The order in which sources of citation metadata win also changed in `uibcdf/ackredit#28`. |
@@ -66,6 +70,21 @@ meaningless. Every provisional name below says why it is one.
 
 `tests/test_api_stability.py` holds this table to `__all__`, so a name cannot join the
 public surface without a decision about what it promises.
+
+## The session file is a separate contract
+
+`enable_persistence` writes a journal, and that file outlives the process that wrote it. Its
+format is promised apart from the names above, because a user can hold a file written by a
+version of Ackredit they no longer have installed.
+
+**Ackredit reads every session format it has ever written.** The journal carries a schema
+line, `ackredit.session@1` today, and a format change raises that number rather than
+reusing it. The reader already honours this: it loads the whole-document format Ackredit
+used before the journal existed, and `tests/test_persistence_cost.py` holds it to that.
+
+Nothing is promised in the other direction. An older Ackredit meeting a newer journal reads
+the events it understands and skips the rest, the same way it skips the torn last line an
+interrupted run leaves.
 
 ## Deprecation policy
 

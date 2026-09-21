@@ -129,8 +129,8 @@ The local work is small: `pyproject.toml`, two workflows, three environment file
 The last theme, and the one that earns the number.
 
 - [x] **every public name marked stable or provisional**, with a reason for each
-      provisional one, in `docs/content/about/stability.md`. Seventeen stable, sixteen
-      provisional. `tests/test_api_stability.py` holds the page to `__all__`, so a name
+      provisional one, in `docs/content/about/stability.md`, which also carries the
+      counts. `tests/test_api_stability.py` holds the page to `__all__`, so a name
       cannot join the public surface without a decision about what it promises, and a
       name cannot be called stable while no test exercises it;
 - [x] **the seven public names nothing tested** — `compile_pdf`, `dependency_info`,

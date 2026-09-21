@@ -36,8 +36,10 @@ from .contrib.jupyter import summary
 from .contrib.web_ui import serve_ui
 from .core.collector import (
     Collector,
+    aggregate,
     close_persistence,
     credit_bound,
+    enable_persistence,
     get_used_items,
     track_item,
     track_target,
@@ -64,9 +66,6 @@ from .core.report import (
     report,
 )
 from .core.session import Session, current_session, session
-
-enable_persistence = Collector.enable_persistence
-aggregate = Collector.aggregate
 
 # Automatically load citations from installed plugins
 load_plugins()
