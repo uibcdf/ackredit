@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 
+from ._names import csl_name
+
 
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     """
@@ -35,15 +37,13 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             "title": item.get("title", ""),
         }
 
-        # Authors handling (CSL expects a list of objects with family/given or literal)
+        # CSL wants family/given, and a `literal` says the name cannot be
+        # decomposed. Emitting every author as a literal left a reference
+        # manager unable to sort, abbreviate or apply a style — see `_names.py`
+        # for which strings decompose and why the rest do not.
         authors = item.get("authors", [])
         if authors:
-            csl_authors = []
-            for auth in authors:
-                # Ackredit currently stores authors as strings.
-                # CSL prefers structured names, but supports 'literal'.
-                csl_authors.append({"literal": auth})
-            csl_item["author"] = csl_authors
+            csl_item["author"] = [csl_name(author) for author in authors]
 
         # Date handling
         year = item.get("year")

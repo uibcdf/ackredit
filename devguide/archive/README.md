@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (37)
+### Resolved (38)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -15,6 +15,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`bibtex_emits_types_no_style_defines.md`](bibtex_emits_types_no_style_defines.md) — [#10](https://github.com/uibcdf/ackredit/issues/10) — The BibTeX renderer emitted biblatex entry types that a BibTeX style cannot render. *(resolved, reproduced)*
 - [`bind_declarations_have_no_runtime_effect.md`](bind_declarations_have_no_runtime_effect.md) — [#1](https://github.com/uibcdf/ackredit/issues/1) — bind() stored declarations that nothing ever read, leaving half the model inert. *(resolved, reproduced)*
 - [`cff_parser_misreads_structure.md`](cff_parser_misreads_structure.md) — [#10](https://github.com/uibcdf/ackredit/issues/10) — A regex-based CITATION.cff reader dropped entity authors, merged preferred-citation and missed canonical DOIs. *(resolved, reproduced)*
+- [`csl_json_marks_every_author_as_literal.md`](csl_json_marks_every_author_as_literal.md) — [#38](https://github.com/uibcdf/ackredit/issues/38) — Every author reached a reference manager as a literal, declaring a name that could be decomposed to be indecomposable. *(resolved, measured)*
 - [`documentation_build_is_broken.md`](documentation_build_is_broken.md) — [#4](https://github.com/uibcdf/ackredit/issues/4) — The Sphinx build aborted on a missing linkify dependency, and four further defects hid behind it. *(resolved, reproduced)*
 - [`documented_api_does_not_exist.md`](documented_api_does_not_exist.md) — [#3](https://github.com/uibcdf/ackredit/issues/3) — Documentation taught imports that raise ImportError, and the integration guide's except clause hid it. *(resolved, reproduced)*
 - [`doi_cache_key_collides.md`](doi_cache_key_collides.md) — [#12](https://github.com/uibcdf/ackredit/issues/12) — Two DOIs could share one cache file, so one work's metadata was served for another. *(resolved, reproduced)*
