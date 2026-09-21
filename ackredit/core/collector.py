@@ -15,24 +15,47 @@ from . import session
 from .session import current_session
 
 
-def _merge(state, stored) -> None:
+def _merge(state, stored, record=None) -> None:
     """Fold a read session into *state*, through the session's own writers.
 
     Going through `record_item` and `record_target` is what keeps the caller
     index and the ordered list from drifting: they have one writer, not three.
+
+    *record* appends the merged events to an open journal, and is given
+    ``(append, *arguments)`` exactly as `Collector._record` takes them. Without
+    it the merge reached memory only, so a process that aggregated and then died
+    lost everything it had merged, and a later run aggregating its journal
+    received only what it had tracked itself.
+
+    The writers return whether they changed anything, so merging a file twice
+    appends nothing the second time.
+
+    `enable_persistence` merges without a *record*, and must: what it reads is
+    already in the file it is about to append to. That is also safe by
+    construction, since the journal is not open when it merges.
     """
     for target in stored["used_targets"]:
-        state.record_target(target, None)
+        if state.record_target(target, None) and record:
+            record(session.append_target, target, None)
+
     for item_id, callers in stored["used_items"].items():
-        if callers:
-            for caller in callers:
-                state.record_item(item_id, caller)
-        else:
-            state.record_item(item_id, None)
+        for caller in callers or [None]:
+            if state.record_item(item_id, caller) and record:
+                record(session.append_item, item_id, caller)
+
     for name, node in stored["usage_tree"].items():
         current = state.usage_tree.setdefault(name, {"items": set(), "children": set()})
-        current["items"].update(node["items"])
-        current["children"].update(node["children"])
+
+        # What the loops above already recorded is in `current` by now, so these
+        # differences are what only the tree carries: the parent-to-child links,
+        # which no `used_targets` entry describes.
+        for item_id in node["items"] - current["items"]:
+            if state.record_item(item_id, name) and record:
+                record(session.append_item, item_id, name)
+
+        for child in node["children"] - current["children"]:
+            if state.record_target(child, name) and record:
+                record(session.append_target, child, name)
 
 
 class _CollectorState(type):
@@ -241,7 +264,11 @@ class Collector(metaclass=_CollectorState):
                 )
                 continue
 
-            _merge(state, stored)
+            _merge(
+                state,
+                stored,
+                lambda append, *arguments: cls._record(state, append, *arguments),
+            )
 
 
 def enable_persistence(path: str | Path) -> None:

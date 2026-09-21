@@ -4,10 +4,11 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (38)
+### Resolved (39)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
+- [`aggregated_citations_never_reach_the_journal.md`](aggregated_citations_never_reach_the_journal.md) — [#39](https://github.com/uibcdf/ackredit/issues/39) — aggregate merged saved sessions into memory and never into the journal, so the file held less than the report. *(resolved, measured)*
 - [`an_injection_shadows_the_citation_file.md`](an_injection_shadows_the_citation_file.md) — [#28](https://github.com/uibcdf/ackredit/issues/28) — A shipped injection marked the package as handled, so its own CITATION.cff was never read. *(resolved, measured)*
 - [`an_unknown_format_returns_a_different_one.md`](an_unknown_format_returns_a_different_one.md) — [#15](https://github.com/uibcdf/ackredit/issues/15) — A typo in a format name silently produced plain text, written to a file named for neither. *(resolved, reproduced)*
 - [`auto_track_calls_credits_code_that_never_ran.md`](auto_track_calls_credits_code_that_never_ran.md) — [#13](https://github.com/uibcdf/ackredit/issues/13) — auto_track_calls credited citations at import time, and could not read a class method at all. *(resolved, reproduced)*

@@ -28,7 +28,7 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
-Twenty-two names are stable and fourteen provisional. This is the only place those counts
+Twenty-three names are stable and thirteen provisional. This is the only place those counts
 are written; everything else links here, so they cannot drift apart.
 
 | name | status | why |
@@ -55,11 +55,12 @@ are written; everything else links here, so they cannot drift apart.
 | `__version__` | stable | Derived from the tag by Versioningit and guarded against the packaging metadata. |
 | `enable_persistence` | stable | Was exported as a bound method of `Collector`, which bound a public name to a provisional class; `uibcdf/ackredit#33` gave it a function like its siblings. |
 | `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
+| `aggregate` | stable | Merging saved runs into this one. `uibcdf/ackredit#39` settled what it does to the journal and exercised it; what it does across machines is decided rather than open — one journal per process, merged here. |
 | `register_format` | provisional | New in `uibcdf/ackredit#36`, and no third party has written a format yet. What a renderer is handed — the used map and the registry — is the shape the built-in renderers take, and that shape is what would change. |
 | `Session` | provisional | Exported so a session can be named in a type hint. Which of its attributes are part of the promise is not settled, and the journal it writes is `ackredit.session@1` with no migration story yet. |
 | `Registry` | provisional | Direct access to shared declaration state. `register_item` and `bound_items` are the supported surface; this is the class behind them. |
 | `Collector` | provisional | Its state is a read-only view onto the current session now. `get_used_items` is the supported reader; the class remains exported for the code that predates the session. |
-| `aggregate` | provisional | Merging several runs is the least exercised part of the design, and how it should behave across machines is open. |
+
 | `auto_track_calls` | provisional | Detection is per function, not per branch, so a run that takes a path never reaching the detected call is credited anyway. That coarseness is documented, not resolved. |
 | `enable_import_hooks` | provisional | The order in which sources of citation metadata win changed in `uibcdf/ackredit#28`. How aggressive the hook should be is decided for now, not settled. |
 | `summary` | provisional | Returns an object whose only contract is `_repr_html_`. What else that object should offer is unexplored. |
