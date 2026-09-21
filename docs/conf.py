@@ -18,7 +18,11 @@ extensions = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = []
+# Sphinx scans the source directory, and MyST-NB writes its executed notebooks
+# into `_build/jupyter_execute/`. Left in, the second build reads the first
+# build's output as source and fails on duplicate labels, so a clean build
+# passes and the next one does not.
+exclude_patterns = ["_build", "**.ipynb_checkpoints"]
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 
