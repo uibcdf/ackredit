@@ -7,6 +7,8 @@ dependencies:
 - pytest
 - pytest-cov
 - pytest-xdist
+# Compact, truth-preserving test output for a CI log and for an agent reading it.
+- pytest-receptor
 - codecov
 # Suite infrastructure. These are core dependencies of Ackredit and are
 # published to the uibcdf conda channel, not to PyPI.

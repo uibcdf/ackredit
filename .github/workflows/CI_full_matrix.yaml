@@ -63,4 +63,4 @@ jobs:
       - name: Run tests
         shell: bash -l {0}
         run: |
-          pytest -v --color=yes
+          pytest --receptor=ci --color=yes

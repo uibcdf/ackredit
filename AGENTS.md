@@ -44,9 +44,14 @@ Run these before committing:
 ```bash
 ruff check .
 ruff format --check .
-pytest
+pytest --receptor=llm
 python devtools/devguide_index.py --check
 ```
+
+`pytest-receptor` provides the `--receptor` profiles: `llm` locally, and `ci` in the
+workflows. Inspect a remote run with `gh run-receptor inspect RUN_ID --receptor=llm`
+rather than printing the raw log, per the suite's GH Run Receptor policy; fall back to
+native GitHub evidence only for a fact the report omits, and keep that fallback targeted.
 
 Routine development uses Python 3.13; the supported user range is Python 3.11 to 3.13.
 

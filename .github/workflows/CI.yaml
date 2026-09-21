@@ -79,10 +79,12 @@ jobs:
           echo 'import ackredit; print("Version of the package: {}".format(ackredit.__version__))' | python
           echo "::endgroup::"
 
+      # --receptor=ci is the combined workflow both receptor tools document:
+      # compact output at the source, inspected afterwards with gh-run-receptor.
       - name: Run tests
         shell: bash -l {0}
         run: |
-          pytest -v --color=yes
+          pytest --receptor=ci --color=yes
 
   docs:
     name: Documentation build on ubuntu-latest
