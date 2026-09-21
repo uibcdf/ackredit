@@ -5,7 +5,28 @@ Canonical source: https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDI
 
 # Ackredit Integration Guide
 
-This guide explains how to integrate **Ackredit** into a host library (e.g., `molsysmt`) following the **MolSysSuite** standards.
+Source of truth for integrating **Ackredit** into a host library, following the
+**MolSysSuite** standards.
+
+## What is Ackredit
+
+Ackredit records which algorithms, datasets and dependencies a run **actually reached**,
+and turns that into a citation report with full provenance.
+
+It exists against the alternative: asking users to cite a whole library because they
+installed it. A run that never took the iterative branch should not cite the iterative
+paper, and a list built from what a library *contains* cannot make that distinction.
+
+## Why this matters in this library
+
+- **Your work gets cited for what it did.** Papers, datasets and methods your library
+  rests on are credited when the code that needs them runs, not when someone imports you.
+- **Your users stop guessing.** They receive a bibliography in BibTeX, CSL-JSON, LaTeX or
+  Markdown, covering your library and everything under it.
+- **Provenance, not a list.** The report says which of your functions led to which
+  citation, including citations that arrived through a library you call.
+- **Nothing breaks without it.** Ackredit is an optional dependency, and the pattern in
+  section 1 is what keeps your library working when it is absent.
 
 ## 1. Centralization File: `_ackredit.py`
 
@@ -183,3 +204,43 @@ def test_ackredit_integration_is_active():
 If `ACKREDIT_INSTALLED` is `False` while `pip show ackredit` succeeds, the import in `_ackredit.py` is raising `ImportError` for some other reason and being swallowed. Reproduce it by importing the names outside the `try` block.
 
 By following this pattern, the host library remains functional even if Ackredit is not installed, while providing full citation support for users who have it.
+
+## Required behavior (non-negotiable)
+
+1.  **The host works without Ackredit.** Every name `_ackredit.py` exports has a fallback
+    with the *same signature* as the real one. A fallback that has drifted breaks your
+    library precisely in the case the pattern exists to protect.
+2.  **Declare at import, credit at runtime.** `register_item` and `bind` say what *could*
+    be cited and belong at import time. `track_item` says what *was* used and belongs in
+    the code path that used it. Crediting at import is the behaviour Ackredit replaces.
+3.  **Bind the unconditional, track the conditional.** If a citation depends on the path
+    taken, call `track_item` on that branch. `credit_bound=True` is for the coarse case
+    and credits on every call, which is why it is opt-in.
+4.  **Do not silence the integration.** The `try`/`except ImportError` is deliberately
+    quiet, so a host with Ackredit installed but mis-integrated is indistinguishable from
+    one without it. Assert `ACKREDIT_INSTALLED` where it matters — section 6.
+
+## SMonitor Integration
+
+Ackredit's diagnostics are catalog-driven, so a host sees stable codes rather than
+free-form messages, and nothing is swallowed. The ones a host is most likely to meet:
+
+| code | when |
+| --- | --- |
+| `ACKREDIT-W004` | a `CITATION.cff` it found could not be parsed |
+| `ACKREDIT-W005` | no citation information could be discovered for a package |
+| `ACKREDIT-W006` | DOI metadata could not be fetched, so an item is reported with what is known |
+| `ACKREDIT-W008` | a citation plugin from another package failed to load |
+| `ACKREDIT-W011` | `pdflatex` is absent, so no PDF was produced |
+| `ACKREDIT-E004` | a report format that does not exist was requested |
+
+Each carries the typed facts of its occurrence, so a host can filter or report them
+through its own SMonitor integration. `ackredit.dependency_info()` reports which optional
+features the environment supports.
+
+## Worked examples
+
+The Ackredit repository carries two host libraries under `examples/` that integrate it
+exactly as described here — `dummy_solver`, and `dummy_pipeline` which calls it, so
+citations cross a library boundary. Their `_ackredit.py` is this document's template,
+asserted byte-identical by the test suite, so what you read here is what runs there.

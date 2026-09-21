@@ -125,3 +125,37 @@ def test_fallbacks_return_types_host_code_can_use():
         return "host still works"
 
     assert decorated() == "host still works"
+
+
+def test_every_diagnostic_the_guide_promises_exists():
+    """The guide tells a host which codes it will see. A code that does not
+    exist is worse than an undocumented one: the host filters for something
+    that never arrives, and believes it is covered."""
+    import re
+
+    from ackredit._private.smonitor import CODES
+
+    guide = Path(__file__).resolve().parents[1] / "standards" / "ACKREDIT_GUIDE.md"
+    promised = set(
+        re.findall(r"`(ACKREDIT-[EW]\d+)`", guide.read_text(encoding="utf-8"))
+    )
+
+    assert promised, "the guide documents no diagnostics at all"
+    missing = sorted(code for code in promised if code not in CODES)
+    assert not missing, f"the guide promises codes that do not exist: {missing}"
+
+
+def test_the_guide_says_what_ackredit_is_before_how_to_wire_it():
+    """It opened at "1. Centralization File", so a maintainer finding that file
+    appear in their repository had no way to know what it was for."""
+    guide = Path(__file__).resolve().parents[1] / "standards" / "ACKREDIT_GUIDE.md"
+    text = guide.read_text(encoding="utf-8")
+
+    for section in (
+        "## What is Ackredit",
+        "## Why this matters in this library",
+        "## Required behavior (non-negotiable)",
+    ):
+        assert section in text, f"the guide has no {section!r} section"
+
+    assert text.index("## What is Ackredit") < text.index("## 1. Centralization File")
