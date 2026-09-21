@@ -8,7 +8,7 @@ def test_metadata_discovery():
     finder = InjectionsFinder()
 
     # Use 'pytest': it is installed and is known to expose package metadata
-    finder._discover_and_register("pytest")
+    finder._record("pytest")
 
     used = get_used_items()
     assert any(

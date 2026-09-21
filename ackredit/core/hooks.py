@@ -95,80 +95,122 @@ class InjectionsFinder(MetaPathFinder):
         self._triggered = set()
 
     def find_spec(self, fullname, path, target=None):
-        if fullname.startswith("ackredit"):
+        """Credit *fullname* from the most authoritative source there is.
+
+        The order is the point. A manual injection is a human integrating this
+        library and saying what to credit, so it wins. After that the package's
+        own `CITATION.cff` wins, because it is the project's own statement of
+        how it wants to be cited, versioned and updated by the project itself.
+        Ackredit's shipped table is a snapshot that can only go stale, so it is
+        a fallback, and package metadata is the last resort.
+
+        It used to run in the opposite order: a shipped entry marked the package
+        as handled, so its `CITATION.cff` was never read. `import molsysmt`
+        credited a MolSysMT paper that does not exist while the file saying what
+        to cite sat unread in the same directory.
+        """
+        if fullname.startswith("ackredit") or fullname in self._triggered:
             return None
 
-        # 0. Standard Injections
-        from .standard_injections import STANDARD_INJECTIONS
-
-        if fullname in STANDARD_INJECTIONS and fullname not in self._triggered:
+        # 1. What the host explicitly asked for.
+        if fullname in Registry.injections:
             self._triggered.add(fullname)
-            for item_data in STANDARD_INJECTIONS[fullname]:
-                register_item(**item_data)
-                track_item(item_data["id"], used_by=fullname)
-
-        # 1. Manual Injections
-        if fullname in Registry.injections and fullname not in self._triggered:
-            self._triggered.add(fullname)
-            item_ids = Registry.injections.get(fullname, [])
-            for item_id in item_ids:
+            for item_id in Registry.injections[fullname]:
                 track_item(item_id, used_by=fullname)
+            return None
 
-        # 2. Auto-discovery (only for top-level packages)
-        elif "." not in fullname and fullname not in self._triggered:
-            self._triggered.add(fullname)
-            self._discover_and_register(fullname)
+        # Everything below describes a distribution, not one of its modules.
+        if "." in fullname:
+            return None
+
+        # Marked before the work, not after: the discovery below calls
+        # find_spec, which reaches this finder again, and this is what stops it.
+        self._triggered.add(fullname)
+        self._record(fullname)
 
         # We return None so the normal import process continues
         return None
 
-    def _discover_and_register(self, fullname: str):
-        # Try to find package path
-        spec = find_spec(fullname)
-        if not spec or not spec.origin:
+    def _record(self, fullname: str) -> None:
+        from .standard_injections import STANDARD_INJECTIONS
+
+        shipped = STANDARD_INJECTIONS.get(fullname, [])
+        cff_data = self._read_citation_file(fullname)
+
+        if cff_data is None:
+            if shipped:
+                self._register_all(shipped, fullname)
+            else:
+                self._register_from_metadata(fullname)
             return
 
-        pkg_path = Path(spec.origin).parent
+        # The file describes the software, so it replaces a shipped entry for
+        # the software and nothing else. A paper Ackredit ships alongside it is
+        # a different work and still stands.
+        entry = next((item for item in shipped if item.get("type") == "software"), {})
+        item_id = entry.get("id", f"discovered:{fullname}")
 
-        # Look for CITATION.cff
+        register_item(
+            id=item_id,
+            type="software",
+            title=cff_data.get("title") or entry.get("title") or fullname,
+            authors=cff_data.get("authors") or entry.get("authors", []),
+            doi=cff_data.get("doi") or entry.get("doi"),
+            url=cff_data.get("url") or entry.get("url"),
+            version=cff_data.get("version"),
+            note=cff_data.get("message"),
+        )
+        track_item(item_id, used_by=fullname)
+
+        self._register_all([item for item in shipped if item is not entry], fullname)
+
+    @staticmethod
+    def _register_all(items, fullname: str) -> None:
+        for item_data in items:
+            register_item(**item_data)
+            track_item(item_data["id"], used_by=fullname)
+
+    @staticmethod
+    def _read_citation_file(fullname: str) -> dict | None:
+        """The package's own CITATION.cff, or None if it has none to read."""
+        spec = find_spec(fullname)
+        if not spec or not spec.origin:
+            return None
+
         from .cff import find_and_parse_cff
 
-        cff_data = find_and_parse_cff(pkg_path)
+        return find_and_parse_cff(Path(spec.origin).parent)
 
-        if cff_data:
-            item_id = f"discovered:{fullname}"
-            register_item(
-                id=item_id,
-                type="software",
-                title=cff_data.get("title", fullname),
-                authors=cff_data.get("authors", []),
-                doi=cff_data.get("doi"),
-                url=cff_data.get("url"),
-                note=cff_data.get("message"),
-            )
-            track_item(item_id, used_by=fullname)
-        else:
-            # Fallback: metadata discovery. Imported here rather than at module
-            # level: importlib.metadata pulls in email.message, zipfile and
-            # inspect, about half the cost of importing Ackredit, and this path
-            # only runs when import hooks are enabled.
-            from importlib import metadata
+    @staticmethod
+    def _register_from_metadata(fullname: str) -> None:
+        """Last resort: what the installed distribution declares about itself.
 
-            try:
-                meta = metadata.metadata(fullname)
-                if meta:
-                    item_id = f"metadata:{fullname}"
-                    register_item(
-                        id=item_id,
-                        type="software",
-                        title=meta.get("Name", fullname),
-                        authors=_authors_from_metadata(meta),
-                        url=meta.get("Home-page") or meta.get("Project-URL"),
-                        version=meta.get("Version"),
-                    )
-                    track_item(item_id, used_by=fullname)
-            except metadata.PackageNotFoundError:
-                warn(PackageMetadataWarning(extra={"package": fullname}))
+        `importlib.metadata` is imported here rather than at module level: it
+        pulls in email.message, zipfile and inspect, about half the cost of
+        importing Ackredit, and this path only runs when import hooks are
+        enabled.
+        """
+        from importlib import metadata
+
+        try:
+            meta = metadata.metadata(fullname)
+        except metadata.PackageNotFoundError:
+            warn(PackageMetadataWarning(extra={"package": fullname}))
+            return
+
+        if not meta:
+            return
+
+        item_id = f"metadata:{fullname}"
+        register_item(
+            id=item_id,
+            type="software",
+            title=meta.get("Name", fullname),
+            authors=_authors_from_metadata(meta),
+            url=meta.get("Home-page") or meta.get("Project-URL"),
+            version=meta.get("Version"),
+        )
+        track_item(item_id, used_by=fullname)
 
 
 _IMPORT_HOOKS_ENABLED = False
