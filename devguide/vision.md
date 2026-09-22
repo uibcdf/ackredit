@@ -28,16 +28,23 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
 
 ## Design Pillars
 *   **Invisible and Optional:** If Ackredit is not installed, the host library must continue to function without changes.
-*   **Lean core:** Ackredit has three runtime dependencies and no more. Two are the
-    MolSysSuite infrastructure components, `smonitor` and `depdigest`; the third is
-    `pyyaml`, because `CITATION.cff` is YAML and reading it with less produces confident
-    wrong answers on constructs the specification documents. All three are pure Python.
+*   **Lean core:** Ackredit has four runtime dependencies and no more. Three are the
+    MolSysSuite infrastructure components — `smonitor` for diagnostics, `depdigest` for
+    optional dependencies and `argdigest` for arguments; the fourth is `pyyaml`, because
+    `CITATION.cff` is YAML and reading it with less produces confident wrong answers on
+    constructs the specification documents. All four are pure Python.
 
     This supersedes the original "Zero Core Dependencies" pillar. Reimplementing
-    diagnostics, optional-dependency handling or a YAML parser inside a library that sits
-    in every host is the duplication the suite exists to prevent. Everything beyond those
-    three stays in `optional-dependencies`, and adding a fourth is a decision to record,
-    not a convenience.
+    diagnostics, optional-dependency handling, argument auditing or a YAML parser inside a
+    library that sits in every host is the duplication the suite exists to prevent.
+    Everything beyond those four stays in `optional-dependencies`, and adding a fifth is a
+    decision to record, not a convenience.
+
+    ArgDigest arrived last and on evidence, in `uibcdf/ackredit#62`: six public functions
+    accepted arguments that could not be right, and `bind("t", "paper:2024")` bound eight
+    citations, one per character. It is used where it fits — declaration and reporting —
+    and not on the tracking path, which runs once per credited citation and where the
+    decorator costs 11.71 µs against 1.02.
 *   **Extensible:** Anyone can add new output formats or injections for third-party
     libraries, through a public function and an entry-point group each:
     `register_format` with `ackredit.formats`, and `add_injection` with

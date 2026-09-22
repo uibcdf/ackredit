@@ -9,8 +9,12 @@ This is the number that scales, and the one to reach for when deciding what to i
 
 | | |
 | --- | --- |
-| `track_item(...)` | **1.0 µs** |
-| `scope(...)` with a `track_item` inside | **4.1 µs** |
+| `track_item(...)` | **1.2 µs** |
+| `scope(...)` with a `track_item` inside | **4.5 µs** |
+
+Both rose by about 0.15 µs when `uibcdf/ackredit#62` adopted ArgDigest. The tracking path
+is deliberately **not** decorated — the decorator costs 11.7 µs, which would be ten times
+the call — and checks its argument inline instead, which is what that difference is.
 
 A function you instrument costs that much per call. Instrumenting something called a
 thousand times a second costs four milliseconds of that second; instrumenting an inner loop
@@ -48,9 +52,14 @@ That one is measurable.
   import molsysmt, hooks enabled      0.3181 s      +21.6 ms    +7.28%
 ```
 
-About **20 ms**, once, for a library that pulls in eighteen packages Ackredit can credit.
-The spread of that measurement is 11 ms, so unlike the workflow above this is a real
-difference and not noise. It is paid at import and never again.
+**Fifteen to twenty milliseconds**, once, for a library that pulls in eighteen packages
+Ackredit can credit. It is paid at import and never again.
+
+The range is the honest form of it. On a quiet machine the baseline's spread is 11 ms and
+the difference stands clear of it; on a busy one the spread reaches 28 ms and the same
+difference sits inside. So it is real and it is small — small enough that whether a single
+run can separate it depends on the machine, which is why the table prints the spread beside
+the number.
 
 ## Persistence
 

@@ -14,4 +14,5 @@ dependencies:
 # published to the uibcdf conda channel, not to PyPI.
 - smonitor
 - depdigest
+- argdigest
 - pyyaml

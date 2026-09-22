@@ -5,7 +5,9 @@ from pathlib import Path
 from types import MappingProxyType
 from typing import Mapping
 
+from .._private.argdigest import arg_digest
 from .._private.smonitor.emitter import warn
+from .._private.smonitor.exceptions import ArgumentError
 from .._private.smonitor.warnings import (
     SessionLoadWarning,
     SessionMergeWarning,
@@ -271,6 +273,7 @@ class Collector(metaclass=_CollectorState):
             )
 
 
+@arg_digest()
 def enable_persistence(path: str | Path) -> None:
     """Record every tracked event to *path*, and adopt what it already holds."""
     Collector.enable_persistence(path)
@@ -281,17 +284,41 @@ def close_persistence() -> None:
     Collector.close_persistence()
 
 
+@arg_digest()
 def aggregate(paths: list[str | Path]) -> None:
     """Merge saved session files into what this run has tracked."""
     Collector.aggregate(paths)
 
 
+def _a_name(value, caller: str, argument: str) -> str:
+    """The check the tracking path can afford.
+
+    `@arg_digest` costs 11.71 µs against the 1.02 µs `track_item` takes, which
+    is the number `docs/content/about/performance.md` publishes and the reason
+    this path is not decorated. An `isinstance` is what fits, and it covers what
+    was measured: `track_item(None)` put `{None: []}` in the report.
+    """
+    if not isinstance(value, str) or not value.strip():
+        raise ArgumentError(
+            extra={
+                "caller": caller,
+                "argument": argument,
+                "value": value,
+                "reason": "is not a name",
+                "expected": "A name, such as 'mylib:paper:2024'."
+                if argument == "item_id"
+                else "A name, such as 'mylib.basic.convert'.",
+            }
+        )
+    return value
+
+
 def track_target(target: str, parent: str | None = None) -> None:
-    Collector.track_target(target, parent=parent)
+    Collector.track_target(_a_name(target, "track_target", "target"), parent=parent)
 
 
 def track_item(item_id: str, used_by: str | None = None) -> None:
-    Collector.track_item(item_id, used_by=used_by)
+    Collector.track_item(_a_name(item_id, "track_item", "item_id"), used_by=used_by)
 
 
 def credit_bound(target: str) -> list[str]:

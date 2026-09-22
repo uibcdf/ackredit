@@ -41,17 +41,17 @@ class UnknownFormatError(AckreditError, ValueError):
     catalog_key = "UnknownFormatError"
 
 
+class ArgumentError(AckreditError, ValueError):
+    """An argument a digester refused. Also a ValueError, which is what a bad
+    argument value normally raises."""
+
+    catalog_key = "ArgumentError"
+
+
 class FormatNameTakenError(AckreditError, ValueError):
     """Registering a format over one that exists. Also a ValueError."""
 
     catalog_key = "FormatNameTakenError"
-
-
-class UnknownFormatOptionError(AckreditError, TypeError):
-    """An option a report format does not take. Also a TypeError, which is what
-    an unexpected keyword argument normally raises."""
-
-    catalog_key = "UnknownFormatOptionError"
 
 
 class InvalidFormatError(AckreditError, ValueError):
@@ -68,11 +68,11 @@ class MissingDependencyError(AckreditError, ImportError):
 
 __all__ = [
     "AckreditError",
+    "ArgumentError",
     "BibtexFileNotFoundError",
     "FormatNameTakenError",
     "InvalidFormatError",
     "ItemIdMissingError",
     "MissingDependencyError",
     "UnknownFormatError",
-    "UnknownFormatOptionError",
 ]

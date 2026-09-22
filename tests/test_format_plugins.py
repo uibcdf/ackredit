@@ -321,25 +321,26 @@ def test_a_plugin_may_take_options():
 
 def test_an_option_a_format_does_not_take_is_refused():
     """`report(format="bibtex", style="unsrt")` was accepted and the option
-    discarded, which is the defect ACKREDIT-E004 exists to prevent."""
-    from ackredit._private.smonitor.exceptions import UnknownFormatOptionError
+    discarded, which is the defect ACKREDIT-E004 exists to prevent.
 
-    with pytest.raises(UnknownFormatOptionError) as raised:
+    ArgDigest refuses it, against the `format_options` domain, which is derived
+    from the same renderer table this file registers into — `uibcdf/ackredit#62`
+    replaced a check Ackredit did by hand with the suite's."""
+    from argdigest.core.errors import UnknownArgumentError
+
+    with pytest.raises(UnknownArgumentError) as raised:
         ackredit.report(format="bibtex", style="unsrt")
 
-    assert "bibtex" in str(raised.value)
     assert "style" in str(raised.value)
 
 
-def test_a_mistyped_option_names_the_format_and_what_it_takes():
-    from ackredit._private.smonitor.exceptions import UnknownFormatOptionError
+def test_a_mistyped_option_names_the_argument_it_does_not_take():
+    from argdigest.core.errors import UnknownArgumentError
 
-    with pytest.raises(UnknownFormatOptionError) as raised:
+    with pytest.raises(UnknownArgumentError) as raised:
         ackredit.report(format="latex", stlye="typo")
 
-    message = str(raised.value)
-    assert "latex" in message and "stlye" in message
-    assert "style" in message, "it says what the format does take"
+    assert "stlye" in str(raised.value)
 
 
 def test_the_option_that_already_worked_still_does():

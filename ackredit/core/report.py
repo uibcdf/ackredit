@@ -13,12 +13,12 @@ from typing import Any, Callable, Mapping
 from depdigest import get_info
 from smonitor import signal
 
+from .._private.argdigest import arg_digest
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.exceptions import (
     FormatNameTakenError,
     InvalidFormatError,
     UnknownFormatError,
-    UnknownFormatOptionError,
 )
 from .._private.smonitor.warnings import (
     DependencySchemaWarning,
@@ -83,6 +83,7 @@ def _options(render: Callable) -> list[str]:
     ]
 
 
+@arg_digest()
 def register_format(name: str, renderer: Callable, extension: str) -> None:
     """Add an output format, for this process.
 
@@ -219,6 +220,7 @@ def _check_dependency_schema(info: Any) -> None:
         )
 
 
+@arg_digest()
 def dependency_info(format: str = "table"):
     """Report which optional dependencies this environment provides.
 
@@ -239,6 +241,7 @@ def dependency_info(format: str = "table"):
     return info
 
 
+@arg_digest()
 @signal(
     tags=["ackredit", "report"],
     extra_factory=lambda args, kwargs: {"format": kwargs.get("format", "markdown")},
@@ -249,29 +252,18 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     used = get_used_items()
     items = _read_only(Registry.items)
 
+    # Which keywords a format accepts is declared as a domain, in
+    # `ackredit/_private/argdigest/domain/format_options.py`, and refused by
+    # ArgDigest before this runs. It was checked here first, by binding the
+    # renderer's signature; adopting ArgDigest means not doing by hand what the
+    # suite does, so that check is gone and the domain reads `_options` below —
+    # the same source, so the two cannot disagree.
     if not kwargs:
         return render(used, items)
-
-    # Options used to reach the latex renderer by name and be dropped for every
-    # other format, so `report(format="bibtex", style="unsrt")` succeeded and
-    # returned a report that was not the one asked for. Any renderer may take
-    # them now, which is also what a plugin needs, and one that does not is
-    # told so by name rather than by a traceback from inside itself.
-    try:
-        inspect.signature(render).bind(used, items, **kwargs)
-    except TypeError as error:
-        raise UnknownFormatOptionError(
-            extra={
-                "format": canonical,
-                "option": ", ".join(f"'{name}'" for name in sorted(kwargs)),
-                "accepted": ", ".join(_options(render)) or "no options",
-                "reason": str(error),
-            }
-        ) from error
-
     return render(used, items, **kwargs)
 
 
+@arg_digest()
 @signal(
     tags=["ackredit", "report"],
     extra_factory=lambda args, kwargs: {
@@ -310,6 +302,7 @@ def dump(
         path.write_text(report(format=fmt))
 
 
+@arg_digest()
 def compile_pdf(directory: str | Path) -> None:
     """
     Attempt to compile ackredit_report.tex into a PDF using pdflatex.

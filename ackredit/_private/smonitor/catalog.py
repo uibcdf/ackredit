@@ -172,12 +172,12 @@ CODES = {
         "dev_message": "register_format rejected name={format!r}: {reason}.",
         "dev_hint": "Names are matched exactly, so one style is enforced at registration rather than guessed at lookup.",
     },
-    "ACKREDIT-E007": {
-        "title": "Report format does not take that option",
-        "user_message": "The '{format}' report does not take {option}.",
-        "user_hint": "It accepts: {accepted}.",
-        "dev_message": "Binding {option} to the '{format}' renderer failed: {reason}.",
-        "dev_hint": "Options used to reach only the latex renderer and be dropped for every other format, so a request succeeded and returned a report that was not the one asked for.",
+    "ACKREDIT-E008": {
+        "title": "Argument is not what it must be",
+        "user_message": "{caller}() received {argument}={value!r}, which {reason}.",
+        "user_hint": "{expected}",
+        "dev_message": "Digesting '{argument}' for '{caller}' rejected {value!r}: {reason}.",
+        "dev_hint": "Declared in ackredit/_private/argdigest/argument/; a string where a sequence is expected used to be iterated character by character.",
     },
     # DepDigest raises this one and renders its own prose, because it knows the
     # install channels. The template must not invent fields DepDigest does not
@@ -221,7 +221,7 @@ _ERRORS = {
     "UnknownFormatError": "ACKREDIT-E004",
     "FormatNameTakenError": "ACKREDIT-E005",
     "InvalidFormatError": "ACKREDIT-E006",
-    "UnknownFormatOptionError": "ACKREDIT-E007",
+    "ArgumentError": "ACKREDIT-E008",
 }
 
 CATALOG = {

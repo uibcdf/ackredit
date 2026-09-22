@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (59)
+### Resolved (60)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -15,6 +15,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`aggregated_citations_never_reach_the_journal.md`](aggregated_citations_never_reach_the_journal.md) — [#39](https://github.com/uibcdf/ackredit/issues/39) — aggregate merged saved sessions into memory and never into the journal, so the file held less than the report. *(resolved, measured)*
 - [`an_injection_shadows_the_citation_file.md`](an_injection_shadows_the_citation_file.md) — [#28](https://github.com/uibcdf/ackredit/issues/28) — A shipped injection marked the package as handled, so its own CITATION.cff was never read. *(resolved, measured)*
 - [`an_unknown_format_returns_a_different_one.md`](an_unknown_format_returns_a_different_one.md) — [#15](https://github.com/uibcdf/ackredit/issues/15) — A typo in a format name silently produced plain text, written to a file named for neither. *(resolved, reproduced)*
+- [`argdigest_adopted.md`](argdigest_adopted.md) — [#62](https://github.com/uibcdf/ackredit/issues/62) — ArgDigest adopted where it fits and refused where it costs, closing six public functions that accepted arguments that could not be right. *(resolved, measured)*
 - [`auto_track_calls_credits_code_that_never_ran.md`](auto_track_calls_credits_code_that_never_ran.md) — [#13](https://github.com/uibcdf/ackredit/issues/13) — auto_track_calls credited citations at import time, and could not read a class method at all. *(resolved, reproduced)*
 - [`bibtex_does_not_escape_latex.md`](bibtex_does_not_escape_latex.md) — [#7](https://github.com/uibcdf/ackredit/issues/7) — BibTeX output was written verbatim, producing a subtly wrong compiled bibliography. *(resolved, reproduced)*
 - [`bibtex_emits_types_no_style_defines.md`](bibtex_emits_types_no_style_defines.md) — [#10](https://github.com/uibcdf/ackredit/issues/10) — The BibTeX renderer emitted biblatex entry types that a BibTeX style cannot render. *(resolved, reproduced)*

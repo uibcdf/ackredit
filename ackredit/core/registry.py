@@ -12,6 +12,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Dict, Iterator, Literal, TypedDict
 
+from .._private.argdigest import arg_digest
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.exceptions import (
     BibtexFileNotFoundError,
@@ -667,10 +668,12 @@ class Registry:
 
 
 # convenience functions
+@arg_digest()
 def register_item(**item: Any) -> None:
     Registry.register_item(**item)
 
 
+@arg_digest()
 def bind(target: str, items: list[str]) -> None:
     Registry.bind(target, items)
 
@@ -679,10 +682,12 @@ def bound_items(target: str) -> list[str]:
     return Registry.bound_items(target)
 
 
+@arg_digest()
 def add_injection(target_module: str, items: list[str]) -> None:
     Registry.add_injection(target_module, items)
 
 
+@arg_digest()
 def load_bibtex(file_path: str | Path) -> None:
     Registry.load_bibtex(file_path)
 

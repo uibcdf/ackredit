@@ -12,6 +12,7 @@ import json
 import pytest
 
 import ackredit
+from ackredit.core.registry import Registry
 
 FULL_ITEM = {
     "id": "a:1",
@@ -52,8 +53,16 @@ def test_provenance_is_carried():
 
 
 def test_ackredits_own_bookkeeping_stays_out():
-    """`_source` tells the LaTeX escaper where a field came from. It is not data."""
-    record = report_for(**FULL_ITEM, _source="bibtex")
+    """`_source` tells the LaTeX escaper where a field came from. It is not data.
+
+    Set on the registry rather than passed in: since `uibcdf/ackredit#62` the
+    `citation_field` domain refuses a reserved key from a caller, because
+    setting it reaches straight past the escaping.
+    """
+    report_for(**FULL_ITEM)
+    Registry.items["a:1"]["_source"] = "bibtex"
+    (record,) = json.loads(ackredit.report(format="json"))
+
     assert not [key for key in record if key.startswith("_")]
 
 

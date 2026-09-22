@@ -21,6 +21,10 @@ maintainers = [
 dependencies = [
   "smonitor>=0.13.0",
   "depdigest>=0.10.0",
+  # Argument auditing. Adopted in uibcdf/ackredit#62: six public functions
+  # accepted arguments that could not be right, and a string where a list was
+  # expected was iterated character by character.
+  "argdigest>=0.12.0",
   # CITATION.cff is YAML. Reading it with anything less produces confident
   # wrong answers on constructs the specification documents.
   "pyyaml>=6",
@@ -72,6 +76,7 @@ line-length = 88
 # Root integration guides are synchronized, read-only copies. Their canonical
 # repositories own formatting; MolSysSuite checks byte drift (uibcdf/molsyssuite#12).
 extend-exclude = [
+    "ARGDIGEST_GUIDE.md",
     "DEPDIGEST_GUIDE.md",
     "GH_RUN_RECEPTOR_GUIDE.md",
     "MOLSYSSUITE_GUIDE.md",

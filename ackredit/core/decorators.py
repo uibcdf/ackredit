@@ -2,9 +2,11 @@ from __future__ import annotations
 
 from functools import wraps
 
+from .._private.argdigest import arg_digest
 from .context import scope
 
 
+@arg_digest()
 def scoped_usage(target: str, credit_bound: bool = False):
     """
     Decorator to mark that this target (function/method) was used in the workflow.
