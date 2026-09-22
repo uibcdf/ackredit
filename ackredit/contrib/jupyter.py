@@ -3,6 +3,7 @@ from __future__ import annotations
 from ..core.collector import get_used_items
 from ..core.registry import Registry
 from ..formats._html import escape, safe_link
+from ..formats._names import author_list
 
 
 class CitationsHTML:
@@ -51,8 +52,6 @@ class CitationsHTML:
             title = escape(item.get("title", item_id))
             year = item.get("year", "")
             authors = item.get("authors", [])
-            if isinstance(authors, list):
-                authors = ", ".join(str(author) for author in authors)
 
             # A DOI builds its own https link; a url is taken as given, so it is
             # the one that has to prove it can be followed safely.
@@ -68,7 +67,7 @@ class CitationsHTML:
 
             details = []
             if authors:
-                details.append(f"<i>{escape(authors)}</i>")
+                details.append(f"<i>{author_list(authors, escape)}</i>")
             if year:
                 details.append(f"({escape(year)})")
 

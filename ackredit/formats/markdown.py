@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ._markdown import destination, escape, safe_link
+from ._names import author_list
 
 
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
@@ -42,11 +43,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         lines.append(line)
 
         if authors:
-            if isinstance(authors, list):
-                authors_str = ", ".join(escape(author) for author in authors)
-            else:
-                authors_str = escape(authors)
-            lines.append(f"  - Authors: {authors_str}")
+            lines.append(f"  - Authors: {author_list(authors, escape)}")
 
         if used_by:
             lines.append(f"  - Used by: {', '.join(escape(name) for name in used_by)}")

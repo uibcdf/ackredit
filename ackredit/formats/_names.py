@@ -43,3 +43,35 @@ def csl_name(author: Any) -> Dict[str, str]:
             return {"family": family, "given": given}
 
     return {"literal": text}
+
+
+# Between authors in a list a person reads. A comma cannot do it: the names are
+# `Family, Given`, so "Ruiz, Ana, Gómez, Luis" is two people or four, and no
+# reader can undo it (`uibcdf/ackredit#67`). A semicolon is what bibliographies
+# use for inverted names and is unambiguous whether a name is inverted or not.
+AUTHOR_SEPARATOR = "; "
+
+
+def author_text(author: Any) -> str:
+    """One author as a person reads it.
+
+    A CSL name object is accepted wherever a string is, so it is written the way
+    its string form would be rather than as a dictionary.
+    """
+    if isinstance(author, dict):
+        if author.get("literal"):
+            return str(author["literal"])
+        family = str(author.get("family", "")).strip()
+        given = str(author.get("given", "")).strip()
+        return f"{family}, {given}" if family and given else family or given
+    return str(author).strip()
+
+
+def author_list(authors: Any, escape=lambda text: text) -> str:
+    """Every author of an item, escaped one by one and separated unambiguously.
+
+    A single string is taken as already written by whoever registered it.
+    """
+    if not isinstance(authors, (list, tuple)):
+        return escape(str(authors))
+    return AUTHOR_SEPARATOR.join(escape(author_text(author)) for author in authors)
