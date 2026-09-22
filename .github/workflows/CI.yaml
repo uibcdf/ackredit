@@ -31,17 +31,27 @@ jobs:
     # `uibcdf/molsyssuite#29` and claims nothing: it does not gate a merge, and
     # `requires-python` stays at the default contract until `suite.toml` names
     # Ackredit. `tests/test_workflow_hygiene.py` holds this list to the contract.
-    name: Test on ubuntu-latest, Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+    #
+    # macOS gates on the development version, so a platform regression shows on
+    # the push that causes it: the session journal relies on O_APPEND, and
+    # multiprocessing starts with spawn there. Every other macOS cell runs in
+    # the weekly matrix (`uibcdf/ackredit#71`).
+    name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-latest]
         python-version: ["3.11", "3.12", "3.13"]
         experimental: [false]
         include:
-          - python-version: "3.14"
+          - os: macos-latest
+            python-version: "3.13"
+            experimental: false
+          - os: ubuntu-latest
+            python-version: "3.14"
             experimental: true
     steps:
       - uses: actions/checkout@v6

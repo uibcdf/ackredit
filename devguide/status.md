@@ -45,12 +45,12 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
 
 ## Known limitations, deliberately out of scope
 
-- **CI runs on Linux only.** The macOS lane was removed when `smonitor` and `depdigest`
-  were published only as `linux-64` builds with per-interpreter ABI pins, which a macOS
-  environment could not solve. That cause is gone: `smonitor 0.16.0`, `depdigest 0.11.0`
-  and `argdigest 0.13.0` are `noarch` in the `uibcdf` channel, and are what Ackredit's
-  floors require. The lane has not been restored or run since, so nothing here claims
-  macOS works; restoring it is the next step, not a formality.
+- **CI runs on Linux and macOS, not Windows.** macOS was removed while `smonitor` and
+  `depdigest` were `linux-64` builds with per-interpreter ABI pins, and restored once the
+  floors Ackredit requires were `noarch` (`uibcdf/ackredit#71`). Its first run passed on
+  3.11 to 3.14 with the same 1437 tests and the same skips as Linux, the multi-process
+  journal tests among them. macOS gates on 3.13 on every push; the weekly matrix covers
+  the rest. Windows has never been run, so nothing here claims it works.
 - **Python is 3.11 to 3.13.** The dependencies no longer hold 3.14 back: all three
   declare `<3.15`, and CI's non-blocking 3.14 lane passes from the public channel with
   the same results as the promised versions. The claim waits on authorization in
