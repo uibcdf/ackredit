@@ -51,6 +51,23 @@ ackredit.enrich_all()
 ```
 *Note: Metadata results are cached locally in `~/.cache/ackredit` to speed up future sessions.*
 
+### Being a good client
+
+Crossref and DataCite are free services shared by everyone, and they publish a rate limit
+on every response. Ackredit waits between requests so that limit is respected, and adopts
+whatever the service states rather than assuming.
+
+Crossref offers a larger allowance to a client that gives a contact address — its "polite
+pool", which doubles the rate. Ackredit does not do this by default, because the address
+would be sent to a third party and it is yours to decide. Set it if you want it:
+
+```bash
+export ACKREDIT_CONTACT_EMAIL=you@example.org
+```
+
+The address goes into the `User-Agent` of requests Ackredit makes on your behalf, and
+nowhere else. Without it, enrichment works at the smaller public-pool rate.
+
 ## Loading from BibTeX
 For libraries with many references, you can load an entire `.bib` file directly.
 

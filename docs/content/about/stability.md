@@ -66,7 +66,7 @@ are written; everything else links here, so they cannot drift apart.
 | `summary` | provisional | Returns an object whose only contract is `_repr_html_`. What else that object should offer is unexplored. |
 | `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |
 | `compile_pdf` | provisional | `@software` and `@dataset` are undefined in common `.bst` styles, so what a compiled report contains is not settled. |
-| `enrich_all` | provisional | Reaches the network. There is no policy yet on rate limits, offline behaviour or how long a cached answer is good for. |
+| `enrich_all` | provisional | Reaches the network. `uibcdf/ackredit#48` settled how it asks — the advertised rate is respected and a contact is opt-in — and how long a cached answer is good for is still open. |
 | `export_to_duecredit` | provisional | A bridge to another project's API, which we do not control. |
 | `load_plugins` | provisional | The promise is the entry-point group name, `ackredit.citations`, and no real plugin has used it yet. |
 | `serve_ui` | provisional | Its own docstring calls it a conceptual stub. |

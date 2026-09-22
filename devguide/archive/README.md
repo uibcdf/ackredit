@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (47)
+### Resolved (48)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cycle_empties_the_provenance_report.md`](a_cycle_empties_the_provenance_report.md) — [#46](https://github.com/uibcdf/ackredit/issues/46) — A recursive function made the provenance report come out empty, and a cycle below a root raised RecursionError. *(resolved, measured)*
@@ -30,6 +30,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
 - [`migrate_static_version_to_versioningit.md`](migrate_static_version_to_versioningit.md) — [#20](https://github.com/uibcdf/ackredit/issues/20) — Migrate Ackredit from a static package version to canonical Versioningit tags. *(resolved, reproduced)*
 - [`no_public_name_says_what_it_promises.md`](no_public_name_says_what_it_promises.md) — [#31](https://github.com/uibcdf/ackredit/issues/31) — __all__ stated what was public and nothing stated what was kept, so seven untested names sat beside the ones the library is built on. *(resolved, measured)*
+- [`not_a_polite_client.md`](not_a_polite_client.md) — [#48](https://github.com/uibcdf/ackredit/issues/48) — Ackredit fetched as fast as it could, identified no contact, and reported a rate-limited response as a network problem. *(resolved, measured)*
 - [`not_thread_safe.md`](not_thread_safe.md) — [#5](https://github.com/uibcdf/ackredit/issues/5) — Concurrent workflows cross-attributed citations and corrupted the session file. *(resolved, reproduced)*
 - [`one_tracking_session_per_interpreter.md`](one_tracking_session_per_interpreter.md) — [#18](https://github.com/uibcdf/ackredit/issues/18) — Tracking state was class attributes, one set per interpreter; it now belongs to a session. *(resolved, reproduced)*
 - [`output_formats_are_not_extensible.md`](output_formats_are_not_extensible.md) — [#36](https://github.com/uibcdf/ackredit/issues/36) — The vision promised that anyone could add an output format, and only a private module dict existed. *(resolved, measured)*
