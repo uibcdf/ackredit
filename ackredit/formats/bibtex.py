@@ -2,6 +2,22 @@ from __future__ import annotations
 
 from ._latex import escape, is_latex_source
 
+# The fields whose BibTeX name differs from Ackredit's, in the order a reader
+# expects them. Everything else the item carries follows, alphabetically.
+_ORDERED = [
+    ("author", "authors"),
+    ("year", "year"),
+    ("doi", "doi"),
+    ("url", "url"),
+    ("note", "note"),
+    ("journal", "journal"),
+]
+
+# Ackredit's own keys, which are not bibliographic fields.
+_NOT_A_FIELD = {"id", "type", "title", "authors", "how_to_cite"} | {
+    fc_key for _, fc_key in _ORDERED
+}
+
 
 def _bibtex_name(name: str) -> str:
     """Brace-protect a name BibTeX cannot parse.
@@ -68,7 +84,8 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         latex_source = is_latex_source(item)
 
         fc_type = item.get("type", "other")
-        bib_type = type_map.get(fc_type, "misc")
+        # An item read from a .bib file is written back as the entry it was.
+        bib_type = item.get("_bibtex_type") or type_map.get(fc_type, "misc")
 
         fields: list[str] = []
 
@@ -97,24 +114,24 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
 
         add_field("title", "title")
 
-        # Name the kind BibTeX cannot express in its entry type.
-        if kind := kind_map.get(fc_type):
+        # Name the kind BibTeX cannot express in its entry type — but not when
+        # the entry already says what it is, which it does for anything read
+        # from a .bib file.
+        if not item.get("_bibtex_type") and (kind := kind_map.get(fc_type)):
             fields.append(f"  howpublished = {{{kind}}}")
-        add_field("author", "authors")
-        add_field("year", "year")
-        add_field("doi", "doi")
-        add_field("url", "url")
-        add_field("note", "note")
 
-        # Type specific additions
-        if fc_type == "article":
-            add_field("journal", "journal")
-            add_field("volume", "volume")
-            add_field("number", "number")
-            add_field("pages", "pages")
-        elif fc_type == "software" or fc_type == "repo":
-            if "version" in item:
-                add_field("version", "version")
+        for bib_key, fc_key in _ORDERED:
+            add_field(bib_key, fc_key)
+
+        # Whatever else the item carries. A fixed list dropped the publisher of
+        # a book, the pages of a conference paper and the school of a thesis,
+        # although the parser had stored all three. A .bst style ignores a field
+        # it does not know, so carrying one costs nothing and dropping one costs
+        # the bibliography.
+        for fc_key in sorted(item):
+            if fc_key in _NOT_A_FIELD or fc_key.startswith("_"):
+                continue
+            add_field(fc_key, fc_key)
 
         entry = f"@{bib_type}{{{key},\n" + ",\n".join(fields) + "\n}"
         entries.append(entry)

@@ -539,6 +539,12 @@ class Registry:
         # Parsed out of a .bib file, so its fields are LaTeX as the author
         # wrote them and must not be escaped again on the way out.
         item["_source"] = "bibtex"
+
+        # Ackredit's vocabulary has six types and BibTeX has fourteen, so
+        # `@book` and `@phdthesis` both flatten to `other` and were written back
+        # as `@misc`. The original is kept so the round trip is exact; it is
+        # bookkeeping, not a field, hence the underscore.
+        item["_bibtex_type"] = entry_type
         cls.register_item(**item)
 
 
