@@ -161,3 +161,24 @@ def test_the_dashboard_guard_is_not_skipped_in_ci():
         "devtools/conda-envs/test_env.yaml must declare jinja2, or the dashboard "
         "escaping guard is skipped in CI"
     )
+
+
+def test_a_summary_is_readable_outside_a_notebook():
+    """`print(ackredit.summary())` used to give the object's address."""
+    ackredit.register_item(id="x:1", title="A Work", authors=["Ruiz, Ana"], year=2024)
+    ackredit.track_item("x:1", used_by="run")
+    summary = ackredit.summary()
+
+    for rendering in (str(summary), repr(summary)):
+        assert "A Work" in rendering
+        assert "object at 0x" not in rendering
+
+
+def test_an_empty_session_says_so_in_text_too():
+    assert "No items" in str(ackredit.summary())
+
+
+def test_the_notebook_rendering_is_still_html():
+    ackredit.register_item(id="x:1", title="A Work")
+    ackredit.track_item("x:1", used_by="run")
+    assert ackredit.summary()._repr_html_().startswith("<div")

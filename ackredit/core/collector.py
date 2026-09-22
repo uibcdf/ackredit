@@ -18,7 +18,7 @@ from .session import current_session
 def _merge(state, stored, record=None) -> None:
     """Fold a read session into *state*, through the session's own writers.
 
-    Going through `record_item` and `record_target` is what keeps the caller
+    Going through `_record_item` and `_record_target` is what keeps the caller
     index and the ordered list from drifting: they have one writer, not three.
 
     *record* appends the merged events to an open journal, and is given
@@ -35,12 +35,12 @@ def _merge(state, stored, record=None) -> None:
     construction, since the journal is not open when it merges.
     """
     for target in stored["used_targets"]:
-        if state.record_target(target, None) and record:
+        if state._record_target(target, None) and record:
             record(session.append_target, target, None)
 
     for item_id, callers in stored["used_items"].items():
         for caller in callers or [None]:
-            if state.record_item(item_id, caller) and record:
+            if state._record_item(item_id, caller) and record:
                 record(session.append_item, item_id, caller)
 
     for name, node in stored["usage_tree"].items():
@@ -50,11 +50,11 @@ def _merge(state, stored, record=None) -> None:
         # differences are what only the tree carries: the parent-to-child links,
         # which no `used_targets` entry describes.
         for item_id in node["items"] - current["items"]:
-            if state.record_item(item_id, name) and record:
+            if state._record_item(item_id, name) and record:
                 record(session.append_item, item_id, name)
 
         for child in node["children"] - current["children"]:
-            if state.record_target(child, name) and record:
+            if state._record_target(child, name) and record:
                 record(session.append_target, child, name)
 
 
@@ -75,7 +75,7 @@ class _CollectorState(type):
         """Read-only, because the session indexes it.
 
         A list preserves the order callers appeared in and a set makes
-        membership constant; `Session.record_item` writes both. Clearing or
+        membership constant; `Session._record_item` writes both. Clearing or
         assigning through this view would leave the index describing entries
         that are gone, and the drift is silent — a caller already in the stale
         index is never re-added. A view turns that into an immediate error.
@@ -93,7 +93,7 @@ class _CollectorState(type):
 
     @property
     def _lock(cls) -> threading.RLock:
-        return current_session().lock
+        return current_session()._lock
 
 
 class Collector(metaclass=_CollectorState):
@@ -111,7 +111,7 @@ class Collector(metaclass=_CollectorState):
         destructive. See `ackredit.core.session` for the guarantee and its limit.
         """
         state = current_session()
-        with state.lock:
+        with state._lock:
             cls.close_persistence()
             target = Path(path)
 
@@ -148,7 +148,7 @@ class Collector(metaclass=_CollectorState):
         """Close the journal, paying the single fsync that makes it durable
         against the machine failing rather than only the process."""
         state = current_session()
-        with state.lock:
+        with state._lock:
             if state._journal is not None:
                 session.close_journal(state._journal)
             state._journal = None
@@ -182,8 +182,8 @@ class Collector(metaclass=_CollectorState):
     @classmethod
     def track_target(cls, target: str, parent: str | None = None) -> None:
         state = current_session()
-        with state.lock:
-            if state.record_target(target, parent):
+        with state._lock:
+            if state._record_target(target, parent):
                 cls._record(state, session.append_target, target, parent)
 
     @classmethod
@@ -194,8 +194,8 @@ class Collector(metaclass=_CollectorState):
             used_by = get_current_scope()
 
         state = current_session()
-        with state.lock:
-            if state.record_item(item_id, used_by):
+        with state._lock:
+            if state._record_item(item_id, used_by):
                 cls._record(state, session.append_item, item_id, used_by)
 
     @classmethod
@@ -214,7 +214,7 @@ class Collector(metaclass=_CollectorState):
         from .registry import Registry
 
         state = current_session()
-        with state.lock:
+        with state._lock:
             item_ids = Registry.bound_items(target)
             for item_id in item_ids:
                 cls.track_item(item_id, used_by=target)
@@ -223,7 +223,7 @@ class Collector(metaclass=_CollectorState):
     @classmethod
     def get_used_items(cls) -> dict[str, list[str]]:
         state = current_session()
-        with state.lock:
+        with state._lock:
             return {item: list(callers) for item, callers in state.used_items.items()}
 
     @classmethod
@@ -236,7 +236,7 @@ class Collector(metaclass=_CollectorState):
         Merge multiple saved session files into the current collector state.
         """
         state = current_session()
-        with state.lock:
+        with state._lock:
             cls._aggregate_locked(paths)
 
     @classmethod

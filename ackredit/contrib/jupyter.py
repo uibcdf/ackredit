@@ -6,13 +6,29 @@ from ..formats._html import escape, safe_link
 
 
 class CitationsHTML:
-    """
-    Object that implements _repr_html_ for rich display in Jupyter Notebooks.
+    """What a run cited, rendered where it is shown.
+
+    A notebook asks for `_repr_html_` and gets the table. Everywhere else —
+    a REPL, a script, a log — printing this used to give the default object
+    repr, so the call the guide offers a user showed them an address in memory.
+
+    Its contract is those three: `_repr_html_` for a notebook, and `str()` and
+    `repr()` for everywhere else. The text comes from the `text` renderer rather
+    than a second implementation, so the two cannot disagree about what a run
+    cited.
     """
 
     def __init__(self, used: dict[str, list[str]], items: dict[str, dict]):
         self.used = used
         self.items = items
+
+    def __str__(self) -> str:
+        from ..formats import text
+
+        return text.render(self.used, self.items)
+
+    # A display object is read, not reconstructed, so this is the same text.
+    __repr__ = __str__
 
     def _repr_html_(self) -> str:
         if not self.used:

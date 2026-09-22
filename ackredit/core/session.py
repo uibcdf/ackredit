@@ -176,6 +176,22 @@ class Session:
     Declarations live in :class:`ackredit.Registry` and are shared: a host
     library registers what it *could* cite once, at import. Observations live
     here and are per run: what was actually reached.
+
+    **What this promises**, to a caller holding one from ``ackredit.session()``
+    or :func:`ackredit.current_session`:
+
+    - ``used_items``, item id to the names that credited it, in the order they
+      appeared;
+    - ``used_targets``, the targets that ran;
+    - ``usage_tree``, which target led to which item and to which other target;
+    - ``journal_path``, the file being written, or ``None``; read only, since
+      `ackredit.enable_persistence` is what opens one;
+    - ``name``, and ``clear()``, which forgets what was tracked and keeps the
+      journal open.
+
+    Everything else is machinery and is named with a leading underscore: the
+    writers carry the rule that a caller holds the lock, and promising them
+    would promise that rule too.
     """
 
     def __init__(self, name: str = "default"):
@@ -187,7 +203,7 @@ class Session:
         # An index over the lists in used_items. The list preserves the order
         # callers appeared in, which reports show; membership on it is linear,
         # and an item credited from many call sites made recording O(n squared).
-        # `record_item` is the only writer of both, so they cannot drift.
+        # `_record_item` is the only writer of both, so they cannot drift.
         self._callers: Dict[str, set] = {}
 
         self.journal_path: Optional[Path] = None
@@ -195,17 +211,17 @@ class Session:
 
         # Guards compound read-modify-write on the structures above. Reentrant
         # because credit_bound() tracks items while already holding it.
-        self.lock = threading.RLock()
+        self._lock = threading.RLock()
 
     def clear(self) -> None:
         """Forget what was tracked, keeping any journal open."""
-        with self.lock:
+        with self._lock:
             self.used_targets.clear()
             self.used_items.clear()
             self.usage_tree.clear()
             self._callers.clear()
 
-    def record_item(self, item_id: str, used_by: str | None) -> bool:
+    def _record_item(self, item_id: str, used_by: str | None) -> bool:
         """Credit *item_id*, optionally to *used_by*. Callers hold the lock.
 
         Returns whether this changed anything, so the journal records state
@@ -228,7 +244,7 @@ class Session:
 
         return changed
 
-    def record_target(self, target: str, parent: str | None) -> bool:
+    def _record_target(self, target: str, parent: str | None) -> bool:
         """Record that *target* ran. Callers hold the lock."""
         changed = target not in self.used_targets
         self.used_targets.add(target)
@@ -282,7 +298,7 @@ def session(name: str = "session", inherit: bool = False) -> Iterator[Session]:
     fresh = Session(name)
     if inherit:
         enclosing = _current.get()
-        with enclosing.lock:
+        with enclosing._lock:
             fresh.used_targets = set(enclosing.used_targets)
             fresh.used_items = {
                 item: list(callers) for item, callers in enclosing.used_items.items()
