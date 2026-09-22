@@ -18,6 +18,7 @@ from pathlib import Path
 import pytest
 
 import ackredit
+from ackredit.core.registry import Registry
 from ackredit.core.session import current_session
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,7 +63,7 @@ def test_a_host_declares_what_it_can_cite_while_being_imported():
     """The moment a host has. The registry is shared and outlives a session."""
     import dummy_solver  # noqa: F401
 
-    assert "dummysolver:2026:method" in ackredit.Registry.items
+    assert "dummysolver:2026:method" in Registry.items
     assert ackredit.bound_items("dummy_solver.solve") == ["dummysolver:2026:method"]
 
 

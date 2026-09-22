@@ -35,7 +35,6 @@ from .contrib.duecredit_compat import export_to_duecredit
 from .contrib.jupyter import summary
 from .contrib.web_ui import serve_ui
 from .core.collector import (
-    Collector,
     aggregate,
     close_persistence,
     credit_bound,
@@ -54,7 +53,6 @@ from .core.hooks import (
 )
 from .core.inspection import auto_track_calls
 from .core.registry import (
-    Registry,
     add_injection,
     bind,
     bound_items,
@@ -78,8 +76,6 @@ load_plugins()
 
 __all__ = [
     "__version__",
-    "Collector",
-    "Registry",
     "Session",
     "register_format",
     "register_item",

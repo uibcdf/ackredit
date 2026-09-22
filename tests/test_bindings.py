@@ -1,7 +1,6 @@
 """Runtime behaviour of bind(): introspection and opt-in crediting."""
 
 from ackredit import (
-    Registry,
     bind,
     bound_items,
     credit_bound,
@@ -11,6 +10,7 @@ from ackredit import (
     scoped_usage,
     track_item,
 )
+from ackredit.core.registry import Registry
 
 
 def test_bound_items_reads_back_declarations():

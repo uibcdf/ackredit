@@ -18,6 +18,7 @@ from concurrent.futures import ThreadPoolExecutor
 import pytest
 
 import ackredit
+from ackredit.core.registry import Registry
 from ackredit.core.session import current_session
 
 
@@ -55,7 +56,7 @@ def test_declarations_stay_shared():
     with ackredit.session():
         ackredit.register_item(id="p:3", title="Registered inside")
 
-    assert "p:3" in ackredit.Registry.items
+    assert "p:3" in Registry.items
 
 
 def test_inherit_starts_from_what_is_already_tracked():

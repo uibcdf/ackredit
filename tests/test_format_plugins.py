@@ -24,6 +24,7 @@ from ackredit._private.smonitor.exceptions import (
     UnknownFormatError,
 )
 from ackredit._private.smonitor.warnings import FormatPluginWarning
+from ackredit.core.registry import Registry
 
 # `ackredit.core.report` the attribute is the function, which shadows the
 # module of the same name, so the module is fetched from sys.modules.
@@ -241,7 +242,7 @@ def test_a_renderer_cannot_empty_the_registry():
     with pytest.raises(AttributeError):
         ackredit.report(format="vandal")
 
-    assert "a:1" in ackredit.Registry.items
+    assert "a:1" in Registry.items
 
 
 def test_a_renderer_cannot_rewrite_an_item():
@@ -255,7 +256,7 @@ def test_a_renderer_cannot_rewrite_an_item():
     with pytest.raises(TypeError):
         ackredit.report(format="vandal")
 
-    assert ackredit.Registry.items["a:1"]["title"] == "A Work"
+    assert Registry.items["a:1"]["title"] == "A Work"
 
 
 def test_what_a_renderer_is_handed():

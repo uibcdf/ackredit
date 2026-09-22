@@ -1,4 +1,5 @@
-from ackredit import Registry, load_bibtex
+from ackredit import load_bibtex
+from ackredit.core.registry import Registry
 
 
 def test_load_bibtex_file(tmp_path):

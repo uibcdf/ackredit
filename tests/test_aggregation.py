@@ -17,6 +17,7 @@ import pytest
 
 import ackredit
 from ackredit.core import session
+from ackredit.core.collector import Collector
 from ackredit.core.session import current_session
 
 
@@ -36,7 +37,7 @@ def saved(tmp_path):
 def tree() -> dict:
     return {
         name: {key: sorted(value) for key, value in node.items()}
-        for name, node in ackredit.Collector.usage_tree.items()
+        for name, node in Collector.usage_tree.items()
     }
 
 

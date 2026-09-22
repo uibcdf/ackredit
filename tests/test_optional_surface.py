@@ -23,6 +23,7 @@ import ackredit
 from ackredit._depdigest import LIBRARIES
 from ackredit._private.smonitor.exceptions import MissingDependencyError
 from ackredit._private.smonitor.warnings import PdfCompilationWarning, PdfToolWarning
+from ackredit.core.registry import Registry
 
 
 def absent(library: str) -> bool:
@@ -69,9 +70,9 @@ def test_export_to_duecredit_names_duecredit():
 
 def test_load_plugins_does_nothing_when_nothing_provides_a_pack():
     """Nothing in this environment declares an `ackredit.citations` entry point."""
-    before = dict(ackredit.Registry.items)
+    before = dict(Registry.items)
     assert ackredit.load_plugins() is None
-    assert dict(ackredit.Registry.items) == before
+    assert dict(Registry.items) == before
 
 
 def test_enable_auto_reminder_is_quiet_and_repeatable():
@@ -90,7 +91,7 @@ def test_enrich_all_touches_no_network_without_a_doi(clean_registry):
     ackredit.track_item("local:1")
 
     assert ackredit.enrich_all() is None
-    assert ackredit.Registry.items["local:1"]["title"] == "No DOI here"
+    assert Registry.items["local:1"]["title"] == "No DOI here"
 
 
 # --- the system binary ----------------------------------------------------

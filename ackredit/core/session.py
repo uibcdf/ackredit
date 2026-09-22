@@ -173,7 +173,7 @@ def _from_document(data: Dict[str, Any]) -> Dict[str, Any]:
 class Session:
     """What one run tracked, and where it is being journalled.
 
-    Declarations live in :class:`ackredit.Registry` and are shared: a host
+    Declarations live in `ackredit.core.registry.Registry` and are shared: a host
     library registers what it *could* cite once, at import. Observations live
     here and are per run: what was actually reached.
 

@@ -59,11 +59,38 @@ def test_the_version_is_not_shadowed_by_a_lookup_function():
     assert isinstance(ackredit.__version__, str)
 
 
-def test_the_two_state_holders_are_exported_alike():
-    """Registry and Collector hold the same kind of state; exporting one and
-    not the other was an accident of which import line each arrived on."""
-    assert "Registry" in ackredit.__all__
-    assert "Collector" in ackredit.__all__
+@pytest.mark.parametrize("name", ["Registry", "Collector"])
+def test_the_state_holders_are_not_public(name):
+    """They hold the same kind of state and were exported alike, and nothing
+    Ackredit teaches used either: no mention in the integration guide, none in
+    the example libraries, and in the documentation only under the developer
+    guide. The supported surface is the functions in front of them.
+
+    Leaving them out of `__all__` while still reachable would contradict the
+    rule above: an accidental export is still an export.
+    """
+    assert name not in ackredit.__all__
+    assert not hasattr(ackredit, name), f"ackredit.{name} is still reachable"
+
+
+@pytest.mark.parametrize(
+    "module,name",
+    [("ackredit.core.registry", "Registry"), ("ackredit.core.collector", "Collector")],
+)
+def test_the_state_holders_are_where_they_always_were(module, name):
+    from importlib import import_module
+
+    assert hasattr(import_module(module), name)
+
+
+def test_the_supported_readers_answer_what_the_classes_would():
+    """Removing a name is only safe if what it was used for is still asked."""
+    ackredit.register_item(id="x:1", title="A Work")
+    ackredit.bind("a.target", ["x:1"])
+    ackredit.track_item("x:1", used_by="a.caller")
+
+    assert ackredit.bound_items("a.target") == ["x:1"]
+    assert ackredit.get_used_items() == {"x:1": ["a.caller"]}
 
 
 @pytest.mark.parametrize("name", sorted(ackredit.__all__))
