@@ -28,6 +28,36 @@ Entry-point plugins, metadata cache, DueCredit bridge, command-line reporter.
 ### 0.4.0 / 0.5.0 — Full feature set
 LaTeX and PDF output, multi-session aggregation, DataCite support, AST inspection.
 
+### 0.7.0 — What the reports say, and what the API promises
+Every module in the package was probed, and thirty-four reports were opened, fixed, guarded
+and archived.
+
+**The reports were wrong in ways that reach a manuscript.** Markdown, the default format,
+escaped nothing, so a `[` in a title broke the link and a `<script>` reached a renderer that
+passes HTML through. The BibTeX parser cut every field at its first inner brace, so a `.bib`
+file loaded from a reference manager was written back with braces that do not balance and a
+document that will not compile — and what did compile had lost the publisher of a book and
+the editor of a conference paper. CSL-JSON marked every author as indecomposable, so no
+reference manager could sort or abbreviate them, and raised on a year Ackredit itself
+produces. The notebook summary showed an object address anywhere but a notebook.
+
+**The data was wrong too.** Half the shipped citations named `"et al."` as a person, and one
+named a paper that does not exist; the guide every host library copies taught the same.
+Enrichment stored Crossref's HTML entities as characters, invented an author called "None",
+and could end a run on a metadata quirk.
+
+**The command line did not work.** `ackredit aggregate` had raised `AttributeError` since
+the persistence rewrite, and `ackredit report` on a missing file created it and reported
+emptiness. Nothing in the suite had ever run the program.
+
+**Theme F.** Every public name is classified, the deprecation policy is written, and the
+list of provisional names is empty: thirty-three names, all stable, four decided by removal
+rather than promotion — `Registry`, `Collector` and `serve_ui`. Output formats became
+extensible, which the vision had promised and nothing implemented.
+
+**Behaviour a caller can see changed**, which is what the minor is for, and three public
+names were removed, which is why it is not a patch.
+
 ### Since 0.5.0 — correctness, and the suite baseline
 Not a feature phase, and the largest body of work so far. Twenty reports opened, fixed,
 guarded and archived: `bind` had no runtime effect; the wheel shipped two files; the
@@ -41,7 +71,7 @@ Also in this period: SMonitor and DepDigest adopted, the MolSysSuite baseline an
 registration, conda environments and CI lanes, a session object, and versions derived from
 the tag.
 
-These are unreleased. The next tag carries them.
+Those were released as 0.6.0.
 
 ---
 
