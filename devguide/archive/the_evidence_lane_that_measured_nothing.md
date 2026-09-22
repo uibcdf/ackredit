@@ -32,6 +32,12 @@ the lane is `continue-on-error`, the run's own conclusion was `success`, and
 conclusion=success | jobs=5/6`. The lane existed to produce evidence and
 produced none, while looking like it had.
 
+That second part is a limitation of the sibling tool, not of this repository,
+and is filed there as `uibcdf/gh-run-receptor#51`: the JSON report carries
+`job_counts.failure` and the job's failed steps, and the human report lists
+every job, but the LLM report returns a single header line for a `PASS` and
+never reaches the section that would name a failed job.
+
 A second cause sat behind the first: `requires-python` is `>=3.11,<3.14` and
 `pip install . --no-deps` honours it, so the install step would have failed too.
 
