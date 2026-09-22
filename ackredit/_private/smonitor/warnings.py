@@ -98,6 +98,10 @@ class DependencySchemaWarning(AckreditWarning):
     catalog_key = "DependencySchemaWarning"
 
 
+class FormatExtensionWarning(AckreditWarning):
+    catalog_key = "FormatExtensionWarning"
+
+
 class DueCreditExportWarning(AckreditWarning):
     catalog_key = "DueCreditExportWarning"
 

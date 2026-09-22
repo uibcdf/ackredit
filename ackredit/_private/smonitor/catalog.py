@@ -136,6 +136,13 @@ CODES = {
         "dev_message": "get_info returned schema version {found}; ackredit.dependency_info documents {promised}.",
         "dev_hint": "Ackredit relays DepDigest's machine shape rather than defining one, so a version change there is a change to this function's contract and is never handed over silently.",
     },
+    "ACKREDIT-W018": {
+        "title": "Report written under a name that says otherwise",
+        "user_message": "'{path}' holds a {format} report, but its name says {implied}.",
+        "user_hint": "Rename the file, or drop the 'formats' argument and let the extension choose.",
+        "dev_message": "dump wrote format '{format}' to '{path}', whose extension implies '{implied}'.",
+        "dev_hint": "The explicit request wins; the name is what a later reader trusts, so the disagreement is said out loud.",
+    },
     # --- Errors --------------------------------------------------------------
     "ACKREDIT-E001": {
         "title": "Citation item has no id",
@@ -171,6 +178,13 @@ CODES = {
         "user_hint": "A format needs a lower-case name, a callable that renders it, and a file extension.",
         "dev_message": "register_format rejected name={format!r}: {reason}.",
         "dev_hint": "Names are matched exactly, so one style is enforced at registration rather than guessed at lookup.",
+    },
+    "ACKREDIT-E009": {
+        "title": "One file cannot hold several reports",
+        "user_message": "dump() was asked for {count} formats ({formats}) and one file, '{path}'.",
+        "user_hint": "Pass a directory to write them all, or name a single format.",
+        "dev_message": "dump refused {formats} for the file path '{path}'.",
+        "dev_hint": "It used to write the first one and discard the rest without a word.",
     },
     "ACKREDIT-E008": {
         "title": "Argument is not what it must be",
@@ -212,6 +226,7 @@ _WARNINGS = {
     "FormatPluginWarning": "ACKREDIT-W014",
     "MetadataRecordWarning": "ACKREDIT-W015",
     "DependencySchemaWarning": "ACKREDIT-W017",
+    "FormatExtensionWarning": "ACKREDIT-W018",
 }
 
 _ERRORS = {
@@ -222,6 +237,7 @@ _ERRORS = {
     "FormatNameTakenError": "ACKREDIT-E005",
     "InvalidFormatError": "ACKREDIT-E006",
     "ArgumentError": "ACKREDIT-E008",
+    "ManyFormatsOneFileError": "ACKREDIT-E009",
 }
 
 CATALOG = {

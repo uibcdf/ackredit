@@ -93,6 +93,25 @@ import ackredit
 ackredit.dump("my_citations", formats=["markdown", "bibtex", "provenance", "latex"])
 ```
 
+Each format is written to `ackredit_report.<extension>`. Two formats can share an
+extension — `text` and `provenance` are both `.txt` — and asking for both writes
+`ackredit_report_text.txt` and `ackredit_report_provenance.txt`, so neither replaces the
+other. Only a clash is renamed: the LaTeX report points at `ackredit_report.bib`, and that
+name does not move.
+
+A file holds one report, and its name chooses it:
+
+```python
+ackredit.dump("refs.bib")  # BibTeX
+ackredit.dump("refs.csl.json")  # CSL-JSON, for Zotero and friends
+ackredit.dump("citations.md")  # Markdown
+```
+
+A name that says nothing, such as `citations.dat`, gets Markdown. Asking for a format
+the name contradicts writes what you asked for and warns with `ACKREDIT-W018`, because
+whoever opens the file later will trust its name. Asking for several formats and one file
+is refused with `ACKREDIT-E009` and writes nothing; pass a directory instead.
+
 ### Automatic PDF Generation
 If you have `pdflatex` installed, Ackredit can compile the LaTeX report into a PDF automatically.
 

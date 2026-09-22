@@ -41,6 +41,12 @@ class UnknownFormatError(AckreditError, ValueError):
     catalog_key = "UnknownFormatError"
 
 
+class ManyFormatsOneFileError(AckreditError, ValueError):
+    """Several report formats asked for, and one file to put them in."""
+
+    catalog_key = "ManyFormatsOneFileError"
+
+
 class ArgumentError(AckreditError, ValueError):
     """An argument a digester refused. Also a ValueError, which is what a bad
     argument value normally raises."""

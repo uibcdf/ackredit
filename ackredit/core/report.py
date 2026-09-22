@@ -18,10 +18,12 @@ from .._private.smonitor.emitter import warn
 from .._private.smonitor.exceptions import (
     FormatNameTakenError,
     InvalidFormatError,
+    ManyFormatsOneFileError,
     UnknownFormatError,
 )
 from .._private.smonitor.warnings import (
     DependencySchemaWarning,
+    FormatExtensionWarning,
     FormatPluginWarning,
     PdfCompilationWarning,
     PdfToolWarning,
@@ -179,6 +181,23 @@ def available_formats() -> list[str]:
     return sorted(_RENDERERS)
 
 
+def _format_for_name(path: Path) -> str | None:
+    """The format a file name asks for, or ``None`` if it asks for nothing.
+
+    The longest extension wins, so ``refs.csl.json`` is CSL-JSON rather than
+    JSON, and the table is read in its own order, so ``.txt`` is plain text
+    rather than the provenance graph that shares the extension.
+    """
+    _load_plugins_once()
+    name = path.name.lower()
+    best: tuple[int, str] | None = None
+    for fmt, (_, extension) in _RENDERERS.items():
+        suffix = "." + extension.lower()
+        if name.endswith(suffix) and (best is None or len(suffix) > best[0]):
+            best = (len(suffix), fmt)
+    return best[1] if best else None
+
+
 def _resolve_format(name: str) -> str:
     """Return the canonical name, or refuse and say what exists.
 
@@ -274,30 +293,67 @@ def dump(
     path: str | Path, formats: list[str] | None = None, build_pdf: bool = False
 ) -> None:
     """
-    Save citation reports in multiple formats to a file or directory.
-    If path is a directory, it will save multiple files (e.g., report.md, report.bib).
-    If formats is None, it defaults to ["markdown", "bibtex", "provenance", "latex"].
+    Save citation reports to a file or a directory.
+
+    A directory takes several formats and writes one file each, defaulting to
+    ``["markdown", "bibtex", "provenance", "latex"]``.
+
+    A file takes one. Asked for several it refuses, because writing the first
+    and discarding the rest is how a report silently goes missing. Asked for
+    none it reads the extension, so ``dump("refs.bib")`` is BibTeX; it used to
+    write Markdown under that name.
+
     If build_pdf is True, it attempts to compile the latex report into a PDF.
     """
-    if formats is None:
-        formats = ["markdown", "bibtex", "provenance", "latex"]
-
     path = Path(path)
 
     if path.is_dir() or not path.suffix:
+        formats = formats or ["markdown", "bibtex", "provenance", "latex"]
         path.mkdir(parents=True, exist_ok=True)
-        for fmt in formats:
-            _, ext = _RENDERERS[_resolve_format(fmt)]
-            filename = f"ackredit_report.{ext}"
-            file_path = path / filename
+
+        # Two formats can share an extension: `provenance` and `text` are both
+        # `.txt`. Asking for both used to write one file twice, so the report
+        # the caller saw was whichever came last. Only a clash is renamed, so
+        # `ackredit_report.bib` keeps the name `\bibliography{ackredit_report}`
+        # in the LaTeX report points at.
+        extensions = [_RENDERERS[_resolve_format(fmt)][1] for fmt in formats]
+
+        for fmt, ext in zip(formats, extensions):
+            stem = "ackredit_report"
+            if extensions.count(ext) > 1:
+                stem = f"{stem}_{_resolve_format(fmt)}"
+            file_path = path / f"{stem}.{ext}"
             content = report(format=fmt)
             file_path.write_text(content)
 
         if build_pdf:
             compile_pdf(path)
     else:
-        # If a single file path is provided, we just save the first format or markdown
-        fmt = formats[0] if formats else "markdown"
+        implied = _format_for_name(path)
+
+        if not formats:
+            fmt = implied or "markdown"
+        elif len(formats) > 1:
+            raise ManyFormatsOneFileError(
+                extra={
+                    "count": len(formats),
+                    "formats": ", ".join(formats),
+                    "path": str(path),
+                }
+            )
+        else:
+            fmt = formats[0]
+
+        written = _resolve_format(fmt)
+        if implied is not None and implied != written:
+            # The caller was explicit, so this is written as asked. The name is
+            # what the next reader trusts, and it now says something else.
+            warn(
+                FormatExtensionWarning(
+                    extra={"path": str(path), "format": written, "implied": implied}
+                )
+            )
+
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(report(format=fmt))
 
