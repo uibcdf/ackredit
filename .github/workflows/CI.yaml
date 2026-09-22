@@ -60,10 +60,15 @@ jobs:
 
       # smonitor and depdigest are core dependencies published to the uibcdf
       # conda channel and not to PyPI, so the environment comes from conda.
+      # The contract file pins `python >=3.11,<3.14`, so the evidence lane needs
+      # its own: asking for `python=3.14` against that pin is unsolvable, and
+      # that is how the first 3.14 lane failed before running a single test
+      # (`uibcdf/ackredit#64`). The two files are held identical apart from the
+      # interpreter, so what the lane measures stays comparable.
       - name: Setup conda env
         uses: mamba-org/setup-micromamba@v3.2.1
         with:
-          environment-file: devtools/conda-envs/test_env.yaml
+          environment-file: devtools/conda-envs/${{ matrix.experimental && 'test_env_next.yaml' || 'test_env.yaml' }}
           environment-name: test
           condarc: |
             channels:
@@ -81,10 +86,15 @@ jobs:
           micromamba info
           micromamba list
 
+      # `requires-python` is still `>=3.11,<3.14`, and it stays there until
+      # `suite.toml` names Ackredit. pip honours it, so the evidence lane has to
+      # say so out loud — the same `--ignore-requires-python` the local run
+      # reported in `uibcdf/molsyssuite#29` used. The promised versions never
+      # pass it: there, refusing to install is the contract working.
       - name: Install package
         shell: bash -l {0}
         run: |
-          python -m pip install . --no-deps
+          python -m pip install . --no-deps ${{ matrix.experimental && '--ignore-requires-python' || '' }}
 
       - name: Test import module
         shell: bash -l {0}

@@ -134,3 +134,133 @@ def test_an_experimental_version_is_outside_the_contract():
 def test_the_experimental_lane_does_not_gate():
     job = _ci()["jobs"]["test"]
     assert "matrix.experimental" in str(job.get("continue-on-error", ""))
+
+
+# --- a lane that never reached a test ---------------------------------------
+#
+# The first 3.14 lane asked micromamba for `python=3.14` against an environment
+# file pinned to `python >=3.11,<3.14`. The solver refused, the job died in
+# "Setup conda env", and because the lane is non-blocking the run was green with
+# nothing measured (`uibcdf/ackredit#64`). Nothing here had noticed that a
+# matrix can request a version its own environment forbids.
+
+
+def _test_steps() -> list[dict]:
+    return _ci()["jobs"]["test"]["steps"]
+
+
+def _step(name: str) -> dict:
+    for step in _test_steps():
+        if step.get("name") == name:
+            return step
+    raise AssertionError(f"the test job has no step named {name!r}")
+
+
+def _resolve(expression: str, experimental: bool) -> str:
+    """Read a `${{ matrix.experimental && 'a' || 'b' }}` choice the way GitHub does."""
+    import re
+
+    match = re.search(
+        r"\$\{\{\s*matrix\.experimental\s*&&\s*'([^']*)'\s*\|\|\s*'([^']*)'\s*\}\}",
+        expression,
+    )
+    if not match:
+        return expression
+    chosen = match.group(1) if experimental else match.group(2)
+    return expression[: match.start()] + chosen + expression[match.end() :]
+
+
+def _environment_file(experimental: bool) -> Path:
+    declared = _step("Setup conda env")["with"]["environment-file"]
+    return ROOT / _resolve(declared, experimental)
+
+
+def _python_spec(environment: Path) -> str:
+    document = yaml.safe_load(environment.read_text(encoding="utf-8"))
+    for dependency in document["dependencies"]:
+        if isinstance(dependency, str) and dependency.split()[0] == "python":
+            return dependency
+    raise AssertionError(f"{environment.name} names no interpreter")
+
+
+def _admits(spec: str, version: str) -> bool:
+    import re
+
+    asked = tuple(int(part) for part in version.split("."))
+    for operator, bound in re.findall(r"(>=|<=|<|>|==)\s*(\d+(?:\.\d+)*)", spec):
+        limit = tuple(int(part) for part in bound.split("."))
+        compared = asked[: len(limit)] if operator in (">=", "<=", "==") else asked
+        padded = limit + (0,) * (len(compared) - len(limit))
+        if operator == ">=" and not compared >= limit[: len(compared)]:
+            return False
+        if operator == "<" and not asked + (0,) * (len(padded) - len(asked)) < padded:
+            return False
+        if operator == "<=" and not compared <= limit[: len(compared)]:
+            return False
+        if operator == ">" and not compared > limit[: len(compared)]:
+            return False
+        if operator == "==" and compared != limit[: len(compared)]:
+            return False
+    return True
+
+
+def _cells() -> list[tuple[str, bool]]:
+    matrix = _ci()["jobs"]["test"]["strategy"]["matrix"]
+    cells = [(version, False) for version in matrix["python-version"]]
+    cells += [
+        (entry["python-version"], entry["experimental"])
+        for entry in matrix.get("include", [])
+    ]
+    return cells
+
+
+def test_the_helper_that_reads_a_version_bound_works():
+    """The guard below is only as good as this, and a bound is easy to misread."""
+    assert _admits("python >=3.11,<3.14", "3.13")
+    assert not _admits("python >=3.11,<3.14", "3.14")
+    assert not _admits("python >=3.11,<3.14", "3.10")
+    assert _admits("python >=3.14,<3.15", "3.14")
+    assert not _admits("python >=3.14,<3.15", "3.13")
+
+
+@pytest.mark.parametrize("version,experimental", _cells())
+def test_every_matrix_version_is_admitted_by_its_environment(version, experimental):
+    """A cell whose environment forbids its interpreter dies in the solver, and
+    a non-blocking one dies in silence."""
+    environment = _environment_file(experimental)
+    spec = _python_spec(environment)
+
+    assert _admits(spec, version), (
+        f"the matrix asks for python {version} and {environment.name} "
+        f"pins `{spec}`, which the solver cannot satisfy"
+    )
+
+
+def test_the_evidence_environment_is_the_contract_environment_but_for_python():
+    """Two environments that drift apart stop being comparable, and then the
+    lane no longer says what it claims to say about the new interpreter."""
+    promised = yaml.safe_load(_environment_file(False).read_text(encoding="utf-8"))
+    evidence = yaml.safe_load(_environment_file(True).read_text(encoding="utf-8"))
+
+    def without_python(document):
+        return [
+            item
+            for item in document["dependencies"]
+            if not (isinstance(item, str) and item.split()[0] == "python")
+        ]
+
+    assert promised["channels"] == evidence["channels"]
+    assert without_python(promised) == without_python(evidence)
+
+
+def test_only_the_experimental_lane_ignores_the_contract():
+    """`requires-python` is what stops an unsupported interpreter installing the
+    package. Bypassing it in a gating lane would retire that protection without
+    anyone deciding to."""
+    install = _step("Install package")["run"]
+
+    assert "--ignore-requires-python" in install, (
+        "the evidence lane cannot install under a `<3.14` contract without it"
+    )
+    assert _resolve(install, experimental=False).count("--ignore-requires-python") == 0
+    assert _resolve(install, experimental=True).count("--ignore-requires-python") == 1
