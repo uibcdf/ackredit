@@ -196,6 +196,10 @@ _CACHE_MAX_AGE = 30 * 24 * 60 * 60
 # services. Deliberately not defaulted: see `_contact`.
 CONTACT_VARIABLE = "ACKREDIT_CONTACT_EMAIL"
 
+# Entry-point group for citation packs, beside `ackredit.formats` in
+# `ackredit/core/report.py`. Both are asked for the same way.
+_CITATION_GROUP = "ackredit.citations"
+
 _throttle_lock = threading.Lock()
 _throttle = {
     "limit": _DEFAULT_RATE_LIMIT,
@@ -568,24 +572,30 @@ class Registry:
 
     @classmethod
     def load_plugins(cls) -> None:
-        """
-        Discover and load citation plugins using Python entry points.
-        External packages can register citations by adding to their pyproject.toml:
-        [project.entry-points."ackredit.citations"]
-        anything = "my_package.citations:register"
+        """Load the citation packs other packages provide.
+
+        A package ships one by declaring an entry point that registers::
+
+            [project.entry-points."ackredit.citations"]
+            anything = "my_package.citations:register"
+
+        The entry point loads a callable, which is called with no arguments and
+        is expected to call `register_item`, `bind` or `add_injection`. Calling
+        this twice is safe: `register_item` overwrites and `add_injection`
+        deduplicates, so a pack that only declares has no second effect.
+
+        A pack that fails raises `ACKREDIT-W008` and never propagates, so a
+        broken third party cannot take the host down, and the packs beside it
+        still load.
+
+        This used to ask for the group in two ways, the second for the dict
+        `entry_points()` returned before Python 3.10 — unreachable here, since
+        the supported range starts at 3.11, and an `AttributeError` rather than
+        a fallback if it ever had been.
         """
         from importlib import metadata
 
-        eps = metadata.entry_points()
-
-        # In Python 3.10+, entry_points() returns a SelectableGroups object
-        if hasattr(eps, "select"):
-            plugins = eps.select(group="ackredit.citations")
-        else:
-            # Fallback for older versions if necessary
-            plugins = eps.get("ackredit.citations", [])
-
-        for entry_point in plugins:
+        for entry_point in metadata.entry_points(group=_CITATION_GROUP):
             try:
                 register_func = entry_point.load()
                 # The function is expected to call ackredit.register_item or ackredit.bind

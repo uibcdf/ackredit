@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (53)
+### Resolved (54)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -31,6 +31,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
+- [`load_plugins_asks_twice_and_is_asked_nothing.md`](load_plugins_asks_twice_and_is_asked_nothing.md) — [#54](https://github.com/uibcdf/ackredit/issues/54) — The citation plugin loader carried a branch for a Python the package cannot run on, and nothing exercised the promise it makes. *(resolved, measured)*
 - [`migrate_static_version_to_versioningit.md`](migrate_static_version_to_versioningit.md) — [#20](https://github.com/uibcdf/ackredit/issues/20) — Migrate Ackredit from a static package version to canonical Versioningit tags. *(resolved, reproduced)*
 - [`no_public_name_says_what_it_promises.md`](no_public_name_says_what_it_promises.md) — [#31](https://github.com/uibcdf/ackredit/issues/31) — __all__ stated what was public and nothing stated what was kept, so seven untested names sat beside the ones the library is built on. *(resolved, measured)*
 - [`not_a_polite_client.md`](not_a_polite_client.md) — [#48](https://github.com/uibcdf/ackredit/issues/48) — Ackredit fetched as fast as it could, identified no contact, and reported a rate-limited response as a network problem. *(resolved, measured)*
