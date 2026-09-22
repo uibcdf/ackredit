@@ -88,21 +88,26 @@ def test_a_module_the_host_imported_first_is_credited():
     assert run["out"] == ["paper:csv"]
 
 
-def test_an_injection_on_a_module_not_yet_imported_waits_for_the_import():
-    run = in_a_fresh_process("""
+def test_an_injection_on_a_module_not_yet_imported_waits_for_the_import(tmp_path):
+    """A module written for the test, because whether a real one is already
+    loaded depends on the interpreter: `import ackredit` loads `csv` on Python
+    3.11 and 3.12 and not on 3.13, which is how this case first failed in CI."""
+    (tmp_path / "injected_probe.py").write_text("VALUE = 1\n", encoding="utf-8")
+    run = in_a_fresh_process(f"""
         import json, sys
+        sys.path.insert(0, {str(tmp_path)!r})
         import ackredit
 
-        assert "csv" not in sys.modules, "the case needs csv not yet imported"
-        ackredit.register_item(id="paper:csv", type="article", title="CSV")
-        ackredit.add_injection("csv", ["paper:csv"])
+        assert "injected_probe" not in sys.modules
+        ackredit.register_item(id="paper:probe", type="article", title="Probe")
+        ackredit.add_injection("injected_probe", ["paper:probe"])
         ackredit.enable_import_hooks()
         before = sorted(ackredit.get_used_items())
-        import csv
+        import injected_probe
         after = sorted(ackredit.get_used_items())
         print(json.dumps([before, after]))
     """)
-    assert run["out"] == [[], ["paper:csv"]]
+    assert run["out"] == [[], ["paper:probe"]]
 
 
 def test_without_the_hook_an_injection_credits_nothing():
@@ -139,7 +144,18 @@ def test_discovery_credits_nothing_that_was_already_loaded():
 
 # --- the standard library -----------------------------------------------------
 
-_STDLIB = ["sqlite3", "decimal", "csv", "json", "fractions"]
+# Which of these `import ackredit` has already loaded depends on the Python
+# version, so the test uses whichever are fresh and requires enough of them.
+_STDLIB = [
+    "sqlite3",
+    "decimal",
+    "fractions",
+    "colorsys",
+    "wave",
+    "mailbox",
+    "csv",
+    "json",
+]
 
 
 def test_importing_the_standard_library_is_silent_and_credits_nothing():
