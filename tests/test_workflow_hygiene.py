@@ -89,3 +89,48 @@ def test_the_installed_ruff_matches_the_pinned_one():
         f"ruff {running} is installed but the suite policy pins {pinned}; "
         "the local format gate does not match CI"
     )
+
+
+def _ci() -> dict:
+    import yaml
+
+    return yaml.safe_load(
+        (ROOT / ".github/workflows/CI.yaml").read_text(encoding="utf-8")
+    )
+
+
+def _contract_versions() -> list[str]:
+    """The minor versions `requires-python` promises."""
+    import re
+    import tomllib
+
+    contract = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    declared = contract["project"]["requires-python"]
+    low, high = re.findall(r"3\.(\d+)", declared)
+    return [f"3.{minor}" for minor in range(int(low), int(high))]
+
+
+def test_ci_runs_every_version_the_contract_promises():
+    """It ran 3.13 alone while promising 3.11 to 3.13, so two of the three had
+    never been run by anything — `uibcdf/ackredit#63`. A version promised and
+    never executed is found by the user who has it."""
+    matrix = _ci()["jobs"]["test"]["strategy"]["matrix"]
+
+    assert sorted(matrix["python-version"]) == sorted(_contract_versions())
+
+
+def test_an_experimental_version_is_outside_the_contract():
+    """3.14 is in the matrix as evidence for `uibcdf/molsyssuite#29` and claims
+    nothing. Were it ever moved into the promised list without the contract
+    moving too, the lane would have become a claim by accident."""
+    matrix = _ci()["jobs"]["test"]["strategy"]["matrix"]
+    promised = set(_contract_versions())
+
+    for entry in matrix.get("include", []):
+        assert entry["python-version"] not in promised
+        assert entry["experimental"] is True, "an evidence lane must not gate a merge"
+
+
+def test_the_experimental_lane_does_not_gate():
+    job = _ci()["jobs"]["test"]
+    assert "matrix.experimental" in str(job.get("continue-on-error", ""))

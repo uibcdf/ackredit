@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (60)
+### Resolved (61)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -21,6 +21,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`bibtex_emits_types_no_style_defines.md`](bibtex_emits_types_no_style_defines.md) — [#10](https://github.com/uibcdf/ackredit/issues/10) — The BibTeX renderer emitted biblatex entry types that a BibTeX style cannot render. *(resolved, reproduced)*
 - [`bind_declarations_have_no_runtime_effect.md`](bind_declarations_have_no_runtime_effect.md) — [#1](https://github.com/uibcdf/ackredit/issues/1) — bind() stored declarations that nothing ever read, leaving half the model inert. *(resolved, reproduced)*
 - [`cff_parser_misreads_structure.md`](cff_parser_misreads_structure.md) — [#10](https://github.com/uibcdf/ackredit/issues/10) — A regex-based CITATION.cff reader dropped entity authors, merged preferred-citation and missed canonical DOIs. *(resolved, reproduced)*
+- [`ci_runs_one_of_three_versions.md`](ci_runs_one_of_three_versions.md) — [#63](https://github.com/uibcdf/ackredit/issues/63) — CI ran Python 3.13 alone while the contract promised 3.11 to 3.13, so two of the three had never been executed. *(resolved, measured)*
 - [`csl_json_does_not_carry_a_reference.md`](csl_json_does_not_carry_a_reference.md) — [#44](https://github.com/uibcdf/ackredit/issues/44) — CSL-JSON raised on a year Ackredit itself produces, and mapped a short fixed list so a book reached a reference manager unformattable. *(resolved, measured)*
 - [`csl_json_marks_every_author_as_literal.md`](csl_json_marks_every_author_as_literal.md) — [#38](https://github.com/uibcdf/ackredit/issues/38) — Every author reached a reference manager as a literal, declaring a name that could be decomposed to be indecomposable. *(resolved, measured)*
 - [`dependency_info_relays_a_promise.md`](dependency_info_relays_a_promise.md) — [#59](https://github.com/uibcdf/ackredit/issues/59) — dependency_info was promised by naming which of DepDigest's two shapes is the contract and verifying the version it relays. *(resolved, measured)*

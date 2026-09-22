@@ -25,9 +25,24 @@ jobs:
       - run: ruff format --check .
 
   test:
-    name: Test on ubuntu-latest, Python 3.13
+    # The contract is `>=3.11,<3.14` and this ran 3.13 alone, so two of the three
+    # versions Ackredit promises had never been run by anything
+    # (`uibcdf/ackredit#63`). 3.14 is here as evidence for the suite transition in
+    # `uibcdf/molsyssuite#29` and claims nothing: it does not gate a merge, and
+    # `requires-python` stays at the default contract until `suite.toml` names
+    # Ackredit. `tests/test_workflow_hygiene.py` holds this list to the contract.
+    name: Test on ubuntu-latest, Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+        experimental: [false]
+        include:
+          - python-version: "3.14"
+            experimental: true
     steps:
       - uses: actions/checkout@v6
         with:
@@ -41,7 +56,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: ${{ matrix.python-version }}
 
       # smonitor and depdigest are core dependencies published to the uibcdf
       # conda channel and not to PyPI, so the environment comes from conda.
@@ -56,7 +71,7 @@ jobs:
               - conda-forge
             channel_priority: strict
           create-args: >-
-            python=3.13
+            python=${{ matrix.python-version }}
 
       - name: Info conda
         shell: bash -l {0}
