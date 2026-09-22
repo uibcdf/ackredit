@@ -4,9 +4,10 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (45)
+### Resolved (47)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
+- [`a_cycle_empties_the_provenance_report.md`](a_cycle_empties_the_provenance_report.md) — [#46](https://github.com/uibcdf/ackredit/issues/46) — A recursive function made the provenance report come out empty, and a cycle below a root raised RecursionError. *(resolved, measured)*
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
 - [`aggregated_citations_never_reach_the_journal.md`](aggregated_citations_never_reach_the_journal.md) — [#39](https://github.com/uibcdf/ackredit/issues/39) — aggregate merged saved sessions into memory and never into the journal, so the file held less than the report. *(resolved, measured)*
@@ -42,6 +43,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`the_bibtex_parser_truncates_at_the_first_brace.md`](the_bibtex_parser_truncates_at_the_first_brace.md) — [#42](https://github.com/uibcdf/ackredit/issues/42) — A non-greedy regex cut every field at its first inner brace, so a loaded .bib file was re-emitted with braces that do not balance. *(resolved, measured)*
 - [`the_command_line_is_broken.md`](the_command_line_is_broken.md) — [#40](https://github.com/uibcdf/ackredit/issues/40) — Every subcommand was wrong in some way, and nothing in the test suite ran the program. *(resolved, measured)*
 - [`the_documentation_build_is_not_repeatable.md`](the_documentation_build_is_not_repeatable.md) — [#29](https://github.com/uibcdf/ackredit/issues/29) — Sphinx scanned its own output directory, so a clean documentation build passed and the next one failed. *(resolved, measured)*
+- [`the_duecredit_bridge_drops_a_citation.md`](the_duecredit_bridge_drops_a_citation.md) — [#47](https://github.com/uibcdf/ackredit/issues/47) — A tracked item that was never registered was skipped on export, the one path in the library that dropped a citation silently. *(resolved, measured)*
 - [`the_exit_reminder_writes_ansi_into_logs.md`](the_exit_reminder_writes_ansi_into_logs.md) — [#35](https://github.com/uibcdf/ackredit/issues/35) — The exit reminder wrote ANSI colour to stderr unconditionally, so redirected logs received the escapes literally. *(resolved, measured)*
 - [`the_full_extra_is_not_full.md`](the_full_extra_is_not_full.md) — [#32](https://github.com/uibcdf/ackredit/issues/32) — duecredit was declared as an optional feature with no extra installing it, so `full` was not full. *(resolved, measured)*
 - [`the_guide_reaches_nobody.md`](the_guide_reaches_nobody.md) — [#24](https://github.com/uibcdf/ackredit/issues/24) — The integration guide reached no repository and opened without saying what Ackredit is. *(resolved, reproduced)*

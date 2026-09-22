@@ -24,9 +24,11 @@ def export_to_duecredit():
     from ..formats import bibtex
 
     for item_id in used:
-        item = items.get(item_id)
-        if not item:
-            continue
+        # A tracked item that was never registered is still a citation the run
+        # asked for. Every other renderer reports it with what is known — a
+        # minimal `@misc`, or the id as the title — and this was the one path
+        # in the library that dropped it in silence.
+        item = items.get(item_id) or {"id": item_id, "title": item_id}
 
         description = item.get("title", item_id)
         path = "ackredit." + item_id
