@@ -138,3 +138,59 @@ def test_one_item_failing_does_not_cost_the_others(duecredit):
         ackredit.export_to_duecredit()
 
     assert [call["description"] for call in duecredit.due.calls] == ["Fine"]
+
+
+# --- what the bridge promises ---------------------------------------------
+
+
+def test_duecredits_api_does_not_reach_our_contract():
+    """It was provisional for being "a bridge to another project's API, which
+    we do not control". DueCredit appears nowhere in what we promise: a change
+    there is adapted inside the function."""
+    import inspect
+
+    signature = inspect.signature(ackredit.export_to_duecredit)
+    assert not signature.parameters
+    assert signature.return_annotation in (None, inspect.Signature.empty)
+
+
+def test_it_returns_nothing(duecredit):
+    ackredit.register_item(id="a:1", type="article", title="A Paper", doi="10.1/x")
+    ackredit.track_item("a:1", used_by="run")
+    assert ackredit.export_to_duecredit() is None
+
+
+def test_the_only_error_it_raises_is_ours(monkeypatch, clean_registry):
+    """With duecredit absent, `@dep_digest` raises Ackredit's own exception
+    rather than letting an ImportError out."""
+    import sys
+
+    from ackredit._private.smonitor.exceptions import AckreditError
+
+    monkeypatch.setitem(sys.modules, "duecredit", None)
+    from depdigest.core.checker import is_installed
+
+    is_installed.cache_clear()
+    monkeypatch.delitem(sys.modules, "duecredit")
+    is_installed.cache_clear()
+
+    with pytest.raises(AckreditError):
+        ackredit.export_to_duecredit()
+
+
+def test_a_failure_inside_duecredit_stays_a_warning(duecredit, clean_registry):
+    """Whatever DueCredit raises reaches the caller as ACKREDIT-W013."""
+    from ackredit._private.smonitor.warnings import DueCreditExportWarning
+
+    class TheirError(Exception):
+        pass
+
+    def cite(entry, description=None, path=None):
+        raise TheirError("something changed on their side")
+
+    duecredit.due.cite = cite
+    ackredit.register_item(id="a:1", type="article", title="A Paper", doi="10.1/x")
+    ackredit.track_item("a:1", used_by="run")
+
+    with pytest.warns(DueCreditExportWarning):
+        ackredit.export_to_duecredit()

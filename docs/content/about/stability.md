@@ -31,7 +31,7 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
-Thirty-one names are stable and three provisional. This is the only place those counts
+Thirty-two names are stable and two provisional. This is the only place those counts
 are written; everything else links here, so they cannot drift apart.
 
 | name | status | why |
@@ -68,8 +68,8 @@ are written; everything else links here, so they cannot drift apart.
 | `summary` | stable | Its contract is three renderings of the same run: `_repr_html_` for a notebook, `str()` and `repr()` everywhere else. `uibcdf/ackredit#51` added the last two, which is what it was missing. |
 | `register_format` | stable | What a renderer is handed is written on it and guarded: a copy of the used map, a read-only registry, and options a format may take. `uibcdf/ackredit#53` settled all three. |
 | `load_plugins` | stable | The promise is written on it and exercised: the `ackredit.citations` group, a callable that registers, a broken pack reported and never propagated, and loading twice safe. `uibcdf/ackredit#54`. |
+| `export_to_duecredit` | stable | It takes nothing, returns nothing and raises only Ackredit's own errors, so DueCredit's API does not reach our contract: a change there is adapted inside. `uibcdf/ackredit#56`. |
 | `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |
-| `export_to_duecredit` | provisional | A bridge to another project's API, which we do not control. |
 | `serve_ui` | provisional | Its own docstring calls it a conceptual stub. |
 
 `tests/test_api_stability.py` holds this table to `__all__`, so a name cannot join the
