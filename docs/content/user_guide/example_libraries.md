@@ -89,17 +89,32 @@ ackredit.report(format="provenance")
 Neither library knows what the other cites. DummyPipeline never mentions the solver's
 papers, and the tree still shows which call brought them in.
 
-## Running them yourself
+## A workflow, from the user's side
+
+Everything above is what a host library does. A user of one does less: runs an analysis
+and asks for the references at the end. `examples/workflow.py` is that, whole:
+
+```{literalinclude} ../../../examples/workflow.py
+:language: python
+```
+
+Run it from a clone:
 
 ```bash
 git clone https://github.com/uibcdf/ackredit.git
 cd ackredit
-PYTHONPATH=examples python -c "
-import ackredit, dummy_pipeline
-dummy_pipeline.analyse('system A', method='iterative')
-print(ackredit.report())
-"
+python examples/workflow.py
 ```
+
+It prints what the run used and why, and writes the Markdown, BibTeX, LaTeX and
+provenance reports to `citations/`.
+
+The same workflow is in
+[`examples/workflow.ipynb`](https://github.com/uibcdf/ackredit/blob/main/examples/workflow.ipynb)
+as a notebook, where `ackredit.summary()` shows the citations as a table. Open it from
+`examples/`. It is stored with its outputs, so it reads on GitHub without running, and the
+test suite executes every cell and fails if what is stored is no longer what the code
+produces.
 
 ## What they are for
 

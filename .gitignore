@@ -18,3 +18,6 @@ citation_package/
 
 # Written by versioningit at build time
 ackredit/_version.py
+
+# What examples/workflow.py writes when run from the repository root.
+/citations/

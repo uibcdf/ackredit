@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (65)
+### Resolved (66)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -13,6 +13,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
 - [`aggregated_citations_never_reach_the_journal.md`](aggregated_citations_never_reach_the_journal.md) — [#39](https://github.com/uibcdf/ackredit/issues/39) — aggregate merged saved sessions into memory and never into the journal, so the file held less than the report. *(resolved, measured)*
+- [`an_example_workflow.md`](an_example_workflow.md) — [#68](https://github.com/uibcdf/ackredit/issues/68) — The examples showed Ackredit inside a host library and never from the user's side; a script and a notebook now run a workflow and collect its references. *(resolved, asserted)*
 - [`an_injection_shadows_the_citation_file.md`](an_injection_shadows_the_citation_file.md) — [#28](https://github.com/uibcdf/ackredit/issues/28) — A shipped injection marked the package as handled, so its own CITATION.cff was never read. *(resolved, measured)*
 - [`an_unknown_format_returns_a_different_one.md`](an_unknown_format_returns_a_different_one.md) — [#15](https://github.com/uibcdf/ackredit/issues/15) — A typo in a format name silently produced plain text, written to a file named for neither. *(resolved, reproduced)*
 - [`argdigest_adopted.md`](argdigest_adopted.md) — [#62](https://github.com/uibcdf/ackredit/issues/62) — ArgDigest adopted where it fits and refused where it costs, closing six public functions that accepted arguments that could not be right. *(resolved, measured)*
