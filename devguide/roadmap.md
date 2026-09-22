@@ -151,8 +151,13 @@ The last theme, and the one that earns the number.
       theme C by definition.
 
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
-stability commitment would make the commitment meaningless, so that list is the real
-measure of how far this theme has to go.
+stability commitment would make the commitment meaningless, so that list was the real
+measure of how far this theme had to go — and it is empty. Every public name has been
+decided once, on the evidence available now, and four were removed rather than promised:
+`Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
+
+What remains is the item below, which waits on theme C by definition: adoption is what can
+reopen a decision taken without it.
 
 ---
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import inspect
+import json
 import logging
 import re
 import shutil
@@ -20,6 +21,7 @@ from .._private.smonitor.exceptions import (
     UnknownFormatOptionError,
 )
 from .._private.smonitor.warnings import (
+    DependencySchemaWarning,
     FormatPluginWarning,
     PdfCompilationWarning,
     PdfToolWarning,
@@ -192,14 +194,49 @@ def _resolve_format(name: str) -> str:
     return canonical
 
 
+# The DepDigest payload Ackredit relays as its own contract. The table shape
+# carries no version because it is a rendering; only the machine shape is
+# promised, and only it can be checked.
+_DEPENDENCY_SCHEMA = "1.0"
+
+
+def _check_dependency_schema(info: Any) -> None:
+    """Report a relayed payload that is not the one documented."""
+    if isinstance(info, str):
+        try:
+            info = json.loads(info)
+        except ValueError:
+            return
+    if not isinstance(info, dict):
+        return
+
+    found = info.get("schema", {}).get("version")
+    if found is not None and found != _DEPENDENCY_SCHEMA:
+        warn(
+            DependencySchemaWarning(
+                extra={"found": found, "promised": _DEPENDENCY_SCHEMA}
+            )
+        )
+
+
 def dependency_info(format: str = "table"):
     """Report which optional dependencies this environment provides.
 
     Ackredit's core needs none of them; each unlocks one optional feature.
-    ``format`` is ``"table"`` for people, or ``"dict"`` or ``"json"`` for a
-    machine, following the ``depdigest.get_info@1.0`` schema.
+
+    **What is promised.** ``format="dict"`` and ``format="json"`` return the
+    ``depdigest.get_info@1.0`` payload, which states its own schema under a
+    ``"schema"`` key and lists each library under ``"dependencies"``. Ackredit
+    relays that shape rather than defining one, and verifies the version it
+    relays: a payload declaring another raises ``ACKREDIT-W017`` rather than
+    being handed over in silence.
+
+    ``format="table"`` is a rendering for a person to read, with capitalised
+    keys and prose in the values. It is not part of the promise and may change.
     """
-    return get_info("ackredit", format=format)
+    info = get_info("ackredit", format=format)
+    _check_dependency_schema(info)
+    return info
 
 
 @signal(

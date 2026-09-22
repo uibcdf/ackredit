@@ -27,12 +27,17 @@ the way they are.
 **Provisional.** We expect this to change. It may be renamed, reshaped or removed in any
 minor release before 1.0.0, and it reaches 1.0.0 either promoted to stable or removed —
 shipping a provisional name inside a stability commitment would make the commitment
-meaningless. Every provisional name below says why it is one.
+meaningless. Every provisional name would say why it is one; there are none left.
+
+That the list is empty is not the end of theme F. It means every name has been decided
+once, on the evidence available now. What adoption teaches may reopen any of them, which
+is why `devguide/roadmap.md` keeps that review as the theme's last item.
 
 ## The surface
 
-Thirty-two names are stable and one provisional. This is the only place those counts
-are written; everything else links here, so they cannot drift apart.
+Thirty-three names are stable and zero provisional — every one has been decided once, on
+the evidence available now. This is the only place those counts are written; everything
+else links here, so they cannot drift apart.
 
 | name | status | why |
 | --- | --- | --- |
@@ -69,7 +74,7 @@ are written; everything else links here, so they cannot drift apart.
 | `register_format` | stable | What a renderer is handed is written on it and guarded: a copy of the used map, a read-only registry, and options a format may take. `uibcdf/ackredit#53` settled all three. |
 | `load_plugins` | stable | The promise is written on it and exercised: the `ackredit.citations` group, a callable that registers, a broken pack reported and never propagated, and loading twice safe. `uibcdf/ackredit#54`. |
 | `export_to_duecredit` | stable | It takes nothing, returns nothing and raises only Ackredit's own errors, so DueCredit's API does not reach our contract: a change there is adapted inside. `uibcdf/ackredit#56`. |
-| `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |
+| `dependency_info` | stable | Relays `depdigest.get_info@1.0` on purpose: the machine shape states its own version and that version is verified, so a change there raises `ACKREDIT-W017` rather than arriving unannounced. `format="table"` is a rendering and is not promised. `uibcdf/ackredit#59`. |
 
 `tests/test_api_stability.py` holds this table to `__all__`, so a name cannot join the
 public surface without a decision about what it promises.

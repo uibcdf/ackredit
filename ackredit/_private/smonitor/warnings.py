@@ -94,6 +94,10 @@ class PdfCompilationWarning(AckreditWarning):
     catalog_key = "PdfCompilationWarning"
 
 
+class DependencySchemaWarning(AckreditWarning):
+    catalog_key = "DependencySchemaWarning"
+
+
 class DueCreditExportWarning(AckreditWarning):
     catalog_key = "DueCreditExportWarning"
 
@@ -103,6 +107,7 @@ __all__ = [
     "BibtexEntryWarning",
     "BibtexFieldWarning",
     "CitationFileWarning",
+    "DependencySchemaWarning",
     "DueCreditExportWarning",
     "FormatPluginWarning",
     "MetadataCacheWarning",

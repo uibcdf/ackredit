@@ -129,6 +129,13 @@ CODES = {
         "dev_message": "load_bibtex found an unterminated '{entry_type}' entry in '{path}' at offset {offset}.",
         "dev_hint": "A truncated download or a hand-edited file reaches this; the entries before it are still loaded.",
     },
+    "ACKREDIT-W017": {
+        "title": "Dependency report schema changed",
+        "user_message": "The optional-dependency report arrived as '{found}' where Ackredit promises '{promised}', so its fields may differ from what is documented.",
+        "user_hint": "The payload states its own schema; read it from the 'schema' key before relying on a field.",
+        "dev_message": "get_info returned schema version {found}; ackredit.dependency_info documents {promised}.",
+        "dev_hint": "Ackredit relays DepDigest's machine shape rather than defining one, so a version change there is a change to this function's contract and is never handed over silently.",
+    },
     # --- Errors --------------------------------------------------------------
     "ACKREDIT-E001": {
         "title": "Citation item has no id",
@@ -204,6 +211,7 @@ _WARNINGS = {
     "DueCreditExportWarning": "ACKREDIT-W013",
     "FormatPluginWarning": "ACKREDIT-W014",
     "MetadataRecordWarning": "ACKREDIT-W015",
+    "DependencySchemaWarning": "ACKREDIT-W017",
 }
 
 _ERRORS = {
