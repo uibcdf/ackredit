@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (63)
+### Resolved (64)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -62,6 +62,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`the_exit_reminder_writes_ansi_into_logs.md`](the_exit_reminder_writes_ansi_into_logs.md) — [#35](https://github.com/uibcdf/ackredit/issues/35) — The exit reminder wrote ANSI colour to stderr unconditionally, so redirected logs received the escapes literally. *(resolved, measured)*
 - [`the_full_extra_is_not_full.md`](the_full_extra_is_not_full.md) — [#32](https://github.com/uibcdf/ackredit/issues/32) — duecredit was declared as an optional feature with no extra installing it, so `full` was not full. *(resolved, measured)*
 - [`the_guide_reaches_nobody.md`](the_guide_reaches_nobody.md) — [#24](https://github.com/uibcdf/ackredit/issues/24) — The integration guide reached no repository and opened without saying what Ackredit is. *(resolved, reproduced)*
+- [`the_installation_page_fell_behind.md`](the_installation_page_fell_behind.md) — [#66](https://github.com/uibcdf/ackredit/issues/66) — The installation page pinned a superseded release and its environment omitted a dependency main needs, so the next release would have installed broken. *(resolved, reproduced)*
 - [`the_json_format_is_not_a_citation.md`](the_json_format_is_not_a_citation.md) — [#27](https://github.com/uibcdf/ackredit/issues/27) — The advertised json report emitted six fixed keys, dropping the DOI, the authors, the journal and the URL. *(resolved, measured)*
 - [`the_markdown_report_is_not_escaped.md`](the_markdown_report_is_not_escaped.md) — [#37](https://github.com/uibcdf/ackredit/issues/37) — The default report format interpolated citation metadata into Markdown without escaping it or validating the link. *(resolved, measured)*
 - [`the_performance_guards_measure_the_runner.md`](the_performance_guards_measure_the_runner.md) — [#45](https://github.com/uibcdf/ackredit/issues/45) — Both timing guards compared a small sample against a large one, so a shared runner failed a commit that could not have caused it. *(resolved, measured)*

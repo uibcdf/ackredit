@@ -1,8 +1,10 @@
 (About_Installation)=
 # Installation
 
-Ackredit depends only on the MolSysSuite infrastructure components, `smonitor` and
-`depdigest`. Both are pure Python and are distributed through the `uibcdf` conda channel.
+Ackredit has four runtime dependencies: three MolSysSuite infrastructure components,
+`smonitor`, `depdigest` and `argdigest`, and `pyyaml`. The three suite components are
+distributed through the `uibcdf` conda channel and not through PyPI. They are pure
+Python, but the tree is not: ArgDigest requires `numpy`, which conda brings with it.
 
 Ackredit is not on a package channel yet. That is a decision rather than an omission:
 the API is still settling, and a published package is a commitment to what it contains.
@@ -12,9 +14,9 @@ commands.
 ## A released version
 
 ```bash
-conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest pyyaml pip
+conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest argdigest pyyaml pip
 conda activate work
-pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.6.0"
+pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.7.0"
 ```
 
 The first command brings the suite dependencies from the `uibcdf` channel, which is where
@@ -25,7 +27,7 @@ Check it arrived whole:
 ```python
 import ackredit
 
-ackredit.__version__  # '0.6.0'
+ackredit.__version__  # '0.7.0'
 ackredit.dependency_info()  # what optional features this environment supports
 ```
 
@@ -39,7 +41,7 @@ conda activate ackredit
 pip install --no-deps -e .
 ```
 
-An editable install reports a development version such as `0.6.0+3.gabc1234`, which says
+An editable install reports a development version such as `0.7.0+3.gabc1234`, which says
 how far past the tag it is. It is not the release, and it is not meant to be cited as one.
 
 ## Once published
