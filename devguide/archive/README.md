@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (41)
+### Resolved (42)
 
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -37,6 +37,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
 - [`tests_share_tracking_state.md`](tests_share_tracking_state.md) — [#30](https://github.com/uibcdf/ackredit/issues/30) — The suite depended on the order its files ran in, so a test could pass for the reason of the test before it. *(resolved, measured)*
+- [`the_bibtex_parser_truncates_at_the_first_brace.md`](the_bibtex_parser_truncates_at_the_first_brace.md) — [#42](https://github.com/uibcdf/ackredit/issues/42) — A non-greedy regex cut every field at its first inner brace, so a loaded .bib file was re-emitted with braces that do not balance. *(resolved, measured)*
 - [`the_command_line_is_broken.md`](the_command_line_is_broken.md) — [#40](https://github.com/uibcdf/ackredit/issues/40) — Every subcommand was wrong in some way, and nothing in the test suite ran the program. *(resolved, measured)*
 - [`the_documentation_build_is_not_repeatable.md`](the_documentation_build_is_not_repeatable.md) — [#29](https://github.com/uibcdf/ackredit/issues/29) — Sphinx scanned its own output directory, so a clean documentation build passed and the next one failed. *(resolved, measured)*
 - [`the_exit_reminder_writes_ansi_into_logs.md`](the_exit_reminder_writes_ansi_into_logs.md) — [#35](https://github.com/uibcdf/ackredit/issues/35) — The exit reminder wrote ANSI colour to stderr unconditionally, so redirected logs received the escapes literally. *(resolved, measured)*

@@ -6,7 +6,7 @@ import json
 import re
 import urllib.request
 from pathlib import Path
-from typing import Any, Dict, Literal, TypedDict
+from typing import Any, Dict, Iterator, Literal, TypedDict
 
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.exceptions import (
@@ -14,6 +14,7 @@ from .._private.smonitor.exceptions import (
     ItemIdMissingError,
 )
 from .._private.smonitor.warnings import (
+    BibtexEntryWarning,
     BibtexFieldWarning,
     MetadataCacheWarning,
     MetadataFetchWarning,
@@ -36,6 +37,111 @@ def _cache_name(doi: str) -> str:
     # cache directory even where it cannot traverse one.
     readable = re.sub(r"\.{2,}", ".", readable)[:60].strip("-.")
     return f"{readable}.{digest}" if readable else digest
+
+
+# A field name and its `=`, from which a value follows. What the value *is*
+# cannot be matched: `\{.*?\}` stops at the first closing brace, so
+# `title = {The {DNA} helix}` yielded `The {DNA`, and brace protection is the
+# ordinary way to stop a style lowercasing an acronym.
+_FIELD_START = re.compile(r"\s*,?\s*(\w+)\s*=\s*")
+
+
+def _collapse(value: str) -> str:
+    """One line, the way a TeX engine reads a braced value."""
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def _read_braced(text: str, start: int) -> tuple[str, int]:
+    """The contents of the group at *start*, and where it ends.
+
+    The inner braces are kept: they are what protects `{DNA}` from a style that
+    would otherwise lowercase it, and dropping them changes the citation.
+    """
+    depth = 0
+    for index in range(start, len(text)):
+        if text[index] == "{":
+            depth += 1
+        elif text[index] == "}":
+            depth -= 1
+            if depth == 0:
+                return _collapse(text[start + 1 : index]), index + 1
+    # Unbalanced. Take what there is rather than lose the field.
+    return _collapse(text[start + 1 :]), len(text)
+
+
+def _read_quoted(text: str, start: int) -> tuple[str, int]:
+    """A quoted value, which ends at a quote outside any braces."""
+    depth = 0
+    for index in range(start + 1, len(text)):
+        char = text[index]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+        elif char == '"' and depth == 0:
+            return _collapse(text[start + 1 : index]), index + 1
+    return _collapse(text[start + 1 :]), len(text)
+
+
+def _bibtex_fields(body: str) -> Iterator[tuple[str, str]]:
+    """Each `key = value` in an entry body, values read by scanning."""
+    position = 0
+    while position < len(body):
+        match = _FIELD_START.match(body, position)
+        if not match:
+            # Not a field here. Skip to the next one rather than abandon the
+            # entry, so one malformed field costs only itself.
+            comma = body.find(",", position)
+            if comma == -1:
+                return
+            position = comma + 1
+            continue
+
+        key = match.group(1)
+        position = match.end()
+        if position >= len(body):
+            return
+
+        if body[position] == "{":
+            value, position = _read_braced(body, position)
+        elif body[position] == '"':
+            value, position = _read_quoted(body, position)
+        else:
+            comma = body.find(",", position)
+            end = len(body) if comma == -1 else comma
+            value, position = body[position:end].strip(), end
+
+        yield key, value
+
+
+def _split_bibtex_authors(value: str) -> list[str]:
+    """Split on BibTeX's `and`, which separates names only outside braces.
+
+    `{Smith and Sons}` is one corporate author, and braces are exactly what say
+    so, which splitting anywhere ignored.
+    """
+    names, depth, start, index = [], 0, 0, 0
+    while index < len(value):
+        char = value[index]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+        elif (
+            depth == 0
+            and index > 0
+            and value[index - 1].isspace()
+            and value[index : index + 3].lower() == "and"
+            and value[index + 3 : index + 4].isspace()
+        ):
+            names.append(value[start:index].strip())
+            index += 3
+            start = index
+            continue
+        index += 1
+
+    names.append(value[start:].strip())
+    return [name for name in names if name]
 
 
 def _first(values: Any) -> Any:
@@ -178,6 +284,18 @@ class Registry:
             if bracket_count == 0:
                 entry_body = content[start_bracket : end_pos - 1]
                 cls._parse_entry(entry_type, entry_body)
+            else:
+                # A truncated download or a hand-edited file. The entry is lost
+                # either way; it used to be lost without saying so.
+                warn(
+                    BibtexEntryWarning(
+                        extra={
+                            "path": str(path),
+                            "entry_type": entry_type,
+                            "offset": start_bracket,
+                        }
+                    )
+                )
 
             pos = end_pos
 
@@ -308,7 +426,7 @@ class Registry:
 
     @staticmethod
     def _apply_record(item: dict, data: dict) -> None:
-        """Fill what the item is missing from a fetched record.
+        r"""Fill what the item is missing from a fetched record.
 
         Text arrives HTML-escaped. Crossref returns the Matplotlib paper's
         journal as "Computing in Science &amp; Engineering", and stored as
@@ -401,27 +519,11 @@ class Registry:
 
         item: Dict[str, Any] = {"id": item_id, "type": fc_type}
 
-        # Parse fields
-        field_pattern = re.compile(r'(\w+)\s*=\s*(\{.*?\}|".*?"|[^,]+)', re.DOTALL)
+        for raw_key, value in _bibtex_fields(fields_str):
+            key = raw_key.lower()
 
-        for field_match in field_pattern.finditer(fields_str):
-            key = field_match.group(1).lower()
-            value = field_match.group(2).strip()
-
-            # Remove enclosing braces or quotes
-            if (value.startswith("{") and value.endswith("}")) or (
-                value.startswith('"') and value.endswith('"')
-            ):
-                value = value[1:-1]
-
-            # Special handling for authors
             if key == "author" or key == "authors":
-                # Split by ' and '
-                authors = [
-                    a.strip()
-                    for a in re.split(r"\s+and\s+", value, flags=re.IGNORECASE)
-                ]
-                item["authors"] = authors
+                item["authors"] = _split_bibtex_authors(value)
             elif key == "year":
                 try:
                     item["year"] = int(value)

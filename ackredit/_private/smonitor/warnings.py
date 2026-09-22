@@ -74,6 +74,10 @@ class PluginLoadWarning(AckreditWarning):
     catalog_key = "PluginLoadWarning"
 
 
+class BibtexEntryWarning(AckreditWarning):
+    catalog_key = "BibtexEntryWarning"
+
+
 class BibtexFieldWarning(AckreditWarning):
     catalog_key = "BibtexFieldWarning"
 
@@ -96,6 +100,7 @@ class DueCreditExportWarning(AckreditWarning):
 
 __all__ = [
     "AckreditWarning",
+    "BibtexEntryWarning",
     "BibtexFieldWarning",
     "CitationFileWarning",
     "DueCreditExportWarning",

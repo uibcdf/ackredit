@@ -10,6 +10,8 @@ import tomllib
 from fnmatch import fnmatch
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -112,3 +114,24 @@ def test_the_full_extra_is_full():
     assert set(LIBRARIES) <= full, (
         f"the 'full' extra omits {sorted(set(LIBRARIES) - full)}"
     )
+
+
+@pytest.mark.parametrize(
+    "path",
+    sorted((ROOT / "ackredit").rglob("*.py")),
+    ids=lambda path: str(path.relative_to(ROOT)),
+)
+def test_every_shipped_module_compiles_without_a_warning(path, tmp_path):
+    """A SyntaxWarning is emitted when a module is compiled, not when it runs.
+
+    `\\&` in a docstring is an invalid escape sequence, and Python warns about
+    it once — after which the cached bytecode answers and the warning is never
+    seen again. It reached a released file that way, and would have reached a
+    user's first import of the package.
+    """
+    import py_compile
+    import warnings
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", SyntaxWarning)
+        py_compile.compile(str(path), cfile=str(tmp_path / "out.pyc"), doraise=True)

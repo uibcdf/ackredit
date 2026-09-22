@@ -122,6 +122,13 @@ CODES = {
         "dev_message": "Applying the record for '{item_id}' failed: {error_type}: {error}.",
         "dev_hint": "A malformed record is data, not a defect here; enrichment must never cost a caller their run.",
     },
+    "ACKREDIT-W016": {
+        "title": "Incomplete BibTeX entry",
+        "user_message": "An entry in '{path}' is not closed, so it was skipped and its citation is missing.",
+        "user_hint": "The '{entry_type}' entry beginning at character {offset} is never closed; check whether the file is complete.",
+        "dev_message": "load_bibtex found an unterminated '{entry_type}' entry in '{path}' at offset {offset}.",
+        "dev_hint": "A truncated download or a hand-edited file reaches this; the entries before it are still loaded.",
+    },
     # --- Errors --------------------------------------------------------------
     "ACKREDIT-E001": {
         "title": "Citation item has no id",
@@ -183,6 +190,7 @@ _WARNINGS = {
     "MetadataCacheWarning": "ACKREDIT-W007",
     "PluginLoadWarning": "ACKREDIT-W008",
     "BibtexFieldWarning": "ACKREDIT-W009",
+    "BibtexEntryWarning": "ACKREDIT-W016",
     "SourceInspectionWarning": "ACKREDIT-W010",
     "PdfToolWarning": "ACKREDIT-W011",
     "PdfCompilationWarning": "ACKREDIT-W012",
