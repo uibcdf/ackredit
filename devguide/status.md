@@ -51,6 +51,10 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
   3.11 to 3.14 with the same 1437 tests and the same skips as Linux, the multi-process
   journal tests among them. macOS gates on 3.13 on every push; the weekly matrix covers
   the rest. Windows has never been run, so nothing here claims it works.
+  This shape is Ackredit's own: the suite prescribes Linux lanes for every supported
+  minor and nothing about push versus schedule or platforms, and the members differ.
+  It is proposed centrally in `uibcdf/molsyssuite#39`; Ackredit's CI is not reshaped
+  further until that is decided, and then aligns in one change.
 - **Python is 3.11 to 3.13.** The dependencies no longer hold 3.14 back: all three
   declare `<3.15`, and CI's non-blocking 3.14 lane passes from the public channel with
   the same results as the promised versions. The claim waits on authorization in
