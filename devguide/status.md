@@ -91,22 +91,20 @@ many land before 1.0.0 is an outcome rather than a plan.
 - **Adoption:** no host library has integrated the guide yet. Every defect found in it so
   far was found by reading it rather than using it (roadmap C).
 - **Performance:** measured on a real MolSysMT workflow and published in
-  `docs/content/about/performance.md`. One instrumented call costs 1.0 µs, a scope around
-  one 4.1 µs, and auto-discovery about 20 ms once at import; on the workflow itself the
-  difference is smaller than the run-to-run spread. `devtools/benchmark.py` reproduces it
-  (roadmap D, done).
+  `docs/content/about/performance.md`, which is where the numbers live: microseconds per
+  instrumented call, tens of milliseconds once for auto-discovery at import, and on the
+  workflow itself a difference smaller than the run-to-run spread. `devtools/benchmark.py`
+  reproduces it (roadmap D, done).
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in `docs/content/about/stability.md`, the deprecation policy is written, and **no name
   is provisional**: thirty-three, all stable, four decided by removal rather than
   promotion. Output formats are extensible through `register_format` and the
   `ackredit.formats` entry-point group. What remains of roadmap F is the review against
   what a host library learns, which waits on theme C by definition.
-- **MolSysSuite membership:** the repository follows the common baseline and its CI uses
-  the suite's conda environments. Central registration is tracked in
-  `uibcdf/molsyssuite#28`, and until it is granted two things stay blocked: the README
-  badges, which the central generator produces only for a registered member and whose
-  role badge would otherwise assert a membership that has not been granted; and
-  `molsyssuite-policy.yml`, which reports `UNREGISTERED` by design.
+- **MolSysSuite membership:** granted in `uibcdf/molsyssuite#28`. Ackredit is a
+  registered, incubating support library: the README carries the role, policy and Python
+  badges, and `molsyssuite-policy.yml` passes on every push and tag. Membership is not
+  Python 3.14 support, which `uibcdf/molsyssuite#29` decides separately.
 
 ## Future strategic concepts
 
