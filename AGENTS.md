@@ -26,6 +26,9 @@ Diagnostics are catalog-driven: never hardcode a message, and never swallow a fa
 `GH_RUN_RECEPTOR_GUIDE.md` is the required synchronized guide for compact, faithful
 GitHub Actions inspection. The canonical gh-run-receptor repository owns its text.
 
+`PYTEST_RECEPTOR_GUIDE.md` is the required synchronized contract for compact local and
+hosted pytest output. Its canonical text belongs to `uibcdf/pytest-receptor`.
+
 `standards/ACKREDIT_GUIDE.md` is the canonical integration guide Ackredit owns and
 distributes to its host libraries. Edit it here; consumer copies are synchronized from the
 central registry and are never repaired locally.
