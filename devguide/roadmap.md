@@ -139,14 +139,28 @@ difference between those two is where the remaining unknowns live.
 
 This is the theme most likely to need more than one minor, and the most valuable.
 
-### Theme D — Performance under a real workload
+### Theme D — Performance under a real workload — **done**
 
-Every performance claim so far comes from a synthetic benchmark. They were enough to find
-two O(n²) defects, and they are not enough to say the library is light in a real run.
+Every performance claim before this came from a synthetic benchmark. They were enough to
+find two O(n²) defects, and not enough to say the library is light in a real run.
 
-- a scientific workflow instrumented end to end, measured with and without Ackredit;
-- the overhead published in the documentation as a number, not an adjective;
-- whatever that surfaces, fixed.
+- [x] **a scientific workflow instrumented end to end**: MolSysMT reading a protein from
+      the PDB, converting, querying, selecting and converting again, measured with and
+      without Ackredit in `devtools/benchmark.py`;
+- [x] **the overhead published as a number**, in `docs/content/about/performance.md`:
+      1.0 µs for `track_item`, 4.1 µs for a `scope` around one, and about 20 ms once for
+      auto-discovery at import. On the workflow itself there is no number to give, and
+      that is the finding — the run-to-run spread is 259 ms and every difference Ackredit
+      makes is smaller, coming out negative as often as positive;
+- [x] **what it surfaced, fixed**: `enable_import_hooks` raised `ImportError` on the first
+      import in any fresh process (`uibcdf/ackredit#60`). Auto-discovery, the feature the
+      guide tells a host to enable, did not work at all. No synthetic benchmark could have
+      found it, which is the argument for this theme in one line.
+
+Two measurements were wrong before they were right, and the method that fixed them is in
+the script: the minimum of several runs, each in its own interpreter, both sides importing
+Ackredit, and a baseline that reports its own spread so a difference beneath it is labelled
+rather than published.
 
 ### Theme E — Python 3.14
 

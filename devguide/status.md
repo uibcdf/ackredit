@@ -84,6 +84,11 @@ many land before 1.0.0 is an outcome rather than a plan.
   (`uibcdf/ackredit#21`).
 - **Adoption:** no host library has integrated the guide yet. Every defect found in it so
   far was found by reading it rather than using it (roadmap C).
+- **Performance:** measured on a real MolSysMT workflow and published in
+  `docs/content/about/performance.md`. One instrumented call costs 1.0 µs, a scope around
+  one 4.1 µs, and auto-discovery about 20 ms once at import; on the workflow itself the
+  difference is smaller than the run-to-run spread. `devtools/benchmark.py` reproduces it
+  (roadmap D, done).
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in `docs/content/about/stability.md`, the deprecation policy is written, and **no name
   is provisional**: thirty-three, all stable, four decided by removal rather than
