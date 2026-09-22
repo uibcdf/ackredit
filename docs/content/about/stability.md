@@ -31,7 +31,7 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
-Thirty-two names are stable and two provisional. This is the only place those counts
+Thirty-two names are stable and one provisional. This is the only place those counts
 are written; everything else links here, so they cannot drift apart.
 
 | name | status | why |
@@ -70,7 +70,6 @@ are written; everything else links here, so they cannot drift apart.
 | `load_plugins` | stable | The promise is written on it and exercised: the `ackredit.citations` group, a callable that registers, a broken pack reported and never propagated, and loading twice safe. `uibcdf/ackredit#54`. |
 | `export_to_duecredit` | stable | It takes nothing, returns nothing and raises only Ackredit's own errors, so DueCredit's API does not reach our contract: a change there is adapted inside. `uibcdf/ackredit#56`. |
 | `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |
-| `serve_ui` | provisional | Its own docstring calls it a conceptual stub. |
 
 `tests/test_api_stability.py` holds this table to `__all__`, so a name cannot join the
 public surface without a decision about what it promises.

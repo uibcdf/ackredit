@@ -14,7 +14,6 @@ from ._private.smonitor.exceptions import MissingDependencyError
 # Every entry is soft. Ackredit's core reporting works with none of them
 # installed; each unlocks one optional feature.
 LIBRARIES = {
-    "flask": {"type": "soft", "pypi": "flask", "conda": "flask"},
     "duecredit": {"type": "soft", "pypi": "duecredit", "conda": "duecredit"},
 }
 

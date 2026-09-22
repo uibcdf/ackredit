@@ -12,7 +12,6 @@ Routine development uses Python 3.13; the supported user range is Python 3.11 to
 Some advanced features require additional software:
 
 1.  **PDF Compilation:** Requires `pdflatex` and `bibtex` to be installed on the system (e.g., via TeX Live or MiKTeX).
-2.  **Web UI:** Requires the `flask` Python package (install via `pip install ackredit[web]`).
 
 ## Golden Rules
 1.  **Do not break optionality:** Any change must ensure that `ackredit` can be used optionally by another library.

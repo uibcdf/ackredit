@@ -111,3 +111,28 @@ def test_no_public_name_is_a_bound_method(name):
         f"ackredit.{name} is {obj.__qualname__}, a bound method. Give it a "
         f"delegating function beside the others in ackredit/core/collector.py"
     )
+
+
+def test_the_removed_server_is_gone_from_everywhere():
+    """`serve_ui` was removed in `uibcdf/ackredit#57`: an HTTP server inside a
+    citation library is surface with an indefinite cost, for something
+    `summary()` answers in a notebook and `report()` answers anywhere.
+
+    Removing a name is not removing a feature unless what it rested on goes
+    too, so this checks the declaration as well as the export.
+    """
+    from pathlib import Path
+
+    from ackredit._depdigest import LIBRARIES
+
+    assert "serve_ui" not in ackredit.__all__
+    assert not hasattr(ackredit, "serve_ui")
+    assert "flask" not in LIBRARIES, "it would still be reported as a feature"
+
+    root = Path(ackredit.__file__).parent
+    assert not (root / "contrib/web_ui.py").exists()
+    assert not [
+        path
+        for path in root.rglob("*.py")
+        if "flask" in path.read_text(encoding="utf-8")
+    ]

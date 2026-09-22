@@ -21,7 +21,6 @@ dependencies:
 - depdigest
 - pyyaml
 # Optional features Ackredit can use when present
-- flask
 - duecredit
 - pip:
   - ruff==0.16.5

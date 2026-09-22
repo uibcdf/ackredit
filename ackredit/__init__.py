@@ -33,7 +33,6 @@ _ensure_smonitor_configured(_SMONITOR_PACKAGE_ROOT)
 
 from .contrib.duecredit_compat import export_to_duecredit
 from .contrib.jupyter import summary
-from .contrib.web_ui import serve_ui
 from .core.collector import (
     aggregate,
     close_persistence,
@@ -101,7 +100,6 @@ __all__ = [
     "scope",
     "session",
     "summary",
-    "serve_ui",
     "disable_auto_reminder",
     "disable_import_hooks",
     "enable_auto_reminder",

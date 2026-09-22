@@ -15,8 +15,3 @@ dependencies:
 - smonitor
 - depdigest
 - pyyaml
-# The dashboard renderer escapes through Jinja rather than through whatever
-# autoescaping default the installed Flask happens to have. Jinja arrives with
-# Flask in a user's environment; here it is declared so the escaping guard runs
-# instead of being skipped.
-- jinja2

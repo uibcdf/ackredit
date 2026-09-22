@@ -83,7 +83,7 @@ def test_the_package_states_its_version():
 
 def test_every_optional_library_can_be_installed_through_an_extra():
     """`dependency_info()` reported duecredit as an optional feature, and no
-    extra installed it. `full` listed only flask, so it was not full."""
+    extra installed it, and `full` did not list it."""
     from ackredit._depdigest import LIBRARIES
 
     extras = _pyproject()["project"]["optional-dependencies"]

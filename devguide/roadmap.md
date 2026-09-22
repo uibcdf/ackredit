@@ -135,8 +135,9 @@ The last theme, and the one that earns the number.
       name cannot be called stable while no test exercises it;
 - [x] **the seven public names nothing tested** — `compile_pdf`, `dependency_info`,
       `enable_auto_reminder`, `enrich_all`, `export_to_duecredit`, `load_plugins` and
-      `serve_ui` — exercised in `tests/test_optional_surface.py`, so "provisional" is a
-      judgement rather than a gap;
+      exercised in `tests/test_optional_surface.py`, so "provisional" is a judgement
+      rather than a gap. `serve_ui` was among them and was removed instead
+      (`uibcdf/ackredit#57`);
 - [x] **a deprecation policy**: a stable name is removed only in a major release, after
       at least two minor releases carrying a deprecation code that names the replacement;
       changing what a name does follows the same route as removing it;

@@ -2,8 +2,7 @@
 
 `__all__` states what is public. It said nothing about what is *kept*, so a
 reader could not tell `report` — 106 tests, 30 documentation mentions, its shape
-decided in `devguide/decisions.md` — from `serve_ui`, which its own docstring
-calls a conceptual stub.
+decided in `devguide/decisions.md` — from a name nothing had ever run.
 
 1.0.0 means the public API is stable and we commit to not breaking it. This
 holds `docs/content/about/stability.md` to `__all__`, so a name cannot join the

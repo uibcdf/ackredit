@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (56)
+### Resolved (57)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -42,6 +42,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`persistence_rewrites_everything_on_every_item.md`](persistence_rewrites_everything_on_every_item.md) — [#17](https://github.com/uibcdf/ackredit/issues/17) — Persistence rewrote the whole document on every item, making a run O(n squared). *(resolved, reproduced)*
 - [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
+- [`serve_ui_removed.md`](serve_ui_removed.md) — [#57](https://github.com/uibcdf/ackredit/issues/57) — An unfinished HTTP server was removed rather than promised, and what a dashboard would need is recorded instead. *(resolved, measured)*
 - [`session_promises_its_whole_surface.md`](session_promises_its_whole_surface.md) — [#52](https://github.com/uibcdf/ackredit/issues/52) — Session exposed its writers and its lock alongside the mappings a caller wants, and its stated reason contradicted the same page. *(resolved, measured)*
 - [`shape_of_the_public_api_for_1_0.md`](shape_of_the_public_api_for_1_0.md) — [#16](https://github.com/uibcdf/ackredit/issues/16) — Five 1.0 API questions decided: two changed, three kept with the reason written down. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*

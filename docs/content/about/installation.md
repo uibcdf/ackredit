@@ -59,7 +59,6 @@ feature. Ask what the current environment supports with `ackredit.dependency_inf
 
 | Feature | Needs | Install |
 | --- | --- | --- |
-| Interactive dashboard, `serve_ui()` | `flask` | `conda install -c conda-forge flask` |
 | DueCredit bridge, `export_to_duecredit()` | `duecredit` | `conda install -c conda-forge duecredit` |
 
 ## System requirements (optional)

@@ -1,8 +1,8 @@
 """The public names that depend on something Ackredit does not require.
 
 Seven names in `__all__` had no test at all: `compile_pdf`, `dependency_info`,
-`enable_auto_reminder`, `enrich_all`, `export_to_duecredit`, `load_plugins` and
-`serve_ui`. They are the part of the surface that reaches outside — a system
+`enable_auto_reminder`, `enrich_all`, `export_to_duecredit` and
+`load_plugins`. They are the part of the surface that reaches outside — a system
 binary, a network, a third party's API, another package's entry points — which
 is why they were skipped, and why it matters that they work.
 
@@ -47,13 +47,6 @@ def test_dependency_info_says_how_to_install_each_one():
 
 
 # --- a missing optional dependency is a diagnostic, not a traceback -------
-
-
-@pytest.mark.skipif(not absent("flask"), reason="checks the path where flask is absent")
-def test_serve_ui_names_flask_instead_of_failing_to_import_it():
-    with pytest.raises(MissingDependencyError) as raised:
-        ackredit.serve_ui(port=0)
-    assert "flask" in str(raised.value)
 
 
 @pytest.mark.skipif(
