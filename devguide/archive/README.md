@@ -4,9 +4,10 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (48)
+### Resolved (50)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
+- [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
 - [`a_cycle_empties_the_provenance_report.md`](a_cycle_empties_the_provenance_report.md) — [#46](https://github.com/uibcdf/ackredit/issues/46) — A recursive function made the provenance report come out empty, and a cycle below a root raised RecursionError. *(resolved, measured)*
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*
@@ -25,6 +26,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`doi_cache_key_collides.md`](doi_cache_key_collides.md) — [#12](https://github.com/uibcdf/ackredit/issues/12) — Two DOIs could share one cache file, so one work's metadata was served for another. *(resolved, reproduced)*
 - [`enrichment_stores_what_it_is_given.md`](enrichment_stores_what_it_is_given.md) — [#41](https://github.com/uibcdf/ackredit/issues/41) — Fetched metadata was applied unguarded, so entities became characters, a nameless creator became an author, and a record with no title ended the run. *(resolved, measured)*
 - [`example_host_libraries.md`](example_host_libraries.md) — [#23](https://github.com/uibcdf/ackredit/issues/23) — Two host libraries in the repository, integrated for real, used by the documentation and the tests. *(resolved, reproduced)*
+- [`four_names_misfiled_as_provisional.md`](four_names_misfiled_as_provisional.md) — [#49](https://github.com/uibcdf/ackredit/issues/49) — Four names were classified provisional for open behavioural questions rather than for any expected change of name, meaning or signature. *(resolved, asserted)*
 - [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*

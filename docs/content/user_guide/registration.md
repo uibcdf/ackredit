@@ -49,7 +49,11 @@ ackredit.register_item(id="paper: AF2", doi="10.1038/s41586-021-03819-2")
 # Fetch metadata automatically
 ackredit.enrich_all()
 ```
-*Note: Metadata results are cached locally in `~/.cache/ackredit` to speed up future sessions.*
+*Note: Metadata results are cached locally in `~/.cache/ackredit` to speed up future
+sessions.* An answer is used for thirty days and then asked again, because a record that
+said "in press" when it was cached would otherwise say so for ever. If that second request
+does not come back, the answer already held is used rather than lost, so a run without a
+network keeps its metadata. Deleting the directory forces everything to be asked again.
 
 ### Being a good client
 

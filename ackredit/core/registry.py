@@ -187,6 +187,11 @@ def _record_authors(creators: Any) -> list[str]:
 _DEFAULT_RATE_LIMIT = 5
 _DEFAULT_RATE_INTERVAL = 1.0
 
+# How long a cached answer keeps. A published record's metadata rarely changes,
+# and one cached while it was "in press" is wrong until it is asked again, so
+# this is long enough to spare the services and short enough that a year arrives.
+_CACHE_MAX_AGE = 30 * 24 * 60 * 60
+
 # The environment variable a user sets to be identified to the metadata
 # services. Deliberately not defaulted: see `_contact`.
 CONTACT_VARIABLE = "ACKREDIT_CONTACT_EMAIL"
@@ -410,12 +415,16 @@ class Registry:
         doi = item["doi"]
         cache_file = cls._get_cache_dir() / f"{_cache_name(doi)}.json"
 
-        data = None
-
-        # 1. Try cache
+        # 1. Try cache. An answer has an age, taken from the file's own
+        # modification time so the stored format is still what the API replied
+        # and an entry written before this has a freshness rather than being
+        # thrown away.
+        cached = None
+        fresh = False
         if cache_file.exists():
             try:
-                data = json.loads(cache_file.read_text())
+                cached = json.loads(cache_file.read_text())
+                fresh = (time.time() - cache_file.stat().st_mtime) < _CACHE_MAX_AGE
             except Exception as error:
                 warn(
                     MetadataCacheWarning(
@@ -428,10 +437,13 @@ class Registry:
                     )
                 )
 
+        data = cached if fresh else None
+
         # 2. Try network (Crossref first, then DataCite)
         if not data:
             # 2a. Try Crossref
             headers = {"User-Agent": _user_agent()}
+            failure = None
             try:
                 data = _fetch(f"https://api.crossref.org/works/{doi}", headers)[
                     "message"
@@ -463,20 +475,30 @@ class Registry:
                         "container-title": [dc_data.get("publisher", "")],
                     }
                 except Exception as error:
-                    warn(
-                        MetadataFetchWarning(
-                            extra={
-                                "item_id": item_id,
-                                "doi": doi,
-                                "source": "Crossref and DataCite",
-                                "error_type": type(error).__name__,
-                                "error": str(error),
-                            }
-                        )
-                    )
+                    failure = error
 
-            # Save to cache if we found something
-            if data:
+            if not data and cached:
+                # The refresh did not come back and the stale answer still is
+                # one. A cache exists so a run without a network keeps its
+                # metadata, and expiring into nothing would take from the user
+                # a citation they already had. Nothing is reported, because
+                # nothing was lost.
+                data = cached
+            elif failure is not None:
+                warn(
+                    MetadataFetchWarning(
+                        extra={
+                            "item_id": item_id,
+                            "doi": doi,
+                            "source": "Crossref and DataCite",
+                            "error_type": type(failure).__name__,
+                            "error": str(failure),
+                        }
+                    )
+                )
+
+            # Save to cache if we found something newer than what it held
+            if data is not cached:
                 try:
                     cache_file.write_text(json.dumps(data))
                 except Exception as error:

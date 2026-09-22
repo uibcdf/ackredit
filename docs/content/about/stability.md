@@ -28,7 +28,7 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
-Twenty-three names are stable and thirteen provisional. This is the only place those counts
+Twenty-seven names are stable and nine provisional. This is the only place those counts
 are written; everything else links here, so they cannot drift apart.
 
 | name | status | why |
@@ -56,17 +56,17 @@ are written; everything else links here, so they cannot drift apart.
 | `enable_persistence` | stable | Was exported as a bound method of `Collector`, which bound a public name to a provisional class; `uibcdf/ackredit#33` gave it a function like its siblings. |
 | `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
 | `aggregate` | stable | Merging saved runs into this one. `uibcdf/ackredit#39` settled what it does to the journal and exercised it; what it does across machines is decided rather than open — one journal per process, merged here. |
+| `auto_track_calls` | stable | Detection is per function, not per branch, and that is the promise rather than a gap in it: `devguide/roadmap.md` refuses per-branch precision, which would need an interpreter hook on every call. |
+| `enable_import_hooks` | stable | Decision 13 settles what the hook does — it observes and never acts — and `uibcdf/ackredit#28` settles which source of metadata wins. `uibcdf/ackredit#34` gave it a counterpart. |
+| `compile_pdf` | stable | That `@software` is undefined in common `.bst` styles is a known limitation of those styles, recorded in `devguide/status.md`. It bears on what the PDF contains, not on this call. |
+| `enrich_all` | stable | Fills in what a DOI can supply. How it asks was settled in `uibcdf/ackredit#48` and how long a cached answer keeps in `#50`; both are what it does, not what it promises. |
+
 | `register_format` | provisional | New in `uibcdf/ackredit#36`, and no third party has written a format yet. What a renderer is handed — the used map and the registry — is the shape the built-in renderers take, and that shape is what would change. |
 | `Session` | provisional | Exported so a session can be named in a type hint. Which of its attributes are part of the promise is not settled, and the journal it writes is `ackredit.session@1` with no migration story yet. |
 | `Registry` | provisional | Direct access to shared declaration state. `register_item` and `bound_items` are the supported surface; this is the class behind them. |
 | `Collector` | provisional | Its state is a read-only view onto the current session now. `get_used_items` is the supported reader; the class remains exported for the code that predates the session. |
-
-| `auto_track_calls` | provisional | Detection is per function, not per branch, so a run that takes a path never reaching the detected call is credited anyway. That coarseness is documented, not resolved. |
-| `enable_import_hooks` | provisional | The order in which sources of citation metadata win changed in `uibcdf/ackredit#28`. How aggressive the hook should be is decided for now, not settled. |
 | `summary` | provisional | Returns an object whose only contract is `_repr_html_`. What else that object should offer is unexplored. |
 | `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |
-| `compile_pdf` | provisional | `@software` and `@dataset` are undefined in common `.bst` styles, so what a compiled report contains is not settled. |
-| `enrich_all` | provisional | Reaches the network. `uibcdf/ackredit#48` settled how it asks — the advertised rate is respected and a contact is opt-in — and how long a cached answer is good for is still open. |
 | `export_to_duecredit` | provisional | A bridge to another project's API, which we do not control. |
 | `load_plugins` | provisional | The promise is the entry-point group name, `ackredit.citations`, and no real plugin has used it yet. |
 | `serve_ui` | provisional | Its own docstring calls it a conceptual stub. |
@@ -105,6 +105,17 @@ This is what we commit to from 1.0.0 onward.
    added: with the path that emits it, not in advance.
 5. **A change in behaviour is a removal.** Keeping a name while changing what it does is
    the harder failure to debug, so it follows the same route.
+
+   What counts as one is the *promise*, not the mechanism. `enrich_all` fills in metadata a
+   DOI can supply; giving its cache a freshness changes when a request is made and not what
+   the call is for, so it is an ordinary change. `track_item` records what a run reached;
+   making it credit at import instead would change exactly that, and is a removal however
+   the name stays. Adding an optional argument is neither — it is an addition, and nothing
+   that worked stops working.
+
+   This line is here because leaving it out is what misfiled four names in
+   `uibcdf/ackredit#49`: an open question about behaviour was read as an expected change of
+   shape.
 6. **A provisional name may change in any minor release**, and the change is recorded in
    the release notes. That is what provisional buys, and it is why the list above is short
    and reasoned rather than a catch-all.
