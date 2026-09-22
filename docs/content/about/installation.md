@@ -16,7 +16,7 @@ commands.
 ```bash
 conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest argdigest pyyaml pip
 conda activate work
-pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.7.0"
+pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.8.0"
 ```
 
 The first command brings the suite dependencies from the `uibcdf` channel, which is where
@@ -27,7 +27,7 @@ Check it arrived whole:
 ```python
 import ackredit
 
-ackredit.__version__  # '0.7.0'
+ackredit.__version__  # '0.8.0'
 ackredit.dependency_info()  # what optional features this environment supports
 ```
 
@@ -41,7 +41,7 @@ conda activate ackredit
 pip install --no-deps -e .
 ```
 
-An editable install reports a development version such as `0.7.0+3.gabc1234`, which says
+An editable install reports a development version such as `0.8.0+3.gabc1234`, which says
 how far past the tag it is. It is not the release, and it is not meant to be cited as one.
 
 ## Once published

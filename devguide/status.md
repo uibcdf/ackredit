@@ -45,14 +45,16 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
 
 ## Known limitations, deliberately out of scope
 
-- **CI runs on Linux only.** `smonitor` and `depdigest` are published to the `uibcdf`
-  channel as `linux-64` builds with per-interpreter ABI pins, so a macOS environment
-  cannot be solved. Both recipes already declare `noarch: python` at HEAD, so their next
-  release restores the lane; noted upstream in `uibcdf/molsyssuite#29`. The macOS lane
-  is removed rather than left failing, so the CI keeps meaning something.
-- **Python is 3.11 to 3.13.** Adopting 3.14 is governed by the transition in
-  `uibcdf/molsyssuite#29` and waits on the same two dependencies, which are capped at
-  `<3.14`. Ackredit is registered behind DepDigest in that dependency order.
+- **CI runs on Linux only.** The macOS lane was removed when `smonitor` and `depdigest`
+  were published only as `linux-64` builds with per-interpreter ABI pins, which a macOS
+  environment could not solve. That cause is gone: `smonitor 0.16.0`, `depdigest 0.11.0`
+  and `argdigest 0.13.0` are `noarch` in the `uibcdf` channel, and are what Ackredit's
+  floors require. The lane has not been restored or run since, so nothing here claims
+  macOS works; restoring it is the next step, not a formality.
+- **Python is 3.11 to 3.13.** The dependencies no longer hold 3.14 back: all three
+  declare `<3.15`, and CI's non-blocking 3.14 lane passes from the public channel with
+  the same results as the promised versions. The claim waits on authorization in
+  `uibcdf/molsyssuite#29`, where the evidence is posted.
 - **Sharing one session across processes needs a local filesystem.** The session is an
   append-only journal, and POSIX makes an `O_APPEND` write below `PIPE_BUF` atomic, so
   several processes may write one journal without losing events — verified with four and

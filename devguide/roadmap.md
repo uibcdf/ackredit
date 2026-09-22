@@ -58,6 +58,30 @@ extensible, which the vision had promised and nothing implemented.
 **Behaviour a caller can see changed**, which is what the minor is for, and three public
 names were removed, which is why it is not a patch.
 
+### 0.8.0 — What a host library needs before it adopts
+Driven by running Ackredit the way a host and its users would, which found what reading
+it had not.
+
+**Auto-discovery broke the program.** In 0.7.0, `enable_import_hooks()` made the next
+import of anything in a fresh process raise `ImportError` (`#60`), found by instrumenting a
+real MolSysMT workflow for theme D. The hooks were also blind to anything imported before
+them, and ArgDigest loads numpy with Ackredit, so the documented numpy examples credited
+nothing (`#69`); a declared injection is now credited whatever the import order, and the
+pages say what discovery can see. The standard library stopped warning module by module
+(`#70`).
+
+**The report could go missing on its way to disk** (`#65`), and **authors ran together**
+in the lists a person reads (`#67`), both found by an example workflow run as a user runs
+it, which now stays as a script, a notebook and a test (`#68`).
+
+**Arguments are checked at the public boundary** through ArgDigest (`#61`, `#62`), CI
+runs every Python version promised (`#63`), and the installation page is held to the
+release and the dependencies (`#66`).
+
+The minor rises because a caller can see it: a new runtime dependency that brings numpy,
+higher floors, arguments refused that were accepted, and `dump("refs.bib")` writing
+BibTeX where it wrote Markdown.
+
 ### Since 0.5.0 — correctness, and the suite baseline
 Not a feature phase, and the largest body of work so far. Twenty reports opened, fixed,
 guarded and archived: `bind` had no runtime effect; the wheel shipped two files; the
@@ -86,13 +110,13 @@ Everything below exists to make that commitment honest rather than optimistic.
 is the release artifact: an exact version installs from it, into an environment that has
 the dependencies.
 
-```bash
-conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest pyyaml pip
-conda activate work
-pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.6.0"
-```
+The recipe lives in `docs/content/about/installation.md` and only there, held by
+`tests/test_installation_page.py` to `CITATION.cff` and to the declared dependencies. A
+copy here pinned `0.6.0` and missed ArgDigest long after the page was corrected
+(`uibcdf/ackredit#66`), which is why this is a pointer and not a copy.
 
-Verified: that yields `0.6.0` in `site-packages`, discovering its own `CITATION.cff`.
+Verified for `0.6.0`: the recipe yields the tagged version in `site-packages`, discovering
+its own `CITATION.cff`.
 
 This revises what this theme claimed. It does not block every other one; what it blocks is
 narrower and worth stating exactly. A host library can integrate Ackredit from a tag and
@@ -147,11 +171,12 @@ find two O(n²) defects, and not enough to say the library is light in a real ru
 - [x] **a scientific workflow instrumented end to end**: MolSysMT reading a protein from
       the PDB, converting, querying, selecting and converting again, measured with and
       without Ackredit in `devtools/benchmark.py`;
-- [x] **the overhead published as a number**, in `docs/content/about/performance.md`:
-      1.0 µs for `track_item`, 4.1 µs for a `scope` around one, and about 20 ms once for
-      auto-discovery at import. On the workflow itself there is no number to give, and
-      that is the finding — the run-to-run spread is 259 ms and every difference Ackredit
-      makes is smaller, coming out negative as often as positive;
+- [x] **the overhead published as a number**, in `docs/content/about/performance.md`,
+      which is where the numbers live: microseconds for `track_item` and for a `scope`
+      around one, and tens of milliseconds once for auto-discovery at import. On the
+      workflow itself there is no number to give, and that is the finding — the
+      run-to-run spread is 259 ms and every difference Ackredit makes is smaller, coming
+      out negative as often as positive;
 - [x] **what it surfaced, fixed**: `enable_import_hooks` raised `ImportError` on the first
       import in any fresh process (`uibcdf/ackredit#60`). Auto-discovery, the feature the
       guide tells a host to enable, did not work at all. No synthetic benchmark could have
@@ -164,9 +189,16 @@ rather than published.
 
 ### Theme E — Python 3.14
 
-Governed centrally by `uibcdf/molsyssuite#29`. Ackredit sits behind DepDigest in the
-dependency order and both its dependencies are capped at `<3.14`, so this waits on them.
-The local work is small: `pyproject.toml`, two workflows, three environment files.
+Governed centrally by `uibcdf/molsyssuite#29`, where the decision now rests. The
+dependencies are ready: SMonitor, DepDigest and ArgDigest all declare `<3.15` and are
+admitted there. CI runs a non-blocking 3.14 lane from the public channel builds and it
+passes with the same results as 3.11 to 3.13 (`uibcdf/ackredit#63`, `#64`); the evidence
+is posted on that issue.
+
+- [x] source compatibility, locally and in hosted CI;
+- [ ] authorization in `suite.toml`, which is not Ackredit's to give;
+- [ ] then `requires-python`, the promised matrix and the environment files, which the
+      workflow tests move together.
 
 ### Theme F — The stability commitment itself
 
