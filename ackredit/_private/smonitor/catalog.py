@@ -165,6 +165,13 @@ CODES = {
         "dev_message": "register_format rejected name={format!r}: {reason}.",
         "dev_hint": "Names are matched exactly, so one style is enforced at registration rather than guessed at lookup.",
     },
+    "ACKREDIT-E007": {
+        "title": "Report format does not take that option",
+        "user_message": "The '{format}' report does not take {option}.",
+        "user_hint": "It accepts: {accepted}.",
+        "dev_message": "Binding {option} to the '{format}' renderer failed: {reason}.",
+        "dev_hint": "Options used to reach only the latex renderer and be dropped for every other format, so a request succeeded and returned a report that was not the one asked for.",
+    },
     # DepDigest raises this one and renders its own prose, because it knows the
     # install channels. The template must not invent fields DepDigest does not
     # pass: '{pypi}' would reach the user literally.
@@ -206,6 +213,7 @@ _ERRORS = {
     "UnknownFormatError": "ACKREDIT-E004",
     "FormatNameTakenError": "ACKREDIT-E005",
     "InvalidFormatError": "ACKREDIT-E006",
+    "UnknownFormatOptionError": "ACKREDIT-E007",
 }
 
 CATALOG = {

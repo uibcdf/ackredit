@@ -224,3 +224,122 @@ def test_a_plugin_that_asks_what_exists_does_not_recurse(monkeypatch):
 
     provide(monkeypatch, FakeEntryPoint("curious", register))
     assert ackredit.report(format="ids") == "IDS: a:1"
+
+
+# --- what a renderer is handed --------------------------------------------
+
+
+def test_a_renderer_cannot_empty_the_registry():
+    """`report` used to pass `Registry.items` itself, and a renderer may come
+    from anywhere now."""
+
+    def vandal(used, items):
+        items.clear()
+        return "gone"
+
+    ackredit.register_format("vandal", vandal, "txt")
+    with pytest.raises(AttributeError):
+        ackredit.report(format="vandal")
+
+    assert "a:1" in ackredit.Registry.items
+
+
+def test_a_renderer_cannot_rewrite_an_item():
+    """A proxy over the mapping alone still lets an item be written through."""
+
+    def vandal(used, items):
+        items["a:1"]["title"] = "hijacked"
+        return "gone"
+
+    ackredit.register_format("vandal", vandal, "txt")
+    with pytest.raises(TypeError):
+        ackredit.report(format="vandal")
+
+    assert ackredit.Registry.items["a:1"]["title"] == "A Work"
+
+
+def test_what_a_renderer_is_handed():
+    seen = {}
+
+    def observer(used, items):
+        seen["used"] = dict(used)
+        seen["items"] = {key: dict(value) for key, value in items.items()}
+        return ""
+
+    # The file's fixture credits without a caller, so this says what it means.
+    ackredit.track_item("a:1", used_by="a.caller")
+    ackredit.register_format("observer", observer, "txt")
+    ackredit.report(format="observer")
+
+    assert seen["used"] == {"a:1": ["a.caller"]}
+    assert seen["items"]["a:1"]["title"] == "A Work"
+
+
+def test_writing_to_the_used_map_changes_nothing():
+    """It is a copy, built fresh by get_used_items."""
+
+    def vandal(used, items):
+        used.clear()
+        return "gone"
+
+    ackredit.track_item("a:1", used_by="a.caller")
+    ackredit.register_format("vandal", vandal, "txt")
+    ackredit.report(format="vandal")
+
+    assert ackredit.get_used_items() == {"a:1": ["a.caller"]}
+
+
+def test_an_id_that_was_never_registered_still_reaches_a_renderer():
+    seen = {}
+
+    def observer(used, items):
+        seen["ids"] = sorted(used)
+        seen["known"] = sorted(items)
+        return ""
+
+    ackredit.track_item("never:declared", used_by="run")
+    ackredit.register_format("observer", observer, "txt")
+    ackredit.report(format="observer")
+
+    assert "never:declared" in seen["ids"]
+    assert "never:declared" not in seen["known"]
+
+
+# --- options --------------------------------------------------------------
+
+
+def test_a_plugin_may_take_options():
+    def mine(used, items, upper=False):
+        out = ", ".join(sorted(used))
+        return out.upper() if upper else out
+
+    ackredit.register_format("mine", mine, "txt")
+    assert ackredit.report(format="mine") == "a:1"
+    assert ackredit.report(format="mine", upper=True) == "A:1"
+
+
+def test_an_option_a_format_does_not_take_is_refused():
+    """`report(format="bibtex", style="unsrt")` was accepted and the option
+    discarded, which is the defect ACKREDIT-E004 exists to prevent."""
+    from ackredit._private.smonitor.exceptions import UnknownFormatOptionError
+
+    with pytest.raises(UnknownFormatOptionError) as raised:
+        ackredit.report(format="bibtex", style="unsrt")
+
+    assert "bibtex" in str(raised.value)
+    assert "style" in str(raised.value)
+
+
+def test_a_mistyped_option_names_the_format_and_what_it_takes():
+    from ackredit._private.smonitor.exceptions import UnknownFormatOptionError
+
+    with pytest.raises(UnknownFormatOptionError) as raised:
+        ackredit.report(format="latex", stlye="typo")
+
+    message = str(raised.value)
+    assert "latex" in message and "stlye" in message
+    assert "style" in message, "it says what the format does take"
+
+
+def test_the_option_that_already_worked_still_does():
+    assert "unsrt" in ackredit.report(format="latex", style="unsrt")

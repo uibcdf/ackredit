@@ -28,7 +28,7 @@ meaningless. Every provisional name below says why it is one.
 
 ## The surface
 
-Twenty-nine names are stable and seven provisional. This is the only place those counts
+Thirty names are stable and six provisional. This is the only place those counts
 are written; everything else links here, so they cannot drift apart.
 
 | name | status | why |
@@ -63,7 +63,7 @@ are written; everything else links here, so they cannot drift apart.
 
 | `Session` | stable | What it promises is written on the class: `used_items`, `used_targets`, `usage_tree`, `journal_path`, `name` and `clear()`. `uibcdf/ackredit#52` made the machinery private, so the surface and the promise are the same thing. |
 | `summary` | stable | Its contract is three renderings of the same run: `_repr_html_` for a notebook, `str()` and `repr()` everywhere else. `uibcdf/ackredit#51` added the last two, which is what it was missing. |
-| `register_format` | provisional | New in `uibcdf/ackredit#36`, and no third party has written a format yet. What a renderer is handed — the used map and the registry — is the shape the built-in renderers take, and that shape is what would change. |
+| `register_format` | stable | What a renderer is handed is written on it and guarded: a copy of the used map, a read-only registry, and options a format may take. `uibcdf/ackredit#53` settled all three. |
 | `Registry` | provisional | Direct access to shared declaration state. `register_item` and `bound_items` are the supported surface; this is the class behind them. |
 | `Collector` | provisional | Its state is a read-only view onto the current session now. `get_used_items` is the supported reader; the class remains exported for the code that predates the session. |
 | `dependency_info` | provisional | Returns the shape `depdigest.get_info@1.0` defines, so its stability is DepDigest's to promise, not ours. |

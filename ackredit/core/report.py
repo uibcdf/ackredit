@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import inspect
 import logging
 import re
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Any, Callable
+from types import MappingProxyType
+from typing import Any, Callable, Mapping
 
 from depdigest import get_info
 from smonitor import signal
@@ -15,6 +17,7 @@ from .._private.smonitor.exceptions import (
     FormatNameTakenError,
     InvalidFormatError,
     UnknownFormatError,
+    UnknownFormatOptionError,
 )
 from .._private.smonitor.warnings import (
     FormatPluginWarning,
@@ -55,13 +58,49 @@ _NAME = re.compile(r"^[a-z0-9][a-z0-9._-]*$")
 _PLUGINS_LOADED = False
 
 
+def _read_only(items: dict) -> Mapping:
+    """The registry as a renderer sees it: readable, and not writable.
+
+    `used` was always a copy, built fresh by `get_used_items`. `items` was the
+    registry itself, so a renderer could empty it — and since formats became
+    extensible, that renderer may come from anywhere. Both levels are wrapped,
+    because a proxy over the mapping alone still lets an item be rewritten
+    through it.
+    """
+    return MappingProxyType(
+        {item_id: MappingProxyType(item) for item_id, item in items.items()}
+    )
+
+
+def _options(render: Callable) -> list[str]:
+    """The names a renderer takes beyond what every renderer takes."""
+    return [
+        name
+        for name in list(inspect.signature(render).parameters)[2:]
+        if not name.startswith("*")
+    ]
+
+
 def register_format(name: str, renderer: Callable, extension: str) -> None:
     """Add an output format, for this process.
 
-    *renderer* is called as ``renderer(used, items)`` — a mapping of item id to
-    the names that credited it, and the registry of items — and returns the
-    report as text. *extension* is what :func:`dump` names the file, without a
-    leading dot::
+    **What a renderer is handed.** ``renderer(used, items)``, returning the
+    report as text.
+
+    - ``used`` maps an item id to the names that credited it, in the order they
+      appeared. It is a copy: writing to it changes nothing.
+    - ``items`` is the registry, an item id to its fields. It is **read only**,
+      at both levels, because a renderer may come from anywhere and the
+      declarations belong to every later report as well.
+    - An id in ``used`` need not be in ``items``. A host may credit an id it
+      never declared, and every built-in renderer reports it with what is
+      known — the id as its own title.
+
+    A renderer may take further arguments, which reach it from
+    ``report(format=..., **options)``. A format asked for an option it does not
+    take refuses with ``ACKREDIT-E007`` and says what it accepts.
+
+    *extension* is what :func:`dump` names the file, without a leading dot::
 
         def render(used, items):
             return ", ".join(sorted(used))
@@ -171,11 +210,29 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     canonical = _resolve_format(format)
     render, _ = _RENDERERS[canonical]
     used = get_used_items()
-    items = Registry.items
+    items = _read_only(Registry.items)
 
-    if canonical == "latex":
-        return render(used, items, **kwargs)
-    return render(used, items)
+    if not kwargs:
+        return render(used, items)
+
+    # Options used to reach the latex renderer by name and be dropped for every
+    # other format, so `report(format="bibtex", style="unsrt")` succeeded and
+    # returned a report that was not the one asked for. Any renderer may take
+    # them now, which is also what a plugin needs, and one that does not is
+    # told so by name rather than by a traceback from inside itself.
+    try:
+        inspect.signature(render).bind(used, items, **kwargs)
+    except TypeError as error:
+        raise UnknownFormatOptionError(
+            extra={
+                "format": canonical,
+                "option": ", ".join(f"'{name}'" for name in sorted(kwargs)),
+                "accepted": ", ".join(_options(render)) or "no options",
+                "reason": str(error),
+            }
+        ) from error
+
+    return render(used, items, **kwargs)
 
 
 @signal(

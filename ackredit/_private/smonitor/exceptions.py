@@ -47,6 +47,13 @@ class FormatNameTakenError(AckreditError, ValueError):
     catalog_key = "FormatNameTakenError"
 
 
+class UnknownFormatOptionError(AckreditError, TypeError):
+    """An option a report format does not take. Also a TypeError, which is what
+    an unexpected keyword argument normally raises."""
+
+    catalog_key = "UnknownFormatOptionError"
+
+
 class InvalidFormatError(AckreditError, ValueError):
     """A format whose name, renderer or extension cannot be used."""
 
@@ -67,4 +74,5 @@ __all__ = [
     "ItemIdMissingError",
     "MissingDependencyError",
     "UnknownFormatError",
+    "UnknownFormatOptionError",
 ]
