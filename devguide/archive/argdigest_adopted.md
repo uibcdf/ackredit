@@ -94,6 +94,19 @@ Two edits of mine landed wrong and the tests caught both: `report` received the 
 twice while `dump` received none, and `digest_formats` refused `formats=None`, which is how
 `dump` says "the default list".
 
+## Reported upstream
+
+Two limitations, filed in the component that owns them rather than worked around:
+
+- `uibcdf/argdigest#14`: `admits=["signature", ...]` reads the token as a domain name, and
+  the refusal that follows says the function "does not accept the argument 'unknown'",
+  naming neither the real cause nor anything the caller wrote. The same issue carries the
+  second half — a rejected keyword does not say what the function *does* accept, which the
+  contract knows and which Ackredit's own message used to say.
+- `uibcdf/argdigest#15`: ArgDigest imports numpy at import time, so every consumer takes a
+  compiled dependency whether or not an array ever reaches a digester. That is what put
+  numpy behind Ackredit, and it was not visible from the guide.
+
 ## Acceptance criteria
 
 - a string where a sequence is expected is refused, for `bind`, `add_injection`,
