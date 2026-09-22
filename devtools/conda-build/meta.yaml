@@ -24,8 +24,8 @@ requirements:
     - versioningit >=3.0
   run:
     - python >=3.11,<3.14
-    - smonitor >=0.13.0
-    - depdigest >=0.10.0
+    - smonitor >=0.16.0
+    - depdigest >=0.11.0
     - argdigest >=0.12.0
     - pyyaml >=6
 

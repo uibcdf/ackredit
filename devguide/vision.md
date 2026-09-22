@@ -32,7 +32,14 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
     MolSysSuite infrastructure components — `smonitor` for diagnostics, `depdigest` for
     optional dependencies and `argdigest` for arguments; the fourth is `pyyaml`, because
     `CITATION.cff` is YAML and reading it with less produces confident wrong answers on
-    constructs the specification documents. All four are pure Python.
+    constructs the specification documents.
+
+    **Three of the four are pure Python, and the tree is not.** ArgDigest requires
+    `numpy`, so adopting it put a compiled dependency into what a host installs. That was
+    not part of the evidence the adoption was decided on and it is recorded here rather
+    than left to be discovered: a library that is optional and meant to be light now
+    carries numpy behind it. ArgDigest also raises Ackredit's floors to `smonitor>=0.16`
+    and `depdigest>=0.11`, which is what those lines now say.
 
     This supersedes the original "Zero Core Dependencies" pillar. Reimplementing
     diagnostics, optional-dependency handling, argument auditing or a YAML parser inside a

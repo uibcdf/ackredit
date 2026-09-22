@@ -19,8 +19,8 @@ maintainers = [
   { name = "UIBCDF Development Team" },
 ]
 dependencies = [
-  "smonitor>=0.13.0",
-  "depdigest>=0.10.0",
+  "smonitor>=0.16.0",
+  "depdigest>=0.11.0",
   # Argument auditing. Adopted in uibcdf/ackredit#62: six public functions
   # accepted arguments that could not be right, and a string where a list was
   # expected was iterated character by character.
