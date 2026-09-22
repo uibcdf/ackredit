@@ -203,16 +203,38 @@ def compute():
 ```
 
 ## Automatic Discovery (Import Hooks)
-Ackredit can automatically track citations for third-party libraries when they are imported. This feature must be explicitly enabled.
+Ackredit can credit third-party libraries as they are imported. This must be enabled
+explicitly.
 
 ```python
 import ackredit
 
-# Enable the magic
 ackredit.enable_import_hooks()
 
-# Now, importing common libraries will trigger their built-in citations
-import numpy
+# A package imported from here on is credited from its own CITATION.cff, the
+# citations Ackredit ships, or its package metadata, in that order.
 import scipy
 ```
-*Ackredit will look for: internal standard injections, `CITATION.cff` files in the library folder, and package metadata.*
+
+**Discovery sees imports that happen after it is enabled.** A package that is already
+loaded is never imported again, so it is not discovered. Enable the hooks before the
+imports they should see: in a script, near the top; in a host library, before its
+`__init__` imports the submodules that import other packages.
+
+Some packages are always loaded by then. Ackredit loads **numpy** itself, through its
+ArgDigest dependency, until `uibcdf/argdigest#15` is resolved, so discovery cannot credit
+numpy in any process that imports Ackredit. It deliberately does not credit everything
+already loaded instead: an empty notebook kernel has loaded dozens of packages, and a
+report built from those would describe the process rather than the work.
+
+To credit a package that may already be loaded, declare it. A declared injection is
+credited whether its package arrived before the hooks or after:
+
+```python
+# "numpy:paper:2020" registered first, from the work's own record (see Registration).
+ackredit.add_injection("numpy", ["numpy:paper:2020"])
+ackredit.enable_import_hooks()
+```
+
+The standard library is not discovered: it is cited as Python, not module by module. An
+injection on a standard-library module is still honoured.

@@ -10,6 +10,7 @@ from pathlib import Path
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.warnings import PackageMetadataWarning
 from .collector import get_used_items, track_item
+from .injections import mark_import, mark_loaded
 from .registry import Registry, register_item
 
 _REMINDER_ENABLED = False
@@ -153,12 +154,19 @@ class InjectionsFinder(MetaPathFinder):
         # 1. What the host explicitly asked for.
         if fullname in Registry.injections:
             self._triggered.add(fullname)
-            for item_id in Registry.injections[fullname]:
-                track_item(item_id, used_by=fullname)
+            mark_import(fullname)
             return None
 
         # Everything below describes a distribution, not one of its modules.
         if "." in fullname:
+            return None
+
+        # The standard library ships with Python and is cited as Python, not
+        # module by module. Discovery found nothing for it and said so, once
+        # per module, private C extensions included, advising the user to
+        # register `_decimal` by hand (`uibcdf/ackredit#70`). An injection on
+        # one is still honoured above: that is a person deciding.
+        if fullname in sys.stdlib_module_names or fullname.startswith("_sysconfigdata"):
             return None
 
         # Marked before the work, not after: the discovery below calls
@@ -273,6 +281,13 @@ def enable_import_hooks():
 
         sys.meta_path.insert(0, InjectionsFinder())
         _IMPORT_HOOKS_ENABLED = True
+
+        # A declared injection whose module is already loaded will never be
+        # imported again, so the finder cannot see it. Discovery is not swept
+        # the same way: an empty notebook kernel has already loaded 32
+        # packages, and crediting them would build the report from what the
+        # process contains rather than what the workflow used.
+        mark_loaded()
 
 
 def disable_import_hooks():

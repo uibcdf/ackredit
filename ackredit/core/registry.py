@@ -686,6 +686,14 @@ def bound_items(target: str) -> list[str]:
 def add_injection(target_module: str, items: list[str]) -> None:
     Registry.add_injection(target_module, items)
 
+    # Declared after the hooks are on, for a module already imported: the
+    # finder will not see it again, so it is credited now (#69).
+    from . import hooks
+    from .injections import mark_loaded
+
+    if hooks._IMPORT_HOOKS_ENABLED:
+        mark_loaded(target_module)
+
 
 @arg_digest()
 def load_bibtex(file_path: str | Path) -> None:

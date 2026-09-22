@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (66)
+### Resolved (68)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -35,6 +35,8 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`example_host_libraries.md`](example_host_libraries.md) — [#23](https://github.com/uibcdf/ackredit/issues/23) — Two host libraries in the repository, integrated for real, used by the documentation and the tests. *(resolved, reproduced)*
 - [`export_to_duecredit_was_misfiled.md`](export_to_duecredit_was_misfiled.md) — [#56](https://github.com/uibcdf/ackredit/issues/56) — export_to_duecredit was provisional for depending on another project, which never reached its contract. *(resolved, measured)*
 - [`four_names_misfiled_as_provisional.md`](four_names_misfiled_as_provisional.md) — [#49](https://github.com/uibcdf/ackredit/issues/49) — Four names were classified provisional for open behavioural questions rather than for any expected change of name, meaning or signature. *(resolved, asserted)*
+- [`hooks_blind_to_what_came_first.md`](hooks_blind_to_what_came_first.md) — [#69](https://github.com/uibcdf/ackredit/issues/69) — Import hooks never credited a module loaded before them, and since ArgDigest arrived numpy always is, so the documented numpy example and the guide's injection recipe credited nothing. *(resolved, reproduced)*
+- [`hooks_warn_about_the_standard_library.md`](hooks_warn_about_the_standard_library.md) — [#70](https://github.com/uibcdf/ackredit/issues/70) — With import hooks on, every standard-library module imported warned that no citation was found and advised registering it by hand. *(resolved, reproduced)*
 - [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*
 - [`import_hooks_break_every_import.md`](import_hooks_break_every_import.md) — [#60](https://github.com/uibcdf/ackredit/issues/60) — enable_import_hooks raised ImportError on the first import in any fresh process, because a lazy import inside discovery re-entered the finder. *(resolved, measured)*
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
