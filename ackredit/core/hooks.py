@@ -260,6 +260,17 @@ def enable_import_hooks():
     """
     global _IMPORT_HOOKS_ENABLED
     if not _IMPORT_HOOKS_ENABLED:
+        # Everything discovery needs, loaded before the finder can see an
+        # import. `cff` imports yaml at module level, and with the finder
+        # already installed that import reached the finder while `cff` was
+        # still executing its own line — so the first hooked import of any
+        # package raised ImportError. A lazy import inside the discovery path
+        # is the whole cause, and loading them here is the whole fix. The cost
+        # is paid only by a process that asked for discovery.
+        from importlib import metadata  # noqa: F401
+
+        from . import cff  # noqa: F401
+
         sys.meta_path.insert(0, InjectionsFinder())
         _IMPORT_HOOKS_ENABLED = True
 
