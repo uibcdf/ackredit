@@ -86,6 +86,17 @@ The initial local suite passed 1,381 tests with one wheel-build skip because
 isolated build dependencies were unavailable in the restricted environment.
 The updated suite reran with build-dependency access and passed all 1,390
 tests, including the wheel check, with no skips. Ruff, generated report
-indexes and central repository conformance also passed. Hosted evidence is
-in progress. Keep
-this issue open until remaining execution and publication reviews complete.
+indexes and central repository conformance also passed.
+
+At `2bb6967`, [CI](https://github.com/uibcdf/ackredit/actions/runs/36692957081)
+passed all six mandatory Ruff/documentation/supported-test jobs, and the
+[suite policy](https://github.com/uibcdf/ackredit/actions/runs/36692957976)
+passed. The [initial probe](https://github.com/uibcdf/ackredit/actions/runs/36693051220)
+recognized executed full push CI at `2bb6967`, found zero skipped commits
+and omitted heavy jobs. `main` now explicitly requires PRs with zero
+mandatory approvals and the six strict checks, while administrators retain
+direct pushes. The [manual 3.14 feasibility run](https://github.com/uibcdf/ackredit/actions/runs/36693052801)
+passed both Linux and macOS arm64 cells at `2bb6967`; this is exploratory
+evidence and does not admit 3.14 or change the package support range.
+Hosted skip/recovery evidence is being collected. Keep this issue open
+until remaining execution and publication reviews complete.
