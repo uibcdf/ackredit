@@ -98,5 +98,18 @@ mandatory approvals and the six strict checks, while administrators retain
 direct pushes. The [manual 3.14 feasibility run](https://github.com/uibcdf/ackredit/actions/runs/36693052801)
 passed both Linux and macOS arm64 cells at `2bb6967`; this is exploratory
 evidence and does not admit 3.14 or change the package support range.
-Hosted skip/recovery evidence is being collected. Keep this issue open
-until remaining execution and publication reviews complete.
+Documentation push `abce1b0` deliberately used `[skip ci]`; GitHub accepted
+it with explicit PR and six-check bypass notices. The
+[debt probe](https://github.com/uibcdf/ackredit/actions/runs/36694080410)
+found exactly one skipped commit since executed full CI at `2bb6967` and
+omitted heavy jobs. The [required manual full matrix](https://github.com/uibcdf/ackredit/actions/runs/36694709030)
+passed all six Linux/macOS cells at `abce1b0`, including the actual
+interpreter/architecture assertions and full pytest steps. The decision job
+was intentionally skipped for this unconditional manual matrix. GH Run
+Receptor preserved GitHub success; native job/step evidence separately
+verified execution of all six cells.
+The [recovery probe](https://github.com/uibcdf/ackredit/actions/runs/36695131397)
+recognized `abce1b0` as the new full watermark, found zero skipped commits
+and omitted heavy jobs. Final local validation passed all 1,453 collected
+tests with no skips. Keep this issue open until actual daily execution,
+hosted PR enforcement and publication reviews complete.
