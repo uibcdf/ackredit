@@ -1,0 +1,91 @@
+---
+summary: Protect full CI routes and recover skipped direct pushes.
+issue: uibcdf/ackredit#74
+status: partial
+opened: 2026-09-30
+closed:
+severity: medium
+verification: inspected
+area: [ci, governance]
+guard: tests/test_ci_backlog.py
+normative:
+blocked_by: []
+supersedes: []
+---
+
+# Full CI routes and skipped-push recovery
+
+## What
+
+At `7233f67`, full push/PR CI covers Linux Python 3.11–3.13 and macOS 3.13;
+the weekly matrix covers Linux/macOS 3.11–3.13. Unsupported 3.14 cells
+are tolerated inside those workflows. `main` has no branch protection and
+skipped direct pushes have no daily recovery route.
+
+The [push CI](https://github.com/uibcdf/ackredit/actions/runs/36349576188)
+passed. The later [weekly matrix](https://github.com/uibcdf/ackredit/actions/runs/36415326167)
+failed macOS 3.13 in
+`tests/test_persistence_cost.py::test_crediting_one_more_caller_costs_the_same_at_ten_thousand`:
+0.7 microseconds per call against no callers became 2.4 against 5,000.
+This existing component performance result remains visible and is not
+repaired by a CI-routing change.
+
+## How
+
+Preserve required supported-minor coverage and the Conda dependency route.
+Move 3.14 to `python314_feasibility.yaml`, dispatch-only with two platform
+cells and no tolerated failures. Keep `requires-python >=3.11,<3.14`.
+Required workflows contain only supported, gating cells; environment and
+installation guards retain the original interpreter-admission protection.
+
+Use explicit `macos-15` arm64 runners and assert their architecture in the
+full and feasibility workflows. Stagger weekly coverage at Monday 05:23
+UTC. Add daily conditional recovery at 01:31 `America/Mexico_City`, plus a
+manual detector probe. Recognize successful full Linux coverage from
+supported push/manual CI or the periodic matrix, requiring every supported
+minor's actual test step. Probes, failures, other branches, PRs and the
+feasibility workflow cannot clear debt. Uncertain history runs the full
+matrix; a later successful full push can clear existing skip debt.
+
+Require existing Ruff, documentation and supported Linux/macOS routine
+checks, plus explicit PR integration for external changes. Administrators
+`dprada` and `LMMV`, the only current collaborators, retain direct pushes.
+
+## Why
+
+Implements `uibcdf/molsyssuite#39` with visible outcomes and preserves the
+component's support promise. An unsupported minor must not make an otherwise
+green required workflow hide its own failure or silently expand the support
+claim under `uibcdf/molsyssuite#29`.
+
+## What was refuted
+
+A configured daily cron is not recovery evidence. A probe with omitted
+tests is not a full watermark. Branch-filtered API run listings returned
+old evidence in other members, so filtering is local. Packaging metadata
+and a single representative macOS lane cannot certify published artifacts.
+
+## Scope and exclusions
+
+Owns CI routing, required checks and skipped-push recovery. Runtime behavior,
+performance assertions, citation semantics, platform publication claims and
+Python 3.14 admission remain separate component or suite decisions.
+
+## Acceptance criteria
+
+- Full supported suites gate external PRs and administrators retain direct pushes.
+- Supported workflows have no unsupported or tolerated test cells.
+- Manual 3.14 feasibility preserves its actual success or failure.
+- Hosted probes demonstrate zero debt, skipped debt and recovery after a green matrix.
+- All six required Linux/macOS full cells execute, with architecture checks.
+- Actual daily execution, hosted PR enforcement and publication claims are reviewed.
+
+## Resolution
+
+The initial local suite passed 1,381 tests with one wheel-build skip because
+isolated build dependencies were unavailable in the restricted environment.
+The updated suite reran with build-dependency access and passed all 1,390
+tests, including the wheel check, with no skips. Ruff, generated report
+indexes and central repository conformance also passed. Hosted evidence is
+in progress. Keep
+this issue open until remaining execution and publication reviews complete.

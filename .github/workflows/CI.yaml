@@ -25,34 +25,20 @@ jobs:
       - run: ruff format --check .
 
   test:
-    # The contract is `>=3.11,<3.14` and this ran 3.13 alone, so two of the three
-    # versions Ackredit promises had never been run by anything
-    # (`uibcdf/ackredit#63`). 3.14 is here as evidence for the suite transition in
-    # `uibcdf/molsyssuite#29` and claims nothing: it does not gate a merge, and
-    # `requires-python` stays at the default contract until `suite.toml` names
-    # Ackredit. `tests/test_workflow_hygiene.py` holds this list to the contract.
-    #
-    # macOS gates on the development version, so a platform regression shows on
-    # the push that causes it: the session journal relies on O_APPEND, and
-    # multiprocessing starts with spawn there. Every other macOS cell runs in
-    # the weekly matrix (`uibcdf/ackredit#71`).
+    # Full supported-minor coverage remains gating (uibcdf/ackredit#63).
+    # macOS covers the routine minor here and every minor weekly (#71).
+    # Unsupported 3.14 belongs in the separate manual feasibility workflow (#74).
     name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
-    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
         python-version: ["3.11", "3.12", "3.13"]
-        experimental: [false]
         include:
-          - os: macos-latest
+          - os: macos-15
             python-version: "3.13"
-            experimental: false
-          - os: ubuntu-latest
-            python-version: "3.14"
-            experimental: true
     steps:
       - uses: actions/checkout@v6
         with:
@@ -68,17 +54,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # smonitor and depdigest are core dependencies published to the uibcdf
-      # conda channel and not to PyPI, so the environment comes from conda.
-      # The contract file pins `python >=3.11,<3.14`, so the evidence lane needs
-      # its own: asking for `python=3.14` against that pin is unsolvable, and
-      # that is how the first 3.14 lane failed before running a single test
-      # (`uibcdf/ackredit#64`). The two files are held identical apart from the
-      # interpreter, so what the lane measures stays comparable.
+      # Core dependencies come from the uibcdf Conda channel.
       - name: Setup conda env
         uses: mamba-org/setup-micromamba@v3.2.1
         with:
-          environment-file: devtools/conda-envs/${{ matrix.experimental && 'test_env_next.yaml' || 'test_env.yaml' }}
+          environment-file: devtools/conda-envs/test_env.yaml
           environment-name: test
           condarc: |
             channels:
@@ -96,15 +76,10 @@ jobs:
           micromamba info
           micromamba list
 
-      # `requires-python` is still `>=3.11,<3.14`, and it stays there until
-      # `suite.toml` names Ackredit. pip honours it, so the evidence lane has to
-      # say so out loud — the same `--ignore-requires-python` the local run
-      # reported in `uibcdf/molsyssuite#29` used. The promised versions never
-      # pass it: there, refusing to install is the contract working.
       - name: Install package
         shell: bash -l {0}
         run: |
-          python -m pip install . --no-deps ${{ matrix.experimental && '--ignore-requires-python' || '' }}
+          python -m pip install . --no-deps
 
       - name: Test import module
         shell: bash -l {0}

@@ -142,25 +142,25 @@ def test_ci_runs_every_version_the_contract_promises(workflow):
 
 
 @pytest.mark.parametrize("workflow", _matrix_workflows())
-def test_a_lane_is_experimental_exactly_when_its_version_is_outside_the_contract(
-    workflow,
-):
-    """3.14 is in the matrix as evidence for `uibcdf/molsyssuite#29` and claims
-    nothing. An extra lane may also add an operating system for a promised
-    version (`uibcdf/ackredit#71`), and that one gates. What must never happen
-    is a gating lane on an unpromised version — a claim made by accident — or a
-    promised version whose lane is allowed to fail."""
+def test_required_workflows_have_no_unsupported_or_tolerated_test_cells(workflow):
     promised = set(_contract_versions())
-
     for entry in _matrix(workflow).get("include", []):
-        outside = entry["python-version"] not in promised
-        assert entry["experimental"] is outside, entry
-
-
-@pytest.mark.parametrize("workflow", _matrix_workflows())
-def test_the_experimental_lane_does_not_gate(workflow):
+        assert entry["python-version"] in promised, entry
     job = _workflow(workflow)["jobs"]["test"]
-    assert "matrix.experimental" in str(job.get("continue-on-error", ""))
+    assert not job.get("continue-on-error", False)
+    assert all(not step.get("continue-on-error", False) for step in job["steps"])
+
+
+def test_feasibility_is_explicit_and_its_failure_stays_visible():
+    document = _workflow("python314_feasibility.yaml")
+    events = document.get("on", document.get(True))
+    assert set(events) == {"workflow_dispatch"}
+    job = document["jobs"]["feasibility"]
+    assert set(job["strategy"]["matrix"]["python-version"]).isdisjoint(
+        _contract_versions()
+    )
+    assert not job.get("continue-on-error", False)
+    assert all(not step.get("continue-on-error", False) for step in job["steps"])
 
 
 # --- a lane that never reached a test ---------------------------------------
@@ -173,29 +173,15 @@ def test_the_experimental_lane_does_not_gate(workflow):
 
 
 def _step(workflow: str, name: str) -> dict:
-    for step in _workflow(workflow)["jobs"]["test"]["steps"]:
+    job_name = "feasibility" if workflow == "python314_feasibility.yaml" else "test"
+    for step in _workflow(workflow)["jobs"][job_name]["steps"]:
         if step.get("name") == name:
             return step
     raise AssertionError(f"the test job of {workflow} has no step named {name!r}")
 
 
-def _resolve(expression: str, experimental: bool) -> str:
-    """Read a `${{ matrix.experimental && 'a' || 'b' }}` choice the way GitHub does."""
-    import re
-
-    match = re.search(
-        r"\$\{\{\s*matrix\.experimental\s*&&\s*'([^']*)'\s*\|\|\s*'([^']*)'\s*\}\}",
-        expression,
-    )
-    if not match:
-        return expression
-    chosen = match.group(1) if experimental else match.group(2)
-    return expression[: match.start()] + chosen + expression[match.end() :]
-
-
-def _environment_file(workflow: str, experimental: bool) -> Path:
-    declared = _step(workflow, "Setup conda env")["with"]["environment-file"]
-    return ROOT / _resolve(declared, experimental)
+def _environment_file(workflow: str) -> Path:
+    return ROOT / _step(workflow, "Setup conda env")["with"]["environment-file"]
 
 
 def _python_spec(environment: Path) -> str:
@@ -227,15 +213,19 @@ def _admits(spec: str, version: str) -> bool:
     return True
 
 
-def _cells() -> list[tuple[str, str, bool]]:
+def _cells() -> list[tuple[str, str]]:
     cells = []
     for workflow in _matrix_workflows():
         matrix = _matrix(workflow)
-        cells += [(workflow, version, False) for version in matrix["python-version"]]
+        cells += [(workflow, version) for version in matrix["python-version"]]
         cells += [
-            (workflow, entry["python-version"], entry["experimental"])
-            for entry in matrix.get("include", [])
+            (workflow, entry["python-version"]) for entry in matrix.get("include", [])
         ]
+    feasibility = _workflow("python314_feasibility.yaml")["jobs"]["feasibility"]
+    cells += [
+        ("python314_feasibility.yaml", version)
+        for version in feasibility["strategy"]["matrix"]["python-version"]
+    ]
     return cells
 
 
@@ -248,13 +238,11 @@ def test_the_helper_that_reads_a_version_bound_works():
     assert not _admits("python >=3.14,<3.15", "3.13")
 
 
-@pytest.mark.parametrize("workflow,version,experimental", _cells())
-def test_every_matrix_version_is_admitted_by_its_environment(
-    workflow, version, experimental
-):
+@pytest.mark.parametrize("workflow,version", _cells())
+def test_every_matrix_version_is_admitted_by_its_environment(workflow, version):
     """A cell whose environment forbids its interpreter dies in the solver, and
     a non-blocking one dies in silence."""
-    environment = _environment_file(workflow, experimental)
+    environment = _environment_file(workflow)
     spec = _python_spec(environment)
 
     assert _admits(spec, version), (
@@ -263,17 +251,11 @@ def test_every_matrix_version_is_admitted_by_its_environment(
     )
 
 
-@pytest.mark.parametrize("workflow", _matrix_workflows())
-def test_the_evidence_environment_is_the_contract_environment_but_for_python(
-    workflow,
-):
-    """Two environments that drift apart stop being comparable, and then the
-    lane no longer says what it claims to say about the new interpreter."""
-    promised = yaml.safe_load(
-        _environment_file(workflow, False).read_text(encoding="utf-8")
-    )
+def test_the_evidence_environment_is_the_contract_environment_but_for_python():
+    """Feasibility measures the new interpreter against the same dependencies."""
+    promised = yaml.safe_load(_environment_file("CI.yaml").read_text(encoding="utf-8"))
     evidence = yaml.safe_load(
-        _environment_file(workflow, True).read_text(encoding="utf-8")
+        _environment_file("python314_feasibility.yaml").read_text(encoding="utf-8")
     )
 
     def without_python(document):
@@ -287,15 +269,11 @@ def test_the_evidence_environment_is_the_contract_environment_but_for_python(
     assert without_python(promised) == without_python(evidence)
 
 
-@pytest.mark.parametrize("workflow", _matrix_workflows())
-def test_only_the_experimental_lane_ignores_the_contract(workflow):
-    """`requires-python` is what stops an unsupported interpreter installing the
-    package. Bypassing it in a gating lane would retire that protection without
-    anyone deciding to."""
+@pytest.mark.parametrize(
+    "workflow", _matrix_workflows() + ["python314_feasibility.yaml"]
+)
+def test_only_the_feasibility_workflow_ignores_the_contract(workflow):
     install = _step(workflow, "Install package")["run"]
-
-    assert "--ignore-requires-python" in install, (
-        "the evidence lane cannot install under a `<3.14` contract without it"
+    assert ("--ignore-requires-python" in install) is (
+        workflow == "python314_feasibility.yaml"
     )
-    assert _resolve(install, experimental=False).count("--ignore-requires-python") == 0
-    assert _resolve(install, experimental=True).count("--ignore-requires-python") == 1
