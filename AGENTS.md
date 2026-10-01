@@ -70,3 +70,13 @@ Follow [`devguide/reporting_protocol.md`](devguide/reporting_protocol.md) for ev
 bug or proposal record. Open the owning GitHub issue first, create the record from
 `devguide/templates/report.md`, regenerate the indexes after lifecycle changes, and archive
 resolved records instead of deleting them.
+
+## Modular reusable tools
+
+Before adding a feature, inspect existing tools and identify the owning module or
+component. Implement or extend independently useful operations as documented reusable
+tools in that owner, with their own contracts and tests; have consumers call them.
+Keep task-specific decisions local and report missing sibling capabilities to the
+provider with linked consumer evidence. Follow
+[MOLSYSSUITE_GUIDE.md#modular-reusable-tools](MOLSYSSUITE_GUIDE.md#modular-reusable-tools)
+for applicability, compatibility, performance and tracked exceptions.
