@@ -116,3 +116,9 @@ requires committed, published canonical source before writing copies.
 The issue and record stay partial while source/guide delivery, consumer review,
 and published compatibility remain open. This is development-source evidence,
 not a released-installation claim; release machinery remains uibcdf/ackredit#22.
+
+Independent qualification of the isolated source plus the workflow-reader
+import fix passes 1,505 tests. That fix is separately owned by
+uibcdf/ackredit#77: subprocesses must resolve the checkout under test rather than
+an editable installation from another worktree. The committed notebook is
+correct and unchanged; the maintainer's original files remain byte-identical.

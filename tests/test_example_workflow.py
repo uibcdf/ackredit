@@ -12,6 +12,7 @@ the stored output to be what the code produces now. When it fails, run
 """
 
 import json
+import os
 import subprocess
 import sys
 import textwrap
@@ -33,6 +34,35 @@ TITLES = [
 REFRESH = "run `python devtools/refresh_example_notebook.py`"
 
 
+def _source_environment():
+    """Child interpreters must use the checkout under test, including worktrees."""
+    environment = os.environ.copy()
+    existing = environment.get("PYTHONPATH")
+    environment["PYTHONPATH"] = str(ROOT) + (os.pathsep + existing if existing else "")
+    return environment
+
+
+def test_the_workflow_reader_prefers_its_checkout_over_another_editable_import(
+    tmp_path, monkeypatch
+):
+    competing = tmp_path / "another-checkout"
+    package = competing / "ackredit"
+    package.mkdir(parents=True)
+    (package / "__init__.py").write_text(
+        "raise RuntimeError('foreign provider imported')\n"
+    )
+    monkeypatch.setenv("PYTHONPATH", str(competing))
+    result = subprocess.run(
+        [sys.executable, "-c", "import ackredit; print(ackredit.__file__)"],
+        capture_output=True,
+        text=True,
+        cwd=str(EXAMPLES),
+        env=_source_environment(),
+    )
+    assert result.returncode == 0, result.stderr
+    assert Path(result.stdout.strip()).resolve() == ROOT / "ackredit" / "__init__.py"
+
+
 # --- the script -------------------------------------------------------------
 
 
@@ -44,6 +74,7 @@ def script_run(tmp_path_factory):
         capture_output=True,
         text=True,
         cwd=str(ROOT),
+        env=_source_environment(),
     )
     return result, output
 
@@ -135,6 +166,7 @@ def produced(notebook):
         capture_output=True,
         text=True,
         cwd=str(EXAMPLES),
+        env=_source_environment(),
     )
     assert result.returncode == 0, result.stderr[-1500:]
     return json.loads(result.stdout)
