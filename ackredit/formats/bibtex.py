@@ -19,8 +19,13 @@ _NOT_A_FIELD = {"id", "type", "title", "authors", "how_to_cite"} | {
 }
 
 
-def _bibtex_name(name: str) -> str:
-    """Brace-protect a name BibTeX cannot parse.
+def _bibtex_name(author: object, *, latex_source: bool = False) -> str:
+    """Render an explicit CSL name or an existing BibTeX name string.
+
+    Literal objects declare an indivisible author. Their protection braces are
+    syntax, added after escaping the text. Structured objects use BibTeX's
+    ``von Last, Jr, First`` order; dropping particles follow the given name.
+    BibTeX cannot retain CSL's separate particle display/sorting controls.
 
     BibTeX's three-part form is "von Last, Jr, First", so two commas are valid and
     only a third is an error that aborts the run. Double braces make the whole
@@ -28,6 +33,28 @@ def _bibtex_name(name: str) -> str:
     at the cost of its sorting key and initials — so it is used only when BibTeX
     genuinely cannot read the name.
     """
+    if isinstance(author, dict):
+        if "literal" in author:
+            text = escape(str(author["literal"]), latex_source=latex_source)
+            return f"{{{text}}}"
+
+        def part(*keys: str) -> str:
+            text = " ".join(str(author[key]).strip() for key in keys if author.get(key))
+            text = escape(text, latex_source=latex_source)
+            # Commas and the author-list separator inside a declared name part
+            # are content rather than BibTeX delimiters.
+            if "," in text or " and " in text.lower():
+                return f"{{{text}}}"
+            return text
+
+        family = part("non-dropping-particle", "family")
+        given = part("given", "dropping-particle")
+        suffix = part("suffix")
+        if suffix:
+            return f"{family}, {suffix}, {given}"
+        return f"{family}, {given}" if family and given else family or given
+
+    name = escape(str(author), latex_source=latex_source)
     return f"{{{name}}}" if name.count(",") > 2 else name
 
 
@@ -103,9 +130,14 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             # braces are BibTeX syntax rather than content, and escaping them
             # would turn the protection into a literal pair of characters.
             if isinstance(val, list):
-                parts = [escape(str(part), latex_source=latex_source) for part in val]
                 if fc_key == "authors":
-                    parts = [_bibtex_name(part) for part in parts]
+                    parts = [
+                        _bibtex_name(part, latex_source=latex_source) for part in val
+                    ]
+                else:
+                    parts = [
+                        escape(str(part), latex_source=latex_source) for part in val
+                    ]
                 escaped = " and ".join(parts)
             else:
                 escaped = escape(str(val), latex_source=latex_source)

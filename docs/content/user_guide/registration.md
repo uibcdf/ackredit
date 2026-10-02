@@ -20,6 +20,28 @@ ackredit.register_item(
 )
 ```
 
+### Explicit author names
+
+An author may also be a CSL name object. Use `literal` for a consortium or
+another indivisible name; use `family` and `given` for a personal name:
+
+```python
+authors = [
+    {"literal": "The UniProt Consortium"},
+    {"family": "Smith", "given": "John", "suffix": "Jr."},
+]
+```
+
+BibTeX emits the literal as `{The UniProt Consortium}` inside its author field,
+protecting it as one author after escaping its text. Structured names use
+`Family, Suffix, Given` when a suffix is present. A `non-dropping-particle`
+precedes the family name; a `dropping-particle` follows the given name. BibTeX
+cannot express CSL's independent particle display and sorting controls.
+CSL-JSON and detached attribution retain the original name objects. Plain
+strings retain their existing BibTeX interpretation; Ackredit does not guess
+whether a string identifies an organization. Names loaded from `.bib` files
+retain their existing LaTeX provenance and brace protection.
+
 ## Binding Items to Code
 
 Registering an item says it exists. **Binding** says which code entity may require it:
