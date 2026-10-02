@@ -1,9 +1,9 @@
 ---
 summary: Workflow output guards can import an editable provider from another checkout.
 issue: uibcdf/ackredit#77
-status: partial
+status: resolved
 opened: 2026-10-02
-closed:
+closed: 2026-10-02
 severity: low
 verification: reproduced
 area: [tests, examples]
@@ -75,5 +75,7 @@ uncommitted content.
 The nine workflow tests pass, including the competing-provider regression.
 The isolated full source suite passes 1,505 tests with the original committed
 notebook. Ruff and devguide gates pass, and SHA-256 checks confirm that all nine
-original maintainer files retain their original bytes. Publication and the
-corresponding issue/archive transition remain pending.
+original maintainer files retain their original bytes. Commit `4577c83` was
+published to `origin/main` on 2026-10-02. The regression deliberately supplies
+a competing provider and asserts successful execution using the owning checkout;
+it protects the reported child-import mechanism. This record is now archived.

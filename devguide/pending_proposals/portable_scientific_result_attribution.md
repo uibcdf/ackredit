@@ -113,8 +113,8 @@ six-client guide distribution are tracked in uibcdf/molsyssuite#71. The registry
 addition is prepared, preserving unrelated central edits; its synchronizer
 requires committed, published canonical source before writing copies.
 
-The issue and record stay partial while source/guide delivery, consumer review,
-and published compatibility remain open. This is development-source evidence,
+The issue and record stay partial while consumer review and published
+compatibility remain open. This is development-source evidence,
 not a released-installation claim; release machinery remains uibcdf/ackredit#22.
 
 Independent qualification of the isolated source plus the workflow-reader
@@ -122,3 +122,13 @@ import fix passes 1,505 tests. That fix is separately owned by
 uibcdf/ackredit#77: subprocesses must resolve the checkout under test rather than
 an editable installation from another worktree. The committed notebook is
 correct and unchanged; the maintainer's original files remain byte-identical.
+
+## Published source and guide delivery (2026-10-02)
+
+Commits `4228444` (portable attribution and canonical guide) and `4577c83`
+(workflow-reader qualification) are published on Ackredit `origin/main`.
+The central registered synchronizer passed source/destination preflight and
+copied `ACKREDIT_GUIDE.md` to PyUnitWizard, MolSysMT, MolSysViewer, TopoMT,
+PharmacophoreMT and ElastNetMT. Its subsequent check reports all six copies
+current. Central registry publication remains tracked in uibcdf/molsyssuite#71;
+guide delivery does not establish runtime adoption or a package release.
