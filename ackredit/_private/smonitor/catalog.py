@@ -179,6 +179,16 @@ CODES = {
         "dev_message": "register_format rejected name={format!r}: {reason}.",
         "dev_hint": "Names are matched exactly, so one style is enforced at registration rather than guessed at lookup.",
     },
+    "ACKREDIT-E010": {
+        "title": "Attribution contract refused",
+        "user_message": "Cannot {operation}: {reason}.",
+        "user_hint": "Use a complete ackredit.attribution@1 payload, named roles and JSON-compatible context.",
+    },
+    "ACKREDIT-E011": {
+        "title": "Conflicting bibliographic identity",
+        "user_message": "Reference '{item_id}' changed within the tracked attribution.",
+        "user_hint": "Use distinct identifiers for distinct works or software versions. Original captured records are preserved.",
+    },
     "ACKREDIT-E009": {
         "title": "One file cannot hold several reports",
         "user_message": "dump() was asked for {count} formats ({formats}) and one file, '{path}'.",
@@ -230,6 +240,8 @@ _WARNINGS = {
 }
 
 _ERRORS = {
+    "AttributionError": "ACKREDIT-E010",
+    "AttributionConflictError": "ACKREDIT-E011",
     "ItemIdMissingError": "ACKREDIT-E001",
     "BibtexFileNotFoundError": "ACKREDIT-E002",
     "MissingDependencyError": "ACKREDIT-E003",

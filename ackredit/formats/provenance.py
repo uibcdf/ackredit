@@ -53,7 +53,11 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
     """
     Render a provenance tree showing why each item was cited.
     """
-    tree = get_usage_tree()
+    return render_tree(get_usage_tree(), items)
+
+
+def render_tree(tree: dict, items: dict) -> str:
+    """Render an explicitly supplied graph, including a saved attribution graph."""
     if not tree:
         return "No tracking information available."
 

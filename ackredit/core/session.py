@@ -205,6 +205,7 @@ class Session:
         # and an item credited from many call sites made recording O(n squared).
         # `_record_item` is the only writer of both, so they cannot drift.
         self._callers: Dict[str, set] = {}
+        self._attribution_builder = None
 
         self.journal_path: Optional[Path] = None
         self._journal: Optional[int] = None
@@ -220,6 +221,7 @@ class Session:
             self.used_items.clear()
             self.usage_tree.clear()
             self._callers.clear()
+            self._attribution_builder = None
 
     def _record_item(self, item_id: str, used_by: str | None) -> bool:
         """Credit *item_id*, optionally to *used_by*. Callers hold the lock.
@@ -306,6 +308,9 @@ def session(name: str = "session", inherit: bool = False) -> Iterator[Session]:
             fresh._callers = {
                 item: set(callers) for item, callers in enclosing._callers.items()
             }
+            from copy import deepcopy
+
+            fresh._attribution_builder = deepcopy(enclosing._attribution_builder)
             fresh.usage_tree = {
                 target: {
                     "items": set(node["items"]),

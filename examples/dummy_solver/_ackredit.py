@@ -44,7 +44,7 @@ except ImportError:
     def credit_bound(target):
         return []
 
-    def track_item(item_id, used_by=None):
+    def track_item(item_id, used_by=None, *, roles=(), context=None):
         pass
 
     def scoped_usage(target, credit_bound=False):

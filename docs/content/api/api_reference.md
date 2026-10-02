@@ -12,6 +12,24 @@ This page provides an overview of the Ackredit public API.
    :show-inheritance:
 ```
 
+## Portable attribution (provisional)
+
+`capture(name, context=...)` observes one calculation alongside the current
+session. Its `attribution` property returns an `Attribution` snapshot;
+`get_attribution()` snapshots the enclosing workflow. `Attribution.from_dict`
+and `from_json` read saved bibliography without new credit; `to_dict` and
+`to_json` detach it, and `report` renders the original records. Contextual
+`track_item(..., roles=[...], context={...})` associates papers with software
+versions without adding role fields to bibliographic records.
+
+See [the canonical integration guide](https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDIT_GUIDE.md)
+for the schema, failure behavior and development-only adoption status.
+
+```{eval-rst}
+.. automodule:: ackredit.core.attribution
+   :members: Attribution, capture, get_attribution
+```
+
 ## Core Components
 
 These are internals, documented for anyone working on Ackredit. They are not part of the

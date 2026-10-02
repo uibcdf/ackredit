@@ -282,6 +282,23 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     return render(used, items, **kwargs)
 
 
+def _render_records(format, used, items, tree, options):
+    """Render detached records without replacing or crediting the reader session."""
+    canonical = _resolve_format(format)
+    renderer, _ = _RENDERERS[canonical]
+    try:
+        inspect.signature(renderer).bind(used, items, **options)
+    except TypeError as error:
+        from .._private.smonitor.exceptions import AttributionError
+
+        raise AttributionError(
+            extra={"operation": "render attribution", "reason": str(error)}
+        ) from error
+    if canonical == "provenance":
+        return provenance.render_tree(tree, _read_only(items))
+    return renderer(dict(used), _read_only(items), **options)
+
+
 @arg_digest()
 @signal(
     tags=["ackredit", "report"],

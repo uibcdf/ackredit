@@ -33,6 +33,7 @@ _ensure_smonitor_configured(_SMONITOR_PACKAGE_ROOT)
 
 from .contrib.duecredit_compat import export_to_duecredit
 from .contrib.jupyter import summary
+from .core.attribution import Attribution, capture, get_attribution
 from .core.collector import (
     aggregate,
     close_persistence,
@@ -74,6 +75,9 @@ from .core.session import Session, current_session, session
 load_plugins()
 
 __all__ = [
+    "Attribution",
+    "capture",
+    "get_attribution",
     "__version__",
     "Session",
     "register_format",

@@ -30,6 +30,20 @@ EXPORTED_CALLABLES = (
 )
 
 
+def test_portable_capture_example_runs_and_reads_without_new_credit(clean_registry):
+    text = GUIDE.read_text(encoding="utf-8")
+    section = text.split("### Portable calculation capture", 1)[1]
+    source = section.split("```python", 1)[1].split("```", 1)[0]
+    namespace = {}
+    exec(compile(source, "<portable_capture_guide>", "exec"), namespace)
+    assert (
+        namespace["result_references"]["items"]
+        == namespace["workflow_references"]["items"]
+    )
+    assert "Example" in namespace["bibliography"]
+    assert ackredit.get_used_items() == {}
+
+
 def _template_source() -> str:
     text = GUIDE.read_text(encoding="utf-8")
     assert MARKER in text, f"{GUIDE.name} no longer contains the template marker"

@@ -14,6 +14,7 @@ from .._private.smonitor.warnings import (
     SessionSaveWarning,
 )
 from . import session
+from .attribution import _observe_item, _observe_target
 from .session import current_session
 
 
@@ -185,11 +186,14 @@ class Collector(metaclass=_CollectorState):
     def track_target(cls, target: str, parent: str | None = None) -> None:
         state = current_session()
         with state._lock:
+            _observe_target(state, target, parent)
             if state._record_target(target, parent):
                 cls._record(state, session.append_target, target, parent)
 
     @classmethod
-    def track_item(cls, item_id: str, used_by: str | None = None) -> None:
+    def track_item(
+        cls, item_id: str, used_by: str | None = None, *, roles=(), context=None
+    ) -> None:
         if used_by is None:
             from .context import get_current_scope
 
@@ -197,6 +201,7 @@ class Collector(metaclass=_CollectorState):
 
         state = current_session()
         with state._lock:
+            _observe_item(state, item_id, used_by, roles, context)
             if state._record_item(item_id, used_by):
                 cls._record(state, session.append_item, item_id, used_by)
 
@@ -317,8 +322,25 @@ def track_target(target: str, parent: str | None = None) -> None:
     Collector.track_target(_a_name(target, "track_target", "target"), parent=parent)
 
 
-def track_item(item_id: str, used_by: str | None = None) -> None:
-    Collector.track_item(_a_name(item_id, "track_item", "item_id"), used_by=used_by)
+def track_item(
+    item_id: str,
+    used_by: str | None = None,
+    *,
+    roles: list[str] | tuple[str, ...] = (),
+    context: dict | None = None,
+) -> None:
+    """Credit a reference, optionally describing its role in this operation.
+
+    Roles belong to the use, not the bibliographic work. A dependency's software
+    and description articles may share ``context={"software": ..., "version": ...}``.
+    Context must be JSON-compatible; providing it preserves metadata at use.
+    """
+    Collector.track_item(
+        _a_name(item_id, "track_item", "item_id"),
+        used_by=used_by,
+        roles=roles,
+        context=context,
+    )
 
 
 def credit_bound(target: str) -> list[str]:

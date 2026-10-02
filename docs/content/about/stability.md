@@ -27,21 +27,22 @@ the way they are.
 **Provisional.** We expect this to change. It may be renamed, reshaped or removed in any
 minor release before 1.0.0, and it reaches 1.0.0 either promoted to stable or removed —
 shipping a provisional name inside a stability commitment would make the commitment
-meaningless. Every provisional name would say why it is one; there are none left.
-
-That the list is empty is not the end of theme F. It means every name has been decided
-once, on the evidence available now. What adoption teaches may reopen any of them, which
-is why `devguide/roadmap.md` keeps that review as the theme's last item.
+meaningless. Every provisional name states why it is one. Portable attribution is
+provisional while its first consumers review the schema and adoption under
+`uibcdf/ackredit#75`. Existing names retain their classifications.
 
 ## The surface
 
-Thirty-three names are stable and zero provisional — every one has been decided once, on
+Thirty-three names are stable and three provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
 | name | status | why |
 | --- | --- | --- |
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
+| `Attribution` | provisional | The portable `ackredit.attribution@1` schema needs consumer adoption and compatibility review under `uibcdf/ackredit#75`. |
+| `capture` | provisional | Calculation-local collection beside the enclosing workflow needs the two-client review under `uibcdf/ackredit#75`. |
+| `get_attribution` | provisional | The workflow snapshot shares the portable schema awaiting that review under `uibcdf/ackredit#75`. |
 | `bind` | stable | Declares what a target may require. Decision 4: a declaration with an opt-in runtime effect, never automatic. |
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
 | `credit_bound` | stable | The opt-in that makes a binding credit. Decision 4. |

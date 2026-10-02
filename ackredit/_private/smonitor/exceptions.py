@@ -66,6 +66,14 @@ class InvalidFormatError(AckreditError, ValueError):
     catalog_key = "InvalidFormatError"
 
 
+class AttributionError(AckreditError, ValueError):
+    catalog_key = "AttributionError"
+
+
+class AttributionConflictError(AckreditError, ValueError):
+    catalog_key = "AttributionConflictError"
+
+
 class MissingDependencyError(AckreditError, ImportError):
     """Also an ImportError, which is what the optional-dependency pattern expects."""
 
