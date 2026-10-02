@@ -33,6 +33,18 @@ ackredit.dependency_info()  # what optional features this environment supports
 
 ## For working on Ackredit itself
 
+The Python 3.14 adoption candidate targets Python 3.11–3.14 and installs
+normally, without `--ignore-requires-python`. Its maintained environments and
+required CI use the same range. ArgDigest 0.13.0 is the minimum release carrying
+Python 3.14 support. Older immutable Ackredit tags keep their original range;
+the `0.8.0` installation above remains a Python 3.11–3.13 example.
+
+Source qualification and normal installation are tracked in
+[Ackredit #80](https://github.com/uibcdf/ackredit/issues/80).
+[MolSysSuite #29](https://github.com/uibcdf/molsyssuite/issues/29) owns transition
+authorization and public admission. A development wheel does not establish a
+public Conda release or a stable portable-API version.
+
 ```bash
 git clone https://github.com/uibcdf/ackredit.git
 cd ackredit
@@ -43,6 +55,12 @@ pip install --no-deps -e .
 
 An editable install reports a development version such as `0.8.0+3.gabc1234`, which says
 how far past the tag it is. It is not the release, and it is not meant to be cited as one.
+
+For an installed-package check, create the test environment with the interpreter
+you want to qualify, build a wheel, and install that wheel with `pip install
+--no-deps`. Run `devtools/installed_smoke.py` from outside the checkout. It
+rejects editable/source provider imports and checks packaged citation metadata,
+portable attribution, reused workflow references and saved-reader behavior.
 
 ## Once published
 

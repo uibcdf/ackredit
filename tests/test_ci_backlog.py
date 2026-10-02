@@ -56,6 +56,19 @@ def test_every_python_minor_must_execute_the_full_suite(monkeypatch):
     assert not ci_backlog.full_linux_passed("uibcdf/ackredit", 1, "token")
 
 
+def test_pre_adoption_three_minor_matrix_cannot_clear_python314_debt(monkeypatch):
+    evidence = [
+        {
+            "name": f"Test on ubuntu-latest, Python {version}",
+            "conclusion": "success",
+            "steps": [{"name": "Run tests", "conclusion": "success"}],
+        }
+        for version in ("3.11", "3.12", "3.13")
+    ]
+    monkeypatch.setattr(ci_backlog, "api_json", lambda *_: {"jobs": evidence})
+    assert not ci_backlog.full_linux_passed("uibcdf/ackredit", 1, "token")
+
+
 def test_full_push_clears_debt_but_probe_pr_feature_and_failure_do_not(monkeypatch):
     def run(run_id, event, commit, branch="main", conclusion="success"):
         return {

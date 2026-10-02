@@ -113,3 +113,16 @@ recognized `abce1b0` as the new full watermark, found zero skipped commits
 and omitted heavy jobs. Final local validation passed all 1,453 collected
 tests with no skips. Keep this issue open until actual daily execution,
 hosted PR enforcement and publication reviews complete.
+
+## Python 3.14 adoption update (2026-10-02)
+
+The candidate under uibcdf/ackredit#80 expands the required Linux matrix to
+3.11–3.14 and the periodic Linux/macOS arm64 matrix to eight cells. The
+historical manual filename remains available, but its candidate implementation
+now verifies normal installed-package use without a metadata override. It still
+cannot clear full-matrix debt. The recovery detector now requires an executed
+3.14 test cell too; the regression
+`tests/test_ci_backlog.py::test_pre_adoption_three_minor_matrix_cannot_clear_python314_debt`
+rejects a green historical three-minor matrix as a complete recovery watermark.
+Central authorization and public admission remain tracked in MolSysSuite #29
+and Ackredit #80. Earlier evidence above retains its original support boundary.

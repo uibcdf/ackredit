@@ -53,7 +53,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-15]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v6
         with:
@@ -87,12 +87,14 @@ jobs:
         run: |
           python -m pip install . --no-deps
 
-      - name: Test import module
+      - name: Verify installed package outside the checkout
         shell: bash -l {0}
         run: |
           set -euo pipefail
-          cd
-          echo 'import ackredit; print("Version of the package: {}".format(ackredit.__version__))' | python
+          cd "${RUNNER_TEMP}"
+          python "${GITHUB_WORKSPACE}/devtools/installed_smoke.py" \
+            --expected-python "${{ matrix.python-version }}"
+          python -m pip check
 
       - name: Verify interpreter and macOS architecture
         shell: bash -l {0}
@@ -113,4 +115,6 @@ jobs:
       - name: Run tests
         shell: bash -l {0}
         run: |
-          pytest --receptor=ci --color=yes
+          set -euo pipefail
+          cd "${RUNNER_TEMP}"
+          pytest --receptor=ci --color=yes "${GITHUB_WORKSPACE}/tests"

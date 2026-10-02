@@ -1,15 +1,6 @@
-# The environment for the non-blocking Python 3.14 lane, and only for it.
-#
-# `test_env.yaml` pins `python >=3.11,<3.14`, the contract this repository
-# promises, so asking micromamba for `python=3.14` against that file cannot be
-# solved — which is exactly how the first evidence lane failed: the solver
-# stopped before it ever reached a test (`uibcdf/ackredit#64`).
-#
-# This file exists so the evidence can be produced without moving the contract,
-# and it claims nothing. `tests/test_workflow_hygiene.py` holds it to two rules:
-# it must admit the version the lane requests, and apart from the interpreter it
-# must be the same environment the promised versions are tested in — otherwise
-# the two lanes would stop being comparable and the evidence would be worthless.
+# Dedicated normal-install gate for Python 3.14 (uibcdf/ackredit#80).
+# The historical filename is retained for the manual workflow route.
+# Dependencies match the supported test environment; only Python is narrowed.
 channels:
 - uibcdf
 - conda-forge
@@ -24,7 +15,7 @@ dependencies:
 - codecov
 # Suite infrastructure. These are core dependencies of Ackredit and are
 # published to the uibcdf conda channel, not to PyPI.
-- smonitor
-- depdigest
-- argdigest
+- smonitor >=0.16.0
+- depdigest >=0.11.0
+- argdigest >=0.13.0
 - pyyaml

@@ -10,7 +10,8 @@ canonical source, never in this repository.
 
 Ackredit is a registered MolSysSuite component, incubating as a primary support library.
 Its admission is tracked centrally in `uibcdf/molsyssuite#28`; membership does not imply
-stable product contracts or authorization for Python 3.14.
+stable product contracts or public Python 3.14 admission. The target adoption is
+tracked by `uibcdf/ackredit#80` and central transition `uibcdf/molsyssuite#29`.
 
 Keep Ackredit-specific implementation, tests, releases and product issues here. Report
 suite-wide rules, shared tooling problems and cross-repository proposals in
@@ -58,7 +59,9 @@ workflows. Inspect a remote run with `gh run-receptor inspect RUN_ID --receptor=
 rather than printing the raw log, per the suite's GH Run Receptor policy; fall back to
 native GitHub evidence only for a fact the report omits, and keep that fallback targeted.
 
-Routine development uses Python 3.13; the supported user range is Python 3.11 to 3.13.
+Routine development uses Python 3.13. The adoption candidate targets Python 3.11
+to 3.14; public admission requires central transition registration and verified
+public package delivery. Do not infer public admission from source tests.
 
 `smonitor` and `depdigest` are core dependencies published to the `uibcdf` conda channel
 and not to PyPI, so environments come from `devtools/conda-envs/` and the package is

@@ -151,14 +151,13 @@ def test_required_workflows_have_no_unsupported_or_tolerated_test_cells(workflow
     assert all(not step.get("continue-on-error", False) for step in job["steps"])
 
 
-def test_feasibility_is_explicit_and_its_failure_stays_visible():
+def test_python314_installed_gate_is_explicit_and_its_failure_stays_visible():
     document = _workflow("python314_feasibility.yaml")
     events = document.get("on", document.get(True))
     assert set(events) == {"workflow_dispatch"}
-    job = document["jobs"]["feasibility"]
-    assert set(job["strategy"]["matrix"]["python-version"]).isdisjoint(
-        _contract_versions()
-    )
+    job = document["jobs"]["installed"]
+    assert job["strategy"]["matrix"]["python-version"] == ["3.14"]
+    assert "3.14" in _contract_versions()
     assert not job.get("continue-on-error", False)
     assert all(not step.get("continue-on-error", False) for step in job["steps"])
 
@@ -173,7 +172,7 @@ def test_feasibility_is_explicit_and_its_failure_stays_visible():
 
 
 def _step(workflow: str, name: str) -> dict:
-    job_name = "feasibility" if workflow == "python314_feasibility.yaml" else "test"
+    job_name = "installed" if workflow == "python314_feasibility.yaml" else "test"
     for step in _workflow(workflow)["jobs"][job_name]["steps"]:
         if step.get("name") == name:
             return step
@@ -221,10 +220,10 @@ def _cells() -> list[tuple[str, str]]:
         cells += [
             (workflow, entry["python-version"]) for entry in matrix.get("include", [])
         ]
-    feasibility = _workflow("python314_feasibility.yaml")["jobs"]["feasibility"]
+    installed = _workflow("python314_feasibility.yaml")["jobs"]["installed"]
     cells += [
         ("python314_feasibility.yaml", version)
-        for version in feasibility["strategy"]["matrix"]["python-version"]
+        for version in installed["strategy"]["matrix"]["python-version"]
     ]
     return cells
 
@@ -251,8 +250,8 @@ def test_every_matrix_version_is_admitted_by_its_environment(workflow, version):
     )
 
 
-def test_the_evidence_environment_is_the_contract_environment_but_for_python():
-    """Feasibility measures the new interpreter against the same dependencies."""
+def test_the_python314_gate_uses_the_same_installed_dependencies():
+    """The dedicated installed gate narrows only the interpreter."""
     promised = yaml.safe_load(_environment_file("CI.yaml").read_text(encoding="utf-8"))
     evidence = yaml.safe_load(
         _environment_file("python314_feasibility.yaml").read_text(encoding="utf-8")
@@ -272,8 +271,13 @@ def test_the_evidence_environment_is_the_contract_environment_but_for_python():
 @pytest.mark.parametrize(
     "workflow", _matrix_workflows() + ["python314_feasibility.yaml"]
 )
-def test_only_the_feasibility_workflow_ignores_the_contract(workflow):
+def test_supported_workflows_install_without_a_python_metadata_override(workflow):
     install = _step(workflow, "Install package")["run"]
-    assert ("--ignore-requires-python" in install) is (
-        workflow == "python314_feasibility.yaml"
-    )
+    assert "--ignore-requires-python" not in install
+    assert "--no-deps" in install
+    verification = _step(workflow, "Verify installed package outside the checkout")[
+        "run"
+    ]
+    assert "installed_smoke.py" in verification
+    assert 'cd "${RUNNER_TEMP}"' in verification
+    assert "python -m pip check" in verification

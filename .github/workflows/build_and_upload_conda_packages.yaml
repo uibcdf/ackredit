@@ -130,21 +130,15 @@ jobs:
           RELEASE_VERSION: ${{ inputs.version }}
         run: |
           set -euo pipefail
-          micromamba create -y -n verify -c uibcdf/label/staging -c uibcdf -c conda-forge \
-            "python=3.13" "ackredit=$RELEASE_VERSION"
-          micromamba run -n verify python -c "
-          import ackredit, os
-          from pathlib import Path
-          from ackredit.core.cff import find_and_parse_cff
-          assert ackredit.__version__ == os.environ['RELEASE_VERSION'], ackredit.__version__
-          found = find_and_parse_cff(Path(ackredit.__file__).parent)
-          assert found and found['title'] == 'Ackredit', found
-          ackredit.register_item(id='verify:1', type='article', title='Verified')
-          ackredit.track_item('verify:1')
-          assert 'Verified' in ackredit.report()
-          print('installed, discoverable and reporting:', ackredit.__version__)
-          "
-          micromamba run -n verify ackredit --help
+          for python_minor in 3.11 3.12 3.13 3.14; do
+            verify_env="verify-${python_minor}"
+            micromamba create -y -n "$verify_env" -c uibcdf/label/staging -c uibcdf -c conda-forge \
+              "python=${python_minor}" "ackredit=$RELEASE_VERSION"
+            cd "${RUNNER_TEMP}"
+            micromamba run -n "$verify_env" python "${GITHUB_WORKSPACE}/devtools/installed_smoke.py" \
+              --expected-python "$python_minor" --expected-version "$RELEASE_VERSION"
+            micromamba run -n "$verify_env" ackredit --help
+          done
 
       - name: Promote the verified candidate to the public label
         if: ${{ inputs.promote }}

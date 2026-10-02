@@ -27,7 +27,7 @@ jobs:
   test:
     # Full supported-minor coverage remains gating (uibcdf/ackredit#63).
     # macOS covers the routine minor here and every minor weekly (#71).
-    # Unsupported 3.14 belongs in the separate manual feasibility workflow (#74).
+    # Python 3.14 uses the same normal installed-package gate (#80).
     name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
@@ -35,7 +35,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
         include:
           - os: macos-15
             python-version: "3.13"
@@ -81,25 +81,23 @@ jobs:
         run: |
           python -m pip install . --no-deps
 
-      - name: Test import module
+      - name: Verify installed package outside the checkout
         shell: bash -l {0}
         run: |
-          # Without -e a failing line does not stop the script, and GitHub reads
-          # the exit status of the last one. This check printed a traceback and
-          # reported success.
           set -euo pipefail
-          echo "::group::Importing module from home directory"
-          cd
-          pwd
-          echo 'import ackredit; print("Version of the package: {}".format(ackredit.__version__))' | python
-          echo "::endgroup::"
+          cd "${RUNNER_TEMP}"
+          python "${GITHUB_WORKSPACE}/devtools/installed_smoke.py" \
+            --expected-python "${{ matrix.python-version }}"
+          python -m pip check
 
       # --receptor=ci is the combined workflow both receptor tools document:
       # compact output at the source, inspected afterwards with gh-run-receptor.
       - name: Run tests
         shell: bash -l {0}
         run: |
-          pytest --receptor=ci --color=yes
+          set -euo pipefail
+          cd "${RUNNER_TEMP}"
+          pytest --receptor=ci --color=yes "${GITHUB_WORKSPACE}/tests"
 
   docs:
     name: Documentation build on ubuntu-latest
