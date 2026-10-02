@@ -7,7 +7,7 @@ name = "ackredit"
 dynamic = ["version"]
 description = "Ackredit — trace what you used, cite what matters."
 readme = "README.md"
-requires-python = ">=3.11,<3.14"
+requires-python = ">=3.11,<3.15"
 license = { text = "MIT" }
 # These must agree with CITATION.cff, which is the authority a citing tool reads.
 # tests/test_self_citation.py asserts they do.

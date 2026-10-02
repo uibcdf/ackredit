@@ -15,7 +15,7 @@ SKIP_MARKER = re.compile(
     r"|^skip-checks:\s*true\s*$",
     re.IGNORECASE | re.MULTILINE,
 )
-PYTHON_VERSIONS = ("3.11", "3.12", "3.13")
+PYTHON_VERSIONS = ("3.11", "3.12", "3.13", "3.14")
 WORKFLOWS = {
     "CI_full_matrix.yaml": {"schedule", "workflow_dispatch"},
     "CI.yaml": {"push", "workflow_dispatch"},

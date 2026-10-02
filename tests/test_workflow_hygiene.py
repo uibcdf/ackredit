@@ -151,14 +151,13 @@ def test_required_workflows_have_no_unsupported_or_tolerated_test_cells(workflow
     assert all(not step.get("continue-on-error", False) for step in job["steps"])
 
 
-def test_feasibility_is_explicit_and_its_failure_stays_visible():
+def test_installed_314_validation_is_explicit_and_its_failure_stays_visible():
     document = _workflow("python314_feasibility.yaml")
     events = document.get("on", document.get(True))
     assert set(events) == {"workflow_dispatch"}
     job = document["jobs"]["feasibility"]
-    assert set(job["strategy"]["matrix"]["python-version"]).isdisjoint(
-        _contract_versions()
-    )
+    assert set(job["strategy"]["matrix"]["python-version"]) == {"3.14"}
+    assert "3.14" in _contract_versions()
     assert not job.get("continue-on-error", False)
     assert all(not step.get("continue-on-error", False) for step in job["steps"])
 
@@ -272,8 +271,6 @@ def test_the_evidence_environment_is_the_contract_environment_but_for_python():
 @pytest.mark.parametrize(
     "workflow", _matrix_workflows() + ["python314_feasibility.yaml"]
 )
-def test_only_the_feasibility_workflow_ignores_the_contract(workflow):
+def test_no_installed_workflow_bypasses_requires_python(workflow):
     install = _step(workflow, "Install package")["run"]
-    assert ("--ignore-requires-python" in install) is (
-        workflow == "python314_feasibility.yaml"
-    )
+    assert "--ignore-requires-python" not in install
