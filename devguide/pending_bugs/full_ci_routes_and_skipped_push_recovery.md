@@ -17,6 +17,17 @@ supersedes: []
 
 ## What
 
+**Current range correction (2026-10-02):** uibcdf/ackredit#80 and the
+maintainer's suite-wide requirement supersede the earlier instruction to
+leave 3.14 outside the supported source contract. Source `e4a006a` now has
+required four-minor CI and ordinary 3.14 installation; routine run
+`37073478950`, policy `37073479396`, full eight-cell matrix `37074118479`,
+and zero-debt recovery probe `37075039313` pass. The recovery watermark
+requires actual successful 3.14 execution. Main has seven strict checks,
+including Linux 3.14, with the internal administrator route preserved.
+The original evidence below remains the history of the narrower rollout;
+public artifact qualification still belongs to #80, not this CI-route issue.
+
 At `7233f67`, full push/PR CI covers Linux Python 3.11–3.13 and macOS 3.13;
 the weekly matrix covers Linux/macOS 3.11–3.13. Unsupported 3.14 cells
 are tolerated inside those workflows. `main` has no branch protection and

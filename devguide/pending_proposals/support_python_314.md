@@ -90,3 +90,26 @@ Ruff lint/format (197 files), report indexes and the current suite conformance
 check pass. Central governance passes 272 tests and five focused admission/
 ecosystem tests. This is local regression evidence on 3.13, not new 3.14
 execution or public artifact verification.
+
+## Hosted source qualification — 2026-10-02
+
+Exact source `e4a006a6931f3fb5f97be5b09767c144dfb35662` passes routine CI
+`37073478950`, shared policy `37073479396` at immutable `policy-v1.5.3`,
+and full matrix `37074118479`. All eight Linux/macOS arm64 Python 3.11–3.14
+jobs actually execute normal installation, the off-checkout import,
+interpreter/architecture assertions and the full test step successfully.
+GH Run Receptor reports eight successful test jobs; native job/step evidence
+confirms those executions. The decision job is intentionally skipped during
+unconditional full dispatch and is not counted as test evidence.
+
+The existing six strict branch checks remain app-bound; the successful Linux
+3.14 test is added as the seventh required check. Administrator bypass is
+preserved. Recovery probe `37075039313` executes the decision and reports zero
+pending skipped commits since the new four-minor source watermark `e4a006a`;
+the matrix is omitted intentionally. Historical three-minor evidence is no
+longer accepted by the detector.
+
+Source/installed qualification is now demonstrated on both tested platforms.
+Public delivery of the portable API and independent consumer closure remain
+pending under this issue and #22/#75. No public artifact or admission claim is
+added. Platform coordination is communicated through uibcdf/moli#37.
