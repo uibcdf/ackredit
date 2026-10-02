@@ -1,9 +1,9 @@
 ---
 summary: BibTeX stringifies explicit CSL author objects instead of preserving author identity.
 issue: uibcdf/ackredit#78
-status: partial
+status: resolved
 opened: 2026-10-02
-closed:
+closed: 2026-10-02
 severity: medium
 verification: reproduced
 area: [formats, attribution]
@@ -78,5 +78,9 @@ regeneration and fixture-owned registry replacement); both are fixed without
 changing shared isolation rules. The complete rerun passes.
 
 The correction is prepared independently of the nine maintainer files in the
-primary checkout. The record stays partial until the provider fix is merged;
-the durable regression above is the eventual closure guard.
+primary checkout. All seven remote checks passed for commit `561989e`, including
+the Python 3.11–3.13 Linux tests, macOS test, documentation, Ruff and suite
+conformance. The maintainer authorized direct publication to `main`; no pull
+request merge is required. The author regression initially failed on dictionary
+text and now asserts actual author identity, so it guards the reported mechanism.
+This record is archived with the source correction for direct publication.
