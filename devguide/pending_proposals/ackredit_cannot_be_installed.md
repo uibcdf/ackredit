@@ -226,3 +226,8 @@ the exact-file installed matrix and receiving-consumer qualification must still
 succeed before the separate public-promotion decision. This source change
 does not claim a registry upload or close uibcdf/ackredit#22 or
 uibcdf/ackredit#75.
+
+Concurrent accepted commits adopt engineering policy 1.5.4 and the routine
+Python 3.14 baseline. The release plan's required normal-CI macOS job is aligned
+with that new interpreter; the eight-cell full and installed matrices retain
+Python 3.11–3.14 coverage.

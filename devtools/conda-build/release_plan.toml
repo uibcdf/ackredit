@@ -22,7 +22,7 @@ dependencies_public = true
 "Test on ubuntu-latest, Python 3.12" = ["Verify installed package outside the checkout", "Run tests"]
 "Test on ubuntu-latest, Python 3.13" = ["Verify installed package outside the checkout", "Run tests"]
 "Test on ubuntu-latest, Python 3.14" = ["Verify installed package outside the checkout", "Run tests"]
-"Test on macos-15, Python 3.13" = ["Verify installed package outside the checkout", "Run tests"]
+"Test on macos-15, Python 3.14" = ["Verify installed package outside the checkout", "Run tests"]
 
 [gate_jobs.".github/workflows/CI_full_matrix.yaml"]
 "Test on ubuntu-latest, Python 3.11" = ["Verify installed package outside the checkout", "Verify interpreter and macOS architecture", "Run tests"]
