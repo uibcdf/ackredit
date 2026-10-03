@@ -6,7 +6,8 @@
 Ackredit is pre-1.0. **1.0.0 means the public API is stable and we commit to not breaking
 it**, and this page says in advance which names that covers.
 
-Until 1.0.0 is tagged the table is a statement of intent, not the commitment itself. It
+Except for the bounded portable compatibility promise below, until 1.0.0 is
+tagged the table is a statement of intent, not the commitment itself. It
 exists so the commitment, when it is made, is made on purpose: a name reaches 1.0.0 as
 `stable` because someone decided it should, not because it happened to be exported.
 
@@ -27,22 +28,22 @@ the way they are.
 **Provisional.** We expect this to change. It may be renamed, reshaped or removed in any
 minor release before 1.0.0, and it reaches 1.0.0 either promoted to stable or removed —
 shipping a provisional name inside a stability commitment would make the commitment
-meaningless. Every provisional name states why it is one. Portable attribution is
-provisional while its first consumers review the schema and adoption under
-`uibcdf/ackredit#75`. Existing names retain their classifications.
+meaningless. Every provisional name states why it is one. Portable attribution was
+reviewed with PyUnitWizard and Sabueso under `uibcdf/ackredit#75`; the accepted
+contract is assigned to candidate 0.9.0, pending immutable delivery.
 
 ## The surface
 
-Thirty-three names are stable and three provisional — every one has been decided once, on
+Thirty-six names are stable and zero provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
 | name | status | why |
 | --- | --- | --- |
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
-| `Attribution` | provisional | The portable `ackredit.attribution@1` schema needs consumer adoption and compatibility review under `uibcdf/ackredit#75`. |
-| `capture` | provisional | Calculation-local collection beside the enclosing workflow needs the two-client review under `uibcdf/ackredit#75`. |
-| `get_attribution` | provisional | The workflow snapshot shares the portable schema awaiting that review under `uibcdf/ackredit#75`. |
+| `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
+| `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. |
+| `get_attribution` | stable | Detaches the enclosing workflow bibliography with original contextual uses; shares the reviewed portable contract under `uibcdf/ackredit#75`. |
 | `bind` | stable | Declares what a target may require. Decision 4: a declaration with an opt-in runtime effect, never automatic. |
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
 | `credit_bound` | stable | The opt-in that makes a binding credit. Decision 4. |
@@ -94,6 +95,21 @@ used before the journal existed, and `tests/test_persistence_cost.py` holds it t
 Nothing is promised in the other direction. An older Ackredit meeting a newer journal reads
 the events it understands and skips the rest, the same way it skips the torn last line an
 interrupted run leaves.
+
+## Portable attribution compatibility
+
+The reviewed names and schema are assigned to candidate **0.9.0**, pending
+its first immutable release; older tags do not contain this contract. The
+[portable attribution contract](../user_guide/portable_attribution.md) fixes
+the supported operations and `ackredit.attribution@1` payload. Readers keep
+supporting released schema 1 even if a future release introduces another schema.
+A field or interpretation change uses a new schema identifier. Unknown schemas
+are diagnosed and refused rather than silently translated. JSON whitespace and
+object-key ordering are not compatibility promises.
+
+The portable operations retain their reviewed call semantics across 0.9.x and
+1.x. Public distribution, Python admission and host runtime adoption are separate
+gates; this source decision does not claim delivery of 0.9.0.
 
 ## Deprecation policy
 

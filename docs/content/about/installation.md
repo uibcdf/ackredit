@@ -6,28 +6,34 @@ Ackredit has four runtime dependencies: three MolSysSuite infrastructure compone
 distributed through the `uibcdf` conda channel and not through PyPI. They are pure
 Python, but the tree is not: ArgDigest requires `numpy`, which conda brings with it.
 
-Ackredit is not on a package channel yet. That is a decision rather than an omission:
-the API is still settling, and a published package is a commitment to what it contains.
-Until the release before 1.0.0, **a Git tag is the release**, and installing one is two
-commands.
+Ackredit is not on a package channel yet. Candidate **0.9.0** carries the reviewed
+portable contract and Python 3.11–3.14 support; staging, installed qualification
+and the public release decision are tracked in #22/#75/#80. Its prepared citation
+metadata names that candidate, not an already delivered release. The last
+published Git tag remains 0.8.0; earlier tags do not carry the portable API.
 
-## A released version
+## A prepared candidate artifact
+
+After obtaining the reviewed archive from the staging producer receipt, install
+that exact local file. This is candidate qualification, not a public-channel
+installation command:
 
 ```bash
 conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest argdigest pyyaml pip
 conda activate work
-pip install --no-deps "git+https://github.com/uibcdf/ackredit@0.8.0"
+conda install /path/to/ackredit-0.9.0-py_0.tar.bz2
 ```
 
-The first command brings the suite dependencies from the `uibcdf` channel, which is where
-they live; they are not on PyPI. `--no-deps` stops pip looking for them there.
+The first command obtains the suite dependencies through their public Conda
+channel. The installed-artifact gate separately verifies the candidate archive
+and digest and executes the full supported platform/interpreter matrix.
 
 Check it arrived whole:
 
 ```python
 import ackredit
 
-ackredit.__version__  # '0.8.0'
+ackredit.__version__  # '0.9.0'
 ackredit.dependency_info()  # what optional features this environment supports
 ```
 
@@ -37,7 +43,7 @@ The Python 3.14 adoption candidate targets Python 3.11–3.14 and installs
 normally, without `--ignore-requires-python`. Its maintained environments and
 required CI use the same range. ArgDigest 0.13.0 is the minimum release carrying
 Python 3.14 support. Older immutable Ackredit tags keep their original range;
-the `0.8.0` installation above remains a Python 3.11–3.13 example.
+the earlier `0.8.0` tag retains its Python 3.11–3.13 range.
 
 Source qualification and normal installation are tracked in
 [Ackredit #80](https://github.com/uibcdf/ackredit/issues/80).
@@ -53,7 +59,7 @@ conda activate ackredit
 pip install --no-deps -e .
 ```
 
-An editable install reports a development version such as `0.8.0+3.gabc1234`, which says
+An editable install reports a development version derived from the latest tag, which says
 how far past the tag it is. It is not the release, and it is not meant to be cited as one.
 
 For an installed-package check, create the test environment with the interpreter

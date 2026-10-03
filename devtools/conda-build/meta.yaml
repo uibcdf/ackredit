@@ -2,13 +2,14 @@
 
 package:
   name: {{ name|lower }}
-  version: "{{ environ['GIT_DESCRIBE_TAG'] }}"
+  version: "{{ environ.get('MOLSYSSUITE_CONDA_VERSION', environ.get('GIT_DESCRIBE_TAG', '0.0.0')) }}"
 
 source:
   path: ../..
 
 build:
-  number: "{{ environ.get('ACKREDIT_CONDA_BUILD_NUMBER', '0') }}"
+  number: {{ environ.get('MOLSYSSUITE_CONDA_BUILD_NUMBER', '0') }}
+  string: py_{{ environ.get('MOLSYSSUITE_CONDA_BUILD_NUMBER', '0') }}
   # Pure Python, no compiled extensions: one architecture-independent package
   # installs on linux, osx and win. The run constraint below makes the same
   # package valid across the supported interpreters. No build matrix.

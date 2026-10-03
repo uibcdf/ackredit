@@ -132,3 +132,27 @@ copied `ACKREDIT_GUIDE.md` to PyUnitWizard, MolSysMT, MolSysViewer, TopoMT,
 PharmacophoreMT and ElastNetMT. Its subsequent check reports all six copies
 current. Central registry publication remains tracked in uibcdf/molsyssuite#71;
 guide delivery does not establish runtime adoption or a package release.
+
+## Reviewed contract and candidate (2026-10-03)
+
+The maintainer authorized contract stabilization and preparation of distribution.
+`Attribution`, `capture` and `get_attribution` are classified stable with their
+existing semantics; the first reviewed release is assigned to candidate 0.9.0.
+`docs/content/user_guide/portable_attribution.md` defines operations, detached
+ownership, role/context extensibility, failure behavior and schema-1 compatibility.
+Later readers retain released schema 1; structural/meaning changes use another ID.
+This bounded promise applies across 0.9.x and 1.x and does not make a public
+distribution claim or change host activation policies.
+
+The frozen real PyUnitWizard 0.27.0/unyt 3.1.0 record is guarded by
+`tests/test_attribution_contract.py`: saved data retain original bibliography,
+versions and ownership in a fresh reader without producer/engines/network/credit.
+The capture and canonical-example guards remain in force. Fresh source-provider
+integration passes 17 PyUnitWizard tests at `e766b7c` and 14 Sabueso tests at
+`62a019d`, with no consumer code edits. These are consumer source tests, not
+public installation receipts. Sphinx `-W` passes the full contract documentation.
+
+The provider contract decision is complete in source. Keep this record partial
+until candidate delivery and receiving-consumer installed compatibility are
+recorded; those delivery gates remain coordinated with #22/#80. No 0.9.0 tag or
+public artifact is claimed before the exact candidate is qualified and released.

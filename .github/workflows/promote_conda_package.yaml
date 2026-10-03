@@ -1,0 +1,36 @@
+name: Promote the exact installed Conda candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Full source SHA of the staged and tested candidate
+        required: true
+        type: string
+      version:
+        description: Version in the committed release plan
+        required: true
+        type: string
+      sha256:
+        description: SHA-256 of the staged file qualified by the installed run
+        required: true
+        type: string
+      installed_run_id:
+        description: Existing completed full installed matrix run
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  promote:
+    uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@4010595a2ed756b20114730c6a91561a16d7be2f
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      version: ${{ inputs.version }}
+      sha256: ${{ inputs.sha256 }}
+      installed_run_id: ${{ inputs.installed_run_id }}
+    secrets:
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}

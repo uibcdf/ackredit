@@ -1,0 +1,14 @@
+name: Conda publication policy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publication:
+    uses: uibcdf/molsyssuite/.github/workflows/check-conda-publication.yaml@4010595a2ed756b20114730c6a91561a16d7be2f

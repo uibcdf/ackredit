@@ -1,0 +1,71 @@
+{
+  "schema": "ackredit.attribution@1",
+  "name": "original result",
+  "context": {
+    "producer": "pyunitwizard",
+    "version": "0.27.0"
+  },
+  "items": [
+    {
+      "type": "software",
+      "title": "unyt",
+      "authors": [
+        "unyt developers"
+      ],
+      "url": "https://github.com/yt-project/unyt",
+      "id": "software:unyt:3.1.0",
+      "version": "3.1.0"
+    },
+    {
+      "id": "doi:10.21105/joss.00809",
+      "type": "article",
+      "title": "unyt: Handle, manipulate, and convert data with units in Python",
+      "authors": [
+        "Goldbaum, Nathan J.",
+        "ZuHone, John A.",
+        "Turk, Matthew J.",
+        "Kowalik, Kacper",
+        "Rosen, Anna L."
+      ],
+      "doi": "10.21105/joss.00809",
+      "year": 2018,
+      "journal": "Journal of Open Source Software",
+      "volume": 3,
+      "number": 28,
+      "pages": "809"
+    }
+  ],
+  "uses": [
+    {
+      "item_id": "software:unyt:3.1.0",
+      "used_by": "pyunitwizard.forms.unyt.convert",
+      "roles": [
+        "executed_software"
+      ],
+      "context": {
+        "software": "unyt",
+        "version": "3.1.0"
+      }
+    },
+    {
+      "item_id": "doi:10.21105/joss.00809",
+      "used_by": "pyunitwizard.forms.unyt.convert",
+      "roles": [
+        "software_description"
+      ],
+      "context": {
+        "software": "unyt",
+        "version": "3.1.0"
+      }
+    }
+  ],
+  "usage_tree": {
+    "pyunitwizard.forms.unyt.convert": {
+      "items": [
+        "doi:10.21105/joss.00809",
+        "software:unyt:3.1.0"
+      ],
+      "children": []
+    }
+  }
+}

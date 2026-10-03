@@ -6,7 +6,7 @@ opened: 2026-09-21
 closed:
 verification: reproduced
 area: [packaging, release]
-guard: devtools/conda-build/meta.yaml
+guard: tests/test_conda_release_route.py
 normative: devguide/roadmap.md
 blocked_by: []
 supersedes: []
@@ -71,4 +71,28 @@ Verified locally rather than asserted:
 
 - publishing a candidate to `uibcdf/label/staging` and promoting it;
 - rewriting `docs/content/about/installation.md` around the published package, which must
-  not be done before it exists.
+      not be done before it exists.
+
+## Candidate route repair (2026-10-03)
+
+The combined workflow's `promote: true` step rebuilt and uploaded the version
+again instead of promoting the tested bytes. The maintainer authorized candidate
+preparation; the route now uses the reviewed shared noarch workflows at full
+MolSysSuite commit `4010595a2ed756b20114730c6a91561a16d7be2f`.
+
+Separate wrappers stage once, qualify the exact archive across Linux x86-64 and
+macOS arm64 on Python 3.11–3.14, and promote only with an existing successful
+installed run and SHA-256. The provider acquires exact-source executed native
+gates, checks resources before upload, uses public dependency channels, retains
+receipts and verifies public registry/index state independently. The source
+publication guard and recipe/resource inspection pass; they do not certify an
+upload or runtime artifact. `tests/test_conda_release_route.py` guards the former
+rebuild/promotion defect and the exact installed-file/no-secret interface.
+
+The committed staged plan prepares 0.9.0 build 0, the first reviewed portable
+contract. CFF metadata and installation guidance identify the prepared candidate
+without advertising an unverified public route. This release replaces the former
+indefinite deferral with an exact candidate and qualification gates; it is not
+permission to skip those gates. The repository has access to the organization
+secret named `ANACONDA_UIBCDF_TOKEN`; availability is not proof of upload success.
+No remote release tag or public promotion is performed by source preparation.

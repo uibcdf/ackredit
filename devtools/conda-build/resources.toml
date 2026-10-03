@@ -1,0 +1,22 @@
+import_name = "ackredit"
+version_file = "site-packages/ackredit/_version.py"
+reason = "Pure Python attribution; package code, generated version and self-citation must survive one noarch archive. Dependencies provide their own native packages."
+required_paths = [
+  "site-packages/ackredit/__init__.py",
+  "site-packages/ackredit/_version.py",
+  "site-packages/ackredit/CITATION.cff",
+  "site-packages/ackredit/core/attribution.py",
+  "site-packages/ackredit/cli.py",
+]
+
+[installed_gate]
+workflow = ".github/workflows/test_staged_conda_package.yaml"
+platforms = ["linux-64", "osx-arm64"]
+python_versions = ["3.11", "3.12", "3.13", "3.14"]
+prepare_job = "installed / prepare"
+job_template = "installed / {platform} · Python {python}"
+required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests", "Recheck installed provenance after scientific tests"]
+
+[installed_tests]
+paths = ["tests"]
+pytest_args = ["--receptor=ci", "--color=yes"]

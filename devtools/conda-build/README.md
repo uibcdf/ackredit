@@ -1,46 +1,54 @@
 # Conda packaging
 
-Ackredit is pure Python, so `meta.yaml` builds one `noarch` package that installs on
-Linux, macOS and Windows across the supported interpreters. There is no build matrix.
+Ackredit builds one `noarch: python` artifact. Dependencies such as NumPy carry
+their own platform packages. Candidate 0.9.0 is planned for Linux x86-64 and
+macOS arm64 on Python 3.11–3.14; Windows delivery is not claimed by this plan.
 
-## The release route, and why it has two steps
+## Committed candidate inputs
 
-A published package cannot be withdrawn the way a commit can be amended, and
-`devguide/release_version_policy.md` forbids moving or deleting a published tag. So a
-candidate is verified before it is public, not after:
+`release_plan.toml` records staging, version/build, executed source gates and
+the installed matrix. `resources.toml` names packaged code, generated version,
+`CITATION.cff`, the launcher and full installed suite. Runtime receipts bind
+the final full source SHA and actual artifact digest; a commit cannot contain
+its own SHA. Changed inputs invalidate the gates that consumed them.
 
-1. **Stage.** `build_and_upload_conda_packages.yaml`, run from the Actions tab, builds
-   the candidate and uploads it to `uibcdf/label/staging`. The three inputs —
-   `candidate_sha`, `version`, `build_number` — must describe one immutable thing, and
-   the workflow refuses if they do not agree with each other or with the tag.
-2. **Verify.** The same run then creates a fresh environment, installs the candidate
-   *from the staging label*, and checks that it reports the expected version, discovers
-   its own `CITATION.cff`, renders a report and exposes its command line.
-3. **Promote.** Only with `promote: true` does the artifact reach the public label.
+The four wrappers pin the shared MolSysSuite build, installed qualification,
+promotion and publication guard to immutable commit
+`4010595a2ed756b20114730c6a91561a16d7be2f` (`policy-v1.5.3`). The provider owns
+archive inspection, executed-gate acquisition, exact-file upload, label-only
+promotion and independent public registry/index verification.
 
-Run it once with `promote: false`, read the verification step, and run it again with
-`promote: true` when satisfied. `build_number` is incremented only to supersede a
-defective staged artifact; a released one is never replaced.
+## Staging and qualification
 
-## What the recipe tests
+1. Publish the reviewed source commit and pass its declared CI/policy gates.
+2. Dispatch `build_and_upload_conda_packages.yaml` with full `candidate_sha`
+   and `version=0.9.0`. The plan supplies build 0. The provider freezes version
+   metadata only in its ephemeral checkout, builds once, tests and inspects the
+   archive before uploading the exact file to staging.
+3. Retain its producer artifact/receipt. Dispatch `test_staged_conda_package.yaml`
+   at a ref resolving to that source SHA, with the exact filename and SHA-256.
+   All eight cells must install that file, verify Conda provenance, resources and
+   launcher, and execute the complete suite outside source. Dependencies resolve
+   through public channels; staging supplies only the Ackredit candidate.
+4. Record receiving-consumer compatibility separately. Development source/wheel
+   evidence does not establish the first public consumer dependency closure.
 
-The `test:` block runs against the built package rather than the source tree, which is
-where two defects have already hidden:
+## Public promotion
 
-- `uibcdf/ackredit#2` — the wheel shipped only `__init__.py` and `cli.py`, and an
-  editable install hid it;
-- `uibcdf/ackredit#21` — `CITATION.cff` lived at the repository root, which is the
-  package's parent under an editable install, so discovery worked from a checkout and
-  the built artifact carried nothing.
+After the release decision, dispatch `promote_conda_package.yaml` with source
+SHA, version, staged SHA-256 and the successful installed run ID. The provider
+queries native matrix/step evidence, adds `main` to the same file and verifies
+its public label and solver index. It never rebuilds or overwrites that coordinate.
+Recheck a failed read-only post-public verifier without repeating promotion.
 
-Both now fail the recipe's own tests if they return.
+The old combined `promote: true` interface is replaced: it rebuilt and reuploaded
+instead of promoting tested bytes. Repairs use additive builds with new installed
+evidence. Public tags are immutable; staging creates no remote release tag.
 
-## Locally
+`ANACONDA_UIBCDF_TOKEN` is mapped explicitly to the shared secret. Secret
+availability, upload permission and verified public delivery remain separate.
+No installation command or badge claims publication before verification.
 
-```bash
-GIT_DESCRIBE_TAG=$(git describe --tags --abbrev=0) \
-  conda build devtools/conda-build --no-anaconda-upload -c uibcdf -c conda-forge
-```
-
-`GIT_DESCRIBE_TAG` is set by conda-build in a normal invocation; it is passed explicitly
-here because `conda render` and a direct build from a worktree may not derive it.
+The authority is `MOLSYSSUITE_GUIDE.md`, routing to central release/distribution/
+Conda policies. Ackredit #22 owns this route; #75 owns the portable contract and
+#80 owns Python 3.14 delivery and receiving-consumer closure.

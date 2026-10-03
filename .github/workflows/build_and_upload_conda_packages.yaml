@@ -1,158 +1,26 @@
-name: Build and upload conda packages
+name: Stage one reviewed noarch Conda candidate
 
-# A published package cannot be withdrawn the way a commit can be amended, and
-# the release policy forbids moving a published tag. So a candidate goes to the
-# staging label first, is installed from there into a clean environment and
-# checked, and only then is promoted. Publishing first and verifying afterwards
-# is the wrong order for a registry.
 on:
   workflow_dispatch:
     inputs:
       candidate_sha:
-        description: Full commit SHA to build into the staging label
+        description: Full source SHA with passing release gates
         required: true
         type: string
       version:
-        description: Candidate version (for example, 0.6.0)
+        description: Version in the committed release plan
         required: true
         type: string
-      build_number:
-        description: Staging build number; increment only to supersede a defective artifact
-        required: true
-        default: 0
-        type: number
-      promote:
-        description: Promote the verified staging artifact to the public label
-        required: true
-        default: false
-        type: boolean
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
-  conda_deployment_with_new_tag:
-    name: Conda deployment of the noarch package
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-          ref: ${{ inputs.candidate_sha }}
-
-      # The three inputs must describe one immutable thing. A candidate built
-      # from a moving reference is not the artifact anyone verified.
-      - name: Validate the immutable candidate identity
-        shell: bash
-        env:
-          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
-          RELEASE_VERSION: ${{ inputs.version }}
-          BUILD_NUMBER: ${{ inputs.build_number }}
-        run: |
-          set -euo pipefail
-          [[ "$CANDIDATE_SHA" =~ ^[0-9a-f]{40}$ ]]
-          [[ "$RELEASE_VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]
-          [[ "$BUILD_NUMBER" =~ ^[0-9]+$ ]]
-          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
-          if git show-ref --verify --quiet "refs/tags/$RELEASE_VERSION"; then
-            test "$(git rev-list -n 1 "$RELEASE_VERSION")" = "$CANDIDATE_SHA"
-          else
-            git tag "$RELEASE_VERSION" HEAD
-          fi
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.13"
-
-      - name: Setup conda env
-        uses: mamba-org/setup-micromamba@v3.2.1
-        with:
-          environment-file: devtools/conda-envs/build_env.yaml
-          environment-name: build
-          condarc: |
-            channels:
-              - uibcdf/label/staging
-              - uibcdf
-              - conda-forge
-            channel_priority: strict
-          create-args: >-
-            python=3.13
-
-      - name: Info conda
-        shell: bash -l {0}
-        run: |
-          set -euo pipefail
-          micromamba activate build
-          micromamba info
-          micromamba list
-
-      - name: Verify the derived package version
-        shell: bash -l {0}
-        env:
-          EXPECTED_VERSION: ${{ inputs.version }}
-        run: test "$(python -m versioningit)" = "$EXPECTED_VERSION"
-
-      - name: Build, test, and upload the staging candidate
-        id: conda_staging
-        uses: uibcdf/action-build-and-upload-conda-packages@v2.2.0
-        env:
-          ACKREDIT_CONDA_BUILD_NUMBER: ${{ inputs.build_number }}
-        with:
-          meta_yaml_dir: devtools/conda-build
-          mambabuild: false
-          user: uibcdf
-          label: staging
-          token: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}
-          conda_build_args: --package-format tar.bz2
-          platform_linux-64: false
-          platform_osx-64: false
-          platform_osx-arm64: false
-          platform_win-64: false
-
-      - name: Upload staging producer evidence
-        if: ${{ always() && steps.conda_staging.outputs.evidence_path != '' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ steps.conda_staging.outputs.evidence_artifact_name }}
-          path: ${{ steps.conda_staging.outputs.evidence_path }}
-          if-no-files-found: error
-          retention-days: 7
-
-      # Independent of the build: a fresh environment, resolving from the
-      # staging label, exercising what a user would do.
-      - name: Verify the staged candidate from a clean environment
-        shell: bash -l {0}
-        env:
-          RELEASE_VERSION: ${{ inputs.version }}
-        run: |
-          set -euo pipefail
-          for python_minor in 3.11 3.12 3.13 3.14; do
-            verify_env="verify-${python_minor}"
-            micromamba create -y -n "$verify_env" -c uibcdf/label/staging -c uibcdf -c conda-forge \
-              "python=${python_minor}" "ackredit=$RELEASE_VERSION"
-            cd "${RUNNER_TEMP}"
-            micromamba run -n "$verify_env" python "${GITHUB_WORKSPACE}/devtools/installed_smoke.py" \
-              --expected-python "$python_minor" --expected-version "$RELEASE_VERSION"
-            micromamba run -n "$verify_env" ackredit --help
-          done
-
-      - name: Promote the verified candidate to the public label
-        if: ${{ inputs.promote }}
-        uses: uibcdf/action-build-and-upload-conda-packages@v2.2.0
-        env:
-          ACKREDIT_CONDA_BUILD_NUMBER: ${{ inputs.build_number }}
-        with:
-          meta_yaml_dir: devtools/conda-build
-          mambabuild: false
-          user: uibcdf
-          label: main
-          token: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}
-          conda_build_args: --package-format tar.bz2
-          platform_linux-64: false
-          platform_osx-64: false
-          platform_osx-arm64: false
-          platform_win-64: false
+  stage:
+    uses: uibcdf/molsyssuite/.github/workflows/publish-noarch-conda.yaml@4010595a2ed756b20114730c6a91561a16d7be2f
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      version: ${{ inputs.version }}
+    secrets:
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}
