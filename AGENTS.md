@@ -59,7 +59,7 @@ workflows. Inspect a remote run with `gh run-receptor inspect RUN_ID --receptor=
 rather than printing the raw log, per the suite's GH Run Receptor policy; fall back to
 native GitHub evidence only for a fact the report omits, and keep that fallback targeted.
 
-Routine development uses Python 3.13; the required source contract is Python
+Routine development uses Python 3.14; the required source contract is Python
 3.11 to 3.14. Keep ordinary installed tests, environments, recipe and full CI
 aligned. Public 3.14 delivery remains unverified until #80 records a released
 artifact and clean installation; do not infer it from source probes or bypass
