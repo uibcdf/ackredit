@@ -8,8 +8,8 @@ Python, but the tree is not: ArgDigest requires `numpy`, which conda brings with
 
 Ackredit **0.9.0** is available from the public `uibcdf` Conda channel. It is
 the first published version with `Attribution`, `capture`, `get_attribution`
-and the portable `ackredit.attribution@1` contract. It supports Python
-3.11–3.14. The same `noarch: python` archive was qualified on Linux x86-64
+and the portable `ackredit.attribution@1` contract. Its package metadata requires
+Python 3.11–3.14. The same `noarch: python` archive was qualified on Linux x86-64
 and macOS arm64 across all four Python minors before publication.
 
 ## Install from Conda
