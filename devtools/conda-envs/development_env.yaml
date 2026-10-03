@@ -8,7 +8,7 @@ dependencies:
 - pytest
 - pytest-cov
 - pytest-xdist
-- pytest-receptor
+- pytest-receptor ==1.2.1
 # Documentation
 - sphinx
 - pydata-sphinx-theme

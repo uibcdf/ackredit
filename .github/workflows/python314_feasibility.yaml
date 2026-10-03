@@ -75,6 +75,10 @@ jobs:
           print("Python", platform.python_version(), "architecture", platform.machine())
           PYTHON
 
+      - name: Verify installed Pytest Receptor version
+        shell: bash -l {0}
+        run: python -c 'from importlib.metadata import version; actual = version("pytest-receptor"); print("pytest-receptor", actual); assert actual == "1.2.1", actual'
+
       - name: Run tests
         shell: bash -l {0}
         run: |

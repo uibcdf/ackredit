@@ -157,14 +157,22 @@ metadata declares no author beyond "UIBCDF Development Team" and no contact.
 
 ### Theme C — A host library has actually adopted it
 
-The integration guide is guarded by tests that execute its template
-(`tests/test_integration_guide.py`), but **no host library has adopted it yet**. Every
-defect found in the guide so far was found by reading it, not by using it, and the
-difference between those two is where the remaining unknowns live.
+Real receiving integration is now demonstrated. PyUnitWizard #92 exercises
+Pint/unyt backend attribution through an opt-in context. Sabueso #108 requires
+Ackredit for automatic knowledge-packet attribution. Its receiving tests pass
+against the exact Ackredit 0.9.0 archive on all four Linux Python minors in
+staging, and against a clean public installation on Python 3.14. The canonical
+guide is guarded by executed examples in `tests/test_integration_guide.py`.
 
-- `molsysmt` or `topomt` integrating Ackredit for real;
-- what that surfaces, fixed here;
-- the guide corrected from the experience rather than from inspection.
+- [x] real provider/consumer operations, reused bibliography, enclosing credit,
+      absence/failure and detached fresh-reader behavior;
+- [x] the portable capture and guide corrected from those observations under #75;
+- [ ] receiving scientific releases qualified against the public provider;
+      Sabueso #108/#110 owns its candidate, and MolSysMT #292 owns its adoption.
+
+Tested integration, synchronized guides and released consumer adoption remain
+separate evidence. MolSysMT and other clients own their scientific schemas and
+release decisions; their runtime work is requested through their issues.
 
 This is the theme most likely to need more than one minor, and the most valuable.
 
@@ -192,18 +200,21 @@ the script: the minimum of several runs, each in its own interpreter, both sides
 Ackredit, and a baseline that reports its own spread so a difference beneath it is labelled
 rather than published.
 
-### Theme E — Python 3.14
+### Theme E — Python 3.14 — component delivery complete
 
-Governed centrally by `uibcdf/molsyssuite#29`, where the decision now rests. The
-dependencies are ready: SMonitor, DepDigest and ArgDigest all declare `<3.15` and are
-admitted there. CI runs a non-blocking 3.14 lane from the public channel builds and it
-passes with the same results as 3.11 to 3.13 (`uibcdf/ackredit#63`, `#64`); the evidence
-is posted on that issue.
+The suite-wide requirement authorizes Python 3.11–3.14 adoption and routine
+development on 3.14. Ackredit #80 is resolved with the actual public 0.9.0
+artifact, its eight-cell installed matrix and clean public Linux/Python 3.14
+receiving evidence. Metadata is `>=3.11,<3.15`; ordinary installed tests do
+not bypass Requires-Python or tolerate failures.
 
 - [x] source compatibility, locally and in hosted CI;
-- [ ] authorization in `suite.toml`, which is not Ackredit's to give;
-- [ ] then `requires-python`, the promised matrix and the environment files, which the
-      workflow tests move together.
+- [x] required range, maintained environments, recipe and full CI aligned;
+- [x] same-file Linux/macOS-arm64 × Python 3.11–3.14 installed qualification;
+- [x] public artifact and normal public Python 3.14 dependency closure;
+- [ ] central admission review recorded in `suite.toml`, owned by
+      `uibcdf/molsyssuite#51`. Component delivery does not change that inventory
+      or authorize a support badge by itself.
 
 ### Theme F — The stability commitment itself
 

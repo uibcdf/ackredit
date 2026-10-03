@@ -90,6 +90,10 @@ jobs:
             --expected-python "${{ matrix.python-version }}"
           python -m pip check
 
+      - name: Verify installed Pytest Receptor version
+        shell: bash -l {0}
+        run: python -c 'from importlib.metadata import version; actual = version("pytest-receptor"); print("pytest-receptor", actual); assert actual == "1.2.1", actual'
+
       # --receptor=ci is the combined workflow both receptor tools document:
       # compact output at the source, inspected afterwards with gh-run-receptor.
       - name: Run tests

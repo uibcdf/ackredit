@@ -1,12 +1,12 @@
 ---
 summary: Review Ackredit Python ecosystem policy adoption.
 issue: uibcdf/ackredit#72
-status: active
+status: partial
 opened: 2026-09-27
 closed:
 verification: measured
 area: [governance, tooling]
-guard:
+guard: tests/test_developer_tool_pins.py
 normative:
 blocked_by: []
 supersedes: []
@@ -63,3 +63,41 @@ Pin and verify a published exact receptor version across maintained Conda
 environments, retain `--receptor=ci` with equivalent test selection, and keep
 support-library boundary tests passing. Reassess if new public quantity
 boundaries are introduced.
+
+## Exact published test-tool adoption — 2026-10-03
+
+Pytest Receptor **1.2.1** is independently visible in its stable GitHub Release,
+PyPI version index and ordinary public `uibcdf/noarch` solver index. The Conda
+file is `pytest-receptor-1.2.1-py_0.tar.bz2`, SHA-256
+`77bf3694bc903f606d4323b88e3bb3aea9628618036b53073f5a5dbd5dbc73cb`,
+with Python `>=3.11,<3.15` and pytest `>=8.0.0`. Provider release #32 is closed.
+The maintained development, ordinary-test and dedicated 3.14 environments now
+all declare `pytest-receptor ==1.2.1`.
+
+Routine CI, the required full matrix and the dedicated installed-validation
+workflow compare the actual installed distribution version with that pin before
+their unchanged `pytest --receptor=ci` test commands. A mismatched version raises
+an assertion and fails the native step; the check prints the observed version
+for targeted evidence acquisition. No runtime dependency or test selection is
+changed, and build/documentation environments that do not run pytest gain no
+unused dependency.
+
+`tests/test_developer_tool_pins.py` reproduces the original unpinned environment
+failure, checks every maintained environment and hosted compact-test job, and
+executes the actual version-check command under matching/mismatched reported
+metadata to verify its exit behavior. Its four cases fail before the correction
+and pass afterwards. Local qualification uses the public release in an isolated
+Python 3.14 environment; the shared workspace's separate editable Pytest Receptor
+checkout is preserved, as are Ackredit's nine pre-existing human files.
+
+Support-library evidence remains adopted: SMonitor catalog diagnostics,
+DepDigest optional loading and ArgDigest public argument contracts retain their
+existing guards. PyUnitWizard remains inapplicable to Ackredit's own runtime
+quantity boundaries; its receiving scientific attribution tests are a distinct
+consumer relationship. Exact-source hosted tool evidence is recorded below
+before closure. Central inventory adoption remains with MolSysSuite #56.
+
+Local implementation qualification passes all **1,548 tests**, no skips, on
+Python 3.14.7 with public Pytest Receptor 1.2.1. Ruff lint/format, current report
+indexes and Sphinx `-W` pass. Hosted exact-source verification remains pending
+for this partial record; no central adopted state is inferred from local gates.
