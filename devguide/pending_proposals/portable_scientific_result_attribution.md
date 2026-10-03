@@ -9,7 +9,7 @@ verification: reproduced
 area: [compatibility, provenance]
 guard: tests/test_attribution_capture.py
 normative:
-blocked_by: []
+blocked_by: [uibcdf/molsyssuite#88, uibcdf/molsyssuite#89]
 supersedes: []
 ---
 
@@ -220,3 +220,38 @@ remains `uibcdf/pyunitwizard`'s
 `tests/integration/test_backend_attribution.py`; it is not duplicated here.
 The stronger receiver evidence is retained while the hosted staged-file matrix,
 central provider adoption and separate public-promotion decision remain open.
+
+## Hosted staging and Sabueso receiver qualification (2026-10-03)
+
+The accepted portable source now has an actual hosted, verified staging file:
+provider source `598abf993a2409c025de5e912acd7eb45a257ebd`, producer
+`37136075066`, filename `ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1`.
+Its upload receipt is verified and an independent staging download matches.
+
+Sabueso prepared source `7352cf4437dca6d0249c3af9777ad123926d2f31` is built
+as `sabueso-0.11.0+17.g7352cf4.dirty-py3-none-any.whl`, SHA-256
+`646cc731fbdb1765a8a84b4f4cdb7fdd90c914a6e859fb80a153e9e11659a191`.
+The local build dirties Sabueso's tracked build output, not its runtime source;
+all 348 packaged Python source modules, excluding generated version metadata,
+are byte-identical to the stated commit, with no extra modules. This wheel is
+a receiving source candidate, not a released Sabueso 0.12.0 file.
+
+Four fresh Linux prefixes normally install the exact Ackredit staging
+coordinate and public runtime dependencies on Python 3.11.16, 3.12.14, 3.13.15
+and 3.14.7. The unchanged Sabueso acquisition/attribution modules run outside
+both checkouts and pass 36 tests per minor with no skips. The public HsTIM
+workflow checks original source intake, two result bibliographies, reused
+credits, the enclosing workflow union and saved readers without new credit.
+Pip check, installed Conda digest, provider distribution/runtime versions and
+non-editable prefix/site-packages origins pass in each environment.
+
+This provides real same-file receiver compatibility across the supported
+minors. The required hosted Linux/macOS-arm64 matrix is still rejected before
+execution by the helper/descriptor mismatch in uibcdf/molsyssuite#89. Its
+repair is proposed in central PR #90; the corrected qualification caller for
+an existing producer/file remains #88. Preserve the registered artifact and
+its producer identity. Public delivery and a published dependency floor must
+wait for the required hosted gate and already authorized promotion, followed
+by clean normal public-channel installation. Sabueso #108 receives the precise
+staging handoff and retains its own release blocker.

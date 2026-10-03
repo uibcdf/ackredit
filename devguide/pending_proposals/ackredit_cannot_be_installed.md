@@ -1,5 +1,5 @@
 ---
-summary: Complete exact-upload adoption and qualify staged noarch delivery.
+summary: Qualify the verified staging archive through the repaired installed workflow.
 issue: uibcdf/ackredit#22
 status: partial
 opened: 2026-09-21
@@ -8,7 +8,7 @@ verification: reproduced
 area: [packaging, release]
 guard: tests/test_conda_release_route.py
 normative: devguide/roadmap.md
-blocked_by: [uibcdf/molsyssuite#78]
+blocked_by: [uibcdf/molsyssuite#88, uibcdf/molsyssuite#89]
 supersedes: []
 ---
 
@@ -272,3 +272,54 @@ exact archive/digest and clean public-installation evidence. The plan's
 required installed gate remains mandatory. No local installation or interpreter
 change repairs the hosted shell boundary; the shared publisher already uses
 Python 3.13 while local work remains Python 3.14.
+
+## Verified hosted staging and installed receiver (2026-10-03)
+
+Accepted adoption commit `598abf993a2409c025de5e912acd7eb45a257ebd` selects
+shared publisher `2fb344525ca0eea817dc24a518f4a6bf26e311cf` and qualified
+exact uploader `1aa2011f902a1a9d533564572245bb29f6862e86`. Its exact-source
+normal CI `37133864880`, full matrix `37133867036`, engineering policy
+`37133869159` and publication policy `37133871509` pass. All eight full-matrix
+cells and required scientific/off-checkout/interpreter steps execute. General
+action v2.3.0 adoption remains deferred in uibcdf/molsyssuite#87 and
+uibcdf/moli#42; no withdrawal or general action migration is required here.
+
+Producer `37136075066` succeeds through real recipe execution, resource/archive
+inspection and upload. Its exact noarch file is
+`ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1`.
+The retained `uibcdf.conda-upload@1` receipt binds that hash to source `598abf9`,
+run/attempt identity and `staging`, with `state: verified` and an all-label
+absent-coordinate preflight. Independent download from the staging channel
+matches those bytes. This is the actual hosted candidate, superseding the
+earlier local and failed-producer hashes for this delivery.
+
+Fresh Linux prefixes with Python 3.11.16, 3.12.14, 3.13.15 and 3.14.7 install
+that staging coordinate with ordinary strict public dependency channels.
+Sabueso prepared source `7352cf4437dca6d0249c3af9777ad123926d2f31`, installed
+as a normal wheel, passes all 36 unchanged acquisition/attribution tests without
+skips in each prefix. Its public HsTIM workflow passes source traces, original
+result bibliographies, workflow union and saved readers without new credit.
+Pip check, distribution/runtime-version agreement, non-editable site-packages
+origins and installed Conda SHA-256 assertions pass on all four minors. The
+receiver wheel and precise hash are recorded under #75. These checks run
+outside both checkouts with only frozen fixture data linked.
+
+The required hosted artifact matrix remains incomplete. First dispatch
+`37136473226` correctly rejects a concurrent `main` advance. A stable
+`qualify/ackredit-0.9.0-598abf9` ref then runs `37136817748` at the exact
+candidate, exposing a separate helper mismatch: the committed descriptor and
+executed shared workflow both require the fourth post-scientific provenance
+check, but prepare compares against only the first three steps. The native
+error and retained descriptor are reported in uibcdf/molsyssuite#89. A
+correction that retains the requested fourth step and legacy compatibility is
+proposed in central PR #90; its reproducer fails before the correction and all
+279 central tests pass afterward. The existing-artifact/corrected-caller
+provenance route remains central #88.
+
+No hosted installed cell is certified by these failed prepare jobs, and no
+public promotion is performed. Preserve the registered file and its original
+producer source, adopt the reviewed qualification repair, execute all eight
+installed cells, then complete the already authorized promotion and independent
+public-channel installation. Shared coordination remains #78; delivered
+version/file/hash/installation evidence belongs in uibcdf/sabueso#108.
