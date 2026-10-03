@@ -61,9 +61,10 @@ native GitHub evidence only for a fact the report omits, and keep that fallback 
 
 Routine development uses Python 3.14; the required source contract is Python
 3.11 to 3.14. Keep ordinary installed tests, environments, recipe and full CI
-aligned. Public 3.14 delivery remains unverified until #80 records a released
-artifact and clean installation; do not infer it from source probes or bypass
-`Requires-Python`.
+aligned. Ackredit 0.9.0 has a verified public noarch artifact, an eight-cell
+installed matrix and clean public Linux/Python 3.14 installation recorded in
+#22/#80. Keep central admission and future release qualification separate;
+do not infer them from source probes or bypass `Requires-Python`.
 
 `smonitor` and `depdigest` are core dependencies published to the `uibcdf` conda channel
 and not to PyPI, so environments come from `devtools/conda-envs/` and the package is

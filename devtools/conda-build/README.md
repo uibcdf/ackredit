@@ -1,8 +1,9 @@
 # Conda packaging
 
 Ackredit builds one `noarch: python` artifact. Dependencies such as NumPy carry
-their own platform packages. Candidate 0.9.0 is planned for Linux x86-64 and
-macOS arm64 on Python 3.11–3.14; Windows delivery is not claimed by this plan.
+their own platform packages. Published 0.9.0 was qualified on Linux x86-64 and
+macOS arm64 on Python 3.11–3.14. Its exact public identity and qualification
+receipts are retained in [the delivery record](../../devguide/archive/ackredit_cannot_be_installed.md).
 
 ## Committed candidate inputs
 
@@ -12,9 +13,10 @@ the installed matrix. `resources.toml` names packaged code, generated version,
 the final full source SHA and actual artifact digest; a commit cannot contain
 its own SHA. Changed inputs invalidate the gates that consumed them.
 
-The four wrappers pin the shared MolSysSuite build, installed qualification,
-promotion and publication guard to immutable commit
-`4010595a2ed756b20114730c6a91561a16d7be2f` (`policy-v1.5.3`). The provider owns
+The wrappers pin shared MolSysSuite operations independently: build/upload at
+`2fb344525ca0eea817dc24a518f4a6bf26e311cf`, installed qualification and promotion
+at `c3e2b9b3dabf3d1c65349c389a23048957bea21a`, and publication policy at
+`2a2a459cc3795bb92766fffa0fe28f4d80f01ad4`. The provider owns
 archive inspection, executed-gate acquisition, exact-file upload, label-only
 promotion and independent public registry/index verification.
 
@@ -26,7 +28,10 @@ promotion and independent public registry/index verification.
    metadata only in its ephemeral checkout, builds once, tests and inspects the
    archive before uploading the exact file to staging.
 3. Retain its producer artifact/receipt. Dispatch `test_staged_conda_package.yaml`
-   at a ref resolving to that source SHA, with the exact filename and SHA-256.
+   with the original producer `candidate_sha`, exact filename and SHA-256.
+   Select the reviewed qualification ref; its native `qualification_sha` is
+   recorded separately if the caller was corrected after production. The
+   source-binding receipt preserves both identities without rebuilding the file.
    All eight cells must install that file, verify Conda provenance, resources and
    launcher, and execute the complete suite outside source. Dependencies resolve
    through public channels; staging supplies only the Ackredit candidate.
@@ -36,7 +41,9 @@ promotion and independent public registry/index verification.
 ## Public promotion
 
 After the release decision, dispatch `promote_conda_package.yaml` with source
-SHA, version, staged SHA-256 and the successful installed run ID. The provider
+SHA, version, staged SHA-256 and the successful installed run ID. Supply
+`qualification_sha` when the installed caller differs from the producer source.
+The provider
 queries native matrix/step evidence, adds `main` to the same file and verifies
 its public label and solver index. It never rebuilds or overwrites that coordinate.
 Recheck a failed read-only post-public verifier without repeating promotion.

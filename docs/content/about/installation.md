@@ -6,27 +6,28 @@ Ackredit has four runtime dependencies: three MolSysSuite infrastructure compone
 distributed through the `uibcdf` conda channel and not through PyPI. They are pure
 Python, but the tree is not: ArgDigest requires `numpy`, which conda brings with it.
 
-Ackredit is not on a package channel yet. Candidate **0.9.0** carries the reviewed
-portable contract and Python 3.11–3.14 support; staging, installed qualification
-and the public release decision are tracked in #22/#75/#80. Its prepared citation
-metadata names that candidate, not an already delivered release. The last
-published Git tag remains 0.8.0; earlier tags do not carry the portable API.
+Ackredit **0.9.0** is available from the public `uibcdf` Conda channel. It is
+the first published version with `Attribution`, `capture`, `get_attribution`
+and the portable `ackredit.attribution@1` contract. It supports Python
+3.11–3.14. The same `noarch: python` archive was qualified on Linux x86-64
+and macOS arm64 across all four Python minors before publication.
 
-## A prepared candidate artifact
+## Install from Conda
 
-After obtaining the reviewed archive from the staging producer receipt, install
-that exact local file. This is candidate qualification, not a public-channel
-installation command:
+Create an environment with Ackredit and its runtime dependencies:
 
 ```bash
-conda create -n work -c uibcdf -c conda-forge python=3.13 smonitor depdigest argdigest pyyaml pip
+conda create -n work --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 ackredit=0.9.0=py_0
 conda activate work
-conda install /path/to/ackredit-0.9.0-py_0.tar.bz2
 ```
 
-The first command obtains the suite dependencies through their public Conda
-channel. The installed-artifact gate separately verifies the candidate archive
-and digest and executes the full supported platform/interpreter matrix.
+You can select Python 3.11, 3.12 or 3.13 instead. Conda resolves the dependencies
+from `uibcdf` and `conda-forge`; no source checkout or staging channel is needed.
+For an existing environment, use:
+
+```bash
+conda install --override-channels --strict-channel-priority -c uibcdf -c conda-forge ackredit=0.9.0=py_0
+```
 
 Check it arrived whole:
 
@@ -37,26 +38,33 @@ ackredit.__version__  # '0.9.0'
 ackredit.dependency_info()  # what optional features this environment supports
 ```
 
+The published file is
+[`ackredit-0.9.0-py_0.tar.bz2`](https://conda.anaconda.org/uibcdf/noarch/ackredit-0.9.0-py_0.tar.bz2),
+with SHA-256:
+
+```text
+37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1
+```
+
+The [installed matrix](https://github.com/uibcdf/ackredit/actions/runs/37152044426)
+and [exact-file promotion](https://github.com/uibcdf/ackredit/actions/runs/37152421084)
+retain the original artifact identity. A separate clean public-channel
+installation on Linux/Python 3.14 verifies installed origins, packaged citation,
+portable attribution, reference reuse, saved readers, CLI and dependency closure.
+
 ## For working on Ackredit itself
 
-The Python 3.14 adoption candidate targets Python 3.11–3.14 and installs
-normally, without `--ignore-requires-python`. Its maintained environments and
-required CI use the same range. ArgDigest 0.13.0 is the minimum release carrying
-Python 3.14 support. Older immutable Ackredit tags keep their original range;
-the earlier `0.8.0` tag retains its Python 3.11–3.13 range.
-
-Source qualification and normal installation are tracked in
-[Ackredit #80](https://github.com/uibcdf/ackredit/issues/80).
-[MolSysSuite #29](https://github.com/uibcdf/molsyssuite/issues/29) owns transition
-authorization and public admission. A development wheel does not establish a
-public Conda release or a stable portable-API version.
+Routine development uses Python 3.14. Maintained environments, package metadata,
+the recipe and required full CI agree on Python 3.11–3.14. ArgDigest 0.13.0 is
+the minimum dependency release carrying Python 3.14 support. Older immutable
+Ackredit tags keep their original range.
 
 ```bash
 git clone https://github.com/uibcdf/ackredit.git
 cd ackredit
 conda env create -f devtools/conda-envs/development_env.yaml -n ackredit
 conda activate ackredit
-pip install --no-deps -e .
+pip install --no-deps --editable .
 ```
 
 An editable install reports a development version derived from the latest tag, which says
@@ -67,16 +75,6 @@ you want to qualify, build a wheel, and install that wheel with `pip install
 --no-deps`. Run `devtools/installed_smoke.py` from outside the checkout. It
 rejects editable/source provider imports and checks packaged citation metadata,
 portable attribution, reused workflow references and saved-reader behavior.
-
-## Once published
-
-```bash
-conda install -c uibcdf ackredit
-```
-
-This will work from the release before 1.0.0 onwards, and not before. The packaging is
-built and verified — see `devtools/conda-build/README.md` — so what remains is the
-decision to publish.
 
 ## Extra features
 

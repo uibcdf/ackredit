@@ -1,0 +1,371 @@
+{
+  "anonymous_public_archive_and_index": {
+    "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+    "solver_index_record": {
+      "arch": null,
+      "binstar": {
+        "channel": "main",
+        "owner_id": "598bb08739abc9076c199afd",
+        "package_id": "6ac12a4a2e85861650263dfe"
+      },
+      "build": "py_0",
+      "build_number": 0,
+      "depends": [
+        "argdigest >=0.13.0",
+        "depdigest >=0.11.0",
+        "python >=3.11,<3.15",
+        "pyyaml >=6",
+        "smonitor >=0.16.0"
+      ],
+      "has_prefix": false,
+      "license": "MIT",
+      "machine": null,
+      "md5": "049fc1908b818c08fb632815c1ab16ad",
+      "name": "ackredit",
+      "noarch": "python",
+      "operatingsystem": null,
+      "platform": null,
+      "requires": [],
+      "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+      "size": 68585,
+      "subdir": "noarch",
+      "target-triplet": "None-any-None",
+      "timestamp": 1791044151465,
+      "version": "0.9.0"
+    },
+    "url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.9.0-py_0.tar.bz2"
+  },
+  "boundaries": "Eight staging installed cells and an additional clean public Linux/Python 3.14.7 receiving installation. Central admission, GitHub tag/release, Windows and other consumer releases are separate. Original registered archive was not rebuilt, replaced or reuploaded.",
+  "build": "py_0",
+  "central_handoff": "https://github.com/uibcdf/molsyssuite/blob/a6a503afc5a69ea99495f058b21b8d77ac66c264/devguide/rollouts/installed_noarch_88_89.json",
+  "clean_public_receiving_installation": {
+    "consumer_source": "7352cf4437dca6d0249c3af9777ad123926d2f31",
+    "consumer_wheel": "sabueso-0.11.0+17.g7352cf4.dirty-py3-none-any.whl",
+    "consumer_wheel_sha256": "646cc731fbdb1765a8a84b4f4cdb7fdd90c914a6e859fb80a153e9e11659a191",
+    "filename": "ackredit-0.9.0-py_0.tar.bz2",
+    "kind": "installed_receiving_consumer",
+    "mode": "public",
+    "pip_check": "passed before receipt generation",
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+    "prefix": "/tmp/ackredit090-closure/public314",
+    "provider_source": "598abf993a2409c025de5e912acd7eb45a257ebd",
+    "provider_url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.9.0-py_0.tar.bz2",
+    "provider_version": "0.9.0",
+    "python": "3.14.7",
+    "runtime_origins": {
+      "ackredit": {
+        "module": "/tmp/ackredit090-closure/public314/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.9.0"
+      },
+      "argdigest": {
+        "module": "/tmp/ackredit090-closure/public314/lib/python3.14/site-packages/argdigest/__init__.py",
+        "version": "0.13.0"
+      },
+      "depdigest": {
+        "module": "/tmp/ackredit090-closure/public314/lib/python3.14/site-packages/depdigest/__init__.py",
+        "version": "0.12.0"
+      },
+      "pyunitwizard": {
+        "module": "/tmp/ackredit090-closure/public314/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+        "version": "0.27.0"
+      },
+      "sabueso": {
+        "module": "/tmp/ackredit090-closure/public314/lib/python3.14/site-packages/sabueso/__init__.py",
+        "version": "0.11.0+17.g7352cf4.dirty"
+      },
+      "smonitor": {
+        "module": "/tmp/ackredit090-closure/public314/lib/python3.14/site-packages/smonitor/__init__.py",
+        "version": "0.18.0"
+      }
+    },
+    "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+    "tests": {
+      "junit": "/tmp/ackredit090-closure/public314-receiver.xml",
+      "passed": 36,
+      "skipped": 0
+    },
+    "workflow": "public HsTIM fixtures, original acquisition/results/workflow, saved readers"
+  },
+  "filename": "ackredit-0.9.0-py_0.tar.bz2",
+  "installed_gate": {
+    "binding_artifact": "installed-source-binding-37152044426-1",
+    "cells": [
+      {
+        "conclusion": "success",
+        "job_id": 111287778928,
+        "name": "installed / osx-arm64 \u00b7 Python 3.11",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287778961,
+        "name": "installed / osx-arm64 \u00b7 Python 3.14",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287778967,
+        "name": "installed / linux-64 \u00b7 Python 3.11",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287778983,
+        "name": "installed / osx-arm64 \u00b7 Python 3.13",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287778988,
+        "name": "installed / linux-64 \u00b7 Python 3.12",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287779011,
+        "name": "installed / osx-arm64 \u00b7 Python 3.12",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287779034,
+        "name": "installed / linux-64 \u00b7 Python 3.14",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      },
+      {
+        "conclusion": "success",
+        "job_id": 111287779050,
+        "name": "installed / linux-64 \u00b7 Python 3.13",
+        "required_steps": [
+          {
+            "conclusion": "success",
+            "name": "Install exact artifact"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate installed files"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run installed tests"
+          },
+          {
+            "conclusion": "success",
+            "name": "Recheck installed provenance after scientific tests"
+          }
+        ]
+      }
+    ],
+    "run": {
+      "conclusion": "success",
+      "head_sha": "92871148a762ea4b4786a64d13afd66a5b0bf8e7",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37152044426",
+      "id": 37152044426,
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    "source_binding": {
+      "build_number": 0,
+      "candidate_sha": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "filename": "ackredit-0.9.0-py_0.tar.bz2",
+      "matrix": "{\"include\": [{\"platform\": \"linux-64\", \"python\": \"3.11\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"linux-64\", \"python\": \"3.12\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"linux-64\", \"python\": \"3.13\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"linux-64\", \"python\": \"3.14\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.11\", \"runner\": \"macos-15\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.12\", \"runner\": \"macos-15\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.13\", \"runner\": \"macos-15\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.14\", \"runner\": \"macos-15\"}]}",
+      "package": "ackredit",
+      "profile": "{\"platforms\": [\"linux-64\", \"osx-arm64\"], \"python_versions\": [\"3.11\", \"3.12\", \"3.13\", \"3.14\"], \"prepare_job\": \"installed / prepare\", \"required_steps\": [\"Install exact artifact\", \"Validate installed files\", \"Run installed tests\", \"Recheck installed provenance after scientific tests\"], \"job_template\": \"installed / {platform} \\u00b7 Python {python}\"}",
+      "qualification_sha": "92871148a762ea4b4786a64d13afd66a5b0bf8e7",
+      "run_attempt": 1,
+      "run_id": 37152044426,
+      "schema": "molsyssuite.installed-source@1",
+      "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+      "title": "Installed ackredit-0.9.0-py_0.tar.bz2 37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+      "version": "0.9.0",
+      "workflow": ".github/workflows/test_staged_conda_package.yaml"
+    }
+  },
+  "issues": [
+    "uibcdf/ackredit#22",
+    "uibcdf/ackredit#75",
+    "uibcdf/ackredit#80"
+  ],
+  "local_closure_validation": {
+    "python": "3.14.7",
+    "report_indexes": "current",
+    "ruff": "lint and format pass",
+    "tests_passed": 1542,
+    "tests_skipped": 0
+  },
+  "minimum_portable_api_version": "0.9.0",
+  "observed_on": "2026-10-03",
+  "portable_contract": "ackredit.attribution@1",
+  "producer": {
+    "candidate_sha": "598abf993a2409c025de5e912acd7eb45a257ebd",
+    "native_wrapper_head_sha": "9cb67a9c9ee1da2b46d9c53bb71e2659563c2027",
+    "receipt_artifact": "noarch-publication-37136075066-1",
+    "run_attempt": 1,
+    "run_id": 37136075066
+  },
+  "promotion": {
+    "effect": {
+      "package": "uibcdf/ackredit/0.9.0/noarch/ackredit-0.9.0-py_0.tar.bz2",
+      "schema": "uibcdf.conda-promotion@1",
+      "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+      "source_label": "staging",
+      "status": "verified",
+      "target_label": "main"
+    },
+    "independent_public_poststate": {
+      "checked_at": "2026-10-03T20:42:10.853427+00:00",
+      "files": [
+        {
+          "filename": "ackredit-0.9.0-py_0.tar.bz2",
+          "main_label": "verified",
+          "owner": "uibcdf",
+          "package": "ackredit",
+          "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+          "solver_index": "verified",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.9.0-py_0.tar.bz2",
+          "version": "0.9.0"
+        }
+      ],
+      "schema": "molsyssuite.public-conda@1",
+      "state": "verified"
+    },
+    "receipt_artifact": "noarch-promotion-37152421084-1",
+    "run": {
+      "conclusion": "success",
+      "head_sha": "92871148a762ea4b4786a64d13afd66a5b0bf8e7",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37152421084",
+      "id": 37152421084,
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  },
+  "public_install_command": "conda create -n work --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 ackredit=0.9.0=py_0",
+  "public_url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.9.0-py_0.tar.bz2",
+  "published_version": "0.9.0",
+  "qualification_sha": "92871148a762ea4b4786a64d13afd66a5b0bf8e7",
+  "receiving_evidence_notes": "36 unchanged Sabueso tests and public HsTIM workflow; normal non-editable receiving wheel from the named prepared source, executed outside both checkouts; installed smoke, CLI and pip check pass. This is consumer compatibility, not a Sabueso release.",
+  "receiving_test_command": "python -P -m pytest --receptor=llm test_attribution_offline.py test_source_acquisition_offline.py",
+  "sha256": "37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1",
+  "shared_workflow_sha": "c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+  "subdir": "noarch"
+}

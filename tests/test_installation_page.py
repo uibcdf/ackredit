@@ -44,6 +44,7 @@ def _runtime_dependencies() -> list[str]:
 # before 1.0.0" is not an install instruction and is left alone.
 _STATED = [
     re.compile(r"ackredit@(\d+\.\d+\.\d+)"),
+    re.compile(r"\backredit=(\d+\.\d+\.\d+)\b"),
     re.compile(r"__version__\s*#\s*'(\d+\.\d+\.\d+)'"),
     re.compile(r"`(\d+\.\d+\.\d+)\+\d+\.g[0-9a-f]+`"),
 ]
@@ -59,13 +60,22 @@ def test_the_page_installs_the_current_release():
 
 
 def test_the_environment_it_creates_can_import_ackredit():
-    """`pip install --no-deps` installs nothing else, so whatever the conda line
-    leaves out is simply missing."""
+    """Public Conda installs resolve the recipe; source installs need explicit deps."""
     lines = [line for line in _page().splitlines() if line.startswith("conda create")]
     assert lines, "the page no longer shows the environment it creates"
 
     for line in lines:
         named = {word.lower() for word in line.split()}
+        if any(word.startswith("ackredit=") for word in named):
+            assert {"--override-channels", "--strict-channel-priority"} <= named
+            assert "-c uibcdf" in line and "-c conda-forge" in line
+            recipe = (ROOT / "devtools/conda-build/meta.yaml").read_text()
+            runtime = recipe.split("\n  run:\n", 1)[1].split("\n\ntest:", 1)[0]
+            named = {
+                item.strip().split()[1].lower()
+                for item in runtime.splitlines()
+                if item.strip().startswith("- ")
+            }
         missing = [name for name in _runtime_dependencies() if name not in named]
         assert not missing, f"`{line}` leaves out {missing}"
 

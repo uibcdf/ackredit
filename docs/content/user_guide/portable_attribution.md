@@ -1,9 +1,10 @@
 # Portable attribution contract
 
-The first reviewed portable contract is assigned to the **0.9.0 candidate**.
-This identifies the intended first release, not an already published package.
-Earlier immutable tags do not provide this API. Distribution and clean public
-consumer installation are tracked separately in Ackredit #22 and #80.
+The first published portable contract is available in **Ackredit 0.9.0** from
+the public `uibcdf` Conda channel. Use `ackredit>=0.9.0` as the minimum version
+for these APIs. See the [installation instructions](../about/installation.md)
+for the qualified artifact and clean public installation evidence. Earlier
+immutable tags do not provide this API.
 
 Applications own `session(...)`. Within it, `capture(name="capture", *,
 context=None)` observes one calculation without replacing that session. A

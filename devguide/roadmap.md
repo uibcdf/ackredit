@@ -82,6 +82,16 @@ The minor rises because a caller can see it: a new runtime dependency that bring
 higher floors, arguments refused that were accepted, and `dump("refs.bib")` writing
 BibTeX where it wrote Markdown.
 
+### 0.9.0 — Portable attribution and public Conda delivery
+
+The public `uibcdf` channel carries the first stable `Attribution`, `capture`
+and `get_attribution` contract with the portable `ackredit.attribution@1` schema.
+One noarch archive was staged, qualified on Linux/macOS arm64 × Python 3.11–3.14
+and promoted without rebuilding. Clean public Linux/Python 3.14 installation
+and receiving Sabueso compatibility are recorded in
+[the delivery record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/ackredit_cannot_be_installed.md). Conda delivery
+does not itself create a GitHub tag or release.
+
 ### Since 0.5.0 — correctness, and the suite baseline
 Not a feature phase, and the largest body of work so far. Twenty reports opened, fixed,
 guarded and archived: `bind` had no runtime effect; the wheel shipped two files; the
@@ -104,25 +114,20 @@ Those were released as 0.6.0.
 1.0.0 means one thing: **the public API is stable and we commit to not breaking it**.
 Everything below exists to make that commitment honest rather than optimistic.
 
-### Theme A — Ackredit can be installed
+### Theme A — Ackredit can be installed — **done**
 
-**Publication is deliberately deferred to the release before 1.0.0.** Until then the tag
-is the release artifact: an exact version installs from it, into an environment that has
-the dependencies.
+Ackredit 0.9.0 is published and independently verified on the public `uibcdf`
+Conda channel. Publication is complete under `uibcdf/ackredit#22`; the earlier
+deferral ended with the reviewed exact-artifact release decision.
 
 The recipe lives in `docs/content/about/installation.md` and only there, held by
 `tests/test_installation_page.py` to `CITATION.cff` and to the declared dependencies. A
 copy here pinned `0.6.0` and missed ArgDigest long after the page was corrected
 (`uibcdf/ackredit#66`), which is why this is a pointer and not a copy.
 
-Verified for `0.6.0`: the recipe yields the tagged version in `site-packages`, discovering
-its own `CITATION.cff`.
-
-This revises what this theme claimed. It does not block every other one; what it blocks is
-narrower and worth stating exactly. A host library can integrate Ackredit from a tag and
-produce the evidence theme C is for — but it cannot *release* an integration that depends
-on a package nobody can resolve. So theme C can run to the point of evidence and stops
-short of a shipped integration, which is the right trade while the API is still moving.
+The exact 0.9.0 archive installs normally from the public channel with its runtime
+dependencies, packaged `CITATION.cff` and portable contract. Theme C's receiving
+components still own their integration and release decisions.
 
 - [x] a conda recipe under `devtools/conda-build/`, `noarch: python`, and a build
       environment;
@@ -131,13 +136,13 @@ short of a shipped integration, which is the right trade while the API is still 
 - [x] a build verified locally: the `noarch` package passes the recipe's own tests and
       installs into a clean conda environment where it reports its version, discovers
       itself and renders a report;
-- [ ] **published to the channel**, deferred by decision to the release before 1.0.0;
-- [ ] the installation documentation rewritten around the published package, which must
-      not be written before it exists.
+- [x] **published to the channel**, retaining exact-file promotion and public receipts;
+- [x] the installation documentation rewritten around the verified public package.
 
 Coordination: `uibcdf/molsyssuite#27` standardises staging for components whose
-publication order is coupled. Nothing depends on Ackredit, so there is no cycle here; the
-staging step is adopted for verification rather than coordination.
+publication order is coupled. Ackredit's dependencies are already public, so
+there is no cycle here. Sabueso now requires Ackredit; its owner receives the
+published version/file/hash evidence under `uibcdf/sabueso#108`.
 
 ### Theme B — Ackredit can be cited — **done**
 
