@@ -156,3 +156,28 @@ The provider contract decision is complete in source. Keep this record partial
 until candidate delivery and receiving-consumer installed compatibility are
 recorded; those delivery gates remain coordinated with #22/#80. No 0.9.0 tag or
 public artifact is claimed before the exact candidate is qualified and released.
+
+
+## Published qualification and consumer guide handoff (2026-10-03)
+
+The accepted contract is published in `840aab3`. Its four required hosted
+workflows pass, including all eight Python 3.11–3.14 full-matrix test cells.
+The canonical guide SHA-256 is
+`24615e3a8894c7cba67fc92fd0323369e725c3bd88096df9eda9311ab8890ff5`.
+All six local consumer copies match after the guarded central synchronization.
+PyUnitWizard publishes the guide and updated #92 record in `dbafcc5`; focused
+integration/reporting checks pass 26 tests and Ruff/index gates pass.
+
+Owner publication handoffs are uibcdf/molsysmt#292,
+uibcdf/molsysviewer#152, uibcdf/topomt#91, uibcdf/pharmacophoremt#19 and
+uibcdf/elastnetmt#20. These reports request generated guide publication and
+keep runtime adoption/public dependency floors separate. No runtime changes or
+pushes were made in those five components. Central registration remains
+uibcdf/molsyssuite#71; PyUnitWizard's relationship is still a prepared registry
+proposal rather than claimed central-main adoption.
+
+The first staged artifact cannot yet be qualified: run `37109889925` fails
+before production/upload at the shared host-build executable boundary, reported
+in uibcdf/action-build-and-upload-conda-packages#46 and recorded under #22.
+The accepted source API and source-consumer tests remain valid; no installed
+0.9.0 receiving-consumer or public artifact claim is made.
