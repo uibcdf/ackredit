@@ -158,3 +158,22 @@ three-minor delivery claim until public admission. No public package or admissio
 is claimed; immutable delivery and receiving-consumer closure remain open.
 
 The merged implementation adds ArgDigest 0.13.0 as the public 3.14 floor, the shared installed-provider smoke, off-checkout full suites, and the four-minor future staging qualification. Concurrent work and prior evidence are retained.
+
+
+## Real noarch local installation (2026-10-03)
+
+The corrected build-action diagnostic under #22 produces
+`ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`99e6f9b9f0a3b0a22c66e476230dddabd2ba0017c59beb3253fbadc781d665c6`,
+from prepared source `15b1958b9752a89974bb1d0df882a17841ed62b4`.
+Recipe tests and shared archive/version/resource inspection pass. A normal
+installation of that exact file passes off-checkout installed smoke, portable
+saved bibliography/reused capture and `pip check` on Python 3.14.7 with public
+SMonitor 0.18.0, DepDigest 0.12.0 and ArgDigest 0.13.0. No metadata override,
+editable provider or sibling source path is used.
+
+This local Conda check confirms that Ackredit operates on 3.14 through its
+noarch artifact. Public delivery and the full hosted installed matrix remain
+pending; neither central admission nor a delivered-support badge is advanced.
+The executable correction is owned by action #46, and central publication-pin
+adoption is tracked in uibcdf/molsyssuite#78 and uibcdf/moli#38.

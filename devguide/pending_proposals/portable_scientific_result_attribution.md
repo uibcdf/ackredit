@@ -181,3 +181,15 @@ before production/upload at the shared host-build executable boundary, reported
 in uibcdf/action-build-and-upload-conda-packages#46 and recorded under #22.
 The accepted source API and source-consumer tests remain valid; no installed
 0.9.0 receiving-consumer or public artifact claim is made.
+
+
+## Installed local Conda diagnostic (2026-10-03)
+
+The #22 provider diagnosis now includes a real local 0.9.0 noarch artifact
+installed normally on Python 3.14.7. Its exact digest, source and public core
+providers are recorded in that report. The installed detached reader preserves
+the frozen real PyUnitWizard/unyt bibliography and versions; reused capture
+also passes. This is stronger than a source-only probe but remains local
+integration evidence: no registry upload or receiving-consumer release is
+claimed. Provider action #46/#47 and shared adoption MolSysSuite #78 precede
+the hosted staged-file qualification. The accepted contract remains unchanged.

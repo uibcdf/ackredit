@@ -1,5 +1,5 @@
 ---
-summary: Prepare and qualify exact noarch Conda delivery; the current hosted build remains incomplete.
+summary: Qualify noarch Conda delivery after the repaired provider is adopted centrally.
 issue: uibcdf/ackredit#22
 status: partial
 opened: 2026-09-21
@@ -8,7 +8,7 @@ verification: reproduced
 area: [packaging, release]
 guard: tests/test_conda_release_route.py
 normative: devguide/roadmap.md
-blocked_by: [uibcdf/action-build-and-upload-conda-packages#46]
+blocked_by: [uibcdf/molsyssuite#78]
 supersedes: []
 ---
 
@@ -125,3 +125,67 @@ historical; it cannot qualify 0.9.0. The current candidate has no successful
 production/installed/publication receipt. Resume from a reviewed immutable
 provider correction and rerun the exact candidate's required source gates if
 its committed inputs change, then stage and qualify the newly produced file.
+
+
+## Local real-artifact diagnosis (2026-10-03)
+
+The maintainer subsequently authorized fixing the owning build action and
+required coordination in uibcdf/moli#38 and uibcdf/molsyssuite#78. A controlled
+Miniforge reproduction confirms that the activated named environment contains
+conda-build 26.9.0 but Conda's shell function delegates to the base manager
+without that plugin. The action correction selects the activated environment's
+executable with `command conda` for compilation and conversion. Failure exit
+statuses and recipe tests remain enforced; provider regressions belong to
+uibcdf/action-build-and-upload-conda-packages#46. The separate multi-variant
+fixture/interpreter qualification repair belongs to provider #47.
+
+The corrected compilation step builds the prepared Ackredit source
+`15b1958b9752a89974bb1d0df882a17841ed62b4` after the shared ephemeral version
+freeze. This local diagnostic uses action source
+`e57130f913f8ffcb37fbdf91db0644b40bd25823`, public dependency channels and no
+upload. Real recipe tests and the shared version/resource inspection pass for
+`noarch/ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`99e6f9b9f0a3b0a22c66e476230dddabd2ba0017c59beb3253fbadc781d665c6`.
+
+That exact file installs normally in a fresh Python 3.14.7 environment with
+public SMonitor 0.18.0, DepDigest 0.12.0 and ArgDigest 0.13.0. Off-checkout
+installed smoke, saved original PyUnitWizard/unyt bibliography, capture of
+reused references and `pip check` pass. Checked providers resolve under the
+fresh environment's site-packages. The diagnostic receipt explicitly records
+`uploaded: false` and `promoted: false`.
+
+This demonstrates the failure mechanism and a working local noarch build;
+it does not substitute for the shared hosted producer, staged registry file,
+eight-cell installed gate or public delivery. Central immutable-pin adoption
+remains owned by MolSysSuite #78. After adoption, Ackredit must update its
+reviewed caller, qualify that exact candidate's source gates, stage once,
+qualify the newly produced file and request the separate public promotion.
+
+
+## Qualified provider publication and remaining adoption (2026-10-03)
+
+The authorized correction is published on the build action's `main` at
+`8da628d9b393e184c3bf3722708b19dcfbf7ef0a`. Hosted run `37115921728`
+passes all four base/named-environment build cells, including actual recipe
+execution and retained noarch files on Linux, macOS arm64 and Windows. Run
+`37115921702` passes the unit job and both Linux/Windows multi-variant jobs:
+eight archive payloads are checked per host and fresh Python 3.11/3.12 imports
+assert their interpreter, prefix and module origin. GH Run Receptor confirms
+both completed successes. All 23 provider unit tests also pass locally on
+Python 3.14.7. The provider does not upload a registry package during these
+checks. Its durable guards and qualification repair are recorded under #46/#47.
+
+MOLI #38 and MolSysSuite #78 receive the immutable source and executed evidence.
+The shared publisher still selects action `8a1f203`; central adoption must
+update that pin through its owning repository. Ackredit must then adopt the
+reviewed shared workflow source. This handoff changes the remaining blocker
+from the provider implementation to central adoption; no central code is
+modified here and no Ackredit public artifact is claimed.
+
+At the maintainer's request, remaining local verification uses the Python
+3.14.7 interpreter from `molsyssuite@uibcdf_3.14`. The clean candidate's isolated
+wheel installation passes all 1,544 tests without skips; Ruff and report indexes
+pass. This keeps the maintainer's nine pre-existing files byte-identical and
+preserves the requested editable installation of the primary checkout in that
+shared environment. The valid pip development flag is `--editable`; pip rejects
+`--development`.
