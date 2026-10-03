@@ -1,5 +1,5 @@
 ---
-summary: Qualify staged noarch delivery with the centrally accepted build action.
+summary: Complete exact-upload adoption and qualify staged noarch delivery.
 issue: uibcdf/ackredit#22
 status: partial
 opened: 2026-09-21
@@ -8,7 +8,7 @@ verification: reproduced
 area: [packaging, release]
 guard: tests/test_conda_release_route.py
 normative: devguide/roadmap.md
-blocked_by: []
+blocked_by: [uibcdf/molsyssuite#78]
 supersedes: []
 ---
 
@@ -231,3 +231,44 @@ Concurrent accepted commits adopt engineering policy 1.5.4 and the routine
 Python 3.14 baseline. The release plan's required normal-CI macOS job is aligned
 with that new interpreter; the eight-cell full and installed matrices retain
 Python 3.11–3.14 coverage.
+
+## Exact-upload follow-up and public-delivery authorization (2026-10-03)
+
+The adopted candidate `e44577ef9d1a31e938e730b708c898493aba8e51` passes
+normal CI `37127124558`, full matrix `37127133921`, engineering policy
+`37127125050` and publication policy `37127124944`. All eight full-matrix
+cells and their required off-checkout/interpreter/test steps execute
+successfully. Local Python 3.14.7 qualification passes all 1,544 tests without
+skips, Ruff and report indexes. The primary checkout preserves all nine
+pre-existing files byte for byte.
+
+Producer `37127293886` now passes actual compilation, recipe tests and archive
+inspection, then fails at the separate exact upload. The inspected file is
+`ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`d710d73d10cef1c989f104cefc4bb5254b099719c9038e895a7b0480957d4998`.
+Its retained upload receipt says `unverified`; independent public package and
+0.9.0 release queries return HTTP 404. Neither successful staging nor public
+delivery is established, and no repeat mutation is requested. A later rebuild
+must receive its own inspected digest.
+
+Pytest Receptor run `37127152850` fails at the same upload step. Provider
+issue uibcdf/action-build-and-upload-conda-packages#48 owns the additional
+shell boundary: the upload composite uses non-login `bash`, bypassing the
+configured publisher environment. The actual-composite shell regression
+fails before the repair with missing `anaconda`, then invokes the offline
+client once. Provider source `6f65ba66d1afff74ded8442c3c3ee6448a5f3a60`
+uses a login shell and retains exception types without exception text/client
+output. All 24 local provider tests pass; hosted exact-upload contract
+`37128312876` passes. MolSysSuite PR #85 proposes the two upload-pin adoption;
+central governance `37128833357` passes. Adoption remains under review, and
+Ackredit does not consume the unaccepted proposal.
+
+The maintainer explicitly requests completing publication for Sabueso's
+prepared 0.12.0 release, coordinated in uibcdf/sabueso#108. This authorizes
+promotion after the exact staged archive passes installed-provider and
+receiving-consumer gates; no further chat approval is needed for that qualified
+route. The handoff must identify delivered version, portable-contract floor,
+exact archive/digest and clean public-installation evidence. The plan's
+required installed gate remains mandatory. No local installation or interpreter
+change repairs the hosted shell boundary; the shared publisher already uses
+Python 3.13 while local work remains Python 3.14.
