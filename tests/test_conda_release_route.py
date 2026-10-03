@@ -41,3 +41,19 @@ def test_installed_qualification_identifies_the_exact_file_without_a_secret():
     assert "secrets" not in job
     assert {"candidate_sha", "filename", "sha256"} == set(job["with"])
     assert "/test-installed-noarch-conda.yaml@" in job["uses"]
+
+
+def test_administrative_qualification_retains_explicit_original_producer_identity():
+    installed = _workflow("test_staged_conda_package.yaml")
+    promote = _workflow("promote_conda_package.yaml")
+    assert installed["jobs"]["installed"]["with"]["candidate_sha"] == (
+        "${{ inputs.candidate_sha }}"
+    )
+    promoted = promote["jobs"]["promote"]
+    assert promoted["with"]["candidate_sha"] == "${{ inputs.candidate_sha }}"
+    assert promoted["with"]["qualification_sha"] == "${{ inputs.qualification_sha }}"
+    assert "qualification_sha" in promote["on"]["workflow_dispatch"]["inputs"]
+    assert (
+        installed["jobs"]["installed"]["uses"].split("@")[1]
+        == (promoted["uses"].split("@")[1])
+    )

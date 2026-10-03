@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       candidate_sha:
-        description: Full source SHA; dispatch at a ref resolving to this SHA
+        description: Full original producer SHA; workflow ref may contain a reviewed administrative correction
         required: true
         type: string
       filename:
@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   installed:
-    uses: uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@2a2a459cc3795bb92766fffa0fe28f4d80f01ad4
+    uses: uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@c3e2b9b3dabf3d1c65349c389a23048957bea21a
     with:
       candidate_sha: ${{ inputs.candidate_sha }}
       filename: ${{ inputs.filename }}

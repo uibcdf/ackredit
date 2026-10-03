@@ -313,9 +313,11 @@ executed shared workflow both require the fourth post-scientific provenance
 check, but prepare compares against only the first three steps. The native
 error and retained descriptor are reported in uibcdf/molsyssuite#89. A
 correction that retains the requested fourth step and legacy compatibility is
-proposed in central PR #90; its reproducer fails before the correction and all
-279 central tests pass afterward. The existing-artifact/corrected-caller
-provenance route remains central #88.
+accepted through central PR #90 and PR #91, preserving both histories. Final
+immutable central source is `c3e2b9b3dabf3d1c65349c389a23048957bea21a`;
+all 286 central tests pass on Python 3.14.7 and exact-source hosted governance
+`37151428556` passes. The existing-artifact/corrected-caller provenance route
+is central #88.
 
 No hosted installed cell is certified by these failed prepare jobs, and no
 public promotion is performed. Preserve the registered file and its original
@@ -323,3 +325,44 @@ producer source, adopt the reviewed qualification repair, execute all eight
 installed cells, then complete the already authorized promotion and independent
 public-channel installation. Shared coordination remains #78; delivered
 version/file/hash/installation evidence belongs in uibcdf/sabueso#108.
+
+## Corrected qualification caller for the existing bytes (2026-10-03)
+
+Both thin installed/promotion callers adopt the accepted central SHA above.
+The installed caller keeps the original `candidate_sha`, filename and digest;
+its native head instead identifies the reviewed administrative wrapper. The
+promotion caller adds optional explicit `qualification_sha`, forwarded to the
+shared verifier; omit it only when the installed native head equals the
+original producer source. Existing token mapping and scientific selection stay
+unchanged. The route guard checks that both identities are forwarded separately
+and both callers select the same immutable central implementation.
+
+The shared workflow solves the inspected archive's runtime dependencies using
+ordinary strict public channels, then installs its exact staging URL. It retains
+all eight declared cells and all four required steps. `python -P`, importlib
+collection and before/after installed-origin guards protect scientific imports
+without exporting `PYTHONSAFEPATH` to administrative subprocesses; the unchanged
+reporting-protocol test can load its own neighboring devguide helper.
+
+The existing producer receipt was independently reread from native artifact
+`11278683254`, `noarch-publication-37136075066-1`. Its native producer wrapper
+head is `9cb67a9c9ee1da2b46d9c53bb71e2659563c2027`, while preflight's exact
+checkout and upload's original candidate both remain
+`598abf993a2409c025de5e912acd7eb45a257ebd`. These are distinct facts.
+The verified upload state, filename and digest remain those recorded above.
+
+New qualification generates `installed-source-binding-RUN-ATTEMPT` with schema
+`molsyssuite.installed-source@1`, binding the original candidate, separate native
+qualification head, run/attempt, file/digest and complete matrix. The promotion
+verifier checks the native artifact's identity/bounds/ZIP digest and all executed
+jobs/steps. It retains both identities in `noarch-installed-matrix.json` rather
+than changing old producer or failed installed receipts. Public promotion still
+waits for that successful complete native gate; it labels the same existing file.
+
+Delivery handoff: uibcdf/ackredit#22, uibcdf/molsyssuite#78 and
+uibcdf/sabueso#108. No registered archive is rebuilt, replaced or reuploaded by
+this administrative adoption. v2.3.0 and withdrawal remain outside scope.
+
+The adoption's local gates pass on Python 3.14.7: all 1,545 tests, no skips,
+Ruff 0.16.5 lint/format, generated report indexes and the administrative
+publication contract. Hosted installed/public results remain separate.
