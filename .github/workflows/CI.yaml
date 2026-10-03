@@ -27,7 +27,7 @@ jobs:
   test:
     # Full supported-minor coverage remains gating (uibcdf/ackredit#63).
     # macOS covers the routine minor here and every minor weekly (#71).
-    # Python 3.14 uses the same normal installed-package gate (#80).
+    # Python 3.14 is required by MolSysSuite and qualified under #80.
     name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15

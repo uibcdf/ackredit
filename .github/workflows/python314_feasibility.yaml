@@ -1,4 +1,5 @@
-name: Python 3.14 installed package
+name: Python 3.14 installed validation
+# Keep the existing workflow filename for historical run references.
 
 on:
   workflow_dispatch:
@@ -7,8 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  installed:
-    name: Installed package on ${{ matrix.os }}, Python ${{ matrix.python-version }}
+  feasibility:
+    name: Installed validation on ${{ matrix.os }}, Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
     strategy:

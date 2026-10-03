@@ -15,6 +15,10 @@ actually reached, and turns that into a citation report with full provenance.
 It is a MolSysSuite component, designed as an optional dependency: a host library keeps
 working when Ackredit is absent.
 
+The required source contract is Python 3.11–3.14. Qualification and public
+installed delivery are tracked in [Ackredit #80](https://github.com/uibcdf/ackredit/issues/80);
+the badge retains the previously verified range until admission.
+
 Read [`MOLSYSSUITE_GUIDE.md`](MOLSYSSUITE_GUIDE.md) and [`AGENTS.md`](AGENTS.md) before
 contributing, and [`standards/ACKREDIT_GUIDE.md`](standards/ACKREDIT_GUIDE.md) to
 integrate Ackredit into a host library.

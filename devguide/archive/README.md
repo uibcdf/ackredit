@@ -78,4 +78,8 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`version_missing_and_its_gate_dead.md`](version_missing_and_its_gate_dead.md) — [#11](https://github.com/uibcdf/ackredit/issues/11) — The package stated no version, and the CI step checking it printed a traceback on a green run. *(resolved, reproduced)*
 - [`what_is_switched_on_cannot_be_switched_off.md`](what_is_switched_on_cannot_be_switched_off.md) — [#34](https://github.com/uibcdf/ackredit/issues/34) — enable_import_hooks and enable_auto_reminder changed the process permanently, with no counterpart to undo either. *(resolved, measured)*
 
+### Superseded (1)
+
+- [`python314_normal_installed_support.md`](python314_normal_installed_support.md) — [#80](https://github.com/uibcdf/ackredit/issues/80) — Align the Python 3.14 adoption candidate and verify normal installed-package use. *(superseded, reproduced)*
+
 <!-- /generated -->

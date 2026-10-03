@@ -1,9 +1,9 @@
 ---
 summary: Align the Python 3.14 adoption candidate and verify normal installed-package use.
 issue: uibcdf/ackredit#80
-status: partial
+status: superseded
 opened: 2026-10-02
-closed:
+closed: 2026-10-03
 verification: reproduced
 area: [compatibility, packaging, ci]
 guard: tests/test_workflow_hygiene.py
@@ -107,3 +107,7 @@ and synchronizes its read-only suite guide through the registered central tool.
 The central badge generator confirms that the README must retain its previous
 three-minor delivery claim until public admission. No public package or admission
 is claimed; immutable delivery and receiving-consumer closure remain open.
+
+## Consolidation (2026-10-03)
+
+Concurrent maintainer work already established `support_python_314.md` for the same issue. Its active record now includes this installed-provider evidence and owns the remaining delivery gates. This record is archived to retain its candidate history.

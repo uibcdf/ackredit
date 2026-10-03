@@ -151,11 +151,11 @@ def test_required_workflows_have_no_unsupported_or_tolerated_test_cells(workflow
     assert all(not step.get("continue-on-error", False) for step in job["steps"])
 
 
-def test_python314_installed_gate_is_explicit_and_its_failure_stays_visible():
+def test_installed_314_validation_is_explicit_and_its_failure_stays_visible():
     document = _workflow("python314_feasibility.yaml")
     events = document.get("on", document.get(True))
     assert set(events) == {"workflow_dispatch"}
-    job = document["jobs"]["installed"]
+    job = document["jobs"]["feasibility"]
     assert job["strategy"]["matrix"]["python-version"] == ["3.14"]
     assert "3.14" in _contract_versions()
     assert not job.get("continue-on-error", False)
@@ -172,7 +172,7 @@ def test_python314_installed_gate_is_explicit_and_its_failure_stays_visible():
 
 
 def _step(workflow: str, name: str) -> dict:
-    job_name = "installed" if workflow == "python314_feasibility.yaml" else "test"
+    job_name = "feasibility" if workflow == "python314_feasibility.yaml" else "test"
     for step in _workflow(workflow)["jobs"][job_name]["steps"]:
         if step.get("name") == name:
             return step
@@ -220,7 +220,7 @@ def _cells() -> list[tuple[str, str]]:
         cells += [
             (workflow, entry["python-version"]) for entry in matrix.get("include", [])
         ]
-    installed = _workflow("python314_feasibility.yaml")["jobs"]["installed"]
+    installed = _workflow("python314_feasibility.yaml")["jobs"]["feasibility"]
     cells += [
         ("python314_feasibility.yaml", version)
         for version in installed["strategy"]["matrix"]["python-version"]
@@ -271,7 +271,7 @@ def test_the_python314_gate_uses_the_same_installed_dependencies():
 @pytest.mark.parametrize(
     "workflow", _matrix_workflows() + ["python314_feasibility.yaml"]
 )
-def test_supported_workflows_install_without_a_python_metadata_override(workflow):
+def test_no_installed_workflow_bypasses_requires_python(workflow):
     install = _step(workflow, "Install package")["run"]
     assert "--ignore-requires-python" not in install
     assert "--no-deps" in install
