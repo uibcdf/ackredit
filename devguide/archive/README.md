@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (74)
+### Resolved (76)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -55,6 +55,8 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`portable_scientific_result_attribution.md`](portable_scientific_result_attribution.md) — [#75](https://github.com/uibcdf/ackredit/issues/75) — Deliver the stable portable attribution contract in published Ackredit 0.9.0. *(resolved, reproduced)*
 - [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
+- [`register_published_release_identity.md`](register_published_release_identity.md) — [#82](https://github.com/uibcdf/ackredit/issues/82) — Register the published 0.9.0 Git identity and restore compatible editable metadata. *(resolved, measured)*
+- [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#72](https://github.com/uibcdf/ackredit/issues/72) — Review Ackredit Python ecosystem policy adoption. *(resolved, measured)*
 - [`serve_ui_removed.md`](serve_ui_removed.md) — [#57](https://github.com/uibcdf/ackredit/issues/57) — An unfinished HTTP server was removed rather than promised, and what a dashboard would need is recorded instead. *(resolved, measured)*
 - [`session_promises_its_whole_surface.md`](session_promises_its_whole_surface.md) — [#52](https://github.com/uibcdf/ackredit/issues/52) — Session exposed its writers and its lock alongside the mappings a caller wants, and its stated reason contradicted the same page. *(resolved, measured)*
 - [`shape_of_the_public_api_for_1_0.md`](shape_of_the_public_api_for_1_0.md) — [#16](https://github.com/uibcdf/ackredit/issues/16) — Five 1.0 API questions decided: two changed, three kept with the reason written down. *(resolved, reproduced)*

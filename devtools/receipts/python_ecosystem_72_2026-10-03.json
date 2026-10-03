@@ -1,0 +1,400 @@
+{
+  "boundaries": "Exact installed tool checks execute before unchanged scientific test selections. Shared editable provider checkouts are preserved. Central inventory state remains owner-controlled. This receipt does not rebuild or replace the public Ackredit 0.9.0 archive.",
+  "central_owner": "uibcdf/molsyssuite#56",
+  "date": "2026-10-03",
+  "gh_run_receptor": {
+    "inspection_command": "gh run-receptor inspect RUN_ID --repo uibcdf/ackredit --receptor=llm",
+    "observed_version": "1.1.1",
+    "published_tag": "https://github.com/uibcdf/gh-run-receptor/releases/tag/1.1.1",
+    "scope": "Compact inspection of all five runs, followed by bounded native head/required-step checks."
+  },
+  "issue": "uibcdf/ackredit#72",
+  "local_implementation": {
+    "human_files_unchanged": 9,
+    "passed": 1548,
+    "pytest_receptor": "1.2.1",
+    "python": "3.14.7",
+    "report_indexes": "passed",
+    "ruff": "passed",
+    "skipped": 0,
+    "sphinx_warnings_as_errors": "passed"
+  },
+  "pytest_receptor": {
+    "conda_file": "pytest-receptor-1.2.1-py_0.tar.bz2",
+    "conda_sha256": "77bf3694bc903f606d4323b88e3bb3aea9628618036b53073f5a5dbd5dbc73cb",
+    "conda_url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.1-py_0.tar.bz2",
+    "github_release": "https://github.com/uibcdf/pytest-receptor/releases/tag/1.2.1",
+    "provider_release_issue": "uibcdf/pytest-receptor#32",
+    "pypi": "https://pypi.org/project/pytest-receptor/1.2.1/",
+    "requires_python": ">=3.11,<3.15",
+    "version": "1.2.1"
+  },
+  "runs": [
+    {
+      "conclusion": "success",
+      "head_sha": "3c6e77c5d69809da0333786572f1edd4689c611b",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37158926157",
+      "id": 37158926157,
+      "other_jobs": [
+        {
+          "conclusion": "success",
+          "id": 111308058274,
+          "name": "Ruff on ubuntu-latest",
+          "steps": []
+        },
+        {
+          "conclusion": "success",
+          "id": 111308058533,
+          "name": "Documentation build on ubuntu-latest",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            }
+          ]
+        }
+      ],
+      "path": ".github/workflows/CI.yaml",
+      "run_attempt": 1,
+      "status": "completed",
+      "test_cells": [
+        {
+          "conclusion": "success",
+          "id": 111308058463,
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308058477,
+          "name": "Test on macos-15, Python 3.14",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308058487,
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308058544,
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308058621,
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "3c6e77c5d69809da0333786572f1edd4689c611b",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37159097254",
+      "id": 37159097254,
+      "other_jobs": [
+        {
+          "conclusion": "skipped",
+          "id": 111308598521,
+          "name": "Check skipped-commit backlog",
+          "steps": []
+        }
+      ],
+      "path": ".github/workflows/CI_full_matrix.yaml",
+      "run_attempt": 1,
+      "status": "completed",
+      "test_cells": [
+        {
+          "conclusion": "success",
+          "id": 111308579741,
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308579803,
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308579817,
+          "name": "Test on macos-15, Python 3.11",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308579835,
+          "name": "Test on macos-15, Python 3.12",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308579848,
+          "name": "Test on macos-15, Python 3.14",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308579857,
+          "name": "Test on macos-15, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308579874,
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308580151,
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "3c6e77c5d69809da0333786572f1edd4689c611b",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37159098842",
+      "id": 37159098842,
+      "other_jobs": [],
+      "path": ".github/workflows/python314_feasibility.yaml",
+      "run_attempt": 1,
+      "status": "completed",
+      "test_cells": [
+        {
+          "conclusion": "success",
+          "id": 111308584601,
+          "name": "Installed validation on ubuntu-latest, Python 3.14",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 111308584731,
+          "name": "Installed validation on macos-15, Python 3.14",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Setup conda env"
+            },
+            {
+              "conclusion": "success",
+              "name": "Verify installed Pytest Receptor version"
+            },
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "3c6e77c5d69809da0333786572f1edd4689c611b",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37158926538",
+      "id": 37158926538,
+      "path": ".github/workflows/molsyssuite-policy.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "3c6e77c5d69809da0333786572f1edd4689c611b",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37158926601",
+      "id": 37158926601,
+      "path": ".github/workflows/conda-publication-policy.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "schema": "ackredit.developer-tool-adoption@1",
+  "source": "3c6e77c5d69809da0333786572f1edd4689c611b"
+}

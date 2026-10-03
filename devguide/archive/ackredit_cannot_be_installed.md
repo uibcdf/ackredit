@@ -426,3 +426,13 @@ aligned with citation metadata and public Conda dependency resolution.
 Local closure validation on Python 3.14.7 passes all **1,542 tests**, without
 skips, plus Ruff lint/format and regenerated report indexes. Existing human
 BibTeX, LaTeX, notebook and citation-test work remains byte-identical.
+
+## Follow-up: Git-derived editable identity — 2026-10-03
+
+Ackredit #82 records and corrects the missing `0.9.0` tag after Conda promotion.
+The tag now identifies original producer `598abf993a2409c025de5e912acd7eb45a257ebd`;
+the public archive and all its earlier receipts remain unchanged. Reinstalling
+the shared editable checkout restores metadata satisfying Sabueso's
+`ackredit>=0.9.0` requirement, with `pip check` passing. See the
+[resolved identity record](register_published_release_identity.md). The earlier
+statements distinguishing Conda promotion from tag creation remain historical.

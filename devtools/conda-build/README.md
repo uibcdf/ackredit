@@ -52,6 +52,14 @@ The old combined `promote: true` interface is replaced: it rebuilt and reuploade
 instead of promoting tested bytes. Repairs use additive builds with new installed
 evidence. Public tags are immutable; staging creates no remote release tag.
 
+After verified promotion, register the canonical version tag at the original
+producer source recorded in the delivery receipt, even when a later caller
+qualified the unchanged archive. Reinstall editable development distributions
+after updating tag history so their metadata derives from the published release
+baseline and satisfies consumer minima. Ackredit #82 records the 0.9.0 correction;
+`tests/test_versioning.py` checks installed identity against public receipts.
+GitHub Release/DOI publication retains its own recorded outcome.
+
 `ANACONDA_UIBCDF_TOKEN` is mapped explicitly to the shared secret. Secret
 availability, upload permission and verified public delivery remain separate.
 No installation command or badge claims publication before verification.

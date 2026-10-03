@@ -1,9 +1,9 @@
 ---
 summary: Review Ackredit Python ecosystem policy adoption.
 issue: uibcdf/ackredit#72
-status: partial
+status: resolved
 opened: 2026-09-27
-closed:
+closed: 2026-10-03
 verification: measured
 area: [governance, tooling]
 guard: tests/test_developer_tool_pins.py
@@ -101,3 +101,23 @@ Local implementation qualification passes all **1,548 tests**, no skips, on
 Python 3.14.7 with public Pytest Receptor 1.2.1. Ruff lint/format, current report
 indexes and Sphinx `-W` pass. Hosted exact-source verification remains pending
 for this partial record; no central adopted state is inferred from local gates.
+
+## Exact-source hosted resolution — 2026-10-03
+
+Implementation source `3c6e77c5d69809da0333786572f1edd4689c611b` passes:
+
+- [Routine CI 37158926157](https://github.com/uibcdf/ackredit/actions/runs/37158926157): seven jobs, including five actual installed test cells.
+- [Full matrix 37159097254](https://github.com/uibcdf/ackredit/actions/runs/37159097254): all eight Linux/macOS arm64 × Python 3.11–3.14 test cells. The dispatch-only recovery decision job is intentionally skipped and is not a scientific cell.
+- [Dedicated installed 3.14 37159098842](https://github.com/uibcdf/ackredit/actions/runs/37159098842): both Linux/macOS arm64 cells.
+- [Suite policy 37158926538](https://github.com/uibcdf/ackredit/actions/runs/37158926538) and [publication policy 37158926601](https://github.com/uibcdf/ackredit/actions/runs/37158926601).
+
+All five reports were acquired with published GH Run Receptor **1.1.1**.
+Bounded native API evidence independently confirms the exact source and actual
+successful `Verify installed Pytest Receptor version` and `Run tests` steps in
+all fifteen test cells. The [committed adoption receipt](../../devtools/receipts/python_ecosystem_72_2026-10-03.json)
+retains these observations without raw logs or credentials.
+
+Ackredit's applicable support-library and developer-tool adoption is complete.
+`tests/test_developer_tool_pins.py` guards maintained pins and the hosted check's
+actual matching/mismatched exit behavior. MolSysSuite #56 owns the central
+inventory update; this resolution does not write the central registry.

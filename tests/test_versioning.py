@@ -6,13 +6,16 @@ one from the other, and `policy-v1.4.1` requires the derivation to refuse a tag
 that is not a canonical MolSysSuite release identifier.
 """
 
+import json
 import re
 import subprocess
 import sys
 import tomllib
+from importlib.metadata import version
 from pathlib import Path
 
 import pytest
+from packaging.version import Version
 
 import ackredit
 
@@ -152,3 +155,19 @@ def test_the_version_is_not_the_unknown_fallback():
     is a broken install rather than a version."""
     assert ackredit.__version__ != "0.0.0+unknown"
     assert re.match(r"^\d+\.\d+\.\d+", ackredit.__version__), ackredit.__version__
+
+
+def test_installed_version_is_not_older_than_verified_public_delivery():
+    """A missing release tag made the editable package fail consumer minima."""
+    receipts = ROOT / "devtools" / "conda-build" / "receipts"
+    published = [
+        Version(json.loads(path.read_text(encoding="utf-8"))["published_version"])
+        for path in receipts.glob("ackredit_*_public_*.json")
+    ]
+    assert published, "retain the verified public delivery receipt"
+    minimum = max(published)
+    for actual in (version("ackredit"), ackredit.__version__):
+        assert Version(actual) >= minimum, (
+            f"installed Ackredit {actual} predates verified public {minimum}; "
+            "register the release tag at its recorded producer and reinstall"
+        )
