@@ -8,7 +8,7 @@ verification: reproduced
 area: [compatibility, packaging, ci]
 guard: tests/test_workflow_hygiene.py
 normative:
-blocked_by: [uibcdf/molsyssuite#29, uibcdf/ackredit#22, uibcdf/ackredit#75]
+blocked_by: [uibcdf/ackredit#22, uibcdf/ackredit#75]
 supersedes: []
 ---
 
@@ -83,9 +83,27 @@ A clean public-dependency Python 3.11.16 environment also resolves successfully.
 The source candidate retains `noarch: python`: Ackredit has no compiled payload;
 its NumPy dependency is installed separately for the selected interpreter.
 
-These are development-wheel checks. The implementation commit must be rebuilt
-cleanly and qualified in hosted Linux/macOS cells before integration. The
-[central authorization request](https://github.com/uibcdf/molsyssuite/issues/29#issuecomment-5962714285)
-is pending; the currently pinned `policy-v1.5.2` does not register Ackredit's
-target. Keep the implementation as an issue-linked candidate branch until a
-compatible central policy is available. No public package or admission is claimed.
+Clean implementation commit
+[`5f7bf49`](https://github.com/uibcdf/ackredit/commit/5f7bf49012920a70d6b5a22c9dad5fe570c8ac4d)
+was rebuilt as wheel `ackredit-0.8.0+46.g5f7bf49-py3-none-any.whl`, SHA-256
+`55a71e54962bbbc6e8194c276f6034b85dfe06c0cd6838aeafd0daca83dacb71`.
+Normal installations of that same file pass the shared smoke and `pip check`
+in fresh public-dependency environments on Python 3.11.16 and 3.14.7. The
+installed 3.14 suite passes all 1,534 tests again against this clean artifact.
+
+The [hosted periodic matrix](https://github.com/uibcdf/ackredit/actions/runs/37076447854)
+passes all eight Linux/macOS arm64 Python 3.11–3.14 cells at that commit. Native
+step evidence confirms installed verification, interpreter/architecture checks
+and the full suite actually executed in every cell. Only the conditional
+backlog detector is skipped on this unconditional manual dispatch.
+[CI](https://github.com/uibcdf/ackredit/actions/runs/37076447646) passes all seven
+jobs, including quality, documentation and the five normal installed test cells.
+Both reports were inspected with GH Run Receptor.
+
+These are development-wheel and source-installation checks. Central
+`policy-v1.5.3` registers Ackredit as `authorized` for this issue and requires
+3.11–3.14 across all registered Python packages. Ackredit adopts that caller
+and synchronizes its read-only suite guide through the registered central tool.
+The central badge generator confirms that the README must retain its previous
+three-minor delivery claim until public admission. No public package or admission
+is claimed; immutable delivery and receiving-consumer closure remain open.
