@@ -1,5 +1,5 @@
 ---
-summary: Qualify noarch Conda delivery after the repaired provider is adopted centrally.
+summary: Qualify staged noarch delivery with the centrally accepted build action.
 issue: uibcdf/ackredit#22
 status: partial
 opened: 2026-09-21
@@ -8,7 +8,7 @@ verification: reproduced
 area: [packaging, release]
 guard: tests/test_conda_release_route.py
 normative: devguide/roadmap.md
-blocked_by: [uibcdf/molsyssuite#78]
+blocked_by: []
 supersedes: []
 ---
 
@@ -209,3 +209,20 @@ PR uibcdf/molsyssuite#81 proposes commit
 offline governance pass. The shared `main` remains unchanged by this proposal.
 Ackredit's caller update and hosted staging await acceptance; an open PR is
 not an adopted provider or an artifact receipt.
+
+## Accepted central adoption (2026-10-03)
+
+MolSysSuite PR #81 is merged at
+`2a2a459cc3795bb92766fffa0fe28f4d80f01ad4`; its hosted governance run
+`37125099269` succeeds. The shared publisher now selects the qualified build
+action `8da628d9b393e184c3bf3722708b19dcfbf7ef0a`. Relative to Ackredit's
+previous shared source, the publication workflows change only that build pin;
+the installed gate, promotion route and publication checks retain their logic.
+
+Ackredit pins all four publication callers to the accepted immutable central
+commit. Its versioned engineering-policy adoption remains independent. Central
+adoption no longer blocks this candidate; exact-source hosted gates, staging,
+the exact-file installed matrix and receiving-consumer qualification must still
+succeed before the separate public-promotion decision. This source change
+does not claim a registry upload or close uibcdf/ackredit#22 or
+uibcdf/ackredit#75.
