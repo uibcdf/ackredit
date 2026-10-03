@@ -193,3 +193,30 @@ also passes. This is stronger than a source-only probe but remains local
 integration evidence: no registry upload or receiving-consumer release is
 claimed. Provider action #46/#47 and shared adoption MolSysSuite #78 precede
 the hosted staged-file qualification. The accepted contract remains unchanged.
+
+
+## Installed receiving-consumer diagnostic (2026-10-03)
+
+The exact local noarch Ackredit artifact recorded under #22 is now tested with
+an independently installed PyUnitWizard wheel built from published source
+`dbafcc5d21604ce7c94e0cb645937d9233cf061c`:
+`pyunitwizard-0.27.0+40.gdbafcc5-py3-none-any.whl`, SHA-256
+`29720d6ab7d61a9233ce31cebdb3c3836cad7a645fc92d84b33ae6f498cdb6ff`.
+The provider file remains `ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`99e6f9b9f0a3b0a22c66e476230dddabd2ba0017c59beb3253fbadc781d665c6`.
+
+All 17 existing PyUnitWizard backend-attribution tests pass on Python 3.14.7,
+without skips, from a copied unchanged test module outside either checkout.
+The selected runtime packages all resolve under the fresh environment's
+site-packages, with no editable install: Pint 0.26.1, unyt 3.1.0, SMonitor
+0.18.0, DepDigest 0.12.0, ArgDigest 0.13.0 and public Pytest Receptor 1.2.0.
+`pip check` passes. The tests exercise software-only, article-only and combined
+bibliography, reused references and enclosing workflows, numerical results,
+true provider absence/failure, opt-in isolation and saved-result fresh readers.
+
+This is installed compatibility between identified local candidate files,
+not a public PyUnitWizard or Ackredit release claim. The existing owned guard
+remains `uibcdf/pyunitwizard`'s
+`tests/integration/test_backend_attribution.py`; it is not duplicated here.
+The stronger receiver evidence is retained while the hosted staged-file matrix,
+central provider adoption and separate public-promotion decision remain open.

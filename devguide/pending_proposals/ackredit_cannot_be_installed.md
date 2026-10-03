@@ -189,3 +189,23 @@ pass. This keeps the maintainer's nine pre-existing files byte-identical and
 preserves the requested editable installation of the primary checkout in that
 shared environment. The valid pip development flag is `--editable`; pip rejects
 `--development`.
+
+
+## Real installed receiver checkpoint (2026-10-03)
+
+The local exact-file Python 3.14.7 environment now also installs the PyUnitWizard
+wheel from source `dbafcc5`. All 17 existing owned attribution tests pass outside
+both checkouts with no skips or editable imports; pip check passes. The precise
+wheel/digest and runtime public dependencies are recorded under #75. This
+supplies local installed-receiver compatibility while the shared hosted
+staging/installed/publication gates remain pending. MolSysSuite #78's one-pin
+adoption is prepared and passes its 277 central tests; central publication is
+not claimed by that isolated preparation.
+
+
+The maintainer requested central review through a PR rather than direct push.
+PR uibcdf/molsyssuite#81 proposes commit
+`4c96e794d207c7fe527b1676302f280b2fb31bff`; its full 277 local tests and
+offline governance pass. The shared `main` remains unchanged by this proposal.
+Ackredit's caller update and hosted staging await acceptance; an open PR is
+not an adopted provider or an artifact receipt.
