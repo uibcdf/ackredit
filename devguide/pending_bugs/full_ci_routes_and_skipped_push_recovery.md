@@ -137,3 +137,20 @@ cannot clear full-matrix debt. The recovery detector now requires an executed
 rejects a green historical three-minor matrix as a complete recovery watermark.
 Central authorization and public admission remain tracked in MolSysSuite #29
 and Ackredit #80. Earlier evidence above retains its original support boundary.
+
+## Routine policy 1.5.4 adoption — 2026-10-03
+
+The maintainer authorized publication and adoption of policy-v1.5.4 under
+uibcdf/molsyssuite#39. The immutable tag points to central e459ea0; the
+component now calls that published gate and receives the byte-identical
+canonical guide through the suite synchronizer. Routine development uses
+Python 3.14. The existing full Python 3.11–3.14 matrices and skipped-commit
+recovery semantics are preserved; no public package is published here.
+Local conformance and changed-workflow Actionlint checks pass. Hosted
+policy and applicable routine checks are dispatched separately from skipped
+direct pushes; their exact commits and outcomes remain to be measured.
+
+The additional routine macOS arm64 lane, quality job and documentation
+build use 3.14. Linux still tests every supported minor on PRs, and the
+weekly matrix retains every supported minor on Linux and macOS.
+
