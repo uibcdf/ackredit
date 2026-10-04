@@ -56,6 +56,12 @@ unchanged payload and zero new credits. Each cell retains the payload,
 `workflow-report.md` and `workflow-reader.json`. Earlier dated checkpoints below
 had five tests per cell; they are not evidence for this later format.
 
+Ackredit #92 extends that report test to pre-register the original PyUnitWizard
+bibliography with valid tuple authors through public `register_item` before
+activation. The observer must accept its JSON-equivalent declaration and the
+capture must preserve the original bibliography as a JSON array. The gate still
+contains six tests; this added precondition requires new exact-source evidence.
+
 This gate qualifies development source candidates. It does not publish a package,
 promote the provisional APIs, certify a client release or replace the full Ackredit
 test suite. MolSysSuite #97 and MOLI #46 retain their review ownership. A future
@@ -102,6 +108,27 @@ description roles, numbered bibliography and public-function/backend graph.
 The reviewed [durable receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_reporting_matrix_2026-10-04.json)
 includes payload/report hashes and independent-reader assertions. This is
 development qualification for #89/#90/#91, not a public package or API promotion.
+
+## Registered-representation checkpoint (2026-10-04)
+
+Source `1a5dd4566737f6195571b4cb421af6f01647c5f6` resolves #92 and provides
+the concrete proposed #84/#87 contract handoff. Its
+[ordinary CI 37230213187](https://github.com/uibcdf/ackredit/actions/runs/37230213187)
+passes all seven jobs and both policy lanes pass.
+[Receiving matrix 37230225286](https://github.com/uibcdf/ackredit/actions/runs/37230225286)
+passes eight cells and the aggregate: 48 tests, zero skips/deselections and ten
+retained artifacts. The candidate is `ackredit-0.9.0+29.g1a5dd45-py3-none-any.whl`,
+SHA-256 `4c1d65477af8a09f66873c119b40c9228e6e678a79e360a2e4c0fd4644080604`.
+
+Downloaded wheels/resources and complete receptor artifacts independently
+verify; the local aggregate equals the hosted summary. The original producer
+pin is unchanged and the source-built actual 0.9.0 fallback still passes.
+[The reviewed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_registered_representation_matrix_2026-10-04.json)
+retains this new qualification separately. Runtime normalization of registered
+metadata occurs at activation, while invocation compares its detached original
+representation. Source guards prove repeated calls add no bibliography
+normalization and diagnose nested mutation/replacement/deletion correctly.
+No API promotion, new tag, public package or consumer minimum follows.
 
 ## Local reproduction
 

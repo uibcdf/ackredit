@@ -185,3 +185,11 @@ the exact candidate/publication handoff. The maintainer decision remains open;
 this document does not promote the API or distribute a shared adoption guide.
 Pre-stabilization inspection reproduced #92's registered tuple/list false
 conflict. Its runtime repair must receive fresh exact-candidate evidence.
+
+The correction #92 is now qualified at `1a5dd45`: seven-job CI 37230213187
+and eight-cell/48-test installed matrix 37230225286 pass. The real producer
+report includes public pre-registration with tuple authors and a fresh offline
+reader. Downloaded identities and the aggregate verify independently; the new
+reviewed receipt is `devtools/receipts/provider_registered_representation_matrix_2026-10-04.json`.
+The bug is resolved and archived; the proposed stable contract still requires
+the maintainer/receiving decisions recorded in the review document.

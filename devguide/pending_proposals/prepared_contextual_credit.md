@@ -153,3 +153,9 @@ Prepared credit's detached registered/portable representation distinction also
 informs the observer-specific repair #92; this factory's runtime is unchanged.
 The proposal keeps function entry and host-chosen completed credit separate,
 and does not promote the API, select a tag or change the public portable minimum.
+
+Observer correction #92 is qualified independently at `1a5dd45` with full CI
+37230213187 and the eight-cell/48-test receiving matrix 37230225286, including
+the real original-provider fallback. Reviewed evidence is retained in
+`devtools/receipts/provider_registered_representation_matrix_2026-10-04.json`.
+This factory's implementation remains unchanged; schema/API decisions stay open.

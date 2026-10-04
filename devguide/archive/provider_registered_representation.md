@@ -1,9 +1,9 @@
 ---
 summary: Function observation rejects JSON-equivalent pre-existing tuple metadata.
 issue: uibcdf/ackredit#92
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-04
 severity: medium
 verification: reproduced
 area: [core, integration]
@@ -69,3 +69,21 @@ Instrumented provider normalization happens at activation and never again for
 reused calls or the diagnosed gap. Existing conflict and atomic-preflight tests
 remain green. Full Python 3.14.7 source gates pass 1,698 tests without skips,
 Ruff, indexes and strict Sphinx. Hosted exact-source/installed evidence follows.
+
+## Resolution
+
+Correction `1a5dd4566737f6195571b4cb421af6f01647c5f6` passes ordinary
+CI 37230213187 (seven jobs) and policy lanes 37230213533/37230213717.
+Installed matrix 37230225286 passes all eight Linux/macOS arm64 × Python
+3.11–3.14 cells and the aggregate, 48 tests without skips/deselections.
+The real report test registers PyUnitWizard's original bibliography with
+tuple authors through the public API before observation; the calculation,
+normalized original bibliography and producer-free reader all pass.
+
+The candidate `ackredit-0.9.0+29.g1a5dd45-py3-none-any.whl` has SHA-256
+`4c1d65477af8a09f66873c119b40c9228e6e678a79e360a2e4c0fd4644080604`.
+Downloaded wheel/resources and complete receptor events independently verify;
+the local aggregate equals the hosted summary. The reviewed receipt is
+`devtools/receipts/provider_registered_representation_matrix_2026-10-04.json`.
+No sibling source, schema, public artifact, API classification, canonical
+guide or tag changes. #84/#87 retain their proposed contract/maintainer handoff.

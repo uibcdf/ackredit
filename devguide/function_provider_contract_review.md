@@ -51,8 +51,14 @@ not millions of scalar iterations.
    refusal of valid pre-existing tuple authors against equivalent provider JSON
    lists. The repair preserves raw registrations and detached invocation
    comparisons while keeping portable output normalized. Its changed runtime
-   requires its own source and installed receipt; earlier gates remain dated
-   evidence rather than proof of the repaired candidate.
+   is now qualified at source `1a5dd4566737f6195571b4cb421af6f01647c5f6`:
+   [CI 37230213187](https://github.com/uibcdf/ackredit/actions/runs/37230213187)
+   passes seven jobs, and
+   [matrix 37230225286](https://github.com/uibcdf/ackredit/actions/runs/37230225286)
+   passes eight cells/48 tests without skips. The real report test pre-registers
+   tuple authors through the public API. Downloaded identities and the aggregate
+   independently verify. Its [reviewed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_registered_representation_matrix_2026-10-04.json)
+   retains the exact candidate identity; earlier gates remain dated evidence.
 4. **Maintainer decision.** Accept or amend the bounded guarantees above and
    decide provider-schema compatibility, API stability classification and
    the first release containing them. Recommendation: preserve released

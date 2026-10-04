@@ -128,7 +128,7 @@ At activation, pre-existing bibliography is compared in its portable JSON
 representation, so equivalent tuple/list fields are accepted. Existing registered
 data is preserved. Each invocation still compares against a detached snapshot
 of that original registration; replacement or deletion is diagnosed without
-serializing JSON on the scientific call path.
+repeating bibliography normalization. The existing journal writer is retained.
 
 Use qualified calls such as `example.normalize(...)` **inside** the observation
 block. Aliases obtained before activation keep the original callable and are
