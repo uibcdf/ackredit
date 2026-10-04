@@ -40,10 +40,16 @@ def installed():
     assert sys.platform in {"linux", "darwin"}, sys.platform
     if sys.platform == "darwin":
         assert platform.machine() == "arm64", platform.machine()
+    candidate = manifest["packages"]["candidate"]
+    if manifest["schema"] == "ackredit.receiving-bundle@2":
+        proof = json.loads((output / "conda-before.json").read_text())
+        candidate_identity = bundle_tools.verify_conda_receiving(
+            ackredit, candidate, proof
+        )
+    else:
+        candidate_identity = bundle_tools.verify_installed(ackredit, candidate)
     providers = {
-        "ackredit": bundle_tools.verify_installed(
-            ackredit, manifest["packages"]["candidate"]
-        ),
+        "ackredit": candidate_identity,
         "pyunitwizard": bundle_tools.verify_installed(
             puw, manifest["packages"]["producer"]
         ),
@@ -88,7 +94,11 @@ def test_installed_identity_and_bundled_resources(installed):
     ackredit, _, _, _, receipt = installed
     assert receipt["providers"]["ackredit"]["version"] == ackredit.__version__
     assert hasattr(ackredit, "observe_calls") and hasattr(ackredit, "prepare_credit")
-    assert "ackredit/CITATION.cff" in receipt["packages"]["candidate"]["files"]
+    candidate = receipt["packages"]["candidate"]
+    if candidate.get("kind") == "conda":
+        assert receipt["providers"]["ackredit"]["conda_sha256"] == candidate["sha256"]
+    else:
+        assert "ackredit/CITATION.cff" in candidate["files"]
 
 
 def test_real_pipeline_retains_exact_references_roles_and_graph(installed):

@@ -1,8 +1,25 @@
 name: Installed function-provider receiving matrix
-run-name: Function-provider receiving ${{ github.sha }}
+run-name: Function-provider receiving ${{ inputs.conda_filename || github.sha }} ${{ inputs.conda_sha256 }}
 
 on:
   workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Original Conda producer SHA (leave empty for development wheels)
+        type: string
+        default: ''
+      conda_version:
+        description: Exact staged Conda version (all Conda inputs required together)
+        type: string
+        default: ''
+      conda_filename:
+        description: Exact staged noarch archive filename
+        type: string
+        default: ''
+      conda_sha256:
+        description: SHA-256 of the single staged candidate
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -17,6 +34,7 @@ jobs:
         with:
           path: candidate-source
           fetch-depth: 0
+          ref: ${{ inputs.candidate_sha || github.sha }}
       - uses: actions/checkout@v6
         with:
           repository: uibcdf/pyunitwizard
@@ -32,11 +50,17 @@ jobs:
         with:
           python-version: "3.14"
       - name: Build each pure Python wheel once
+        env:
+          CONDA_VERSION: ${{ inputs.conda_version }}
+          CONDA_FILENAME: ${{ inputs.conda_filename }}
+          CONDA_SHA256: ${{ inputs.conda_sha256 }}
         run: |
           set -euo pipefail
           python candidate-source/devtools/qualification_bundle.py build \
             --candidate candidate-source --producer producer-source \
-            --released released-source --output "${RUNNER_TEMP}/receiving-bundle"
+            --released released-source --output "${RUNNER_TEMP}/receiving-bundle" \
+            --conda-version "${CONDA_VERSION}" --conda-filename "${CONDA_FILENAME}" \
+            --conda-sha256 "${CONDA_SHA256}"
       - uses: actions/upload-artifact@v6
         with:
           name: function-provider-bundle
@@ -94,6 +118,7 @@ jobs:
           name: function-provider-bundle
           path: ${{ runner.temp }}/receiving-bundle
       - name: Setup receiving environment
+        if: inputs.conda_version == ''
         uses: mamba-org/setup-micromamba@v3.2.1
         with:
           environment-file: devtools/conda-envs/test_env.yaml
@@ -105,15 +130,72 @@ jobs:
             channel_priority: strict
           create-args: >-
             python=${{ matrix.python-version }} numpy pint unyt
+      - name: Setup Conda receiving environment
+        if: inputs.conda_version != ''
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: receiving
+          environment-file: devtools/conda-envs/test_env.yaml
+          python-version: ${{ matrix.python-version }}
+          channels: uibcdf,conda-forge
+          channel-priority: strict
+          auto-activate-base: false
+          miniforge-version: latest
+      - name: Checkout shared exact-file verifier
+        if: inputs.conda_version != ''
+        uses: actions/checkout@v6
+        with:
+          repository: uibcdf/molsyssuite
+          ref: c3e2b9b3dabf3d1c65349c389a23048957bea21a
+          path: .molsyssuite
+      - name: Checkout original Conda producer inputs
+        if: inputs.conda_version != ''
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.candidate_sha || github.sha }}
+          path: conda-source
+      - name: Install the exact staged Conda candidate
+        if: inputs.conda_version != ''
+        shell: bash -l {0}
+        env:
+          CANDIDATE_FILENAME: ${{ inputs.conda_filename }}
+          CANDIDATE_SHA256: ${{ inputs.conda_sha256 }}
+        run: |
+          set -euo pipefail
+          conda install --yes --override-channels --strict-channel-priority \
+            -c uibcdf -c conda-forge "python=${{ matrix.python-version }}" numpy pint unyt jinja2 packaging
+          python .molsyssuite/devtools/scripts/installed_noarch.py download \
+            --root conda-source --sha256 "${CANDIDATE_SHA256}" --directory "${RUNNER_TEMP}/noarch-artifact"
+          python .molsyssuite/devtools/scripts/installed_noarch.py install \
+            --root conda-source --sha256 "${CANDIDATE_SHA256}" --filename "${CANDIDATE_FILENAME}" \
+            --python "${{ matrix.python-version }}" --directory "${RUNNER_TEMP}/noarch-artifact"
       - name: Verify bundle and install the same candidate files
         shell: bash -l {0}
+        env:
+          CONDA_VERSION: ${{ inputs.conda_version }}
         run: |
           set -euo pipefail
           python devtools/qualification_bundle.py verify "${RUNNER_TEMP}/receiving-bundle"
-          python -m pip install --no-deps --no-index \
-            "${RUNNER_TEMP}"/receiving-bundle/candidate/*.whl \
-            "${RUNNER_TEMP}"/receiving-bundle/producer/*.whl
+          if [[ -z "${CONDA_VERSION}" ]]; then
+            python -m pip install --no-deps --no-index "${RUNNER_TEMP}"/receiving-bundle/candidate/*.whl
+          fi
+          python -m pip install --no-deps --no-index "${RUNNER_TEMP}"/receiving-bundle/producer/*.whl
           python -m pip check
+      - name: Verify Conda provenance before real science
+        if: inputs.conda_version != ''
+        shell: bash -l {0}
+        env:
+          CANDIDATE_FILENAME: ${{ inputs.conda_filename }}
+          CANDIDATE_SHA256: ${{ inputs.conda_sha256 }}
+        run: |
+          set -euo pipefail
+          mkdir -p "${RUNNER_TEMP}/receiving-evidence"
+          cd "${RUNNER_TEMP}"
+          python -P "${GITHUB_WORKSPACE}/.molsyssuite/devtools/scripts/installed_noarch.py" verify \
+            --root "${GITHUB_WORKSPACE}/conda-source" --filename "${CANDIDATE_FILENAME}" \
+            --sha256 "${CANDIDATE_SHA256}" --directory "${RUNNER_TEMP}/noarch-artifact" \
+            --platform "${{ matrix.os == 'macos-15' && 'osx-arm64' || 'linux-64' }}" \
+            --python "${{ matrix.python-version }}" --output "${RUNNER_TEMP}/receiving-evidence/conda-before.json"
       - name: Verify installed Pytest Receptor version
         shell: bash -l {0}
         run: python -c 'from importlib.metadata import version; actual = version("pytest-receptor"); print("pytest-receptor", actual); assert actual == "1.2.1", actual'
@@ -131,6 +213,20 @@ jobs:
             --junitxml="${ACKREDIT_QUALIFICATION_OUTPUT}/tests.xml" \
             --receptor-events="${ACKREDIT_QUALIFICATION_OUTPUT}/events.jsonl" \
             "${GITHUB_WORKSPACE}/devtools/qualification/test_pyunitwizard.py"
+      - name: Verify Conda provenance after real science
+        if: inputs.conda_version != ''
+        shell: bash -l {0}
+        env:
+          CANDIDATE_FILENAME: ${{ inputs.conda_filename }}
+          CANDIDATE_SHA256: ${{ inputs.conda_sha256 }}
+        run: |
+          set -euo pipefail
+          cd "${RUNNER_TEMP}"
+          python -P "${GITHUB_WORKSPACE}/.molsyssuite/devtools/scripts/installed_noarch.py" verify \
+            --root "${GITHUB_WORKSPACE}/conda-source" --filename "${CANDIDATE_FILENAME}" \
+            --sha256 "${CANDIDATE_SHA256}" --directory "${RUNNER_TEMP}/noarch-artifact" \
+            --platform "${{ matrix.os == 'macos-15' && 'osx-arm64' || 'linux-64' }}" \
+            --python "${{ matrix.python-version }}" --output "${RUNNER_TEMP}/receiving-evidence/conda-after.json"
       - name: Retain receiving evidence including failures
         if: always()
         uses: actions/upload-artifact@v6

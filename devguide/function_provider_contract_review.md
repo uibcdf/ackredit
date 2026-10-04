@@ -72,6 +72,18 @@ not millions of scalar iterations.
 
 ## Release sequence after acceptance
 
+### 2026-10-04 provisional delivery decision
+
+Diego authorized a release checkpoint and tag; [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93)
+prepares **0.10.0 with the current provisional classification retained**.
+That delivery does not accept the proposed stable guarantees, close #84/#87 or
+establish a shared adoption requirement. It requires the exact Conda archive's
+full installed and real-producer gates, promotion and public verification.
+The canonical integration guide retains the existing released portable contract;
+stable provider-guide distribution waits for its separate review decision.
+
+### Stable promotion remains a separate decision
+
 Record the accepted decision and receiving owners first. Update Ackredit's API
 stability page, release notes and canonical integration guide around the
 accepted boundary; propose consumer delivery through the central registry.

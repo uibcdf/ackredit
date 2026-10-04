@@ -166,3 +166,64 @@ def test_changed_installed_citation_is_rejected_even_with_the_right_version(
     (site / "ackredit" / "CITATION.cff").write_text("title: Different citation\n")
     with pytest.raises(AssertionError):
         bundle.verify_installed(module, record)
+
+
+@pytest.fixture
+def conda_matrix(complete_matrix):
+    cells, directory, final = complete_matrix
+    manifest = json.loads((directory / "bundle.json").read_text())
+    candidate = {
+        "kind": "conda",
+        "package": "ackredit",
+        "source_commit": "a" * 40,
+        "version": "0.10.0",
+        "filename": "ackredit-0.10.0-py_0.tar.bz2",
+        "sha256": "b" * 64,
+    }
+    manifest["schema"] = "ackredit.receiving-bundle@2"
+    manifest["packages"]["candidate"] = candidate
+    (directory / "bundle.json").write_text(json.dumps(manifest))
+    for identity in cells.glob("*/identity.json"):
+        receipt = json.loads(identity.read_text())
+        receipt["packages"] = manifest["packages"]
+        receipt["providers"] = {"ackredit": {"conda_sha256": candidate["sha256"]}}
+        identity.write_text(json.dumps(receipt))
+        proof = dict(
+            {
+                key: candidate[key]
+                for key in ("package", "version", "filename", "sha256")
+            },
+            state="verified",
+            subdir="noarch",
+            platform="linux-64" if receipt["platform"] == "linux" else "osx-arm64",
+            python=".".join(receipt["python"].split(".")[:2]),
+        )
+        for name in ("conda-before.json", "conda-after.json"):
+            (identity.parent / name).write_text(json.dumps(proof))
+    return cells, directory, final
+
+
+@pytest.mark.parametrize(
+    "field", ["sha256", "version", "filename", "platform", "python", "state"]
+)
+def test_conda_receiving_requires_same_file_provenance_after_science(
+    conda_matrix, field
+):
+    cells, directory, _ = conda_matrix
+    assert len(bundle.summarize(cells, directory)["cells"]) == 8
+    path = cells / "linux-3.14" / "conda-after.json"
+    proof = json.loads(path.read_text())
+    proof[field] = "different"
+    path.write_text(json.dumps(proof))
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+def test_conda_receiving_refuses_a_wheel_identity(conda_matrix):
+    _, directory, _ = conda_matrix
+    manifest = json.loads((directory / "bundle.json").read_text())
+    record = manifest["packages"]["candidate"]
+    record["filename"] = "ackredit-0.10.0-py3-none-any.whl"
+    (directory / "bundle.json").write_text(json.dumps(manifest))
+    with pytest.raises(AssertionError):
+        bundle.verify_bundle(directory)
