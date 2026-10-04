@@ -1,9 +1,9 @@
 ---
 summary: Measure installed runtime coverage and verify its public Codecov report.
 issue: uibcdf/ackredit#76
-status: partial
+status: resolved
 opened: 2026-10-01
-closed:
+closed: 2026-10-04
 verification: measured
 area: [ci, tooling]
 guard: tests/test_coverage_workflow.py
@@ -78,3 +78,44 @@ Its actual code passes the measured XML and rejects a deliberately omitted
 module in an offline regression. Nine focused coverage/tool-pin guard cases pass.
 Only the parent process is measured; unrelated subprocess execution is not
 combined. The pending hosted upload/public completion remains explicit.
+
+## Hosted source and public acceptance — 2026-10-04
+
+[Runtime coverage 37188364728](https://github.com/uibcdf/ackredit/actions/runs/37188364728)
+passes both measurement and publication jobs at
+`991084a4d0be3fddbc0f2f79a87818b3a8f0ad18`, using an ordinary installed wheel
+on Linux/Python 3.14.7. Native evidence confirms successful external installed
+smoke/provenance, scientific test selection, XML generation, scope validation,
+retention and the exact artifact's OIDC uploader. GH Run Receptor reports 2/2
+successful jobs with one retained artifact. The measured selection is **1,552
+passed and 7 skipped**, not a zero-skip qualification. Skips retain the ordinary
+profile's missing optional pdflatex/BibTeX engines and developer wheel-build,
+versioning and lint tools. They are not hidden or converted into passing tests.
+
+The XML contains all **61** runtime modules and **2,010** executable lines;
+**1,821** lines are covered (**90.5970149%**). Its SHA-256 is
+`4c4d63736dfde31bfe9443ff555ba91e958262cbfa62859089ab8fe8c4ba6347`.
+Seven modules have no executable lines; Codecov's **54** nonempty-file count and
+exact line/hit totals match this XML. The difference from the local measurement
+retains its different environment/available-tool scope rather than selecting a
+higher percentage.
+
+The anonymous canonical central probe observes a **complete** `main` report for
+that exact source, **90.59%** service coverage and a numeric live SVG rounded to
+**91%**. Native uploader step times, service observation time, source commit time
+and branch-cache time remain separate in the [committed receipt](../../devtools/receipts/runtime_coverage_76_2026-10-04.json).
+The matching successful upload and complete report authorize the centrally
+generated repository-specific badge. The README puts it after the truthful
+Tests badge and explains the last-report, parent-process, optional-engine and
+weekly/manual scope. No common floor is added and no scientific suite is added
+to internal push events. This first observed upload is manual; a future scheduled
+upload is not claimed before it executes.
+
+The producer's routine [CI 37188297269](https://github.com/uibcdf/ackredit/actions/runs/37188297269),
+[suite policy 37188297662](https://github.com/uibcdf/ackredit/actions/runs/37188297662)
+and [publication policy 37188297533](https://github.com/uibcdf/ackredit/actions/runs/37188297533)
+pass at that same implementation source. `tests/test_coverage_workflow.py` is the
+addressable guard for the measured scope, full selection, retained XML,
+trusted-main uploader and omitted-module refusal. Central inventory remains
+owner-controlled under MolSysSuite #69; no runtime, release, package or
+scientific certification is inferred from this coverage report.

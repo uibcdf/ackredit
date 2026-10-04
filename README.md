@@ -5,6 +5,16 @@
 [![Python 3.11 | 3.12 | 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-3776AB?logo=python&logoColor=white)](https://github.com/uibcdf/molsyssuite/blob/main/devguide/python_policy.md)
 [![License](https://img.shields.io/github/license/uibcdf/ackredit)](https://github.com/uibcdf/ackredit/blob/main/LICENSE)
 
+[![Tests](https://github.com/uibcdf/ackredit/actions/workflows/CI.yaml/badge.svg?branch=main)](https://github.com/uibcdf/ackredit/actions/workflows/CI.yaml)
+[![Codecov](https://codecov.io/gh/uibcdf/ackredit/branch/main/graph/badge.svg)](https://app.codecov.io/gh/uibcdf/ackredit)
+
+Coverage shows the last uploaded Linux/Python 3.14 runtime line report from the
+selected full test suite. It runs weekly and on manual dispatch and may lag later
+internal commits. Generated version constants, dependencies, subprocesses and
+developer tools are outside that percentage; optional system-tool tests may skip
+when their engines are absent. It does not certify scientific correctness or the
+full platform/interpreter matrix. See the [coverage scope and evidence](devguide/archive/scoped_runtime_coverage.md).
+
 Acknowledge what you used, credit what matters.
 
 **Ackredit** is a runtime citation and acknowledgement tracking engine for scientific

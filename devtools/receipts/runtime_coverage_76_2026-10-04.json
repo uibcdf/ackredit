@@ -1,0 +1,251 @@
+{
+  "artifacts": [
+    {
+      "created_at": "2026-10-04T08:17:05Z",
+      "digest": "sha256:ac7b1b42b5ce01a60460666d565ea8abc452cb5f4159996cb0a09b3547d1b664",
+      "expired": false,
+      "id": 11297298025,
+      "name": "runtime-coverage-xml",
+      "size_in_bytes": 5687
+    }
+  ],
+  "boundaries": "Codecov public source timestamp is commit time, not upload time. Native successful upload step timestamps are retained separately. Seven empty XML modules have zero executable lines; Codecov counts the other 54 files and exactly matches line/hit totals. SVG rounds the service percentage to 91%. Coverage is not a complete matrix, scientific correctness, all optional system integrations or a new public package claim.",
+  "cadence": {
+    "first_observed_upload": "manual dispatch; no scheduled upload is yet claimed",
+    "manual_dispatch": true,
+    "pull_request_trigger": false,
+    "push_trigger": false,
+    "schedule_utc": "43 6 * * MON"
+  },
+  "central_auditor_source": "bf3e24d (isolated canonical tools checkout; no central registry changes)",
+  "central_owner": "uibcdf/molsyssuite#69",
+  "date": "2026-10-04",
+  "guard": "tests/test_coverage_workflow.py",
+  "initial_public_audit": {
+    "badge_url": "https://codecov.io/gh/uibcdf/ackredit/branch/main/graph/badge.svg",
+    "default_branch": "main",
+    "errors": {
+      "badge": "badge has no rendered coverage percentage",
+      "branch": "HTTP 404"
+    },
+    "observed_at": "2026-10-04T07:51:50.973637+00:00",
+    "project_url": "https://app.codecov.io/gh/uibcdf/ackredit",
+    "repository": "uibcdf/ackredit",
+    "scanned_pages": 1,
+    "search_bound_pages": 3,
+    "state": "unavailable-or-invalid"
+  },
+  "issue": "uibcdf/ackredit#76",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "id": 111395116023,
+      "name": "Measure installed Python runtime coverage",
+      "steps": [
+        {
+          "completed_at": "2026-10-04T08:16:14Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "started_at": "2026-10-04T08:16:12Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:16:16Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v6",
+          "started_at": "2026-10-04T08:16:14Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:16:38Z",
+          "conclusion": "success",
+          "name": "Setup conda env",
+          "started_at": "2026-10-04T08:16:16Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:16:44Z",
+          "conclusion": "success",
+          "name": "Install package",
+          "started_at": "2026-10-04T08:16:38Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:16:44Z",
+          "conclusion": "success",
+          "name": "Verify installed package outside the checkout",
+          "started_at": "2026-10-04T08:16:44Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:16:45Z",
+          "conclusion": "success",
+          "name": "Verify installed Pytest Receptor version",
+          "started_at": "2026-10-04T08:16:44Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:03Z",
+          "conclusion": "success",
+          "name": "Run tests with runtime coverage",
+          "started_at": "2026-10-04T08:16:45Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:04Z",
+          "conclusion": "success",
+          "name": "Generate the measured coverage XML",
+          "started_at": "2026-10-04T08:17:03Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:04Z",
+          "conclusion": "success",
+          "name": "Verify coverage report scope",
+          "started_at": "2026-10-04T08:17:04Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:05Z",
+          "conclusion": "success",
+          "name": "Retain measured XML",
+          "started_at": "2026-10-04T08:17:04Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:05Z",
+          "conclusion": "success",
+          "name": "Post Setup conda env",
+          "started_at": "2026-10-04T08:17:05Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:05Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v6",
+          "started_at": "2026-10-04T08:17:05Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:05Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "started_at": "2026-10-04T08:17:05Z"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "id": 111395278238,
+      "name": "Publish default-branch runtime coverage",
+      "steps": [
+        {
+          "completed_at": "2026-10-04T08:17:12Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "started_at": "2026-10-04T08:17:11Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:13Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v6",
+          "started_at": "2026-10-04T08:17:12Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:13Z",
+          "conclusion": "success",
+          "name": "Run actions/download-artifact@v6",
+          "started_at": "2026-10-04T08:17:13Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:15Z",
+          "conclusion": "success",
+          "name": "Upload measured report to Codecov",
+          "started_at": "2026-10-04T08:17:13Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:16Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v6",
+          "started_at": "2026-10-04T08:17:15Z"
+        },
+        {
+          "completed_at": "2026-10-04T08:17:16Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "started_at": "2026-10-04T08:17:16Z"
+        }
+      ]
+    }
+  ],
+  "measured_runtime": {
+    "distribution_version": "0.9.0+12.g991084a",
+    "origin": "normal site-packages wheel outside source",
+    "python": "3.14.7",
+    "skip_scope": "Optional pdflatex/BibTeX engines and developer build/version/lint tools absent in the ordinary hosted test environment. The selected test suite is unchanged; these skips remain visible.",
+    "tests_passed": 1552,
+    "tests_skipped": 7
+  },
+  "public_audit": {
+    "badge_percentages": [
+      "91%"
+    ],
+    "badge_url": "https://codecov.io/gh/uibcdf/ackredit/branch/main/graph/badge.svg",
+    "branch_cache": {
+      "commitid": "991084a4d0be3fddbc0f2f79a87818b3a8f0ad18",
+      "state": "complete",
+      "timestamp": "2026-10-04T08:13:49Z",
+      "totals": {
+        "branches": 0,
+        "complexity": 0.0,
+        "complexity_ratio": 0,
+        "complexity_total": 0.0,
+        "coverage": 90.59,
+        "diff": 0,
+        "files": 54,
+        "hits": 1821,
+        "lines": 2010,
+        "methods": 0,
+        "misses": 189,
+        "partials": 0,
+        "sessions": 1
+      }
+    },
+    "branch_updated_at": "2026-10-04T08:17:20.761092Z",
+    "default_branch": "main",
+    "errors": {},
+    "latest_complete_report": {
+      "branch": "main",
+      "commit_timestamp": "2026-10-04T08:13:49Z",
+      "coverage": 90.59,
+      "source_sha": "991084a4d0be3fddbc0f2f79a87818b3a8f0ad18"
+    },
+    "observed_at": "2026-10-04T08:19:17.187744+00:00",
+    "project_url": "https://app.codecov.io/gh/uibcdf/ackredit",
+    "repository": "uibcdf/ackredit",
+    "scanned_pages": 1,
+    "search_bound_pages": 3,
+    "state": "complete-report-observed"
+  },
+  "run": {
+    "conclusion": "success",
+    "created_at": "2026-10-04T08:16:06Z",
+    "event": "workflow_dispatch",
+    "head_branch": "main",
+    "head_sha": "991084a4d0be3fddbc0f2f79a87818b3a8f0ad18",
+    "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37188364728",
+    "id": 37188364728,
+    "run_attempt": 1,
+    "updated_at": "2026-10-04T08:17:17Z"
+  },
+  "schema": "ackredit.runtime-coverage@1",
+  "scope": "Parent-process runtime Python lines across every Ackredit module. Only generated _version.py constants excluded. Dependencies, child processes, docs/examples and developer tools are outside the percentage; uncovered optional adapter paths remain in the denominator.",
+  "source_sha": "991084a4d0be3fddbc0f2f79a87818b3a8f0ad18",
+  "uploader": {
+    "action": "codecov/codecov-action",
+    "authentication": "trusted-main OIDC in separate job",
+    "commit": "303a32d7a59b442fa8d48b6a1cc6825c09c847a5",
+    "fail_on_error": true,
+    "release": "v7.1.1",
+    "report": "coverage-report/coverage.xml",
+    "search_disabled": true
+  },
+  "xml": {
+    "branches_measured": false,
+    "coverage_version": "7.16.2",
+    "covered_lines": 1821,
+    "empty_modules": 7,
+    "executable_lines": 2010,
+    "line_coverage_percent": 90.59701492537313,
+    "module_count": 61,
+    "sha256": "4c4d63736dfde31bfe9443ff555ba91e958262cbfa62859089ab8fe8c4ba6347"
+  }
+}
