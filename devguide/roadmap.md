@@ -278,8 +278,10 @@ measures portable capture separately from the historical plain tracking path.
 - [x] the real PyUnitWizard producer pilots declared lazy exports, original
       software/article roles and explicit prepared completed-dispatch credits
       (#87), with a released-provider fallback;
-- [ ] the same installed candidate/real-producer bundle passes all eight
+- [x] the same installed candidate/real-producer bundle passes all eight
       Linux/macOS arm64 × Python 3.11–3.14 receiving cells without skips;
+      first qualified source `357083e`, run
+      [37216812721](https://github.com/uibcdf/ackredit/actions/runs/37216812721);
       the manual gate and evidence requirements are documented in
       [`receiving_validation.md`](receiving_validation.md);
 - [ ] real provider and receiving review resolves the provisional API, coordinated

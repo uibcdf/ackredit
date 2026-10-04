@@ -149,3 +149,14 @@ Hosted execution is still pending at this pre-publication checkpoint; the issue
 will retain its exact-source run and receipts. This is receiving evidence, not
 API promotion or release certification. Review remains with MolSysSuite #97
 and MOLI #46; the canonical client guide is unchanged.
+
+The first hosted receiving execution, 37216812721, passes all eight cells and
+the final aggregate for exact source `357083e`. Downloaded evidence independently
+verifies with the supported receptor reader: 40 passed tests, no skips or
+deselections, the same candidate/producer/baseline wheels in every cell, and
+matching installed resources. Candidate wheel SHA-256 is
+`9192c8aa08d02b79a24a8883c00b473896a1636fe2d7dff8a2623837198e98b9`.
+The full ordinary CI for that revision exposed the unrelated missing-NumPy
+discovery-test precondition tracked in #88. Its correction and the deterministic
+receipt-order refinement require their own final checkpoint; neither changes
+the provisional runtime implementation or promotes its API.

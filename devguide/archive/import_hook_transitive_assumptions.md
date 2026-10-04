@@ -57,3 +57,12 @@ fresh-process hook tests pass. The selected guard still exercises a dependency
 loaded by Ackredit before hook activation and proves its explicit injection is
 credited, while the separate discovery guard explicitly preloads NumPy and
 proves no sweep credit occurs. This does not promise a transitive import graph.
+
+## Correction after minimal hosted CI (2026-10-04)
+
+Ackredit #88 records a remaining precondition error: explicitly preloading NumPy
+still fails when ordinary CI correctly omits that undeclared dependency. CI
+37216802143 names the separate discovery guard as the failure in all five test
+jobs. The new guard actively blocks NumPy and exercises SMonitor, ArgDigest and
+PyYAML instead. The original injection guard and runtime behavior are unchanged;
+this dated correction preserves the earlier local outcome and its limitation.

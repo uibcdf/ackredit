@@ -2,8 +2,8 @@
 
 The finder sees imports, and an import of a module already in `sys.modules`
 never reaches a finder. So a module loaded before `enable_import_hooks()` was
-never credited — and since `uibcdf/ackredit#62`, `import ackredit` loads numpy
-itself, through ArgDigest. The user guide's discovery example and the
+never credited. At the time of `uibcdf/ackredit#62`, importing Ackredit loaded
+NumPy through ArgDigest. The user guide's discovery example and the
 integration guide's injection recipe both credited nothing for numpy, and the
 old root demo that exercised it exited 0 (`uibcdf/ackredit#69`).
 
@@ -131,13 +131,20 @@ def test_discovery_credits_nothing_that_was_already_loaded():
     report, and in a notebook the 32 packages an empty kernel loads."""
     run = in_a_fresh_process("""
         import json, sys
-        import numpy  # explicitly preloaded by the host, independent of ArgDigest
+        import importlib.abc
+        class NoNumPy(importlib.abc.MetaPathFinder):
+            def find_spec(self, fullname, path=None, target=None):
+                if fullname.split('.')[0] == 'numpy':
+                    raise ModuleNotFoundError('NumPy is not a core dependency', name=fullname)
+        sys.meta_path.insert(0, NoNumPy())
         import ackredit
 
-        assert {"numpy", "smonitor", "argdigest"} <= set(sys.modules)
+        assert "numpy" not in sys.modules
+        assert {"smonitor", "argdigest"} <= set(sys.modules)
         ackredit.enable_import_hooks()
         assert "yaml" in sys.modules, "the hook loads it, through the CITATION.cff reader"
-        import numpy, yaml, argdigest
+        import smonitor, yaml, argdigest
+        assert "numpy" not in sys.modules
         print(json.dumps(sorted(ackredit.get_used_items())))
     """)
     assert run["out"] == []

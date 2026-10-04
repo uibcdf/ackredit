@@ -54,6 +54,15 @@ promote the provisional APIs, certify a client release or replace the full Ackre
 test suite. MolSysSuite #97 and MOLI #46 retain their review ownership. A future
 Conda candidate needs its own exact-file installed and publication gates.
 
+The first hosted qualification is
+[run 37216812721](https://github.com/uibcdf/ackredit/actions/runs/37216812721)
+for source `357083ef4907462a7100d3bf58206513c0b1b16d`: eight cells, 40 passed
+tests, no skips/deselections, a passing aggregate and ten retained artifacts.
+All downloaded bundle/resource/event identities independently verify locally.
+The candidate is `ackredit-0.9.0+24.g357083e-py3-none-any.whl`, SHA-256
+`9192c8aa08d02b79a24a8883c00b473896a1636fe2d7dff8a2623837198e98b9`.
+This is dated evidence for that revision; later candidates require their own gate.
+
 ## Local reproduction
 
 Use clean source worktrees for the three revisions and a separate output directory:

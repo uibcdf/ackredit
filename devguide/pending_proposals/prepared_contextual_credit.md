@@ -98,6 +98,13 @@ will be linked in the issue. Fixed archive/resource hashes and the aggregate
 zero-skip check prevent substituting editable/source smoke for installed evidence.
 The 0.9.0 baseline is source-built and does not replace its public Conda file.
 
+The first exact-source hosted qualification, `357083e` / run 37216812721, passes
+all eight installed receiving cells, including the normally installed original
+0.9.0 fallback, and its aggregate. All 40 tests pass with no skips/deselections;
+downloaded archive, resource and event evidence verifies independently locally.
+The separate ordinary-CI test precondition discovered in #88 remains a distinct
+checkpoint, not a prepared-credit runtime failure or API promotion.
+
 ## What was refuted
 
 Repeated session-ID deduplication cannot supply reused references to independent

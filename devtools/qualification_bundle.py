@@ -135,7 +135,7 @@ def summarize(directory: Path, bundle: Path) -> dict:
         for system in ("linux", "darwin")
         for minor in ("3.11", "3.12", "3.13", "3.14")
     }
-    cells = list(directory.glob("*/identity.json"))
+    cells = sorted(directory.glob("*/identity.json"))
     assert len(cells) == len(expected), (len(cells), len(expected))
     seen = set()
     receipts = []

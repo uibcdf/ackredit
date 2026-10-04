@@ -74,6 +74,74 @@ def test_one_successful_cell_cannot_certify_the_receiving_matrix(candidate):
         bundle.summarize(cells, directory)
 
 
+@pytest.fixture
+def complete_matrix(candidate, monkeypatch):
+    import pytest_receptor
+
+    directory, manifest = candidate
+    counts = {
+        "collected": 5,
+        "executed": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "xfailed": 0,
+        "xpassed": 0,
+        "errors": 0,
+        "not_executed": 0,
+        "deselected": 0,
+    }
+    final = {"complete": True, "outcome": "PASS", "exitstatus": 0, "counts": counts}
+    # Test the consumer's interpretation of the provider's public parsed result.
+    # Integrity parsing remains owned by Pytest Receptor, not copied here.
+    parsed = SimpleNamespace(
+        complete=True, integrity_valid=True, final=SimpleNamespace(data=final)
+    )
+    monkeypatch.setattr(pytest_receptor, "read_artifact", lambda path: parsed)
+    cells = directory / "cells"
+    for system in ("linux", "darwin"):
+        for minor in ("3.11", "3.12", "3.13", "3.14"):
+            cell = cells / f"{system}-{minor}"
+            cell.mkdir(parents=True)
+            receipt = {
+                "platform": system,
+                "python": f"{minor}.0",
+                "architecture": "arm64" if system == "darwin" else "x86_64",
+                "packages": manifest["packages"],
+            }
+            (cell / "identity.json").write_text(json.dumps(receipt))
+            for filename in (
+                "pipeline.json",
+                "reader.json",
+                "absence.json",
+                "released-fallback.json",
+                "tests.xml",
+            ):
+                (cell / filename).write_text("test fixture")
+    return cells, directory, final
+
+
+@pytest.mark.parametrize(
+    "missing_evidence", ["skipped", "deselected", "not_executed", "failed"]
+)
+def test_a_pass_label_does_not_hide_unqualified_tests(
+    complete_matrix, missing_evidence
+):
+    cells, directory, final = complete_matrix
+    assert len(bundle.summarize(cells, directory)["cells"]) == 8
+    final["counts"][missing_evidence] = 1
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+def test_duplicate_platform_minor_does_not_replace_a_missing_cell(complete_matrix):
+    cells, directory, _ = complete_matrix
+    duplicate = cells / "darwin-3.14" / "identity.json"
+    duplicate.write_bytes((cells / "darwin-3.13" / "identity.json").read_bytes())
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
 def test_changed_installed_citation_is_rejected_even_with_the_right_version(
     candidate, monkeypatch
 ):

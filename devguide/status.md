@@ -139,8 +139,12 @@ and do not establish consumer adoption.
 
 The manually dispatched [coupled installed receiving gate](receiving_validation.md)
 builds one wheel bundle and requires eight Linux/macOS arm64 × Python 3.11–3.14
-cells. Five real-producer receiving tests pass locally on 3.14.7; hosted evidence
-is pending at this pre-publication checkpoint and will be retained in #84/#87.
+cells. The first hosted qualification passes five tests per cell without skips
+for source `357083e`, run
+[37216812721](https://github.com/uibcdf/ackredit/actions/runs/37216812721).
+Its downloaded archive/resource hashes and complete receptor artifacts verify
+locally; #84/#87 retain the evidence. Ordinary CI exposed a separate minimal
+discovery-test defect, tracked in #88 and corrected without adding NumPy.
 The gate compares installed resources with the wheels and exercises actual
 software/article roles, reused captures, graph parentage, provider absence and
 the original 0.9.0 API fallback. It does not publish or promote the APIs.
