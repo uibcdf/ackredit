@@ -301,8 +301,11 @@ This development does not rebuild public 0.9.0 or certify a consumer release.
 - [x] shared graph targets expand once with all incoming links retained;
       deep graphs avoid recursive traversal, backed by raw report-only
       before/after samples and unchanged ordinary tree output (#91);
-- [ ] the contextual report passes the same exact installed real-producer
-      bundle across all eight supported receiving cells.
+- [x] the contextual report passes the same exact installed real-producer
+      bundle across all eight supported receiving cells: source `cb3e58d`,
+      [run 37228402277](https://github.com/uibcdf/ackredit/actions/runs/37228402277),
+      48 passed tests without skips/deselections, independent downloaded
+      evidence verification and the reviewed durable reporting receipt.
 
 These changes affect requested reports, not the calculation's tracking path.
 They do not promote #84/#87 or change the portable schema or public 0.9.0.

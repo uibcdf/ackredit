@@ -84,6 +84,25 @@ counts, graph/roles, saved-payload hashes and independent-process checks in
 Raw run captures are not committed. Source qualification still does not promote
 the APIs or replace exact-file Conda/client-release gates.
 
+## Contextual-report checkpoint (2026-10-04)
+
+Source `cb3e58df0a82ecc46da50f1969ddc921a097664e` passes all eight receiving
+cells and the aggregate in
+[run 37228402277](https://github.com/uibcdf/ackredit/actions/runs/37228402277):
+48 passed tests, zero skips/deselections, ten retained artifacts. Ordinary
+[CI 37224726278](https://github.com/uibcdf/ackredit/actions/runs/37224726278)
+passes all seven jobs; both policy lanes pass. The exact candidate is
+`ackredit-0.9.0+27.gcb3e58d-py3-none-any.whl`, SHA-256
+`4eea193bf651c38367ba823a896022f1a5167680d901dd9e19145d7e3ddcf32b`.
+
+All downloaded bundle/resource/event identities independently verify locally;
+the local aggregate equals the hosted summary. Each producer-free reader
+retains four references, original PyUnitWizard/Pint/unyt versions, software and
+description roles, numbered bibliography and public-function/backend graph.
+The reviewed [durable receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_reporting_matrix_2026-10-04.json)
+includes payload/report hashes and independent-reader assertions. This is
+development qualification for #89/#90/#91, not a public package or API promotion.
+
 ## Local reproduction
 
 Use clean source worktrees for the three revisions and a separate output directory:

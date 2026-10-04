@@ -4,10 +4,6 @@ Open proposals following [`reporting_protocol.md`](../reporting_protocol.md).
 
 <!-- generated: devguide_index -->
 
-### Active (1)
-
-- [`contextual_workflow_reports.md`](contextual_workflow_reports.md) — [#89](https://github.com/uibcdf/ackredit/issues/89) — Render original bibliography, contextual uses and pipeline graph together. *(active, reproduced)*
-
 ### Partial (2)
 
 - [`function_citation_providers.md`](function_citation_providers.md) — [#84](https://github.com/uibcdf/ackredit/issues/84) — Observe executed third-party functions through dependency-free declarations. *(partial, reproduced)*

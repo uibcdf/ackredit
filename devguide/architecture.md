@@ -96,7 +96,12 @@ saved Attribution --> validate/detach --> render bibliography
 
 `report` renders the current session; `Attribution.report` renders saved records
 through the same format machinery. Markdown, text, BibTeX, CSL-JSON, JSON,
-provenance and LaTeX are implemented; `dump` writes outputs and may compile PDF
+provenance and LaTeX are implemented. Development source also offers an explicit
+`workflow` report joining numbered bibliography, contextual uses and graph.
+It preserves original versions/roles/context and distinguishes recorded uses
+from invocation counts or scientific success. Shared graph targets expand once
+while retaining every incoming edge; deep traversal uses explicit stacks.
+`dump` writes outputs and may compile PDF
 when the external tools are available. `export_to_duecredit` forwards the
 current session's references to the optional DueCredit provider.
 
@@ -105,6 +110,8 @@ Citation packs use `ackredit.citations` and `load_plugins`; installed citation
 plugins load on Ackredit import, while format plugins load when the format table
 is consulted. These are provider behaviors, separate from a scientific host's
 lazy optional boundary. A format registration cannot replace an existing name.
+Renderer inputs detach nested data so a plugin cannot alter later reports.
+The plugin contract and portable schema do not change for `workflow`.
 
 ## Component boundaries and compatibility
 

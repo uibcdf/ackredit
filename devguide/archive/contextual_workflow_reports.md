@@ -1,9 +1,9 @@
 ---
 summary: Render original bibliography, contextual uses and pipeline graph together.
 issue: uibcdf/ackredit#89
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-04
 verification: reproduced
 area: [reporting, integration]
 guard: tests/test_workflow_report.py::test_saved_workflow_report_preserves_reference_roles_and_original_versions
@@ -72,3 +72,22 @@ graph. Newlines/control characters are visible escapes in graph labels, so
 external metadata cannot invent hierarchy. Full local Python 3.14.7 gates pass
 1,694 tests, Ruff, indexes and strict Sphinx. The designated installed gate now
 requires six passed tests per cell, including a separate real report reader.
+
+## Resolution
+
+Implementation `cb3e58df0a82ecc46da50f1969ddc921a097664e` passes ordinary
+CI 37224726278 (seven jobs) and both policy lanes. Matrix 37228402277 passes
+all eight Linux/macOS arm64 × Python 3.11–3.14 cells and the aggregate:
+48 passed tests, zero skips/deselections, ten retained artifacts. Every fresh
+report reader blocks PyUnitWizard/Pint/unyt and network connections, retains
+four numbered references and original roles/versions/graph, and leaves the
+payload and new credits unchanged. All downloaded wheel/resource/event
+identities independently verify; the local aggregate equals the hosted summary.
+
+The candidate `ackredit-0.9.0+27.gcb3e58d-py3-none-any.whl` has SHA-256
+`4eea193bf651c38367ba823a896022f1a5167680d901dd9e19145d7e3ddcf32b`.
+The reviewed receipt `devtools/receipts/workflow_reporting_matrix_2026-10-04.json`
+retains per-cell versions, checks and report/payload hashes. These changes are
+development source only: no tag, public package, provider API promotion or
+canonical-guide rollout. #84/#87 and MolSysSuite #97/MOLI #46 retain their
+review ownership; PyUnitWizard's pinned source is unchanged.

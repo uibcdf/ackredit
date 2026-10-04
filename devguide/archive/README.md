@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (82)
+### Resolved (85)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -27,6 +27,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`cff_parser_misreads_structure.md`](cff_parser_misreads_structure.md) — [#10](https://github.com/uibcdf/ackredit/issues/10) — A regex-based CITATION.cff reader dropped entity authors, merged preferred-citation and missed canonical DOIs. *(resolved, reproduced)*
 - [`ci_runs_one_of_three_versions.md`](ci_runs_one_of_three_versions.md) — [#63](https://github.com/uibcdf/ackredit/issues/63) — CI ran Python 3.13 alone while the contract promised 3.11 to 3.13, so two of the three had never been executed. *(resolved, measured)*
 - [`conceptual_documentation_after_public_delivery.md`](conceptual_documentation_after_public_delivery.md) — [#83](https://github.com/uibcdf/ackredit/issues/83) — Reconcile conceptual architecture and current status with public portable attribution. *(resolved, measured)*
+- [`contextual_workflow_reports.md`](contextual_workflow_reports.md) — [#89](https://github.com/uibcdf/ackredit/issues/89) — Render original bibliography, contextual uses and pipeline graph together. *(resolved, reproduced)*
 - [`csl_json_does_not_carry_a_reference.md`](csl_json_does_not_carry_a_reference.md) — [#44](https://github.com/uibcdf/ackredit/issues/44) — CSL-JSON raised on a year Ackredit itself produces, and mapped a short fixed list so a book reached a reference manager unformattable. *(resolved, measured)*
 - [`csl_json_marks_every_author_as_literal.md`](csl_json_marks_every_author_as_literal.md) — [#38](https://github.com/uibcdf/ackredit/issues/38) — Every author reached a reference manager as a literal, declaring a name that could be decomposed to be indecomposable. *(resolved, measured)*
 - [`dependency_info_relays_a_promise.md`](dependency_info_relays_a_promise.md) — [#59](https://github.com/uibcdf/ackredit/issues/59) — dependency_info was promised by naming which of DepDigest's two shapes is the contract and verifying the version it relays. *(resolved, measured)*
@@ -50,6 +51,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
 - [`load_plugins_asks_twice_and_is_asked_nothing.md`](load_plugins_asks_twice_and_is_asked_nothing.md) — [#54](https://github.com/uibcdf/ackredit/issues/54) — The citation plugin loader carried a branch for a Python the package cannot run on, and nothing exercised the promise it makes. *(resolved, measured)*
 - [`migrate_static_version_to_versioningit.md`](migrate_static_version_to_versioningit.md) — [#20](https://github.com/uibcdf/ackredit/issues/20) — Migrate Ackredit from a static package version to canonical Versioningit tags. *(resolved, reproduced)*
+- [`nested_renderer_mutation.md`](nested_renderer_mutation.md) — [#90](https://github.com/uibcdf/ackredit/issues/90) — A format renderer can mutate nested registered bibliographic metadata. *(resolved, reproduced)*
 - [`no_public_name_says_what_it_promises.md`](no_public_name_says_what_it_promises.md) — [#31](https://github.com/uibcdf/ackredit/issues/31) — __all__ stated what was public and nothing stated what was kept, so seven untested names sat beside the ones the library is built on. *(resolved, measured)*
 - [`not_a_polite_client.md`](not_a_polite_client.md) — [#48](https://github.com/uibcdf/ackredit/issues/48) — Ackredit fetched as fast as it could, identified no contact, and reported a rate-limited response as a network problem. *(resolved, measured)*
 - [`not_thread_safe.md`](not_thread_safe.md) — [#5](https://github.com/uibcdf/ackredit/issues/5) — Concurrent workflows cross-attributed citations and corrupted the session file. *(resolved, reproduced)*
@@ -66,6 +68,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`serve_ui_removed.md`](serve_ui_removed.md) — [#57](https://github.com/uibcdf/ackredit/issues/57) — An unfinished HTTP server was removed rather than promised, and what a dashboard would need is recorded instead. *(resolved, measured)*
 - [`session_promises_its_whole_surface.md`](session_promises_its_whole_surface.md) — [#52](https://github.com/uibcdf/ackredit/issues/52) — Session exposed its writers and its lock alongside the mappings a caller wants, and its stated reason contradicted the same page. *(resolved, measured)*
 - [`shape_of_the_public_api_for_1_0.md`](shape_of_the_public_api_for_1_0.md) — [#16](https://github.com/uibcdf/ackredit/issues/16) — Five 1.0 API questions decided: two changed, three kept with the reason written down. *(resolved, reproduced)*
+- [`shared_provenance_expansion.md`](shared_provenance_expansion.md) — [#91](https://github.com/uibcdf/ackredit/issues/91) — Provenance rendering repeatedly expands shared graph descendants. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
 - [`summary_shows_an_object_address.md`](summary_shows_an_object_address.md) — [#51](https://github.com/uibcdf/ackredit/issues/51) — summary() defined only _repr_html_, so printing it anywhere but a notebook gave the object's address in memory. *(resolved, measured)*

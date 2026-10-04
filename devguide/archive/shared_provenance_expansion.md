@@ -1,9 +1,9 @@
 ---
 summary: Provenance rendering repeatedly expands shared graph descendants.
 issue: uibcdf/ackredit#91
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-04
 severity: medium
 verification: reproduced
 area: [reporting, performance]
@@ -63,3 +63,14 @@ The shared case changes from 2,048 to 40 lines and median 4,670.32 to 52.14 µs;
 the ordinary chain keeps 22 lines (55.72 to 40.61 µs). These are synthetic
 report timings, not tracking/capture or calculation speedups. Full local
 Python 3.14.7 gates pass 1,694 tests, Ruff, report indexes and strict Sphinx.
+
+## Resolution
+
+Implementation `cb3e58df0a82ecc46da50f1969ddc921a097664e` passes ordinary
+CI 37224726278 (seven jobs) and both policy lanes. Installed real-producer
+matrix 37228402277 passes all eight Linux/macOS arm64 × Python 3.11–3.14
+cells and the aggregate, with 48 tests and zero skips/deselections. Shared
+parentage, recursion-depth and unchanged ordinary output guards pass in the
+ordinary source CI; the receiving graph is also rendered in an independent
+reader. The downloaded identities and local aggregate verify, with reviewed
+evidence in `devtools/receipts/workflow_reporting_matrix_2026-10-04.json`.

@@ -1,9 +1,9 @@
 ---
 summary: A format renderer can mutate nested registered bibliographic metadata.
 issue: uibcdf/ackredit#90
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-04
 severity: medium
 verification: reproduced
 area: [reporting, core]
@@ -58,3 +58,14 @@ public JSON/snapshots. Saved rendering remains isolated. Built-in reports
 avoid copying unused metadata, while plugins retain their complete-registry
 contract. Full local Python 3.14.7 gates pass 1,694 tests, Ruff, report indexes
 and strict Sphinx; hosted source/installed gates follow.
+
+## Resolution
+
+Implementation `cb3e58df0a82ecc46da50f1969ddc921a097664e` passes ordinary
+CI 37224726278 (seven jobs) and both policy lanes. Installed real-producer
+matrix 37228402277 passes all eight Linux/macOS arm64 × Python 3.11–3.14
+cells, 48 tests without skips/deselections and the final aggregate. Downloaded
+wheel/resource/event identities verify independently; the local aggregate equals
+the hosted summary. Reviewed evidence is retained in
+`devtools/receipts/workflow_reporting_matrix_2026-10-04.json`. Nested mutation
+and mutation-before-failure guards remain in the ordinary installed source CI.
