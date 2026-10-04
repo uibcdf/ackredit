@@ -125,3 +125,13 @@ require-match = true
 
 [tool.versioningit.write]
 file = "ackredit/_version.py"
+
+# Measure all runtime Python modules, including untouched ones. Generated
+# version constants are excluded; subprocesses and third-party code are not
+# instrumented. Coverage is descriptive, with no required percentage floor.
+[tool.coverage.run]
+source = ["ackredit"]
+omit = ["*/ackredit/_version.py"]
+
+[tool.coverage.paths]
+ackredit = ["ackredit", "*/site-packages/ackredit"]

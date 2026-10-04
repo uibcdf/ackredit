@@ -1,0 +1,115 @@
+name: Runtime coverage
+
+on:
+  schedule:
+    - cron: "43 6 * * MON"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    name: Measure installed Python runtime coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Setup conda env
+        uses: mamba-org/setup-micromamba@v3.2.1
+        with:
+          environment-file: devtools/conda-envs/test_env.yaml
+          environment-name: coverage
+          condarc: |
+            channels:
+              - uibcdf
+              - conda-forge
+            channel_priority: strict
+          create-args: python=3.14
+      - name: Install package
+        shell: bash -l {0}
+        run: python -m pip install . --no-deps
+      - name: Verify installed package outside the checkout
+        shell: bash -l {0}
+        run: |
+          set -euo pipefail
+          cd "${RUNNER_TEMP}"
+          python "${GITHUB_WORKSPACE}/devtools/installed_smoke.py" --expected-python "3.14"
+          python -m pip check
+      - name: Verify installed Pytest Receptor version
+        shell: bash -l {0}
+        run: python -c 'from importlib.metadata import version; actual = version("pytest-receptor"); print("pytest-receptor", actual); assert actual == "1.2.1", actual'
+      - name: Run tests with runtime coverage
+        shell: bash -l {0}
+        env:
+          COVERAGE_FILE: ${{ github.workspace }}/.coverage
+        run: |
+          set -euo pipefail
+          cd "${RUNNER_TEMP}"
+          python -m coverage run --rcfile="${GITHUB_WORKSPACE}/pyproject.toml" --parallel-mode \
+            -m pytest --receptor=ci "${GITHUB_WORKSPACE}/tests"
+      - name: Generate the measured coverage XML
+        shell: bash -l {0}
+        run: |
+          set -euo pipefail
+          python -m coverage combine
+          python -m coverage xml -o coverage.xml
+          python -m coverage report
+      - name: Verify coverage report scope
+        shell: bash -l {0}
+        run: |
+          set -euo pipefail
+          python - <<'PYTHON'
+          import json
+          from pathlib import Path
+          from xml.etree import ElementTree
+          package = Path("ackredit").resolve()
+          expected = {p.relative_to(package).as_posix() for p in package.rglob("*.py") if p.name != "_version.py"}
+          report = ElementTree.parse("coverage.xml").getroot()
+          sources = {Path(s.text).resolve() for s in report.findall("sources/source")}
+          assert sources == {package}, sources
+          classes = report.findall(".//class")
+          observed = {c.attrib["filename"] for c in classes}
+          assert observed == expected and len(classes) == len(expected), (observed - expected, expected - observed)
+          lines = [(c.attrib["filename"], l.attrib["number"], int(l.attrib["hits"])) for c in classes for l in c.findall("lines/line")]
+          valid = int(report.attrib["lines-valid"])
+          covered = int(report.attrib["lines-covered"])
+          assert valid > 0 and len(lines) == valid
+          assert len({(f, n) for f, n, _ in lines}) == valid
+          assert sum(hits > 0 for _, _, hits in lines) == covered
+          assert 0 <= covered <= valid
+          print(json.dumps({"scope": "ackredit runtime Python lines", "modules": len(expected), "lines_valid": valid, "lines_covered": covered, "percentage": 100 * covered / valid}))
+          PYTHON
+      - name: Retain measured XML
+        uses: actions/upload-artifact@v6
+        with:
+          name: runtime-coverage-xml
+          path: coverage.xml
+          if-no-files-found: error
+          retention-days: 14
+
+  upload:
+    name: Publish default-branch runtime coverage
+    needs: measure
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v6
+        with:
+          name: runtime-coverage-xml
+          path: coverage-report
+      - name: Upload measured report to Codecov
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          use_oidc: true
+          files: coverage-report/coverage.xml
+          disable_search: true
+          fail_ci_if_error: true
