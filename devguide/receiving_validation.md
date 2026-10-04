@@ -63,6 +63,20 @@ The candidate is `ackredit-0.9.0+24.g357083e-py3-none-any.whl`, SHA-256
 `9192c8aa08d02b79a24a8883c00b473896a1636fe2d7dff8a2623837198e98b9`.
 This is dated evidence for that revision; later candidates require their own gate.
 
+The corrected checkpoint, source `fc00a6cf1e2426ab7d7662fa3e9a1e3b09472306`,
+also passes all eight cells and the aggregate in
+[run 37217520167](https://github.com/uibcdf/ackredit/actions/runs/37217520167).
+Its ordinary [CI 37217509058](https://github.com/uibcdf/ackredit/actions/runs/37217509058)
+passes all seven jobs, resolving the minimal discovery-test defect #88.
+The candidate `ackredit-0.9.0+25.gfc00a6c-py3-none-any.whl` has SHA-256
+`6d71199ab22aac8c00918ba4cd8ea050639109403556613161074668edc9408d`.
+The downloaded bundles and complete event artifacts verify locally. A reviewed
+public allow-list retains the source/wheel identities, per-cell versions,
+counts, graph/roles, saved-payload hashes and independent-process checks in
+[the durable receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/function_provider_matrix_2026-10-04.json).
+Raw run captures are not committed. Source qualification still does not promote
+the APIs or replace exact-file Conda/client-release gates.
+
 ## Local reproduction
 
 Use clean source worktrees for the three revisions and a separate output directory:

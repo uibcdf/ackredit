@@ -282,6 +282,8 @@ measures portable capture separately from the historical plain tracking path.
       Linux/macOS arm64 × Python 3.11–3.14 receiving cells without skips;
       first qualified source `357083e`, run
       [37216812721](https://github.com/uibcdf/ackredit/actions/runs/37216812721);
+      corrected source `fc00a6c` also passes ordinary CI and receiving run
+      [37217520167](https://github.com/uibcdf/ackredit/actions/runs/37217520167);
       the manual gate and evidence requirements are documented in
       [`receiving_validation.md`](receiving_validation.md);
 - [ ] real provider and receiving review resolves the provisional API, coordinated

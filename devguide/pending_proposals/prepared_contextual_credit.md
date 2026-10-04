@@ -105,6 +105,14 @@ downloaded archive, resource and event evidence verifies independently locally.
 The separate ordinary-CI test precondition discovered in #88 remains a distinct
 checkpoint, not a prepared-credit runtime failure or API promotion.
 
+Final corrected source `fc00a6c` passes exact-source CI 37217509058 and coupled
+receiving run 37217520167: eight installed cells, 40 tests, no skips/deselections
+and a successful aggregate. Complete downloaded event artifacts and identical
+candidate files verify independently locally. The reviewed source/hash/version,
+reference-role, graph and fallback evidence is retained in
+`devtools/receipts/function_provider_matrix_2026-10-04.json`. #88 is resolved;
+the provisional prepared-credit decision still needs provider/receiver review.
+
 ## What was refuted
 
 Repeated session-ID deduplication cannot supply reused references to independent

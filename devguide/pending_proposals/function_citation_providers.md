@@ -160,3 +160,14 @@ The full ordinary CI for that revision exposed the unrelated missing-NumPy
 discovery-test precondition tracked in #88. Its correction and the deterministic
 receipt-order refinement require their own final checkpoint; neither changes
 the provisional runtime implementation or promotes its API.
+
+The corrected source `fc00a6c` completes that checkpoint: CI 37217509058 passes
+all seven jobs; receiving run 37217520167 passes all ten jobs, including the
+eight installed cells and aggregate, with 40 tests and no skips/deselections.
+MolSysSuite and Conda publication policy gates also pass. The downloaded
+bundle's installed-resource identities and complete receptor event streams
+verify independently locally. The reviewed public evidence is retained in
+`devtools/receipts/function_provider_matrix_2026-10-04.json`, including source,
+wheel hashes, original versions, per-cell graph/roles and fresh-process checks.
+The separate test defect #88 is resolved and archived. Provider/receiver review
+and provisional API classification remain open under #84/#87/#97/MOLI #46.

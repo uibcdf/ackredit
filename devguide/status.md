@@ -145,6 +145,10 @@ for source `357083e`, run
 Its downloaded archive/resource hashes and complete receptor artifacts verify
 locally; #84/#87 retain the evidence. Ordinary CI exposed a separate minimal
 discovery-test defect, tracked in #88 and corrected without adding NumPy.
+The corrected source `fc00a6c` passes both ordinary CI 37217509058 (seven jobs)
+and coupled receiving run 37217520167 (eight cells, 40 passed tests, no skips).
+Its validated public receipt is retained in
+`devtools/receipts/function_provider_matrix_2026-10-04.json`; #88 is archived.
 The gate compares installed resources with the wheels and exercises actual
 software/article roles, reused captures, graph parentage, provider absence and
 the original 0.9.0 API fallback. It does not publish or promote the APIs.

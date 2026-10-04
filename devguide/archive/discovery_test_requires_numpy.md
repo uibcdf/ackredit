@@ -1,9 +1,9 @@
 ---
 summary: A discovery guard imports undeclared NumPy in the minimal CI environment.
 issue: uibcdf/ackredit#88
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-04
 severity: medium
 verification: reproduced
 area: [tests, integration]
@@ -64,3 +64,19 @@ the import hook records no discovery credit. All nine fresh-process hook tests
 pass locally; the ordinary hosted gate will be linked before closure. This
 checkpoint also sorts receiving receipts deterministically and adds negative
 aggregate guards for skipped, deselected, failed, unexecuted and duplicate cells.
+
+## Resolution
+
+Correction `fc00a6cf1e2426ab7d7662fa3e9a1e3b09472306` passes the full local
+suite (1,656 tests without skips), Ruff, report indexes and strict Sphinx. Exact
+source CI 37217509058 passes lint, docs and all five installed test jobs:
+Linux/Python 3.11–3.14 and macOS arm64/Python 3.14. The same source's coupled
+receiving matrix 37217520167 passes all eight cells and the aggregate, with
+40 tests and no skips/deselections. Downloaded bundle, resource and event
+evidence independently verifies locally; a reviewed public receipt is retained
+in `devtools/receipts/function_provider_matrix_2026-10-04.json`.
+
+The guard is now mechanically reproducible with NumPy actively refused in
+its fresh interpreter and still asserts no discovery credit. That protects
+the actual missing-precondition mechanism rather than adding a scientific
+dependency or relying on another package's incidental import footprint.

@@ -1,0 +1,1530 @@
+{
+  "schema": "ackredit.receiving-evidence@1",
+  "date": "2026-10-04",
+  "scope": "Normally installed development source candidates; not public Conda delivery or API promotion.",
+  "qualification_run": "https://github.com/uibcdf/ackredit/actions/runs/37217520167",
+  "full_ci_run": "https://github.com/uibcdf/ackredit/actions/runs/37217509058",
+  "policy_runs": [
+    37217509342,
+    37217509393
+  ],
+  "ackredit_source": "fc00a6cf1e2426ab7d7662fa3e9a1e3b09472306",
+  "pyunitwizard_source": "33fec8a627505a4f5426babe87e8e85438105041",
+  "packages": {
+    "candidate": {
+      "package": "ackredit",
+      "source_commit": "fc00a6cf1e2426ab7d7662fa3e9a1e3b09472306",
+      "version": "0.9.0+25.gfc00a6c",
+      "filename": "ackredit-0.9.0+25.gfc00a6c-py3-none-any.whl",
+      "sha256": "6d71199ab22aac8c00918ba4cd8ea050639109403556613161074668edc9408d"
+    },
+    "producer": {
+      "package": "pyunitwizard",
+      "source_commit": "33fec8a627505a4f5426babe87e8e85438105041",
+      "version": "0.27.0+52.g33fec8a",
+      "filename": "pyunitwizard-0.27.0+52.g33fec8a-py3-none-any.whl",
+      "sha256": "9797dc35439b601e5a7c71bed963b49afab47a1bfd9cecb2ad9e348b2593dfba"
+    },
+    "released": {
+      "package": "ackredit",
+      "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "version": "0.9.0",
+      "filename": "ackredit-0.9.0-py3-none-any.whl",
+      "sha256": "019ec0e360d511b2c639c5776d25702a1d36941a80eb48c13ca4f732a543e1ab"
+    }
+  },
+  "bundle_manifest_sha256": "a6c04f2dc6cc38b7e133a1fdc10e148d61317b11b716829d76720cc918e48bd7",
+  "outcome": "PASS",
+  "passed": 40,
+  "skipped": 0,
+  "cells": [
+    {
+      "platform": "darwin",
+      "python": "3.11.16",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.25.3",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.25.3"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.25.3"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.25.3"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.25.3"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.25.3"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.25.3",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "a57206d4393b89d1a2dc88791a80647aae4406dc649011883f35d4ac144f4c13",
+      "receptor_events_sha256": "f69e3faf1c6013d9dd9eea6121b73933fc997acb0d309c93ed5477b772efb07f"
+    },
+    {
+      "platform": "darwin",
+      "python": "3.12.14",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.26.1",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "3376dc204e733ec609e1ea2ae6b10e5b43300dc92ad5975cdfba28db5fa177dc",
+      "receptor_events_sha256": "2f017af56a100a6e7506c43d84564dcf501f1f6dd84b20dd523ceebd1430b0e5"
+    },
+    {
+      "platform": "darwin",
+      "python": "3.13.15",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.26.1",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "3376dc204e733ec609e1ea2ae6b10e5b43300dc92ad5975cdfba28db5fa177dc",
+      "receptor_events_sha256": "9da4815fa99259c8f1e5685cb594fbb865c3396e0416550b8ff2a77f2ed3e91a"
+    },
+    {
+      "platform": "darwin",
+      "python": "3.14.7",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.26.1",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "3376dc204e733ec609e1ea2ae6b10e5b43300dc92ad5975cdfba28db5fa177dc",
+      "receptor_events_sha256": "fb91d779e92e27b483cabe7ee9d20e8384b4daaf0a7ce1e46fd5dae34bdb1572"
+    },
+    {
+      "platform": "linux",
+      "python": "3.11.16",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.25.3",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.25.3"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.25.3"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.25.3"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.25.3"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.25.3"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.25.3",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "a57206d4393b89d1a2dc88791a80647aae4406dc649011883f35d4ac144f4c13",
+      "receptor_events_sha256": "12387612d0adbcfacc88d0bfd8a147a1e83c56c06b89c5f87bf5f4aed2dd5c53"
+    },
+    {
+      "platform": "linux",
+      "python": "3.12.14",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.26.1",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "3376dc204e733ec609e1ea2ae6b10e5b43300dc92ad5975cdfba28db5fa177dc",
+      "receptor_events_sha256": "3493ec6bb34e10777fa555224d633943866b921a8a8aeaf9d23d52ad3aea17e7"
+    },
+    {
+      "platform": "linux",
+      "python": "3.13.15",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.26.1",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "3376dc204e733ec609e1ea2ae6b10e5b43300dc92ad5975cdfba28db5fa177dc",
+      "receptor_events_sha256": "ff16a8c235d564f7618ba4c59cee047611ea8020fd13f973f3d60cf797364476"
+    },
+    {
+      "platform": "linux",
+      "python": "3.14.7",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.9.0+25.gfc00a6c",
+        "pyunitwizard": "0.27.0+52.g33fec8a",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 5,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 5,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "absence": {
+        "ackredit_imports": 0,
+        "centimeters": 200.0
+      },
+      "released_baseline": {
+        "version": "0.9.0",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "references_per_capture": [
+          1,
+          1
+        ],
+        "reused_items_equal": true
+      },
+      "captures": {
+        "first": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "reused": {
+          "reference_count": 2,
+          "software": [
+            "pint",
+            "pyunitwizard"
+          ],
+          "roles": [
+            "executed_software"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.convert"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.convert": {
+              "items": [
+                "software:pint:0.26.1"
+              ],
+              "children": []
+            }
+          }
+        },
+        "translated": {
+          "reference_count": 4,
+          "software": [
+            "pint",
+            "pyunitwizard",
+            "unyt"
+          ],
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "original_versions": [
+            [
+              "pint",
+              "0.26.1"
+            ],
+            [
+              "pyunitwizard",
+              "0.27.0+52.g33fec8a"
+            ],
+            [
+              "unyt",
+              "3.1.0"
+            ]
+          ],
+          "usage_tree": {
+            "pyunitwizard.convert": {
+              "items": [
+                "software:pyunitwizard:0.27.0+52.g33fec8a"
+              ],
+              "children": [
+                "pyunitwizard.forms.pint.quantity_to_unyt"
+              ]
+            },
+            "pipeline": {
+              "items": [],
+              "children": [
+                "pyunitwizard.convert"
+              ]
+            },
+            "pyunitwizard.forms.pint.quantity_to_unyt": {
+              "items": [
+                "doi:10.21105/joss.00809",
+                "software:pint:0.26.1",
+                "software:unyt:3.1.0"
+              ],
+              "children": []
+            }
+          }
+        }
+      },
+      "workflow_references": 4,
+      "saved_pipeline_sha256": "3376dc204e733ec609e1ea2ae6b10e5b43300dc92ad5975cdfba28db5fa177dc",
+      "receptor_events_sha256": "183ad8b73225fd86ab5abae36cf07d0bf1057f04d3fe904503c3915ca1419ca4"
+    }
+  ]
+}
