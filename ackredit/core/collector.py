@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import threading
+from copy import deepcopy
 from pathlib import Path
 from types import MappingProxyType
 from typing import Callable, Mapping
@@ -389,7 +390,11 @@ def prepare_credit(
     used_by = _name(used_by, operation)
     if item_id not in Registry.items:
         _invalid(operation, f"reference {item_id!r} must be registered")
-    record = _json_copy(Registry.items[item_id], operation)
+    # JSON normalizes tuples to lists. Keep the original representation for
+    # comparison so supported metadata is not mistaken for replacement, while
+    # captures retain the same JSON representation as ordinary public tracking.
+    registered = deepcopy(Registry.items[item_id])
+    record = _json_copy(registered, operation)
     if not isinstance(record, dict) or record.get("id") != item_id:
         _invalid(operation, "the record id differs from its prepared id")
     roles = _roles(roles)
@@ -400,7 +405,7 @@ def prepare_credit(
     )
 
     def credit() -> None:
-        if Registry.items.get(item_id) != record:
+        if Registry.items.get(item_id) != registered:
             _invalid(
                 "credit prepared reference",
                 f"reference {item_id!r} was replaced or removed",

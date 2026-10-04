@@ -55,6 +55,23 @@ def test_replaced_or_deleted_registered_bibliography_cannot_be_credited(clean_re
     assert ackredit.get_used_items() == {}
 
 
+def test_registered_tuple_metadata_matches_public_portable_tracking(clean_registry):
+    ackredit.register_item(
+        id="tuple-record", title="Tuple metadata", authors=("Ruiz, Ana", "Lee, Min")
+    )
+    credit = ackredit.prepare_credit(
+        "tuple-record", "example.convert", roles=["executed_software"]
+    )
+    with ackredit.session("public"), ackredit.capture("result") as public:
+        ackredit.track_item(
+            "tuple-record", used_by="example.convert", roles=["executed_software"]
+        )
+    with ackredit.session("prepared"), ackredit.capture("result") as prepared:
+        credit()
+    assert prepared.attribution.to_dict() == public.attribution.to_dict()
+    assert clean_registry.items["tuple-record"]["authors"] == ("Ruiz, Ana", "Lee, Min")
+
+
 def test_prepared_credit_uses_the_existing_journal_writer(clean_registry, tmp_path):
     _declare()
     credit = ackredit.prepare_credit(

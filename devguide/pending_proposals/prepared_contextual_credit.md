@@ -73,6 +73,19 @@ passes 633 tests, with ten declared optional/sibling-dependent skips and one
 existing deprecated-import warning. Provider/receiver protocol review remains
 open rather than treating local gate success as a stable API decision.
 
+## Registered representation guard
+
+A final compatibility check reproduced a false replacement diagnosis for a
+registered author tuple: portable JSON converts tuples to lists, so comparing
+the raw registry to the JSON-normalized capture record is not valid. Preparation
+now privately detaches the original representation for registry comparison and
+separately normalizes the portable record. Registry data is not rewritten.
+`test_registered_tuple_metadata_matches_public_portable_tracking` proves the
+prepared result is identical to public contextual tracking while retaining the
+registered tuple. Changed/deleted bibliography still receives E010.
+The final local gate passes 1,636 tests without skips; Ruff and report indexes
+remain clean. This is a representation fix, not a protocol or release change.
+
 ## What was refuted
 
 Repeated session-ID deduplication cannot supply reused references to independent
