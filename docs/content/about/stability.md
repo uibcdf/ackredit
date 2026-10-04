@@ -30,7 +30,8 @@ minor release before 1.0.0, and it reaches 1.0.0 either promoted to stable or re
 shipping a provisional name inside a stability commitment would make the commitment
 meaningless. Every provisional name states why it is one. Portable attribution was
 reviewed with PyUnitWizard and Sabueso under `uibcdf/ackredit#75`; the accepted
-contract is assigned to candidate 0.9.0, pending immutable delivery.
+contract is delivered in public Ackredit 0.9.0 with the bounded compatibility
+promise below.
 
 ## The surface
 
@@ -98,8 +99,9 @@ interrupted run leaves.
 
 ## Portable attribution compatibility
 
-The reviewed names and schema are assigned to candidate **0.9.0**, pending
-its first immutable release; older tags do not contain this contract. The
+The reviewed names and schema ship in public **Ackredit 0.9.0** from the `uibcdf`
+Conda channel; use `ackredit>=0.9.0` for these operations. Older tags do not
+contain this contract. The
 [portable attribution contract](../user_guide/portable_attribution.md) fixes
 the supported operations and `ackredit.attribution@1` payload. Readers keep
 supporting released schema 1 even if a future release introduces another schema.
@@ -109,7 +111,9 @@ object-key ordering are not compatibility promises.
 
 The portable operations retain their reviewed call semantics across 0.9.x and
 1.x. Public distribution, Python admission and host runtime adoption are separate
-gates; this source decision does not claim delivery of 0.9.0.
+gates. The [installation page](installation.md) links the exact public archive,
+installed matrix and clean public receiving evidence; it does not certify a
+client's own release or convert general pre-1.0 intent into a 1.x commitment.
 
 ## Deprecation policy
 

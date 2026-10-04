@@ -13,6 +13,8 @@ import re
 import tomllib
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 PYPROJECT = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
 VISION = (ROOT / "devguide/vision.md").read_text(encoding="utf-8")
@@ -52,3 +54,21 @@ def test_nothing_is_both_required_and_optional():
     assert not runtime & optional, (
         f"{sorted(runtime & optional)} is declared as both required and optional"
     )
+
+
+@pytest.mark.parametrize(
+    "page_name,source_name",
+    [("what_is_ackredit", "vision"), ("architecture", "architecture")],
+)
+def test_conceptual_site_uses_the_canonical_source(page_name, source_name):
+    """A separate site copy kept a dependency promise its owner had superseded."""
+    page = ROOT / "docs/content/developer_guide" / f"{page_name}.md"
+    text = page.read_text(encoding="utf-8")
+    includes = list(re.finditer(r"```\{include\}\s+([^\n]+)\n.*?```", text, re.S))
+    assert len(includes) == 1, f"{page} must include its authoritative source"
+    included = (page.parent / includes[0].group(1).strip()).resolve()
+    assert included == ROOT / "devguide" / f"{source_name}.md"
+    assert included.is_file()
+    # A title or body copied beside the include could revive the same contradiction.
+    outside = (text[: includes[0].start()] + text[includes[0].end() :]).strip()
+    assert re.fullmatch(r"\([A-Za-z_]+\)=", outside), outside

@@ -3,7 +3,10 @@
 ## What is Ackredit?
 Ackredit is a runtime citation and acknowledgement tracking engine for scientific workflows in Python.
 
-Unlike static citation lists (which tell you what to cite just by installing a library), Ackredit is **context-aware**: it only asks you to cite what you actually used during the execution of your code.
+Ackredit records references that a workflow credits during execution. Explicit
+tracking on an executed branch provides precise attribution; import hooks and
+static call inspection offer coarser opt-in discovery. Installing a library or
+declaring its potential references does not itself credit a calculation.
 
 ## Why does it exist? (The Value)
 1.  **Fairness in Attribution:** It allows giving credit to specific algorithms, datasets, or sub-modules that would otherwise be hidden under the general name of a large library.
@@ -26,6 +29,18 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
 2.  **Centralization:** All citation registration and tracking logic are easy to find and maintain.
 3.  **Consistency:** Users across the ecosystem find familiar patterns in every library.
 
+Optional scientific clients keep offline declarations and defer provider loading
+and registration until the attribution boundary is used. Applications own workflow
+sessions; captures collect per-result references without replacing those sessions.
+Results may retain the detached `ackredit.attribution@1` payload with original
+bibliography and versions, so reading them later does not credit another run.
+Applications that explicitly require Ackredit own that dependency decision;
+optional hosts keep their absent/failing-provider behavior.
+
+The [architecture](architecture.md) describes these boundaries. The canonical
+[integration guide](https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDIT_GUIDE.md) supplies the client profiles
+and worked examples.
+
 ## Design Pillars
 *   **Invisible and Optional:** If Ackredit is not installed, the host library must continue to function without changes.
 *   **Lean core:** Ackredit has four runtime dependencies and no more. Three are the
@@ -34,8 +49,8 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
     `CITATION.cff` is YAML and reading it with less produces confident wrong answers on
     constructs the specification documents.
 
-    **Three of the four are pure Python, and the tree is not.** ArgDigest requires
-    `numpy`, so adopting it put a compiled dependency into what a host installs. That was
+    **Ackredit's own payload is pure Python; its dependency tree is not.** ArgDigest
+    requires `numpy`, so adopting it put a compiled dependency into what a host installs. That was
     not part of the evidence the adoption was decided on and it is recorded here rather
     than left to be discovered: a library that is optional and meant to be light now
     carries numpy behind it. ArgDigest also raises Ackredit's floors to `smonitor>=0.16`
@@ -57,4 +72,3 @@ Following the suite's standard, host libraries should centralize Ackredit usage 
     `register_format` with `ackredit.formats`, and `add_injection` with
     `ackredit.citations`. A registered name is never replaced, so an extension adds to the
     library and cannot quietly change what it already does.
-

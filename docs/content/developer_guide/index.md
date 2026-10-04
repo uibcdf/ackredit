@@ -13,6 +13,7 @@ Welcome to the Ackredit developer documentation. This section contains the "Bibl
 *   **{ref}`Workflow and Standards <Dev_Contributing>`:** How to contribute, code standards, and validation.
 
 ## Deep Dives
+*   {ref}`Architecture <Dev_Architecture>`
 *   {ref}`Registry & Collector <Dev_RegistryAndCollector>`
 *   {ref}`Decorators <Dev_Decorators>`
 *   {ref}`Format Renderers <Dev_Formats>`

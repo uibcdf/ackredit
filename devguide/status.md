@@ -19,7 +19,18 @@ working, a test or a reproducible command backs it.
   persistence and a multi-session aggregator.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
-  by `tests/test_packaging.py`.
+  by `tests/test_packaging.py`. Public Ackredit 0.9.0 is available from the `uibcdf`
+  Conda channel as one verified noarch file. The same archive passed Linux/macOS
+  arm64 × Python 3.11–3.14 installed qualification and a clean public Linux/Python
+  3.14 receiving installation. See [installation](../docs/content/about/installation.md)
+  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.9.0_public_2026-10-03.json).
+- **Portable attribution:** `capture` observes per-calculation references without
+  replacing the application session; `get_attribution` snapshots the workflow.
+  `Attribution` preserves detached bibliography, contextual roles, original versions
+  and the usage tree through the released `ackredit.attribution@1` schema. Reading
+  and rendering saved results add no execution credit. Guarded by
+  `tests/test_attribution_capture.py`, `tests/test_attribution_contract.py` and the
+  executed examples in `tests/test_integration_guide.py`.
 - **Documentation:** the Sphinx site builds with no warnings, twice in a row, and every
   documented Python snippet is checked against the real API by
   `tests/test_documented_api.py`. The documented report formats, the citation page and the
@@ -36,29 +47,31 @@ working, a test or a reproducible command backs it.
   instead of being swallowed; optional dependencies are declared to DepDigest and
   reported by `dependency_info()`. Guarded by `tests/test_smonitor_integration.py`.
 - **Concurrency:** scopes are isolated per thread and per asyncio task, the collector
-  serializes its compound updates, and the session file is written atomically. Guarded by
-  `tests/test_thread_safety.py`.
+  serializes compound updates, and journal appends retain observations. Explicit
+  sessions separate analyses; callers that keep the default session share its
+  observations. Guarded by `tests/test_thread_safety.py` and
+  `tests/test_session_isolation.py`.
+- **Coverage:** a weekly/manual installed Linux/Python 3.14 producer retains
+  validated runtime XML and publishes it to Codecov. The README explains the
+  last-uploaded report and scope; a percentage is not scientific or full-matrix
+  certification. Guarded by `tests/test_coverage_workflow.py`, with evidence in
+  [the coverage record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/scoped_runtime_coverage.md).
 
 ## Known defects
 
-None currently recorded. Open reports live in `devguide/pending_bugs/`.
+Open reports live in [the maintained bug queue](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_bugs/README.md).
+Documentation corrections and runtime defects retain separate evidence there.
 
 ## Known limitations, deliberately out of scope
 
-- **CI runs on Linux and macOS, not Windows.** macOS was removed while `smonitor` and
-  `depdigest` were `linux-64` builds with per-interpreter ABI pins, and restored once the
-  floors Ackredit requires were `noarch` (`uibcdf/ackredit#71`). Its first run passed on
-  3.11 to 3.14 with the same 1437 tests and the same skips as Linux, the multi-process
-  journal tests among them. macOS gates on 3.13 on every push; the weekly matrix covers
-  the rest. Windows has never been run, so nothing here claims it works.
-  This shape is Ackredit's own: the suite prescribes Linux lanes for every supported
-  minor and nothing about push versus schedule or platforms, and the members differ.
-  It is proposed centrally in `uibcdf/molsyssuite#39`; Ackredit's CI is not reshaped
-  further until that is decided, and then aligns in one change.
-- **Python is 3.11 to 3.13.** The dependencies no longer hold 3.14 back: all three
-  declare `<3.15`, and CI's non-blocking 3.14 lane passes from the public channel with
-  the same results as the promised versions. The claim waits on authorization in
-  `uibcdf/molsyssuite#29`, where the evidence is posted.
+- **Platform and interpreter evidence is bounded.** The required source range is
+  Python 3.11–3.14, declared as `>=3.11,<3.15`; routine development uses 3.14.
+  Ordinary CI gates all four Linux minors and macOS arm64/Python 3.14; the full
+  weekly/manual matrix covers both platforms on every minor. Skipped-push
+  detection and full recovery are guarded by `tests/test_ci_backlog.py` and
+  recorded under #74. Windows has no qualification claim here. Component
+  delivery under #80 does not itself update central admission or the README's
+  admitted-support badge; that review remains owned by MolSysSuite #51.
 - **Sharing one session across processes needs a local filesystem.** The session is an
   append-only journal, and POSIX makes an `O_APPEND` write below `PIPE_BUF` atomic, so
   several processes may write one journal without losing events — verified with four and
@@ -67,9 +80,11 @@ None currently recorded. Open reports live in `devguide/pending_bugs/`.
 - **A session file names items without describing them.** The journal records events —
   which id was credited and by what — while the metadata lives in the registry of the
   process that declared it. So `ackredit report session.json` lists the ids a run
-  credited and cannot give their titles, authors or DOIs; a full bibliography comes from
-  `report()` or `dump()` inside the process that did the work. Documented in
-  `docs/content/user_guide/reporting.md` rather than worked around.
+  credited and cannot reconstruct their original titles, authors, DOIs or contextual
+  uses. A portable result instead saves the detached `Attribution` payload beside
+  its scientific data and can render that bibliography in a fresh reader.
+  Journal aggregation and portable attribution are separate contracts; see
+  [architecture](architecture.md) and the [portable contract](../docs/content/user_guide/portable_attribution.md).
 - **`@software` and `@dataset` are not defined by `plainnat.bst`.** BibTeX warns and
   degrades those entries rather than failing. Choosing a style or mapping the types is a
   separate question, noted in `devguide/archive/bibtex_does_not_escape_latex.md`.
@@ -80,33 +95,40 @@ Organised as themes with exit criteria in [`roadmap.md`](roadmap.md), rather tha
 fixed number of releases. The minor rises when behaviour a caller can see changes, so how
 many land before 1.0.0 is an outcome rather than a plan.
 
-- **Distribution:** the conda recipe, build environment and staging-and-promotion
-  workflow exist and are verified — a `noarch` package builds, passes the recipe's own
-  tests, and installs into a clean environment where it reports its version, discovers
-  itself and renders a report. Nothing is published yet: that needs the channel token and
-  is a release decision (roadmap A).
+- **Distribution:** complete for public 0.9.0 under #22/#75/#80. The matching
+  `0.9.0` Git tag identifies its original producer under #82. Later candidates
+  require their own release gates; GitHub Release and DOI publication are
+  separate outcomes (roadmap A, done).
 - **Self-citation:** done. Ackredit ships `CITATION.cff` inside the package, finds
   itself from an installed distribution, and its metadata names the same authors
   (`uibcdf/ackredit#21`).
-- **Adoption:** no host library has integrated the guide yet. Every defect found in it so
-  far was found by reading it rather than using it (roadmap C).
+- **Adoption:** PyUnitWizard #92 exercises real Pint/unyt operations through its
+  optional context; Sabueso #108 exercises required knowledge-packet attribution
+  and has clean public-provider receiving evidence. Their released integration
+  claims remain client-owned. Sabueso #110 owns its release candidate and
+  MolSysMT #292 its portable-adapter adoption (roadmap C, still open).
 - **Performance:** measured on a real MolSysMT workflow and published in
   `docs/content/about/performance.md`, which is where the numbers live: microseconds per
   instrumented call, tens of milliseconds once for auto-discovery at import, and on the
   workflow itself a difference smaller than the run-to-run spread. `devtools/benchmark.py`
   reproduces it (roadmap D, done).
 - **API hardening:** done but for what adoption teaches. Every public name is classified
-  in `docs/content/about/stability.md`, the deprecation policy is written, and **no name
-  is provisional**: thirty-three, all stable, four decided by removal rather than
-  promotion. Output formats are extensible through `register_format` and the
+  in [API stability](../docs/content/about/stability.md), which is the authority
+  for classifications and counts. The deprecation policy is written and portable
+  schema/operations have a bounded released compatibility promise. The general
+  API commitment remains pre-1.0 intent. Output formats are extensible through `register_format` and the
   `ackredit.formats` entry-point group. What remains of roadmap F is the review against
   what a host library learns, which waits on theme C by definition.
 - **MolSysSuite membership:** granted in `uibcdf/molsyssuite#28`. Ackredit is a
-  registered, incubating support library: the README carries the role, policy and Python
-  badges, and `molsyssuite-policy.yml` passes on every push and tag. Membership is not
-  Python 3.14 support, which `uibcdf/molsyssuite#29` decides separately.
+  registered, incubating support library. Common policy and admission records
+  remain MolSysSuite-owned; registration, source compatibility, public delivery
+  and consumer release are separate states.
 
 ## Future strategic concepts
 
-- **Cloud aggregator:** web-based citation gathering.
-- **IDE extensions:** real-time citation hints.
+These are ideas, not missing core functionality or acceptance criteria for 1.0:
+
+- **Cloud aggregator:** web-based citation gathering; no implementation contract.
+- **IDE extensions:** real-time citation hints; no implementation contract.
+- **Citation dashboard:** #58 records a possible separate distribution using
+  the format extension point. Ackredit does not include a web server.

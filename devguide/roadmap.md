@@ -148,9 +148,10 @@ published version/file/hash evidence under `uibcdf/sabueso#108`.
 
 ### Theme B — Ackredit can be cited — **done**
 
-A citation tracker that ships no `CITATION.cff` cannot be discovered by its own
-auto-discovery. Verified: `find_and_parse_cff` finds nothing for Ackredit, and the package
-metadata declares no author beyond "UIBCDF Development Team" and no contact.
+Before #21, Ackredit shipped no discoverable `CITATION.cff` and its package
+metadata named only the team. The installed package now includes the citation
+file and discovers itself, with authorship held to package metadata by
+`tests/test_self_citation.py`. That historical gap is closed.
 
 - a `CITATION.cff` with real authors, and package metadata that agrees with it;
 - a test asserting Ackredit discovers itself, which is the smallest honest end-to-end
@@ -227,8 +228,8 @@ The last theme, and the one that earns the number.
       counts. `tests/test_api_stability.py` holds the page to `__all__`, so a name
       cannot join the public surface without a decision about what it promises, and a
       name cannot be called stable while no test exercises it;
-- [x] **the seven public names nothing tested** — `compile_pdf`, `dependency_info`,
-      `enable_auto_reminder`, `enrich_all`, `export_to_duecredit`, `load_plugins` and
+- [x] **the previously untested public operations** — `compile_pdf`, `dependency_info`,
+      `enable_auto_reminder`, `enrich_all`, `export_to_duecredit` and `load_plugins` —
       exercised in `tests/test_optional_surface.py`, so "provisional" is a judgement
       rather than a gap. `serve_ui` was among them and was removed instead
       (`uibcdf/ackredit#57`);
@@ -247,11 +248,16 @@ The last theme, and the one that earns the number.
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
 stability commitment would make the commitment meaningless, so that list was the real
 measure of how far this theme had to go — and it is empty. Every public name has been
-decided once, on the evidence available now, and four were removed rather than promised:
+decided once, on the evidence available now. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
-What remains is the item below, which waits on theme C by definition: adoption is what can
-reopen a decision taken without it.
+What remains is the unchecked review above, which waits on theme C by definition:
+adoption is what can reopen a decision taken without it. Review session ownership,
+capture/reused-reference semantics, software/article versions, failure boundaries,
+saved-reader compatibility and extension contracts against actual receiving
+workflows. Existing tests and a stable-intent classification do not substitute
+for that final general 1.0 decision. The released portable promise remains
+bounded as [API stability](../docs/content/about/stability.md) specifies.
 
 ---
 

@@ -2,9 +2,20 @@
 
 ## Decisions Made
 1.  **Singleton/Class-based Registry and Collector:** It was decided to use class methods to ensure there is only one global state per process, facilitating use from anywhere within a host library.
+
+    **Superseded for observations on 2026-10-04:** decision 7 separates shared
+    declarations from context-local sessions. Registry and Collector are private
+    implementation, not supported classes to import (#55); the public functions
+    and `Session` supply the maintained boundary. See [architecture](architecture.md).
 2.  **Python 3.11–3.13:** Ackredit declares `requires-python = ">=3.11,<3.14"` and is tested
     on 3.11, 3.12 and 3.13, following the MolSysSuite Python policy. This supersedes the
     earlier "Python 3.10+" decision, which predates suite membership.
+
+    **Superseded on 2026-10-04:** the current required source range is
+    `>=3.11,<3.15`, with routine Python 3.14 development and the public 0.9.0
+    eight-cell installed qualification under #80. The original decision above
+    describes its historical checkpoint. Central admission remains separate;
+    see [current status](status.md) and [roadmap E](roadmap.md#theme-e--python-314--component-delivery-complete).
 3.  **MolSysSuite membership:** Ackredit adopts the suite common baseline — Ruff, pytest,
     the supported Python range, the synchronized `MOLSYSSUITE_GUIDE.md` and the issue-backed
     reporting lifecycle. Admission and registration in the central `suite.toml` are tracked
@@ -21,6 +32,11 @@
     context manager instead of duplicating its logic, so the isolation has a single
     implementation. The collector uses a reentrant lock for compound updates and writes
     its session file atomically via a temporary file and `os.replace`.
+
+    **Persistence update on 2026-10-04:** #17 replaced whole-file rewrites with an
+    append-only journal; session selection and the update lock remain. The
+    [architecture](architecture.md) distinguishes that identifier journal from
+    detached portable attribution.
 6.  **Suite infrastructure adopted (`uibcdf/ackredit#6`):** SMonitor provides the
     diagnostics and DepDigest the optional-dependency handling. Sixteen paths that lost
     their reason — eleven `except Exception: pass`, two `print()` calls and three logger
@@ -36,6 +52,12 @@
     functions keep working untouched on a default session, which is the ergonomics the
     global existed for; a `ContextVar` read costs 0.118 µs against the 1.3 µs a
     `track_item` already spends.
+
+    **Client-profile update on 2026-10-04:** accepted MolSysSuite #68 guidance
+    defers provider loading and registration in optional scientific hosts until
+    the attribution boundary. #75 adds capture within the application session
+    and detached per-result records, released in 0.9.0. The original eager
+    demonstration profile remains explicitly bounded in the canonical guide.
 8.  **`dump` keeps compiling the PDF (`uibcdf/ackredit#16`):** it renders files and
     optionally runs `pdflatex`, which are unrelated failures. Separating them was
     considered and refused: the argument against was that a missing system binary failed
@@ -69,6 +91,13 @@
     What it costs: a host library can integrate from a tag and produce the evidence theme
     C exists for, but cannot ship an integration depending on an unresolvable package. The
     tag route is documented and verified, so nothing is blocked that matters yet.
+
+    **Superseded on 2026-10-04:** the reviewed release decision under #22/#75
+    ended this deferral. Ackredit 0.9.0 was promoted as the exact validated
+    noarch file and independently installed from the public channel; #82
+    registered its matching Git tag at the original producer. The historical
+    rationale above is retained. See [public installation](../docs/content/about/installation.md)
+    and [roadmap A](roadmap.md#theme-a--ackredit-can-be-installed--done).
 
 12. **Ackredit reads BibTeX itself, and does not read YAML itself
     (`uibcdf/ackredit#31`):** recorded as pending since the beginning and settled by the

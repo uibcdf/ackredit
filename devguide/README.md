@@ -10,6 +10,8 @@ and [`../AGENTS.md`](../AGENTS.md) for the ownership boundary.
 ## Orientation
 
 1.  **[Vision and Concept](vision.md):** What is Ackredit? What is it for? What is its differential value?
+    [Architecture](architecture.md) explains declarations, sessions, captures,
+    portable results and component boundaries.
 2.  **[Project Status](status.md):** What is already working? What is work-in-progress? What is missing?
 3.  **[Roadmap](roadmap.md):** Where are we going and what are the next milestones?
 4.  **[Decision Log](decisions.md):** Why were things done this way? What decisions are still pending?
