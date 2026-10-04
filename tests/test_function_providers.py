@@ -4,6 +4,7 @@ import asyncio
 import importlib.util
 import inspect
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -395,6 +396,28 @@ def test_observer_can_only_be_entered_once(provider, clean_registry):
 def test_normally_installed_provider_and_reader_outside_checkout(tmp_path):
     """Install the producer as a wheel; a separate reader cannot import it."""
     target = tmp_path / "installed"
+    build_environment = tmp_path / "minimal-build-interpreter"
+    created = subprocess.run(
+        [sys.executable, "-m", "venv", str(build_environment)],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+    )
+    assert created.returncode == 0, created.stderr
+    build_python = build_environment / (
+        "Scripts/python.exe" if os.name == "nt" else "bin/python"
+    )
+    checked = subprocess.run(
+        [
+            str(build_python),
+            "-c",
+            "import importlib.util; assert importlib.util.find_spec('versioningit') is None",
+        ],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+    )
+    assert checked.returncode == 0, checked.stderr
     source = tmp_path / "producer"
     shutil.copytree(
         FIXTURE,
@@ -403,12 +426,11 @@ def test_normally_installed_provider_and_reader_outside_checkout(tmp_path):
     )
     result = subprocess.run(
         [
-            sys.executable,
+            str(build_python),
             "-m",
             "pip",
             "install",
             "--no-deps",
-            "--no-build-isolation",
             "--target",
             str(target),
             str(source),

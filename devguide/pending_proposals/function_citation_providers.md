@@ -9,7 +9,7 @@ verification: reproduced
 area: [core, integration]
 guard: tests/test_function_providers.py::test_normally_installed_provider_and_reader_outside_checkout
 normative:
-blocked_by: [uibcdf/molsyssuite#97]
+blocked_by: [uibcdf/molsyssuite#97, uibcdf/moli#46]
 supersedes: []
 ---
 
@@ -74,3 +74,26 @@ module subclasses are refused before mutation as well as generators.
 MolSysSuite #97 records the shared-provider impact before publication. Real
 producer/receiving review and promotion or removal of the provisional API
 remain open; the installed fixture is not evidence of scientific adoption.
+
+## Hosted installation correction
+
+Initial exact-source CI 37203629536 passed lint, docs and Linux 3.11/3.12, but
+the new receiving test failed on Linux 3.13/3.14 and macOS 3.14. GH Run Receptor
+identified the single failed test; its retained macOS log at lines 681–690
+identifies `BackendUnavailable: Cannot import 'setuptools.build_meta'`.
+The minimal runtime test environments legitimately omit build backends.
+
+The receiving test now uses normal pip build isolation for both packages,
+honoring their declared `[build-system]` requirements rather than requiring
+incidental setuptools/versioningit installations in the runtime interpreter.
+`--no-deps` remains: scientific runtime dependencies are supplied by the test
+environment. No runtime environment/tooling policy change or skip is introduced.
+The public 0.9.0 artifact and provider implementation are unchanged by this
+test-only correction; the final hosted execution will be linked in the issue.
+
+The durable receiving guard creates a fresh build interpreter without inherited
+site-packages and verifies Versioningit is absent there. Normal pip installs
+both packages into the target directory with their isolated build requirements;
+the consumer interpreter supplies its existing runtime dependency foundation.
+This recreates the minimal-builder precondition locally and prevents accidental
+reliance on the maintainer environment's build tools.
