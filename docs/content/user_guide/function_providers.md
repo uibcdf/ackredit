@@ -124,6 +124,12 @@ Prepared declarations are not mutable-identity caches; a later independent
 capture still records reused references and conflicting captured identities
 still receive diagnostics.
 
+At activation, pre-existing bibliography is compared in its portable JSON
+representation, so equivalent tuple/list fields are accepted. Existing registered
+data is preserved. Each invocation still compares against a detached snapshot
+of that original registration; replacement or deletion is diagnosed without
+serializing JSON on the scientific call path.
+
 Use qualified calls such as `example.normalize(...)` **inside** the observation
 block. Aliases obtained before activation keep the original callable and are
 not observed. A wrapper retained after exit delegates without attribution.

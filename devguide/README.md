@@ -15,6 +15,7 @@ and [`../AGENTS.md`](../AGENTS.md) for the ownership boundary.
 2.  **[Project Status](status.md):** What is already working? What is work-in-progress? What is missing?
 3.  **[Roadmap](roadmap.md):** Where are we going and what are the next milestones?
 4.  **[Decision Log](decisions.md):** Why were things done this way? What decisions are still pending?
+5.  **[Function-provider Contract Review](function_provider_contract_review.md):** Proposed guarantees, remaining decisions and the exact release handoff for #84/#87.
 5.  **[Workflow and Standards](workflow.md):** How to contribute, code standards, and validation.
 
 ## Reporting lifecycle

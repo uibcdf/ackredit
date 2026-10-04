@@ -12,6 +12,7 @@ Welcome to the Ackredit developer documentation. This section contains the "Bibl
 *   **{ref}`Technical Decision Log <Dev_Decisions>`:** Why were things done this way?
 *   **{ref}`Workflow and Standards <Dev_Contributing>`:** How to contribute, code standards, and validation.
 *   **{ref}`Installed Receiving Validation <Dev_ReceivingValidation>`:** Qualify the same Ackredit/PyUnitWizard files across platforms and interpreters.
+*   **{ref}`Function-provider Contract Review <Dev_FunctionProviderReview>`:** Proposed guarantees, remaining maintainer decisions and the release handoff.
 
 ## Deep Dives
 *   {ref}`Architecture <Dev_Architecture>`

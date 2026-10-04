@@ -135,13 +135,14 @@ def _read(module):
 
 
 class _Patch:
-    def __init__(self, module, export, original, uses, context, records):
+    def __init__(self, module, export, original, uses, context, records, *, registered):
         self.module = module
         self.export = export
         self.original = original
         self.uses = uses
         self.context = context
         self.records = records
+        self._registered = {item_id: registered[item_id] for item_id, _ in uses}
         self.target = f"{module.__name__}.{export}"
         self.leases = 0
         self._credits = [
@@ -190,7 +191,7 @@ class _Patch:
             # Never attach a replacement bibliography to the original producer
             # version. Check all references before recording any of this call.
             for item_id, _ in self.uses:
-                if Registry.items.get(item_id) != self.records[item_id]:
+                if Registry.items.get(item_id) != self._registered[item_id]:
                     _refuse(self.module.__name__, f"reference {item_id!r} was replaced")
             active_scope.__enter__()
             for record, roles, key in self._credits:
@@ -260,9 +261,25 @@ class observe_calls:
                     if item_id in records and records[item_id] != record:
                         _refuse(module.__name__, f"conflicting reference {item_id!r}")
                     records[item_id] = record
+            registered = {}
             for item_id, record in records.items():
-                if item_id in Registry.items and Registry.items[item_id] != record:
-                    _refuse("observer", f"conflicting registered reference {item_id!r}")
+                if item_id in Registry.items:
+                    current = Registry.items[item_id]
+                    try:
+                        portable = _json_copy(
+                            current, "read registered provider reference"
+                        )
+                    except ValueError as error:
+                        _refuse("observer", str(error))
+                    if portable != record:
+                        _refuse(
+                            "observer", f"conflicting registered reference {item_id!r}"
+                        )
+                    # Accepted registrations retain their original representation.
+                    # Actual calls compare this detached raw snapshot, without JSON.
+                    registered[item_id] = deepcopy(current)
+                else:
+                    registered[item_id] = deepcopy(record)
             bindings = []
             for plan in plans:
                 module, export, function, uses, context, declared = plan
@@ -278,9 +295,17 @@ class observe_calls:
                         )
                     bindings.append(existing)
                 else:
-                    bindings.append(_Patch(*plan))
+                    bindings.append(_Patch(*plan, registered=registered))
             # All declarations and conflicts pass before the first mutation.
-            Registry.items.update(deepcopy(records))
+            Registry.items.update(
+                deepcopy(
+                    {
+                        item_id: record
+                        for item_id, record in records.items()
+                        if item_id not in Registry.items
+                    }
+                )
+            )
             self._bindings = set(bindings)
             for binding in self._bindings:
                 binding.leases += 1

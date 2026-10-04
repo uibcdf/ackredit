@@ -425,6 +425,101 @@ def test_registry_and_active_declaration_conflicts_do_not_overwrite(
         assert provider.normalize is wrapped
 
 
+def test_registered_tuple_metadata_matches_public_observation(provider, clean_registry):
+    declared = provider.__ackredit__["items"][1]
+    ackredit.register_item(**dict(declared, authors=tuple(declared["authors"])))
+    registered = clean_registry.items[declared["id"]]
+    context = {"software": "Citation Example", "version": "2.4.0"}
+    with ackredit.session("public"), ackredit.capture("result") as public:
+        with ackredit.scope("citation_provider.normalize"):
+            for use in provider.__ackredit__["functions"]["normalize"]:
+                if use["item_id"] != declared["id"]:
+                    record = next(
+                        i
+                        for i in provider.__ackredit__["items"]
+                        if i["id"] == use["item_id"]
+                    )
+                    ackredit.register_item(**record)
+                ackredit.track_item(
+                    use["item_id"],
+                    used_by="citation_provider.normalize",
+                    roles=use["roles"],
+                    context=context,
+                )
+    original = provider.normalize
+    for name in ("first", "reused"):
+        with ackredit.session(name), ackredit.capture("result") as observed:
+            with ackredit.observe_calls(provider):
+                with ackredit.observe_calls(provider):
+                    assert ackredit.get_used_items() == {}
+                    assert provider.normalize([1, 3]) == [0.25, 0.75]
+        assert observed.attribution.to_dict() == public.attribution.to_dict()
+        assert clean_registry.items[declared["id"]] is registered
+        assert registered["authors"] == ("Ruiz, Ana",)
+        assert provider.normalize is original
+
+
+@pytest.mark.parametrize("change", ["replace", "delete"])
+def test_changed_tuple_registration_reports_a_gap(provider, clean_registry, change):
+    declared = provider.__ackredit__["items"][1]
+    ackredit.register_item(**dict(declared, authors=tuple(declared["authors"])))
+    with ackredit.observe_calls(provider), ackredit.capture() as run:
+        if change == "replace":
+            clean_registry.items[declared["id"]]["authors"] = ("Changed, Author",)
+        else:
+            del clean_registry.items[declared["id"]]
+        with pytest.warns(ProviderObservationWarning) as warnings:
+            assert provider.normalize([1, 3]) == [0.25, 0.75]
+        assert warnings[0].message.code == "ACKREDIT-W019"
+    assert run.attribution.to_dict()["items"] == []
+
+
+def test_nonportable_existing_registry_is_refused_before_activation(
+    provider, clean_registry
+):
+    declared = provider.__ackredit__["items"][1]
+    ackredit.register_item(**dict(declared, extra=object()))
+    registered = clean_registry.items[declared["id"]]
+    original = provider.normalize
+    with pytest.raises(ValueError) as error:
+        with ackredit.observe_calls(provider):
+            pass
+    assert error.value.code == "ACKREDIT-E012"
+    assert provider.normalize is original
+    assert clean_registry.items == {declared["id"]: registered}
+    assert ackredit.get_used_items() == {}
+
+
+def test_registered_provider_normalization_stays_in_activation(
+    provider, clean_registry, monkeypatch
+):
+    providers = sys.modules["ackredit.core.providers"]
+    normalize = providers._json_copy
+    normalizations = []
+
+    def counted(*args):
+        normalizations.append(args[1])
+        return normalize(*args)
+
+    monkeypatch.setattr(providers, "_json_copy", counted)
+    declared = provider.__ackredit__["items"][1]
+    declared["authors"] = [{"family": "Ruiz", "given": "Ana"}]
+    ackredit.register_item(**dict(declared, authors=tuple(declared["authors"])))
+    with ackredit.observe_calls(provider):
+        at_activation = len(normalizations)
+        assert at_activation > 0
+        for name in ("first", "reused"):
+            with ackredit.capture(name) as run:
+                assert provider.normalize([1, 3]) == [0.25, 0.75]
+            assert len(run.attribution.to_dict()["items"]) == 2
+        # The runtime comparison must own nested author data independently.
+        clean_registry.items[declared["id"]]["authors"][0]["family"] = "Changed"
+        with ackredit.capture("gap") as run, pytest.warns(ProviderObservationWarning):
+            assert provider.normalize([1, 3]) == [0.25, 0.75]
+        assert run.attribution.to_dict()["items"] == []
+        assert len(normalizations) == at_activation
+
+
 def test_tracking_failure_reports_gap_without_changing_scientific_result(
     provider, clean_registry
 ):

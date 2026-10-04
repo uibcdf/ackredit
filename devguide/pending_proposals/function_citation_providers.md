@@ -171,3 +171,17 @@ verify independently locally. The reviewed public evidence is retained in
 wheel hashes, original versions, per-cell graph/roles and fresh-process checks.
 The separate test defect #88 is resolved and archived. Provider/receiver review
 and provisional API classification remain open under #84/#87/#97/MOLI #46.
+
+## Concrete stability/release handoff (2026-10-04)
+
+MolSysSuite's independent receiving review at `b23c774` confirms the exact
+`fc00a6c`/PyUnitWizard `33fec8a` bundle, eight cells/40 tests, native artifact
+identities and provider-owned aggregate. The later reporting source `cb3e58d`
+has its own eight-cell/48-test receipt. Both retain their original identities.
+
+[`../function_provider_contract_review.md`](../function_provider_contract_review.md)
+proposes concrete bounded guarantees, schema/API compatibility decisions and
+the exact candidate/publication handoff. The maintainer decision remains open;
+this document does not promote the API or distribute a shared adoption guide.
+Pre-stabilization inspection reproduced #92's registered tuple/list false
+conflict. Its runtime repair must receive fresh exact-candidate evidence.

@@ -142,3 +142,14 @@ profiler, release or stable API commitment is added.
 Review is linked with uibcdf/ackredit#84, uibcdf/molsyssuite#97 and
 uibcdf/moli#46. Public Ackredit 0.9.0 does not expose this factory; PyUnitWizard
 retains its stable portable-call fallback when the capability is absent.
+
+## Concrete stability/release handoff (2026-10-04)
+
+The independent central receiving review confirms the exact original pilot,
+including genuine released-provider fallback. The current proposed bounded
+contract and remaining release/maintainer decisions are in
+[`../function_provider_contract_review.md`](../function_provider_contract_review.md).
+Prepared credit's detached registered/portable representation distinction also
+informs the observer-specific repair #92; this factory's runtime is unchanged.
+The proposal keeps function entry and host-chosen completed credit separate,
+and does not promote the API, select a tag or change the public portable minimum.

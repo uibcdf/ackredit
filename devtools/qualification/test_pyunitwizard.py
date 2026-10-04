@@ -10,6 +10,7 @@ import os
 import platform
 import subprocess
 import sys
+from copy import deepcopy
 from pathlib import Path
 
 import pytest
@@ -199,6 +200,11 @@ def test_noop_and_failed_calls_distinguish_entry_from_completed_backend(installe
 
 def test_workflow_report_is_faithful_in_a_producer_free_reader(installed):
     ackredit, puw, _, output, _ = installed
+    # A host may have registered the same valid bibliography before observation.
+    # Tuple/list JSON equivalence must not become a false identity conflict (#92).
+    declared = deepcopy(puw.__ackredit__["items"][0])
+    declared["authors"] = tuple(declared["authors"])
+    ackredit.register_item(**declared)
     q = puw.quantity([1.0, 2.0], "meter", form="pint")
     with (
         ackredit.session("report receiving"),
@@ -211,6 +217,8 @@ def test_workflow_report_is_faithful_in_a_producer_free_reader(installed):
     assert value.value.tolist() == [1.0, 2.0] and str(value.units) == "m"
     payload = run.attribution.to_dict()
     assert len(payload["items"]) == 4
+    own = next(item for item in payload["items"] if item["id"] == declared["id"])
+    assert own["authors"] == list(declared["authors"])
     (output / "reported-pipeline.json").write_text(json.dumps(payload, indent=2) + "\n")
     _child(
         """
