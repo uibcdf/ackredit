@@ -68,6 +68,14 @@ calls to declared direct function exports of already imported modules. Its
 dependency-free declarations, citation roles, restoration and observation limits.
 It is development functionality; public Ackredit 0.9.0 does not include it.
 
+`prepare_credit(item_id, used_by, *, roles=(), context=None)` provisionally
+prepares a fixed contextual use of an already registered reference and returns
+an explicit credit callable. The host invokes it when scientific dispatch
+earns that reference; it creates no call scope or automatic observation.
+The same [provider guide](../user_guide/function_providers.md) documents its
+detachment, current-capture behavior and replacement diagnostics. Public 0.9.0
+does not expose it; its owning review is Ackredit #87.
+
 ```{eval-rst}
 .. automodule:: ackredit.core.decorators
    :members:

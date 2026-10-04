@@ -35,6 +35,19 @@ def _name(value, module, field):
     return value
 
 
+def _function_uses(function, module, export):
+    metadata = getattr(function, "__ackredit__", None)
+    if metadata is None:
+        return None
+    try:
+        metadata = _json_copy(metadata, "read function provider")
+    except ValueError as error:
+        _refuse(module, str(error))
+    if not isinstance(metadata, dict) or set(metadata) != {"uses"}:
+        _refuse(module, f"{export} metadata needs only uses")
+    return metadata["uses"]
+
+
 def _read(module):
     """Detach and validate every declaration before changing any module export."""
     if type(module) is not ModuleType:
@@ -76,27 +89,14 @@ def _read(module):
     for export, function in vars(module).copy().items():
         if not (inspect.isfunction(function) or inspect.isbuiltin(function)):
             continue
-        metadata = getattr(function, "__ackredit__", None)
-        if metadata is not None:
-            try:
-                metadata = _json_copy(metadata, "read function provider")
-            except ValueError as error:
-                _refuse(name, str(error))
-            if not isinstance(metadata, dict) or set(metadata) != {"uses"}:
-                _refuse(name, f"{export} metadata needs only uses")
-            if export in declarations and declarations[export] != metadata["uses"]:
+        uses = _function_uses(function, name, export)
+        if uses is not None:
+            if export in declarations and declarations[export] != uses:
                 _refuse(name, f"conflicting declarations for {export}")
-            declarations[export] = metadata["uses"]
+            declarations[export] = uses
     plans = []
     for export, uses in declarations.items():
         _name(export, name, "function export")
-        function = vars(module).get(export)
-        if not (inspect.isfunction(function) or inspect.isbuiltin(function)):
-            _refuse(name, f"{export} is not a direct function export")
-        if inspect.isgeneratorfunction(function) or inspect.isasyncgenfunction(
-            function
-        ):
-            _refuse(name, f"{export} yields; generator observation is unsupported")
         if not isinstance(uses, list) or not uses:
             _refuse(name, f"{export} needs a non-empty reference use list")
         normalized = []
@@ -110,6 +110,26 @@ def _read(module):
                 _refuse(name, f"{export} roles must be a list")
             roles = sorted({_name(role, name, "role") for role in use["roles"]})
             normalized.append((item_id, roles))
+        if export in vars(module):
+            function = vars(module)[export]
+        else:
+            # A selected ordinary module may expose PEP 562 lazy exports. Resolve
+            # only its explicit declarations, never discover names through dir().
+            try:
+                function = getattr(module, export)
+            except Exception as error:
+                _refuse(
+                    name, f"cannot resolve {export}: {type(error).__name__}: {error}"
+                )
+        if not (inspect.isfunction(function) or inspect.isbuiltin(function)):
+            _refuse(name, f"{export} is not a direct function export")
+        metadata_uses = _function_uses(function, name, export)
+        if metadata_uses is not None and metadata_uses != uses:
+            _refuse(name, f"conflicting declarations for {export}")
+        if inspect.isgeneratorfunction(function) or inspect.isasyncgenfunction(
+            function
+        ):
+            _refuse(name, f"{export} yields; generator observation is unsupported")
         plans.append((module, export, function, normalized, context, records))
     return plans, records
 

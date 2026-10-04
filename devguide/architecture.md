@@ -29,6 +29,12 @@ when the last lease exits. Pre-existing aliases, generators and native internal
 calls are excluded. The [provider guide](../docs/content/user_guide/function_providers.md)
 defines the provisional schema and failure boundaries; this is not suite policy.
 
+Provisional `prepare_credit` (#87) exposes preparation of one explicit fixed
+contextual use for hosts that credit a backend only after completed dispatch.
+It reuses the same private prepared-reference writer as the function observer,
+but creates no scientific call scope or proof of entry. Per-call registry
+comparison and all current session/capture/journal writes remain in place.
+
 A software reference and its description articles are separate bibliographic
 works. Contextual uses carry roles and the executed software/version relationship;
 a single article may describe multiple releases. Original metadata and context

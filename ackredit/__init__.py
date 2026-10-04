@@ -40,6 +40,7 @@ from .core.collector import (
     credit_bound,
     enable_persistence,
     get_used_items,
+    prepare_credit,
     track_item,
     track_target,
 )
@@ -90,6 +91,7 @@ __all__ = [
     "enrich_all",
     "load_plugins",
     "track_item",
+    "prepare_credit",
     "track_target",
     "credit_bound",
     "get_used_items",

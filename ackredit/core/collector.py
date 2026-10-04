@@ -3,7 +3,7 @@ from __future__ import annotations
 import threading
 from pathlib import Path
 from types import MappingProxyType
-from typing import Mapping
+from typing import Callable, Mapping
 
 from .._private.argdigest import arg_digest
 from .._private.smonitor.emitter import warn
@@ -14,7 +14,16 @@ from .._private.smonitor.warnings import (
     SessionSaveWarning,
 )
 from . import session
-from .attribution import _observe_item, _observe_prepared_item, _observe_target
+from .attribution import (
+    _context,
+    _invalid,
+    _json_copy,
+    _name,
+    _observe_item,
+    _observe_prepared_item,
+    _observe_target,
+    _roles,
+)
 from .session import current_session
 
 
@@ -350,6 +359,55 @@ def track_item(
         roles=roles,
         context=context,
     )
+
+
+def prepare_credit(
+    item_id: str,
+    used_by: str,
+    *,
+    roles: list[str] | tuple[str, ...] = (),
+    context: dict | None = None,
+) -> Callable[[], None]:
+    """Provisionally prepare an explicit fixed credit for repeated dispatch.
+
+    The reference must already be registered. Preparation validates and detaches
+    its bibliography, roles and context, but credits nothing. Invoke the returned
+    zero-argument callable after the host's scientific operation earns the credit.
+    Each invocation records into the current session and every active capture,
+    and refuses a replaced/deleted bibliography. It creates no call scope: the
+    host owns that scope and the interpretation of a completed operation.
+
+    This development API is provisional under Ackredit #87; public 0.9.0 does
+    not provide it. Mutating original inputs does not change a prepared credit.
+    """
+    import json
+
+    from .registry import Registry
+
+    operation = "prepare credit"
+    item_id = _name(item_id, operation)
+    used_by = _name(used_by, operation)
+    if item_id not in Registry.items:
+        _invalid(operation, f"reference {item_id!r} must be registered")
+    record = _json_copy(Registry.items[item_id], operation)
+    if not isinstance(record, dict) or record.get("id") != item_id:
+        _invalid(operation, "the record id differs from its prepared id")
+    roles = _roles(roles)
+    context = _context(context, operation)
+    key = json.dumps(
+        dict(item_id=item_id, used_by=used_by, roles=roles, context=context),
+        sort_keys=True,
+    )
+
+    def credit() -> None:
+        if Registry.items.get(item_id) != record:
+            _invalid(
+                "credit prepared reference",
+                f"reference {item_id!r} was replaced or removed",
+            )
+        _track_prepared_item(record, used_by, roles, context, key)
+
+    return credit
 
 
 def credit_bound(target: str) -> list[str]:

@@ -97,3 +97,29 @@ both packages into the target directory with their isolated build requirements;
 the consumer interpreter supplies its existing runtime dependency foundation.
 This recreates the minimal-builder precondition locally and prevents accidental
 reliance on the maintainer environment's build tools.
+
+## First real producer: PyUnitWizard (2026-10-04)
+
+Implementation and measurements are owned by uibcdf/pyunitwizard#94, linked to
+the existing actually executed backend pilot (#92). The lazy public facade
+revealed that requiring all declared exports in `vars(module)` refused a normal
+PEP 562 module even though the declaration names its public functions.
+
+Three test-first reproductions failed on the previous implementation. The
+observer now resolves only declared missing exports with `getattr` during
+explicit activation, validates function-level metadata after resolution, and
+diagnoses loader errors through E012 before installing wrappers or bibliography.
+Normal producer loader caching may occur during preflight; those side effects
+are owned by the loader and cannot be promised atomic rollback. Custom module
+subclasses remain refused. No import sweep or new protocol field is introduced.
+
+Guards cover requested-name precision, no declaration credit, restoration of
+the original resolved function, loader failure and conflicting lazy-function
+metadata. Real PyUnitWizard tests distinguish entry into a public function
+(including no-op/failed calls) from successful child backend dispatch: the
+former cites PyUnitWizard, while only completed dispatch earns backend credit.
+Cross-component protocol review remains open.
+
+The local expanded gate passes 1,635 tests without skips on Python 3.14.7;
+Ruff, report indexes and strict Sphinx (`-n -W --keep-going`) pass. The final
+installed and hosted source receipts are linked in the issue after publication.

@@ -248,7 +248,7 @@ The last theme, and the one that earns the number.
 
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
 stability commitment would make the commitment meaningless. The new `observe_calls`
-surface remains provisional pending provider and receiving review under #84 and
+surface, and `prepare_credit` under #87, remain provisional pending provider and receiving review under #84 and
 MolSysSuite #97; it must be promoted or removed before 1.0. Existing names have
 been decided once, on the evidence available now. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
@@ -275,6 +275,9 @@ measures portable capture separately from the historical plain tracking path.
       are exercised, with unsupported aliases/generators documented;
 - [x] before/after capture and observation timings are reproducible without
       mutable-identity caches, missing reused credit or hidden validation failures;
+- [x] the real PyUnitWizard producer pilots declared lazy exports, original
+      software/article roles and explicit prepared completed-dispatch credits
+      (#87), with a released-provider fallback;
 - [ ] real provider and receiving review resolves the provisional API, coordinated
       through MolSysSuite #97 before any shared adoption requirement.
 

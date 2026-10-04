@@ -95,6 +95,18 @@ Pass ordinary imported module objects; custom module subclasses, including
 lazy modules with special attribute handling, are refused in this first
 implementation rather than patched with unverified restoration semantics.
 
+An ordinary module may expose declared functions lazily through module
+`__getattr__` (PEP 562), as PyUnitWizard does. At explicit activation, Ackredit
+resolves only the export names in `functions`; it never calls `dir()` or sweeps
+undeclared exports. Function metadata on a resolved export must agree with its
+module declaration. A declaration that exists only on an unmaterialized
+function cannot be discovered; list that name in the module declaration.
+Resolution invokes the selected producer's loader and may populate its normal
+import cache. Ackredit installs no observation wrappers or registry entries
+until every selected declaration passes. If resolution fails, `ACKREDIT-E012`
+includes the producer's error; the producer's own loader side effects are not
+rolled back. Do not select untrusted producer modules.
+
 ## Cost and boundaries
 
 Inactive producers are the original functions: no producer-side Ackredit code
@@ -135,3 +147,41 @@ the same warning; Ackredit never overwrites that replacement to restore its own.
 `enable_import_hooks` and `auto_track_calls` keep their separate, coarse
 contracts. Combining them with this context can add package-level or static
 credits; use the function observer alone when testing call-level precision.
+
+## Prepare explicit credits for completed scientific dispatch
+
+Some hosts credit a backend only after its operation succeeds. That differs from
+observing function entry. The provisional `prepare_credit` factory (#87), also
+absent from public 0.9.0, prepares one fixed contextual use without observation
+wrappers or repeated declaration/JSON work:
+
+```python
+ackredit.register_item(
+    id="example:software:2.4.0", title="Example", type="software", version="2.4.0"
+)
+credit = ackredit.prepare_credit(
+    "example:software:2.4.0",
+    "host.convert",
+    roles=["executed_software"],
+    context={"software": "Example", "version": "2.4.0"},
+)
+with ackredit.capture("conversion") as result:
+    with ackredit.scope("host.convert"):
+        converted = backend_convert(values)  # scientific exceptions propagate
+        credit()  # only after the host's completion criterion is met
+```
+
+The reference must already be registered, and the caller must be a non-empty
+fixed name. Preparation validates and privately detaches the bibliography, roles
+and context and credits nothing. Each call writes to the **current** session and
+every active capture, including independent results reusing earlier references;
+it retains the existing persistence writer. The host owns the call scope and
+the decision to invoke the credit. No invocation means no credit.
+
+Original input mutations do not change a prepared use. Prepare another callable
+to adopt changed options or bibliography. Each invocation compares the registered
+record with its original snapshot; replacement/deletion raises `ACKREDIT-E010`
+before credit instead of silently substituting bibliography. An optional host
+integration should diagnose that attribution gap and preserve completed science.
+The callable alone neither imports nor computes with the backend. This bounded
+surface requires receiver review before stabilization.

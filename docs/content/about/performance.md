@@ -71,6 +71,37 @@ below remain their own historical measurement.
 python devtools/benchmark_portable.py --samples 15 --iterations 5000
 ```
 
+## Real PyUnitWizard dispatch (development pilot, 2026-10-04)
+
+PyUnitWizard #94 measures a warmed Pint conversion with backend attribution
+and the provisional public-function observer. Seven raw samples and source
+SHA-256 values are preserved in its
+[before receipt](https://github.com/uibcdf/pyunitwizard/blob/main/devtools/receipts/function_provider_94_before_2026-10-04.json)
+and [after receipt](https://github.com/uibcdf/pyunitwizard/blob/main/devtools/receipts/function_provider_94_2026-10-04.json).
+Linux/Python 3.14.7 medians, in microseconds per conversion:
+
+| Warmed operation | One value before / after | 100,000 values before / after |
+| --- | ---: | ---: |
+| Ordinary conversion, attribution disabled | 48.95 / 47.33 | 119.67 / 112.30 |
+| Backend references in a result capture | 272.34 / 96.75 | 338.81 / 165.85 |
+| Public function and backend references in a capture | 302.02 / 114.79 | 379.25 / 183.55 |
+
+The host prepares fixed backend credits once using provisional `prepare_credit`
+(#87), retaining per-use registry comparison and every current capture/session
+write. It keeps the released public tracking fallback when that capability is
+absent. Numerical results, original versions, software/article roles, pipeline
+parentage and bibliography-replacement diagnostics are guarded by the real
+receiver tests.
+
+Small captured conversions are about 64% cheaper in this local before/after
+measurement, or 62% with public-function observation included. Ordinary timings
+also drift; these are bounded total-time measurements, not universal speedups.
+Imports, initial registration/preparation and activation are excluded. Optimized
+backend capture still adds about 49 µs to the ordinary small conversion;
+combined function/backend capture adds about 67 µs. A heavy array does not add
+one credit per element. This development improvement is absent from public
+0.9.0 and does not qualify a client release.
+
 ## A real workflow (historical measurement)
 
 MolSysMT reading a protein from the PDB, converting it, querying it, selecting from it and

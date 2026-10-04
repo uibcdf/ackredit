@@ -20,6 +20,69 @@ from ackredit._private.smonitor.warnings import ProviderObservationWarning
 FIXTURE = Path(__file__).parent / "fixtures" / "citation_provider"
 
 
+def test_declared_lazy_exports_are_resolved_only_on_activation(
+    provider, clean_registry
+):
+    original = provider.normalize
+    del provider.normalize
+    requested = []
+
+    def resolve(name):
+        requested.append(name)
+        if name == "normalize":
+            provider.normalize = original
+            return original
+        raise AttributeError(name)
+
+    provider.__getattr__ = resolve
+    assert "normalize" not in vars(provider)
+    with ackredit.observe_calls(provider), ackredit.capture() as run:
+        assert requested == ["normalize"]
+        assert ackredit.get_used_items() == {}
+        assert provider.normalize([1, 3]) == [0.25, 0.75]
+    assert len(run.attribution.to_dict()["items"]) == 2
+    assert provider.normalize is original
+
+
+def test_lazy_resolution_failure_is_diagnosed_before_observation(
+    provider, clean_registry
+):
+    original = provider.normalize
+    provider.__ackredit__["functions"]["missing"] = deepcopy(
+        provider.__ackredit__["functions"]["normalize"]
+    )
+
+    def resolve(name):
+        raise RuntimeError("producer resolution failed")
+
+    provider.__getattr__ = resolve
+    with pytest.raises(ValueError) as error:
+        with ackredit.observe_calls(provider):
+            pass
+    assert error.value.code == "ACKREDIT-E012"
+    assert "producer resolution failed" in str(error.value)
+    assert provider.normalize is original
+    assert clean_registry.items == {}
+
+
+def test_conflicting_function_metadata_on_lazy_export_is_refused(
+    provider, clean_registry
+):
+    original = provider.normalize
+    original.__ackredit__ = {
+        "uses": [{"item_id": "example:article", "roles": ["other"]}]
+    }
+    del provider.normalize
+    provider.__getattr__ = lambda name: original
+    with pytest.raises(ValueError) as error:
+        with ackredit.observe_calls(provider):
+            pass
+    assert error.value.code == "ACKREDIT-E012"
+    assert "conflicting declarations" in str(error.value)
+    assert "normalize" not in vars(provider)
+    assert clean_registry.items == {}
+
+
 def test_prepared_provider_credits_use_the_existing_journal_writer(
     provider, clean_registry, tmp_path
 ):

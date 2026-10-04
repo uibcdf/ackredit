@@ -130,7 +130,10 @@ many land before 1.0.0 is an outcome rather than a plan.
 
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures
-and reduces portable capture overhead. MolSysSuite #97 owns cross-component
+and reduces portable capture overhead; #87 prepares fixed explicit contextual
+credits for completed dispatch. The first real function-provider pilot is
+PyUnitWizard #94, with lazy exports and before/after scientific conversion
+measurements. MolSysSuite #97 and MOLI #46 own cross-component
 review. These development capabilities are absent from public Ackredit 0.9.0
 and do not establish consumer adoption.
 
