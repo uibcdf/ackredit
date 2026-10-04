@@ -123,3 +123,29 @@ Cross-component protocol review remains open.
 The local expanded gate passes 1,635 tests without skips on Python 3.14.7;
 Ruff, report indexes and strict Sphinx (`-n -W --keep-going`) pass. The final
 installed and hosted source receipts are linked in the issue after publication.
+
+## Coupled installed receiving gate (2026-10-04)
+
+`devguide/receiving_validation.md` documents the new manual exact-source gate.
+One builder creates a candidate/real-producer wheel bundle and a separate
+source-built original 0.9.0 API baseline. The Linux/macOS arm64 × Python
+3.11–3.14 consumers verify archive and installed-resource hashes, run outside
+the repositories, and retain the actual portable pipeline and fresh-reader
+evidence. The final aggregation uses Pytest Receptor's supported artifact reader
+and requires eight distinct cells, five passed tests per cell and no skips,
+deselections or incomplete evidence. Missing Pint/unyt is a failure in this
+designated gate rather than an optional skip.
+
+The five receiving tests pass locally on Python 3.14.7 with normally installed
+Ackredit `d3fd892` and PyUnitWizard `33fec8a`. They cover numerical/unit parity,
+reference counts, unused backends, software/article roles, original versions,
+pipeline parentage, no-op/failed entries, optional-provider absence, a fresh
+producer-blocked reader and the genuine original 0.9.0 backend-credit fallback.
+The source-built 0.9.0 wheel is not the published Conda file. Archive tampering,
+editable imports, changed installed citation resources and partial-matrix
+evidence are refused by `tests/test_qualification_bundle.py`.
+
+Hosted execution is still pending at this pre-publication checkpoint; the issue
+will retain its exact-source run and receipts. This is receiving evidence, not
+API promotion or release certification. Review remains with MolSysSuite #97
+and MOLI #46; the canonical client guide is unchanged.

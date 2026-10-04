@@ -86,6 +86,18 @@ registered tuple. Changed/deleted bibliography still receives E010.
 The final local gate passes 1,636 tests without skips; Ruff and report indexes
 remain clean. This is a representation fix, not a protocol or release change.
 
+## Coupled receiving checkpoint (2026-10-04)
+
+The installed development gate in `devguide/receiving_validation.md` exercises
+prepared backend credit on the real PyUnitWizard source pin and normally
+installs the original Ackredit 0.9.0 API in a separate process to test the
+fallback without `prepare_credit`. Both routes retain references in independent
+reused captures. Five receiving tests pass locally on Python 3.14.7; the
+eight-cell hosted run remains pending at this pre-publication checkpoint and
+will be linked in the issue. Fixed archive/resource hashes and the aggregate
+zero-skip check prevent substituting editable/source smoke for installed evidence.
+The 0.9.0 baseline is source-built and does not replace its public Conda file.
+
 ## What was refuted
 
 Repeated session-ID deduplication cannot supply reused references to independent

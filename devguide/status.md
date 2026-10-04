@@ -137,6 +137,14 @@ measurements. MolSysSuite #97 and MOLI #46 own cross-component
 review. These development capabilities are absent from public Ackredit 0.9.0
 and do not establish consumer adoption.
 
+The manually dispatched [coupled installed receiving gate](receiving_validation.md)
+builds one wheel bundle and requires eight Linux/macOS arm64 × Python 3.11–3.14
+cells. Five real-producer receiving tests pass locally on 3.14.7; hosted evidence
+is pending at this pre-publication checkpoint and will be retained in #84/#87.
+The gate compares installed resources with the wheels and exercises actual
+software/article roles, reused captures, graph parentage, provider absence and
+the original 0.9.0 API fallback. It does not publish or promote the APIs.
+
 These are ideas, not missing core functionality or acceptance criteria for 1.0:
 
 - **Cloud aggregator:** web-based citation gathering; no implementation contract.

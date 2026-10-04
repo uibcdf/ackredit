@@ -1,0 +1,82 @@
+# Installed function-provider receiving validation
+
+Ackredit #84/#87 and PyUnitWizard #94 own this development qualification. The
+workflow `function_provider_receiving.yaml` is manually dispatched for a fixed
+Ackredit revision. PyUnitWizard is pinned to
+`33fec8a627505a4f5426babe87e8e85438105041`; the released API baseline is built
+from Ackredit's original 0.9.0 producer,
+`598abf993a2409c025de5e912acd7eb45a257ebd`.
+
+## What is qualified
+
+One builder produces three pure Python wheels once, using their declared build
+requirements in normal isolation. It refuses dirty sources. `bundle.json`
+records the source commits, distribution versions, archive SHA-256 and every
+shipped package resource's SHA-256. All eight Linux/macOS arm64 × Python
+3.11–3.14 cells download the same immutable GitHub artifact. Consumers verify
+the bundle before installation and compare installed files with its contents.
+
+The designated scientific gate requires real Pint and unyt. Missing engines,
+editable/shadowed imports, incorrect interpreter/architecture or changed bytes
+fail the gate; there are no optional-engine skips. Ordinary Ackredit tests retain
+their own dependencies and selection.
+
+The real pipeline captures reused conversions and a Pint-to-unyt translation.
+It checks explicit units and numerical parity, exact reference counts, unused
+backend exclusion, software/article roles, original versions, software and
+article DOIs, and public-function/backend parentage. No-op and failed calls
+retain public-function entry evidence without earning completed-backend credit.
+A fresh reader blocks producer/engine imports and reconstructs the saved
+bibliography and graph without recording new uses. Another fresh process
+blocks Ackredit and proves the optional provider does not affect the calculation.
+
+The original 0.9.0 wheel is normally installed into a separate target and tested
+in a fresh process. This exercises PyUnitWizard's real released-API fallback,
+including reused credits, rather than emulating capability absence on the new
+provider. This source-built baseline is **not** the published Conda artifact and
+does not requalify or replace it.
+
+## Evidence and interpretation
+
+The build artifact retains the wheels and manifest. Each cell retains interpreter,
+architecture, import origins, source/wheel identities, saved pipeline, fresh-reader
+and provider-absence evidence, released fallback, JUnit and Pytest Receptor events.
+Inspect the remote execution with `gh run-receptor inspect RUN_ID --receptor=llm`.
+All eight receiving jobs must pass; a successful subset is incomplete evidence.
+The final job uses Pytest Receptor's supported `read_artifact` API to require
+eight distinct platform/minor receipts, matching bundle identities and five
+passed tests per cell, with no skips, deselections, incomplete or failed tests.
+It retains a combined `function-provider-matrix` artifact only after those
+checks succeed. JUnit and per-cell evidence remain available independently.
+
+This gate qualifies development source candidates. It does not publish a package,
+promote the provisional APIs, certify a client release or replace the full Ackredit
+test suite. MolSysSuite #97 and MOLI #46 retain their review ownership. A future
+Conda candidate needs its own exact-file installed and publication gates.
+
+## Local reproduction
+
+Use clean source worktrees for the three revisions and a separate output directory:
+
+```bash
+python devtools/qualification_bundle.py build \
+  --candidate /path/to/clean/ackredit \
+  --producer /path/to/clean/pyunitwizard \
+  --released /path/to/original/ackredit-0.9.0 \
+  --output /tmp/function-provider-bundle
+```
+
+In an isolated runtime environment with Ackredit's core dependencies, NumPy,
+Pint, unyt, pytest and Pytest Receptor 1.2.1, verify the bundle, normally install
+its candidate and producer wheels with `pip install --no-deps --no-index`, and
+run `pip check`. Keep the routine `molsyssuite@uibcdf_3.14` editable installations
+intact; a separate environment is necessary to prove normal installation.
+
+```bash
+cd /tmp
+EXPECTED_PYTHON=3.14 \
+ACKREDIT_QUALIFICATION_BUNDLE=/tmp/function-provider-bundle \
+ACKREDIT_QUALIFICATION_OUTPUT=/tmp/function-provider-evidence \
+python -m pytest --receptor=llm \
+  /path/to/ackredit/devtools/qualification/test_pyunitwizard.py
+```
