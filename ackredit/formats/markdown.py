@@ -18,39 +18,34 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         return "\n".join(lines)
 
     for item_id, used_by in used.items():
-        item = items.get(item_id)
-        if not item:
-            # Fallback if item is not registered
-            item = {"title": item_id, "id": item_id}
-
-        title = escape(item.get("title", item_id))
-        year = item.get("year")
-        authors = item.get("authors", [])
-        note = item.get("note")
-
-        # A DOI builds its own https link; a url is taken as given, so it is the
-        # one that has to prove it can be followed safely.
-        doi = item.get("doi")
-        link = f"https://doi.org/{doi}" if doi else safe_link(item.get("url"))
-
-        display_title = f"**{title}**"
-        if link:
-            display_title = f"[{display_title}]({destination(link)})"
-
-        line = f"- {display_title}"
-        if year:
-            line += f" ({escape(year)})"
-        lines.append(line)
-
-        if authors:
-            lines.append(f"  - Authors: {author_list(authors, escape)}")
-
-        if used_by:
-            lines.append(f"  - Used by: {', '.join(escape(name) for name in used_by)}")
-
-        if note:
-            lines.append(f"  - Note: {escape(note)}")
-
+        lines.extend(_reference_lines(item_id, items.get(item_id), used_by))
         lines.append("")
 
     return "\n".join(lines).strip() + "\n"
+
+
+def _reference_lines(item_id, item, used_by):
+    """Shared bibliography presentation; every external text/link is escaped."""
+    item = item or {"title": item_id, "id": item_id}
+    title = escape(item.get("title", item_id))
+    year = item.get("year")
+    authors = item.get("authors", [])
+    note = item.get("note")
+
+    doi = item.get("doi")
+    link = f"https://doi.org/{doi}" if doi else safe_link(item.get("url"))
+    display_title = f"**{title}**"
+    if link:
+        display_title = f"[{display_title}]({destination(link)})"
+    line = f"- {display_title}"
+    if year:
+        line += f" ({escape(year)})"
+    lines = [line]
+
+    if authors:
+        lines.append(f"  - Authors: {author_list(authors, escape)}")
+    if used_by:
+        lines.append(f"  - Used by: {', '.join(escape(name) for name in used_by)}")
+    if note:
+        lines.append(f"  - Note: {escape(note)}")
+    return lines

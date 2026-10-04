@@ -31,11 +31,40 @@ Use `report(format=...)` to get a string in any of these formats:
 *   `provenance` (Hierarchical tree showing *why* each item was cited)
 *   `latex` (A complete, compilable LaTeX document)
 *   `text` (Plain text, for a log or a terminal)
+*   `workflow` (Bibliography, contextual uses and graph together; development source)
 
 This list is the built-in list. `ackredit.available_formats()` returns it at runtime,
 together with any format a plugin added, and asking for a name that is not there raises
 `ACKREDIT-E004` rather than quietly returning a different report. A test keeps this page
 and that function in agreement.
+
+## Contextual workflow reports (development source)
+
+The explicit `workflow` format is available in development source after public
+0.9.0. It combines numbered references, recorded roles, original software
+versions, use/capture context and the graph in one offline Markdown report:
+
+```python
+saved = ackredit.Attribution.from_json(payload_json)
+print(saved.report(format="workflow"))
+```
+
+This reader does not import the producer, consult its current bibliography or
+record new credit. A software description article keeps its own publication
+metadata while each use retains the software version it described. Graph
+citations use the same reference numbers as the bibliography and use table.
+Unknown metadata, roles and unscoped uses are shown explicitly.
+
+The report counts distinct recorded uses; it does not infer invocation counts,
+chronology, scientific success or complete instrumentation. An observed public
+function earns entry evidence; a completed backend credit has the producer's
+more specific completion boundary. Shared graph targets are expanded once and
+later incoming edges remain visible as `shared; shown above`; ancestor cycles
+remain `above`. Deep graphs do not consume Python's recursion stack.
+
+`workflow` now reserves a built-in name. Existing third-party plugins using
+that name must choose another. Existing bibliography formats remain available.
+Selecting both `markdown` and `workflow` in `dump` writes separate `.md` files.
 
 ## Adding your own format
 

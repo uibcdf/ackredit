@@ -6,6 +6,7 @@ import logging
 import re
 import shutil
 import subprocess
+from copy import deepcopy
 from pathlib import Path
 from types import MappingProxyType
 from typing import Any, Callable, Mapping
@@ -28,7 +29,16 @@ from .._private.smonitor.warnings import (
     PdfCompilationWarning,
     PdfToolWarning,
 )
-from ..formats import bibtex, csl_json, jsonfmt, latex, markdown, provenance, text
+from ..formats import (
+    bibtex,
+    csl_json,
+    jsonfmt,
+    latex,
+    markdown,
+    provenance,
+    text,
+    workflow,
+)
 from .collector import get_used_items
 from .registry import Registry
 
@@ -46,7 +56,9 @@ _RENDERERS = {
     "csl-json": (csl_json.render, "csl.json"),
     "provenance": (provenance.render, "txt"),
     "latex": (latex.render, "tex"),
+    "workflow": (workflow.render, "md"),
 }
+_BUILTIN_NAMES = frozenset(_RENDERERS)
 
 _ALIASES = {"csl": "csl-json"}
 
@@ -69,10 +81,12 @@ def _read_only(items: dict) -> Mapping:
     registry itself, so a renderer could empty it — and since formats became
     extensible, that renderer may come from anywhere. Both levels are wrapped,
     because a proxy over the mapping alone still lets an item be rewritten
-    through it.
+    through it. Detaching first also protects nested lists and dictionaries,
+    retaining their ordinary renderer-facing types.
     """
+    detached = deepcopy(items)
     return MappingProxyType(
-        {item_id: MappingProxyType(item) for item_id, item in items.items()}
+        {item_id: MappingProxyType(item) for item_id, item in detached.items()}
     )
 
 
@@ -94,9 +108,10 @@ def register_format(name: str, renderer: Callable, extension: str) -> None:
 
     - ``used`` maps an item id to the names that credited it, in the order they
       appeared. It is a copy: writing to it changes nothing.
-    - ``items`` is the registry, an item id to its fields. It is **read only**,
-      at both levels, because a renderer may come from anywhere and the
-      declarations belong to every later report as well.
+    - ``items`` is a detached view of the registry, an item id to its fields.
+      The mapping and each item's fields are **read only**. Nested lists and
+      dictionaries retain their types but are independently owned copies;
+      changing them cannot affect declarations or later reports.
     - An id in ``used`` need not be in ``items``. A host may credit an id it
       never declared, and every built-in renderer reports it with what is
       known — the id as its own title.
@@ -269,7 +284,24 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     canonical = _resolve_format(format)
     render, _ = _RENDERERS[canonical]
     used = get_used_items()
-    items = _read_only(Registry.items)
+    if canonical == "workflow":
+        return render(used, Registry.items)
+    if canonical in _BUILTIN_NAMES:
+        selected = set(used)
+        if canonical == "provenance":
+            from .collector import get_usage_tree
+
+            for node in get_usage_tree().values():
+                selected.update(node["items"])
+        records = {
+            item_id: Registry.items[item_id]
+            for item_id in selected
+            if item_id in Registry.items
+        }
+    else:
+        # Plugins retain their existing complete-registry input contract.
+        records = Registry.items
+    items = _read_only(records)
 
     # Which keywords a format accepts is declared as a domain, in
     # `ackredit/_private/argdigest/domain/format_options.py`, and refused by
@@ -282,7 +314,7 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     return render(used, items, **kwargs)
 
 
-def _render_records(format, used, items, tree, options):
+def _render_records(format, used, items, tree, options, *, attribution=None):
     """Render detached records without replacing or crediting the reader session."""
     canonical = _resolve_format(format)
     renderer, _ = _RENDERERS[canonical]
@@ -296,6 +328,8 @@ def _render_records(format, used, items, tree, options):
         ) from error
     if canonical == "provenance":
         return provenance.render_tree(tree, _read_only(items))
+    if canonical == "workflow":
+        return workflow.render_payload(attribution)
     return renderer(dict(used), _read_only(items), **options)
 
 

@@ -214,6 +214,8 @@ class Attribution:
 
         Bibliographic reports describe the cited works; :meth:`to_dict` retains
         the separate contextual roles. A provenance report uses the saved graph.
+        The workflow format combines original bibliography, contextual uses and
+        that graph without claiming scientific success or invocation counts.
         """
         from .report import _render_records
 
@@ -225,7 +227,12 @@ class Attribution:
                 used[use["item_id"]].append(caller)
         items = {item["id"]: deepcopy(item) for item in self._payload["items"]}
         return _render_records(
-            format, used, items, self._payload["usage_tree"], options
+            format,
+            used,
+            items,
+            self._payload["usage_tree"],
+            options,
+            attribution=self._payload,
         )
 
 

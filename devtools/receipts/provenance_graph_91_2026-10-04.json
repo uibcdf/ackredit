@@ -1,0 +1,111 @@
+{
+  "schema": "ackredit.provenance-benchmark@1",
+  "python": "3.14.7",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "ackredit": "0.9.0+25.gfc00a6c.dirty",
+  "baseline_source": "136b5d6fb2751659dcfd5cacd68b30e82157c881",
+  "baseline_provenance_sha256": "a33c238b7d8c0a65a3c7864635a041b3098341ff579a24824f17fb74ff4343e8",
+  "provenance_sha256": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+  "benchmark_sha256": "6e100f0b861273d674728c1be3d16fec41ea734a7acf681771c510e2aff2baa8",
+  "samples": 15,
+  "iterations": 50,
+  "scope": "Synthetic graph rendering only; excludes tracking, capture, imports and report setup. Shared targets are expanded once after the fix; every edge remains drawn.",
+  "cases": {
+    "ordinary_tree": {
+      "nodes": 20,
+      "edges": 19,
+      "before": {
+        "unit": "microseconds per render",
+        "samples": [
+          64.15124,
+          54.619879999999995,
+          59.42226,
+          122.27808,
+          55.7175,
+          50.60384,
+          64.15436,
+          48.81288,
+          49.57198,
+          61.78904,
+          55.9839,
+          48.004059999999996,
+          58.672419999999995,
+          50.359199999999994,
+          52.077
+        ],
+        "median": 55.7175,
+        "output_lines": 22
+      },
+      "after": {
+        "unit": "microseconds per render",
+        "samples": [
+          44.208580000000005,
+          41.958760000000005,
+          44.29508,
+          40.63944,
+          40.10836,
+          40.02844,
+          40.08214,
+          40.1541,
+          39.93636,
+          40.60968,
+          42.149800000000006,
+          44.955239999999996,
+          41.34614,
+          40.165279999999996,
+          40.1698
+        ],
+        "median": 40.60968,
+        "output_lines": 22
+      }
+    },
+    "shared_graph": {
+      "nodes": 20,
+      "edges": 36,
+      "before": {
+        "unit": "microseconds per render",
+        "samples": [
+          4731.13478,
+          4728.280519999999,
+          4439.50132,
+          4775.97764,
+          4580.35324,
+          4452.831679999999,
+          4701.3978,
+          4362.80198,
+          4404.32338,
+          4670.3246,
+          4339.04368,
+          4624.4257,
+          4995.55004,
+          4923.56626,
+          4765.22148
+        ],
+        "median": 4670.3246,
+        "output_lines": 2048
+      },
+      "after": {
+        "unit": "microseconds per render",
+        "samples": [
+          51.87202,
+          51.248160000000006,
+          49.54994,
+          51.01928,
+          52.137080000000005,
+          53.67244,
+          60.891580000000005,
+          57.75254,
+          48.96424,
+          55.55576,
+          58.27706,
+          57.430879999999995,
+          48.89728,
+          51.11438,
+          63.28478
+        ],
+        "median": 52.137080000000005,
+        "output_lines": 40
+      }
+    }
+  }
+}

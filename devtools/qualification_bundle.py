@@ -153,7 +153,7 @@ def summarize(directory: Path, bundle: Path) -> dict:
         assert final["complete"] and final["outcome"] == "PASS", final
         assert final["exitstatus"] == 0, final
         counts = final["counts"]
-        assert counts["collected"] == counts["executed"] == counts["passed"] == 5, (
+        assert counts["collected"] == counts["executed"] == counts["passed"] == 6, (
             counts
         )
         assert not any(
@@ -171,6 +171,9 @@ def summarize(directory: Path, bundle: Path) -> dict:
         for filename in (
             "pipeline.json",
             "reader.json",
+            "reported-pipeline.json",
+            "workflow-report.md",
+            "workflow-reader.json",
             "absence.json",
             "released-fallback.json",
             "tests.xml",

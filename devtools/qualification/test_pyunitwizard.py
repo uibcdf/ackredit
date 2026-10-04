@@ -197,6 +197,56 @@ def test_noop_and_failed_calls_distinguish_entry_from_completed_backend(installe
         assert data["uses"][0]["roles"] == ["executed_software"]
 
 
+def test_workflow_report_is_faithful_in_a_producer_free_reader(installed):
+    ackredit, puw, _, output, _ = installed
+    q = puw.quantity([1.0, 2.0], "meter", form="pint")
+    with (
+        ackredit.session("report receiving"),
+        ackredit.scope("report.pipeline"),
+        ackredit.observe_calls(puw),
+        puw.attribution(),
+        ackredit.capture("reported result", context={"purpose": "receiving"}) as run,
+    ):
+        value = puw.convert(q, to_form="unyt")
+    assert value.value.tolist() == [1.0, 2.0] and str(value.units) == "m"
+    payload = run.attribution.to_dict()
+    assert len(payload["items"]) == 4
+    (output / "reported-pipeline.json").write_text(json.dumps(payload, indent=2) + "\n")
+    _child(
+        """
+import importlib.abc, json, pathlib, socket, sys
+class NoProducer(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname.split('.')[0] in {'pyunitwizard', 'pint', 'unyt'}:
+            raise AssertionError('report reader imported producer')
+sys.meta_path.insert(0, NoProducer())
+socket.create_connection = lambda *a, **kw: (_ for _ in ()).throw(AssertionError('network'))
+import ackredit
+from ackredit.formats._markdown import escape
+output = pathlib.Path(sys.argv[1])
+payload = json.loads((output / 'reported-pipeline.json').read_text())
+saved = ackredit.Attribution.from_dict(payload)
+rendered = saved.report(format='workflow')
+assert 'References: 4' in rendered and 'call counts' in rendered
+assert '10.21105/joss.00809' in rendered and '10.5281/zenodo.8092688' in rendered
+assert 'report.pipeline' in rendered and 'pyunitwizard.convert' in rendered
+assert 'pyunitwizard.forms.pint.quantity_to_unyt' in rendered
+for use in payload['uses']:
+    assert escape(use['context']['version']) in rendered
+    assert all(escape(role) in rendered for role in use['roles'])
+for number, item in enumerate(payload['items'], 1):
+    assert f'Reference {number}: ' in rendered
+assert saved.to_dict() == payload and ackredit.get_used_items() == {}
+assert not {'pyunitwizard', 'pint', 'unyt'} & sys.modules.keys()
+(output / 'workflow-report.md').write_text(rendered)
+(output / 'workflow-reader.json').write_text(json.dumps({
+    'producer_imports': 0, 'new_credits': 0, 'payload_equality': True,
+    'references': len(payload['items']), 'format': 'workflow'}))
+""",
+        output,
+    )
+
+
 def test_absent_optional_provider_preserves_completed_science(installed):
     _, _, _, output, _ = installed
     _child(

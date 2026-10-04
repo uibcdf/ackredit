@@ -80,9 +80,9 @@ def complete_matrix(candidate, monkeypatch):
 
     directory, manifest = candidate
     counts = {
-        "collected": 5,
-        "executed": 5,
-        "passed": 5,
+        "collected": 6,
+        "executed": 6,
+        "passed": 6,
         "failed": 0,
         "skipped": 0,
         "xfailed": 0,
@@ -113,6 +113,9 @@ def complete_matrix(candidate, monkeypatch):
             for filename in (
                 "pipeline.json",
                 "reader.json",
+                "reported-pipeline.json",
+                "workflow-report.md",
+                "workflow-reader.json",
                 "absence.json",
                 "released-fallback.json",
                 "tests.xml",

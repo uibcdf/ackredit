@@ -44,10 +44,17 @@ and provider-absence evidence, released fallback, JUnit and Pytest Receptor even
 Inspect the remote execution with `gh run-receptor inspect RUN_ID --receptor=llm`.
 All eight receiving jobs must pass; a successful subset is incomplete evidence.
 The final job uses Pytest Receptor's supported `read_artifact` API to require
-eight distinct platform/minor receipts, matching bundle identities and five
+eight distinct platform/minor receipts, matching bundle identities and six
 passed tests per cell, with no skips, deselections, incomplete or failed tests.
 It retains a combined `function-provider-matrix` artifact only after those
 checks succeed. JUnit and per-cell evidence remain available independently.
+
+The sixth test, added under Ackredit #89, captures a separate real translation
+and renders `workflow` in a fresh producer/engine-blocked, offline reader.
+It checks numbered references, original versions, roles, public/backend graph,
+unchanged payload and zero new credits. Each cell retains the payload,
+`workflow-report.md` and `workflow-reader.json`. Earlier dated checkpoints below
+had five tests per cell; they are not evidence for this later format.
 
 This gate qualifies development source candidates. It does not publish a package,
 promote the provisional APIs, certify a client release or replace the full Ackredit

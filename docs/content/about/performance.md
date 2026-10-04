@@ -102,6 +102,29 @@ combined function/backend capture adds about 67 µs. A heavy array does not add
 one credit per element. This development improvement is absent from public
 0.9.0 and does not qualify a client release.
 
+## Requested provenance reports (2026-10-04)
+
+Ackredit #91 removes repeated expansion of shared graph descendants and
+recursive traversal. `devtools/benchmark_provenance.py` compares the unchanged
+renderer at `136b5d6` with the development repair, using 15 samples of 50
+warmed renders per case on Linux/Python 3.14.7. It retains individual samples,
+source hashes and scope in
+[the raw receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provenance_graph_91_2026-10-04.json).
+
+| Graph (20 nodes) | Median before / after, µs | Output lines before / after |
+| --- | ---: | ---: |
+| Ordinary chain, 19 edges | 55.72 / 40.61 | 22 / 22 |
+| Shared branches, 36 edges | 4,670.32 / 52.14 | 2,048 / 40 |
+
+Each target now expands once, while every incoming edge remains visible;
+references to an already shown shared node and ancestor cycles have different
+markers. Valid deep graphs no longer use Python recursion. Structural visits
+are bounded by stored nodes and edges; sorting and output indentation still
+depend on graph shape and text size. These synthetic report-only timings
+exclude import, graph construction and capture. They do not measure a faster
+scientific calculation or tracking path, and the repair is absent from public
+0.9.0.
+
 ## A real workflow (historical measurement)
 
 MolSysMT reading a protein from the PDB, converting it, querying it, selecting from it and

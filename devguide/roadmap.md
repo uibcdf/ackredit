@@ -291,6 +291,22 @@ measures portable capture separately from the historical plain tracking path.
 
 This development does not rebuild public 0.9.0 or certify a consumer release.
 
+### Theme H — Faithful, compact workflow reports
+
+- [x] explicit development `workflow` format joins original bibliography,
+      numbered references, contextual roles/versions and the saved graph
+      without producer imports or invented invocation/success claims (#89);
+- [x] detached nested plugin inputs preserve registered bibliography even
+      after renderer mutations or failures (#90);
+- [x] shared graph targets expand once with all incoming links retained;
+      deep graphs avoid recursive traversal, backed by raw report-only
+      before/after samples and unchanged ordinary tree output (#91);
+- [ ] the contextual report passes the same exact installed real-producer
+      bundle across all eight supported receiving cells.
+
+These changes affect requested reports, not the calculation's tracking path.
+They do not promote #84/#87 or change the portable schema or public 0.9.0.
+
 ---
 
 ## Not on this roadmap
