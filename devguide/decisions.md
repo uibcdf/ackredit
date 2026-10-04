@@ -16,6 +16,10 @@
     eight-cell installed qualification under #80. The original decision above
     describes its historical checkpoint. Central admission remains separate;
     see [current status](status.md) and [roadmap E](roadmap.md#theme-e--python-314--component-delivery-complete).
+
+    **Admission update on 2026-10-04:** central `policy-v1.5.6` now records
+    Ackredit as `admitted`, adopted by `8c743b3` with its verified four-minor
+    badge. MolSysSuite #51 remains open for the other component transitions.
 3.  **MolSysSuite membership:** Ackredit adopts the suite common baseline — Ruff, pytest,
     the supported Python range, the synchronized `MOLSYSSUITE_GUIDE.md` and the issue-backed
     reporting lifecycle. Admission and registration in the central `suite.toml` are tracked

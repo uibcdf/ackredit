@@ -215,9 +215,10 @@ not bypass Requires-Python or tolerate failures.
 - [x] required range, maintained environments, recipe and full CI aligned;
 - [x] same-file Linux/macOS-arm64 × Python 3.11–3.14 installed qualification;
 - [x] public artifact and normal public Python 3.14 dependency closure;
-- [ ] central admission review recorded in `suite.toml`, owned by
-      `uibcdf/molsyssuite#51`. Component delivery does not change that inventory
-      or authorize a support badge by itself.
+- [x] central admission recorded as `admitted` in immutable `policy-v1.5.6`;
+      Ackredit adopted that caller and its verified four-minor badge in
+      `8c743b3`. MolSysSuite #51 remains open for other members. Component
+      delivery and central admission retain separate evidence.
 
 ### Theme F — The stability commitment itself
 
@@ -268,11 +269,11 @@ inspection: untaken calls earn no references, while executed functions can earn
 both software and description articles with original producer versions. #85
 measures portable capture separately from the historical plain tracking path.
 
-- [ ] normally installed provider works without Ackredit and produces faithful
+- [x] normally installed test provider works without Ackredit and produces faithful
       portable attribution when observation is explicitly enabled;
-- [ ] nested captures, failed calls, asynchronous contexts and export restoration
+- [x] nested captures, failed calls, asynchronous contexts and export restoration
       are exercised, with unsupported aliases/generators documented;
-- [ ] before/after capture and observation timings are reproducible without
+- [x] before/after capture and observation timings are reproducible without
       mutable-identity caches, missing reused credit or hidden validation failures;
 - [ ] real provider and receiving review resolves the provisional API, coordinated
       through MolSysSuite #97 before any shared adoption requirement.

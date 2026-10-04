@@ -70,8 +70,10 @@ Documentation corrections and runtime defects retain separate evidence there.
   weekly/manual matrix covers both platforms on every minor. Skipped-push
   detection and full recovery are guarded by `tests/test_ci_backlog.py` and
   recorded under #74. Windows has no qualification claim here. Component
-  delivery under #80 does not itself update central admission or the README's
-  admitted-support badge; that review remains owned by MolSysSuite #51.
+  delivery under #80 is separate from central admission: immutable
+  `policy-v1.5.6` now records Ackredit as `admitted`; adoption commit `8c743b3`
+  updates the caller and verified four-minor README badge. MolSysSuite #51
+  remains open for other components.
 - **Sharing one session across processes needs a local filesystem.** The session is an
   append-only journal, and POSIX makes an `O_APPEND` write below `PIPE_BUF` atomic, so
   several processes may write one journal without losing events — verified with four and

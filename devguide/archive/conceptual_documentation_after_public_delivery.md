@@ -101,3 +101,13 @@ consumer guide was overwritten and no scientific sibling implementation was
 edited. Source publication, guide distribution, runtime adoption and public
 consumer releases remain separate outcomes. Ackredit-local documentation is
 resolved; owner-controlled distribution remains tracked centrally.
+
+## Admission evidence update (2026-10-04)
+
+After this closure, Liliana published Ackredit adoption `8c743b3`, updating
+the caller to immutable `policy-v1.5.6` and the verified four-minor badge.
+That frozen central registry records Ackredit's Python transition as
+`admitted`. Current status, roadmap and the dated decision update now reflect
+this owner-controlled admission. The earlier pending-admission statements
+describe their observed checkpoint; MolSysSuite #51 remains open for other
+members and guide distribution #96 remains separately owned.
