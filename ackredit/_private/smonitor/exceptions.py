@@ -74,6 +74,10 @@ class AttributionConflictError(AckreditError, ValueError):
     catalog_key = "AttributionConflictError"
 
 
+class ProviderDeclarationError(AckreditError, ValueError):
+    catalog_key = "ProviderDeclarationError"
+
+
 class MissingDependencyError(AckreditError, ImportError):
     """Also an ImportError, which is what the optional-dependency pattern expects."""
 
@@ -88,5 +92,6 @@ __all__ = [
     "InvalidFormatError",
     "ItemIdMissingError",
     "MissingDependencyError",
+    "ProviderDeclarationError",
     "UnknownFormatError",
 ]

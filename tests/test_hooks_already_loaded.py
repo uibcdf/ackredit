@@ -48,14 +48,14 @@ def test_an_injection_on_a_module_ackredit_already_loaded_is_credited():
         import json, sys
         import ackredit
 
-        assert "numpy" in sys.modules, "the case needs numpy loaded before the hook"
-        ackredit.register_item(id="paper:numpy", type="article", title="NumPy")
-        ackredit.add_injection("numpy", ["paper:numpy"])
+        assert "smonitor" in sys.modules, "the case needs a core dependency loaded before the hook"
+        ackredit.register_item(id="paper:smonitor", type="software", title="SMonitor")
+        ackredit.add_injection("smonitor", ["paper:smonitor"])
         ackredit.enable_import_hooks()
-        import numpy
+        import smonitor
         print(json.dumps(sorted(ackredit.get_used_items())))
     """)
-    assert run["out"] == ["paper:numpy"]
+    assert run["out"] == ["paper:smonitor"]
 
 
 def test_an_injection_declared_after_the_hook_is_on_is_credited():
@@ -131,6 +131,7 @@ def test_discovery_credits_nothing_that_was_already_loaded():
     report, and in a notebook the 32 packages an empty kernel loads."""
     run = in_a_fresh_process("""
         import json, sys
+        import numpy  # explicitly preloaded by the host, independent of ArgDigest
         import ackredit
 
         assert {"numpy", "smonitor", "argdigest"} <= set(sys.modules)
@@ -225,7 +226,9 @@ def test_no_page_shows_discovery_crediting_a_package_ackredit_loads_itself():
     loads some packages itself. A page showing `enable_import_hooks()` and then
     `import numpy` as discovery promises what cannot happen."""
     footprint = _footprint()
-    assert "numpy" in footprint or "yaml" in footprint, "the footprint probe is broken"
+    assert {"ackredit", "smonitor", "argdigest", "depdigest"} <= footprint, (
+        "the footprint probe is broken"
+    )
 
     promised = []
     for path in _documents():

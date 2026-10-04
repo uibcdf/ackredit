@@ -126,6 +126,12 @@ many land before 1.0.0 is an outcome rather than a plan.
 
 ## Future strategic concepts
 
+Active core improvements are tracked separately: #84 implements provisional
+dependency-free function providers and actual-call observation; #85 measures
+and reduces portable capture overhead. MolSysSuite #97 owns cross-component
+review. These development capabilities are absent from public Ackredit 0.9.0
+and do not establish consumer adoption.
+
 These are ideas, not missing core functionality or acceptance criteria for 1.0:
 
 - **Cloud aggregator:** web-based citation gathering; no implementation contract.

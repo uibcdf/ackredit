@@ -76,11 +76,19 @@ class _Builder:
             raise AttributionConflictError(extra={"item_id": record["id"]})
 
     def item(
-        self, record: dict, caller: str | None, roles: list[str], context: dict
+        self,
+        record: dict,
+        caller: str | None,
+        roles: list[str],
+        context: dict,
+        *,
+        key: str | None = None,
     ) -> None:
-        self.records.setdefault(record["id"], deepcopy(record))
+        if record["id"] not in self.records:
+            self.records[record["id"]] = deepcopy(record)
         use = dict(item_id=record["id"], used_by=caller, roles=roles, context=context)
-        key = json.dumps(use, sort_keys=True)
+        if key is None:
+            key = json.dumps(use, sort_keys=True)
         if key not in self.seen:
             self.seen.add(key)
             self.uses.append(deepcopy(use))
@@ -290,17 +298,39 @@ def _observe_item(
     context = _context(context, "track reference context")
     if caller is not None:
         _name(caller, "track reference caller")
+    _observe_prepared_item(state, record, caller, roles, context, active=active)
+
+
+def _observe_prepared_item(
+    state, record, caller, roles, context, *, active=None, key=None
+):
+    """Write a detached, validated observation under the caller's session lock.
+
+    Only internal provider declarations can supply a precomputed key: they are
+    normalized and detached at activation, never memoized from mutable inputs.
+    Public tracking always normalizes its record/context before coming here.
+    """
+    if active is None:
+        active = [run for run in _captures.get() if run._active and run._state is state]
     if state._attribution_builder is None:
         state._attribution_builder = _Builder()
     state._attribution_builder.check_record(record)
     for run in active:
         with run._lock:
             run._builder.check_record(record)
-    state._attribution_builder.item(record, caller, roles, context)
+    # The normalized observation is identical for the workflow and all captures.
+    # Reuse its key only for this call; mutable declarations are still validated
+    # and compared on every observation, including repeated session credits.
+    if key is None:
+        key = json.dumps(
+            dict(item_id=record["id"], used_by=caller, roles=roles, context=context),
+            sort_keys=True,
+        )
+    state._attribution_builder.item(record, caller, roles, context, key=key)
     for run in active:
         with run._lock:
             if run._active:
-                run._builder.item(record, caller, roles, context)
+                run._builder.item(record, caller, roles, context, key=key)
 
 
 def _observe_target(state, target: str, parent: str | None) -> None:

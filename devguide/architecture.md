@@ -19,6 +19,16 @@ declared references. Crediting every binding or observing an import is coarser
 than instrumenting the executed branch. Import hooks and static call inspection
 are opt-in discovery aids, not proof that every associated algorithm ran.
 
+Provisional `observe_calls` adds a separate, explicit observation mechanism for
+dependency-free third-party declarations. A selected module's `__ackredit__`
+metadata (or function metadata referring to that bibliography) states the
+references earned on entry to each declared function. Temporary wrappers
+delegate untouched scientific arguments, results and exceptions; a context-local
+observer lease controls credit and expiration. Original exports are restored
+when the last lease exits. Pre-existing aliases, generators and native internal
+calls are excluded. The [provider guide](../docs/content/user_guide/function_providers.md)
+defines the provisional schema and failure boundaries; this is not suite policy.
+
 A software reference and its description articles are separate bibliographic
 works. Contextual uses carry roles and the executed software/version relationship;
 a single article may describe multiple releases. Original metadata and context

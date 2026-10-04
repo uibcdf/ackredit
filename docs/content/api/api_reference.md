@@ -25,7 +25,7 @@ versions without adding role fields to bibliographic records.
 See [the canonical integration guide](https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDIT_GUIDE.md)
 for the schema and failure behavior, and the
 [portable compatibility contract](../user_guide/portable_attribution.md) for
-the 0.9.0 candidate and delivery boundary.
+the public 0.9.0 delivery boundary.
 
 ```{eval-rst}
 .. automodule:: ackredit.core.attribution
@@ -61,6 +61,13 @@ public surface: `Registry` and `Collector` are reached through `register_item`,
 ```
 
 ## Decorators & Context
+
+`observe_calls(*modules)` is a provisional, opt-in context for observing actual
+calls to declared direct function exports of already imported modules. Its
+[third-party provider guide](../user_guide/function_providers.md) specifies
+dependency-free declarations, citation roles, restoration and observation limits.
+It is development functionality; public Ackredit 0.9.0 does not include it.
+
 ```{eval-rst}
 .. automodule:: ackredit.core.decorators
    :members:

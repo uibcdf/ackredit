@@ -52,6 +52,7 @@ from .core.hooks import (
     enable_import_hooks,
 )
 from .core.inspection import auto_track_calls
+from .core.providers import observe_calls
 from .core.registry import (
     add_injection,
     bind,
@@ -100,6 +101,7 @@ __all__ = [
     "compile_pdf",
     "dependency_info",
     "auto_track_calls",
+    "observe_calls",
     "current_session",
     "scope",
     "session",

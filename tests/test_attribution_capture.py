@@ -288,6 +288,31 @@ def test_capture_instance_cannot_be_reentered():
     assert error.value.code == "ACKREDIT-E010"
 
 
+def test_mutable_context_is_revalidated_on_repeated_credits_in_nested_captures(
+    clean_registry,
+):
+    _declare()
+    context = {"software": "example", "options": ["first"]}
+    with ackredit.capture("outer") as outer:
+        with ackredit.capture("inner") as inner:
+            ackredit.track_item("paper:example", context=context)
+            context["options"].append("second")
+            ackredit.track_item("paper:example", context=context)
+            context["options"].append(float("nan"))
+            with pytest.raises(ValueError) as error:
+                ackredit.track_item("paper:example", context=context)
+    assert error.value.code == "ACKREDIT-E010"
+    for attribution in (
+        outer.attribution,
+        inner.attribution,
+        ackredit.get_attribution(),
+    ):
+        assert [use["context"]["options"] for use in attribution.to_dict()["uses"]] == [
+            ["first"],
+            ["first", "second"],
+        ]
+
+
 @pytest.mark.parametrize(
     "payload", [None, [], "text", {"schema": "ackredit.attribution@2"}]
 )

@@ -106,6 +106,10 @@ class DueCreditExportWarning(AckreditWarning):
     catalog_key = "DueCreditExportWarning"
 
 
+class ProviderObservationWarning(AckreditWarning):
+    catalog_key = "ProviderObservationWarning"
+
+
 __all__ = [
     "AckreditWarning",
     "BibtexEntryWarning",
@@ -121,6 +125,7 @@ __all__ = [
     "PdfCompilationWarning",
     "PdfToolWarning",
     "PluginLoadWarning",
+    "ProviderObservationWarning",
     "SessionLoadWarning",
     "SessionMergeWarning",
     "SessionSaveWarning",

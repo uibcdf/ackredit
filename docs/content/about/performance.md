@@ -22,7 +22,56 @@ that runs ten million times costs forty seconds, and should not be instrumented 
 citation to the function that calls it instead, which is what
 {func}`ackredit.bind` is for.
 
-## A real workflow
+## Portable capture and declared function calls (2026-10-04)
+
+The historical plain-path figures above do not measure portable capture. The
+new `devtools/benchmark_portable.py` separates those costs on Linux/Python
+3.14.7. Each scenario uses 15 samples and 5,000 repeated credits; snapshots and
+renders use 100 operations. Values below are medians in microseconds for one
+reference, with a small bibliography and context. Baseline source is unchanged
+`148ffb4`; optimized development files and all samples are fingerprinted in
+[`portable_capture_85_2026-10-04.json`](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/portable_capture_85_2026-10-04.json).
+
+| Operation | Previous code (two trials) | Optimized development |
+| --- | ---: | ---: |
+| Plain `track_item` | 1.41–1.58 | 1.42 |
+| Contextual `track_item` | 47.84–53.67 | 39.47 |
+| Repeated credit inside a capture | 61.91–67.20 | 41.32 |
+| Repeated credit inside two nested captures | 73.70–80.77 | 43.81 |
+| Unobserved provider function | — | 0.08 |
+| Declared provider function, active observation | — | 8.05 |
+| Declared provider function, one capture | — | 10.40 |
+| Declared provider function, nested captures | — | 12.24 |
+
+The ordinary captured credit is about **33–39% cheaper** in these trials;
+nested capture about **41–46% cheaper**. The unchanged plain path also drifted
+between trials, so these are bounded observations, not exact speedup promises.
+Each trial's spread and all raw samples are retained. Snapshot and BibTeX
+differences are not claimed as improvements: their medians are about 124 µs
+and 212 µs here, and runtime variation affects them too.
+
+Capture avoids copying retained records again and shares one normalized use
+key across its builders. Public inputs still receive JSON validation and
+detachment on every call. The provisional function provider validates and
+detaches declarations at activation, prepares contextual keys once, and uses
+the same capture/session writers on every actual entry. It still checks
+registered bibliographic contents and captured identity conflicts. A fresh
+capture receives reused references; mutable input identity is never a cache key.
+
+When observation is off, the provider is the original function with no Ackredit
+wrapper. The active measurements include its tiny example computation and one
+citation; they are total call times, not incremental overhead subtracted from a
+scientific pipeline. Imports, activation, first-credit setup and capture entry/
+exit are excluded. More references and bigger contexts cost more. This is not
+evidence that arbitrary scientific workloads are free to instrument, or that
+the feature is already in public Ackredit 0.9.0. The scientific-workflow results
+below remain their own historical measurement.
+
+```bash
+python devtools/benchmark_portable.py --samples 15 --iterations 5000
+```
+
+## A real workflow (historical measurement)
 
 MolSysMT reading a protein from the PDB, converting it, querying it, selecting from it and
 converting it again. Roughly four seconds of real work, instrumented the way

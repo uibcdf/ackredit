@@ -14,7 +14,7 @@ from .._private.smonitor.warnings import (
     SessionSaveWarning,
 )
 from . import session
-from .attribution import _observe_item, _observe_target
+from .attribution import _observe_item, _observe_prepared_item, _observe_target
 from .session import current_session
 
 
@@ -320,6 +320,15 @@ def _a_name(value, caller: str, argument: str) -> str:
 
 def track_target(target: str, parent: str | None = None) -> None:
     Collector.track_target(_a_name(target, "track_target", "target"), parent=parent)
+
+
+def _track_prepared_item(record, caller, roles, context, key):
+    """Credit a provider-owned normalized declaration through the same writers."""
+    state = current_session()
+    with state._lock:
+        _observe_prepared_item(state, record, caller, roles, context, key=key)
+        if state._record_item(record["id"], caller):
+            Collector._record(state, session.append_item, record["id"], caller)
 
 
 def track_item(

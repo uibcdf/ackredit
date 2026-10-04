@@ -35,7 +35,7 @@ promise below.
 
 ## The surface
 
-Thirty-six names are stable and zero provisional — every one has been decided once, on
+Thirty-six names are stable and one provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -67,7 +67,8 @@ else links here, so they cannot drift apart.
 | `enable_persistence` | stable | Was exported as a bound method of `Collector`, which bound a public name to a provisional class; `uibcdf/ackredit#33` gave it a function like its siblings. |
 | `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
 | `aggregate` | stable | Merging saved runs into this one. `uibcdf/ackredit#39` settled what it does to the journal and exercised it; what it does across machines is decided rather than open — one journal per process, merged here. |
-| `auto_track_calls` | stable | Detection is per function, not per branch, and that is the promise rather than a gap in it: `devguide/roadmap.md` refuses per-branch precision, which would need an interpreter hook on every call. |
+| `auto_track_calls` | stable | Static detection remains per enclosing function, including untaken branches. The separate provisional observer does not change this coarse released contract. |
+| `observe_calls` | provisional | Dependency-free function declarations and opt-in observation of direct exports need real provider and receiving review under `uibcdf/ackredit#84` and `uibcdf/molsyssuite#97`; aliases and generators remain explicitly excluded. |
 | `enable_import_hooks` | stable | Decision 13 settles what the hook does — it observes and never acts — and `uibcdf/ackredit#28` settles which source of metadata wins. `uibcdf/ackredit#34` gave it a counterpart. |
 | `compile_pdf` | stable | That `@software` is undefined in common `.bst` styles is a known limitation of those styles, recorded in `devguide/status.md`. It bears on what the PDF contains, not on this call. |
 | `enrich_all` | stable | Fills in what a DOI can supply. How it asks was settled in `uibcdf/ackredit#48` and how long a cached answer keeps in `#50`; both are what it does, not what it promises. |

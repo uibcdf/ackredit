@@ -12,6 +12,16 @@ Prose belongs here. The typed facts of an occurrence belong to the call site, in
 """
 
 CODES = {
+    "ACKREDIT-E012": {
+        "title": "Citation provider declaration refused",
+        "user_message": "Cannot observe provider '{provider}': {reason}.",
+        "user_hint": "Use the provisional ackredit.provider@1 schema and direct, supported function exports. No observation was activated.",
+    },
+    "ACKREDIT-W019": {
+        "title": "Function attribution incomplete",
+        "user_message": "Could not {operation} for '{target}': {error_type}: {error}.",
+        "user_hint": "Inspect the provider declaration and this call's attribution. The scientific callable remains available; do not treat the report as complete.",
+    },
     # --- Session persistence -------------------------------------------------
     "ACKREDIT-W001": {
         "title": "Saved session could not be read",
@@ -219,6 +229,7 @@ CODES = {
 # Every key here must exist in CODES, and vice versa: a code in one and not the
 # other emits an event with an empty message and nothing complains.
 _WARNINGS = {
+    "ProviderObservationWarning": "ACKREDIT-W019",
     "SessionLoadWarning": "ACKREDIT-W001",
     "SessionSaveWarning": "ACKREDIT-W002",
     "SessionMergeWarning": "ACKREDIT-W003",
@@ -240,6 +251,7 @@ _WARNINGS = {
 }
 
 _ERRORS = {
+    "ProviderDeclarationError": "ACKREDIT-E012",
     "AttributionError": "ACKREDIT-E010",
     "AttributionConflictError": "ACKREDIT-E011",
     "ItemIdMissingError": "ACKREDIT-E001",

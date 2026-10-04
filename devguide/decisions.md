@@ -176,5 +176,7 @@
 
 ## Pending Decisions
 
-None. `devguide/roadmap.md` carries what is left before 1.0.0, and the open questions
-there are measurements and adoption rather than decisions.
+The new dependency-free provider schema and `observe_calls` API are provisional
+under Ackredit #84 and MolSysSuite #97. Real producer and receiving review must
+decide promotion or removal before 1.0. Existing portable 0.9.0 contracts remain
+unchanged; `devguide/roadmap.md` carries adoption and qualification separately.

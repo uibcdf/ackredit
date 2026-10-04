@@ -246,9 +246,10 @@ The last theme, and the one that earns the number.
       theme C by definition.
 
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
-stability commitment would make the commitment meaningless, so that list was the real
-measure of how far this theme had to go — and it is empty. Every public name has been
-decided once, on the evidence available now. Names were removed rather than promised:
+stability commitment would make the commitment meaningless. The new `observe_calls`
+surface remains provisional pending provider and receiving review under #84 and
+MolSysSuite #97; it must be promoted or removed before 1.0. Existing names have
+been decided once, on the evidence available now. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
 What remains is the unchecked review above, which waits on theme C by definition:
@@ -258,6 +259,25 @@ saved-reader compatibility and extension contracts against actual receiving
 workflows. Existing tests and a stable-intent classification do not substitute
 for that final general 1.0 decision. The released portable promise remains
 bounded as [API stability](../docs/content/about/stability.md) specifies.
+
+### Theme G — Accurate, lightweight function providers
+
+Ackredit #84 proposes offline, dependency-free third-party declarations and an
+explicit observer of actually entered function exports. This differs from AST
+inspection: untaken calls earn no references, while executed functions can earn
+both software and description articles with original producer versions. #85
+measures portable capture separately from the historical plain tracking path.
+
+- [ ] normally installed provider works without Ackredit and produces faithful
+      portable attribution when observation is explicitly enabled;
+- [ ] nested captures, failed calls, asynchronous contexts and export restoration
+      are exercised, with unsupported aliases/generators documented;
+- [ ] before/after capture and observation timings are reproducible without
+      mutable-identity caches, missing reused credit or hidden validation failures;
+- [ ] real provider and receiving review resolves the provisional API, coordinated
+      through MolSysSuite #97 before any shared adoption requirement.
+
+This development does not rebuild public 0.9.0 or certify a consumer release.
 
 ---
 
@@ -271,5 +291,6 @@ Recorded so nobody re-proposes them as blockers:
 - **SQLite as the session store.** Measured and refused in
   `devguide/archive/persistence_rewrites_everything_on_every_item.md`, with the conditions
   under which it would win.
-- **Per-branch citation precision.** `auto_track_calls` and `credit_bound` are documented
-  as coarse; exact attribution would need an interpreter hook on every call.
+- **Universal interpreter profiling.** `auto_track_calls` and `credit_bound` retain
+  their coarse contracts. Theme G can observe selected declared exports without
+  claiming every branch, alias or native internal call is visible.
