@@ -1,0 +1,316 @@
+{
+  "boundaries": "Scheduled recovery and PR #79 retain their original three-minor scope. Current required checks and observed full matrix cover Python 3.11-3.14. The protected PR requirement was reviewed through native configuration and actual historical PR execution; no rejected non-admin merge attempt was performed. Qualification-branch matrix cannot clear main recovery debt. Probe executes only the detector, not scientific tests. Public artifact qualification remains recorded independently under #22/#80.",
+  "branch_protection": {
+    "branch": "main",
+    "deletions": false,
+    "enforce_admins": false,
+    "force_pushes": false,
+    "observed_administrators": [
+      "dprada",
+      "LMMV"
+    ],
+    "pull_request_required": true,
+    "required_approvals": 0,
+    "required_checks": [
+      {
+        "app_id": 15368,
+        "context": "Ruff on ubuntu-latest"
+      },
+      {
+        "app_id": 15368,
+        "context": "Documentation build on ubuntu-latest"
+      },
+      {
+        "app_id": 15368,
+        "context": "Test on ubuntu-latest, Python 3.11"
+      },
+      {
+        "app_id": 15368,
+        "context": "Test on ubuntu-latest, Python 3.12"
+      },
+      {
+        "app_id": 15368,
+        "context": "Test on ubuntu-latest, Python 3.13"
+      },
+      {
+        "app_id": 15368,
+        "context": "Test on ubuntu-latest, Python 3.14"
+      },
+      {
+        "app_id": 15368,
+        "context": "Test on macos-15, Python 3.14"
+      }
+    ],
+    "strict": true
+  },
+  "central_issue": "uibcdf/molsyssuite#39",
+  "current_four_minor_coverage": {
+    "full_matrix": {
+      "conclusion": "success",
+      "evidence": "devtools/receipts/python_ecosystem_72_2026-10-03.json",
+      "head_branch": "qualify/developer-tools-72-3c6e77c",
+      "recovery_watermark": false,
+      "run_id": 37159097254,
+      "source": "3c6e77c5d69809da0333786572f1edd4689c611b",
+      "test_cells": 8,
+      "url": "https://github.com/uibcdf/ackredit/actions/runs/37159097254"
+    },
+    "push_ci": {
+      "conclusion": "success",
+      "jobs_passed": 7,
+      "run_id": 37160043460,
+      "source": "a8219b86e85f9b9fc29e8bfee7982040ffe27215",
+      "url": "https://github.com/uibcdf/ackredit/actions/runs/37160043460"
+    }
+  },
+  "date": "2026-10-04",
+  "guard": "tests/test_ci_backlog.py",
+  "inspection": {
+    "native_fallback": "Bounded identity/job/step, branch-protection and detector-decision projections; no raw logs retained in the repository.",
+    "profile": "llm",
+    "runs": [
+      37016646381,
+      37123561413,
+      37066492857,
+      37182979403
+    ],
+    "tool": "gh-run-receptor"
+  },
+  "issue": "uibcdf/ackredit#74",
+  "local_closure": {
+    "human_files_unchanged": 9,
+    "pytest_receptor": "1.2.1",
+    "python": "3.14.7",
+    "report_indexes": "passed",
+    "ruff": "passed",
+    "sphinx_warnings_as_errors": "passed",
+    "tests_passed": 1547,
+    "tests_skipped": 0
+  },
+  "reviewed_source": "a8219b86e85f9b9fc29e8bfee7982040ffe27215",
+  "runs": {
+    "current_probe": {
+      "conclusion": "success",
+      "created_at": "2026-10-04T06:30:05Z",
+      "decision": "skip; 0 skipped commit(s) since full matrix a8219b86e85f9b9fc29e8bfee7982040ffe27215",
+      "event": "workflow_dispatch",
+      "head_branch": "main",
+      "head_sha": "a8219b86e85f9b9fc29e8bfee7982040ffe27215",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37182979403",
+      "id": 37182979403,
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 111379097741,
+          "name": "Check skipped-commit backlog",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Decide whether to run the full matrix"
+            }
+          ]
+        },
+        {
+          "conclusion": "skipped",
+          "id": 111379132123,
+          "name": "Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}",
+          "steps": []
+        }
+      ],
+      "path": ".github/workflows/CI_full_matrix.yaml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    "historical_pull_request_ci": {
+      "conclusion": "success",
+      "created_at": "2026-10-02T21:22:57Z",
+      "event": "pull_request",
+      "head_branch": "fix/bibtex-csl-authors-78",
+      "head_sha": "561989e5dfa0c48e172440b0f130a1efae961e95",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37066492857",
+      "id": 37066492857,
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "Documentation build on ubuntu-latest",
+          "steps": []
+        },
+        {
+          "conclusion": "success",
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "name": "Test on macos-15, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "name": "Ruff on ubuntu-latest",
+          "steps": []
+        },
+        {
+          "conclusion": "success",
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        }
+      ],
+      "path": ".github/workflows/CI.yaml",
+      "pull_request": 79,
+      "run_attempt": 1
+    },
+    "scheduled_recovery": {
+      "conclusion": "success",
+      "created_at": "2026-10-02T13:58:43Z",
+      "decision": "run; 6 skipped commit(s) since full matrix 7277bd5241a18c15c0fa9eb8e7acc98ce1332c90",
+      "event": "schedule",
+      "head_branch": "main",
+      "head_sha": "2e9f5091a449b8c01ffaf11a46d3d51cefd211bb",
+      "id": 37016646381,
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 110869041516,
+          "name": "Check skipped-commit backlog",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Decide whether to run the full matrix"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 110869140666,
+          "name": "Test on macos-15, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 110869140707,
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 110869140733,
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 110869140778,
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 110869141038,
+          "name": "Test on macos-15, Python 3.11",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        },
+        {
+          "conclusion": "success",
+          "id": 110869141555,
+          "name": "Test on macos-15, Python 3.12",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Run tests"
+            }
+          ]
+        }
+      ],
+      "path": ".github/workflows/CI_full_matrix.yaml",
+      "run_attempt": 1
+    },
+    "scheduled_zero_debt": {
+      "conclusion": "success",
+      "created_at": "2026-10-03T12:39:10Z",
+      "decision": "skip; 0 skipped commit(s) since full matrix 1863f33af465b3c3fa66fe6ea4cb466141ffcd8d",
+      "event": "schedule",
+      "head_branch": "main",
+      "head_sha": "1863f33af465b3c3fa66fe6ea4cb466141ffcd8d",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37123561413",
+      "id": 37123561413,
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 111204276823,
+          "name": "Check skipped-commit backlog",
+          "steps": [
+            {
+              "conclusion": "success",
+              "name": "Decide whether to run the full matrix"
+            }
+          ]
+        },
+        {
+          "conclusion": "skipped",
+          "id": 111204314391,
+          "name": "Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}",
+          "steps": []
+        }
+      ],
+      "path": ".github/workflows/CI_full_matrix.yaml",
+      "run_attempt": 1
+    }
+  },
+  "schema": "ackredit.ci-recovery@1",
+  "workflow_sha256": {
+    ".github/workflows/CI.yaml": "302d558731389742df22d7da04ed3ef5e817df7d55e026f59f967791b71d94b5",
+    ".github/workflows/CI_full_matrix.yaml": "1fc420c4543ea247b0d666e171888950b201156d2a81af1b39fa481b9eee32ef",
+    "devtools/ci_backlog.py": "04b060c3c4a77ffd89657de083addf498c2ad5c3f7a9ec76d574449d117d3d13"
+  }
+}

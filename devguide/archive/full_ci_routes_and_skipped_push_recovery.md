@@ -1,11 +1,11 @@
 ---
 summary: Protect full CI routes and recover skipped direct pushes.
 issue: uibcdf/ackredit#74
-status: partial
+status: resolved
 opened: 2026-09-30
-closed:
+closed: 2026-10-04
 severity: medium
-verification: inspected
+verification: measured
 area: [ci, governance]
 guard: tests/test_ci_backlog.py
 normative:
@@ -154,3 +154,60 @@ The additional routine macOS arm64 lane, quality job and documentation
 build use 3.14. Linux still tests every supported minor on PRs, and the
 weekly matrix retains every supported minor on Linux and macOS.
 
+
+## Current scope and closure review — 2026-10-04
+
+The original three-minor feasibility and six-cell criteria above are retained
+history. Ackredit #80 delivered the required Python **3.11–3.14** range, ordinary
+3.14 installed validation and an **eight-cell** Linux/macOS arm64 full matrix.
+All supported test cells are gating; no metadata override or tolerated failure
+is used. Central admission remains MolSysSuite #51's separate owner decision.
+
+The remaining scheduled and PR-route review now has hosted evidence:
+
+- [Scheduled recovery 37016646381](https://github.com/uibcdf/ackredit/actions/runs/37016646381), source `2e9f5091a449b8c01ffaf11a46d3d51cefd211bb`, actually detects **six skipped commits** since watermark `7277bd5241a18c15c0fa9eb8e7acc98ce1332c90` and executes all six then-supported Linux/macOS cells. Every `Run tests` step succeeds. Its three-minor scope is preserved rather than relabeled as a 3.14 result.
+- [Scheduled zero-debt decision 37123561413](https://github.com/uibcdf/ackredit/actions/runs/37123561413), source `1863f33af465b3c3fa66fe6ea4cb466141ffcd8d`, recognizes its successful full watermark and detects zero omitted commits. The detector executes; scientific jobs are intentionally skipped.
+- [Fresh detector probe 37182979403](https://github.com/uibcdf/ackredit/actions/runs/37182979403) executes on current `main` source `a8219b86e85f9b9fc29e8bfee7982040ffe27215`. It independently recognizes that source's full Linux push coverage, reports zero skipped commits and omits scientific jobs. A probe is not itself a recovery watermark.
+- [Actual PR CI 37066492857](https://github.com/uibcdf/ackredit/actions/runs/37066492857) executes for PR #79 at `561989e5dfa0c48e172440b0f130a1efae961e95`; all six then-required jobs and four scientific test steps pass. This is historical PR execution with its original range, not a new four-minor external merge qualification.
+
+Published GH Run Receptor inspects all four executions. Native identity/step
+projections and the detector's bounded decision line establish the facts its
+compact verdict omits. The [committed CI receipt](../../devtools/receipts/ci_recovery_74_2026-10-04.json)
+retains these observations and the current branch-protection snapshot.
+
+Current `main` requires the seven stable Ruff/documentation/Linux 3.11–3.14/
+macOS 3.14 checks with strict status enforcement and an explicit PR requirement;
+zero approving reviews are mandated. Force pushes and branch deletion are
+disabled. Administrators are exactly `dprada` and `LMMV`; administrator status
+enforcement remains disabled, preserving the accepted internal direct-push
+route. Earlier authorized pushes retain GitHub's visible bypass notices.
+The protected route is reviewed through native configuration and actual hosted
+PR execution. No rejected non-administrator merge attempt is claimed.
+
+Current routine [CI 37160043460](https://github.com/uibcdf/ackredit/actions/runs/37160043460)
+passes all seven checks at `a8219b8`. The [eight-cell full matrix 37159097254](https://github.com/uibcdf/ackredit/actions/runs/37159097254)
+passes at implementation `3c6e77c5d69809da0333786572f1edd4689c611b`, with actual
+interpreter/architecture and pytest execution retained separately in #72's
+receipt. Its qualification branch does not make it a `main` recovery watermark;
+the fresh probe instead uses the executed current push CI. The relevant workflow
+and detector content is unchanged between those sources.
+
+Public artifact and installed-platform review is complete under #22/#75/#80:
+original producer `598abf993a2409c025de5e912acd7eb45a257ebd`, exact archive
+`ackredit-0.9.0-py_0.tar.bz2`, SHA-256
+`37661090f6ad19a74b8155d8a4d4b4a068c9099f4ceba0743b3abfe887e97fe1`.
+Those separate receipts are not inferred from a cron, PR, policy or probe.
+
+The CI implementation and remaining member-local evidence review are complete.
+`tests/test_ci_backlog.py` guards omitted commits remaining due, actual execution
+of every supported minor, refusal of historical three-minor watermarks, exclusion
+of probe/PR/feature/failure results and conservative recovery on uncertain
+history. MolSysSuite #39 owns the central rollout state and future common
+pattern enforcement; this closure does not close that suite-wide work.
+
+Closure qualification passes **1,547 Ackredit tests without skips** on Python
+3.14.7 with public Pytest Receptor 1.2.1, Ruff lint/format, generated report
+indexes and Sphinx `-W`. All nine pre-existing human files remain byte-identical.
+No CI/runtime implementation or branch-protection setting changes in this
+closure; the existing mechanisms are verified and their remaining evidence is
+archived rather than silently inferred.

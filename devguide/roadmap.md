@@ -90,7 +90,9 @@ One noarch archive was staged, qualified on Linux/macOS arm64 × Python 3.11–3
 and promoted without rebuilding. Clean public Linux/Python 3.14 installation
 and receiving Sabueso compatibility are recorded in
 [the delivery record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/ackredit_cannot_be_installed.md). Conda delivery
-does not itself create a GitHub tag or release.
+does not itself create a GitHub tag or release. The matching `0.9.0` Git tag
+now identifies the original producer under #82; GitHub Release/DOI publication
+remains a separate outcome.
 
 ### Since 0.5.0 — correctness, and the suite baseline
 Not a feature phase, and the largest body of work so far. Twenty reports opened, fixed,
