@@ -11,6 +11,7 @@ It is a structured document, so it is read as one.
 
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -19,9 +20,41 @@ import yaml
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.warnings import CitationFileWarning
 
-# Fields Ackredit reads. A CITATION.cff carries more, and a `preferred-citation`
-# carries a different set again; these are the ones a citation item needs.
-_SCALARS = ("title", "version", "url", "message", "date-released")
+# Normalize the selected work into the fields the existing report formats read.
+# CFF page counts and page bounds have different meanings; see below.
+_SCALARS = (
+    "title",
+    "version",
+    "url",
+    "message",
+    "date-released",
+    "date-published",
+    "year",
+    "month",
+    "journal",
+    "volume",
+    "isbn",
+    "issn",
+    "edition",
+    "abstract",
+)
+_ALIASES = {
+    "issue": "number",
+    "collection-title": "booktitle",
+    "pages": "page-count",
+}
+_WORK_TYPES = {
+    "article": "article",
+    "software": "software",
+    "software-code": "software",
+    "software-container": "software",
+    "software-executable": "software",
+    "software-virtual-machine": "software",
+    "dataset": "dataset",
+    "data": "dataset",
+    "database": "dataset",
+    "website": "web",
+}
 
 
 def _author(entry: Any) -> str | None:
@@ -74,35 +107,63 @@ def _citation_fields(document: Dict[str, Any]) -> Dict[str, Any]:
     for field in _SCALARS:
         if (value := document.get(field)) is not None:
             data[field] = str(value).strip()
+    for field, normalized in _ALIASES.items():
+        if (value := document.get(field)) is not None:
+            data[normalized] = str(value).strip()
+    if work_type := document.get("type"):
+        data["type"] = _WORK_TYPES.get(work_type, "other")
+        if work_type != data["type"]:
+            data["_cff_type"] = work_type
     if authors := _authors(document.get("authors")):
         data["authors"] = authors
+    if editors := _authors(document.get("editors")):
+        data["editors"] = editors
+    if publisher := _author(document.get("publisher")):
+        data["publisher"] = publisher
     if doi := _doi(document):
         data["doi"] = doi
+    # A count of fifteen pages does not mean the work begins on page fifteen.
+    if document.get("start") is not None:
+        data["pages"] = str(document["start"]).strip()
+        if document.get("end") is not None:
+            data["pages"] += "--" + str(document["end"]).strip()
+    elif document.get("end") is not None:
+        # A lone end page does not supply a range or a beginning page.
+        data["end-page"] = str(document["end"]).strip()
+    if "year" not in data:
+        for field in ("date-published", "date-released"):
+            if value := data.get(field):
+                try:
+                    data["year"] = str(date.fromisoformat(value).year)
+                except ValueError:
+                    # Keep the original date; do not invent a publication year.
+                    continue
+                break
     return data
 
 
 def parse_cff(content: str) -> Dict[str, Any]:
     """Return the citation a CITATION.cff asks for.
 
-    When the file carries a `preferred-citation`, that block *is* the citation:
-    the specification exists so a project can say "cite this paper rather than
-    this software". Its fields are used, falling back to the root document for
-    anything it does not state, rather than being merged with it — its authors
-    are a different set of people.
+    A typed `preferred-citation` is a separate work. Missing fields stay missing:
+    the software's DOI, version or authors do not belong to its preferred paper.
+    Historically accepted untyped partial blocks retain their root fallback.
     """
     document = yaml.safe_load(content)
-    if not isinstance(document, dict):
+    if not isinstance(document, dict) or not document:
         return {}
 
     data = _citation_fields(document)
+    data.setdefault("type", "software")
 
     preferred = document.get("preferred-citation")
     if isinstance(preferred, dict):
-        # The preferred citation replaces, it does not merge. Merging credited a
-        # list of authors belonging to neither the software nor the paper.
-        data = {**data, **_citation_fields(preferred)}
-        if preferred_authors := _authors(preferred.get("authors")):
-            data["authors"] = preferred_authors
+        fields = _citation_fields(preferred)
+        if preferred.get("type"):
+            return {**fields, "_cff_source": "preferred-citation"}
+        # Compatibility for incomplete historical files, not a typed work's
+        # bibliography. Authors, when supplied, still replace the root list.
+        data = {**data, **fields}
 
     return data
 

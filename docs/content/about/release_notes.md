@@ -1,5 +1,20 @@
 # Release notes
 
+## Development after 0.10.1
+
+- Typed CFF `preferred-citation` works retain their own work category and
+  bibliography during import discovery, saved attribution and export. Preferred
+  articles no longer inherit software DOI/version or lose year, journal, volume,
+  issue and page bounds. Page counts remain distinct from page ranges.
+- Preferred works receive their own discovered identity and do not credit
+  alternative shipped references. Root software/shipped-paper behavior and
+  manual injection precedence remain available; root datasets retain their type.
+
+These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackredit/issues/95).
+They are development changes, not features of the already published 0.10.1
+archive. The portable payload version, core dependencies and provisional
+provider API classifications remain unchanged.
+
 ## 0.10.1 — corrected public checkpoint
 
 Delivery is complete under [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93).

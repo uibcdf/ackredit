@@ -15,6 +15,10 @@ working, a test or a reproducible command backs it.
   and LaTeX, plus contextual workflow Markdown, `dump()` to a directory and PDF
   compilation when `pdflatex` is present.
 - **Automated discovery:** import hooks, `CITATION.cff` parsing and PEP 621 metadata.
+  Development after 0.10.1 preserves typed preferred CFF work identity and
+  publication fields, without borrowing root software metadata or crediting
+  unrelated listed references (#95). Root dataset types are retained. This repair
+  is not present in the public 0.10.1 archive.
 - **Metadata enrichment:** DOI lookup against Crossref and DataCite, with a local cache.
 - **Ecosystem integration:** entry-point plugin loading, a DueCredit bridge, session
   persistence and a multi-session aggregator.

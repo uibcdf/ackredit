@@ -216,6 +216,24 @@ ackredit.enable_import_hooks()
 import scipy
 ```
 
+The package's CFF selects the work to credit. A typed `preferred-citation`
+supplies a separate reference, such as the method's article, with its own
+authors, DOI, year, journal, volume, issue and page bounds. Missing fields stay
+missing; Ackredit does not borrow the software's version or DOI for its article,
+or add the shipped snapshot's alternative references to that selection.
+The preferred work receives a distinct discovered identifier. Manual injections
+remain authoritative when a host explicitly chooses what to credit.
+
+For a root software CFF, a matching shipped identifier and distinct shipped
+papers are retained. A root dataset remains a dataset. Incomplete historical
+preferred blocks without `type` retain the older root-field fallback; a typed
+preferred block receives no such fallback. CFF `start`/`end` supply page bounds,
+while `pages` supplies a page count, retained separately. Known work kinds map
+to Ackredit's existing categories; other kinds retain their original `_cff_type`
+metadata under `other`. Discovery is not a complete CFF-schema validator or a
+formatter for every CFF reference kind. A CFF `references` list does not prove
+those dependencies were used, so it is not automatically credited.
+
 **Discovery sees imports that happen after it is enabled.** A package that is already
 loaded is never imported again, so it is not discovered. Enable the hooks before the
 imports they should see: in a script, near the top; in a host library, before its

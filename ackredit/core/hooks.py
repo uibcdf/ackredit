@@ -190,25 +190,44 @@ class InjectionsFinder(MetaPathFinder):
                 self._register_from_metadata(fullname)
             return
 
-        # The file describes the software, so it replaces a shipped entry for
-        # the software and nothing else. A paper Ackredit ships alongside it is
-        # a different work and still stands.
-        entry = next((item for item in shipped if item.get("type") == "software"), {})
-        item_id = entry.get("id", f"discovered:{fullname}")
+        fields = dict(cff_data)
+        if "message" in fields:
+            fields["note"] = fields.pop("message")
 
-        register_item(
-            id=item_id,
-            type="software",
-            title=cff_data.get("title") or entry.get("title") or fullname,
-            authors=cff_data.get("authors") or entry.get("authors", []),
-            doi=cff_data.get("doi") or entry.get("doi"),
-            url=cff_data.get("url") or entry.get("url"),
-            version=cff_data.get("version"),
-            note=cff_data.get("message"),
-        )
+        if fields.get("_cff_source") == "preferred-citation":
+            # The project selected another work instead of its root citation.
+            # Neither root/shipped fields nor a software binding's identity
+            # belong to that work. The shipped snapshot cannot add alternatives
+            # to the project's explicit preferred selection.
+            item_id = f"discovered:{fullname}:preferred"
+            fields.setdefault("title", fullname)
+            # Only our bounded parser supplies bookkeeping; public registration
+            # still rejects user-supplied reserved fields such as `_source`.
+            Registry.register_item(id=item_id, **fields)
+            track_item(item_id, used_by=fullname)
+            return
+
+        # A root CFF describes software or a dataset. Keep a matching shipped
+        # identity so bindings still work, and retain distinct shipped papers.
+        work_type = fields.get("type", "software")
+        entry = next((item for item in shipped if item.get("type") == work_type), {})
+        item_id = entry.get("id", f"discovered:{fullname}")
+        for field in ("title", "authors", "doi", "url"):
+            if not fields.get(field) and entry.get(field):
+                fields[field] = entry[field]
+        fields.setdefault("type", work_type)
+        fields.setdefault("title", fullname)
+        Registry.register_item(id=item_id, **fields)
         track_item(item_id, used_by=fullname)
 
-        self._register_all([item for item in shipped if item is not entry], fullname)
+        self._register_all(
+            [
+                item
+                for item in shipped
+                if item is not entry and item.get("type") not in ("software", "dataset")
+            ],
+            fullname,
+        )
 
     @staticmethod
     def _register_all(items, fullname: str) -> None:

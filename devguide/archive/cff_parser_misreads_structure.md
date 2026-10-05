@@ -83,3 +83,12 @@ Met by the commit closing this record:
   MolSysMT, whose Zenodo DOI was previously not found;
 - `tests/test_cff.py` covers each case, and a malformed file is still reported as
   `ACKREDIT-W004` rather than swallowed.
+
+## Follow-up (2026-10-05)
+
+[Ackredit #95](https://github.com/uibcdf/ackredit/issues/95) addresses the typed
+preferred-work mapping explicitly excluded above. Typed preferred blocks now
+select their own bibliography without root-field fallback; the historical
+fallback remains for incomplete untyped blocks. New guards cover work identity
+and publication fields through discovery and detached export. This follow-up
+does not change what the original parser repair tested or delivered.

@@ -1,0 +1,108 @@
+{
+  "schema": "ackredit.cff-preferred@1",
+  "checked_at": "2026-10-05T07:26:20.706362+00:00",
+  "issue": "uibcdf/ackredit#95",
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Linux",
+    "architecture": "x86_64"
+  },
+  "public_baseline": {
+    "version": "0.10.1",
+    "filename": "ackredit-0.10.1-py_0.tar.bz2",
+    "sha256": "26e75a0780ad4e6abc2de55df90b29b4a2aa4e510d6b50fa54a5812ad929228e",
+    "original_source": "dd500842b6085111e01e62cfc243f68406eb8cc7",
+    "installed_origin": "/tmp/ackredit0101-public314/lib/python3.14/site-packages/ackredit/__init__.py",
+    "evidence": {
+      "outcome": "FAIL",
+      "exitstatus": 1,
+      "counts": {
+        "collected": 18,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 18,
+        "failed": 16,
+        "not_executed": 0,
+        "passed": 2,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 2,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "receptor_complete": true,
+      "receptor_integrity_valid": true,
+      "events_sha256": "bc8ae0de427a62a90de71d5878a3735377d675037b258f838c567b3bdaaefcce"
+    }
+  },
+  "development_candidate": {
+    "base_commit": "16ddeb83d35584c5e79b85942d0131f758d9ef67",
+    "installed_version": "0.10.1+2.g16ddeb8.dirty",
+    "installation": "pip install --no-deps --no-build-isolation .",
+    "installed_origin": "/tmp/ackredit76-qualify/lib/python3.14/site-packages/ackredit/__init__.py",
+    "files_sha256": {
+      "ackredit/core/cff.py": "e6162d28f7573120d58ce0f2a7ed8ab7bc7a4e0858ea3d93f6e197eadc285a4e",
+      "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+      "tests/test_cff_preferred_fidelity.py": "0b73d5309e84f6eab392b5bc35bd6e40e43390828a0b59b0fe1a54fd4dc47a39"
+    },
+    "installed_runtime_matches_source": true,
+    "evidence": {
+      "outcome": "PASS",
+      "exitstatus": 0,
+      "counts": {
+        "collected": 18,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 18,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 18,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 1,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "receptor_complete": true,
+      "receptor_integrity_valid": true,
+      "events_sha256": "5c52ed1db85dd32bff809bbd3653e6989bf2cce3cfd9e5e5f214727aef7f8d47"
+    }
+  },
+  "qualification": {
+    "operation": "installed_noarch.run_tests",
+    "shared_provider_commit": "c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+    "working_directory": "/tmp",
+    "same_interpreter_provenance_before_and_after": "passed"
+  },
+  "scope": "18 focused CFF discovery and detached-report regressions on Linux/Python 3.14.7. This development repair is not a new Conda archive, release, full hosted matrix or API stabilization. Pytest assert-rewrite warnings from preimported qualification tools are retained in the counts.",
+  "local_gates": {
+    "ruff_check": "passed",
+    "ruff_format_check": "passed",
+    "devguide_index_check": "passed",
+    "sphinx_strict": "passed",
+    "full_pytest": {
+      "outcome": "PASS",
+      "exitstatus": 0,
+      "counts": {
+        "collected": 1741,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 1741,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 1741,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "events_sha256": "c65ca076380f64a29d1a97afd4a004197227bbd6502cf19690b1e4f074ef9df4",
+      "receptor_complete": true,
+      "receptor_integrity_valid": true
+    }
+  }
+}
