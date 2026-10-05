@@ -76,6 +76,17 @@ The current aggregate rejects the earlier six-test selection or a missing
 prepared proof; historical receipts below retain their original inputs and
 must be replayed with their own qualification revision.
 
+The combined checkpoint is qualified at Ackredit
+`cf21cc178720e106081699e9c91c49199aa24122` in [run
+37309592507](https://github.com/uibcdf/ackredit/actions/runs/37309592507):
+eight cells and 56 passed tests without skips/deselections. All ten native ZIP
+digests, extracted files and complete event streams verify independently, and
+local aggregation equals the hosted result. The
+[reviewed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/combined_prepared_receiving_99_2026-10-05.json)
+keeps the exact wheels, cell versions, prepared proof and independent offline
+readers. This is combined development qualification, not another published
+package, a cumulative speedup measurement or API promotion.
+
 This gate qualifies development source candidates or the exact staged Conda
 file when the explicit Conda profile is selected. It does not publish a package,
 promote the provisional APIs, certify a client release or replace the full Ackredit

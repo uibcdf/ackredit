@@ -1,11 +1,11 @@
 ---
 summary: Qualify the combined writer and immutable producer declaration optimizations.
 issue: uibcdf/ackredit#99
-status: active
+status: resolved
 opened: 2026-10-05
-closed:
+closed: 2026-10-05
 severity: medium
-verification: asserted
+verification: reproduced
 area: [integration, performance]
 guard: devtools/qualification/test_pyunitwizard.py::test_warmed_backend_plans_retain_credit_and_invalidate_by_value
 normative:
@@ -67,3 +67,39 @@ the separate stability and receiving decisions.
   receiving cells pass; downloaded evidence verifies independently.
 - Retain exact source/wheel identities and bounded results in the record and
   owning issues. Archive this record on completion; do not promote the APIs.
+
+## Resolved outcome — 2026-10-05
+
+Ackredit `cf21cc178720e106081699e9c91c49199aa24122` and the selected clean
+PyUnitWizard closing source pass [receiving run
+37309592507](https://github.com/uibcdf/ackredit/actions/runs/37309592507):
+eight supported cells, seven tests each, 56 passed without skips/deselections,
+and a successful aggregate. Each cell normally installs the same three wheels.
+The candidate wheel SHA-256 is
+`eccdb6983972f234935c4f27867930f8faf0a9ba77c74bab4ce1766d586ef556`;
+the producer wheel SHA-256 is
+`3f5f0a9c97d7940958a1a5e2ba676733df4e3667c324d0b6e974baf039350e09`.
+
+All ten native artifact ZIP digests and extracted files verify independently.
+The supported Pytest Receptor reader accepts every complete event stream;
+local reconstruction equals the hosted aggregate. Prepared proofs retain
+two Pint and three unyt references per original/reused result, original versions
+and description-article roles. Version invalidation and nested metadata conflicts
+retain earlier captures and completed numerical/unit results. The original
+source-built 0.9.0 fallback and fresh offline readers remain executed.
+
+The separate local normally installed bundle passes seven guards on Python
+3.14.7 with `pip check`; it reuses the unchanged public scientific dependency
+foundation. Its ZIP bytes differ from hosted wheels and are retained separately.
+Relevant source/provider/reporting selections pass 94 tests, Ruff check/format
+and devguide indexes pass, and strict Sphinx passes after completing only the
+temporary tool environment and enabling the official intersphinx lookup.
+Exact-source [CI 37309540581](https://github.com/uibcdf/ackredit/actions/runs/37309540581)
+passes seven jobs; suite/publication policy runs 37309541212/37309541269 pass.
+All remote conclusions are inspected through GH Run Receptor.
+
+The reviewed receipt is
+`devtools/receipts/combined_prepared_receiving_99_2026-10-05.json`. No new timing
+claim is derived from this functional checkpoint. Documentation closeout does
+not change the tested runtime or qualification inputs. #84/#87 remain provisional;
+the public 0.10.1 archive, dependency floors and client guides are unchanged.

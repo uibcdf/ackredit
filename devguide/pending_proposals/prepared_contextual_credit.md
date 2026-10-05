@@ -194,3 +194,19 @@ installed receiving guards pass against both original and candidate files.
 These are bounded local observations, not a new hosted matrix or public artifact.
 Producer-owned repeated declaration copies remain uibcdf/pyunitwizard#111.
 The provisional review and its separate stability exit criteria remain open.
+
+## Combined producer/writer receiving checkpoint (2026-10-05)
+
+PyUnitWizard #111 is resolved in runtime `8cd205f` and closing source
+`0e422d06b0af56e4dd2b43cafd00f059221eb405`. Ackredit #99 refreshes the
+installed producer pin and guards both real warmed Pint/unyt conversions.
+Ackredit source `cf21cc178720e106081699e9c91c49199aa24122` passes all eight
+supported installed receiving cells, 56 mandatory tests without skips, in
+run 37309592507. Version/value invalidation, original capture immutability,
+diagnosed conflicts, graph/roles, original 0.9.0 fallback and offline readers
+remain exercised. Downloaded ZIP/content/event identities verify independently;
+the reviewed receipt is
+`devtools/receipts/combined_prepared_receiving_99_2026-10-05.json`.
+This removes the outstanding producer-copy dependency from development
+qualification. It neither adds a cumulative timing claim nor publishes new
+bytes or promotes the callable. The separate stability decision stays open.

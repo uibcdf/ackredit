@@ -1,0 +1,816 @@
+{
+  "schema": "ackredit.receiving-evidence@1",
+  "date": "2026-10-05",
+  "scope": "Normally installed combined development sources; no public package, new speedup measurement or API promotion.",
+  "issue": "uibcdf/ackredit#99",
+  "runs": {
+    "receiving": {
+      "id": 37309592507,
+      "head_sha": "cf21cc178720e106081699e9c91c49199aa24122",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37309592507"
+    },
+    "full_ci": {
+      "id": 37309540581,
+      "head_sha": "cf21cc178720e106081699e9c91c49199aa24122",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37309540581"
+    },
+    "suite_policy": {
+      "id": 37309541212,
+      "head_sha": "cf21cc178720e106081699e9c91c49199aa24122",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37309541212"
+    },
+    "publication_policy": {
+      "id": 37309541269,
+      "head_sha": "cf21cc178720e106081699e9c91c49199aa24122",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37309541269"
+    }
+  },
+  "ackredit_source": "cf21cc178720e106081699e9c91c49199aa24122",
+  "pyunitwizard_source": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+  "packages": {
+    "candidate": {
+      "package": "ackredit",
+      "source_commit": "cf21cc178720e106081699e9c91c49199aa24122",
+      "version": "0.10.1+7.gcf21cc1",
+      "filename": "ackredit-0.10.1+7.gcf21cc1-py3-none-any.whl",
+      "sha256": "eccdb6983972f234935c4f27867930f8faf0a9ba77c74bab4ce1766d586ef556"
+    },
+    "producer": {
+      "package": "pyunitwizard",
+      "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+      "version": "0.28.0+5.g0e422d0",
+      "filename": "pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl",
+      "sha256": "3f5f0a9c97d7940958a1a5e2ba676733df4e3667c324d0b6e974baf039350e09"
+    },
+    "released": {
+      "package": "ackredit",
+      "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "version": "0.9.0",
+      "filename": "ackredit-0.9.0-py3-none-any.whl",
+      "sha256": "f02082a65e5580647c44eb6740727397c0e5c57588d8f4176bb4ece49860db19"
+    }
+  },
+  "bundle_manifest_sha256": "3e3bd06599c6becd0283a412ae9daacc25050176d5e0f3523b611d524fb17a62",
+  "qualification_module_sha256": "bab075aba8258626c72583bb53239626459967969432a961a67662ef6e5b5b60",
+  "outcome": "PASS",
+  "passed": 56,
+  "skipped": 0,
+  "independent_aggregate_equals_hosted": true,
+  "native_archives": [
+    {
+      "name": "function-provider-bundle",
+      "artifact_id": 11345227244,
+      "archive_sha256": "ac301251477179b1dc29b83b83230a761206f3fa559d657c2af75d5eb04fbdb2",
+      "size_bytes": 292953,
+      "extracted_files_verified": 4
+    },
+    {
+      "name": "function-provider-matrix",
+      "artifact_id": 11345347273,
+      "archive_sha256": "1c14dcb1a73324664f5935c1f12fb2bc71ec32f8bfcd3ccc026e65c9ee5124ab",
+      "size_bytes": 11234,
+      "extracted_files_verified": 1
+    },
+    {
+      "name": "receiving-macos-15-py3.11",
+      "artifact_id": 11345257343,
+      "archive_sha256": "00e310b8bd364604055c4b413fdfca1673b28d9d3f8f23f9d117a03244e138fc",
+      "size_bytes": 16998,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-macos-15-py3.12",
+      "artifact_id": 11344209885,
+      "archive_sha256": "1ab5cde4e4eb886d819a07d122fc5fd383b7cc575864c8a6e1ab87aeb1227c8a",
+      "size_bytes": 16995,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-macos-15-py3.13",
+      "artifact_id": 11344389514,
+      "archive_sha256": "c2af78c35d3e561a5d736117b888a3751960394a698449e5d517253f9e85aebf",
+      "size_bytes": 16992,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-macos-15-py3.14",
+      "artifact_id": 11345187435,
+      "archive_sha256": "e681d693027075016a4f0d6b5753929c9e75c83e386e79fee571bacd45f5ca0d",
+      "size_bytes": 16991,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-ubuntu-latest-py3.11",
+      "artifact_id": 11344699150,
+      "archive_sha256": "f94564d8af4c709fc04b6772880afce8b035b57715f6112c5a744c962b26959b",
+      "size_bytes": 16937,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-ubuntu-latest-py3.12",
+      "artifact_id": 11345441971,
+      "archive_sha256": "39a0c8faabeda0bae2b28c50b9bb07c43753ac881f0e6edbbcd61eed9fa198ba",
+      "size_bytes": 16939,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-ubuntu-latest-py3.13",
+      "artifact_id": 11344549415,
+      "archive_sha256": "d23c50e8ef032bf465cd74bed95c418354038631ca824f9978fbdeb9083938ad",
+      "size_bytes": 16940,
+      "extracted_files_verified": 11
+    },
+    {
+      "name": "receiving-ubuntu-latest-py3.14",
+      "artifact_id": 11345057656,
+      "archive_sha256": "64505aff6f688b6b730042bb96097f21856f3a16b7b0b000374cbe2e04b8b281",
+      "size_bytes": 16930,
+      "extracted_files_verified": 11
+    }
+  ],
+  "local_receiving": {
+    "python": "3.14.7",
+    "passed": 7,
+    "events_sha256": "908cc111e7304b685148f90f7f7cf83e886162d9126f0f7fda0610fb3fdec1e4",
+    "packages": {
+      "candidate": {
+        "source_commit": "cf21cc178720e106081699e9c91c49199aa24122",
+        "version": "0.10.1+7.gcf21cc1",
+        "sha256": "60a5a76faf71cc2aed4e9cec0f77be84b469f24155daece4552069f8c8eb41d1"
+      },
+      "producer": {
+        "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+        "version": "0.28.0+5.g0e422d0",
+        "sha256": "9e51e491f866ab9c559c175c51b1921163d9399803f6c67bb731b9bec1e1147b"
+      },
+      "released": {
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "version": "0.9.0",
+        "sha256": "5afb633f716feff2e3251f4c5c6f9e51ad659ff25fe2677c6460776c1f8e4ad7"
+      }
+    },
+    "limitation": "Isolated normal wheel installs reuse the unchanged public Python 3.14 scientific dependency foundation; local and hosted wheel ZIP identities differ."
+  },
+  "cells": [
+    {
+      "platform": "darwin",
+      "python": "3.11.16",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.25.3",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.25.3",
+          "changed_version": "0.25.3+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+        "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+        "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3",
+        "events.jsonl": "b6a9d1e23b8b737cce79a851a95eb9986151e134d9cdfb23b258272a876910da",
+        "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506"
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.12.14",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.26.1",
+          "changed_version": "0.26.1+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e",
+        "events.jsonl": "60a69dbbac7cc352ed4ea860f3574d3a2ca1804fb5ad36e737277686747286af",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4"
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.13.15",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.26.1",
+          "changed_version": "0.26.1+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e",
+        "events.jsonl": "2e1c7d3060a1a6fb779299819a7e94d671505526b1cc16bec7b6ebf83a35ab21",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4"
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.14.7",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.26.1",
+          "changed_version": "0.26.1+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e",
+        "events.jsonl": "e232135c59f3f27c3489ce6286dc6be09a8edf4eb1989562fa4190c736015254",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.11.16",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.25.3",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.25.3",
+          "changed_version": "0.25.3+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+        "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+        "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3",
+        "events.jsonl": "6a382b7d5505bc095401e0a811fd7cfab250d70c439b7346a354426f82d1ae5b",
+        "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.12.14",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.26.1",
+          "changed_version": "0.26.1+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e",
+        "events.jsonl": "1dcf5c997bc69fc14ac54f570c9e6c66960abf69e34384d91c497a28a16e12b9",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.13.15",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.26.1",
+          "changed_version": "0.26.1+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e",
+        "events.jsonl": "4660bb52b903c0b653655ccd85debc5e8c21086f435325d60130bc8c68f14114",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.14.7",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+7.gcf21cc1",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 7,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 7,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 7,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "prepared": {
+        "pint": {
+          "references": 2,
+          "original_version": "0.26.1",
+          "changed_version": "0.26.1+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software"
+          ],
+          "description_dois": []
+        },
+        "unyt": {
+          "references": 3,
+          "original_version": "3.1.0",
+          "changed_version": "3.1.0+qualification99",
+          "reused_payload_equal_except_capture_name": true,
+          "declaration_reconstruction_and_detachment_forbidden": true,
+          "earlier_captures_unchanged": true,
+          "metadata_conflict_retains_only_function_entry": true,
+          "diagnostic": "PUW-WARN-ACK-001",
+          "roles": [
+            "executed_software",
+            "software_description"
+          ],
+          "description_dois": [
+            "10.21105/joss.00809"
+          ]
+        }
+      },
+      "reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true
+      },
+      "workflow_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "references": 4,
+        "format": "workflow"
+      },
+      "proof_sha256": {
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e",
+        "events.jsonl": "5d1f996488fed707a2d73c5975587166c11df7522110e3a40fb59458b1edf446",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4"
+      }
+    }
+  ]
+}

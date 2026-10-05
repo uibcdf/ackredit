@@ -298,6 +298,15 @@ public receiving checks. See the
 The outstanding API/producer review remains the next step. This release does
 not rebuild 0.9.0, require consumer adoption or certify a consumer release.
 
+Later development checkpoint #99 combines Ackredit's writer optimization #97
+with resolved PyUnitWizard #111. Source `cf21cc1` and pinned producer `0e422d0`
+pass eight installed cells and 56 receiving tests in [run
+37309592507](https://github.com/uibcdf/ackredit/actions/runs/37309592507),
+with independently verified artifacts and aggregation. Warmed declarations
+are reused while version changes and metadata conflicts preserve original
+results and diagnostics. This evidence does not change provisionality or
+claim a new public artifact or cumulative speedup.
+
 ### Theme H — Faithful, compact workflow reports
 
 - [x] explicit `workflow` format, shipped since 0.10.0, joins original bibliography,
