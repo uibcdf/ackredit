@@ -451,8 +451,12 @@ single/bundle results. Explicit recorder declarations are positional per origina
 and distinguish null/unknown from empty lists. They retain metadata field sources,
 selected/unsupported/unobserved boundaries and owning gap diagnostics separately
 from recorded use. Existing original readers and default reports stay unchanged.
-Representation qualification is underway; automatic collection and real receiving
-review remain pending and do not follow from accepting producer declarations.
+Local representation qualification passes 2,018 Python 3.14 source tests and a
+normal installed offline reader over the eight retained real input cells with
+controlled companion declarations; sixteen prior workflow reports stay identical.
+The [saved-reader receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/explicit_attribution_evidence_104_2026-10-05.json)
+retains exact bytes and limits. Hosted final-head controls, automatic collection
+and real recorder/receiving review remain separate and pending.
 
 ### Theme K — Attribution at MOLI object boundaries
 

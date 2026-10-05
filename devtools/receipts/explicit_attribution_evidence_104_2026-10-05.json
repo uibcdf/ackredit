@@ -1,0 +1,172 @@
+{
+  "schema": "ackredit.saved-reader-evidence@1",
+  "date": "2026-10-05",
+  "issue": "uibcdf/ackredit#104",
+  "source_commit": "cddf48fe1cc30da5d4c3ff933793fc600e7f0ae5",
+  "scope": "Local Linux/Python 3.14 normal-installed reader over eight retained scientific inputs, using explicitly controlled test declarations; not automatic collection or a new scientific/platform matrix.",
+  "candidate": {
+    "package": "ackredit",
+    "source_commit": "cddf48fe1cc30da5d4c3ff933793fc600e7f0ae5",
+    "version": "0.10.1+15.gcddf48f",
+    "filename": "ackredit-0.10.1+15.gcddf48f-py3-none-any.whl",
+    "sha256": "f6c7b157488d5b012aad06c91290dd1748b286e99f52a419c824f7b7afb32f98"
+  },
+  "installed_resource_files_verified": 70,
+  "installed_identity": {
+    "version": "0.10.1+15.gcddf48f",
+    "origin": "/tmp/ackredit104-reader-env/lib/python3.14/site-packages/ackredit/__init__.py",
+    "wheel_sha256": "f6c7b157488d5b012aad06c91290dd1748b286e99f52a419c824f7b7afb32f98"
+  },
+  "source_validation": {
+    "python": "3.14.7",
+    "outcome": "PASS",
+    "counts": {
+      "collected": 2018,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 2018,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 2018,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "event_integrity_valid": true,
+    "events_sha256": "33a8817223e96c5d1dbbfe984f391666d57aee863138500d0e7c3ab41a6ef2b7",
+    "ruff_check": "PASS",
+    "ruff_format": "PASS",
+    "strict_sphinx": "PASS",
+    "report_indexes": "PASS",
+    "source_input": "Owned source worktree with explicit PYTHONPATH selecting its code for spawned CLI tests; isolated normal-build requirements executed with network permitted."
+  },
+  "reader": {
+    "outcome": "PASS",
+    "python": "3.14.7",
+    "version": "0.10.1+15.gcddf48f",
+    "origin": "/tmp/ackredit104-reader-env/lib/python3.14/site-packages/ackredit/__init__.py",
+    "runtime_platform": "linux",
+    "scope": "Local Linux/Python 3.14 normal-installed reader over eight retained scientific inputs, using explicitly controlled test declarations; not automatic collection or a new scientific/platform matrix.",
+    "declaration_origin": "Controlled saved-reader contract fixtures, not original producer metadata origins, observed scope or actual recording failures.",
+    "producer_imports": 0,
+    "new_credits": 0,
+    "network_attempts": 0,
+    "unchanged_workflow_reports": 16,
+    "cells": [
+      {
+        "input_cell": "receiving-macos-15-py3.11",
+        "bundle_input_sha256": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "single_input_sha256": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "evidence_sha256": "4e99112a19af704f2b5c056a0ea76647bda65694ea14f27183c256e5b8ec923f",
+        "report_sha256": "60bf700c20fae9b6c5d5987faaef2cc6a7f103f63a7d05f7d616c643b0ca6f01",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-macos-15-py3.12",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "evidence_sha256": "b8bfc74c069d90ed4d893a83773c6f18254d9f7f826c0b71c2adf0748521b02b",
+        "report_sha256": "ee89c1df055ce894dad308b45d1ec7076aa8d85b3c71c785dbfa1a7305389a5e",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-macos-15-py3.13",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "evidence_sha256": "b8bfc74c069d90ed4d893a83773c6f18254d9f7f826c0b71c2adf0748521b02b",
+        "report_sha256": "ee89c1df055ce894dad308b45d1ec7076aa8d85b3c71c785dbfa1a7305389a5e",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-macos-15-py3.14",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "evidence_sha256": "b8bfc74c069d90ed4d893a83773c6f18254d9f7f826c0b71c2adf0748521b02b",
+        "report_sha256": "ee89c1df055ce894dad308b45d1ec7076aa8d85b3c71c785dbfa1a7305389a5e",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.11",
+        "bundle_input_sha256": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "single_input_sha256": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "evidence_sha256": "4e99112a19af704f2b5c056a0ea76647bda65694ea14f27183c256e5b8ec923f",
+        "report_sha256": "60bf700c20fae9b6c5d5987faaef2cc6a7f103f63a7d05f7d616c643b0ca6f01",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.12",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "evidence_sha256": "b8bfc74c069d90ed4d893a83773c6f18254d9f7f826c0b71c2adf0748521b02b",
+        "report_sha256": "ee89c1df055ce894dad308b45d1ec7076aa8d85b3c71c785dbfa1a7305389a5e",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.13",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "evidence_sha256": "b8bfc74c069d90ed4d893a83773c6f18254d9f7f826c0b71c2adf0748521b02b",
+        "report_sha256": "ee89c1df055ce894dad308b45d1ec7076aa8d85b3c71c785dbfa1a7305389a5e",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.14",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "evidence_sha256": "b8bfc74c069d90ed4d893a83773c6f18254d9f7f826c0b71c2adf0748521b02b",
+        "report_sha256": "ee89c1df055ce894dad308b45d1ec7076aa8d85b3c71c785dbfa1a7305389a5e",
+        "unknown_and_declared_planes_retained": true,
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "original_versions_preserved": true
+      }
+    ]
+  },
+  "normal_install_dependency_check": "PASS",
+  "original_input_evidence": {
+    "source_commit": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+    "run_id": 37362423664,
+    "passed": 64,
+    "cells": 8,
+    "receipt": "devtools/receipts/saved_attribution_composition_102_2026-10-05.json",
+    "limitation": "The earlier actual scientific matrix produced these original inputs. This new saved-reader contract test executes only on local Linux/Python 3.14, with controlled companion declarations. It does not certify original metadata origins, recording failures or automatic collection."
+  },
+  "verification_script_sha256": "41c5d59e41fa09a31ec6016212e9ee6c28d7a2672d5d72e318459a786f7de0e4",
+  "hosted_gates_at_receipt": {
+    "state": "not_started",
+    "reason": "Two locally batched commits will be pushed together after normal installation qualification. Exact-head workflow outcomes remain separate."
+  },
+  "release_state": "Unreleased provisional development contract; no tag, public artifact or consumer adoption."
+}

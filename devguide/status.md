@@ -169,6 +169,15 @@ Its qualification and J's later explicit evidence representation/collection
 remain separate. Provider/platform review can proceed in parallel.
 New implementations need focused owning issues.
 
+The next J representation milestone #104 implements a provisional explicit
+recorder-evidence companion. Source qualification passes 2,018 Python 3.14 tests
+without skips; a normal installed saved reader retains controlled declarations
+over eight prior real input cells and reconstructs sixteen original workflow
+reports identically. These tests establish inert representation/reading, not
+automatic collection or a new scientific/platform matrix. Exact-head hosted
+controls remain pending. See the [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/explicit_attribution_evidence.md)
+and [receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/explicit_attribution_evidence_104_2026-10-05.json).
+
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures
 and reduces portable capture overhead; #87 prepares fixed explicit contextual

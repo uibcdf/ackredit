@@ -100,3 +100,29 @@ normal installed reader will use neither source insertion nor an editable import
 The initial sandbox run passed 2,016 tests, but isolated-build DNS caused one
 failed and one skipped build test. The unrestricted final gate executes and
 passes both. No behavior or dependency requirement was weakened.
+
+## Normal installed saved-reader checkpoint — 2026-10-05
+
+Clean source `cddf48fe1cc30da5d4c3ff933793fc600e7f0ae5` builds once in
+normal isolation. Candidate `ackredit-0.10.1+15.gcddf48f-py3-none-any.whl`,
+SHA-256 `f6c7b157488d5b012aad06c91290dd1748b286e99f52a419c824f7b7afb32f98`,
+is normally installed outside every checkout. The owning `wheel_record` and
+`verify_installed` tools verify archive identity, version/origin and all 70
+package files. `pip check` passes. Its separate environment reuses the shared
+Python 3.14.7 dependency foundation; the shared editable install is not evidence
+for this normal-installed gate.
+
+Eight retained actual #102 receiving inputs exercise original single/bundle
+readers, unknown planes and explicitly controlled companion declarations. Fresh
+CLI reads match library reports while producer/engine imports, network and new
+recording are blocked. Original versions/results stay exact and sixteen prior
+workflow reports reconstruct byte-identically. The companion declarations are
+contract-test fixtures: they do not establish original producer origins, observed
+scope or actual recording failures. This is a local Linux/Python 3.14 saved-reader
+gate, not a newly executed scientific/platform matrix or recorder integration.
+
+The [reviewed receipt](../../devtools/receipts/explicit_attribution_evidence_104_2026-10-05.json)
+retains exact source/wheel, complete source events, installed identity and input/
+output hashes. Qualification of the final hosted head remains pending; #104 stays
+active until applicable controls execute. Recorder integration and provisional
+promotion are separate follow-ups even after this representation milestone closes.
