@@ -1,0 +1,639 @@
+{
+  "schema": "ackredit.receiving-evidence@1",
+  "date": "2026-10-05",
+  "issue": "uibcdf/ackredit#102",
+  "scope": "Normally installed saved-result composition development qualification; no public artifact or observer/prepared API promotion.",
+  "ackredit_source": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+  "pyunitwizard_source": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+  "runs": {
+    "full_ci": {
+      "id": 37362311287,
+      "head_sha": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37362311287"
+    },
+    "suite_policy": {
+      "id": 37362311998,
+      "head_sha": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37362311998"
+    },
+    "publication_policy": {
+      "id": 37362312080,
+      "head_sha": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37362312080"
+    },
+    "receiving": {
+      "id": 37362423664,
+      "head_sha": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37362423664"
+    }
+  },
+  "packages": {
+    "candidate": {
+      "package": "ackredit",
+      "source_commit": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+      "version": "0.10.1+11.g95ada1a",
+      "filename": "ackredit-0.10.1+11.g95ada1a-py3-none-any.whl",
+      "sha256": "1a99e7031103265e256f8aa04043ad839982b7c7f64e6e4bd8d6fb3d92ae3853"
+    },
+    "producer": {
+      "package": "pyunitwizard",
+      "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+      "version": "0.28.0+5.g0e422d0",
+      "filename": "pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl",
+      "sha256": "be74b436bb406066e3e6146fe16bdc9de626ee1bcef07c9658b85c63c48ab716"
+    },
+    "released": {
+      "package": "ackredit",
+      "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "version": "0.9.0",
+      "filename": "ackredit-0.9.0-py3-none-any.whl",
+      "sha256": "a1a56d1deb796b5f59047f55a892e0e98ce02dd04a12b3d19c87ec9711c88ace"
+    }
+  },
+  "bundle_manifest_sha256": "cc7fc516e0f82507ff8d9dee8202bde8bb76e07793eb781c5f6df3efbacbce3c",
+  "qualification_module_sha256": "f7d486677d34ff01aab5e815b1b0a866760ee9d27a94aa0d43df6e1ad2300f32",
+  "outcome": "PASS",
+  "passed": 64,
+  "skipped": 0,
+  "independent_aggregate_equals_hosted": true,
+  "native_archives": [
+    {
+      "id": 11367825856,
+      "name": "function-provider-bundle",
+      "sha256": "9ed1a1083d8d2f9c48cfc5d44994b7bd29ffe206493caefffaad7482028fd4c8",
+      "size_in_bytes": 296636,
+      "github_digest_verified": true,
+      "extracted_files_verified": 4
+    },
+    {
+      "id": 11367735977,
+      "name": "receiving-ubuntu-latest-py3.14",
+      "sha256": "1b8bbb09c3c030e86273b4aefce4f440df6ed4b0f28c3ae39a74000da748a24f",
+      "size_in_bytes": 20090,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11367591189,
+      "name": "receiving-macos-15-py3.14",
+      "sha256": "ea7df08ebec69f2b367d7d564dbb17892eb600158e09cc18798c815ef8b6625b",
+      "size_in_bytes": 20135,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11367521396,
+      "name": "function-provider-matrix",
+      "sha256": "26e7cfd0b926fc78eea1abf457ba1fe376ad1d3895509b3052e3338a8e997cb4",
+      "size_in_bytes": 11354,
+      "github_digest_verified": true,
+      "extracted_files_verified": 1
+    },
+    {
+      "id": 11367346578,
+      "name": "receiving-ubuntu-latest-py3.13",
+      "sha256": "6b181a48dda5b87fc54f0a92114a5a55d84ecdae93e68e61250045d7c69d3277",
+      "size_in_bytes": 20092,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11367003598,
+      "name": "receiving-macos-15-py3.13",
+      "sha256": "14b7cefe301d5f2be72eb2795f43b68fceb2da2ef0822357561dbc911e42f42a",
+      "size_in_bytes": 20136,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11366837954,
+      "name": "receiving-macos-15-py3.12",
+      "sha256": "1141dba0afcbf889218be06aef812388ac031fddb2af7c69a8cb5cfe762d8407",
+      "size_in_bytes": 20148,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11366534467,
+      "name": "receiving-macos-15-py3.11",
+      "sha256": "cef2a9ab9bed794dcbf93e1f88e78a1312cfc48d982413add85724c858b2c1a4",
+      "size_in_bytes": 20170,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11366499158,
+      "name": "receiving-ubuntu-latest-py3.11",
+      "sha256": "e41275bb09ef4bc80941b662a5da154206ee926573f21041028c185b4eaf6419",
+      "size_in_bytes": 20099,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    },
+    {
+      "id": 11366478591,
+      "name": "receiving-ubuntu-latest-py3.12",
+      "sha256": "953d8eeb357fe5af53c9e6a158c795e2447e957f93877a3a6496093cedd61657",
+      "size_in_bytes": 20088,
+      "github_digest_verified": true,
+      "extracted_files_verified": 14
+    }
+  ],
+  "cells": [
+    {
+      "platform": "darwin",
+      "python": "3.11.16",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.25.3",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "f709c32dd3191eb57c5fd1d32cf33cc3755e8be1b8d50b2f6a5212e0cf3d4599",
+        "composition.json": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "events.jsonl": "3cbafc6807e9c7274129790c7af05acd4e4af39b63a7ce5a19a3793e8bc5f7e8",
+        "identity.json": "736f8e7e8e3df4ccf06296d28f1b5dc62b287bb5fa34b00050f6dbc7b97f2aa0",
+        "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+        "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506",
+        "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "tests.xml": "49de2e18a4cc26627dd745a1db81f3f89eb3aa906b682ef1fa331d3320562438",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3"
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.12.14",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "b3908aa23db262b552d87e50b7602ce6ede046366216a5e8e9324a9ce642c919",
+        "identity.json": "51e1aeb4a548d017f9a3e2441e9c9d3f2342adf01e1d8a40454ef48dea26bba2",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "2359e11ca92bbfc917941b26f9640b402fbc4d3895e5da98d043652eea001c92",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.13.15",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "72a7589145f1a78b79c958b5a43eabf586dfd55bdb9cb2c03a76408cb0752d40",
+        "identity.json": "a22a24c6f69e682053223bb35b141a2ac123f7eb96ae0ce4fbb12ae979dbf0d2",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "ea860492751796d2fac7c078d530b5302066c070ebefe60180f8afe326381e81",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.14.7",
+      "architecture": "arm64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "c11e277260a4500affa8650ded5ef62a3e2c67f5d728d17eba817acb4d5b4038",
+        "identity.json": "7feb405d7779372c6ba0a4c7ec647e8f3bd449c6949b5d0e69235e9dec7b5325",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "5c0071212b5494a0126e39ab19d1f66d4c062c7baa45eeb99d408b0f2aad5ca1",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.11.16",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.25.3",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "f709c32dd3191eb57c5fd1d32cf33cc3755e8be1b8d50b2f6a5212e0cf3d4599",
+        "composition.json": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "events.jsonl": "702a74b5932f6b786fd7e45dac2f14c725ddb4a0a578fa0459cff0e7a54f4589",
+        "identity.json": "c92d3b4faef85db0f8d6c0756dcc35a90a42c4871cf2a42d8f09530f4a68be56",
+        "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+        "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506",
+        "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "tests.xml": "d2a710a42dc8cd2ec98b3b6f6bc3da4f73d1bde50671bdf98c16b7e7b8d2d80e",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.12.14",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "c654592be93e337d8485b09e1d0e779e73a81164a7dfad139d83a939ac996ff7",
+        "identity.json": "27bb087eafaf6aa281d958e30f73d3f5708110461163e7a00f7e275ef01a312e",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "f5a86f26d7befadb83a90d768a4f4f9a0569291d7b8d845d379f1452a53fbdd1",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.13.15",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "57a36fe324e90f12bd7692ce2cc309290b802003c364aae26f4396fd45eb22c0",
+        "identity.json": "e38f3386fd9d853ea158f180c852421f657afcb4a22211b6dce656ebd1ac3870",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "2a16f3b3dbfba3592593de0115f9d84994790b5f1f1a662899e4e257552dab01",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.14.7",
+      "architecture": "x86_64",
+      "versions": {
+        "ackredit": "0.10.1+11.g95ada1a",
+        "pyunitwizard": "0.28.0+5.g0e422d0",
+        "pint": "0.26.1",
+        "unyt": "3.1.0"
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 8,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 8,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 8,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "composition_reader": {
+        "producer_imports": 0,
+        "new_credits": 0,
+        "payload_equality": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "independent_graphs": true
+      },
+      "local_offline_reconstruction_verified": true,
+      "proof_sha256": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "3cab314446f508bf8fef522f93b39d51015f99b088deba87c57f7762ee2ae6b3",
+        "identity.json": "717f2b4941e0d64830462e6e26dd5b24e050e4e419b020d48ce826de21acc9d0",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "d72cbb100d21488e757c95399ab9893464743f7b5c61d5d40fb6afe51aa7c44d",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    }
+  ],
+  "source_validation": {
+    "python": "3.14.7",
+    "passed": 1915,
+    "skipped": 0,
+    "focused_passed": 290,
+    "ruff_check": "PASS",
+    "ruff_format": "PASS",
+    "report_indexes": "PASS",
+    "strict_sphinx": "PASS"
+  },
+  "local_receiving": {
+    "python": "3.14.7",
+    "passed": 8,
+    "pip_check": "PASS",
+    "events_sha256": "90984be5495426c29d2e7ccaf96ea02b530d381402b6e117a2d4cb743b4ff769",
+    "packages": {
+      "candidate": {
+        "package": "ackredit",
+        "source_commit": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+        "version": "0.10.1+11.g95ada1a",
+        "filename": "ackredit-0.10.1+11.g95ada1a-py3-none-any.whl",
+        "sha256": "df344f7d3c5d0d0fd4a0f0719c60154a13360cf0d823d201b9341d796ccd9708"
+      },
+      "producer": {
+        "package": "pyunitwizard",
+        "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+        "version": "0.28.0+5.g0e422d0",
+        "filename": "pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl",
+        "sha256": "f4b1612f914a2370a25b7f824d318f2096b04994478a3d928d5ba69cf2aa7a95"
+      },
+      "released": {
+        "package": "ackredit",
+        "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+        "version": "0.9.0",
+        "filename": "ackredit-0.9.0-py3-none-any.whl",
+        "sha256": "f3e90e3fe850de2bcf759ffffc8baa6c576fc44aa664095a92d4660b7bde6568"
+      }
+    },
+    "versions": {
+      "ackredit": "0.10.1+11.g95ada1a",
+      "pyunitwizard": "0.28.0+5.g0e422d0",
+      "pint": "0.25.3",
+      "unyt": "3.1.0"
+    },
+    "composition_reader": {
+      "producer_imports": 0,
+      "new_credits": 0,
+      "payload_equality": true,
+      "original_members": 4,
+      "shared_references": 4,
+      "independent_graphs": true
+    },
+    "limitation": "Isolated normal candidate/producer wheel installs reuse the shared Python 3.14 dependency foundation; missing unyt 3.1.0, sympy 1.14.0 and mpmath 1.3.0 were installed only in this temporary environment. Local and hosted wheel ZIP identities differ."
+  },
+  "limits": [
+    "Public Ackredit remains 0.10.1; these development wheels are not a published Conda candidate.",
+    "The original schema-1 single-result contract is unchanged; the separate bundle envelope is unpublished.",
+    "observe_calls and prepare_credit remain provisional; no consumer minimum or suite adoption follows.",
+    "Eight scientific cases per cell establish their tested boundaries, not arbitrary scientific equivalence or performance."
+  ]
+}

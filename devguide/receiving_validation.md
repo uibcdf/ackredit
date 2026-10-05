@@ -21,6 +21,20 @@ new boundary. Historical receipts below retain their original counts/inputs.
 New source/receiving qualification does not publish an artifact or promote the
 observer/prepared APIs.
 
+The composition implementation is qualified at source
+`95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e` in
+[run 37362423664](https://github.com/uibcdf/ackredit/actions/runs/37362423664):
+eight cells and 64 passed tests without skips/deselections, plus passing
+aggregate and ordinary CI. All ten original ZIP digests and extracted contents
+verify independently; locally reconstructed aggregation equals the hosted
+result. Each saved four-member bundle and workflow report also reconstructs
+offline with four shared references. The
+[reviewed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/saved_attribution_composition_102_2026-10-05.json)
+retains source/wheel identities, actual cell versions, original archive and
+proof hashes, reader assertions and a separate eight-test local normal-install
+check. These development wheels do not replace the public Conda artifact or
+promote the observer/prepared APIs.
+
 The default development profile produces three pure Python wheels once, using their declared build
 requirements in normal isolation. It refuses dirty sources. `bundle.json`
 records the source commits, distribution versions, archive SHA-256 and every

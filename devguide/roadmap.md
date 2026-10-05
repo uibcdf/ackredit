@@ -388,8 +388,10 @@ user's lifecycle. Source qualification remains separate from public delivery.
 - [x] implement the accepted composition operation as a reusable Ackredit tool,
       preserving detached originals, every retained graph edge and distinct
       software releases, and diagnosing conflicts before returning a result;
-- [ ] qualify a real multi-result notebook/batch workflow and fresh reader,
-      including reordered/reused inputs, an empty result and metadata conflicts.
+- [x] qualify a real multi-result notebook/batch workflow and fresh reader,
+      including reordered/reused inputs, an empty result and metadata conflicts:
+      source `95ada1a`, all eight installed cells and 64 tests in
+      [run 37362423664](https://github.com/uibcdf/ackredit/actions/runs/37362423664).
 
 Development under #102 uses a separate `AttributionBundle` envelope of complete
 original schema-1 results. `compose_attributions` shares equal reference records
@@ -398,7 +400,11 @@ independent. Workflow reports number shared bibliography once and retain each
 original result's contexts/uses/graph. The explicit CLI `bundle` mode reuses its
 reader. The new names have deliberately recorded pre-1.0 stable intent; old
 provisional surfaces and the released individual-record promise are unchanged.
-The eight-test installed receiving gate separately qualifies this new boundary.
+The eight-test installed receiving gate separately qualifies this new boundary;
+all ten native archives verify and independent aggregation equals the hosted
+result. The [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/saved_attribution_composition.md) and
+[receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/saved_attribution_composition_102_2026-10-05.json)
+retain the completed development checkpoint separately from public delivery.
 
 CLI/export comes first, then composition. Do not reconstruct absent bibliography
 from the reader's current installation or interpret composition as chronology,

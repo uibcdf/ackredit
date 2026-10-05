@@ -4,10 +4,6 @@ Open proposals following [`reporting_protocol.md`](../reporting_protocol.md).
 
 <!-- generated: devguide_index -->
 
-### Active (1)
-
-- [`saved_attribution_composition.md`](saved_attribution_composition.md) — [#102](https://github.com/uibcdf/ackredit/issues/102) — Compose shared bibliography without conflating independent original result graphs. *(active, reproduced)*
-
 ### Partial (2)
 
 - [`function_citation_providers.md`](function_citation_providers.md) — [#84](https://github.com/uibcdf/ackredit/issues/84) — Observe executed third-party functions through dependency-free declarations. *(partial, reproduced)*

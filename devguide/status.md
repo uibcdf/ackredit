@@ -157,8 +157,14 @@ conditions for every client or the general 1.0 stability commitment. Portable
 CLI report/export is implemented in development under #101. #102 implements
 saved-result composition with complete original members, shared bibliography
 and independent graphs through `AttributionBundle`/`compose_attributions`;
-its eight-test installed receiving checkpoint remains separate. Report
-scope/origin/gap explanations are next. Provider/platform review can proceed in parallel.
+its separate installed checkpoint passes all eight Linux/macOS arm64 × Python
+3.11–3.14 cells and 64 tests in
+[run 37362423664](https://github.com/uibcdf/ackredit/actions/runs/37362423664).
+Original archives, event streams and offline reconstruction verify locally;
+the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/saved_attribution_composition.md) retains this
+development outcome separately from public 0.10.1 and provisional API review.
+Report scope/origin/gap explanations are next. Provider/platform review can
+proceed in parallel.
 New implementations need focused owning issues.
 
 Active core improvements are tracked separately: #84 implements provisional

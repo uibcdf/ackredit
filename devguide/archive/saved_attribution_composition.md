@@ -1,9 +1,9 @@
 ---
 summary: Compose shared bibliography without conflating independent original result graphs.
 issue: uibcdf/ackredit#102
-status: active
+status: resolved
 opened: 2026-10-05
-closed:
+closed: 2026-10-05
 severity: medium
 verification: reproduced
 area: [portability, reporting]
@@ -76,3 +76,41 @@ composition proofs per supported cell. Clean candidate build, actual scientific
 receiving and exact-head hosted qualification remain to execute before closing
 this issue. These source results neither qualify a public artifact nor promote
 the observer/prepared APIs.
+
+## Installed and hosted outcome — 2026-10-05
+
+Implementation source `95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e` passes
+[ordinary CI](https://github.com/uibcdf/ackredit/actions/runs/37362311287)
+(seven jobs) and both policy lanes. The normally installed
+[receiving matrix](https://github.com/uibcdf/ackredit/actions/runs/37362423664)
+passes all eight Linux/macOS arm64 × Python 3.11–3.14 cells and the aggregate:
+64 tests, no skips/deselections and ten retained artifacts. The pinned actual
+PyUnitWizard producer includes its resolved #111 optimization. The original
+0.9.0 fallback remains a separately built, normally installed baseline.
+
+All ten original ZIP archives match GitHub's digest and their extracted bytes.
+Local reconstruction through the owning qualification tool equals the hosted
+matrix. Each cell's complete, integrity-valid receptor stream verifies; its
+saved bundle reconstructs with four complete original members and four shared
+references. Its workflow rendering equals the retained report. Independent
+producer-free readers report zero producer imports and new credits, unchanged
+payloads and independent graphs.
+
+A separate local Python 3.14.7 environment also passes all eight scientific
+tests and `pip check` with normally installed candidate/producer wheels. Local
+and hosted archives have distinct recorded byte identities. This local check
+reuses the shared dependency foundation; unyt/sympy/mpmath were added only to
+the temporary environment. It is not a new clean public installation.
+
+The [reviewed receipt](../../devtools/receipts/saved_attribution_composition_102_2026-10-05.json)
+retains exact source/wheel identities, original archive hashes, cell versions,
+proof hashes, offline assertions and scoped local results. The guard exercises
+detachment, conflicts, original graphs and fresh CLI refusal/reading; the
+scientific gate independently uses real Pint/unyt results, reused and empty
+inputs, conflicts and the external-process reader. These tests protect the
+failure mechanism rather than merely counting administrative completion.
+
+This completes theme I's implementation and development qualification. Public
+Ackredit remains 0.10.1; no tag, published Conda file, stable promotion of
+`observe_calls`/`prepare_credit`, consumer minimum or shared adoption is implied.
+The separate unpublished bundle preserves the original schema-1 meaning.
