@@ -1,0 +1,177 @@
+{
+  "schema": "ackredit.saved-reader-evidence@1",
+  "date": "2026-10-05",
+  "issue": "uibcdf/ackredit#103",
+  "source_commit": "faa330b68013d08afa0421d3055db097dfb355a3",
+  "scope": "Normally installed Linux/Python 3.14 offline explanation of eight retained real receiving inputs; no new scientific/platform matrix or public package.",
+  "candidate": {
+    "package": "ackredit",
+    "source_commit": "faa330b68013d08afa0421d3055db097dfb355a3",
+    "version": "0.10.1+13.gfaa330b",
+    "filename": "ackredit-0.10.1+13.gfaa330b-py3-none-any.whl",
+    "sha256": "8ff0c78018b749d3d361aca5894c8fde9e63272fa4666a3f488937898bf50623"
+  },
+  "bundle_manifest_sha256": "cebfbf329a73d06b2918f483df374f85e5c94a683cce39fa5707a935e8506a7b",
+  "installed_resource_files_verified": 69,
+  "installed_identity": {
+    "version": "0.10.1+13.gfaa330b",
+    "origin": "/tmp/ackredit103-reader-env/lib/python3.14/site-packages/ackredit/__init__.py",
+    "wheel_sha256": "8ff0c78018b749d3d361aca5894c8fde9e63272fa4666a3f488937898bf50623"
+  },
+  "source_validation": {
+    "python": "3.14.7",
+    "outcome": "PASS",
+    "counts": {
+      "collected": 1956,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 1956,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 1956,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "event_integrity_valid": true,
+    "events_sha256": "02c441f988150ae67b188d1fe343f54af5221017de75f01f7891b78cd5dab5ca",
+    "ruff_check": "PASS",
+    "ruff_format": "PASS",
+    "strict_sphinx": "PASS",
+    "report_indexes": "PASS",
+    "source_input": "Clean owned worktree; explicit PYTHONPATH selects the same source for spawned CLI readers. Normal build dependencies were permitted; no installation checks skipped."
+  },
+  "reader": {
+    "outcome": "PASS",
+    "python": "3.14.7",
+    "version": "0.10.1+13.gfaa330b",
+    "origin": "/tmp/ackredit103-reader-env/lib/python3.14/site-packages/ackredit/__init__.py",
+    "runtime_platform": "linux",
+    "scope": "Linux/Python 3.14 normal-installed offline reading of eight original qualified scientific cells; no new scientific/platform matrix.",
+    "producer_imports": 0,
+    "new_credits": 0,
+    "network_attempts": 0,
+    "cells": [
+      {
+        "input_cell": "receiving-macos-15-py3.11",
+        "bundle_input_sha256": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "single_input_sha256": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "5d3dadb12b3701df3c5b1a0d40d721050c5787a04c77781da0d7777a5954f752",
+        "report_sha256": "bb60be09d942a44f98f936b6b130f3d747e115b423a85772ff6a726e4a1520fe"
+      },
+      {
+        "input_cell": "receiving-macos-15-py3.12",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "296fc47bca4a4fda60790d5448f6da476f1e804a207cf0e6ab72024b2489ed8c",
+        "report_sha256": "6fd356f5b133950afdf3812c7278bf420995b1a8de5597dcab3c34184c4f2d78"
+      },
+      {
+        "input_cell": "receiving-macos-15-py3.13",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "296fc47bca4a4fda60790d5448f6da476f1e804a207cf0e6ab72024b2489ed8c",
+        "report_sha256": "6fd356f5b133950afdf3812c7278bf420995b1a8de5597dcab3c34184c4f2d78"
+      },
+      {
+        "input_cell": "receiving-macos-15-py3.14",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "296fc47bca4a4fda60790d5448f6da476f1e804a207cf0e6ab72024b2489ed8c",
+        "report_sha256": "6fd356f5b133950afdf3812c7278bf420995b1a8de5597dcab3c34184c4f2d78"
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.11",
+        "bundle_input_sha256": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "single_input_sha256": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "5d3dadb12b3701df3c5b1a0d40d721050c5787a04c77781da0d7777a5954f752",
+        "report_sha256": "bb60be09d942a44f98f936b6b130f3d747e115b423a85772ff6a726e4a1520fe"
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.12",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "296fc47bca4a4fda60790d5448f6da476f1e804a207cf0e6ab72024b2489ed8c",
+        "report_sha256": "6fd356f5b133950afdf3812c7278bf420995b1a8de5597dcab3c34184c4f2d78"
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.13",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "296fc47bca4a4fda60790d5448f6da476f1e804a207cf0e6ab72024b2489ed8c",
+        "report_sha256": "6fd356f5b133950afdf3812c7278bf420995b1a8de5597dcab3c34184c4f2d78"
+      },
+      {
+        "input_cell": "receiving-ubuntu-latest-py3.14",
+        "bundle_input_sha256": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "single_input_sha256": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "single_and_bundle_cli_verified": true,
+        "original_workflow_bytes_unchanged": true,
+        "original_members": 4,
+        "shared_references": 4,
+        "original_versions_preserved": true,
+        "view_sha256": "296fc47bca4a4fda60790d5448f6da476f1e804a207cf0e6ab72024b2489ed8c",
+        "report_sha256": "6fd356f5b133950afdf3812c7278bf420995b1a8de5597dcab3c34184c4f2d78"
+      }
+    ]
+  },
+  "normal_install_dependency_check": "PASS",
+  "original_input_evidence": {
+    "source_commit": "95ada1a53e7ffcbd8db3ea0165b5f9a03db0966e",
+    "run_id": 37362423664,
+    "passed": 64,
+    "cells": 8,
+    "receipt": "devtools/receipts/saved_attribution_composition_102_2026-10-05.json",
+    "limitation": "Prior actual scientific matrix proves those original inputs. New explanatory reading executes locally on Linux/Python 3.14 only."
+  },
+  "pending_hosted_gates": {
+    "ci": "https://github.com/uibcdf/ackredit/actions/runs/37370412974",
+    "suite_policy": "https://github.com/uibcdf/ackredit/actions/runs/37370413763",
+    "publication_policy": "https://github.com/uibcdf/ackredit/actions/runs/37370413847",
+    "state_at_receipt": "Pending; no hosted success inferred from local checks or previous input qualification."
+  },
+  "limits": [
+    "Temporary normal installation reuses the shared Python 3.14 dependency foundation; no fresh solver/public installation claim.",
+    "Instrumentation scope, metadata origins and diagnosed recording gaps are not recorded by the original schemas; arbitrary caller data is not adopted as authority.",
+    "Existing portable payloads/default reports are unchanged; sixteen prior workflow reports reconstruct byte-identically.",
+    "Public Ackredit remains 0.10.1; no tag, Conda publication, observer/prepared promotion or consumer minimum."
+  ]
+}

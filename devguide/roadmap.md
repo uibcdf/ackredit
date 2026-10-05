@@ -421,8 +421,13 @@ The first independent milestone #103 adds an inert `explain_attribution` tool
 and `explanation` format in development. Each saved original retains distinct
 evidence counts, roles/targets and explicit field absence; scope, origins and
 diagnosed gaps remain `not_recorded`. This descriptive view changes no portable
-schema or default workflow report. Its source/installed qualification remains
-separate; the stronger representation and collection work below is still pending.
+schema or default workflow report. Source checks pass 1,956 tests without skips;
+a normal Linux/Python 3.14 installation explains the eight retained real input
+cells offline and reconstructs sixteen prior workflow reports identically.
+Hosted qualification and the stronger representation/collection work below
+remain separate and pending. The
+[saved-reader receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/recorded_attribution_explanation_103_2026-10-05.json)
+retains actual source, wheel and scope.
 
 - [ ] define which scope information can be recorded: selected observation
       boundaries, explicit credits, declared-provider/discovery metadata origins,

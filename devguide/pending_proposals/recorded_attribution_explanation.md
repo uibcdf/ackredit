@@ -98,3 +98,26 @@ one failed and one skipped normal-build test because DNS blocked build
 requirements; the unrestricted final run executes and passes both. No test or
 dependency requirement was weakened. Clean source installation, saved real
 receiving inputs and exact-head hosted checks remain separate gates.
+
+## Normally installed saved-reader checkpoint — 2026-10-05
+
+Clean source `faa330b68013d08afa0421d3055db097dfb355a3` builds in normal
+isolation. The candidate `ackredit-0.10.1+13.gfaa330b-py3-none-any.whl`,
+SHA-256 `8ff0c78018b749d3d361aca5894c8fde9e63272fa4666a3f488937898bf50623`,
+is normally installed outside the source checkouts into a separate Python
+3.14.7 environment. The owning `verify_bundle` / `verify_installed` operations
+verify its archive, distribution/runtime identity and all 69 package resources;
+`pip check` passes. The shared editable installation is not substituted for it.
+
+Offline Python and fresh CLI readers reconstruct single-result and bundle
+explanations from retained actual PyUnitWizard inputs in all eight original
+#102 scientific cells. Original versions and members remain exact; producer
+imports, network access and new credits are blocked. Sixteen earlier workflow
+reports reconstruct byte-identically. This tests the new saved-reader boundary
+on Linux/Python 3.14, not a newly executed eight-platform scientific matrix.
+The temporary normal installation reuses the shared dependency foundation.
+
+The [reviewed receipt](../../devtools/receipts/recorded_attribution_explanation_103_2026-10-05.json)
+retains exact source/wheel/resources, complete source events and each original
+input/view/report hash. Source CI 37370412974 and both policy lanes remain
+pending; this report/issue remains active until applicable gates complete.
