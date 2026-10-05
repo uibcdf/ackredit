@@ -11,12 +11,12 @@ It is a structured document, so it is read as one.
 
 from __future__ import annotations
 
-from datetime import date
 from pathlib import Path
 from typing import Any, Dict, List
 
 import yaml
 
+from .._private.dates import calendar_date_parts
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.warnings import CitationFileWarning
 
@@ -133,11 +133,10 @@ def _citation_fields(document: Dict[str, Any]) -> Dict[str, Any]:
     if "year" not in data:
         for field in ("date-published", "date-released"):
             if value := data.get(field):
-                try:
-                    data["year"] = str(date.fromisoformat(value).year)
-                except ValueError:
-                    # Keep the original date; do not invent a publication year.
-                    continue
+                if parts := calendar_date_parts(value):
+                    data["year"] = str(parts[0])
+                # A stated publication date takes precedence even when it is
+                # literal text. Do not borrow a year from another date field.
                 break
     return data
 

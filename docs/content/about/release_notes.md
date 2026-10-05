@@ -9,8 +9,14 @@
 - Preferred works receive their own discovered identity and do not credit
   alternative shipped references. Root software/shipped-paper behavior and
   manual injection precedence remain available; root datasets retain their type.
+- CSL-JSON exports original CFF book/report/thesis/conference and periodical
+  types, available calendar-date precision and separate page counts. Explicit
+  year/month conflicts are preserved without mixing date components; literal
+  publication dates do not borrow a release year. Original metadata remains
+  available to detached offline readers (#96).
 
-These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackredit/issues/95).
+These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackredit/issues/95)
+and [#96](https://github.com/uibcdf/ackredit/issues/96).
 They are development changes, not features of the already published 0.10.1
 archive. The portable payload version, core dependencies and provisional
 provider API classifications remain unchanged.

@@ -38,6 +38,34 @@ together with any format a plugin added, and asking for a name that is not there
 `ACKREDIT-E004` rather than quietly returning a different report. A test keeps this page
 and that function in agreement.
 
+### CFF references in CSL-JSON
+
+Development after 0.10.1 also carries original CFF work kinds into CSL-JSON:
+books and edited collections become `book`, theses become `thesis`, reports
+and CFF manuals become `report`, and conference papers become
+`paper-conference`. Magazine and newspaper articles retain their specific
+periodical kinds. Pamphlets, patents, personal communications, blogs, maps and
+unpublished manuscripts have explicit mappings. Unsupported kinds remain
+`document`, with their original `_cff_type` retained in the saved attribution.
+Existing BibTeX source-type interpretation retains its own mapping.
+
+Publication dates retain their recorded precision. A full `date-published`
+takes precedence over `date-released`; release dates are used when publication
+dates are absent. An explicit year and its numeric month, if any, win over
+conflicting full dates. Consistent full dates can add day precision; year/month
+alone never invent a day. Numeric months are interpreted only within 1–12.
+Textual years and non-calendar dates stay literal, while all original fields
+remain available in the portable payload. CFF calendar dates use `YYYY-MM-DD`;
+ISO week dates, compact dates and impossible calendar days are not converted
+into apparently valid publication dates. A stated literal publication date
+does not borrow a release year.
+
+CFF page counts reach CSL `number-of-pages`, separately from the page range
+in `page`. Saving and rereading attribution preserves these original records;
+export requires no producer import, network lookup or new execution credit.
+These additions are tracked in [Ackredit #96](https://github.com/uibcdf/ackredit/issues/96)
+and are not present in the already published 0.10.1 archive.
+
 ## Contextual workflow reports
 
 The explicit `workflow` format ships in public 0.10.0 and recommended 0.10.1.

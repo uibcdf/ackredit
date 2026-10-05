@@ -19,6 +19,9 @@ working, a test or a reproducible command backs it.
   publication fields, without borrowing root software metadata or crediting
   unrelated listed references (#95). Root dataset types are retained. This repair
   is not present in the public 0.10.1 archive.
+  CSL-JSON now also interprets unambiguous original CFF kinds, full calendar
+  dates and page counts (#96), preserving unknown kinds and literal/conflicting
+  date metadata in the portable records. This is development after 0.10.1.
 - **Metadata enrichment:** DOI lookup against Crossref and DataCite, with a local cache.
 - **Ecosystem integration:** entry-point plugin loading, a DueCredit bridge, session
   persistence and a multi-session aggregator.

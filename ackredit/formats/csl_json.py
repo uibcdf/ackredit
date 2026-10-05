@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 
+from .._private.dates import calendar_date_parts
 from ._names import csl_name
 
 # Ackredit's key to CSL's field, for values that are plain text.
@@ -30,6 +31,7 @@ _DIRECT = {
     "language": "language",
     "chapter": "chapter-number",
     "address": "publisher-place",
+    "page-count": "number-of-pages",
 }
 
 # One CSL field that several of Ackredit's keys can fill. The first key present
@@ -62,6 +64,28 @@ _FROM_BIBTEX = {
     "misc": "document",
 }
 
+# CFF uses a separate vocabulary. Keep its original kind in the saved record,
+# and map only kinds whose meaning is unambiguous in CSL 1.0.2. In particular,
+# a complete dictionary is not necessarily a dictionary entry, and an event is
+# not a paper presented at that event. Unmapped kinds remain documents.
+_FROM_CFF = {
+    "book": "book",
+    "edited-work": "book",
+    "proceedings": "book",
+    "manual": "report",
+    "report": "report",
+    "thesis": "thesis",
+    "conference-paper": "paper-conference",
+    "magazine-article": "article-magazine",
+    "newspaper-article": "article-newspaper",
+    "pamphlet": "pamphlet",
+    "patent": "patent",
+    "personal-communication": "personal_communication",
+    "blog": "post-weblog",
+    "map": "map",
+    "unpublished": "manuscript",
+}
+
 
 def _issued(year: object) -> dict | None:
     """The `issued` date, or a literal when the year is not one.
@@ -78,6 +102,42 @@ def _issued(year: object) -> dict | None:
         return {"date-parts": [[int(text)]]}
     except ValueError:
         return {"literal": text}
+
+
+def _publication_date(item: dict) -> dict | None:
+    """Use original precision without combining contradictory date components.
+
+    Explicit year/month take precedence over conflicting full dates. Consistent
+    publication dates add precision, with release dates used only when no
+    publication date is stated. Textual years keep their historical literal
+    meaning. Missing/invalid months never invent date parts.
+    """
+    year = item.get("year")
+    issued = _issued(year) if year is not None else None
+    month = None
+    raw_month = item.get("month")
+    if issued and "date-parts" in issued and raw_month is not None:
+        try:
+            candidate = int(str(raw_month).strip())
+        except ValueError:
+            candidate = 0
+        if 1 <= candidate <= 12:
+            month = candidate
+            issued["date-parts"][0].append(month)
+
+    for field in ("date-published", "date-released"):
+        if (raw := item.get(field)) is None or not (text := str(raw).strip()):
+            continue
+        parts = calendar_date_parts(text)
+        if issued:
+            if "date-parts" not in issued:
+                return issued
+            if parts and parts[0] == issued["date-parts"][0][0]:
+                if raw_month is None or month == parts[1]:
+                    return {"date-parts": [parts]}
+            return issued
+        return {"date-parts": [parts]} if parts else {"literal": text}
+    return issued
 
 
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
@@ -112,7 +172,10 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             # Ackredit's own vocabulary can say.
             "type": _FROM_BIBTEX.get(
                 item.get("_bibtex_type", ""),
-                type_map.get(item.get("type", "other"), "document"),
+                _FROM_CFF.get(
+                    item.get("_cff_type", ""),
+                    type_map.get(item.get("type", "other"), "document"),
+                ),
             ),
             "title": item.get("title", ""),
         }
@@ -125,9 +188,8 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         if authors:
             csl_item["author"] = [csl_name(author) for author in authors]
 
-        if year := item.get("year"):
-            if issued := _issued(year):
-                csl_item["issued"] = issued
+        if issued := _publication_date(item):
+            csl_item["issued"] = issued
 
         if editors := item.get("editors") or item.get("editor"):
             if isinstance(editors, str):

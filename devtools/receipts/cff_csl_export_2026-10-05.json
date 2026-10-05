@@ -1,0 +1,122 @@
+{
+  "schema": "ackredit.cff-csl-export@1",
+  "checked_at": "2026-10-05T07:57:26.854647+00:00",
+  "issue": "uibcdf/ackredit#96",
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Linux",
+    "architecture": "x86_64"
+  },
+  "baseline": {
+    "source_commit": "898493f267da5e412b7b7a046048519e95185c18",
+    "installation": "pip install --no-deps --no-build-isolation /tmp/ackredit96-baseline-source",
+    "lane": "baseline",
+    "installed_version": "0.10.1+3.g898493f",
+    "installed_origin": "/tmp/ackredit96-baseline-env/lib/python3.14/site-packages/ackredit/__init__.py",
+    "counts": {
+      "collected": 42,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 42,
+      "failed": 31,
+      "not_executed": 0,
+      "passed": 11,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "outcome": "FAIL",
+    "exitstatus": 1,
+    "events_sha256": "9e203b2e38f2c62232ae88fa931c552add6d8098163cf63b77ed42bc5d941b5b",
+    "receptor_complete": true,
+    "receptor_integrity_valid": true,
+    "files_sha256": {
+      "ackredit/core/cff.py": "e6162d28f7573120d58ce0f2a7ed8ab7bc7a4e0858ea3d93f6e197eadc285a4e",
+      "ackredit/formats/csl_json.py": "9db9b078604321cba0dcedf187a242230d56147b29f1f4628a9d3c4a601f057c"
+    }
+  },
+  "development_candidate": {
+    "base_commit": "898493f267da5e412b7b7a046048519e95185c18",
+    "installation": "pip install --no-deps --no-build-isolation .",
+    "lane": "candidate",
+    "installed_version": "0.10.1+3.g898493f.dirty",
+    "installed_origin": "/tmp/ackredit76-qualify/lib/python3.14/site-packages/ackredit/__init__.py",
+    "counts": {
+      "collected": 42,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 42,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 42,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 1,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "outcome": "PASS",
+    "exitstatus": 0,
+    "events_sha256": "a75d9a0c3a77e4a0ad44983792bd6cdc4a71afda107a0170025a117ed3d91df3",
+    "receptor_complete": true,
+    "receptor_integrity_valid": true,
+    "files_sha256": {
+      "ackredit/core/cff.py": "aaba34213f847d834632052ef4e205a7d9d334e112c443d4fba08e1cccaeab93",
+      "ackredit/formats/csl_json.py": "1082522582ec44c11156b21580485cf0fb845738c3bc0fbfcd0fb050d212b038",
+      "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d"
+    }
+  },
+  "test_module": {
+    "path": "tests/test_cff_csl_export.py",
+    "sha256": "7bb4b10627948d78166e126267941f99c9c6477c07add13a3957a928becbbb51"
+  },
+  "qualification": {
+    "operation": "installed_noarch.run_tests",
+    "shared_provider_commit": "c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+    "working_directory": "/tmp",
+    "same_interpreter_provenance_before_and_after": "passed",
+    "installed_runtime_matches_source": true,
+    "fresh_reader_guards": [
+      "preferred book",
+      "preferred dataset"
+    ],
+    "reader_constraints": [
+      "producer imports blocked",
+      "urllib requests and socket connections blocked",
+      "no execution credit"
+    ]
+  },
+  "scope": "42 focused CSL/CFF guards on Linux/Python 3.14.7 with clean normally installed development baseline and candidate. No new public archive, hosted full matrix, reference-style engine validation or provisional API promotion. Qualification-tool assert-rewrite warnings are retained in counts.",
+  "local_gates": {
+    "ruff_check": "passed",
+    "ruff_format_check": "passed",
+    "devguide_index_check": "passed",
+    "sphinx_strict": "passed",
+    "full_pytest": {
+      "outcome": "PASS",
+      "exitstatus": 0,
+      "counts": {
+        "collected": 1788,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 1788,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 1788,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "receptor_complete": true,
+      "receptor_integrity_valid": true,
+      "events_sha256": "dba06f8790753cea65b654b3cf02451dd91e61665c2d530a14064b0bd80d81dd"
+    }
+  }
+}
