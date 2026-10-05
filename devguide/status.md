@@ -117,9 +117,12 @@ many land before 1.0.0 is an outcome rather than a plan.
   under #94 prevent stale packaged self-citation metadata; public 0.10.1 matches.
 - **Adoption:** PyUnitWizard #92 exercises real Pint/unyt operations through its
   optional context; Sabueso #108 exercises required knowledge-packet attribution
-  and has clean public-provider receiving evidence. Their released integration
-  claims remain client-owned. Sabueso #110 owns its release candidate and
-  MolSysMT #292 its portable-adapter adoption (roadmap C, still open).
+  and has clean public-provider receiving evidence. Sabueso #110 completed its
+  0.12.0 release; PyUnitWizard #94's experimental function-provider pilot is
+  resolved, and its #111 optimization is jointly qualified under Ackredit #99.
+  Further released integration claims remain client-owned. MolSysMT #292 still
+  owns its portable-adapter adoption. The original real-adoption milestone is
+  demonstrated; the explicit final stability review remains open (roadmap C/F).
 - **Performance:** measured on a real MolSysMT workflow and published in
   `docs/content/about/performance.md`, which is where the numbers live: microseconds per
   instrumented call, tens of milliseconds once for auto-discovery at import, and on the
@@ -138,6 +141,17 @@ many land before 1.0.0 is an outcome rather than a plan.
   and consumer release are separate states.
 
 ## Future strategic concepts
+
+The maintainer-accepted continuation under Ackredit #100 is maintained in
+[roadmap themes I–N](roadmap.md): portable saved-result CLI and composition,
+scope/reference-origin/gap explanations, MOLI object-boundary decisions,
+complete lifecycle cost, real publication-tool interoperability and the scope
+of non-bibliographic acknowledgements. Theme G also plans a standalone inert
+declaration validator and a concise external-producer guide. These are planned
+implementations or decisions, not capabilities already shipped or implicit
+conditions for every client or the general 1.0 stability commitment. Start with
+portable CLI, then composition and report explanations; provider/platform review
+can proceed in parallel. New implementations need focused owning issues.
 
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures

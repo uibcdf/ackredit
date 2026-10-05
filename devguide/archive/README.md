@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (93)
+### Resolved (94)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -64,6 +64,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`persistence_rewrites_everything_on_every_item.md`](persistence_rewrites_everything_on_every_item.md) — [#17](https://github.com/uibcdf/ackredit/issues/17) — Persistence rewrote the whole document on every item, making a run O(n squared). *(resolved, reproduced)*
 - [`portable_capture_overhead.md`](portable_capture_overhead.md) — [#85](https://github.com/uibcdf/ackredit/issues/85) — Measure and reduce portable capture overhead while preserving fidelity. *(resolved, measured)*
 - [`portable_scientific_result_attribution.md`](portable_scientific_result_attribution.md) — [#75](https://github.com/uibcdf/ackredit/issues/75) — Deliver the stable portable attribution contract in published Ackredit 0.9.0. *(resolved, reproduced)*
+- [`product_roadmap_continuation.md`](product_roadmap_continuation.md) — [#100](https://github.com/uibcdf/ackredit/issues/100) — Record the accepted product and architecture continuation with bounded milestones. *(resolved, reproduced)*
 - [`provider_registered_representation.md`](provider_registered_representation.md) — [#92](https://github.com/uibcdf/ackredit/issues/92) — Function observation rejects JSON-equivalent pre-existing tuple metadata. *(resolved, reproduced)*
 - [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*

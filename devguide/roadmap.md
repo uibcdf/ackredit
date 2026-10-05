@@ -13,6 +13,18 @@ rather than 0.12.0 costs nothing and means the numbers stayed honest.
 What a number does say: **the minor rises when behaviour a caller can see changes**, and a
 tag is only cut when the gates are green and the documentation matches what the code does.
 
+The product/architecture review accepted on 2026-10-05 is recorded under
+[Ackredit #100](https://github.com/uibcdf/ackredit/issues/100). It extends this
+roadmap rather than replacing completed work. Checked items retain their dated
+source/public evidence; unchecked items distinguish implementation from a
+decision. Recording this plan does not implement a capability or promote an API.
+
+Ackredit owns bibliographic attribution and its tools. Scientific clients own
+their methods and result schemas; MolSysSuite owns shared member contracts,
+and MOLI owns platform boundaries. Open a focused owning issue before starting
+each new implementation or decision, reusing existing issues where the scope
+already fits. #100 owns this planning update, not every future implementation.
+
 ## Shipped
 
 ### 0.1.0 — Core consolidation
@@ -114,7 +126,12 @@ Those were released as 0.6.0.
 ## Towards 1.0.0
 
 1.0.0 means one thing: **the public API is stable and we commit to not breaking it**.
-Everything below exists to make that commitment honest rather than optimistic.
+Theme F defines that exit. The completed foundation and remaining contract
+review make that commitment honest rather than optimistic. The product
+continuation in themes I–N can span multiple releases, including work after
+1.0; it does not make every proposed feature, client adoption or optional
+integration a prerequisite for 1.0. Resolve the scope of public promises before
+making the stability commitment, and keep deliberately deferred work visible.
 
 ### Theme A — Ackredit can be installed — **done**
 
@@ -171,14 +188,23 @@ guide is guarded by executed examples in `tests/test_integration_guide.py`.
 - [x] real provider/consumer operations, reused bibliography, enclosing credit,
       absence/failure and detached fresh-reader behavior;
 - [x] the portable capture and guide corrected from those observations under #75;
-- [ ] receiving scientific releases qualified against the public provider;
-      Sabueso #108/#110 owns its candidate, and MolSysMT #292 owns its adoption.
+- [x] a released scientific application uses the public provider: Sabueso
+      0.12.0 completed its staged release under #110, and clean public receiving
+      evidence with Ackredit 0.10.1 retains 56 tests and its offline example;
+      [the provider delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
+      records that separate receiving checkpoint;
+- [x] PyUnitWizard's experimental function-provider pilot #94 is resolved;
+      its completed #111 optimization is qualified together with Ackredit in #99;
+- [ ] MolSysMT's portable-adapter adoption remains client-owned under
+      [#292](https://github.com/uibcdf/molsysmt/issues/292).
 
 Tested integration, synchronized guides and released consumer adoption remain
 separate evidence. MolSysMT and other clients own their scientific schemas and
 release decisions; their runtime work is requested through their issues.
 
-This is the theme most likely to need more than one minor, and the most valuable.
+The original real-adoption milestone is demonstrated. Further host integrations
+remain valuable and separately owned; the final stability review learns from
+the receiving evidence already available rather than waiting for every host.
 
 ### Theme D — Performance under a real workload — **done**
 
@@ -244,8 +270,8 @@ The last theme, and the one that earns the number.
       than closed, built in `uibcdf/ackredit#36`: `register_format` and an
       `ackredit.formats` entry-point group, with a registered name never replaced. That
       settles `_RENDERERS` as implementation;
-- [ ] **the decisions reviewed once more against what adoption taught**, which waits on
-      theme C by definition.
+- [ ] **the decisions reviewed once more against what adoption taught**, using
+      theme C's demonstrated receiving workflows and released application.
 
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
 stability commitment would make the commitment meaningless. The new `observe_calls`
@@ -254,8 +280,8 @@ MolSysSuite #97; it must be promoted or removed before 1.0. Existing names have
 been decided once, on the evidence available now. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
-What remains is the unchecked review above, which waits on theme C by definition:
-adoption is what can reopen a decision taken without it. Review session ownership,
+What remains is the unchecked review above: adoption can reopen a decision
+taken without it, and the real receiving evidence is now available. Review session ownership,
 capture/reused-reference semantics, software/article versions, failure boundaries,
 saved-reader compatibility and extension contracts against actual receiving
 workflows. Existing tests and a stable-intent classification do not substitute
@@ -289,6 +315,16 @@ measures portable capture separately from the historical plain tracking path.
       [`receiving_validation.md`](receiving_validation.md);
 - [ ] real provider and receiving review resolves the provisional API, coordinated
       through MolSysSuite #97 before any shared adoption requirement.
+- [ ] provide a documented standalone declaration validator, with a chosen
+      public/API stability boundary, that checks offline metadata without
+      recording uses, installing wrappers, registering bibliography or querying
+      a DOI; callers and tooling must reuse the provider-owned validation;
+- [ ] offer a concise third-party author guide and an independently installable
+      dependency-free producer example; a producer's declaration requires no
+      Ackredit import, decorator or runtime dependency;
+- [ ] explicitly retain or revise the observation exclusions for pre-activation
+      aliases, methods/descriptors, generators and native internal calls. Any
+      expansion needs a concrete use case, lifecycle contract and bounded cost.
 
 This work now ships provisionally in corrected public 0.10.1 under #93/#94.
 Its exact Conda file passes eight installed cells and eight real PyUnitWizard
@@ -306,6 +342,12 @@ with independently verified artifacts and aggregation. Warmed declarations
 are reused while version changes and metadata conflicts preserve original
 results and diagnostics. This evidence does not change provisionality or
 claim a new public artifact or cumulative speedup.
+
+The declaration protocol, observer and prepared callable are decided
+independently. Accepting the current bounded scope can be sufficient for a
+stable surface; broad observation or another scientific engine is not an added
+promotion gate. The proposed standalone validator is an implementation task,
+not a capability the existing activation-time validation already exposes.
 
 ### Theme H — Faithful, compact workflow reports
 
@@ -326,6 +368,178 @@ claim a new public artifact or cumulative speedup.
 These changes affect requested reports, not the calculation's tracking path.
 Corrected public 0.10.1 retains them and their exact Conda qualification.
 They do not promote #84/#87 or change the portable schema or public 0.9.0.
+
+### Theme I — Portable results from execution to later reporting
+
+Python already reconstructs complete saved `Attribution` records offline.
+The CLI currently reads identifier journals, and `aggregate` merges those
+journals; neither supplies a portable saved-bibliography workflow. Preserve
+both existing contracts while completing the external user's lifecycle.
+
+- [ ] define and implement CLI reporting/export from a saved
+      `ackredit.attribution@1` payload, retaining the distinction from a session
+      journal and returning failure for malformed/unknown inputs;
+- [ ] read and export in a fresh process without the original producer, registry,
+      scientific engines, network lookup or new execution credit;
+- [ ] decide the public contract for composing multiple saved attributions:
+      result names/context, duplicate uses, software versions, shared graph
+      targets, conflicting identities and the relationship to original inputs;
+- [ ] implement the accepted composition operation as a reusable Ackredit tool,
+      preserving detached originals, every retained graph edge and distinct
+      software releases, and diagnosing conflicts before returning a result;
+- [ ] qualify a real multi-result notebook/batch workflow and fresh reader,
+      including reordered/reused inputs, an empty result and metadata conflicts.
+
+CLI/export comes first, then composition. Do not reconstruct absent bibliography
+from the reader's current installation or interpret composition as chronology,
+call counts, completed science or shared live sessions. A released schema-1
+meaning stays readable; changed structural meanings require a new schema.
+
+### Theme J — Explain coverage, reference origin and attribution gaps
+
+Theme H explains recorded references, roles and targets. Its report correctly
+does not assert complete instrumentation. Add actionable explanations when the
+producer or observation boundary actually supplies evidence for them.
+
+- [ ] define which scope information can be recorded: selected observation
+      boundaries, explicit credits, declared-provider/discovery metadata origins,
+      incomplete bibliography and diagnosed recording gaps;
+- [ ] decide representation, ownership and compatibility before adding fields;
+      distinguish the origin of bibliographic metadata from evidence of use and
+      from any claim about bibliographic or scientific truth;
+- [ ] preserve recorded gap/scope information in saved results and explain it
+      in the requested workflow report, with no producer imports or new credit;
+- [ ] guard partial failure, unsupported/unobserved operations, metadata fallback
+      and complete absence of scope information. An empty capture means no
+      references were recorded, not proof that nothing citable was used.
+
+Coverage is bounded by instrumentation. Never invent an unobserved call, missing
+citation, success state or global coverage percentage. The client decides
+scientific completion; catalog diagnostics retain their own failure details.
+
+### Theme K — Attribution at MOLI object boundaries
+
+Coordinate platform decisions in [MOLI #46](https://github.com/uibcdf/moli/issues/46)
+and suite/member decisions in [MolSysSuite #97](https://github.com/uibcdf/molsyssuite/issues/97),
+opening focused owner issues when an additional boundary needs its own review.
+Ackredit supplies portable bibliography and recorded uses; the owning components
+define Sabueso knowledge, Praxis protocols and Nextia runs/artifacts/results/evidence.
+
+- [ ] agree how owning result schemas attach or reference attribution, keep
+      original software/source versions and retain usable saved bibliography
+      when the producer or authoritative object is unavailable;
+- [ ] agree how attribution is composed across component/result boundaries and
+      how its relation to historical source/object references is represented;
+- [ ] distinguish a citation, a source observation, execution provenance and
+      scientific evidence. Recording a reference alone establishes none of the
+      other objects' validity or scientific support;
+- [ ] define absent/failing-provider behavior per client profile, keeping
+      optional scientific hosts operational and explicit required dependencies
+      under the application's ownership;
+- [ ] retain actual client-owned round-trip/receiving cases for accepted
+      boundaries, alongside decisions, published-provider identity and limits.
+
+This is a contract/adoption discussion, not authorization to edit other
+components or a demand for every platform component to adopt Ackredit before
+1.0. Share accepted integration guidance through its central registry; guide
+delivery, runtime adoption and a client's release remain separate.
+
+### Theme L — Measure the complete cost of being lightweight
+
+Theme D and #85/#97/#99 retain their scoped runtime and receiving evidence.
+Repeated-credit timings do not measure cold import, dependency installation,
+activation or memory. Extend the measurement contract before optimizing again.
+
+- [ ] measure cold import/first use, inactive operation, provider activation,
+      tracking/capture, journal writes, snapshot/export and requested large
+      reports separately, with actual source/dependency identities and raw samples;
+- [ ] measure memory and scaling with references, graph nodes/edges, independent
+      results, active captures and plugin/declaration size;
+- [ ] pair real scientific controls and instrumented workloads, retaining
+      numerical parity and ordinary variation. Do not add percentages from
+      independent historical measurements;
+- [ ] review plugin initialization and the external user's dependency closure,
+      including NumPy through ArgDigest. Keep the accepted four core dependencies
+      unless a separately recorded owner/shared decision changes that boundary;
+- [ ] identify measured bottlenecks and improve the owning reusable operations
+      while preserving validation, conflict preflight, diagnostics and every
+      independent capture's references;
+- [ ] record whether the verified Conda route meets the external-user target.
+      Any additional distribution route needs its providers' real published
+      dependency closure and shared review, not duplicated infrastructure.
+
+Publish bounded numbers and limits, not an unconditional zero-cost claim.
+Select performance checks by the changed boundary; this plan does not impose
+fresh scientific benchmarks on every documentation or unchanged-code checkpoint.
+
+### Theme M — Bibliography that survives real publication tools
+
+BibTeX, CSL-JSON and the format extension point exist. Development after public
+0.10.1 improves typed CFF work selection (#95), publication kinds/dates/pages
+(#96) and declared person/entity name identity (#98). Those repairs remain
+source changes until a later exact-artifact delivery qualifies them.
+
+- [ ] exercise exported records with representative real reference-manager
+      imports and BibTeX/BibLaTeX or journal-style workflows, recording tested
+      versions, selected styles and intentional unsupported cases;
+- [ ] cover software, datasets, articles, institutional authors, preferred works,
+      structured editors/names, original versions and non-ASCII metadata;
+- [ ] decide duplicate bibliographic identity handling across caller-defined
+      IDs/DOI forms without silently merging different software releases or
+      replacing conflicting original records;
+- [ ] define supported presentation expectations and style/plugin boundaries,
+      including software/dataset entries that a selected BibTeX style cannot
+      render. Reuse a suitable external style engine if one is required;
+- [ ] guard accepted interoperability with retained fixtures/round trips and
+      separate metadata preservation from a tool's chosen formatted output.
+
+Export fidelity and citation-style rendering are distinct operations. Ackredit
+must not guess authorship or rewrite original bibliographic claims to make a
+particular style appear correct.
+
+### Theme N — Decide the scope of acknowledgements
+
+The original vision names citations and acknowledgements. Existing bibliographic
+records and use roles do not define a distinct product contract for thanking
+people, institutions or funders.
+
+- [ ] explicitly accept, defer or exclude non-bibliographic acknowledgements,
+      with concrete user stories and maintained guidance matching the decision;
+- [ ] if accepted, define their source, wording responsibility, identity,
+      contextual use, distinction from bibliographic works and saved representation;
+- [ ] specify and implement the accepted acknowledgement section/export through
+      the owning data/rendering tools, preserving original claims and context;
+- [ ] guard citation/acknowledgement separation, reuse, portability and relevant
+      output formats with an actual receiving example.
+
+This theme starts with a product decision. It does not already promise a funder
+database, automatic acknowledgements, inferred contributions or a mandatory
+feature before 1.0. A deliberate deferral remains visible in the roadmap.
+
+## Execution order and release checkpoints
+
+The accepted continuation order is:
+
+1. Theme I: portable saved-result CLI and exports, then the reviewed composition
+   operation. Each independently useful operation gets its own issue, contract
+   and meaningful receiving guards before implementation.
+2. Theme J: scope/origin/gap explanations, built on those preserved saved results.
+3. In parallel, resolve F/G's explicit provider stability decisions and K's
+   platform/member boundaries with their existing owners. The accepted current
+   provisional classification remains until a recorded decision changes it.
+4. Run L's complete-cost measurements and M's publication-tool interoperability
+   against selected actual candidates; optimize or repair measured boundaries.
+5. Decide N's acknowledgement scope and implement only its accepted branch.
+
+Prepare the next delivery from completed, reviewed work; it need not wait for
+every theme. Already implemented post-0.10.1 fidelity/performance changes and
+their development receipts remain distinct from a new published artifact.
+Select its version when the release scope is concrete, preserve the original
+producer and exact archive digest, and apply the existing source/installed/
+receiving/staging/promotion/public-verification gates. Source completion,
+API acceptance, canonical-guide synchronization and receiving-client release
+are separate outcomes. A stable guide update follows its accepted contract
+and central consumer synchronization, not a local repair of copied guides.
 
 ---
 
