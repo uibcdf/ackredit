@@ -1,7 +1,8 @@
 # Third-party function citation providers
 
-This is a **provisional development capability**, owned by Ackredit #84 with
-cross-component review in MolSysSuite #97. Public Ackredit 0.9.0 does not contain
+This is a **provisional capability**, shipped in public Ackredit 0.10.0 and
+retained in recommended 0.10.1, owned by Ackredit #84 with cross-component review
+in MolSysSuite #97 and MOLI #46. Public Ackredit 0.9.0 does not contain
 `observe_calls`. Review with real producers and receivers is required before
 the declaration protocol or observation API becomes stable. Existing portable
 schema `ackredit.attribution@1` and released APIs retain their contracts.
@@ -158,7 +159,7 @@ credits; use the function observer alone when testing call-level precision.
 
 Some hosts credit a backend only after its operation succeeds. That differs from
 observing function entry. The provisional `prepare_credit` factory (#87), also
-absent from public 0.9.0, prepares one fixed contextual use without observation
+shipped in 0.10.0/0.10.1 and absent from 0.9.0, prepares one fixed contextual use without observation
 wrappers or repeated declaration/JSON work:
 
 ```python

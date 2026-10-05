@@ -1,9 +1,9 @@
 ---
 summary: Release qualification misses stale packaged self-citation versions.
 issue: uibcdf/ackredit#94
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-05
 severity: medium
 verification: reproduced
 area: [packaging, discovery]
@@ -62,3 +62,23 @@ No API, payload-schema, core dependency or stable-classification change.
 Both source and installed guards pass; the exact corrected published archive's
 discovered self-citation equals runtime/distribution 0.10.1. Retain the original
 defect and corrected delivery evidence, then archive this record and close #94.
+
+## Resolution (2026-10-05)
+
+Source `dd500842b6085111e01e62cfc243f68406eb8cc7` updates both CFF copies to
+0.10.1 and their preparation date, adds the candidate-plan guard named above and
+`test_installed_release_smoke_refuses_stale_self_citation`, and uses that runtime
+check in recipe/source smoke qualification. Both regressions first failed for
+the original mechanism: stale plan/CFF identity and the missing installed check.
+The installation-page guard now selects retained verified public receipts,
+excluding known-limitation records, instead of treating planned CFF metadata as
+public delivery evidence.
+
+The corrected exact public file under #93 passes its own eight installed cells,
+48 real-producer tests and public promotion 37269544505. Clean public Python
+3.14.7 independently confirms discovered CFF, runtime and distribution all equal
+0.10.1; the [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
+retains that assertion. The source guard prevents stale candidate metadata before
+a tag exists, while the installed guard rejects a canonical release whose
+packaged citation disagrees. These protect the preparation and qualification
+omission without relying on publisher behavior. Original 0.10.0 remains immutable.

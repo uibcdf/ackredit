@@ -1,13 +1,19 @@
 # Release notes
 
-## 0.10.1 — candidate preparation
+## 0.10.1 — corrected public checkpoint
 
-Delivery is tracked in [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93).
+Delivery is complete under [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93).
 0.10.0 delivered the features below, but its packaged self-citation still names
 0.9.0. [Ackredit #94](https://github.com/uibcdf/ackredit/issues/94) corrects that
 omission in additive 0.10.1 and binds the citation version to the candidate
 before tagging and to the exact installed release. The original public 0.10.0
-archive remains unchanged. 0.10.1 still needs its own qualification/publication.
+archive and tag remain unchanged. Corrected 0.10.1 passed its own source gates,
+eight full installed cells and 48 real PyUnitWizard receiving tests before
+promotion of the same noarch file. A fresh public Linux/Python 3.14 installation
+verifies matching citation/runtime/distribution 0.10.1, the portable and
+provisional capabilities, CLI and dependency closure. Public Sabueso 0.12.0
+passes 56 receiving tests and its offline example there. Exact identities and
+separate proofs are linked from [installation](installation.md).
 
 ## 0.10.0 — provisional capabilities
 
@@ -35,4 +41,4 @@ The released portable `ackredit.attribution@1` contract remains unchanged. No ne
 core dependency, automatic observation or consumer minimum follows from these
 additions. The original exact archive's installed matrix and real-producer
 evidence are retained under #93; its self-citation limitation is recorded
-separately under #94. Corrected evidence will identify the new 0.10.1 archive.
+separately under #94. Corrected evidence identifies the new 0.10.1 archive.

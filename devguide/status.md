@@ -12,18 +12,19 @@ working, a test or a reproducible command backs it.
   `track_item`, `credit_bound`, and the opt-in `credit_bound=` option on `scoped_usage`
   and `scope`.
 - **Scientific formats:** Markdown, plain text, BibTeX, CSL-JSON, JSON, provenance tree
-  and LaTeX, plus `dump()` to a directory and PDF compilation when `pdflatex` is present.
+  and LaTeX, plus contextual workflow Markdown, `dump()` to a directory and PDF
+  compilation when `pdflatex` is present.
 - **Automated discovery:** import hooks, `CITATION.cff` parsing and PEP 621 metadata.
 - **Metadata enrichment:** DOI lookup against Crossref and DataCite, with a local cache.
 - **Ecosystem integration:** entry-point plugin loading, a DueCredit bridge, session
   persistence and a multi-session aggregator.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
-  by `tests/test_packaging.py`. Public Ackredit 0.9.0 is available from the `uibcdf`
+  by `tests/test_packaging.py`. Public Ackredit 0.10.1 is available from the `uibcdf`
   Conda channel as one verified noarch file. The same archive passed Linux/macOS
   arm64 × Python 3.11–3.14 installed qualification and a clean public Linux/Python
   3.14 receiving installation. See [installation](../docs/content/about/installation.md)
-  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.9.0_public_2026-10-03.json).
+  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json).
 - **Portable attribution:** `capture` observes per-calculation references without
   replacing the application session; `get_attribution` snapshots the workflow.
   `Attribution` preserves detached bibliography, contextual roles, original versions
@@ -101,9 +102,12 @@ many land before 1.0.0 is an outcome rather than a plan.
   `0.9.0` Git tag identifies its original producer under #82. Later candidates
   require their own release gates; GitHub Release and DOI publication are
   separate outcomes (roadmap A, done).
+  The 0.10.1 checkpoint is delivered under #93, including additive repair #94;
+  its exact-file gates, public receipt and original-producer tag are retained.
 - **Self-citation:** done. Ackredit ships `CITATION.cff` inside the package, finds
   itself from an installed distribution, and its metadata names the same authors
-  (`uibcdf/ackredit#21`).
+  (`uibcdf/ackredit#21`). Candidate-plan and installed release-version guards
+  under #94 prevent stale packaged self-citation metadata; public 0.10.1 matches.
 - **Adoption:** PyUnitWizard #92 exercises real Pint/unyt operations through its
   optional context; Sabueso #108 exercises required knowledge-packet attribution
   and has clean public-provider receiving evidence. Their released integration
@@ -134,8 +138,9 @@ and reduces portable capture overhead; #87 prepares fixed explicit contextual
 credits for completed dispatch. The first real function-provider pilot is
 PyUnitWizard #94, with lazy exports and before/after scientific conversion
 measurements. MolSysSuite #97 and MOLI #46 own cross-component
-review. These development capabilities are absent from public Ackredit 0.9.0
-and do not establish consumer adoption.
+review. These capabilities ship provisionally in 0.10.0 and recommended 0.10.1;
+they are absent from 0.9.0. Publication does not establish stable promotion or
+consumer adoption.
 
 The manually dispatched [coupled installed receiving gate](receiving_validation.md)
 builds one wheel bundle and requires eight Linux/macOS arm64 × Python 3.11–3.14
@@ -152,6 +157,17 @@ Its validated public receipt is retained in
 The gate compares installed resources with the wheels and exercises actual
 software/article roles, reused captures, graph parentage, provider absence and
 the original 0.9.0 API fallback. It does not publish or promote the APIs.
+
+The later Conda profile qualifies exact release bytes through the pinned shared
+installer/verifier before and after science. Corrected source `dd50084` passes
+the full source and installed matrices and real receiving run
+[37268949118](https://github.com/uibcdf/ackredit/actions/runs/37268949118): eight
+cells, 48 tests and no skips/deselections. Promotion
+[37269544505](https://github.com/uibcdf/ackredit/actions/runs/37269544505)
+verifies public 0.10.1 without rebuilding. Public Linux/Python 3.14.7 passes
+portable/provisional smoke checks, accurate self-citation, CLI and `pip check`;
+public Sabueso 0.12.0 passes 56 receiving tests and its three-result example.
+These proofs remain separate from a client's own release and stable API review.
 
 These are ideas, not missing core functionality or acceptance criteria for 1.0:
 

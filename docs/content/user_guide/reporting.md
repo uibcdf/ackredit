@@ -31,17 +31,17 @@ Use `report(format=...)` to get a string in any of these formats:
 *   `provenance` (Hierarchical tree showing *why* each item was cited)
 *   `latex` (A complete, compilable LaTeX document)
 *   `text` (Plain text, for a log or a terminal)
-*   `workflow` (Bibliography, contextual uses and graph together; development source)
+*   `workflow` (Bibliography, contextual uses and graph together; since 0.10.0)
 
 This list is the built-in list. `ackredit.available_formats()` returns it at runtime,
 together with any format a plugin added, and asking for a name that is not there raises
 `ACKREDIT-E004` rather than quietly returning a different report. A test keeps this page
 and that function in agreement.
 
-## Contextual workflow reports (development source)
+## Contextual workflow reports
 
-The explicit `workflow` format is available in development source after public
-0.9.0. It combines numbered references, recorded roles, original software
+The explicit `workflow` format ships in public 0.10.0 and recommended 0.10.1.
+It combines numbered references, recorded roles, original software
 versions, use/capture context and the graph in one offline Markdown report:
 
 ```python

@@ -4,6 +4,9 @@ Ackredit builds one `noarch: python` artifact. Dependencies such as NumPy carry
 their own platform packages. Published 0.9.0 was qualified on Linux x86-64 and
 macOS arm64 on Python 3.11–3.14. Its exact public identity and qualification
 receipts are retained in [the delivery record](../../devguide/archive/ackredit_cannot_be_installed.md).
+Corrected public 0.10.1 repeats this matrix and adds exact-file real PyUnitWizard
+qualification; its [delivery receipt](receipts/ackredit_0.10.1_public_2026-10-05.json)
+retains the source, installed, scientific, promotion and clean public proofs.
 
 ## Committed candidate inputs
 
@@ -24,7 +27,7 @@ promotion and independent public registry/index verification.
 
 1. Publish the reviewed source commit and pass its declared CI/policy gates.
 2. Dispatch `build_and_upload_conda_packages.yaml` with full `candidate_sha`
-   and the version in the plan (currently `0.10.0`). The plan supplies build 0. The provider freezes version
+   and the version in the plan (currently `0.10.1`). The plan supplies build 0. The provider freezes version
    metadata only in its ephemeral checkout, builds once, tests and inspects the
    archive before uploading the exact file to staging.
 3. Retain its producer artifact/receipt. Dispatch `test_staged_conda_package.yaml`
@@ -37,7 +40,7 @@ promotion and independent public registry/index verification.
    through public channels; staging supplies only the Ackredit candidate.
 4. Record receiving-consumer compatibility separately. Development source/wheel
    evidence does not establish the first public consumer dependency closure.
-   For 0.10.0, dispatch `function_provider_receiving.yaml` with the original
+   For 0.10.0 and corrected 0.10.1, dispatch `function_provider_receiving.yaml` with the original
    `candidate_sha`, `conda_version`, `conda_filename` and `conda_sha256`. Its Conda
    profile builds only the pinned real producer and original 0.9.0 fallback as
    wheels. Shared operations install and verify the exact candidate before and

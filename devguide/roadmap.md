@@ -123,7 +123,8 @@ Conda channel. Publication is complete under `uibcdf/ackredit#22`; the earlier
 deferral ended with the reviewed exact-artifact release decision.
 
 The recipe lives in `docs/content/about/installation.md` and only there, held by
-`tests/test_installation_page.py` to `CITATION.cff` and to the declared dependencies. A
+`tests/test_installation_page.py` to verified public delivery receipts and the
+declared dependencies. Candidate CFF metadata is not publication evidence. A
 copy here pinned `0.6.0` and missed ArgDigest long after the page was corrected
 (`uibcdf/ackredit#66`), which is why this is a pointer and not a copy.
 
@@ -289,11 +290,17 @@ measures portable capture separately from the historical plain tracking path.
 - [ ] real provider and receiving review resolves the provisional API, coordinated
       through MolSysSuite #97 before any shared adoption requirement.
 
-This development does not rebuild public 0.9.0 or certify a consumer release.
+This work now ships provisionally in corrected public 0.10.1 under #93/#94.
+Its exact Conda file passes eight installed cells and eight real PyUnitWizard
+cells (48 mandatory tests), followed by verified public promotion and clean
+public receiving checks. See the
+[delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json).
+The outstanding API/producer review remains the next step. This release does
+not rebuild 0.9.0, require consumer adoption or certify a consumer release.
 
 ### Theme H — Faithful, compact workflow reports
 
-- [x] explicit development `workflow` format joins original bibliography,
+- [x] explicit `workflow` format, shipped since 0.10.0, joins original bibliography,
       numbered references, contextual roles/versions and the saved graph
       without producer imports or invented invocation/success claims (#89);
 - [x] detached nested plugin inputs preserve registered bibliography even
@@ -308,6 +315,7 @@ This development does not rebuild public 0.9.0 or certify a consumer release.
       evidence verification and the reviewed durable reporting receipt.
 
 These changes affect requested reports, not the calculation's tracking path.
+Corrected public 0.10.1 retains them and their exact Conda qualification.
 They do not promote #84/#87 or change the portable schema or public 0.9.0.
 
 ---

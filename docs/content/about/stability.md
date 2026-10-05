@@ -49,7 +49,7 @@ else links here, so they cannot drift apart.
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
 | `credit_bound` | stable | The opt-in that makes a binding credit. Decision 4. |
 | `track_item` | stable | What a run actually reached. The central claim of the library. |
-| `prepare_credit` | provisional | Fixed contextual credit for repeated completed dispatch; real PyUnitWizard performance and receiving review under #87 precede promotion. Not included in public 0.9.0. |
+| `prepare_credit` | provisional | Fixed contextual credit for repeated completed dispatch, shipped in 0.10.0/0.10.1; real PyUnitWizard performance and receiving review under #87 precede promotion. Not included in public 0.9.0. |
 | `track_target` | stable | Decision 10 examined renaming it and refused: `target` already means "a named unit of code" in seven public functions. |
 | `scope` | stable | Context-local, decision 5. Used in every worked example and in both example libraries. |
 | `scoped_usage` | stable | Delegates to `scope`, so the isolation has one implementation. Decision 5. |

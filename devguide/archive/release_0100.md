@@ -1,9 +1,9 @@
 ---
 summary: Deliver the corrected 0.10.1 checkpoint with exact Conda qualification.
 issue: uibcdf/ackredit#93
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-05
 severity: medium
 verification: reproduced
 area: [packaging, integration]
@@ -85,4 +85,38 @@ receipt, including the discovered self-citation defect.
 
 The CFF still named 0.9.0; #94 adds the missing plan/runtime identity guards.
 0.10.1 repeats all required source, installed, real-producer and public gates
-against its own new immutable archive. Delivery remains active until then.
+against its own new immutable archive. Delivery remained active until that
+corrected file was independently verified.
+
+## Resolution (2026-10-05)
+
+Original corrected producer `dd500842b6085111e01e62cfc243f68406eb8cc7` passes
+source CI 37268373385, full source matrix 37268372798 and both policy lanes.
+Final closure passes 1,714 local tests, Ruff, current indexes and strict Sphinx.
+Staging 37268654191 builds `ackredit-0.10.1-py_0.tar.bz2` once,
+SHA-256 `26e75a0780ad4e6abc2de55df90b29b4a2aa4e510d6b50fa54a5812ad929228e`.
+Installed 37268949725 passes eight full-suite cells; real receiving 37268949118
+passes 48 mandatory tests across eight cells. Native artifacts and reconstructed
+scientific aggregate independently verify.
+
+Promotion 37269544505 adds the public main label to that same file; the shared
+verifier independently confirms its public label and solver index. Clean public
+Linux/Python 3.14.7 confirms accurate CFF/runtime/distribution 0.10.1, portable and
+provisional capabilities, CLI and `pip check`. Public Sabueso 0.12.0 passes 56
+unchanged receiving tests and its source-trace/three-result/saved-reader example.
+The immutable `0.10.1` tag identifies the original producer; editable development
+metadata is refreshed separately. Original 0.10.0 bytes/tag are preserved.
+
+The reviewed
+[delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
+and maintained installation/release documentation satisfy the committed noarch
+plan's source, exact-file and public acceptance criteria. Impact owners receive
+the version/file/digest and bounded evidence. #84/#87, MolSysSuite #97 and MOLI
+#46 remain open for contract review; there is no stable promotion, client release
+certification, new consumer minimum or DOI/archival claim.
+
+Impact handoff owners are MolSysSuite #97, MOLI #46, PyUnitWizard #94,
+Sabueso #108, MolSysMT #292, MolSysViewer #152, TopoMT #94,
+PharmacophoreMT #19 and ElastNetMT #20. Their issues retain pre-publication
+notice and post-publication evidence separately from source adoption or
+consumer-release qualification.

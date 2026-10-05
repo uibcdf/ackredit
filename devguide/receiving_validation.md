@@ -1,6 +1,7 @@
 # Installed function-provider receiving validation
 
-Ackredit #84/#87 and PyUnitWizard #94 own this development qualification. The
+Ackredit #84/#87 and PyUnitWizard #94 own this scientific qualification; Ackredit
+#93 owns the exact-file Conda release checkpoint. The
 workflow `function_provider_receiving.yaml` is manually dispatched for a fixed
 Ackredit revision. PyUnitWizard is pinned to
 `33fec8a627505a4f5426babe87e8e85438105041`; the released API baseline is built
@@ -9,7 +10,7 @@ from Ackredit's original 0.9.0 producer,
 
 ## What is qualified
 
-One builder produces three pure Python wheels once, using their declared build
+The default development profile produces three pure Python wheels once, using their declared build
 requirements in normal isolation. It refuses dirty sources. `bundle.json`
 records the source commits, distribution versions, archive SHA-256 and every
 shipped package resource's SHA-256. All eight Linux/macOS arm64 × Python
@@ -62,10 +63,11 @@ activation. The observer must accept its JSON-equivalent declaration and the
 capture must preserve the original bibliography as a JSON array. The gate still
 contains six tests; this added precondition requires new exact-source evidence.
 
-This gate qualifies development source candidates. It does not publish a package,
+This gate qualifies development source candidates or the exact staged Conda
+file when the explicit Conda profile is selected. It does not publish a package,
 promote the provisional APIs, certify a client release or replace the full Ackredit
-test suite. MolSysSuite #97 and MOLI #46 retain their review ownership. A future
-Conda candidate needs its own exact-file installed and publication gates.
+test suite. MolSysSuite #97 and MOLI #46 retain their review ownership. Each
+Conda candidate also needs its full exact-file installed and publication gates.
 
 The first hosted qualification is
 [run 37216812721](https://github.com/uibcdf/ackredit/actions/runs/37216812721)
@@ -128,7 +130,42 @@ retains this new qualification separately. Runtime normalization of registered
 metadata occurs at activation, while invocation compares its detached original
 representation. Source guards prove repeated calls add no bibliography
 normalization and diagnose nested mutation/replacement/deletion correctly.
-No API promotion, new tag, public package or consumer minimum follows.
+No API promotion, new tag, public package or consumer minimum follows from this
+development checkpoint.
+
+## Exact Conda release checkpoint (2026-10-05)
+
+The Conda profile accepts `candidate_sha`, `conda_version`, `conda_filename`
+and `conda_sha256`; the Conda fields are required together. It omits a candidate
+wheel, retaining only the pinned PyUnitWizard and original 0.9.0 fallback wheels.
+Shared MolSysSuite operations download/install the exact staged archive and
+verify Conda identity, installed resources and launchers before and after the
+same six mandatory scientific tests. Runtime receipts bind that verification
+to each scientific cell. The aggregate refuses mismatched candidate identities,
+failed/incomplete artifacts or missing before/after proofs.
+
+Corrected source `dd500842b6085111e01e62cfc243f68406eb8cc7` produces public
+`ackredit-0.10.1-py_0.tar.bz2`, SHA-256
+`26e75a0780ad4e6abc2de55df90b29b4a2aa4e510d6b50fa54a5812ad929228e`.
+[Receiving run 37268949118](https://github.com/uibcdf/ackredit/actions/runs/37268949118)
+passes eight cells and 48 tests, zero skips/deselections, and the aggregate.
+All ten native artifact ZIP digests and extracted contents verify; independently
+reconstructed science equals the hosted aggregate. Captures retain 2/2/4
+references and a four-reference workflow, with correct software/article roles,
+reused references, fresh report/readers, optional absence and original 0.9.0 fallback.
+
+[Installed run 37268949725](https://github.com/uibcdf/ackredit/actions/runs/37268949725)
+separately passes the full Ackredit suite across those eight cells.
+[Promotion 37269544505](https://github.com/uibcdf/ackredit/actions/runs/37269544505)
+publishes those same bytes and verifies the public main label and solver index.
+A clean public Linux/Python 3.14.7 installation passes provider/prepared/report
+smoke checks, matching citation/runtime/distribution 0.10.1, CLI and dependency
+closure; public Sabueso 0.12.0 passes 56 unchanged receiving tests and its offline
+three-result/source-trace example. The
+[reviewed delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
+retains these separate proofs. Original public 0.10.0 remains unchanged with
+its stale-citation limitation recorded under #94. #84/#87 remain provisional;
+publication creates no shared adoption or consumer-minimum requirement.
 
 ## Local reproduction
 
