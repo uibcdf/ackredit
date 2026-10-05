@@ -84,22 +84,35 @@ class _Builder:
         *,
         key: str | None = None,
     ) -> None:
+        if key is None:
+            key = json.dumps(
+                dict(
+                    item_id=record["id"], used_by=caller, roles=roles, context=context
+                ),
+                sort_keys=True,
+            )
+        # Every writer's bibliography has already been checked by the observer.
+        # Deduplicate only this builder: a new capture still needs its own use.
+        if key in self.seen:
+            return
         if record["id"] not in self.records:
             self.records[record["id"]] = deepcopy(record)
-        use = dict(item_id=record["id"], used_by=caller, roles=roles, context=context)
-        if key is None:
-            key = json.dumps(use, sort_keys=True)
-        if key not in self.seen:
-            self.seen.add(key)
-            self.uses.append(deepcopy(use))
+        self.seen.add(key)
+        self.uses.append(
+            deepcopy(
+                dict(item_id=record["id"], used_by=caller, roles=roles, context=context)
+            )
+        )
         if caller is not None:
             self.target(caller, None)
             self.tree[caller]["items"].add(record["id"])
 
     def target(self, target: str, parent: str | None) -> None:
-        self.tree.setdefault(target, {"items": set(), "children": set()})
+        if target not in self.tree:
+            self.tree[target] = {"items": set(), "children": set()}
         if parent is not None:
-            self.tree.setdefault(parent, {"items": set(), "children": set()})
+            if parent not in self.tree:
+                self.tree[parent] = {"items": set(), "children": set()}
             self.tree[parent]["children"].add(target)
 
     def payload(self, name: str, context: dict) -> dict:

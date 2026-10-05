@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (90)
+### Resolved (91)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -68,6 +68,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`register_published_release_identity.md`](register_published_release_identity.md) — [#82](https://github.com/uibcdf/ackredit/issues/82) — Register the published 0.9.0 Git identity and restore compatible editable metadata. *(resolved, measured)*
 - [`release_0100.md`](release_0100.md) — [#93](https://github.com/uibcdf/ackredit/issues/93) — Deliver the corrected 0.10.1 checkpoint with exact Conda qualification. *(resolved, reproduced)*
 - [`release_self_citation_version.md`](release_self_citation_version.md) — [#94](https://github.com/uibcdf/ackredit/issues/94) — Release qualification misses stale packaged self-citation versions. *(resolved, reproduced)*
+- [`repeated_attribution_allocations.md`](repeated_attribution_allocations.md) — [#97](https://github.com/uibcdf/ackredit/issues/97) — Avoid redundant allocations when recording repeated attribution. *(resolved, reproduced)*
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#72](https://github.com/uibcdf/ackredit/issues/72) — Review Ackredit Python ecosystem policy adoption. *(resolved, measured)*
 - [`scoped_runtime_coverage.md`](scoped_runtime_coverage.md) — [#76](https://github.com/uibcdf/ackredit/issues/76) — Measure installed runtime coverage and verify its public Codecov report. *(resolved, measured)*
 - [`serve_ui_removed.md`](serve_ui_removed.md) — [#57](https://github.com/uibcdf/ackredit/issues/57) — An unfinished HTTP server was removed rather than promised, and what a dashboard would need is recorded instead. *(resolved, measured)*

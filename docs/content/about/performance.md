@@ -102,6 +102,58 @@ combined function/backend capture adds about 67 µs. A heavy array does not add
 one credit per element. This development improvement is absent from public
 0.9.0 and does not qualify a client release.
 
+## Repeated writer allocations (development, 2026-10-05)
+
+[Ackredit #97](https://github.com/uibcdf/ackredit/issues/97) avoids constructing
+temporary graph nodes for targets already retained, and retains each normalized
+use once per builder. Every invocation still checks registered bibliography and
+all active builders for conflicts. Independent captures receive their own uses;
+an existing target can still acquire another parent. Public inputs retain their
+validation and detachment, and journal changes use the same locked writer.
+
+Both versions are normally installed outside their checkouts on Linux/Python
+3.14.7. Original Ackredit is `cfb5140`; candidate runtime files, exact dependency
+versions and every sample are retained in
+[the receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/repeated_attribution_97_2026-10-05.json).
+The existing portable benchmark now includes explicit prepared credits. Its
+15-sample medians, in microseconds per warmed operation, are:
+
+| Operation | Original | Candidate |
+| --- | ---: | ---: |
+| Plain credit | 1.44 | 1.18 |
+| Prepared credit | 2.57 | 1.65 |
+| Prepared credit, one capture | 4.25 | 2.59 |
+| Prepared credit, two nested captures | 5.85 | 3.53 |
+| Declared function, one capture | 11.10 | 8.00 |
+| Declared function, two nested captures | 13.12 | 9.18 |
+| Public contextual credit, one capture | 42.88 | 39.80 |
+
+The prepared captured writer is about 39% cheaper in this bounded trial.
+Public contextual tracking improves less because normalization still occurs
+on every call. Snapshot and BibTeX medians remain approximately 128 and 227 µs;
+no report-speed improvement is claimed here. Imports, activation, preparation
+and capture entry/exit are excluded from repeated-call timings.
+
+The unchanged PyUnitWizard benchmark is also run in three independent process
+pairs, alternating order, with seven samples per case. Both installations use
+PyUnitWizard `2d12b37`, Pint 0.26.1, unyt 3.1.0 and NumPy 2.5.3. Ranges of
+the three trial medians, in microseconds per conversion:
+
+| Real conversion | One value, original / candidate | 100,000 values, original / candidate |
+| --- | ---: | ---: |
+| Ordinary | 42.87–45.68 / 44.38–44.42 | 108.00–112.62 / 108.44–109.77 |
+| Backend capture | 86.63–90.72 / 84.00–85.16 | 150.62–157.32 / 147.29–150.16 |
+| Function and backend capture | 106.22–111.25 / 101.10–102.52 | 169.71–184.35 / 165.16–169.28 |
+
+These are total scientific conversion times with ordinary-control drift, not a
+universal speedup or a hosted release qualification. Four unchanged installed
+receiving guards pass for each version: Pint/unyt numerical results, independent
+captures, original software/article references and versions, graph parentage,
+entry versus completion, optional absence and producer/network-blocked saved
+workflow reading. The remaining producer-owned declaration copies are reported
+in [PyUnitWizard #111](https://github.com/uibcdf/pyunitwizard/issues/111).
+No new dependency, portable schema or provisional API decision follows.
+
 ## Requested provenance reports (2026-10-04)
 
 Ackredit #91 removes repeated expansion of shared graph descendants and

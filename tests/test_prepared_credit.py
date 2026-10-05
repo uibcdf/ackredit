@@ -88,6 +88,57 @@ def test_prepared_credit_uses_the_existing_journal_writer(clean_registry, tmp_pa
         assert ackredit.get_used_items() == {"prepared:software:2": ["example.convert"]}
 
 
+def test_repeated_prepared_credit_retains_new_parents_and_independent_results(
+    clean_registry, tmp_path
+):
+    _declare()
+    credit = ackredit.prepare_credit(
+        "prepared:software:2", "example.convert", roles=["executed_software"]
+    )
+    path = tmp_path / "journal.json"
+    with ackredit.session("pipeline"):
+        ackredit.enable_persistence(path)
+        for parent in ("first", "second"):
+            with ackredit.capture(parent) as result, ackredit.scope(parent):
+                with ackredit.scope("example.convert"):
+                    credit()
+                    credit()
+                snapshot = result.attribution.to_dict()
+                with ackredit.scope("example.convert"):
+                    credit()
+            assert result.attribution.to_dict() == snapshot
+            assert len(snapshot["items"]) == len(snapshot["uses"]) == 1
+            assert snapshot["usage_tree"][parent]["children"] == ["example.convert"]
+        expected = ackredit.get_attribution().to_dict()["usage_tree"]
+    for parent in ("first", "second"):
+        assert expected[parent]["children"] == ["example.convert"]
+    with ackredit.session("replay"):
+        ackredit.aggregate([path])
+        assert ackredit.get_attribution().to_dict()["usage_tree"] == expected
+        assert ackredit.get_used_items() == {"prepared:software:2": ["example.convert"]}
+
+
+def test_warmed_duplicate_use_still_preflights_conflicts_in_every_writer(
+    clean_registry,
+):
+    _declare()
+    with ackredit.capture("outer") as outer:
+        ackredit.track_item(
+            "prepared:software:2", used_by="convert", roles=["software"]
+        )
+        clean_registry.items["prepared:software:2"]["title"] = "Changed bibliography"
+        before = outer.attribution.to_dict()
+        workflow_before = ackredit.get_attribution().to_dict()
+        with ackredit.capture("fresh") as fresh, pytest.raises(ValueError) as error:
+            ackredit.track_item(
+                "prepared:software:2", used_by="convert", roles=["software"]
+            )
+    assert error.value.code == "ACKREDIT-E011"
+    assert outer.attribution.to_dict() == before
+    assert fresh.attribution.to_dict()["items"] == []
+    assert ackredit.get_attribution().to_dict() == workflow_before
+
+
 @pytest.mark.parametrize(
     "options", [{"used_by": ""}, {"roles": [""]}, {"context": {"bad": float("nan")}}]
 )

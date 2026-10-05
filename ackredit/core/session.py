@@ -231,18 +231,21 @@ class Session:
         line, not one per iteration.
         """
         changed = item_id not in self.used_items
-        callers = self.used_items.setdefault(item_id, [])
-        seen = self._callers.setdefault(item_id, set())
+        if changed:
+            self.used_items[item_id] = []
+        callers = self.used_items[item_id]
+        if item_id not in self._callers:
+            self._callers[item_id] = set()
+        seen = self._callers[item_id]
 
         if used_by is not None:
             if used_by not in seen:
                 seen.add(used_by)
                 callers.append(used_by)
                 changed = True
-            node = self.usage_tree.setdefault(
-                used_by, {"items": set(), "children": set()}
-            )
-            node["items"].add(item_id)
+            if used_by not in self.usage_tree:
+                self.usage_tree[used_by] = {"items": set(), "children": set()}
+            self.usage_tree[used_by]["items"].add(item_id)
 
         return changed
 
@@ -250,11 +253,12 @@ class Session:
         """Record that *target* ran. Callers hold the lock."""
         changed = target not in self.used_targets
         self.used_targets.add(target)
-        self.usage_tree.setdefault(target, {"items": set(), "children": set()})
+        if target not in self.usage_tree:
+            self.usage_tree[target] = {"items": set(), "children": set()}
         if parent:
-            node = self.usage_tree.setdefault(
-                parent, {"items": set(), "children": set()}
-            )
+            if parent not in self.usage_tree:
+                self.usage_tree[parent] = {"items": set(), "children": set()}
+            node = self.usage_tree[parent]
             if target not in node["children"]:
                 node["children"].add(target)
                 changed = True

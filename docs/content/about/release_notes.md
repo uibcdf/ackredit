@@ -14,9 +14,14 @@
   year/month conflicts are preserved without mixing date components; literal
   publication dates do not borrow a release year. Original metadata remains
   available to detached offline readers (#96).
+- Repeated attribution avoids temporary graph/use allocations after a use is
+  retained. Registry/conflict checks, independent captures, new parent links
+  and journal replay remain active; installed real-producer timings are
+  documented separately (#97).
 
 These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackredit/issues/95)
-and [#96](https://github.com/uibcdf/ackredit/issues/96).
+and [#96](https://github.com/uibcdf/ackredit/issues/96); the writer optimization
+is tracked in [#97](https://github.com/uibcdf/ackredit/issues/97).
 They are development changes, not features of the already published 0.10.1
 archive. The portable payload version, core dependencies and provisional
 provider API classifications remain unchanged.

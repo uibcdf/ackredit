@@ -69,6 +69,15 @@ def measure(iterations: int, samples: int) -> dict:
                 "provider_nested",
             ]
         )
+    prepared_credit = None
+    if hasattr(ackredit, "prepare_credit"):
+        prepared_credit = ackredit.prepare_credit(
+            "benchmark:article",
+            "benchmark.compute",
+            roles=["software_description"],
+            context=context,
+        )
+        scenarios.extend(["prepared", "prepared_capture", "prepared_nested"])
     for scenario in scenarios:
         timings = []
         count = (
@@ -76,9 +85,14 @@ def measure(iterations: int, samples: int) -> dict:
         )
         for _ in range(samples):
             with ackredit.session("benchmark"), ExitStack() as stack:
-                if scenario in ("capture", "nested"):
+                if scenario in (
+                    "capture",
+                    "nested",
+                    "prepared_capture",
+                    "prepared_nested",
+                ):
                     stack.enter_context(ackredit.capture("outer"))
-                if scenario == "nested":
+                if scenario in ("nested", "prepared_nested"):
                     stack.enter_context(ackredit.capture("inner"))
                 if scenario in (
                     "provider_active",
@@ -104,7 +118,9 @@ def measure(iterations: int, samples: int) -> dict:
 
                 credit()
                 operation = credit
-                if scenario.startswith("provider_"):
+                if scenario.startswith("prepared"):
+                    operation = prepared_credit
+                elif scenario.startswith("provider_"):
 
                     def operation():
                         return provider.compute(3)

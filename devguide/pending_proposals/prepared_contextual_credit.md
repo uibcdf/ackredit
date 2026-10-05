@@ -178,3 +178,19 @@ All five lifecycle guards pass against the original normally installed public
 0.10.1 archive with shared provenance verification before/after tests; the
 bounded receipt is `devtools/receipts/provider_lifecycle_2026-10-05.json`.
 No runtime, dependency, portable schema, public file or stability promise changes.
+
+## Repeated writer allocation checkpoint (2026-10-05)
+
+Implementation follow-up #97 reduces temporary use and graph allocations in
+the shared writers without bypassing registry comparison or any capture's
+conflict preflight. Newly entered captures still receive fixed reused uses;
+repeated targets retain additional parents and the existing journal change
+events. The portable benchmark now measures explicit prepared calls separately.
+Normally installed Python 3.14 medians for prepared capture fall from 4.25 to
+2.59 µs, and nested prepared capture from 5.85 to 3.53 µs. Three paired real
+PyUnitWizard trials retain the scientific controls and full raw samples in
+`devtools/receipts/repeated_attribution_97_2026-10-05.json`. Four unchanged
+installed receiving guards pass against both original and candidate files.
+These are bounded local observations, not a new hosted matrix or public artifact.
+Producer-owned repeated declaration copies remain uibcdf/pyunitwizard#111.
+The provisional review and its separate stability exit criteria remain open.
