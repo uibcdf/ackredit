@@ -193,3 +193,23 @@ reader. Downloaded identities and the aggregate verify independently; the new
 reviewed receipt is `devtools/receipts/provider_registered_representation_matrix_2026-10-04.json`.
 The bug is resolved and archived; the proposed stable contract still requires
 the maintainer/receiving decisions recorded in the review document.
+
+## Explicit provisional decision and lifecycle guards (2026-10-05)
+
+The principal-maintainer decision retained centrally at MolSysSuite
+`05f866ab7f17af6b046e89befa014460d5d13160` keeps the observer, declaration
+protocol and prepared callable provisional. PyUnitWizard #94's experimental
+receiving pilot is settled. Corrected public 0.10.1 is delivered under #93/#94;
+its exact Conda file, matrices and public proof are distinct from the earlier
+development wheels. This issue stays partial for a later explicit stable decision.
+
+The maintained contract review now gives separate exit criteria for the three
+surfaces, preserving optional clients and separate guide/adoption ownership.
+`tests/test_provider_lifecycle.py` adds concrete cancellation, surviving-lease,
+warning-as-error and unawaited-coroutine assertions. Entry references survive
+cancelled/failed science without falsely earning host-chosen completed-backend
+credit; exports/scopes restore and detached readers retain original records.
+Five supplementary lifecycle guards pass against unchanged public 0.10.1 on
+Linux/Python 3.14 with the shared same-interpreter provenance verifier. Evidence
+is retained in `devtools/receipts/provider_lifecycle_2026-10-05.json`. This is
+additional bounded coverage, not stable acceptance or another hosted matrix.

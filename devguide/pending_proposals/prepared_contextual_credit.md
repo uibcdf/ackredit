@@ -159,3 +159,22 @@ Observer correction #92 is qualified independently at `1a5dd45` with full CI
 the real original-provider fallback. Reviewed evidence is retained in
 `devtools/receipts/provider_registered_representation_matrix_2026-10-04.json`.
 This factory's implementation remains unchanged; schema/API decisions stay open.
+
+## Explicit provisional decision and lifecycle guards (2026-10-05)
+
+The principal-maintainer decision retained centrally at MolSysSuite
+`05f866ab7f17af6b046e89befa014460d5d13160` keeps this callable provisional;
+the bounded experimental PyUnitWizard pilot is accepted. Public 0.10.1 delivery
+under #93/#94 does not stabilize it. The maintained contract review records
+separate exit criteria: callable stability can be decided independently of the
+observer, declaration schema and shared client adoption.
+
+`tests/test_provider_lifecycle.py` proves a single prepared callable serves four
+thread-local sessions and eight independent reused captures per thread. Delayed
+execution cannot mutate an expired inherited capture; the later capture and
+workflow receive the credit. Concurrent scientific cancellation/failure earns
+only function-entry references until the host actually invokes completed credit.
+All five lifecycle guards pass against the original normally installed public
+0.10.1 archive with shared provenance verification before/after tests; the
+bounded receipt is `devtools/receipts/provider_lifecycle_2026-10-05.json`.
+No runtime, dependency, portable schema, public file or stability promise changes.

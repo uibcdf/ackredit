@@ -1,0 +1,65 @@
+{
+  "schema": "ackredit.provider-lifecycle@1",
+  "checked_at": "2026-10-05T06:45:21.408284+00:00",
+  "provider": {
+    "version": "0.10.1",
+    "filename": "ackredit-0.10.1-py_0.tar.bz2",
+    "sha256": "26e75a0780ad4e6abc2de55df90b29b4a2aa4e510d6b50fa54a5812ad929228e",
+    "url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.10.1-py_0.tar.bz2",
+    "original_source": "dd500842b6085111e01e62cfc243f68406eb8cc7",
+    "origin": "/tmp/ackredit0101-public314/lib/python3.14/site-packages/ackredit/__init__.py",
+    "runtime_files": {
+      "core/providers.py": "17859616e5a3e2bcbf2f4962edf2a0b1de4c3f2189ac06ca09c80cb295e0e656",
+      "core/collector.py": "eb9bf60d3232a251f60e3e9e672b1a13d68dca0414ed027d97dc4aaa741e9db5",
+      "core/attribution.py": "b0b90d57fc16c5af9f350f7ff7250cfeb5297a33bd32feb62bb17859639cf9d7",
+      "core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b"
+    }
+  },
+  "test_source": {
+    "base_commit": "f71d242705b4b65302fb3eecb0659207d56c47dd",
+    "added_module": "tests/test_provider_lifecycle.py",
+    "module_sha256": "1b23805cf98400e8ec0fe61edee50b3011806a4a9b39737eea928b7f79dc5b4a"
+  },
+  "environment": {
+    "python": "3.14.7",
+    "platform": "linux",
+    "architecture": "x86_64",
+    "pytest_receptor": "1.2.1",
+    "prefix": "/tmp/ackredit0101-public314"
+  },
+  "verification": {
+    "operation": "installed_noarch.run_tests",
+    "provider_commit": "c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+    "working_directory": "/tmp",
+    "same_interpreter_provenance_before_and_after": "passed",
+    "test_outcome": {
+      "outcome": "PASS",
+      "counts": {
+        "collected": 5,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 5,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 5,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 2,
+        "xfailed": 0,
+        "xpassed": 0
+      }
+    },
+    "receptor_complete": true,
+    "receptor_integrity_valid": true,
+    "receptor_sha256": "b1b7dfc2b25209a78b7080dec0bd1de9e07b29c6c5731cf1042afdbc3eb58ce8"
+  },
+  "assertions": [
+    "cancellation/failure credits entered method without completed backend; surviving observer leases restore exports",
+    "one prepared callable serves four isolated thread sessions and eight reused captures per thread",
+    "explicit warning-as-error refuses science, restores parent scope/exports and permits fresh activation",
+    "unawaited coroutine credits nothing",
+    "delayed prepared credit cannot mutate an expired capture; later result/workflow retain it"
+  ],
+  "scope": "Five supplementary lifecycle guards against unchanged public runtime on Linux/Python 3.14; no new real-producer, full-matrix, performance, publication, stable-promotion or shared-adoption claim."
+}

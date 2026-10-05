@@ -4,12 +4,32 @@ This is a concrete **proposal for maintainer review**, owned by Ackredit
 #84/#87, coordinated through MolSysSuite #97 and MOLI #46. It does not promote
 an API or authorize a release. The receiving pilot belongs to PyUnitWizard #94.
 
+## Current decision and delivery (2026-10-05)
+
+The [principal-maintainer decision](https://github.com/uibcdf/ackredit/issues/87#issuecomment-5984968710),
+retained centrally in immutable MolSysSuite
+`05f866ab7f17af6b046e89befa014460d5d13160`, is to **keep `observe_calls`,
+`prepare_credit` and `ackredit.provider@1` provisional**. PyUnitWizard's bounded
+experimental receiving pilot is accepted. Stable compatibility, required
+observation, a new consumer minimum and shared adoption remain undecided.
+Later successful tests or releases do not automatically change that decision.
+
+Corrected public Ackredit **0.10.1** ships all three capabilities. Original
+producer/tag `dd500842b6085111e01e62cfc243f68406eb8cc7` and archive SHA-256
+`26e75a0780ad4e6abc2de55df90b29b4a2aa4e510d6b50fa54a5812ad929228e`
+identify the qualified runtime. [Delivery evidence](https://github.com/uibcdf/ackredit/blob/f71d242705b4b65302fb3eecb0659207d56c47dd/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
+retains eight installed cells, 48 real PyUnitWizard tests, exact-file public
+promotion and a clean public Python 3.14 installation, including 56 public
+Sabueso receiving tests. The release repairs self-citation under #94 and leaves
+original 0.10.0 bytes/tag unchanged. The older source-wheel checkpoints below
+remain evidence for their own inputs.
+
 ## Recommended product boundary
 
 Retain `observe_calls(*modules)`, the offline `ackredit.provider@1` declaration
 and `prepare_credit(item_id, used_by, *, roles=(), context=None)` as bounded
-public capabilities in the next planned minor release, after the decisions
-and exact candidate gates below. Their combination supplies function-level
+provisional public capabilities while resolving the decisions below.
+Their combination supplies function-level
 and completed-backend attribution without a profiler or producer dependency.
 Do not require scientific hosts to adopt either capability.
 
@@ -21,7 +41,7 @@ Do not require scientific hosts to adopt either capability.
 | Lazy exports | Resolve only declared missing PEP 562 names during activation; refuse invalid exports before installing observation or references | The producer's loader can have ordinary caching/import side effects; Ackredit cannot roll them back |
 | Context ownership | Nested/concurrent activations share wrappers with context-local leases; expired owners stop recording; last exit restores original exports | Threads do not automatically inherit context; external export replacements are preserved and diagnosed |
 | Prepared credit | Inert fixed-use preparation; zero-argument call writes to the current session and each active capture after the host's chosen completion boundary | Creates no scientific scope, success interpretation or backend call; the host decides when to invoke it |
-| Bibliography integrity | Accept equivalent portable representations at activation while preserving existing registration; freeze detached records and original versions | Real conflicts are refused; metadata mutation/replacement during active use is diagnosed, never silently adopted |
+| Bibliography integrity | Accept equivalent portable representations at activation while preserving existing registration; freeze detached declarations and original versions | Real conflicts are refused; registered bibliography mutation/replacement is diagnosed; edits to the producer declaration during activation are not adopted |
 | Portable result | Reused references enter independent captures; saved original records, roles/context and graph render offline without producer imports or new credit | The released `ackredit.attribution@1` does not encode invocation counts, chronology, scientific success or a complete execution trace |
 | Failure boundary | E012 rejects invalid declarations before activation; W019 identifies recording/restoration gaps; prepared replacement/deletion raises E010 | Attribution can be partial after a recording gap; explicitly configured warning-as-error behavior remains the application's choice |
 
@@ -30,6 +50,61 @@ registered contents and uses the shared session/capture/journal writers. No
 mutable-identity cache, broad import scan, background service or network lookup
 belongs in these contracts. Applications should instrument coarse operations,
 not millions of scalar iterations.
+
+## Exit criteria for provisionality
+
+Evaluate the declaration protocol, observer and prepared callable separately.
+A stable prepared callable does not require a stable observer. The existing
+portable attribution contract remains stable throughout this review.
+
+| Surface | Decision to record before promotion | Evidence already available |
+| --- | --- | --- |
+| `ackredit.provider@1` | Accept the exact required fields, local reference resolution, original software/version and per-export use rules. Decide that an incompatible interpretation uses a new schema identifier; unknown identifiers remain refused. | Offline declarations, function/module agreement, atomic preflight, lazy exports and equivalent tuple/list registration; real PyUnitWizard software/article selections and original 0.9.0 fallback. |
+| `observe_calls` | Accept entry semantics, awaited execution, selected direct exports, context-local ownership and restoration. Retain documented exclusions and define W019 partial-attribution behavior, including application warning filters. | Existing installed producer/reader gate, eight-cell real receiving matrix and cancellation/failure/strict-warning lifecycle guards below. |
+| `prepare_credit` | Accept inert preparation, the zero-argument call into the current session/captures, host-owned completion, detached inputs and E010 replacement/deletion refusal. No prepared callable owns a scientific outcome or creates a scope. | Reused/nested captures, journal writer, real completed-backend pilot, concurrent prepared-callable and expired-capture lifecycle guards below. |
+
+Completion requires the following **recorded decisions**, rather than another
+identical scientific run against unchanged runtime bytes:
+
+- Ackredit's principal maintainer explicitly accepts, amends or defers each
+  surface and its compatibility promise in #84/#87. Tests cannot make that
+  product decision.
+- Record the accepted receiving scope and any unresolved concrete objections.
+  PyUnitWizard #94's experimental review is settled; MolSysSuite #97 and direct
+  MOLI #46 retain their separate shared/platform ownership. A stable provider
+  decision does not require every host to adopt it.
+- For a promoted surface, update its stability classification, release notes
+  and canonical integration guide to the accepted boundary, preserving the
+  portable minimum and optional producer contract. Track guide synchronization
+  and actual client adoption separately through the central registry.
+- Select and qualify the release delivering that stable promise. Reuse existing
+  evidence only for unchanged tested inputs and scope; revised runtime or
+  candidate bytes require their own applicable gates. Original published files
+  and tags remain immutable.
+
+Keep an amended or deferred surface provisional with the specific unresolved
+guarantee visible here and in its owning issue. Provisional names must be
+promoted or removed before the general 1.0 stability commitment. No automatic
+expiry date or additional-engine/platform requirement is imposed by this
+checklist. Tell the maintainer when each promotion and its delivering release
+are complete; source acceptance and public delivery remain separate states.
+
+## Supplementary lifecycle evidence (2026-10-05)
+
+`tests/test_provider_lifecycle.py` exercises cancellation alongside surviving
+observers, scientific failure versus explicit completed credit, one prepared
+callable shared by four isolated thread sessions, warning-as-error cleanup,
+unawaited coroutines and delayed credits after a result capture expires.
+Assertions check original outcomes/exceptions, reference roles, graph parentage,
+export/scope restoration, independent reused captures and detached saved readers.
+The tests use events/barriers rather than timing assumptions.
+
+All five guards pass against the normally installed **public 0.10.1** archive
+on Linux/Python 3.14.7, outside source, with shared same-interpreter provenance
+checks before and after tests. [The supplementary receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_lifecycle_2026-10-05.json)
+binds the test-module/runtime hashes, exact public Conda identity and complete
+Pytest Receptor outcome. This extends guard coverage without changing runtime;
+it is not a new real-producer matrix, performance measurement or stable decision.
 
 ## Evidence and remaining decisions
 
@@ -59,12 +134,13 @@ not millions of scalar iterations.
    tuple authors through the public API. Downloaded identities and the aggregate
    independently verify. Its [reviewed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_registered_representation_matrix_2026-10-04.json)
    retains the exact candidate identity; earlier gates remain dated evidence.
-4. **Maintainer decision.** Accept or amend the bounded guarantees above and
-   decide provider-schema compatibility, API stability classification and
-   the first release containing them. Recommendation: preserve released
+4. **Later maintainer decision.** The accepted current decision is to remain
+   provisional. A later explicit decision may accept or amend the bounded
+   guarantees above and choose provider-schema compatibility and stability
+   classification. Recommendation: preserve accepted
    `ackredit.provider@1` interpretation, use a new identifier for incompatible
    schema/meaning changes, and diagnose unknown identifiers. This forward
-   guarantee is proposed here, not already granted to development snapshots.
+   guarantee is proposed here, not already granted to provisional releases.
 5. **Receiving adoption.** PyUnitWizard owns its final citation selection,
    optional boundary, entry/completion meanings and released fallback. MOLI
    owns the direct-component contract; MolSysSuite owns a shared adoption
@@ -75,10 +151,11 @@ not millions of scalar iterations.
 ### 2026-10-04 provisional delivery decision
 
 Diego authorized a release checkpoint and tag; [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93)
-prepares **0.10.0 with the current provisional classification retained**.
+prepared **0.10.0 with the current provisional classification retained**.
 That delivery does not accept the proposed stable guarantees, close #84/#87 or
 establish a shared adoption requirement. It requires the exact Conda archive's
-full installed and real-producer gates, promotion and public verification.
+full installed and real-producer gates, promotion and public verification, which
+completed for original 0.10.0 and additive corrected 0.10.1 under #93/#94.
 The canonical integration guide retains the existing released portable contract;
 stable provider-guide distribution waits for its separate review decision.
 
