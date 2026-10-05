@@ -16,6 +16,10 @@ Everything else stays literal, and that is the point rather than a shortfall.
 Contributors" would become the given name "SciPy 1.0" of a family called
 "Contributors". A literal name is merely less useful; an invented one is wrong,
 and wrong is what this library exists to prevent.
+
+CFF discovery retains explicit person/entity declarations alongside its display
+strings. CSL uses them while they match the current list, so punctuation cannot
+change a declared identity. Explicit list replacement keeps the generic path.
 """
 
 from __future__ import annotations
@@ -43,6 +47,58 @@ def csl_name(author: Any) -> Dict[str, str]:
             return {"family": family, "given": given}
 
     return {"literal": text}
+
+
+def _cff_name(entry: dict) -> dict | None:
+    """Use declared identity; CFF particles stay part of the family name."""
+    if literal := entry.get("name"):
+        return {"literal": literal}
+    name = {}
+    if family := entry.get("family-names"):
+        particle = entry.get("name-particle")
+        name["family"] = f"{particle} {family}" if particle else family
+    if given := entry.get("given-names"):
+        name["given"] = given
+    if not name:
+        return None
+    # Without a family name, a particle's placement cannot be reconstructed
+    # as a structured CSL name. Keep all stated components without guessing.
+    if entry.get("name-particle") and not family:
+        return {
+            "literal": " ".join(
+                entry[field]
+                for field in ("given-names", "name-particle", "name-suffix")
+                if entry.get(field)
+            )
+        }
+    if suffix := entry.get("name-suffix"):
+        name["suffix"] = suffix
+    return name
+
+
+def csl_names(authors: Any, *, cff: Any = None) -> list[dict]:
+    """Prefer matching CFF declarations; explicit list replacement still wins.
+
+    Source metadata is a hint about the original strings, not authority over a
+    caller's current author/editor list. Generic names retain their old path.
+    ORCID remains saved metadata, not an invented CSL name property.
+    """
+    if isinstance(cff, dict) and isinstance(authors, (list, tuple)):
+        entries = cff.get("names")
+        if (
+            cff.get("text") == list(authors)
+            and isinstance(entries, list)
+            and len(entries) == len(authors)
+            and all(
+                isinstance(entry, dict)
+                and all(isinstance(value, str) for value in entry.values())
+                for entry in entries
+            )
+        ):
+            names = [_cff_name(entry) for entry in entries]
+            if all(names):
+                return names
+    return [csl_name(author) for author in authors]
 
 
 # Between authors in a list a person reads. A comma cannot do it: the names are

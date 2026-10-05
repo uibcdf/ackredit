@@ -66,6 +66,21 @@ export requires no producer import, network lookup or new execution credit.
 These additions are tracked in [Ackredit #96](https://github.com/uibcdf/ackredit/issues/96)
 and are not present in the already published 0.10.1 archive.
 
+Development source also preserves CFF-declared name identity in CSL authors
+and editors ([#98](https://github.com/uibcdf/ackredit/issues/98)). An entity's
+`name` stays literal even when it contains a comma; a person's stated family
+and given names remain structured even when one is absent or contains commas.
+An explicit suffix reaches CSL `suffix`. Particles stay part of the family
+name rather than being assigned guessed CSL dropping semantics; a particle
+without a family name keeps the available components as a literal.
+
+The original display strings remain available. Detached `_cff_authors` and
+`_cff_editors` metadata retain the corresponding source name fields, including
+any stated ORCID; identifiers are not exported as unsupported CSL name fields.
+The renderer uses source hints only while they match the current list, so
+explicit author/editor replacement still wins. Typed preferred works retain
+their own names. These additions also remain development changes after 0.10.1.
+
 ## Contextual workflow reports
 
 The explicit `workflow` format ships in public 0.10.0 and recommended 0.10.1.

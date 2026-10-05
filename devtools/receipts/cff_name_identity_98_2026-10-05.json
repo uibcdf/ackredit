@@ -1,0 +1,254 @@
+{
+  "schema": "ackredit.cff-name-qualification@1",
+  "issue": "uibcdf/ackredit#98",
+  "date": "2026-10-05",
+  "baseline_source": "bcbb6d837559057b3eec5c14c4501b4c2a544c19",
+  "candidate_source": "development files after baseline, identified by installed runtime hashes",
+  "scope": "Local Linux/Python 3.14.7 normal installations, CFF parser/discovery/CSL names and detached producer/network-blocked reading. No new hosted installed matrix or public artifact.",
+  "installed_runner": {
+    "source": "uibcdf/molsyssuite@c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+    "tool": "devtools/scripts/installed_noarch.py::run_tests",
+    "selection": "tests/test_cff_name_identity.py",
+    "import_guard": "same-interpreter actual Ackredit imports within the normal-install prefix, checked before and after pytest"
+  },
+  "packages": {
+    "baseline": {
+      "identity": {
+        "python": "3.14.7",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "executable": "/tmp/ackredit98-public-base-env/bin/python",
+        "origin": "/tmp/ackredit98-public-base-env/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.10.1+5.gbcbb6d8",
+        "dependencies": {
+          "argdigest": "0.14.0",
+          "smonitor": "0.18.0",
+          "depdigest": "0.13.0",
+          "pyyaml": "6.0.3",
+          "pytest": "9.1.1",
+          "pytest-receptor": "1.2.1"
+        },
+        "runtime_sha256": {
+          "core/cff.py": "aaba34213f847d834632052ef4e205a7d9d334e112c443d4fba08e1cccaeab93",
+          "core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "formats/_names.py": "4e1f374b53462066c3ae7a73cc9f3c45a9c8e2faabb9876a52682a02577b9a8b",
+          "formats/csl_json.py": "1082522582ec44c11156b21580485cf0fb845738c3bc0fbfcd0fb050d212b038"
+        }
+      },
+      "pytest": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 22,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 22,
+          "failed": 17,
+          "not_executed": 0,
+          "passed": 5,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 0.36158810276538134,
+        "exitstatus": 1,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 0
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "28c8f4e38dded894d3f83c62b1dcc8c324b568d3ae467aaa96f6ae62ddd435ca",
+          "records": 71
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "FAIL",
+        "root_causes": 4,
+        "run_id": "befa0096ce38484ea3b97b5f0e4f1232",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "events_sha256": "9cdbc3eaf000611b13b5099019e6ddd0d83065981161c8f371abf7c11239925e",
+      "pip_check": "pass"
+    },
+    "candidate": {
+      "identity": {
+        "python": "3.14.7",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "executable": "/tmp/ackredit98-public-candidate-env/bin/python",
+        "origin": "/tmp/ackredit98-public-candidate-env/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.10.1+5.gbcbb6d8.dirty",
+        "dependencies": {
+          "argdigest": "0.14.0",
+          "smonitor": "0.18.0",
+          "depdigest": "0.13.0",
+          "pyyaml": "6.0.3",
+          "pytest": "9.1.1",
+          "pytest-receptor": "1.2.1"
+        },
+        "runtime_sha256": {
+          "core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+          "core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "formats/_names.py": "6ea0b31aac965c6c81fa3658598279a880d92efa691baf5fbeacf758f087f31a",
+          "formats/csl_json.py": "615eaf894f4b837aaec8fdd0a898843c991d3c40afe19ad897c3ac88660539d8"
+        }
+      },
+      "pytest": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 22,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 22,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 22,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 0.28537738136947155,
+        "exitstatus": 0,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 0
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "90d125ba3390a648094357f6f3f57b8a90f7a1dcbdc3a3eccbcdd2ad806e26f2",
+          "records": 67
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "PASS",
+        "root_causes": 0,
+        "run_id": "203927472df544b0a4362648cc0d6c9a",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "events_sha256": "2dc84403110bb921cc718bddfeb87f2a50639c730542ad1f0852830c6fb6357e",
+      "pip_check": "pass"
+    }
+  },
+  "gates": {
+    "focused": {
+      "pytest": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 149,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 149,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 149,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 1.1972513049840927,
+        "exitstatus": 0,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 1
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "c362d1a722096e499555741717d32e267bd6cbcf7d66679265cd71e1168d14fc",
+          "records": 449
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "PASS",
+        "root_causes": 0,
+        "run_id": "ba32752873f04ab49fcd44a3dced4719",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "events_sha256": "4864f317696dec6ead72178add95947da72eb549a9c640fa144ebf35518ce36f"
+    },
+    "full": {
+      "pytest": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 1815,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 1815,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 1815,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 41.31923576258123,
+        "exitstatus": 0,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 43
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "8c8e5128b279012f18b30da3fe4fedad5d32a374461c6425e1d886dddc326d28",
+          "records": 5489
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "PASS",
+        "root_causes": 0,
+        "run_id": "1ffba14ca0e548059020ff5f3c5a403b",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "events_sha256": "b94a7c15bfe9a9f9c35030377184e18f765ab7fbde52200dfb0ea0a7ebc30e23"
+    },
+    "ruff_check": "pass",
+    "ruff_format": "pass",
+    "strict_sphinx": "pass",
+    "report_indexes": "pass"
+  },
+  "limits": "The normal-install name guards exercise synthetic declared CFF references. They do not qualify PyUnitWizard 0.28, its #111 optimization, another platform, a new provider API guarantee or a release.",
+  "shared_provider_notice": "uibcdf/molsyssuite#103",
+  "public_artifact": "Ackredit 0.10.1 unchanged",
+  "test_module_sha256": "2a5fa55ec83bdd2548e090daab52acfa05c9ed75892822a81a508d3c2f8ccd87"
+}

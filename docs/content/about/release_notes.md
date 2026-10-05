@@ -18,10 +18,16 @@
   retained. Registry/conflict checks, independent captures, new parent links
   and journal replay remain active; installed real-producer timings are
   documented separately (#97).
+- CFF person/entity declarations reach CSL authors and editors without guessing
+  identity from punctuation. Original particles, suffixes and single-component
+  names retain their available meaning; explicit author/editor replacement
+  remains authoritative. Detached source-name metadata survives offline reading
+  (#98).
 
 These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackredit/issues/95)
 and [#96](https://github.com/uibcdf/ackredit/issues/96); the writer optimization
-is tracked in [#97](https://github.com/uibcdf/ackredit/issues/97).
+is tracked in [#97](https://github.com/uibcdf/ackredit/issues/97). CFF name
+identity is corrected in [#98](https://github.com/uibcdf/ackredit/issues/98).
 They are development changes, not features of the already published 0.10.1
 archive. The portable payload version, core dependencies and provisional
 provider API classifications remain unchanged.

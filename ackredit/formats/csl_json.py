@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 
 from .._private.dates import calendar_date_parts
-from ._names import csl_name
+from ._names import csl_names
 
 # Ackredit's key to CSL's field, for values that are plain text.
 _DIRECT = {
@@ -186,7 +186,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         # for which strings decompose and why the rest do not.
         authors = item.get("authors", [])
         if authors:
-            csl_item["author"] = [csl_name(author) for author in authors]
+            csl_item["author"] = csl_names(authors, cff=item.get("_cff_authors"))
 
         if issued := _publication_date(item):
             csl_item["issued"] = issued
@@ -194,7 +194,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         if editors := item.get("editors") or item.get("editor"):
             if isinstance(editors, str):
                 editors = [editors]
-            csl_item["editor"] = [csl_name(editor) for editor in editors]
+            csl_item["editor"] = csl_names(editors, cff=item.get("_cff_editors"))
 
         for fc_key, csl_key in _DIRECT.items():
             if value := item.get(fc_key):

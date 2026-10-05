@@ -55,6 +55,14 @@ _WORK_TYPES = {
     "database": "dataset",
     "website": "web",
 }
+_NAME_FIELDS = (
+    "name",
+    "family-names",
+    "given-names",
+    "name-particle",
+    "name-suffix",
+    "orcid",
+)
 
 
 def _author(entry: Any) -> str | None:
@@ -82,6 +90,22 @@ def _authors(block: Any) -> List[str]:
     if not isinstance(block, list):
         return []
     return [name for entry in block if (name := _author(entry))]
+
+
+def _source_names(block: list, text: List[str]) -> dict:
+    """Detach declared name identity without changing legacy display strings."""
+    return {
+        "text": list(text),
+        "names": [
+            {
+                field: str(entry[field]).strip()
+                for field in _NAME_FIELDS
+                if entry.get(field) is not None
+            }
+            for entry in block
+            if _author(entry)
+        ],
+    }
 
 
 def _doi(document: Dict[str, Any]) -> str | None:
@@ -116,8 +140,10 @@ def _citation_fields(document: Dict[str, Any]) -> Dict[str, Any]:
             data["_cff_type"] = work_type
     if authors := _authors(document.get("authors")):
         data["authors"] = authors
+        data["_cff_authors"] = _source_names(document["authors"], authors)
     if editors := _authors(document.get("editors")):
         data["editors"] = editors
+        data["_cff_editors"] = _source_names(document["editors"], editors)
     if publisher := _author(document.get("publisher")):
         data["publisher"] = publisher
     if doi := _doi(document):
