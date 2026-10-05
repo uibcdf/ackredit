@@ -1,10 +1,15 @@
 # Release notes
 
-## 0.10.0 — candidate preparation
+## 0.10.1 — candidate preparation
 
 Delivery is tracked in [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93).
-The current public portable-attribution minimum remains 0.9.0 until the exact
-0.10.0 Conda archive completes staging, installed qualification and publication.
+0.10.0 delivered the features below, but its packaged self-citation still names
+0.9.0. [Ackredit #94](https://github.com/uibcdf/ackredit/issues/94) corrects that
+omission in additive 0.10.1 and binds the citation version to the candidate
+before tagging and to the exact installed release. The original public 0.10.0
+archive remains unchanged. 0.10.1 still needs its own qualification/publication.
+
+## 0.10.0 — provisional capabilities
 
 - Explicit `observe_calls` records entered declared exports, including awaited
   coroutine execution, with original software and article references. Libraries
@@ -28,5 +33,6 @@ invocation counts, scientific success or a complete execution trace. See
 
 The released portable `ackredit.attribution@1` contract remains unchanged. No new
 core dependency, automatic observation or consumer minimum follows from these
-additions. Installed candidate and public delivery evidence will be linked here
-once those operations complete.
+additions. The original exact archive's installed matrix and real-producer
+evidence are retained under #93; its self-citation limitation is recorded
+separately under #94. Corrected evidence will identify the new 0.10.1 archive.

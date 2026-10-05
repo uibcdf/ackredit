@@ -12,6 +12,13 @@ and the portable `ackredit.attribution@1` contract. Its package metadata require
 Python 3.11–3.14. The same `noarch: python` archive was qualified on Linux x86-64
 and macOS arm64 across all four Python minors before publication.
 
+The next corrected checkpoint is tracked in [Ackredit #93](https://github.com/uibcdf/ackredit/issues/93).
+Public 0.10.0 contains the provisional function/report additions, but its CFF
+self-citation still names 0.9.0. [#94](https://github.com/uibcdf/ackredit/issues/94)
+prepares additive 0.10.1; the installation commands remain at the prior verified
+release until the corrected file completes public verification. Candidate CFF
+metadata and a Git tag do not establish that verification.
+
 ## Install from Conda
 
 Create an environment with Ackredit and its runtime dependencies:

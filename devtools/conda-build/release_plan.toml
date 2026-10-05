@@ -1,11 +1,11 @@
 schema = "molsyssuite.conda-plan@1"
-version = "0.10.0"
+version = "0.10.1"
 package = "ackredit"
 build_number = 0
 route = "staged"
 profile = "noarch-python"
 reason = "New provisional function observation and prepared credit, workflow reports and provenance improvements require the complete installed suite and real PyUnitWizard receiving qualification against one exact noarch archive before promotion."
-decision_by = "Diego Prada-Gracia authorized a release checkpoint and tag on 2026-10-04; Ackredit #93 owns exact-file delivery. APIs remain provisional under #84/#87 and shared contract review remains open."
+decision_by = "Diego Prada-Gracia authorized a release checkpoint and tag on 2026-10-04; Ackredit #93 owns exact-file delivery; #94 requires the additive 0.10.1 self-citation repair. APIs remain provisional under #84/#87 and shared contract review remains open."
 artifact_subdirs = ["noarch"]
 test_platforms = ["linux-64", "osx-arm64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]

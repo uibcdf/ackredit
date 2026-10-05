@@ -8,8 +8,20 @@ import importlib.metadata as metadata
 import json
 import os
 import platform
+import re
 import sys
 from pathlib import Path
+
+
+def verify_citation(citation: dict, version: str):
+    """Bind installed canonical releases to their own discovered bibliography."""
+    assert citation and citation["title"] == "Ackredit" and citation["authors"], (
+        citation
+    )
+    # Development wheels derive from a previous tag while CFF names the release
+    # being prepared. Exact Conda/tagged release versions must agree instead.
+    if re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", version):
+        assert str(citation.get("version")) == version, (citation, version)
 
 
 def verify(*, expected_python: str | None = None, expected_version: str | None = None):
@@ -40,9 +52,7 @@ def verify(*, expected_python: str | None = None, expected_version: str | None =
     if expected_version is not None:
         assert version == expected_version, (version, expected_version)
     citation = find_and_parse_cff(Path(ackredit.__file__).parent)
-    assert citation and citation["title"] == "Ackredit" and citation["authors"], (
-        citation
-    )
+    verify_citation(citation, version)
 
     with ackredit.session("installed qualification"):
         ackredit.register_item(

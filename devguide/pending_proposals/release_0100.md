@@ -1,5 +1,5 @@
 ---
-summary: Deliver 0.10.0 with exact Conda and real-producer qualification.
+summary: Deliver the corrected 0.10.1 checkpoint with exact Conda qualification.
 issue: uibcdf/ackredit#93
 status: active
 opened: 2026-10-04
@@ -13,13 +13,14 @@ blocked_by: []
 supersedes: []
 ---
 
-# Deliver Ackredit 0.10.0
+# Deliver Ackredit 0.10.0 and its additive 0.10.1 repair
 
 ## What
 
 Diego authorized the next release checkpoint and canonical tag on 2026-10-04.
 Deliver the current function-provider, prepared-credit and contextual-report
-work in 0.10.0. `observe_calls` and `prepare_credit` remain provisional; the
+work in 0.10.0, followed by the self-citation correction in 0.10.1 under #94.
+`observe_calls` and `prepare_credit` remain provisional; the
 review and adoption decisions in #84/#87, MolSysSuite #97 and MOLI #46 stay open.
 The portable `ackredit.attribution@1` contract and its 0.9.0 minimum are retained.
 
@@ -71,3 +72,17 @@ preserved. The canonical integration guide retains its released portable scope.
 - Immutable tag at the original producer; public receipt, installation/release
   documentation and handoffs in the linked owner issues.
 - Archive this record only when delivery is complete; #84/#87 remain partial.
+
+## 2026-10-04 first publication and correction
+
+Original source `16c356d` passed 1,710 local tests, source CI/full matrix and
+policies. Staging 37237182299, installed 37237527349 (eight cells), real receiving
+37237527141 (48 tests), promotion 37237913352 and a clean public Python 3.14.7
+installation pass. Ten downloaded native scientific artifact ZIP digests and
+their contents verify; the independently reconstructed aggregate is identical.
+Tag 0.10.0 preserves this original producer. Public facts remain in the retained
+receipt, including the discovered self-citation defect.
+
+The CFF still named 0.9.0; #94 adds the missing plan/runtime identity guards.
+0.10.1 repeats all required source, installed, real-producer and public gates
+against its own new immutable archive. Delivery remains active until then.

@@ -7,16 +7,16 @@ and raising the pin at the next release â€” the one edit that looks sufficient â
 would have produced an environment where `import ackredit` fails
 (`uibcdf/ackredit#66`).
 
-Both facts already have an authority. `CITATION.cff` is held to the release by
-its own guard, and `pyproject.toml` declares what the package needs. This holds
-the page to them rather than to someone remembering.
+Public delivery receipts determine the recommended installed release;
+`CITATION.cff` may name a candidate still being prepared. `pyproject.toml`
+declares what the package needs. Neither a tag nor planned citation metadata
+establishes verified public delivery (#94).
 """
 
+import json
 import re
 import tomllib
 from pathlib import Path
-
-import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "docs" / "content" / "about" / "installation.md"
@@ -26,10 +26,21 @@ def _page() -> str:
     return PAGE.read_text(encoding="utf-8")
 
 
-def _release() -> str:
-    return str(
-        yaml.safe_load((ROOT / "CITATION.cff").read_text(encoding="utf-8"))["version"]
-    )
+def _release(receipts=ROOT / "devtools/conda-build/receipts") -> str:
+    versions = []
+    for path in receipts.glob("ackredit_*_public_*.json"):
+        receipt = json.loads(path.read_text())
+        if receipt.get("limitation"):
+            continue
+        poststate = receipt.get("public_poststate") or receipt.get("promotion", {}).get(
+            "independent_public_poststate", {}
+        )
+        assert poststate.get("state") == "verified", path
+        version = receipt["published_version"]
+        assert re.fullmatch(r"\d+\.\d+\.\d+", version), path
+        versions.append(version)
+    assert versions, "no verified public delivery without a recorded limitation"
+    return max(versions, key=lambda version: tuple(map(int, version.split("."))))
 
 
 def _runtime_dependencies() -> list[str]:
@@ -55,8 +66,27 @@ def test_the_page_installs_the_current_release():
 
     assert stated, "the page no longer says which release to install; update this guard"
     assert set(stated) == {_release()}, (
-        f"the page states {sorted(set(stated))}; CITATION.cff names {_release()}"
+        f"the page states {sorted(set(stated))}; verified public delivery names {_release()}"
     )
+
+
+def test_recommended_installation_waits_for_verified_corrected_delivery(tmp_path):
+    def receipt(version, **extra):
+        (tmp_path / f"ackredit_{version}_public_test.json").write_text(
+            json.dumps(
+                {
+                    "published_version": version,
+                    "public_poststate": {"state": "verified"},
+                    **extra,
+                }
+            )
+        )
+
+    receipt("0.9.0")
+    receipt("0.10.0", limitation={"issue": "uibcdf/ackredit#94"})
+    assert _release(tmp_path) == "0.9.0"
+    receipt("0.10.1")
+    assert _release(tmp_path) == "0.10.1"
 
 
 def test_the_environment_it_creates_can_import_ackredit():

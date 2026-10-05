@@ -6,7 +6,7 @@ Open proposals following [`reporting_protocol.md`](../reporting_protocol.md).
 
 ### Active (1)
 
-- [`release_0100.md`](release_0100.md) — [#93](https://github.com/uibcdf/ackredit/issues/93) — Deliver 0.10.0 with exact Conda and real-producer qualification. *(active, reproduced)*
+- [`release_0100.md`](release_0100.md) — [#93](https://github.com/uibcdf/ackredit/issues/93) — Deliver the corrected 0.10.1 checkpoint with exact Conda qualification. *(active, reproduced)*
 
 ### Partial (2)
 
