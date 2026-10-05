@@ -32,6 +32,7 @@ from .._private.smonitor.warnings import (
 from ..formats import (
     bibtex,
     csl_json,
+    explanation,
     jsonfmt,
     latex,
     markdown,
@@ -57,6 +58,7 @@ _RENDERERS = {
     "provenance": (provenance.render, "txt"),
     "latex": (latex.render, "tex"),
     "workflow": (workflow.render, "md"),
+    "explanation": (explanation.render, "md"),
 }
 _BUILTIN_NAMES = frozenset(_RENDERERS)
 
@@ -284,7 +286,7 @@ def report(format: str = "markdown", **kwargs: Any) -> str:
     canonical = _resolve_format(format)
     render, _ = _RENDERERS[canonical]
     used = get_used_items()
-    if canonical == "workflow":
+    if canonical in {"workflow", "explanation"}:
         return render(used, Registry.items)
     if canonical in _BUILTIN_NAMES:
         selected = set(used)
@@ -330,6 +332,10 @@ def _render_records(format, used, items, tree, options, *, attribution=None):
         return provenance.render_tree(tree, _read_only(items))
     if canonical == "workflow":
         return workflow.render_payload(attribution)
+    if canonical == "explanation":
+        from .attribution import Attribution
+
+        return explanation.render_attribution(Attribution(attribution))
     return renderer(dict(used), _read_only(items), **options)
 
 

@@ -163,8 +163,10 @@ its separate installed checkpoint passes all eight Linux/macOS arm64 × Python
 Original archives, event streams and offline reconstruction verify locally;
 the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/saved_attribution_composition.md) retains this
 development outcome separately from public 0.10.1 and provisional API review.
-Report scope/origin/gap explanations are next. Provider/platform review can
-proceed in parallel.
+The first bounded explanation tool/format is implemented in development under
+#103: describe saved evidence while scope/origin/diagnosed gaps remain unknown.
+Its qualification and J's later explicit evidence representation/collection
+remain separate. Provider/platform review can proceed in parallel.
 New implementations need focused owning issues.
 
 Active core improvements are tracked separately: #84 implements provisional

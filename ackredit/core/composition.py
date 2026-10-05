@@ -101,6 +101,12 @@ class AttributionBundle:
 
         _name(format, "render attribution bundle format")
         canonical = _resolve_format(format)
+        if canonical == "explanation":
+            if options:
+                _invalid("explanation bundle reports take no options")
+            from ..formats import explanation
+
+            return explanation.render_attribution(self)
         if canonical in {"workflow", "provenance"}:
             if options:
                 _invalid("workflow and provenance bundle reports take no options")

@@ -417,6 +417,13 @@ Theme H explains recorded references, roles and targets. Its report correctly
 does not assert complete instrumentation. Add actionable explanations when the
 producer or observation boundary actually supplies evidence for them.
 
+The first independent milestone #103 adds an inert `explain_attribution` tool
+and `explanation` format in development. Each saved original retains distinct
+evidence counts, roles/targets and explicit field absence; scope, origins and
+diagnosed gaps remain `not_recorded`. This descriptive view changes no portable
+schema or default workflow report. Its source/installed qualification remains
+separate; the stronger representation and collection work below is still pending.
+
 - [ ] define which scope information can be recorded: selected observation
       boundaries, explicit credits, declared-provider/discovery metadata origins,
       incomplete bibliography and diagnosed recording gaps;

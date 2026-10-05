@@ -39,6 +39,10 @@ Use `report(format=...)` to get a string in any of these formats:
 *   `latex` (A complete, compilable LaTeX document)
 *   `text` (Plain text, for a log or a terminal)
 *   `workflow` (Bibliography, contextual uses and graph together; since 0.10.0)
+*   `explanation` (Bounded description of saved evidence and information not recorded; development under #103)
+
+The development [explanation tool](attribution_explanation.md) describes
+recorded evidence while preserving unknown scope, origins and diagnosed gaps.
 
 This list is the built-in list. `ackredit.available_formats()` returns it at runtime,
 together with any format a plugin added, and asking for a name that is not there raises

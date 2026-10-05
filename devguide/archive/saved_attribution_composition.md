@@ -114,3 +114,21 @@ This completes theme I's implementation and development qualification. Public
 Ackredit remains 0.10.1; no tag, published Conda file, stable promotion of
 `observe_calls`/`prepare_credit`, consumer minimum or shared adoption is implied.
 The separate unpublished bundle preserves the original schema-1 meaning.
+
+## Documentation-head qualification correction — 2026-10-05
+
+The implementation/source and eight-cell installed evidence above remain valid
+for original producer `95ada1a`. Later documentation-only head `408c45e` has
+incomplete hosted gates: CI 37365792898 passes five jobs, but Linux Python
+3.11/3.13 jobs and suite policy 37365793949 are cancelled before any steps in
+both attempts 1 and 2. Targeted check-run annotations explicitly report that a
+hosted runner could not acquire the jobs after multiple attempts. The single
+bounded `--failed` recovery did not resolve acquisition. Publication policy
+37365793999 passes. Both overall affected runs remain failures; no cancelled
+job is classified as a passed test or shared publisher defect.
+
+Ackredit #102 remains open for this exact-head evidence/recovery, separately
+from completed implementation and retained installed qualification. Do not
+infer administrative closure or public delivery from this source record.
+Subsequent unskipped component checkpoints can establish their own expanded
+scope; preserve original producer/archive identities and all missing evidence.
