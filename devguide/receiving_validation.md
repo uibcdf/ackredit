@@ -4,7 +4,8 @@ Ackredit #84/#87 and PyUnitWizard #94 own this scientific qualification; Ackredi
 #93 owns the exact-file Conda release checkpoint. The
 workflow `function_provider_receiving.yaml` is manually dispatched for a fixed
 Ackredit revision. PyUnitWizard is pinned to
-`33fec8a627505a4f5426babe87e8e85438105041`; the released API baseline is built
+`0e422d06b0af56e4dd2b43cafd00f059221eb405` following its resolved declaration-plan
+optimization (#111); the released API baseline is built
 from Ackredit's original 0.9.0 producer,
 `598abf993a2409c025de5e912acd7eb45a257ebd`.
 
@@ -45,7 +46,7 @@ and provider-absence evidence, released fallback, JUnit and Pytest Receptor even
 Inspect the remote execution with `gh run-receptor inspect RUN_ID --receptor=llm`.
 All eight receiving jobs must pass; a successful subset is incomplete evidence.
 The final job uses Pytest Receptor's supported `read_artifact` API to require
-eight distinct platform/minor receipts, matching bundle identities and six
+eight distinct platform/minor receipts, matching bundle identities and seven
 passed tests per cell, with no skips, deselections, incomplete or failed tests.
 It retains a combined `function-provider-matrix` artifact only after those
 checks succeed. JUnit and per-cell evidence remain available independently.
@@ -62,6 +63,18 @@ bibliography with valid tuple authors through public `register_item` before
 activation. The observer must accept its JSON-equivalent declaration and the
 capture must preserve the original bibliography as a JSON array. The gate still
 contains six tests; this added precondition requires new exact-source evidence.
+
+Ackredit #99 adds a seventh installed test for the combined writer and producer
+declaration-plan optimizations. For real Pint and unyt, it forbids declaration
+reconstruction and detachment during warmed conversion; independent captures
+retain the same bibliography, uses and graph. Explicit units and numerical
+values, software/article roles and original versions are checked. A changed
+backend version refreshes the plan while preserving earlier captures; a nested
+metadata conflict emits the catalog diagnostic while retaining completed
+science and function-entry evidence. Each cell retains `prepared-reuse.json`.
+The current aggregate rejects the earlier six-test selection or a missing
+prepared proof; historical receipts below retain their original inputs and
+must be replayed with their own qualification revision.
 
 This gate qualifies development source candidates or the exact staged Conda
 file when the explicit Conda profile is selected. It does not publish a package,

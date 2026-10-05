@@ -208,6 +208,122 @@ def test_noop_and_failed_calls_distinguish_entry_from_completed_backend(installe
         assert data["uses"][0]["roles"] == ["executed_software"]
 
 
+def test_warmed_backend_plans_retain_credit_and_invalidate_by_value(
+    installed, monkeypatch
+):
+    ackredit, puw, _, output, _ = installed
+    from pyunitwizard import _ackredit
+    from pyunitwizard._private import backend_references
+    from pyunitwizard._private.smonitor.warnings import AckreditTrackingWarning
+
+    evidence = {}
+    for library in ("pint", "unyt"):
+        module = sys.modules[library]
+        q = puw.quantity(2.0, "meter", form=library)
+        target = q._REGISTRY.centimeter if library == "pint" else module.Unit("cm")
+        _ackredit._PREPARED.clear()
+        with (
+            ackredit.session(f"warmed {library}"),
+            ackredit.scope("prepared.pipeline"),
+            ackredit.observe_calls(puw),
+            puw.attribution(),
+        ):
+            with ackredit.capture("original") as original:
+                puw.convert(q, to_unit=target, to_form=library)
+            saved = original.attribution.to_dict()
+
+            def unnecessary_copy(*args):
+                pytest.fail("warmed conversion copied backend declarations again")
+
+            with monkeypatch.context() as warm:
+                warm.setattr(backend_references, "records", unnecessary_copy)
+                warm.setattr(
+                    backend_references._DeclarationPlan, "records", unnecessary_copy
+                )
+                with ackredit.capture("reused") as reused:
+                    result = puw.convert(q, to_unit=target, to_form=library)
+                assert puw.get_value(result) == 200.0
+                assert result.units == target
+                assert reused.attribution.to_dict() == dict(saved, name="reused")
+            assert {use["context"]["software"] for use in saved["uses"]} == {
+                "pyunitwizard",
+                library,
+            }
+            assert len(saved["items"]) == (2 if library == "pint" else 3)
+            assert (
+                "pyunitwizard.convert"
+                in saved["usage_tree"]["prepared.pipeline"]["children"]
+            )
+            versions = {"pyunitwizard": puw.__version__, library: module.__version__}
+            for use in saved["uses"]:
+                assert use["context"]["version"] == versions[use["context"]["software"]]
+                assert use["roles"] == [
+                    "software_description"
+                    if use["item_id"] == "doi:10.21105/joss.00809"
+                    else "executed_software"
+                ]
+            if library == "unyt":
+                article = next(
+                    item for item in saved["items"] if item["type"] == "article"
+                )
+                assert article["doi"] == "10.21105/joss.00809"
+
+            with monkeypatch.context() as changed:
+                changed.setattr(
+                    module, "__version__", module.__version__ + "+qualification99"
+                )
+                with ackredit.capture("version changed") as updated:
+                    result = puw.convert(q, to_unit=target, to_form=library)
+                assert puw.get_value(result) == 200.0 and result.units == target
+                updated_data = updated.attribution.to_dict()
+                backend_uses = [
+                    use
+                    for use in updated_data["uses"]
+                    if use["context"]["software"] == library
+                ]
+                assert backend_uses
+                assert {use["context"]["version"] for use in backend_uses} == {
+                    module.__version__
+                }
+                software = next(
+                    item
+                    for item in updated_data["items"]
+                    if item["id"] == f"software:{library}:{module.__version__}"
+                )
+                assert software["version"] == module.__version__
+                assert original.attribution.to_dict() == saved
+                changed.setitem(
+                    backend_references._SOFTWARE,
+                    library,
+                    deepcopy(backend_references._SOFTWARE[library]),
+                )
+                backend_references._SOFTWARE[library]["authors"].append(
+                    "Changed declaration"
+                )
+                with (
+                    ackredit.capture("metadata conflict") as conflict,
+                    pytest.warns(AckreditTrackingWarning) as diagnostics,
+                ):
+                    result = puw.convert(q, to_unit=target, to_form=library)
+                assert puw.get_value(result) == 200.0 and result.units == target
+                assert diagnostics[0].message.code == "PUW-WARN-ACK-001"
+                conflict_data = conflict.attribution.to_dict()
+                assert len(conflict_data["items"]) == 1
+                assert {
+                    use["context"]["software"] for use in conflict_data["uses"]
+                } == {"pyunitwizard"}
+                assert updated.attribution.to_dict() == updated_data
+                assert original.attribution.to_dict() == saved
+            evidence[library] = {
+                "original": saved,
+                "reused": reused.attribution.to_dict(),
+                "changed_version": updated_data,
+                "metadata_conflict": conflict_data,
+                "diagnostic": diagnostics[0].message.code,
+            }
+    (output / "prepared-reuse.json").write_text(json.dumps(evidence, indent=2) + "\n")
+
+
 def test_workflow_report_is_faithful_in_a_producer_free_reader(installed):
     ackredit, puw, _, output, _ = installed
     # A host may have registered the same valid bibliography before observation.

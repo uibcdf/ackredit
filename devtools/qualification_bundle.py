@@ -234,7 +234,7 @@ def summarize(directory: Path, bundle: Path) -> dict:
         assert final["complete"] and final["outcome"] == "PASS", final
         assert final["exitstatus"] == 0, final
         counts = final["counts"]
-        assert counts["collected"] == counts["executed"] == counts["passed"] == 6, (
+        assert counts["collected"] == counts["executed"] == counts["passed"] == 7, (
             counts
         )
         assert not any(
@@ -257,6 +257,7 @@ def summarize(directory: Path, bundle: Path) -> dict:
             "workflow-reader.json",
             "absence.json",
             "released-fallback.json",
+            "prepared-reuse.json",
             "tests.xml",
         ):
             assert (identity.parent / filename).is_file(), (cell, filename)

@@ -110,7 +110,9 @@ it is not a new real-producer matrix, performance measurement or stable decision
 
 1. **Executed provider/receiver behavior.** Synthetic installed producer and
    producer-blocked reader guards are mandatory ordinary CI. The real
-   PyUnitWizard pin is `33fec8a627505a4f5426babe87e8e85438105041`.
+   Current PyUnitWizard pin is `0e422d06b0af56e4dd2b43cafd00f059221eb405`
+   under #99; the original qualified pilot pin was
+   `33fec8a627505a4f5426babe87e8e85438105041`.
    Existing [receiving documentation](receiving_validation.md) and immutable
    receipts distinguish each exact installed candidate from its documentation
    head and from the public 0.9.0 Conda archive.

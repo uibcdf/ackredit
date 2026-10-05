@@ -80,9 +80,9 @@ def complete_matrix(candidate, monkeypatch):
 
     directory, manifest = candidate
     counts = {
-        "collected": 6,
-        "executed": 6,
-        "passed": 6,
+        "collected": 7,
+        "executed": 7,
+        "passed": 7,
         "failed": 0,
         "skipped": 0,
         "xfailed": 0,
@@ -118,6 +118,7 @@ def complete_matrix(candidate, monkeypatch):
                 "workflow-reader.json",
                 "absence.json",
                 "released-fallback.json",
+                "prepared-reuse.json",
                 "tests.xml",
             ):
                 (cell / filename).write_text("test fixture")
@@ -141,6 +142,21 @@ def test_duplicate_platform_minor_does_not_replace_a_missing_cell(complete_matri
     cells, directory, _ = complete_matrix
     duplicate = cells / "darwin-3.14" / "identity.json"
     duplicate.write_bytes((cells / "darwin-3.13" / "identity.json").read_bytes())
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+def test_previous_six_test_gate_does_not_qualify_combined_optimization(complete_matrix):
+    cells, directory, final = complete_matrix
+    for key in ("collected", "executed", "passed"):
+        final["counts"][key] = 6
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+def test_missing_prepared_reuse_evidence_is_refused(complete_matrix):
+    cells, directory, _ = complete_matrix
+    (cells / "linux-3.14" / "prepared-reuse.json").unlink()
     with pytest.raises(AssertionError):
         bundle.summarize(cells, directory)
 

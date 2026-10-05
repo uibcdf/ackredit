@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: uibcdf/pyunitwizard
-          ref: 33fec8a627505a4f5426babe87e8e85438105041
+          ref: 0e422d06b0af56e4dd2b43cafd00f059221eb405
           path: producer-source
           fetch-depth: 0
       - uses: actions/checkout@v6
