@@ -79,6 +79,16 @@ not reconstruct a portable bibliography that the journal never contained.
 Use detached attribution alongside scientific results when fresh readers need
 original records and versions; use journals for the documented session workflow.
 
+Development under #102 adds `compose_attributions` and `AttributionBundle`.
+The separate `ackredit.attribution_bundle@1` envelope retains complete original
+schema-1 members, validates bibliographic identity across them and shares equal
+records by ID. It never unions independent result graphs: equal target names
+do not establish a cross-result path. Offline reports share bibliography while
+workflow/provenance views retain original result boundaries. The CLI's explicit
+`bundle` input mode delegates to that same reader. The released schema-1 meaning,
+scientific tracking path and journal aggregation remain unchanged; see
+[composition](../docs/content/user_guide/attribution_composition.md).
+
 ```text
 offline declarations --> process registry
                                |

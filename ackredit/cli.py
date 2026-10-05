@@ -37,6 +37,7 @@ from .core.collector import (
     enable_persistence,
     get_used_items,
 )
+from .core.composition import AttributionBundle
 from .core.report import available_formats, dump, report
 
 
@@ -92,9 +93,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     report_parser.add_argument(
         "--input-format",
-        choices=("session", "attribution"),
+        choices=("session", "attribution", "bundle"),
         default="session",
-        help="Input contract (default: session); attribution reads ackredit.attribution@1.",
+        help="Input contract (default: session); attribution and bundle read their versioned portable envelopes.",
     )
     report_parser.add_argument(
         "--format",
@@ -127,7 +128,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 @signal(tags=["ackredit", "cli"])
-def _attribution_report(path_text: str, format: str) -> str:
+def _attribution_report(path_text: str, format: str, *, bundle: bool = False) -> str:
     try:
         content = Path(path_text).read_text(encoding="utf-8")
     except (OSError, UnicodeError) as error:
@@ -139,7 +140,8 @@ def _attribution_report(path_text: str, format: str) -> str:
                 "error": str(error),
             }
         ) from error
-    return Attribution.from_json(content).report(format=format)
+    reader = AttributionBundle if bundle else Attribution
+    return reader.from_json(content).report(format=format)
 
 
 @signal(tags=["ackredit", "cli"])
@@ -164,8 +166,10 @@ def _export_report(content: str, output_text: str, input_text: str) -> None:
 
 def _report(args) -> int:
     try:
-        if args.input_format == "attribution":
-            rendered = _attribution_report(args.session_file, args.format)
+        if args.input_format in {"attribution", "bundle"}:
+            rendered = _attribution_report(
+                args.session_file, args.format, bundle=args.input_format == "bundle"
+            )
         else:
             if _load(args.session_file) is None:
                 return 1

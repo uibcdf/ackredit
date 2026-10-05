@@ -35,33 +35,15 @@ def render(used, items) -> str:
     return render_payload(get_attribution().to_dict())
 
 
-def render_payload(payload: dict) -> str:
-    """Render validated original records; do not inspect the reader's registry."""
-    items = payload["items"]
-    # External payloads may repeat an identical use. Count distinct evidence,
-    # without changing the preserved payload or interpreting it as call counts.
-    uses = list({_json(use): use for use in payload["uses"]}.values())
-    tree = payload["usage_tree"]
-    numbers = {item["id"]: number for number, item in enumerate(items, 1)}
-    lines = [
-        "# Workflow attribution",
-        "",
-        f"**Name:** {escape(payload['name'])}",
-        "",
-        f"References: {len(items)} · Distinct recorded uses: {len(uses)} · Recorded targets: {len(tree)}",
-        "",
-        "Recorded uses do not imply call counts, chronology, scientific success or complete instrumentation.",
-        "",
-    ]
-    if payload["context"]:
-        lines.extend(["## Original capture context", ""])
-        lines.extend(_fenced(_json(payload["context"]), "json"))
-    lines.extend(["## References", ""])
+def _references(
+    items: list[dict], numbers: dict[str, int], heading_level: int
+) -> list[str]:
+    lines = [f"{'#' * heading_level} References", ""]
     if not items:
         lines.extend(["No references were recorded.", ""])
     for item in items:
         item_id = item["id"]
-        lines.extend([f"### Reference {numbers[item_id]}", ""])
+        lines.extend([f"{'#' * (heading_level + 1)} Reference {numbers[item_id]}", ""])
         lines.extend(markdown._reference_lines(item_id, item, []))
         lines.append(f"  - Identifier: {escape(item_id)}")
         lines.append(f"  - Type: {escape(item.get('type', 'Not recorded'))}")
@@ -109,7 +91,40 @@ def render_payload(payload: dict) -> str:
         if remaining:
             lines.extend(["Other recorded metadata:", ""])
             lines.extend(_fenced(_json(remaining), "json"))
-    lines.extend(["## Recorded uses", ""])
+    return lines
+
+
+def render_payload(
+    payload: dict,
+    *,
+    numbers: dict[str, int] | None = None,
+    include_references: bool = True,
+    heading_level: int = 1,
+) -> str:
+    """Render validated original records; do not inspect the reader's registry."""
+    items = payload["items"]
+    # External payloads may repeat an identical use. Count distinct evidence,
+    # without changing the preserved payload or interpreting it as call counts.
+    uses = list({_json(use): use for use in payload["uses"]}.values())
+    tree = payload["usage_tree"]
+    if numbers is None:
+        numbers = {item["id"]: number for number, item in enumerate(items, 1)}
+    lines = [
+        f"{'#' * heading_level} Workflow attribution",
+        "",
+        f"**Name:** {escape(payload['name'])}",
+        "",
+        f"References: {len(items)} · Distinct recorded uses: {len(uses)} · Recorded targets: {len(tree)}",
+        "",
+        "Recorded uses do not imply call counts, chronology, scientific success or complete instrumentation.",
+        "",
+    ]
+    if payload["context"]:
+        lines.extend([f"{'#' * (heading_level + 1)} Original capture context", ""])
+        lines.extend(_fenced(_json(payload["context"]), "json"))
+    if include_references:
+        lines.extend(_references(items, numbers, heading_level + 1))
+    lines.extend([f"{'#' * (heading_level + 1)} Recorded uses", ""])
     if uses:
         lines.extend(
             [
@@ -128,7 +143,7 @@ def render_payload(payload: dict) -> str:
         lines.append("")
     else:
         lines.extend(["No contextual uses were recorded.", ""])
-    lines.extend(["## Recorded graph", ""])
+    lines.extend([f"{'#' * (heading_level + 1)} Recorded graph", ""])
     records = {
         item["id"]: {
             "title": f"Reference {numbers[item['id']]}: {_one_line(item.get('title', item['id']))}"
@@ -143,4 +158,33 @@ def render_payload(payload: dict) -> str:
         for target, node in tree.items()
     }
     lines.extend(_fenced(provenance.render_tree(display_tree, records), "text"))
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def render_bundle(payload: dict, items: list[dict]) -> str:
+    """Number shared references once while retaining every original result graph."""
+    numbers = {item["id"]: number for number, item in enumerate(items, 1)}
+    lines = [
+        "# Attribution bundle",
+        "",
+        f"**Name:** {escape(payload['name'])}",
+        "",
+        f"Input records: {len(payload['attributions'])} · Shared bibliography: {len(items)}",
+        "",
+        "Input order is presentation order, not execution chronology. Reused inputs remain separate; graphs are never joined across results.",
+        "",
+    ]
+    if payload["context"]:
+        lines.extend(["## Bundle context", ""])
+        lines.extend(_fenced(_json(payload["context"]), "json"))
+    lines.extend(_references(items, numbers, 2))
+    for index, record in enumerate(payload["attributions"], 1):
+        lines.extend([f"## Result {index}: {escape(record['name'])}", ""])
+        lines.append(
+            render_payload(
+                record, numbers=numbers, include_references=False, heading_level=3
+            )
+        )
+    if not payload["attributions"]:
+        lines.extend(["No input attributions were supplied.", ""])
     return "\n".join(lines).rstrip() + "\n"

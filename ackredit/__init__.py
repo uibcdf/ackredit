@@ -44,6 +44,7 @@ from .core.collector import (
     track_item,
     track_target,
 )
+from .core.composition import AttributionBundle, compose_attributions
 from .core.context import scope
 from .core.decorators import scoped_usage
 from .core.hooks import (
@@ -78,6 +79,8 @@ load_plugins()
 
 __all__ = [
     "Attribution",
+    "AttributionBundle",
+    "compose_attributions",
     "capture",
     "get_attribution",
     "__version__",

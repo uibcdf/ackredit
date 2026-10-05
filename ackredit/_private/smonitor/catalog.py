@@ -154,6 +154,11 @@ CODES = {
         "dev_hint": "The explicit request wins; the name is what a later reader trusts, so the disagreement is said out loud.",
     },
     # --- Errors --------------------------------------------------------------
+    "ACKREDIT-E015": {
+        "title": "Attribution bundle contract refused",
+        "user_message": "Cannot read or compose attribution bundle: {reason}.",
+        "user_hint": "Use a complete ackredit.attribution_bundle@1 envelope containing original ackredit.attribution@1 records.",
+    },
     "ACKREDIT-E013": {
         "title": "CLI report file could not be accessed",
         "user_message": "Cannot {operation} at '{path}': {error_type}: {error}.",
@@ -261,6 +266,7 @@ _WARNINGS = {
 }
 
 _ERRORS = {
+    "AttributionBundleError": "ACKREDIT-E015",
     "CliFileError": "ACKREDIT-E013",
     "ReportInputOverwriteError": "ACKREDIT-E014",
     "ProviderDeclarationError": "ACKREDIT-E012",

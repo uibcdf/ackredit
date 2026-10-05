@@ -381,6 +381,86 @@ assert not {'pyunitwizard', 'pint', 'unyt'} & sys.modules.keys()
     )
 
 
+def test_saved_result_composition_retains_original_boundaries(installed):
+    ackredit, puw, _, output, _ = installed
+    q = puw.quantity([1.0, 2.0], "meter", form="pint")
+    with (
+        ackredit.session("composition receiving"),
+        ackredit.scope("composition.pipeline"),
+        ackredit.observe_calls(puw),
+        puw.attribution(),
+    ):
+        with ackredit.capture("pint result", context={"cell": 1}) as pint_run:
+            converted = puw.convert(q, to_unit=q._REGISTRY.centimeter)
+        assert puw.get_value(converted).tolist() == [100.0, 200.0]
+        with ackredit.capture("unyt result", context={"cell": 2}) as unyt_run:
+            translated = puw.convert(q, to_form="unyt")
+        assert translated.value.tolist() == [1.0, 2.0] and str(translated.units) == "m"
+        with ackredit.capture("empty result") as empty_run:
+            pass
+        results = [
+            pint_run.attribution,
+            unyt_run.attribution,
+            pint_run.attribution,
+            empty_run.attribution,
+        ]
+        originals = [result.to_dict() for result in results]
+        before = ackredit.get_attribution().to_dict()
+        bundle = ackredit.compose_attributions(
+            results, name="notebook", context={"owner": "receiving"}
+        )
+        assert bundle.to_dict()["attributions"] == originals
+        assert bundle.attributions[-1].to_dict()["items"] == []
+        assert len(json.loads(bundle.report(format="csl"))) == 4
+        reversed_bundle = ackredit.compose_attributions(reversed(results))
+        assert reversed_bundle.report(format="bibtex") == bundle.report(format="bibtex")
+        conflict = results[1].to_dict()
+        conflict["items"][0]["title"] = "conflicting original"
+        with pytest.raises(ValueError) as caught:
+            ackredit.compose_attributions([results[0], ackredit.Attribution(conflict)])
+        assert caught.value.code == "ACKREDIT-E011"
+        assert ackredit.get_attribution().to_dict() == before
+        assert [result.to_dict() for result in results] == originals
+    (output / "composition.json").write_text(bundle.to_json(), encoding="utf-8")
+    _child(
+        """
+import importlib.abc, json, pathlib, socket, sys
+class NoProducer(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname.split('.')[0] in {'pyunitwizard', 'pint', 'unyt'}:
+            raise AssertionError('composition reader imported producer')
+sys.meta_path.insert(0, NoProducer())
+def forbidden(*args, **kwargs):
+    raise AssertionError('composition reader queried network')
+socket.create_connection = socket.socket.connect = forbidden
+import ackredit
+from ackredit.cli import main
+output = pathlib.Path(sys.argv[1])
+path = output / 'composition.json'
+payload = json.loads(path.read_text(encoding='utf-8'))
+saved = ackredit.AttributionBundle.from_dict(payload)
+assert saved.to_dict() == payload
+assert [item.to_dict() for item in saved.attributions] == payload['attributions']
+rendered = saved.report()
+assert 'Shared bibliography: 4' in rendered
+assert '## Result 1: pint result' in rendered and '## Result 2: unyt result' in rendered
+assert '## Result 3: pint result' in rendered and '## Result 4: empty result' in rendered
+assert rendered.count('### Reference ') == 4
+assert '10.21105/joss.00809' in rendered and '10.5281/zenodo.8092688' in rendered
+assert not {'pyunitwizard', 'pint', 'unyt'} & sys.modules.keys()
+sys.argv = ['ackredit', 'report', str(path), '--input-format', 'bundle', '-f', 'workflow',
+            '-o', str(output / 'composition-report.md')]
+assert main() == 0
+assert (output / 'composition-report.md').read_text(encoding='utf-8') == rendered
+assert ackredit.get_used_items() == {}
+(output / 'composition-reader.json').write_text(json.dumps({
+    'producer_imports': 0, 'new_credits': 0, 'payload_equality': True,
+    'original_members': 4, 'shared_references': 4, 'independent_graphs': True}))
+""",
+        output,
+    )
+
+
 def test_absent_optional_provider_preserves_completed_science(installed):
     _, _, _, output, _ = installed
     _child(

@@ -96,6 +96,10 @@ compare the decoded data and keep host-specific wrappers outside this payload.
 
 ## Evidence and client ownership
 
+To combine saved results while preserving independent contexts/graphs, see
+[attribution composition](attribution_composition.md). Its development bundle
+envelope is separate from this released individual-record contract.
+
 PyUnitWizard #92 exercises real Pint/unyt conversions, software-only and
 software-plus-article records, reuse, enclosing workflows, original versions,
 absence/failure and saved readers. Sabueso #108 exercises its application-owned

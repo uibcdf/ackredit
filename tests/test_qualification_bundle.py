@@ -80,9 +80,9 @@ def complete_matrix(candidate, monkeypatch):
 
     directory, manifest = candidate
     counts = {
-        "collected": 7,
-        "executed": 7,
-        "passed": 7,
+        "collected": 8,
+        "executed": 8,
+        "passed": 8,
         "failed": 0,
         "skipped": 0,
         "xfailed": 0,
@@ -119,6 +119,9 @@ def complete_matrix(candidate, monkeypatch):
                 "absence.json",
                 "released-fallback.json",
                 "prepared-reuse.json",
+                "composition.json",
+                "composition-report.md",
+                "composition-reader.json",
                 "tests.xml",
             ):
                 (cell / filename).write_text("test fixture")
@@ -157,6 +160,24 @@ def test_previous_six_test_gate_does_not_qualify_combined_optimization(complete_
 def test_missing_prepared_reuse_evidence_is_refused(complete_matrix):
     cells, directory, _ = complete_matrix
     (cells / "linux-3.14" / "prepared-reuse.json").unlink()
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+def test_previous_seven_test_gate_does_not_qualify_composition(complete_matrix):
+    cells, directory, final = complete_matrix
+    for key in ("collected", "executed", "passed"):
+        final["counts"][key] = 7
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+@pytest.mark.parametrize(
+    "filename", ["composition.json", "composition-report.md", "composition-reader.json"]
+)
+def test_missing_composition_evidence_is_refused(complete_matrix, filename):
+    cells, directory, _ = complete_matrix
+    (cells / "linux-3.14" / filename).unlink()
     with pytest.raises(AssertionError):
         bundle.summarize(cells, directory)
 

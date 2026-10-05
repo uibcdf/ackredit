@@ -154,8 +154,11 @@ of non-bibliographic acknowledgements. Theme G also plans a standalone inert
 declaration validator and a concise external-producer guide. These are planned
 implementations or decisions, not capabilities already shipped or implicit
 conditions for every client or the general 1.0 stability commitment. Portable
-CLI report/export is implemented in development under #101; composition and
-report explanations are next. Provider/platform review can proceed in parallel.
+CLI report/export is implemented in development under #101. #102 implements
+saved-result composition with complete original members, shared bibliography
+and independent graphs through `AttributionBundle`/`compose_attributions`;
+its eight-test installed receiving checkpoint remains separate. Report
+scope/origin/gap explanations are next. Provider/platform review can proceed in parallel.
 New implementations need focused owning issues.
 
 Active core improvements are tracked separately: #84 implements provisional

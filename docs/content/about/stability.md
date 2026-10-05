@@ -35,7 +35,7 @@ promise below.
 
 ## The surface
 
-Thirty-six names are stable and two provisional — every one has been decided once, on
+Thirty-eight names are stable and two provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -43,6 +43,8 @@ else links here, so they cannot drift apart.
 | --- | --- | --- |
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
+| `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; the unpublished bundle envelope is separate from the released schema-1 promise. |
+| `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. |
 | `get_attribution` | stable | Detaches the enclosing workflow bibliography with original contextual uses; shares the reviewed portable contract under `uibcdf/ackredit#75`. |
 | `bind` | stable | Declares what a target may require. Decision 4: a declaration with an opt-in runtime effect, never automatic. |

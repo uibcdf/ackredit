@@ -382,14 +382,23 @@ user's lifecycle. Source qualification remains separate from public delivery.
       journal and returning failure for malformed/unknown inputs;
 - [x] read and export in a fresh process without the original producer, registry,
       scientific engines, network lookup or new execution credit;
-- [ ] decide the public contract for composing multiple saved attributions:
+- [x] decide the public contract for composing multiple saved attributions:
       result names/context, duplicate uses, software versions, shared graph
       targets, conflicting identities and the relationship to original inputs;
-- [ ] implement the accepted composition operation as a reusable Ackredit tool,
+- [x] implement the accepted composition operation as a reusable Ackredit tool,
       preserving detached originals, every retained graph edge and distinct
       software releases, and diagnosing conflicts before returning a result;
 - [ ] qualify a real multi-result notebook/batch workflow and fresh reader,
       including reordered/reused inputs, an empty result and metadata conflicts.
+
+Development under #102 uses a separate `AttributionBundle` envelope of complete
+original schema-1 results. `compose_attributions` shares equal reference records
+by ID and rejects metadata conflicts before returning; original graphs remain
+independent. Workflow reports number shared bibliography once and retain each
+original result's contexts/uses/graph. The explicit CLI `bundle` mode reuses its
+reader. The new names have deliberately recorded pre-1.0 stable intent; old
+provisional surfaces and the released individual-record promise are unchanged.
+The eight-test installed receiving gate separately qualifies this new boundary.
 
 CLI/export comes first, then composition. Do not reconstruct absent bibliography
 from the reader's current installation or interpret composition as chronology,

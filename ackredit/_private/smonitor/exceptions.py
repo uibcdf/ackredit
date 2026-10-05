@@ -78,6 +78,10 @@ class AttributionError(AckreditError, ValueError):
     catalog_key = "AttributionError"
 
 
+class AttributionBundleError(AckreditError, ValueError):
+    catalog_key = "AttributionBundleError"
+
+
 class AttributionConflictError(AckreditError, ValueError):
     catalog_key = "AttributionConflictError"
 
@@ -95,6 +99,7 @@ class MissingDependencyError(AckreditError, ImportError):
 __all__ = [
     "AckreditError",
     "ArgumentError",
+    "AttributionBundleError",
     "BibtexFileNotFoundError",
     "CliFileError",
     "FormatNameTakenError",

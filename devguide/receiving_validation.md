@@ -11,6 +11,16 @@ from Ackredit's original 0.9.0 producer,
 
 ## What is qualified
 
+The #102 composition checkpoint adds an eighth real PyUnitWizard case: original
+Pint/unyt results, reused/empty inputs, shared bibliography, unchanged session,
+conflict preflight and an independent producer-free bundle/CLI reader. Each
+cell retains `composition.json`, `composition-report.md` and
+`composition-reader.json`. The aggregate requires all eight tests and these
+proofs; previous six/seven-test or missing-proof evidence cannot qualify this
+new boundary. Historical receipts below retain their original counts/inputs.
+New source/receiving qualification does not publish an artifact or promote the
+observer/prepared APIs.
+
 The default development profile produces three pure Python wheels once, using their declared build
 requirements in normal isolation. It refuses dirty sources. `bundle.json`
 records the source commits, distribution versions, archive SHA-256 and every
@@ -46,7 +56,7 @@ and provider-absence evidence, released fallback, JUnit and Pytest Receptor even
 Inspect the remote execution with `gh run-receptor inspect RUN_ID --receptor=llm`.
 All eight receiving jobs must pass; a successful subset is incomplete evidence.
 The final job uses Pytest Receptor's supported `read_artifact` API to require
-eight distinct platform/minor receipts, matching bundle identities and seven
+eight distinct platform/minor receipts, matching bundle identities and eight
 passed tests per cell, with no skips, deselections, incomplete or failed tests.
 It retains a combined `function-provider-matrix` artifact only after those
 checks succeed. JUnit and per-cell evidence remain available independently.
@@ -64,7 +74,7 @@ activation. The observer must accept its JSON-equivalent declaration and the
 capture must preserve the original bibliography as a JSON array. The gate still
 contains six tests; this added precondition requires new exact-source evidence.
 
-Ackredit #99 adds a seventh installed test for the combined writer and producer
+Ackredit #99 added a seventh installed test for the combined writer and producer
 declaration-plan optimizations. For real Pint and unyt, it forbids declaration
 reconstruction and detachment during warmed conversion; independent captures
 retain the same bibliography, uses and graph. Explicit units and numerical
