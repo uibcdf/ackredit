@@ -38,6 +38,7 @@ from .core.collector import (
     get_used_items,
 )
 from .core.composition import AttributionBundle
+from .core.evidence import AttributionEvidence
 from .core.report import available_formats, dump, report
 
 
@@ -93,9 +94,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     report_parser.add_argument(
         "--input-format",
-        choices=("session", "attribution", "bundle"),
+        choices=("session", "attribution", "bundle", "evidence"),
         default="session",
-        help="Input contract (default: session); attribution and bundle read their versioned portable envelopes.",
+        help="Input contract (default: session); attribution, bundle and evidence read their versioned portable envelopes.",
     )
     report_parser.add_argument(
         "--format",
@@ -128,7 +129,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 @signal(tags=["ackredit", "cli"])
-def _attribution_report(path_text: str, format: str, *, bundle: bool = False) -> str:
+def _attribution_report(
+    path_text: str, format: str, *, input_format: str = "attribution"
+) -> str:
     try:
         content = Path(path_text).read_text(encoding="utf-8")
     except (OSError, UnicodeError) as error:
@@ -140,7 +143,11 @@ def _attribution_report(path_text: str, format: str, *, bundle: bool = False) ->
                 "error": str(error),
             }
         ) from error
-    reader = AttributionBundle if bundle else Attribution
+    reader = {
+        "attribution": Attribution,
+        "bundle": AttributionBundle,
+        "evidence": AttributionEvidence,
+    }[input_format]
     return reader.from_json(content).report(format=format)
 
 
@@ -166,9 +173,9 @@ def _export_report(content: str, output_text: str, input_text: str) -> None:
 
 def _report(args) -> int:
     try:
-        if args.input_format in {"attribution", "bundle"}:
+        if args.input_format in {"attribution", "bundle", "evidence"}:
             rendered = _attribution_report(
-                args.session_file, args.format, bundle=args.input_format == "bundle"
+                args.session_file, args.format, input_format=args.input_format
             )
         else:
             if _load(args.session_file) is None:

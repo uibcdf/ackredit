@@ -1,5 +1,10 @@
 # Explain recorded attribution
 
+For explicit recorder-supplied origins, scope and diagnosed gaps, the development
+[evidence companion](attribution_evidence.md) retains a separate provisional
+contract. This descriptive view continues to describe only its original portable
+bibliography, contextual uses and graph.
+
 Development under Ackredit #103 adds `explain_attribution` and the `explanation`
 report format. They describe the evidence a saved result actually contains.
 They are not included in the current public 0.10.1 package.

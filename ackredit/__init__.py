@@ -47,6 +47,7 @@ from .core.collector import (
 from .core.composition import AttributionBundle, compose_attributions
 from .core.context import scope
 from .core.decorators import scoped_usage
+from .core.evidence import AttributionEvidence
 from .core.explanation import explain_attribution
 from .core.hooks import (
     disable_auto_reminder,
@@ -81,6 +82,7 @@ load_plugins()
 __all__ = [
     "Attribution",
     "AttributionBundle",
+    "AttributionEvidence",
     "compose_attributions",
     "explain_attribution",
     "capture",

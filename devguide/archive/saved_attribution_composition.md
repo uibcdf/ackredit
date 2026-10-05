@@ -132,3 +132,13 @@ from completed implementation and retained installed qualification. Do not
 infer administrative closure or public delivery from this source record.
 Subsequent unskipped component checkpoints can establish their own expanded
 scope; preserve original producer/archive identities and all missing evidence.
+
+### Subsequent explanation-head observation — 2026-10-05
+
+Later development head `63f2bb4c12935b4ba1decf5c47cffbd73a47d3f2` does
+not clear the outstanding hosted documentation-head controls: CI 37370939644
+passes six jobs but cancels Linux/Python 3.11 before any steps, and suite policy
+37370940463 cancels its sole job before any steps. Native annotations identify
+hosted runner acquisition failure. The separately reported Codecov correction
+is not evidence that those cancelled controls executed. #102 remains open;
+its original source and exact installed artifact qualification above is retained.

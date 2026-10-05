@@ -445,6 +445,15 @@ Coverage is bounded by instrumentation. Never invent an unobserved call, missing
 citation, success state or global coverage percentage. The client decides
 scientific completion; catalog diagnostics retain their own failure details.
 
+The next independent milestone [#104](https://github.com/uibcdf/ackredit/issues/104)
+implements a provisional `AttributionEvidence` companion around complete original
+single/bundle results. Explicit recorder declarations are positional per original
+and distinguish null/unknown from empty lists. They retain metadata field sources,
+selected/unsupported/unobserved boundaries and owning gap diagnostics separately
+from recorded use. Existing original readers and default reports stay unchanged.
+Representation qualification is underway; automatic collection and real receiving
+review remain pending and do not follow from accepting producer declarations.
+
 ### Theme K — Attribution at MOLI object boundaries
 
 Coordinate platform decisions in [MOLI #46](https://github.com/uibcdf/moli/issues/46)

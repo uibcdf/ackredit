@@ -121,3 +121,17 @@ The [reviewed receipt](../../devtools/receipts/recorded_attribution_explanation_
 retains exact source/wheel/resources, complete source events and each original
 input/view/report hash. Source CI 37370412974 and both policy lanes remain
 pending; this report/issue remains active until applicable gates complete.
+
+## Hosted documentation-head result — 2026-10-05
+
+Head `63f2bb4c12935b4ba1decf5c47cffbd73a47d3f2` CI 37370939644
+finishes with six successful jobs and one cancelled Linux/Python 3.11 job
+111967608937; it has no executed steps. Suite policy 37370940463 also cancels
+job 111967611654 before any steps. Both native annotations state: "The job was
+not acquired by Runner of type hosted even after multiple attempts".
+Publication policy 37370940578 passes. GH Run Receptor and targeted native
+annotations establish runner acquisition failure, not a test or Codecov failure.
+The maintainer reports the separate Codecov problem fixed. Exact-head source
+qualification still lacks those two executed hosted controls; #103 stays open.
+New roadmap J representation work is owned separately in #104. A future executed
+head must qualify its actual scope, without relabelling these attempts successful.

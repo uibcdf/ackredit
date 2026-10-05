@@ -82,6 +82,10 @@ class AttributionBundleError(AckreditError, ValueError):
     catalog_key = "AttributionBundleError"
 
 
+class AttributionEvidenceError(AckreditError, ValueError):
+    catalog_key = "AttributionEvidenceError"
+
+
 class AttributionConflictError(AckreditError, ValueError):
     catalog_key = "AttributionConflictError"
 
@@ -100,6 +104,7 @@ __all__ = [
     "AckreditError",
     "ArgumentError",
     "AttributionBundleError",
+    "AttributionEvidenceError",
     "BibtexFileNotFoundError",
     "CliFileError",
     "FormatNameTakenError",

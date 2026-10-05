@@ -92,3 +92,55 @@ def render_attribution(attribution) -> str:
                 ]
             )
     return "\n".join(lines).rstrip() + "\n"
+
+
+def render_evidence(evidence) -> str:
+    """Render recorder declarations separately from the base-schema analysis."""
+    view = evidence.explain()
+    lines = [
+        render_attribution(evidence.attribution).rstrip(),
+        "",
+        "# Explicit recorder evidence",
+        "",
+        "The base attribution above records uses. This separate companion retains the recorder's declarations; it does not certify their truth or completeness.",
+        "",
+        *[f"- {limit}" for limit in view["limits"]],
+        "",
+    ]
+    for index, result in enumerate(view["results"], 1):
+        lines.extend([f"## Evidence for result {index}", ""])
+        for plane, title in (
+            ("metadata_origins", "Metadata origins"),
+            ("observation_scope", "Observation boundaries"),
+            ("recording_gaps", "Diagnosed recording gaps"),
+        ):
+            lines.extend([f"### {title}", ""])
+            records = result[plane]
+            if records is None:
+                lines.extend(["Not recorded.", ""])
+            elif not records:
+                lines.extend(
+                    [
+                        "No declarations supplied. This does not establish completeness or absence of failures.",
+                        "",
+                    ]
+                )
+            else:
+                keys = list(records[0])
+                lines.extend(
+                    [
+                        "| " + " | ".join(_cell(key) for key in keys) + " |",
+                        "| " + " | ".join("---" for _ in keys) + " |",
+                    ]
+                )
+                for record in records:
+                    lines.append(
+                        "| "
+                        + " | ".join(
+                            _cell(json.dumps(record[key], ensure_ascii=False))
+                            for key in keys
+                        )
+                        + " |"
+                    )
+                lines.append("")
+    return "\n".join(lines).rstrip() + "\n"

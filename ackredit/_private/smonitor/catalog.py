@@ -154,6 +154,11 @@ CODES = {
         "dev_hint": "The explicit request wins; the name is what a later reader trusts, so the disagreement is said out loud.",
     },
     # --- Errors --------------------------------------------------------------
+    "ACKREDIT-E016": {
+        "title": "Attribution evidence contract refused",
+        "user_message": "Cannot read or attach attribution evidence: {reason}.",
+        "user_hint": "Use a complete ackredit.attribution_evidence@1 envelope with one bounded evidence entry per original result. Unknown planes are null.",
+    },
     "ACKREDIT-E015": {
         "title": "Attribution bundle contract refused",
         "user_message": "Cannot read or compose attribution bundle: {reason}.",
@@ -267,6 +272,7 @@ _WARNINGS = {
 
 _ERRORS = {
     "AttributionBundleError": "ACKREDIT-E015",
+    "AttributionEvidenceError": "ACKREDIT-E016",
     "CliFileError": "ACKREDIT-E013",
     "ReportInputOverwriteError": "ACKREDIT-E014",
     "ProviderDeclarationError": "ACKREDIT-E012",

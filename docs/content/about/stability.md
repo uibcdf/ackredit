@@ -35,7 +35,7 @@ promise below.
 
 ## The surface
 
-Thirty-nine names are stable and two provisional — every one has been decided once, on
+Thirty-nine names are stable and three provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -44,6 +44,7 @@ else links here, so they cannot drift apart.
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
 | `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; the unpublished bundle envelope is separate from the released schema-1 promise. |
+| `AttributionEvidence` | provisional | Explicit saved recorder declarations under `uibcdf/ackredit#104`; collection integration and real receiving review must qualify metadata origins, observation boundaries and diagnosed gaps before promotion. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
 | `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. |
