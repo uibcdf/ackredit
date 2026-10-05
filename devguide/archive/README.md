@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (94)
+### Resolved (95)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -62,6 +62,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`one_tracking_session_per_interpreter.md`](one_tracking_session_per_interpreter.md) — [#18](https://github.com/uibcdf/ackredit/issues/18) — Tracking state was class attributes, one set per interpreter; it now belongs to a session. *(resolved, reproduced)*
 - [`output_formats_are_not_extensible.md`](output_formats_are_not_extensible.md) — [#36](https://github.com/uibcdf/ackredit/issues/36) — The vision promised that anyone could add an output format, and only a private module dict existed. *(resolved, measured)*
 - [`persistence_rewrites_everything_on_every_item.md`](persistence_rewrites_everything_on_every_item.md) — [#17](https://github.com/uibcdf/ackredit/issues/17) — Persistence rewrote the whole document on every item, making a run O(n squared). *(resolved, reproduced)*
+- [`portable_attribution_cli.md`](portable_attribution_cli.md) — [#101](https://github.com/uibcdf/ackredit/issues/101) — Read and export original saved attribution through the existing CLI report command. *(resolved, reproduced)*
 - [`portable_capture_overhead.md`](portable_capture_overhead.md) — [#85](https://github.com/uibcdf/ackredit/issues/85) — Measure and reduce portable capture overhead while preserving fidelity. *(resolved, measured)*
 - [`portable_scientific_result_attribution.md`](portable_scientific_result_attribution.md) — [#75](https://github.com/uibcdf/ackredit/issues/75) — Deliver the stable portable attribution contract in published Ackredit 0.9.0. *(resolved, reproduced)*
 - [`product_roadmap_continuation.md`](product_roadmap_continuation.md) — [#100](https://github.com/uibcdf/ackredit/issues/100) — Record the accepted product and architecture continuation with bounded milestones. *(resolved, reproduced)*

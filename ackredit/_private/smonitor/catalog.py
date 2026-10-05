@@ -154,6 +154,16 @@ CODES = {
         "dev_hint": "The explicit request wins; the name is what a later reader trusts, so the disagreement is said out loud.",
     },
     # --- Errors --------------------------------------------------------------
+    "ACKREDIT-E013": {
+        "title": "CLI report file could not be accessed",
+        "user_message": "Cannot {operation} at '{path}': {error_type}: {error}.",
+        "user_hint": "Check the input encoding and file permissions. Reports use UTF-8; the output directory must already exist.",
+    },
+    "ACKREDIT-E014": {
+        "title": "Report output would overwrite its input",
+        "user_message": "Report output '{path}' refers to the input '{input}'.",
+        "user_hint": "Choose a different output file to preserve the saved session or attribution.",
+    },
     "ACKREDIT-E001": {
         "title": "Citation item has no id",
         "user_message": "A citation item was registered without an 'id'.",
@@ -251,6 +261,8 @@ _WARNINGS = {
 }
 
 _ERRORS = {
+    "CliFileError": "ACKREDIT-E013",
+    "ReportInputOverwriteError": "ACKREDIT-E014",
     "ProviderDeclarationError": "ACKREDIT-E012",
     "AttributionError": "ACKREDIT-E010",
     "AttributionConflictError": "ACKREDIT-E011",

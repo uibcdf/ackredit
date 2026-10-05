@@ -33,6 +33,41 @@ never register items, credit a new calculation, import original engines or
 query a DOI. The original authors, identifiers and producer versions remain
 in the saved record even when the reader uses newer libraries.
 
+## Reports and exports from the command line
+
+Development after 0.10.1 can read a saved attribution through the CLI:
+
+```bash
+ackredit report result-attribution.json --input-format attribution --format workflow
+ackredit report result-attribution.json --input-format attribution --format bibtex --output references.bib
+ackredit report result-attribution.json --input-format attribution --format csl-json --output references.csl.json
+```
+
+This uses the same validated `Attribution` reader and format registry as the
+Python API. It needs no original producer or unit engine and performs no DOI
+lookup or new tracking. Reports retain the bibliography saved by the producer;
+`workflow` also explains its original contextual uses and graph. `--format csl`
+is an alias for `csl-json`. Other registered formats remain available.
+
+The input contract is explicit: `--input-format attribution` requires a complete
+`ackredit.attribution@1` payload. The default `session` mode retains identifier
+journals and legacy sessions; it cannot recover their absent bibliography.
+`aggregate` still merges sessions, not portable attributions. A file extension
+does not select either contract.
+
+Without `--output` (`-o`), the report goes to stdout. Exports use UTF-8 and the
+named output directory must exist. An existing output can be replaced after
+successful validation and rendering, but output that aliases the input is
+refused. The saved input is never modified. Invalid records/unknown schemas,
+unknown formats and file/encoding failures produce catalog diagnostics and a
+nonzero exit. Validation or rendering failure leaves an existing output intact
+and creates no output file.
+
+`--format json` exports bibliographic records, not a complete schema-1 payload.
+Keep the original saved attribution for later reading: bibliography-only
+exports do not preserve all use context or graph edges. Reading an empty record
+is valid and does not establish that no citable software was used.
+
 ## Schema 1
 
 `ackredit.attribution@1` has exactly these top-level fields:

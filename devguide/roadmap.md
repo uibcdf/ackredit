@@ -372,14 +372,15 @@ They do not promote #84/#87 or change the portable schema or public 0.9.0.
 ### Theme I — Portable results from execution to later reporting
 
 Python already reconstructs complete saved `Attribution` records offline.
-The CLI currently reads identifier journals, and `aggregate` merges those
-journals; neither supplies a portable saved-bibliography workflow. Preserve
-both existing contracts while completing the external user's lifecycle.
+The original CLI reads identifier journals, and `aggregate` merges those
+journals. Development under #101 adds an explicit saved-attribution report/export
+mode, preserving both existing session contracts while completing the external
+user's lifecycle. Source qualification remains separate from public delivery.
 
-- [ ] define and implement CLI reporting/export from a saved
+- [x] define and implement CLI reporting/export from a saved
       `ackredit.attribution@1` payload, retaining the distinction from a session
       journal and returning failure for malformed/unknown inputs;
-- [ ] read and export in a fresh process without the original producer, registry,
+- [x] read and export in a fresh process without the original producer, registry,
       scientific engines, network lookup or new execution credit;
 - [ ] decide the public contract for composing multiple saved attributions:
       result names/context, duplicate uses, software versions, shared graph

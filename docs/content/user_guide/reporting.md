@@ -13,6 +13,13 @@ import ackredit
 ackredit.available_formats()
 ```
 
+For a saved portable result, the development CLI after 0.10.1 renders its
+original bibliography with `ackredit report result.json --input-format attribution`.
+Choose `--format workflow` to include original contextual uses and graph, or
+`--format bibtex --output references.bib` to export references. See
+[the portable attribution contract](portable_attribution.md) for input/output
+semantics and errors. The default session input mode retains identifier journals.
+
 ## Jupyter Notebook Summary
 In a notebook, you can see a stylized HTML table with clickable links.
 

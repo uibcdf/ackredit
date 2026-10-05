@@ -93,6 +93,9 @@ Documentation corrections and runtime defects retain separate evidence there.
   credited and cannot reconstruct their original titles, authors, DOIs or contextual
   uses. A portable result instead saves the detached `Attribution` payload beside
   its scientific data and can render that bibliography in a fresh reader.
+  Development after public 0.10.1 (#101) adds the explicit CLI input mode:
+  `ackredit report result.json --input-format attribution --format workflow`;
+  `--output` exports a chosen format without modifying the saved input.
   Journal aggregation and portable attribution are separate contracts; see
   [architecture](architecture.md) and the [portable contract](../docs/content/user_guide/portable_attribution.md).
 - **`@software` and `@dataset` are not defined by `plainnat.bst`.** BibTeX warns and
@@ -134,7 +137,8 @@ many land before 1.0.0 is an outcome rather than a plan.
   schema/operations have a bounded released compatibility promise. The general
   API commitment remains pre-1.0 intent. Output formats are extensible through `register_format` and the
   `ackredit.formats` entry-point group. What remains of roadmap F is the review against
-  what a host library learns, which waits on theme C by definition.
+  demonstrated receiving workflows and released adoption; theme C already
+  supplies that evidence, while the final stability decision remains explicit.
 - **MolSysSuite membership:** granted in `uibcdf/molsyssuite#28`. Ackredit is a
   registered, incubating support library. Common policy and admission records
   remain MolSysSuite-owned; registration, source compatibility, public delivery
@@ -149,9 +153,10 @@ complete lifecycle cost, real publication-tool interoperability and the scope
 of non-bibliographic acknowledgements. Theme G also plans a standalone inert
 declaration validator and a concise external-producer guide. These are planned
 implementations or decisions, not capabilities already shipped or implicit
-conditions for every client or the general 1.0 stability commitment. Start with
-portable CLI, then composition and report explanations; provider/platform review
-can proceed in parallel. New implementations need focused owning issues.
+conditions for every client or the general 1.0 stability commitment. Portable
+CLI report/export is implemented in development under #101; composition and
+report explanations are next. Provider/platform review can proceed in parallel.
+New implementations need focused owning issues.
 
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures

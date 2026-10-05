@@ -1,7 +1,6 @@
-"""The `ackredit` command, for session files a run left behind.
+"""The `ackredit` command, for saved sessions and portable attributions.
 
-Every subcommand here works on a saved session, so the one rule it lives by is
-that reading must not write. `report` used to open its input with
+Reading must not write to the input. `report` used to open its input with
 `enable_persistence`, which exists to append and therefore creates: a mistyped
 name produced an empty journal, a report saying the session held nothing, and a
 success exit code.
@@ -12,6 +11,9 @@ by whom — not the metadata of the items, which lives in the registry of the
 process that declared them. In a process that costs nothing, because the host
 library registers its items at import; a command line opening a file on its own
 has nothing to import, so it names the items it found and cannot describe them.
+
+The explicit attribution input mode reads complete saved bibliography and uses
+through the portable reader. It never folds those uses into the live session.
 """
 
 from __future__ import annotations
@@ -20,8 +22,15 @@ import argparse
 import sys
 from pathlib import Path
 
-from ._private.smonitor.exceptions import AckreditError
+from smonitor import signal
+
+from ._private.smonitor.exceptions import (
+    AckreditError,
+    CliFileError,
+    ReportInputOverwriteError,
+)
 from .core import session
+from .core.attribution import Attribution
 from .core.collector import (
     aggregate,
     close_persistence,
@@ -76,14 +85,25 @@ def build_parser() -> argparse.ArgumentParser:
     formats = ", ".join(available_formats())
 
     report_parser = subparsers.add_parser(
-        "report", help="Generate report from a session file."
+        "report", help="Report or export a saved session or portable attribution."
     )
-    report_parser.add_argument("session_file", help="Path to a saved session file.")
+    report_parser.add_argument(
+        "session_file", help="Path to a saved session or attribution file."
+    )
+    report_parser.add_argument(
+        "--input-format",
+        choices=("session", "attribution"),
+        default="session",
+        help="Input contract (default: session); attribution reads ackredit.attribution@1.",
+    )
     report_parser.add_argument(
         "--format",
         "-f",
         default="text",
         help=f"Output format (default: text). One of: {formats}",
+    )
+    report_parser.add_argument(
+        "--output", "-o", help="Export to a UTF-8 file instead of standard output."
     )
 
     agg_parser = subparsers.add_parser(
@@ -106,11 +126,55 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _report(args) -> int:
-    if _load(args.session_file) is None:
-        return 1
+@signal(tags=["ackredit", "cli"])
+def _attribution_report(path_text: str, format: str) -> str:
     try:
-        print(report(format=args.format))
+        content = Path(path_text).read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as error:
+        raise CliFileError(
+            extra={
+                "operation": "read attribution",
+                "path": path_text,
+                "error_type": type(error).__name__,
+                "error": str(error),
+            }
+        ) from error
+    return Attribution.from_json(content).report(format=format)
+
+
+@signal(tags=["ackredit", "cli"])
+def _export_report(content: str, output_text: str, input_text: str) -> None:
+    output = Path(output_text)
+    try:
+        if output.exists() and output.samefile(input_text):
+            raise ReportInputOverwriteError(
+                extra={"path": output_text, "input": input_text}
+            )
+        output.write_text(content, encoding="utf-8")
+    except (OSError, UnicodeError) as error:
+        raise CliFileError(
+            extra={
+                "operation": "export report",
+                "path": output_text,
+                "error_type": type(error).__name__,
+                "error": str(error),
+            }
+        ) from error
+
+
+def _report(args) -> int:
+    try:
+        if args.input_format == "attribution":
+            rendered = _attribution_report(args.session_file, args.format)
+        else:
+            if _load(args.session_file) is None:
+                return 1
+            rendered = report(format=args.format)
+
+        if args.output is None:
+            print(rendered)
+        else:
+            _export_report(rendered, args.output, args.session_file)
     except AckreditError:
         # The catalog already reported it, with the code and what to use
         # instead. Printing it again would be the hardcoded second message the

@@ -29,6 +29,14 @@ class ItemIdMissingError(AckreditError):
     catalog_key = "ItemIdMissingError"
 
 
+class CliFileError(AckreditError):
+    catalog_key = "CliFileError"
+
+
+class ReportInputOverwriteError(AckreditError):
+    catalog_key = "ReportInputOverwriteError"
+
+
 class BibtexFileNotFoundError(AckreditError, FileNotFoundError):
     """Also a FileNotFoundError, so existing callers keep working."""
 
@@ -88,10 +96,12 @@ __all__ = [
     "AckreditError",
     "ArgumentError",
     "BibtexFileNotFoundError",
+    "CliFileError",
     "FormatNameTakenError",
     "InvalidFormatError",
     "ItemIdMissingError",
     "MissingDependencyError",
     "ProviderDeclarationError",
+    "ReportInputOverwriteError",
     "UnknownFormatError",
 ]
