@@ -79,6 +79,35 @@ identical. The
 retains baseline/candidate identities and the original unmodified input. These
 development repairs await their own future release qualification.
 
+## BibLaTeX and Biber receiving
+
+The bounded [#122](https://github.com/uibcdf/ackredit/issues/122) checkpoint reads
+the same six-record attribution with normally installed development Ackredit,
+**BibLaTeX 3.19 / Biber 2.19**, pdfTeX 1.40.25 and the standard `authoryear` and
+`numeric` styles. Both styles compile. Biber's tool-mode XML and manuscript BBL
+retain all six citation keys, both software versions and the dataset version,
+indivisible institutional names and declared editor prefix/suffix parts.
+The original attribution and exported BibTeX bytes remain unchanged; export
+creates no new execution credit. The
+[receiving receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/biblatex_receiving_122_2026-10-06.json)
+identifies the installed file, official tool archives, actual loaded TeX files,
+reader output and presentation separately.
+
+Both selected styles display versions 1.0, 2.0 and 2024.1, unlike `plain.bst`.
+They print the generic record's editors but omit its publisher, although Biber
+retains that field. The preferred collection stays a book with its own metadata.
+Name order and line breaking vary by style; extracted PDF text includes
+discretionary line-break hyphens. The original full-URL DOI is retained in
+BibTeX/Biber rather than rewritten to apply CSL's presentation rule.
+
+Biber warns that the fixture's synthetic ISBN `978-0-00-000000-0` is invalid.
+The warning is retained and the original claim is not repaired. Compilation is
+therefore not a clean metadata-validation certificate. This is a Linux/Python
+3.14.8 study of those exact tools/styles, not a journal or manager qualification.
+The host's LaTeX 2023 kernel cannot run downloaded BibLaTeX 3.22a: its initial
+TeX pass fails on `\IfDocumentMetadataT`. The tested older pair is deliberately
+isolated; compatibility with the latest pair is unqualified.
+
 ## Presentation boundaries
 
 | Boundary | Observed behavior |
@@ -91,7 +120,7 @@ development repairs await their own future release qualification.
 | DOI stored as a full URL | #120 retained the duplicate-prefix defect. Development #121 strips supported wrappers only for presentation; saved originals and BibTeX remain intact. Ambiguous URL forms remain outside that projection. |
 | Capitalization, particles and sorting | Engines/styles can change displayed capitalization and name order. Converted or formatted text is not an exact copy of the original. |
 
-This does not establish Zotero, Mendeley or EndNote imports, BibLaTeX/Biber
+This does not establish Zotero, Mendeley or EndNote imports, general BibLaTeX/Biber
 compatibility, arbitrary Unicode with every TeX engine, or journal-style coverage.
 Reference-manager imports and other styles remain open roadmap work; duplicate
 identity follows the explicit ID/original-record policy above.
@@ -125,3 +154,31 @@ python -m pytest --receptor=llm --require-publication-tools tests/test_publicati
 
 Ordinary environments without the tools skip external cases; this designated
 command fails on missing tools. Portable export assertions still run.
+
+For the separate BibLaTeX receiving route, make `biber`, `kpsewhich`, `pdflatex`
+and `pdftotext` available, with TeX able to locate the selected BibLaTeX package:
+
+```bash
+python /path/to/ackredit/devtools/check_biblatex.py \
+  --attribution /path/to/result.json --output /tmp/biblatex-probe \
+  --style authoryear
+```
+
+`--style numeric` selects the other tested standard style. The probe installs
+nothing and never falls back to a different route; `TEXINPUTS` may point to an
+isolated compatible TeX tree. Official distributions and documentation belong to
+[BibLaTeX](https://ctan.org/pkg/biblatex) and [Biber](https://ctan.org/pkg/biber).
+The receipt records the exact historical official downloads used for #122.
+
+The designated local regression executes both selected styles:
+
+```bash
+python -m pytest --receptor=llm --require-biblatex-tools tests/test_biblatex_receiving.py
+```
+
+Missing tools cause this designated command to fail. Ordinary CI does not install
+the external engines and may skip these two real-tool cases; the retained reader
+and receipt guards still execute. Publication probes share a process capture
+helper that preserves exact stdout/stderr bytes and exit status, rendering
+undecodable bytes as explicit escapes. Local raw streams remain available for
+diagnosis.

@@ -661,6 +661,18 @@ No automatic merge or alias inference is accepted. Further merge tooling needs
 its own use case and explicit contract; reference-manager/other-style coverage
 and separately qualified release delivery remain open.
 
+Checkpoint #122 adds real BibLaTeX 3.19 / Biber 2.19 receiving with standard
+`authoryear` and `numeric` styles, using the same normally installed #121 wheel
+and original six-record input. Both PDFs compile; backend XML/BBL retain all
+IDs, original versions and declared institutional/editor names. Both styles
+display versions but omit the generic record's publisher; the original synthetic
+invalid ISBN remains an explicit Biber warning. Original input/BibTeX bytes and
+installed file identities are unchanged. The publication process owner now
+captures exact stream bytes before text rendering, preventing a non-UTF-8 TeX
+diagnostic from hiding evidence or process status. The host's old LaTeX kernel
+cannot run downloaded BibLaTeX 3.22a; latest-pair compatibility remains unqualified.
+These exact-tool guards do not close reference-manager or journal-style coverage.
+
 - [ ] exercise exported records with representative real reference-manager
       imports and BibTeX/BibLaTeX or journal-style workflows, recording tested
       versions, selected styles and intentional unsupported cases;

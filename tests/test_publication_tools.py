@@ -39,11 +39,15 @@ def test_retained_receipt_binds_the_same_original_input_to_verified_wheels():
     )
     for relative, digest in receipt["fixtures"].items():
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest
+    # #122 evolves the process owner to retain non-UTF-8 TeX bytes. Verify the
+    # original #120 source snapshot rather than requiring that tool to freeze.
+    followup = json.loads(
+        (ROOT / "devtools/receipts/biblatex_receiving_122_2026-10-06.json").read_text()
+    )
     assert (
-        hashlib.sha256(
-            (ROOT / "devtools/check_publication_tools.py").read_bytes()
-        ).hexdigest()
+        hashlib.sha256(followup["previous_process_owner"]["text"].encode()).hexdigest()
         == candidate["probe"]["tool_sha256"]
+        == followup["previous_process_owner"]["sha256"]
     )
     for side in (receipt["baseline"], candidate):
         for export in side["exports"].values():

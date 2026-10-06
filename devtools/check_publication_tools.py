@@ -28,28 +28,34 @@ def _sha(content: bytes) -> str:
 
 
 def _run(command: list[str], directory: Path, steps: list[dict]) -> str:
+    """Retain exact process bytes; render undecodable bytes as explicit escapes.
+
+    TeX output can mix encodings. Capture bytes before decoding so a diagnostic
+    cannot prevent preservation of either stream or the real process status.
+    """
     process = subprocess.run(
         command,
         cwd=directory,
         capture_output=True,
-        text=True,
         timeout=60,
         env={**os.environ, "TEXMFVAR": str(directory / "texmf-var")},
     )
     name = f"process-{len(steps) + 1}"
-    (directory / f"{name}.stdout.txt").write_text(process.stdout, encoding="utf-8")
-    (directory / f"{name}.stderr.txt").write_text(process.stderr, encoding="utf-8")
+    (directory / f"{name}.stdout.txt").write_bytes(process.stdout)
+    (directory / f"{name}.stderr.txt").write_bytes(process.stderr)
     steps.append(
         {
             "command": command,
             "exit_code": process.returncode,
-            "stdout_sha256": _sha(process.stdout.encode()),
-            "stderr": process.stderr,
+            "stdout_sha256": _sha(process.stdout),
+            "stderr_sha256": _sha(process.stderr),
+            "stderr": process.stderr.decode("utf-8", errors="backslashreplace"),
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes",
         }
     )
     (directory / "processes.json").write_text(json.dumps(steps, indent=2) + "\n")
     process.check_returncode()
-    return process.stdout
+    return process.stdout.decode("utf-8", errors="backslashreplace")
 
 
 def check(attribution_path: Path, destination: Path) -> dict:

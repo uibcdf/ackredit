@@ -113,3 +113,12 @@ share, conflicting originals under one ID refuse, and different IDs remain
 distinct even if the presented DOI matches. This closes theme M's identity-policy
 decision within those limits, not its remaining engine/manager coverage.
 Additional alias/merge tooling needs a concrete user story and separate contract.
+
+## Separate BibLaTeX follow-up (2026-10-06)
+
+#122 reuses this original installed runtime wheel and the same six-record input
+with real BibLaTeX/Biber. Its process-owner correction captures mixed-encoding
+TeX bytes without changing Ackredit's runtime, originals or this paired receipt.
+The [separate receipt](../../devtools/receipts/biblatex_receiving_122_2026-10-06.json)
+records new tool/style identities and reader output; it does not relabel #121 as
+a BibLaTeX qualification or rewrite its historical tool identity.

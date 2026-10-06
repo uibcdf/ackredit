@@ -179,6 +179,13 @@ many land before 1.0.0 is an outcome rather than a plan.
   or the explicit ID identity rule: equal same-ID originals share, conflicts
   refuse, and distinct IDs/software releases remain distinct.
   The repair is development work pending a separately qualified future release.
+  Checkpoint #122 receives the same installed development wheel and originals
+  in BibLaTeX 3.19 / Biber 2.19 with standard authoryear/numeric styles. Actual
+  backend records retain distinct releases and editor/institution identity; both
+  PDFs display versions. The synthetic ISBN warning and generic publisher
+  omission remain explicit. A shared devtool correction preserves mixed-encoding
+  process bytes and status. Latest tools, journal styles and manager imports
+  remain unqualified; no runtime or release changes follow from this study.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable

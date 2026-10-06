@@ -136,3 +136,15 @@ complete isolation guard pass **114 normally installed cases** with the required
 external engines. Ruff check/format pass. Runtime files, original candidate wheel
 and receiving receipt remain unchanged; a new exact-head full CI run is required
 before closing #120. This correction does not rewrite the original local evidence.
+
+## Process-owner evolution under #122 (2026-10-06)
+
+The separate BibLaTeX receiving route exposes mixed-encoding pdfTeX diagnostics
+that the original UTF-8-only process capturer cannot retain. The shared devtool
+owner now captures exact stdout/stderr bytes before text rendering, preserving
+their hashes and real process status. #120's installed wheel, input, output and
+receipt remain historical and unchanged. The
+[#122 receipt](../../devtools/receipts/biblatex_receiving_122_2026-10-06.json)
+retains the original process-owner source bytes and hash; this report's guard
+verifies that snapshot instead of requiring future tools to remain frozen.
+The current classic publication route is rechecked alongside the new Biber route.

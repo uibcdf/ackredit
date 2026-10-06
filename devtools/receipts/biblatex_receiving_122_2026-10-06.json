@@ -1,0 +1,2040 @@
+{
+  "schema": "ackredit.biblatex-receiving@1",
+  "issue": "uibcdf/ackredit#122",
+  "checked_on": "2026-10-06",
+  "paired_input": {
+    "sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+    "bytes": 3491,
+    "payload": {
+      "schema": "ackredit.attribution@1",
+      "name": "publication-fixture",
+      "context": {},
+      "items": [
+        {
+          "id": "software:1.0",
+          "type": "software",
+          "title": "Órbita & Analysis",
+          "authors": [
+            {
+              "literal": "Research and Development, Consortium"
+            }
+          ],
+          "year": "2024",
+          "version": "1.0",
+          "doi": "10.5555/ackredit.fixture.software",
+          "url": "https://example.org/software/1.0"
+        },
+        {
+          "id": "software:2.0",
+          "type": "software",
+          "title": "Órbita & Analysis",
+          "authors": [
+            {
+              "literal": "Research and Development, Consortium"
+            }
+          ],
+          "year": "2025",
+          "version": "2.0",
+          "doi": "https://doi.org/10.5555/ackredit.fixture.software",
+          "url": "https://example.org/software/2.0"
+        },
+        {
+          "id": "dataset:2024",
+          "type": "dataset",
+          "title": "Datos de México: 50% coverage",
+          "authors": [
+            {
+              "literal": "Instituto de Investigación, México"
+            }
+          ],
+          "year": "2024",
+          "version": "2024.1",
+          "doi": "10.5555/ackredit.fixture.dataset"
+        },
+        {
+          "id": "article:2023",
+          "type": "article",
+          "title": "Analysis of Órbita & datasets",
+          "authors": [
+            {
+              "family": "García",
+              "given": "Ana"
+            }
+          ],
+          "year": "2023",
+          "journal": "Methods & Data",
+          "volume": "12",
+          "number": "2",
+          "pages": "101--115",
+          "doi": "10.5555/ackredit.fixture.article"
+        },
+        {
+          "id": "edited:structured",
+          "type": "other",
+          "title": "Structured editor collection",
+          "editors": [
+            {
+              "family": "García",
+              "given": "Ana"
+            },
+            {
+              "literal": "Research and Development, Consortium"
+            }
+          ],
+          "year": "2022",
+          "publisher": "Example Press"
+        },
+        {
+          "id": "preferred:collection",
+          "title": "Méthodes & données",
+          "date-published": "2021-02-28",
+          "isbn": "978-0-00-000000-0",
+          "type": "other",
+          "_cff_type": "edited-work",
+          "editors": [
+            "Cruz, María",
+            "Research and Development, Consortium"
+          ],
+          "_cff_editors": {
+            "text": [
+              "Cruz, María",
+              "Research and Development, Consortium"
+            ],
+            "names": [
+              {
+                "family-names": "Cruz",
+                "given-names": "María",
+                "name-particle": "de la",
+                "name-suffix": "III"
+              },
+              {
+                "name": "Research and Development, Consortium"
+              }
+            ]
+          },
+          "publisher": "Example Press",
+          "doi": "10.5555/ackredit.fixture.collection",
+          "year": "2021",
+          "_cff_source": "preferred-citation"
+        }
+      ],
+      "uses": [
+        {
+          "item_id": "software:1.0",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "software:2.0",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "dataset:2024",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "article:2023",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "edited:structured",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "preferred:collection",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        }
+      ],
+      "usage_tree": {}
+    }
+  },
+  "installed": {
+    "before": {
+      "identities": {
+        "ackredit": {
+          "direct_url": {
+            "archive_info": {
+              "hash": "sha256=ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be",
+              "hashes": {
+                "sha256": "ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be"
+              }
+            },
+            "url": "file:///tmp/ackredit121-study/wheels/ackredit-0.11.0%2B25.gc39b1fc-py3-none-any.whl"
+          },
+          "distribution_version": "0.11.0+25.gc39b1fc",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "runtime_version": "0.11.0+25.gc39b1fc",
+          "source_file_count": 70,
+          "source_tree_sha256": "59df2c7473c52b1eac8243a6e6d8716d6b1cb21069d305396cc6064eeb7ee96b"
+        },
+        "argdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/argdigest_1791317734110/work"
+          },
+          "distribution_version": "0.15.0",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "runtime_version": "0.15.0",
+          "source_file_count": 38,
+          "source_tree_sha256": "5c5b8355266aa568ea2230033a36a8251d7068fa2da579cdd266f451d750c973"
+        },
+        "depdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/depdigest_1791108193170/work"
+          },
+          "distribution_version": "0.13.0",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "runtime_version": "0.13.0",
+          "source_file_count": 16,
+          "source_tree_sha256": "3983ad92ffe919bb2d164204acb27e75acd8749a20dcd16339b91c9134a3d384"
+        },
+        "smonitor": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/smonitor_1791315669680/work"
+          },
+          "distribution_version": "0.19.0",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "runtime_version": "0.19.0",
+          "source_file_count": 40,
+          "source_tree_sha256": "658f6dc6a4bd91a37eb0bdfc594fdd29e492bec7a095bc57c6dc606e6401c2d9"
+        },
+        "yaml": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/conda/feedstock_root/build_artifacts/pyyaml_1770223234623/work"
+          },
+          "distribution_version": "6.0.3",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/yaml/__init__.py",
+          "requirements": [],
+          "runtime_version": "6.0.3",
+          "source_file_count": 17,
+          "source_tree_sha256": "2008311890b5df4690faeb978431ced7f85b13c81808cc9bf02cab257bf253d5"
+        }
+      },
+      "installed_smoke": {
+        "portable_attribution": "passed",
+        "providers": {
+          "ackredit": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+            "version": "0.11.0+25.gc39b1fc"
+          },
+          "argdigest": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+            "version": "0.15.0"
+          },
+          "depdigest": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+            "version": "0.13.0"
+          },
+          "smonitor": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+            "version": "0.19.0"
+          }
+        },
+        "python": "3.14.8",
+        "requires_python": "<3.15,>=3.11"
+      },
+      "original_wheel": {
+        "filename": "ackredit-0.11.0+25.gc39b1fc-py3-none-any.whl",
+        "files": {
+          "ackredit/CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+          "ackredit/__init__.py": "43264d45f63ed941ac032aed67c882543a952bc6f58a3555e1a100a5d7b13533",
+          "ackredit/_argdigest.py": "eaa776aa242fc07f495d055d74857f661b80c26e538c722aaa6b19c8879fd1d3",
+          "ackredit/_depdigest.py": "e9eb4a868e08758f73d7892a801a2e5ff2c0b1eb161f67c272807ddbd9ba2201",
+          "ackredit/_private/__init__.py": "452139d5dcf653b77651a44e44f18fb906666a135f789709b14bc062dae1d0b6",
+          "ackredit/_private/argdigest/__init__.py": "68817bbc727f44ff6d0d4cf15599363b1a5d9ac4f34b5027c662c24ef7564ae8",
+          "ackredit/_private/argdigest/argument/__init__.py": "59f7cc04925c937aca576b7426b5f86229383717e97e657cb93c4b571299f44b",
+          "ackredit/_private/argdigest/argument/build_pdf.py": "cbbd71861212a98767adc1857a6fa34d3623a4fba0e723ae2eab716a686d1d8a",
+          "ackredit/_private/argdigest/argument/directory.py": "8d9c264179d5ebecc349015ad4bf1af8bec014b5789c7df965109d44785e09c9",
+          "ackredit/_private/argdigest/argument/file_path.py": "aefc9e60c024208596a62c60c33eee16180719df42c75a7b6d8332744d507e64",
+          "ackredit/_private/argdigest/argument/format.py": "a022143df6011badfe90a05cfe56d2dd7d19c927770f38f77d77f70a50d1beda",
+          "ackredit/_private/argdigest/argument/formats.py": "65acfd7815d7276078db0458e358510c47593fad22ed948fc32932b29c6cf703",
+          "ackredit/_private/argdigest/argument/items.py": "6560421f413e7609bc8600318f34b9ae72a9ec9ca8842b49d2483d07e1f8c65d",
+          "ackredit/_private/argdigest/argument/path.py": "f9fcf0358cf5787f291b38302dab0a8c19a210f22b586e5ca96d0624c4e5929f",
+          "ackredit/_private/argdigest/argument/paths.py": "7ae2c6eb6b5b097745eb01d561be3347f358ce82164e93d67be96aac18e66585",
+          "ackredit/_private/argdigest/argument/target.py": "618e5729e8056ddc7e619dacdaa9b0a917b1af41075c17eb08635dd93bdd1073",
+          "ackredit/_private/argdigest/argument/target_module.py": "96236ee750f60d7bd0e97abf2f6407cf64b49e7daaee8159f017e7da73df3ef1",
+          "ackredit/_private/argdigest/digest.py": "97a3b1f77962094e33fe96388c337bc7eb118549e171f7b193527028e16f19b0",
+          "ackredit/_private/argdigest/domain/__init__.py": "56a90db8119c576465c831003446ce7587d8b0e96853d070947c130e19c80745",
+          "ackredit/_private/argdigest/domain/citation_field.py": "c8ec2b0427e2c7c3626f985f4c8d7b800eae62be02b847ee8253b448858903b1",
+          "ackredit/_private/argdigest/domain/format_options.py": "3991ba1c7f49551011021a1eedbb0ea6ae169ec6d78178c73fa19735afc18172",
+          "ackredit/_private/argdigest/function/__init__.py": "17535577b86be582620d815110f43f5aecfa886676f07bc84f259d0bad1b94ac",
+          "ackredit/_private/argdigest/function/register_item.py": "75b5f04f8de6fe9c834341651c079daceda9269a0409737602ded7b327b25529",
+          "ackredit/_private/argdigest/function/report.py": "48756217a14ebe89d1677975d84c609c6346b0c864bbf462dbe44df3457303f5",
+          "ackredit/_private/argdigest/normalization/__init__.py": "20185860374d7bff4f85ace7f3cc1fd8366a749d5421862be37070bdfe3f6b17",
+          "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d",
+          "ackredit/_private/smonitor/__init__.py": "dd94fb78fb113423ddacc2a380997bdc063523798df30b30b5c05d7ccf5b5eab",
+          "ackredit/_private/smonitor/catalog.py": "85e69c1a740dd82cae064a6f0510bbd0e990afe85fec18301233ee47bfe17e52",
+          "ackredit/_private/smonitor/emitter.py": "e0eab9c9d44d59c656a0766808d87b5d076dac1a14983518d7a9a849f9442605",
+          "ackredit/_private/smonitor/exceptions.py": "9eb0479eb759d5f052d5838809c47c376d65d77920332f3bce07f7acd05eee88",
+          "ackredit/_private/smonitor/meta.py": "63f4202183ce21b5ad3ea3f972f1f5a7b9acb46a07cf30a7101aeed3906418f7",
+          "ackredit/_private/smonitor/warnings.py": "fab9ef05a9c9c8bbcba5e2bfb4a5d4e042a6897bdf87f76fb3d79fc6d209080a",
+          "ackredit/_smonitor.py": "dfc5f5e015ca062ec364599e6d230c3433c03411c463ac50b50df4dbf48e1ef8",
+          "ackredit/_version.py": "7e8797fcdf6302d43a33e55040aeb4ae3e12abdb3a670fd18f2a8a5d9ddf25b6",
+          "ackredit/cli.py": "fa9af7c8c01b5120607db4a95ce7b10f024f315efbb6d8cc81a903ffbf1caf8e",
+          "ackredit/contrib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "ackredit/contrib/duecredit_compat.py": "9143f42759defdcf5d76416d346ad8ef1a7f4f7b59b87c59ea8961a058b4daf0",
+          "ackredit/contrib/jupyter.py": "36be2ab8cbe677b25e1a0a94444b4a51b2c3d33100209711bdcde00624a6d0c3",
+          "ackredit/core/__init__.py": "b2bb26103ec489f126a4f2a0598d9a5bb2ef49452508cd8ab10f724da1b7de97",
+          "ackredit/core/attribution.py": "527950fbd77b94828b9e45fb719c08ca098722e7439eb7b3babd15a7a5e1791d",
+          "ackredit/core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+          "ackredit/core/collector.py": "4beab98293a24919b3ffe26cd8fc062c5b1aa2f1d1aa24e47ee03a7451ef2139",
+          "ackredit/core/composition.py": "69f3fc1601c1ad87bfec6feed2fadca9e23549af8a4d8aae15670c4d4a2ac389",
+          "ackredit/core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b",
+          "ackredit/core/decorators.py": "0baa9f1279b7ae453dc8abedcf28d9c2a0e86a06791f1c5b56eb0c27c8d15e83",
+          "ackredit/core/evidence.py": "88d97a57f421e978c1cb9f3598fbd6afb2061ed585fd25b5a1211940f81e3e31",
+          "ackredit/core/explanation.py": "33cb35d8876af730566b3286ed86234de885475ff2c9c33e49d720552db8a27b",
+          "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "ackredit/core/injections.py": "85719e4da382861245eb7f268cc94b0f37638d73527a219db1c6743892104932",
+          "ackredit/core/inspection.py": "b9efba1c647ffd510ef44321958e915b2e87f0f87a56a14a0f4c036cc28765c6",
+          "ackredit/core/providers.py": "1cefe5b60965d3b466483c6e746270fcff0ffa65f3e981f370649fbfb591efde",
+          "ackredit/core/registry.py": "46c211d8ecda1b5357b6de8f6c73ebe55fb8c9c81649b11f92e649a1011b1f55",
+          "ackredit/core/report.py": "b89a4f8fcba2c5dc232411d6d8d7753984c80bc178131e18c5f6b4fbc7ac7ad6",
+          "ackredit/core/session.py": "456e3db08e36adb4adaa1bc9b397276e7c787a146752fd9ce69644e188f1aa07",
+          "ackredit/core/standard_injections.py": "d61a165142d9f85a129505fab4c6e6d03236556a00fdb346eee98a1afa768b56",
+          "ackredit/formats/__init__.py": "ab6a057cb393d9338654792772912a5ae66031fc563a43256e2d795e44128a13",
+          "ackredit/formats/_html.py": "af6326733d57462740a563c6efeb9f8bf2a94675fd76b94c10ea93f21b635472",
+          "ackredit/formats/_latex.py": "bbd98671010150ec8f59e34bfc2f5a7dfa5401e661ff4bb1a85481d223480f56",
+          "ackredit/formats/_links.py": "8480f05783e5eaa70b80fab52e9e320ac9f9a0df9c3b907df6d2788a2a83a7b0",
+          "ackredit/formats/_markdown.py": "b751beeddc61b6b3fa5b1e45de8e164c8d75c089d6f058cce85f2a83d62800a6",
+          "ackredit/formats/_names.py": "25176af1e308c08ed8ea03633e7b41ae041a79142d983531035010c785db4dea",
+          "ackredit/formats/bibtex.py": "acafe9b163a0ce81f9999839a6c6520606de46e90a69365de5390ddcea2bd8e7",
+          "ackredit/formats/csl_json.py": "557dcf3be046f3582f6f3e4ea947e0e4ab4c4a8f9898be02cee48eeb5db01dc7",
+          "ackredit/formats/explanation.py": "2d114f00d0d910179d7eb82b6e84969e5b9cbd9c3637c475cde5a319c4934f2d",
+          "ackredit/formats/jsonfmt.py": "05bf25adda78109d5354cafd49c01f5fe542a8b71b6cbf780b8026b58ae1548b",
+          "ackredit/formats/latex.py": "f25aff15888cfcb17a69d021196ee0421eba6a76883ab0bb6e0d1bda98dfb23c",
+          "ackredit/formats/markdown.py": "cb283b3fa647a60cf8200fc3d3a724a17057d0c2ae51041086d8f4c4aa758e96",
+          "ackredit/formats/provenance.py": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+          "ackredit/formats/text.py": "dd8f2d4ca6eff518af8978d97b55ab4af1c89c6a6d4ce14637af3619ece2faaa",
+          "ackredit/formats/workflow.py": "079cd7f0a9562ada18aa362ab6dbea0f7325269a932c3f7c30949ea1b441ec60"
+        },
+        "package": "ackredit",
+        "sha256": "ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be",
+        "source_commit": "c39b1fc492a469dd136d1840d942fe870ca612f0",
+        "version": "0.11.0+25.gc39b1fc"
+      },
+      "provider_records": {
+        "argdigest": {
+          "build": "py_0",
+          "depends": [
+            "depdigest >=0.11.0",
+            "python >=3.11,<3.15",
+            "smonitor >=0.16.0"
+          ],
+          "name": "argdigest",
+          "sha256": "b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.15.0-py_0.tar.bz2",
+          "version": "0.15.0"
+        },
+        "depdigest": {
+          "build": "py_0",
+          "depends": [
+            "python >=3.11,<3.15",
+            "smonitor >=0.13.0"
+          ],
+          "name": "depdigest",
+          "sha256": "e011d725c8a831ae46cd6b8d114185d04248e32b4d6701c70f988d19cc69f67b",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.13.0-py_0.tar.bz2",
+          "version": "0.13.0"
+        },
+        "pytest-receptor": {
+          "build": "py_0",
+          "depends": [
+            "pytest >=8.0.0",
+            "python >=3.11,<3.15"
+          ],
+          "name": "pytest-receptor",
+          "sha256": "77bf3694bc903f606d4323b88e3bb3aea9628618036b53073f5a5dbd5dbc73cb",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.1-py_0.tar.bz2",
+          "version": "1.2.1"
+        },
+        "pyyaml": {
+          "build": "py314h67df5f8_1",
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "libgcc >=14",
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "yaml >=0.2.5,<0.3.0a0"
+          ],
+          "name": "pyyaml",
+          "sha256": "b318fb070c7a1f89980ef124b80a0b5ccf3928143708a85e0053cde0169c699d",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h67df5f8_1.conda",
+          "version": "6.0.3"
+        },
+        "smonitor": {
+          "build": "py_1",
+          "depends": [
+            "python >=3.11,<3.15"
+          ],
+          "name": "smonitor",
+          "sha256": "4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.19.0-py_1.tar.bz2",
+          "version": "0.19.0"
+        }
+      },
+      "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+      "wheel": {
+        "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.11.0+25.gc39b1fc",
+        "wheel_sha256": "ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be"
+      }
+    },
+    "after": {
+      "identities": {
+        "ackredit": {
+          "direct_url": {
+            "archive_info": {
+              "hash": "sha256=ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be",
+              "hashes": {
+                "sha256": "ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be"
+              }
+            },
+            "url": "file:///tmp/ackredit121-study/wheels/ackredit-0.11.0%2B25.gc39b1fc-py3-none-any.whl"
+          },
+          "distribution_version": "0.11.0+25.gc39b1fc",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "runtime_version": "0.11.0+25.gc39b1fc",
+          "source_file_count": 70,
+          "source_tree_sha256": "59df2c7473c52b1eac8243a6e6d8716d6b1cb21069d305396cc6064eeb7ee96b"
+        },
+        "argdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/argdigest_1791317734110/work"
+          },
+          "distribution_version": "0.15.0",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "runtime_version": "0.15.0",
+          "source_file_count": 38,
+          "source_tree_sha256": "5c5b8355266aa568ea2230033a36a8251d7068fa2da579cdd266f451d750c973"
+        },
+        "depdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/depdigest_1791108193170/work"
+          },
+          "distribution_version": "0.13.0",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "runtime_version": "0.13.0",
+          "source_file_count": 16,
+          "source_tree_sha256": "3983ad92ffe919bb2d164204acb27e75acd8749a20dcd16339b91c9134a3d384"
+        },
+        "smonitor": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/smonitor_1791315669680/work"
+          },
+          "distribution_version": "0.19.0",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "runtime_version": "0.19.0",
+          "source_file_count": 40,
+          "source_tree_sha256": "658f6dc6a4bd91a37eb0bdfc594fdd29e492bec7a095bc57c6dc606e6401c2d9"
+        },
+        "yaml": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/conda/feedstock_root/build_artifacts/pyyaml_1770223234623/work"
+          },
+          "distribution_version": "6.0.3",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/yaml/__init__.py",
+          "requirements": [],
+          "runtime_version": "6.0.3",
+          "source_file_count": 17,
+          "source_tree_sha256": "2008311890b5df4690faeb978431ced7f85b13c81808cc9bf02cab257bf253d5"
+        }
+      },
+      "installed_smoke": {
+        "portable_attribution": "passed",
+        "providers": {
+          "ackredit": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+            "version": "0.11.0+25.gc39b1fc"
+          },
+          "argdigest": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+            "version": "0.15.0"
+          },
+          "depdigest": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+            "version": "0.13.0"
+          },
+          "smonitor": {
+            "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+            "version": "0.19.0"
+          }
+        },
+        "python": "3.14.8",
+        "requires_python": "<3.15,>=3.11"
+      },
+      "original_wheel": {
+        "filename": "ackredit-0.11.0+25.gc39b1fc-py3-none-any.whl",
+        "files": {
+          "ackredit/CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+          "ackredit/__init__.py": "43264d45f63ed941ac032aed67c882543a952bc6f58a3555e1a100a5d7b13533",
+          "ackredit/_argdigest.py": "eaa776aa242fc07f495d055d74857f661b80c26e538c722aaa6b19c8879fd1d3",
+          "ackredit/_depdigest.py": "e9eb4a868e08758f73d7892a801a2e5ff2c0b1eb161f67c272807ddbd9ba2201",
+          "ackredit/_private/__init__.py": "452139d5dcf653b77651a44e44f18fb906666a135f789709b14bc062dae1d0b6",
+          "ackredit/_private/argdigest/__init__.py": "68817bbc727f44ff6d0d4cf15599363b1a5d9ac4f34b5027c662c24ef7564ae8",
+          "ackredit/_private/argdigest/argument/__init__.py": "59f7cc04925c937aca576b7426b5f86229383717e97e657cb93c4b571299f44b",
+          "ackredit/_private/argdigest/argument/build_pdf.py": "cbbd71861212a98767adc1857a6fa34d3623a4fba0e723ae2eab716a686d1d8a",
+          "ackredit/_private/argdigest/argument/directory.py": "8d9c264179d5ebecc349015ad4bf1af8bec014b5789c7df965109d44785e09c9",
+          "ackredit/_private/argdigest/argument/file_path.py": "aefc9e60c024208596a62c60c33eee16180719df42c75a7b6d8332744d507e64",
+          "ackredit/_private/argdigest/argument/format.py": "a022143df6011badfe90a05cfe56d2dd7d19c927770f38f77d77f70a50d1beda",
+          "ackredit/_private/argdigest/argument/formats.py": "65acfd7815d7276078db0458e358510c47593fad22ed948fc32932b29c6cf703",
+          "ackredit/_private/argdigest/argument/items.py": "6560421f413e7609bc8600318f34b9ae72a9ec9ca8842b49d2483d07e1f8c65d",
+          "ackredit/_private/argdigest/argument/path.py": "f9fcf0358cf5787f291b38302dab0a8c19a210f22b586e5ca96d0624c4e5929f",
+          "ackredit/_private/argdigest/argument/paths.py": "7ae2c6eb6b5b097745eb01d561be3347f358ce82164e93d67be96aac18e66585",
+          "ackredit/_private/argdigest/argument/target.py": "618e5729e8056ddc7e619dacdaa9b0a917b1af41075c17eb08635dd93bdd1073",
+          "ackredit/_private/argdigest/argument/target_module.py": "96236ee750f60d7bd0e97abf2f6407cf64b49e7daaee8159f017e7da73df3ef1",
+          "ackredit/_private/argdigest/digest.py": "97a3b1f77962094e33fe96388c337bc7eb118549e171f7b193527028e16f19b0",
+          "ackredit/_private/argdigest/domain/__init__.py": "56a90db8119c576465c831003446ce7587d8b0e96853d070947c130e19c80745",
+          "ackredit/_private/argdigest/domain/citation_field.py": "c8ec2b0427e2c7c3626f985f4c8d7b800eae62be02b847ee8253b448858903b1",
+          "ackredit/_private/argdigest/domain/format_options.py": "3991ba1c7f49551011021a1eedbb0ea6ae169ec6d78178c73fa19735afc18172",
+          "ackredit/_private/argdigest/function/__init__.py": "17535577b86be582620d815110f43f5aecfa886676f07bc84f259d0bad1b94ac",
+          "ackredit/_private/argdigest/function/register_item.py": "75b5f04f8de6fe9c834341651c079daceda9269a0409737602ded7b327b25529",
+          "ackredit/_private/argdigest/function/report.py": "48756217a14ebe89d1677975d84c609c6346b0c864bbf462dbe44df3457303f5",
+          "ackredit/_private/argdigest/normalization/__init__.py": "20185860374d7bff4f85ace7f3cc1fd8366a749d5421862be37070bdfe3f6b17",
+          "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d",
+          "ackredit/_private/smonitor/__init__.py": "dd94fb78fb113423ddacc2a380997bdc063523798df30b30b5c05d7ccf5b5eab",
+          "ackredit/_private/smonitor/catalog.py": "85e69c1a740dd82cae064a6f0510bbd0e990afe85fec18301233ee47bfe17e52",
+          "ackredit/_private/smonitor/emitter.py": "e0eab9c9d44d59c656a0766808d87b5d076dac1a14983518d7a9a849f9442605",
+          "ackredit/_private/smonitor/exceptions.py": "9eb0479eb759d5f052d5838809c47c376d65d77920332f3bce07f7acd05eee88",
+          "ackredit/_private/smonitor/meta.py": "63f4202183ce21b5ad3ea3f972f1f5a7b9acb46a07cf30a7101aeed3906418f7",
+          "ackredit/_private/smonitor/warnings.py": "fab9ef05a9c9c8bbcba5e2bfb4a5d4e042a6897bdf87f76fb3d79fc6d209080a",
+          "ackredit/_smonitor.py": "dfc5f5e015ca062ec364599e6d230c3433c03411c463ac50b50df4dbf48e1ef8",
+          "ackredit/_version.py": "7e8797fcdf6302d43a33e55040aeb4ae3e12abdb3a670fd18f2a8a5d9ddf25b6",
+          "ackredit/cli.py": "fa9af7c8c01b5120607db4a95ce7b10f024f315efbb6d8cc81a903ffbf1caf8e",
+          "ackredit/contrib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "ackredit/contrib/duecredit_compat.py": "9143f42759defdcf5d76416d346ad8ef1a7f4f7b59b87c59ea8961a058b4daf0",
+          "ackredit/contrib/jupyter.py": "36be2ab8cbe677b25e1a0a94444b4a51b2c3d33100209711bdcde00624a6d0c3",
+          "ackredit/core/__init__.py": "b2bb26103ec489f126a4f2a0598d9a5bb2ef49452508cd8ab10f724da1b7de97",
+          "ackredit/core/attribution.py": "527950fbd77b94828b9e45fb719c08ca098722e7439eb7b3babd15a7a5e1791d",
+          "ackredit/core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+          "ackredit/core/collector.py": "4beab98293a24919b3ffe26cd8fc062c5b1aa2f1d1aa24e47ee03a7451ef2139",
+          "ackredit/core/composition.py": "69f3fc1601c1ad87bfec6feed2fadca9e23549af8a4d8aae15670c4d4a2ac389",
+          "ackredit/core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b",
+          "ackredit/core/decorators.py": "0baa9f1279b7ae453dc8abedcf28d9c2a0e86a06791f1c5b56eb0c27c8d15e83",
+          "ackredit/core/evidence.py": "88d97a57f421e978c1cb9f3598fbd6afb2061ed585fd25b5a1211940f81e3e31",
+          "ackredit/core/explanation.py": "33cb35d8876af730566b3286ed86234de885475ff2c9c33e49d720552db8a27b",
+          "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "ackredit/core/injections.py": "85719e4da382861245eb7f268cc94b0f37638d73527a219db1c6743892104932",
+          "ackredit/core/inspection.py": "b9efba1c647ffd510ef44321958e915b2e87f0f87a56a14a0f4c036cc28765c6",
+          "ackredit/core/providers.py": "1cefe5b60965d3b466483c6e746270fcff0ffa65f3e981f370649fbfb591efde",
+          "ackredit/core/registry.py": "46c211d8ecda1b5357b6de8f6c73ebe55fb8c9c81649b11f92e649a1011b1f55",
+          "ackredit/core/report.py": "b89a4f8fcba2c5dc232411d6d8d7753984c80bc178131e18c5f6b4fbc7ac7ad6",
+          "ackredit/core/session.py": "456e3db08e36adb4adaa1bc9b397276e7c787a146752fd9ce69644e188f1aa07",
+          "ackredit/core/standard_injections.py": "d61a165142d9f85a129505fab4c6e6d03236556a00fdb346eee98a1afa768b56",
+          "ackredit/formats/__init__.py": "ab6a057cb393d9338654792772912a5ae66031fc563a43256e2d795e44128a13",
+          "ackredit/formats/_html.py": "af6326733d57462740a563c6efeb9f8bf2a94675fd76b94c10ea93f21b635472",
+          "ackredit/formats/_latex.py": "bbd98671010150ec8f59e34bfc2f5a7dfa5401e661ff4bb1a85481d223480f56",
+          "ackredit/formats/_links.py": "8480f05783e5eaa70b80fab52e9e320ac9f9a0df9c3b907df6d2788a2a83a7b0",
+          "ackredit/formats/_markdown.py": "b751beeddc61b6b3fa5b1e45de8e164c8d75c089d6f058cce85f2a83d62800a6",
+          "ackredit/formats/_names.py": "25176af1e308c08ed8ea03633e7b41ae041a79142d983531035010c785db4dea",
+          "ackredit/formats/bibtex.py": "acafe9b163a0ce81f9999839a6c6520606de46e90a69365de5390ddcea2bd8e7",
+          "ackredit/formats/csl_json.py": "557dcf3be046f3582f6f3e4ea947e0e4ab4c4a8f9898be02cee48eeb5db01dc7",
+          "ackredit/formats/explanation.py": "2d114f00d0d910179d7eb82b6e84969e5b9cbd9c3637c475cde5a319c4934f2d",
+          "ackredit/formats/jsonfmt.py": "05bf25adda78109d5354cafd49c01f5fe542a8b71b6cbf780b8026b58ae1548b",
+          "ackredit/formats/latex.py": "f25aff15888cfcb17a69d021196ee0421eba6a76883ab0bb6e0d1bda98dfb23c",
+          "ackredit/formats/markdown.py": "cb283b3fa647a60cf8200fc3d3a724a17057d0c2ae51041086d8f4c4aa758e96",
+          "ackredit/formats/provenance.py": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+          "ackredit/formats/text.py": "dd8f2d4ca6eff518af8978d97b55ab4af1c89c6a6d4ce14637af3619ece2faaa",
+          "ackredit/formats/workflow.py": "079cd7f0a9562ada18aa362ab6dbea0f7325269a932c3f7c30949ea1b441ec60"
+        },
+        "package": "ackredit",
+        "sha256": "ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be",
+        "source_commit": "c39b1fc492a469dd136d1840d942fe870ca612f0",
+        "version": "0.11.0+25.gc39b1fc"
+      },
+      "provider_records": {
+        "argdigest": {
+          "build": "py_0",
+          "depends": [
+            "depdigest >=0.11.0",
+            "python >=3.11,<3.15",
+            "smonitor >=0.16.0"
+          ],
+          "name": "argdigest",
+          "sha256": "b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.15.0-py_0.tar.bz2",
+          "version": "0.15.0"
+        },
+        "depdigest": {
+          "build": "py_0",
+          "depends": [
+            "python >=3.11,<3.15",
+            "smonitor >=0.13.0"
+          ],
+          "name": "depdigest",
+          "sha256": "e011d725c8a831ae46cd6b8d114185d04248e32b4d6701c70f988d19cc69f67b",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.13.0-py_0.tar.bz2",
+          "version": "0.13.0"
+        },
+        "pytest-receptor": {
+          "build": "py_0",
+          "depends": [
+            "pytest >=8.0.0",
+            "python >=3.11,<3.15"
+          ],
+          "name": "pytest-receptor",
+          "sha256": "77bf3694bc903f606d4323b88e3bb3aea9628618036b53073f5a5dbd5dbc73cb",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.1-py_0.tar.bz2",
+          "version": "1.2.1"
+        },
+        "pyyaml": {
+          "build": "py314h67df5f8_1",
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "libgcc >=14",
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "yaml >=0.2.5,<0.3.0a0"
+          ],
+          "name": "pyyaml",
+          "sha256": "b318fb070c7a1f89980ef124b80a0b5ccf3928143708a85e0053cde0169c699d",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h67df5f8_1.conda",
+          "version": "6.0.3"
+        },
+        "smonitor": {
+          "build": "py_1",
+          "depends": [
+            "python >=3.11,<3.15"
+          ],
+          "name": "smonitor",
+          "sha256": "4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.19.0-py_1.tar.bz2",
+          "version": "0.19.0"
+        }
+      },
+      "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+      "wheel": {
+        "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.11.0+25.gc39b1fc",
+        "wheel_sha256": "ece4aa401f60b15725c135431f7510a04c8f0b6bbad25d64a500da27928499be"
+      }
+    }
+  },
+  "studies": {
+    "authoryear": {
+      "probe": {
+        "schema": "ackredit.biblatex-tools@1",
+        "checked_at": "2026-10-06T22:06:57.211222+00:00",
+        "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+        "ackredit": {
+          "version": "0.11.0+25.gc39b1fc",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py"
+        },
+        "tool_sha256": "7b705414dd76d729891120582b7505093d233fa2ccbb56ebe04ab35ad9d833b4",
+        "process_owner_sha256": "08952ede33d436484e195c8f9beed33b328478ccb061bf7be3fdc1e18129bfeb",
+        "executables": {
+          "biber": {
+            "path": "/tmp/ackredit122-bin219/biber",
+            "sha256": "db32dd4ea0640606b094f4d792c9e5af439a6895145506e73071f78c1673ca00"
+          },
+          "kpsewhich": {
+            "path": "/usr/bin/kpsewhich",
+            "sha256": "e3f241dab416169b9a7c8e0ef719a3cc8568bf51256c7e354811b3963254fcda"
+          },
+          "pdflatex": {
+            "path": "/usr/bin/pdflatex",
+            "sha256": "bdf084260e5e3ca3b1453a8ec1465efa5c0b23180d3bba7992fdd3ee1aeee45b"
+          },
+          "pdftotext": {
+            "path": "/usr/bin/pdftotext",
+            "sha256": "0fb98ea179e19154a90202608c164f2a319b79f16576fa6534b2d601033565e7"
+          }
+        },
+        "versions": {
+          "biber": "biber version: 2.19\n",
+          "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)\nkpathsea version 6.3.5\nCopyright 2023 Han The Thanh (pdfTeX) et al.\nThere is NO warranty.  Redistribution of this software is\ncovered by the terms of both the pdfTeX copyright and\nthe Lesser GNU General Public License.\nFor more information about these matters, see the file\nnamed COPYING and the pdfTeX source.\nPrimary author of pdfTeX: Han The Thanh (pdfTeX) et al.\nCompiled with libpng 1.6.43; using libpng 1.6.43\nCompiled with zlib 1.3; using zlib 1.3\nCompiled with xpdf version 4.04\n",
+          "biblatex": "3.19"
+        },
+        "style": "authoryear",
+        "resources": {
+          "biblatex.sty": {
+            "path": "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.sty",
+            "sha256": "fcf08b67ad6e3944e6ef0b067ea192c9cfd2783a559dcf84ee62a81312c4d9fa"
+          },
+          "authoryear.bbx": {
+            "path": "/tmp/ackredit122-tex319/tex/latex/biblatex/bbx/authoryear.bbx",
+            "sha256": "482267cd624a74f4c1788d61f0b31f4bb24432ba4c23beb0c66702a4a3a8215a"
+          },
+          "authoryear.cbx": {
+            "path": "/tmp/ackredit122-tex319/tex/latex/biblatex/cbx/authoryear.cbx",
+            "sha256": "f8ad741bdb8243195b4706eb879672409a2b2e05da14e5880b75df1933cd163d"
+          }
+        },
+        "loaded_tex_files": {
+          "/etc/texmf/web2c/texmf.cnf": {
+            "sha256": "3443c7e22fbb4585732473f7e95d3cbf3e8657100f9117e711e2af5b0db85a40",
+            "bytes": 475
+          },
+          "/usr/share/texlive/texmf-dist/web2c/texmf.cnf": {
+            "sha256": "624ed5587722dc013533b63e7ae31688751e59cd5e5bd18f35d5186e7a984ddb",
+            "bytes": 40399
+          },
+          "/var/lib/texmf/web2c/pdftex/pdflatex.fmt": {
+            "sha256": "167534bf7fb9840c217b66e589d2c1b31d4345f72d2475741390f82adb8c40b4",
+            "bytes": 6852575
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls": {
+            "sha256": "859217b3457cca472e5a96ef193218c87a4e62a6445cdd501ba7e1954fa32afa",
+            "bytes": 20144
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo": {
+            "sha256": "c168d18288a2aba793904edf4d836c78d16fff01b8344d1365c6d72a2bd8929c",
+            "bytes": 8448
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty": {
+            "sha256": "b17f7346c2d881bba3bde28711e53cc7d3125e5ea440672f59bbbdbbd95499ed",
+            "bytes": 5119
+          },
+          "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map": {
+            "sha256": "d9693993efdc7d0b9ab3df777589995d43e24eeae95f12b6a230a19caadeaa42",
+            "bytes": 3524
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm": {
+            "sha256": "6538d396bf70b360a36c6af2ba424f1f25ecb1700fda4a22462a3044e1bce5b4",
+            "bytes": 3584
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty": {
+            "sha256": "d06a1d6ac38fac720ec7fbccfe6396224e1e69616e7ba5f15e37b55bc4a6c75f",
+            "bytes": 5048
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.sty": {
+            "sha256": "fcf08b67ad6e3944e6ef0b067ea192c9cfd2783a559dcf84ee62a81312c4d9fa",
+            "bytes": 528517
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty": {
+            "sha256": "2df7e0bd148c99d8097352b8ac9948dccf91d61ba360dcf43f82206933b6045b",
+            "bytes": 20089
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty": {
+            "sha256": "8c3e23b8bb7d940ff26cb0cf96e0151f540acf55020dc3c1aa8bcdb2eb66305c",
+            "bytes": 8356
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty": {
+            "sha256": "2de50639c1f27201f2b4d04e9083e0a51fc5a73b8908eea2e80d6e3205636d4a",
+            "bytes": 7237
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty": {
+            "sha256": "8fea89995d37ba4c69137186faafc589c470edcc5026d8a31aadbe5cef47dcb4",
+            "bytes": 17865
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty": {
+            "sha256": "b10381f0017ae75bd03dc9175b35ad56b93fdd24f2a47dd4aa9c6987ef35ccdb",
+            "bytes": 46845
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty": {
+            "sha256": "8434ad08617159240fd19b4fcae8bf79a6137af413f3798c8a750e9839f8902e",
+            "bytes": 2671
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty": {
+            "sha256": "70595629ec990ba8c0b6e6a54afcff2603464e6fce380a54a98549a78d2fc74a",
+            "bytes": 22555
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty": {
+            "sha256": "e3fcf7f3372a27bb478eb9488eca1e25ed382480d02a6898f190bd955388e055",
+            "bytes": 13815
+          },
+          "/tmp/ackredit122-tex/logreq/logreq.sty": {
+            "sha256": "e52f653389f5ee50c05ea2361822e4edf994f2829a0bac26d3764eeb675bb8a9",
+            "bytes": 6187
+          },
+          "/tmp/ackredit122-tex/logreq/logreq.def": {
+            "sha256": "2ccca8b208712b148c6edd438c52acf7cc821f90cb546321bdd5d491cf5e668f",
+            "bytes": 1620
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty": {
+            "sha256": "b8cbd3c3ed9f0f58e1103c91e29ab8de344a19f4cc7d27fde8d14d962dcf0495",
+            "bytes": 5319
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty": {
+            "sha256": "2373f56849ac606473e77053e5c1d14c92aba312b3f684e02a130eaf36f2de47",
+            "bytes": 12796
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/blx-dm.def": {
+            "sha256": "3d0f9291655f7108d8e79a1483e7d7f5233104ec0b8c1dc961e804d2c87546f5",
+            "bytes": 32455
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/blx-compat.def": {
+            "sha256": "c1c50e4da35cbe865379e2084f65d5cb705759520f1c213329330fc67b604389",
+            "bytes": 13919
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.def": {
+            "sha256": "abd2366f67bab2e55268b5591029ec2e00a3b8870852cd951b05beefa15ef327",
+            "bytes": 92527
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/bbx/authoryear.bbx": {
+            "sha256": "482267cd624a74f4c1788d61f0b31f4bb24432ba4c23beb0c66702a4a3a8215a",
+            "bytes": 8024
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/bbx/standard.bbx": {
+            "sha256": "ad4af059ea275ff4f8a82328b6390ef7ab9fddd97376e1d1abb08cc2fb9477ed",
+            "bytes": 25680
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/cbx/authoryear.cbx": {
+            "sha256": "f8ad741bdb8243195b4706eb879672409a2b2e05da14e5880b75df1933cd163d",
+            "bytes": 3976
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.cfg": {
+            "sha256": "2f6e01efbb466a252120f07c8e12d38a34e747b01ba0b9ba2b7d66b4386bb5b4",
+            "bytes": 69
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty": {
+            "sha256": "0e6ef8c012ef3ad828743b5205e13790a77a6fafcc23264285582a2842e44b84",
+            "bytes": 6565
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def": {
+            "sha256": "f1081e3391243f0d67554da9841fec0c050d76d9865033e92d3ef82cf537d23e",
+            "bytes": 30006
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/blx-case-expl3.sty": {
+            "sha256": "88e50dcecc608a80663567a5b93e2d01606a81ada70edbafb7319768f0ba9a40",
+            "bytes": 8433
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty": {
+            "sha256": "cae4d6e3d32991c483bde4721acd7754cd72d3e5988320019930d9b438587a06",
+            "bytes": 9327
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/lbx/english.lbx": {
+            "sha256": "a38896633ba8dc8601b549ef30354ba0764af74a2a839dd33ecc1e76668042f9",
+            "bytes": 39965
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm": {
+            "sha256": "17c318f2a78564b462f9a4fa207e4edea2b2f89ee229aa0363860c481260a2d7",
+            "bytes": 3584
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm": {
+            "sha256": "322493aaea6baf372bca32721e32fe5d85c96dd05c3d088b3ace6b968ce88133",
+            "bytes": 3584
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm": {
+            "sha256": "672f6d546bdfd7e58c7d14958155f1208596ceaf6717373f91b2c76523fe3bb7",
+            "bytes": 3072
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/eccc1000.tfm": {
+            "sha256": "31ab27eb5674cf070c18a589cf1b5b1f73dcb9758e66776cc664a9401d8f8c17",
+            "bytes": 3072
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd": {
+            "sha256": "b878711b1c0d34348c1ff88d4778901d640970380d8cc6e9e4d77ffd8b2abc46",
+            "bytes": 2443
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm": {
+            "sha256": "365b93b6dbeaa38c5e16d4951c35e66c15b200cb245b0259ade6181201bd54ec",
+            "bytes": 1536
+          },
+          "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex_dl14.map": {
+            "sha256": "5a6e422fc5550b85157e84183fda20ba1feccc659c76667e37815e89d24e806e",
+            "bytes": 5349216
+          },
+          "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc": {
+            "sha256": "0b8a4865363ad2acb3718af53a43a8b1a16a143900bba8e672813d4a6e07b4fc",
+            "bytes": 2971
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb": {
+            "sha256": "2c26adf023e2c900c659e02d637595e916a53d8495fcaa3fb9a97eade8c5f0c7",
+            "bytes": 135942
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb": {
+            "sha256": "7f888fd9b073bdaa0d7ea56f32af739be288b2c43ff5fd54396643498c88452c",
+            "bytes": 109713
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb": {
+            "sha256": "650a5428cc0729742dcf1935dba1f504e27bbb5ec5936aeaf5f4955909a0f540",
+            "bytes": 138258
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb": {
+            "sha256": "b096aff08008502a67b55a7f55482ffe192f2630e8e579e91e7913de32251bc4",
+            "bytes": 186554
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb": {
+            "sha256": "22b23a4adbb01d3be113f5479aac7c44b3a4920e6d939029b99967355506e8e7",
+            "bytes": 169201
+          }
+        },
+        "citation_keys": {
+          "software:1.0": "software:1.0",
+          "software:2.0": "software:2.0",
+          "dataset:2024": "dataset:2024",
+          "article:2023": "article:2023",
+          "edited:structured": "edited:structured",
+          "preferred:collection": "preferred:collection"
+        },
+        "input_sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+        "original_preserved": true,
+        "export_preserved": true,
+        "new_execution_credit": false,
+        "processes": [
+          {
+            "command": [
+              "/tmp/ackredit122-bin219/biber",
+              "--version"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "ca1abf9355708ab1aacb51e3febe4de2b962f4aedef3a55d2b63cc0e78ab33a0",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "--version"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "64d3bedadc9885f9fbc5ebc4eb66de7dbb72dcf3f0748f5b8b6ca4030ded7062",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdftotext",
+              "-v"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "e120219f19a713ea1177591426efeea7cd700c463fd2b903286141de8c47307c",
+            "stderr": "pdftotext version 24.02.0\nCopyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC\n",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/kpsewhich",
+              "biblatex.sty"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "f4f9d5280515a38a1eac75e3e3f3272f49d180719743baf9bdc043b3a30021c8",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/kpsewhich",
+              "authoryear.bbx"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "3bbb74f3c8022d5b42807fc4617a565d0145fe60262458c3ea74ebf59dc61d2e",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/kpsewhich",
+              "authoryear.cbx"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "deabe65fbd73ce435c6c5e8664f5e13aa715566e52d7b7f39b3a5277324e3c5f",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/tmp/ackredit122-bin219/biber",
+              "--tool",
+              "--output-format=biblatexml",
+              "--output-file=reader.xml",
+              "references.bib"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "bb0d11c6dbca2330b1fd25ed16c3ea7277f9dfffe72aa77e036ea36002de04df",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "-no-shell-escape",
+              "-recorder",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "manuscript.tex"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "1e7752ba716c820734e00594bead69511eec22a4feee50f5eb1d2c43781a0b37",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/tmp/ackredit122-bin219/biber",
+              "manuscript"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "722971316822b00e720670a0a964eb1162cb349feae3d27f8210cf37186d4d90",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "-no-shell-escape",
+              "-recorder",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "manuscript.tex"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "70a0f9298eef176be47a66a9ec66fe8173b7589d8d9d49280dd065cf3f50e9de",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "-no-shell-escape",
+              "-recorder",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "manuscript.tex"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "d9bcf2659214512a31f526e5756c91d397b40ec963a50473f2fbbe409712d117",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdftotext",
+              "-layout",
+              "manuscript.pdf",
+              "rendered.txt"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          }
+        ],
+        "warnings": {
+          "references.bib.blg": [
+            "[439] Biber.pm:131> WARN - ISBN '978-0-00-000000-0' in entry 'preferred:collection' is invalid - run biber with '--validate_datamodel' for details."
+          ],
+          "manuscript.blg": [
+            "[440] Biber.pm:131> WARN - ISBN '978-0-00-000000-0' in entry 'preferred:collection' is invalid - run biber with '--validate_datamodel' for details."
+          ],
+          "manuscript.log": []
+        },
+        "files": {
+          "attribution.json": {
+            "sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+            "bytes": 3491
+          },
+          "manuscript.aux": {
+            "sha256": "7bb0532f03c3b8aa2c81942acd74a3f46f304aa708d44a242eb2873c2463e175",
+            "bytes": 719
+          },
+          "manuscript.bbl": {
+            "sha256": "23be386ebca1793565290468ff64579c6b9afc65f03ffcb0d2ac645fba141cef",
+            "bytes": 8259
+          },
+          "manuscript.bcf": {
+            "sha256": "50fa8192b6e001a29b2cf32b117020db668c6bb9815d513623d4c2d1ec56cca6",
+            "bytes": 107822
+          },
+          "manuscript.blg": {
+            "sha256": "72fe3f90f7123db6105a25edb92c799777e12e50a6d996fb9091706399344c9c",
+            "bytes": 1268
+          },
+          "manuscript.fls": {
+            "sha256": "f371f8abbdd617669157a14c2db44ab0057a47333b7f4bf7ef8e880f216d2cf6",
+            "bytes": 6068
+          },
+          "manuscript.log": {
+            "sha256": "add5c0c8c3bff52f51a4a12c3750028ab91d090ed7c41c3eb86e1d6f16b6167f",
+            "bytes": 13647
+          },
+          "manuscript.pdf": {
+            "sha256": "402da2162b633fab2c87e24615007ecde2fad06e11dcc873c42f198107ba8187",
+            "bytes": 94576
+          },
+          "manuscript.run.xml": {
+            "sha256": "7e4f0d27e6be9867c77c6a357f21093cd17b5e15eb8781e0150b5e2c16ca67bf",
+            "bytes": 2353
+          },
+          "manuscript.tex": {
+            "sha256": "0a4a374f8f4d4267136ce4cfa67e03e557258fcff943f266e47068beb55d03b0",
+            "bytes": 225
+          },
+          "process-1.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-1.stdout.txt": {
+            "sha256": "ca1abf9355708ab1aacb51e3febe4de2b962f4aedef3a55d2b63cc0e78ab33a0",
+            "bytes": 20
+          },
+          "process-10.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-10.stdout.txt": {
+            "sha256": "70a0f9298eef176be47a66a9ec66fe8173b7589d8d9d49280dd065cf3f50e9de",
+            "bytes": 3074
+          },
+          "process-11.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-11.stdout.txt": {
+            "sha256": "d9bcf2659214512a31f526e5756c91d397b40ec963a50473f2fbbe409712d117",
+            "bytes": 2923
+          },
+          "process-12.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-12.stdout.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-2.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-2.stdout.txt": {
+            "sha256": "64d3bedadc9885f9fbc5ebc4eb66de7dbb72dcf3f0748f5b8b6ca4030ded7062",
+            "bytes": 541
+          },
+          "process-3.stderr.txt": {
+            "sha256": "e120219f19a713ea1177591426efeea7cd700c463fd2b903286141de8c47307c",
+            "bytes": 145
+          },
+          "process-3.stdout.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-4.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-4.stdout.txt": {
+            "sha256": "f4f9d5280515a38a1eac75e3e3f3272f49d180719743baf9bdc043b3a30021c8",
+            "bytes": 56
+          },
+          "process-5.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-5.stdout.txt": {
+            "sha256": "3bbb74f3c8022d5b42807fc4617a565d0145fe60262458c3ea74ebf59dc61d2e",
+            "bytes": 62
+          },
+          "process-6.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-6.stdout.txt": {
+            "sha256": "deabe65fbd73ce435c6c5e8664f5e13aa715566e52d7b7f39b3a5277324e3c5f",
+            "bytes": 62
+          },
+          "process-7.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-7.stdout.txt": {
+            "sha256": "bb0d11c6dbca2330b1fd25ed16c3ea7277f9dfffe72aa77e036ea36002de04df",
+            "bytes": 807
+          },
+          "process-8.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-8.stdout.txt": {
+            "sha256": "1e7752ba716c820734e00594bead69511eec22a4feee50f5eb1d2c43781a0b37",
+            "bytes": 2425
+          },
+          "process-9.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-9.stdout.txt": {
+            "sha256": "722971316822b00e720670a0a964eb1162cb349feae3d27f8210cf37186d4d90",
+            "bytes": 887
+          },
+          "processes.json": {
+            "sha256": "7063f3aece17c6f4d42ab984762b9e3772718cc1d70edd06e19fcf231bcfac3d",
+            "bytes": 5194
+          },
+          "reader.xml": {
+            "sha256": "57583063690a1ed97df18cc382e95f4b1fcfe4bc89fb4caa9d40efdab9947ee5",
+            "bytes": 5252
+          },
+          "references.bib": {
+            "sha256": "5866d4e1a0e2e515d5d3d89459f53e2d9c66e25ea733169518314b0233ddc001",
+            "bytes": 1544
+          },
+          "references.bib.blg": {
+            "sha256": "c67f7526acfab72ccb043f8a12c5301e62b8f8e6ae72d0334d321f9d7241215e",
+            "bytes": 1141
+          },
+          "references.rng": {
+            "sha256": "2f3fa467926340d1b5d93811e9a02792296f04dbeaec5599f9cdc69e488a9a8e",
+            "bytes": 40193
+          },
+          "rendered.txt": {
+            "sha256": "34edba88289fbf71e6930cc15431f2ab61921f1f97ff5547d838b864d7d1cce5",
+            "bytes": 991
+          }
+        },
+        "limits": [
+          "Only the explicitly selected BibLaTeX/Biber pair and standard style",
+          "Biber tool-mode XML and manuscript BBL are separate receiving outputs",
+          "Reader recoding and style presentation do not replace original metadata",
+          "No manager GUI, journal style, arbitrary Unicode or release qualification"
+        ]
+      },
+      "exports": {
+        "references.bib": {
+          "sha256": "5866d4e1a0e2e515d5d3d89459f53e2d9c66e25ea733169518314b0233ddc001",
+          "bytes": 1544,
+          "text": "@misc{software:1.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/1.0},\n  version = {1.0}\n}\n\n@misc{software:2.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2025},\n  doi = {https://doi.org/10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/2.0},\n  version = {2.0}\n}\n\n@misc{dataset:2024,\n  title = {Datos de México: 50\\% coverage},\n  howpublished = {Dataset},\n  author = {{Instituto de Investigación, México}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.dataset},\n  version = {2024.1}\n}\n\n@article{article:2023,\n  title = {Analysis of Órbita \\& datasets},\n  author = {García, Ana},\n  year = {2023},\n  doi = {10.5555/ackredit.fixture.article},\n  journal = {Methods \\& Data},\n  number = {2},\n  pages = {101--115},\n  volume = {12}\n}\n\n@misc{edited:structured,\n  title = {Structured editor collection},\n  year = {2022},\n  editor = {García, Ana and {Research and Development, Consortium}},\n  publisher = {Example Press},\n  key = {Structured editor collection}\n}\n\n@book{preferred:collection,\n  title = {Méthodes \\& données},\n  year = {2021},\n  doi = {10.5555/ackredit.fixture.collection},\n  editor = {de la Cruz, III, María and {Research and Development, Consortium}},\n  date-published = {2021-02-28},\n  isbn = {978-0-00-000000-0},\n  publisher = {Example Press}\n}"
+        },
+        "reader.xml": {
+          "sha256": "57583063690a1ed97df18cc382e95f4b1fcfe4bc89fb4caa9d40efdab9947ee5",
+          "bytes": 5252,
+          "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?xml-model href=\"references.rng\" type=\"application/xml\" schematypens=\"http://relaxng.org/ns/structure/1.0\"?>\n<!-- Auto-generated by Biber::Output::biblatexml -->\n\n<bltx:entries xmlns:bltx=\"http://biblatex-biber.sourceforge.net/biblatexml\">\n  <bltx:entry id=\"software:1.0\" entrytype=\"misc\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>10.5555/ackredit.fixture.software</bltx:doi>\n    <bltx:howpublished>Software</bltx:howpublished>\n    <bltx:title>Órbita \\&amp; Analysis</bltx:title>\n    <bltx:url>https://example.org/software/1.0</bltx:url>\n    <bltx:version>1.0</bltx:version>\n    <bltx:date>2024</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"software:2.0\" entrytype=\"misc\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>https://doi.org/10.5555/ackredit.fixture.software</bltx:doi>\n    <bltx:howpublished>Software</bltx:howpublished>\n    <bltx:title>Órbita \\&amp; Analysis</bltx:title>\n    <bltx:url>https://example.org/software/2.0</bltx:url>\n    <bltx:version>2.0</bltx:version>\n    <bltx:date>2025</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"dataset:2024\" entrytype=\"misc\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"I\">Instituto</bltx:namepart>\n          <bltx:namepart>de</bltx:namepart>\n          <bltx:namepart>Investigación,</bltx:namepart>\n          <bltx:namepart>México</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>10.5555/ackredit.fixture.dataset</bltx:doi>\n    <bltx:howpublished>Dataset</bltx:howpublished>\n    <bltx:title>Datos de México: 50\\% coverage</bltx:title>\n    <bltx:version>2024.1</bltx:version>\n    <bltx:date>2024</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"article:2023\" entrytype=\"article\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\" initial=\"G\">García</bltx:namepart>\n        <bltx:namepart type=\"given\" initial=\"A\">Ana</bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>10.5555/ackredit.fixture.article</bltx:doi>\n    <bltx:journaltitle>Methods \\&amp; Data</bltx:journaltitle>\n    <bltx:number>2</bltx:number>\n    <bltx:title>Analysis of Órbita \\&amp; datasets</bltx:title>\n    <bltx:volume>12</bltx:volume>\n    <bltx:pages>\n      <bltx:list>\n        <bltx:item>\n          <bltx:start>101</bltx:start>\n          <bltx:end>115</bltx:end>\n        </bltx:item>\n      </bltx:list>\n    </bltx:pages>\n    <bltx:date>2023</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"edited:structured\" entrytype=\"misc\">\n    <bltx:names type=\"editor\">\n      <bltx:name>\n        <bltx:namepart type=\"family\" initial=\"G\">García</bltx:namepart>\n        <bltx:namepart type=\"given\" initial=\"A\">Ana</bltx:namepart>\n      </bltx:name>\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:publisher>\n      <bltx:list>\n        <bltx:item>Example Press</bltx:item>\n      </bltx:list>\n    </bltx:publisher>\n    <bltx:sortkey>Structured editor collection</bltx:sortkey>\n    <bltx:title>Structured editor collection</bltx:title>\n    <bltx:date>2022</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"preferred:collection\" entrytype=\"book\">\n    <bltx:names type=\"editor\">\n      <bltx:name>\n        <bltx:namepart type=\"family\" initial=\"C\">Cruz</bltx:namepart>\n        <bltx:namepart type=\"given\" initial=\"M\">María</bltx:namepart>\n        <bltx:namepart type=\"prefix\">\n          <bltx:namepart initial=\"d\">de</bltx:namepart>\n          <bltx:namepart initial=\"l\">la</bltx:namepart>\n        </bltx:namepart>\n        <bltx:namepart type=\"suffix\" initial=\"I\">III</bltx:namepart>\n      </bltx:name>\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:publisher>\n      <bltx:list>\n        <bltx:item>Example Press</bltx:item>\n      </bltx:list>\n    </bltx:publisher>\n    <bltx:doi>10.5555/ackredit.fixture.collection</bltx:doi>\n    <bltx:isbn>978-0-00-000000-0</bltx:isbn>\n    <bltx:title>Méthodes \\&amp; données</bltx:title>\n    <bltx:date>2021</bltx:date>\n  </bltx:entry>\n</bltx:entries>\n"
+        },
+        "manuscript.bbl": {
+          "sha256": "23be386ebca1793565290468ff64579c6b9afc65f03ffcb0d2ac645fba141cef",
+          "bytes": 8259,
+          "text": "% $ biblatex auxiliary file $\n% $ biblatex bbl format version 3.2 $\n% Do not modify the above lines!\n%\n% This is an auxiliary file used by the 'biblatex' package.\n% This file may safely be deleted. It will be recreated by\n% biber as required.\n%\n\\begingroup\n\\makeatletter\n\\@ifundefined{ver@biblatex.sty}\n  {\\@latex@error\n     {Missing 'biblatex' package}\n     {The bibliography requires the 'biblatex' package.}\n      \\aftergroup\\endinput}\n  {}\n\\endgroup\n\n\n\\refsection{0}\n  \\datalist[entry]{nyt/global//global/global}\n    \\entry{preferred:collection}{book}{}\n      \\name{editor}{2}{}{%\n        {{un=0,uniquepart=base,hash=2de1b9e564cc79c054149c0a9eedc0ac}{%\n           family={Cruz},\n           familyi={C\\bibinitperiod},\n           given={María},\n           giveni={M\\bibinitperiod},\n           givenun=0,\n           prefix={de\\bibnamedelima la},\n           prefixi={d\\bibinitperiod\\bibinitdelim l\\bibinitperiod},\n           prefixun=0,\n           suffix={III},\n           suffixi={I\\bibinitperiod},\n           suffixun=0}}%\n        {{un=0,uniquepart=base,hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\list{publisher}{1}{%\n        {Example Press}%\n      }\n      \\strng{namehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{fullhash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{bibnamehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{editorbibnamehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{editornamehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{editorfullhash}{fbcc6cca489299683fe88fad29b9120e}\n      \\field{sortinit}{C}\n      \\field{sortinithash}{4d103a86280481745c9c897c925753c0}\n      \\field{extradatescope}{labelyear}\n      \\field{labeldatesource}{}\n      \\field{labelnamesource}{editor}\n      \\field{labeltitlesource}{title}\n      \\field{isbn}{978-0-00-000000-0}\n      \\field{title}{Méthodes \\& données}\n      \\field{year}{2021}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.collection\n      \\endverb\n    \\endentry\n    \\entry{article:2023}{article}{}\n      \\name{author}{1}{}{%\n        {{un=0,uniquepart=base,hash=37d77e61a0b7af40993ccd2f942246c2}{%\n           family={García},\n           familyi={G\\bibinitperiod},\n           given={Ana},\n           giveni={A\\bibinitperiod},\n           givenun=0}}%\n      }\n      \\strng{namehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{fullhash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{bibnamehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{authorbibnamehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{authornamehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{authorfullhash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\field{sortinit}{G}\n      \\field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}\n      \\field{extradatescope}{labelyear}\n      \\field{labeldatesource}{}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{journaltitle}{Methods \\& Data}\n      \\field{number}{2}\n      \\field{title}{Analysis of Órbita \\& datasets}\n      \\field{volume}{12}\n      \\field{year}{2023}\n      \\true{nocite}\n      \\field{pages}{101\\bibrangedash 115}\n      \\range{pages}{15}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.article\n      \\endverb\n    \\endentry\n    \\entry{dataset:2024}{misc}{}\n      \\name{author}{1}{}{%\n        {{un=0,uniquepart=base,hash=1d27fd79440e741eb1ac7b77d1884ef8}{%\n           family={{Instituto de Investigación, México}},\n           familyi={I\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{fullhash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{bibnamehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{authorbibnamehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{authornamehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{authorfullhash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\field{sortinit}{I}\n      \\field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}\n      \\field{extradatescope}{labelyear}\n      \\field{labeldatesource}{}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{howpublished}{Dataset}\n      \\field{title}{Datos de México: 50\\% coverage}\n      \\field{version}{2024.1}\n      \\field{year}{2024}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.dataset\n      \\endverb\n    \\endentry\n    \\entry{software:1.0}{misc}{}\n      \\name{author}{1}{}{%\n        {{un=0,uniquepart=base,hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{fullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{bibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorbibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authornamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorfullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\field{extraname}{1}\n      \\field{sortinit}{R}\n      \\field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}\n      \\field{extradatescope}{labelyear}\n      \\field{labeldatesource}{}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{howpublished}{Software}\n      \\field{title}{Órbita \\& Analysis}\n      \\field{version}{1.0}\n      \\field{year}{2024}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.software\n      \\endverb\n      \\verb{urlraw}\n      \\verb https://example.org/software/1.0\n      \\endverb\n      \\verb{url}\n      \\verb https://example.org/software/1.0\n      \\endverb\n    \\endentry\n    \\entry{software:2.0}{misc}{}\n      \\name{author}{1}{}{%\n        {{un=0,uniquepart=base,hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{fullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{bibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorbibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authornamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorfullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\field{extraname}{2}\n      \\field{sortinit}{R}\n      \\field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}\n      \\field{extradatescope}{labelyear}\n      \\field{labeldatesource}{}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{howpublished}{Software}\n      \\field{title}{Órbita \\& Analysis}\n      \\field{version}{2.0}\n      \\field{year}{2025}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb https://doi.org/10.5555/ackredit.fixture.software\n      \\endverb\n      \\verb{urlraw}\n      \\verb https://example.org/software/2.0\n      \\endverb\n      \\verb{url}\n      \\verb https://example.org/software/2.0\n      \\endverb\n    \\endentry\n    \\entry{edited:structured}{misc}{}\n      \\name{editor}{2}{}{%\n        {{un=0,uniquepart=base,hash=37d77e61a0b7af40993ccd2f942246c2}{%\n           family={García},\n           familyi={G\\bibinitperiod},\n           given={Ana},\n           giveni={A\\bibinitperiod},\n           givenun=0}}%\n        {{un=0,uniquepart=base,hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\list{publisher}{1}{%\n        {Example Press}%\n      }\n      \\strng{namehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{fullhash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{bibnamehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{editorbibnamehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{editornamehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{editorfullhash}{d507404072414f6425a8cb43b9be28fc}\n      \\field{sortinit}{S}\n      \\field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}\n      \\field{extradatescope}{labelyear}\n      \\field{labeldatesource}{}\n      \\field{labelnamesource}{editor}\n      \\field{labeltitlesource}{title}\n      \\field{title}{Structured editor collection}\n      \\field{year}{2022}\n      \\true{nocite}\n    \\endentry\n  \\enddatalist\n\\endrefsection\n\\endinput\n\n"
+        },
+        "manuscript.tex": {
+          "sha256": "0a4a374f8f4d4267136ce4cfa67e03e557258fcff943f266e47068beb55d03b0",
+          "bytes": 225,
+          "text": "\\documentclass{article}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage[backend=biber,style=authoryear]{biblatex}\n\\addbibresource{references.bib}\n\\begin{document}\n\\nocite{*}\n\\printbibliography\n\\end{document}\n"
+        },
+        "rendered.txt": {
+          "sha256": "34edba88289fbf71e6930cc15431f2ab61921f1f97ff5547d838b864d7d1cce5",
+          "bytes": 991,
+          "text": "References\nCruz III, María de la and Research and Development, Consortium, eds. (2021).\n   Méthodes & données. Example Press. isbn: 978-0-00-000000-0. doi: 10 .\n   5555/ackredit.fixture.collection.\nGarcía, Ana (2023). “Analysis of Órbita & datasets”. In: Methods & Data 12.2,\n   pp. 101–115. doi: 10.5555/ackredit.fixture.article.\nInstituto de Investigación, México (2024). Datos de México: 50% coverage. Dataset.\n   Version 2024.1. doi: 10.5555/ackredit.fixture.dataset.\nResearch and Development, Consortium (2024). Órbita & Analysis. Software.\n   Version 1.0. doi: 10 . 5555 / ackredit . fixture . software. url: https :\n   //example.org/software/1.0.\n— (2025). Órbita & Analysis. Software. Version 2.0. doi: https://doi.org/\n   10 . 5555 / ackredit . fixture . software. url: https : / / example . org /\n   software/2.0.\nGarcía, Ana and Research and Development, Consortium, eds. (2022). Struc-\n   tured editor collection.\n\n\n\n\n                                       1\n\f"
+        }
+      }
+    },
+    "numeric": {
+      "probe": {
+        "schema": "ackredit.biblatex-tools@1",
+        "checked_at": "2026-10-06T22:06:58.394564+00:00",
+        "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+        "ackredit": {
+          "version": "0.11.0+25.gc39b1fc",
+          "origin": "/tmp/ackredit121-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py"
+        },
+        "tool_sha256": "7b705414dd76d729891120582b7505093d233fa2ccbb56ebe04ab35ad9d833b4",
+        "process_owner_sha256": "08952ede33d436484e195c8f9beed33b328478ccb061bf7be3fdc1e18129bfeb",
+        "executables": {
+          "biber": {
+            "path": "/tmp/ackredit122-bin219/biber",
+            "sha256": "db32dd4ea0640606b094f4d792c9e5af439a6895145506e73071f78c1673ca00"
+          },
+          "kpsewhich": {
+            "path": "/usr/bin/kpsewhich",
+            "sha256": "e3f241dab416169b9a7c8e0ef719a3cc8568bf51256c7e354811b3963254fcda"
+          },
+          "pdflatex": {
+            "path": "/usr/bin/pdflatex",
+            "sha256": "bdf084260e5e3ca3b1453a8ec1465efa5c0b23180d3bba7992fdd3ee1aeee45b"
+          },
+          "pdftotext": {
+            "path": "/usr/bin/pdftotext",
+            "sha256": "0fb98ea179e19154a90202608c164f2a319b79f16576fa6534b2d601033565e7"
+          }
+        },
+        "versions": {
+          "biber": "biber version: 2.19\n",
+          "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)\nkpathsea version 6.3.5\nCopyright 2023 Han The Thanh (pdfTeX) et al.\nThere is NO warranty.  Redistribution of this software is\ncovered by the terms of both the pdfTeX copyright and\nthe Lesser GNU General Public License.\nFor more information about these matters, see the file\nnamed COPYING and the pdfTeX source.\nPrimary author of pdfTeX: Han The Thanh (pdfTeX) et al.\nCompiled with libpng 1.6.43; using libpng 1.6.43\nCompiled with zlib 1.3; using zlib 1.3\nCompiled with xpdf version 4.04\n",
+          "biblatex": "3.19"
+        },
+        "style": "numeric",
+        "resources": {
+          "biblatex.sty": {
+            "path": "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.sty",
+            "sha256": "fcf08b67ad6e3944e6ef0b067ea192c9cfd2783a559dcf84ee62a81312c4d9fa"
+          },
+          "numeric.bbx": {
+            "path": "/tmp/ackredit122-tex319/tex/latex/biblatex/bbx/numeric.bbx",
+            "sha256": "eed345c5ccf88395c6db9790fe0808ac4adfac38e023ea96b6282b21f1b1bc15"
+          },
+          "numeric.cbx": {
+            "path": "/tmp/ackredit122-tex319/tex/latex/biblatex/cbx/numeric.cbx",
+            "sha256": "34a59ee2e9dd0ecb6c47bbb5e84023c2728594a24a17da666edc1dfc0df95217"
+          }
+        },
+        "loaded_tex_files": {
+          "/etc/texmf/web2c/texmf.cnf": {
+            "sha256": "3443c7e22fbb4585732473f7e95d3cbf3e8657100f9117e711e2af5b0db85a40",
+            "bytes": 475
+          },
+          "/usr/share/texlive/texmf-dist/web2c/texmf.cnf": {
+            "sha256": "624ed5587722dc013533b63e7ae31688751e59cd5e5bd18f35d5186e7a984ddb",
+            "bytes": 40399
+          },
+          "/var/lib/texmf/web2c/pdftex/pdflatex.fmt": {
+            "sha256": "167534bf7fb9840c217b66e589d2c1b31d4345f72d2475741390f82adb8c40b4",
+            "bytes": 6852575
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls": {
+            "sha256": "859217b3457cca472e5a96ef193218c87a4e62a6445cdd501ba7e1954fa32afa",
+            "bytes": 20144
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo": {
+            "sha256": "c168d18288a2aba793904edf4d836c78d16fff01b8344d1365c6d72a2bd8929c",
+            "bytes": 8448
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty": {
+            "sha256": "b17f7346c2d881bba3bde28711e53cc7d3125e5ea440672f59bbbdbbd95499ed",
+            "bytes": 5119
+          },
+          "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map": {
+            "sha256": "d9693993efdc7d0b9ab3df777589995d43e24eeae95f12b6a230a19caadeaa42",
+            "bytes": 3524
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm": {
+            "sha256": "6538d396bf70b360a36c6af2ba424f1f25ecb1700fda4a22462a3044e1bce5b4",
+            "bytes": 3584
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty": {
+            "sha256": "d06a1d6ac38fac720ec7fbccfe6396224e1e69616e7ba5f15e37b55bc4a6c75f",
+            "bytes": 5048
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.sty": {
+            "sha256": "fcf08b67ad6e3944e6ef0b067ea192c9cfd2783a559dcf84ee62a81312c4d9fa",
+            "bytes": 528517
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty": {
+            "sha256": "2df7e0bd148c99d8097352b8ac9948dccf91d61ba360dcf43f82206933b6045b",
+            "bytes": 20089
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty": {
+            "sha256": "8c3e23b8bb7d940ff26cb0cf96e0151f540acf55020dc3c1aa8bcdb2eb66305c",
+            "bytes": 8356
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty": {
+            "sha256": "2de50639c1f27201f2b4d04e9083e0a51fc5a73b8908eea2e80d6e3205636d4a",
+            "bytes": 7237
+          },
+          "/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty": {
+            "sha256": "8fea89995d37ba4c69137186faafc589c470edcc5026d8a31aadbe5cef47dcb4",
+            "bytes": 17865
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty": {
+            "sha256": "b10381f0017ae75bd03dc9175b35ad56b93fdd24f2a47dd4aa9c6987ef35ccdb",
+            "bytes": 46845
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty": {
+            "sha256": "8434ad08617159240fd19b4fcae8bf79a6137af413f3798c8a750e9839f8902e",
+            "bytes": 2671
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty": {
+            "sha256": "70595629ec990ba8c0b6e6a54afcff2603464e6fce380a54a98549a78d2fc74a",
+            "bytes": 22555
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty": {
+            "sha256": "e3fcf7f3372a27bb478eb9488eca1e25ed382480d02a6898f190bd955388e055",
+            "bytes": 13815
+          },
+          "/tmp/ackredit122-tex/logreq/logreq.sty": {
+            "sha256": "e52f653389f5ee50c05ea2361822e4edf994f2829a0bac26d3764eeb675bb8a9",
+            "bytes": 6187
+          },
+          "/tmp/ackredit122-tex/logreq/logreq.def": {
+            "sha256": "2ccca8b208712b148c6edd438c52acf7cc821f90cb546321bdd5d491cf5e668f",
+            "bytes": 1620
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty": {
+            "sha256": "b8cbd3c3ed9f0f58e1103c91e29ab8de344a19f4cc7d27fde8d14d962dcf0495",
+            "bytes": 5319
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty": {
+            "sha256": "2373f56849ac606473e77053e5c1d14c92aba312b3f684e02a130eaf36f2de47",
+            "bytes": 12796
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/blx-dm.def": {
+            "sha256": "3d0f9291655f7108d8e79a1483e7d7f5233104ec0b8c1dc961e804d2c87546f5",
+            "bytes": 32455
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/blx-compat.def": {
+            "sha256": "c1c50e4da35cbe865379e2084f65d5cb705759520f1c213329330fc67b604389",
+            "bytes": 13919
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.def": {
+            "sha256": "abd2366f67bab2e55268b5591029ec2e00a3b8870852cd951b05beefa15ef327",
+            "bytes": 92527
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/bbx/numeric.bbx": {
+            "sha256": "eed345c5ccf88395c6db9790fe0808ac4adfac38e023ea96b6282b21f1b1bc15",
+            "bytes": 1818
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/bbx/standard.bbx": {
+            "sha256": "ad4af059ea275ff4f8a82328b6390ef7ab9fddd97376e1d1abb08cc2fb9477ed",
+            "bytes": 25680
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/cbx/numeric.cbx": {
+            "sha256": "34a59ee2e9dd0ecb6c47bbb5e84023c2728594a24a17da666edc1dfc0df95217",
+            "bytes": 4629
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/biblatex.cfg": {
+            "sha256": "2f6e01efbb466a252120f07c8e12d38a34e747b01ba0b9ba2b7d66b4386bb5b4",
+            "bytes": 69
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty": {
+            "sha256": "0e6ef8c012ef3ad828743b5205e13790a77a6fafcc23264285582a2842e44b84",
+            "bytes": 6565
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def": {
+            "sha256": "f1081e3391243f0d67554da9841fec0c050d76d9865033e92d3ef82cf537d23e",
+            "bytes": 30006
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/blx-case-expl3.sty": {
+            "sha256": "88e50dcecc608a80663567a5b93e2d01606a81ada70edbafb7319768f0ba9a40",
+            "bytes": 8433
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty": {
+            "sha256": "cae4d6e3d32991c483bde4721acd7754cd72d3e5988320019930d9b438587a06",
+            "bytes": 9327
+          },
+          "/tmp/ackredit122-tex319/tex/latex/biblatex/lbx/english.lbx": {
+            "sha256": "a38896633ba8dc8601b549ef30354ba0764af74a2a839dd33ecc1e76668042f9",
+            "bytes": 39965
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm": {
+            "sha256": "17c318f2a78564b462f9a4fa207e4edea2b2f89ee229aa0363860c481260a2d7",
+            "bytes": 3584
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm": {
+            "sha256": "322493aaea6baf372bca32721e32fe5d85c96dd05c3d088b3ace6b968ce88133",
+            "bytes": 3584
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm": {
+            "sha256": "672f6d546bdfd7e58c7d14958155f1208596ceaf6717373f91b2c76523fe3bb7",
+            "bytes": 3072
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/eccc1000.tfm": {
+            "sha256": "31ab27eb5674cf070c18a589cf1b5b1f73dcb9758e66776cc664a9401d8f8c17",
+            "bytes": 3072
+          },
+          "/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd": {
+            "sha256": "b878711b1c0d34348c1ff88d4778901d640970380d8cc6e9e4d77ffd8b2abc46",
+            "bytes": 2443
+          },
+          "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm": {
+            "sha256": "365b93b6dbeaa38c5e16d4951c35e66c15b200cb245b0259ade6181201bd54ec",
+            "bytes": 1536
+          },
+          "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex_dl14.map": {
+            "sha256": "5a6e422fc5550b85157e84183fda20ba1feccc659c76667e37815e89d24e806e",
+            "bytes": 5349216
+          },
+          "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc": {
+            "sha256": "0b8a4865363ad2acb3718af53a43a8b1a16a143900bba8e672813d4a6e07b4fc",
+            "bytes": 2971
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb": {
+            "sha256": "2c26adf023e2c900c659e02d637595e916a53d8495fcaa3fb9a97eade8c5f0c7",
+            "bytes": 135942
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb": {
+            "sha256": "7f888fd9b073bdaa0d7ea56f32af739be288b2c43ff5fd54396643498c88452c",
+            "bytes": 109713
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb": {
+            "sha256": "650a5428cc0729742dcf1935dba1f504e27bbb5ec5936aeaf5f4955909a0f540",
+            "bytes": 138258
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb": {
+            "sha256": "b096aff08008502a67b55a7f55482ffe192f2630e8e579e91e7913de32251bc4",
+            "bytes": 186554
+          },
+          "/usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb": {
+            "sha256": "22b23a4adbb01d3be113f5479aac7c44b3a4920e6d939029b99967355506e8e7",
+            "bytes": 169201
+          }
+        },
+        "citation_keys": {
+          "software:1.0": "software:1.0",
+          "software:2.0": "software:2.0",
+          "dataset:2024": "dataset:2024",
+          "article:2023": "article:2023",
+          "edited:structured": "edited:structured",
+          "preferred:collection": "preferred:collection"
+        },
+        "input_sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+        "original_preserved": true,
+        "export_preserved": true,
+        "new_execution_credit": false,
+        "processes": [
+          {
+            "command": [
+              "/tmp/ackredit122-bin219/biber",
+              "--version"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "ca1abf9355708ab1aacb51e3febe4de2b962f4aedef3a55d2b63cc0e78ab33a0",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "--version"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "64d3bedadc9885f9fbc5ebc4eb66de7dbb72dcf3f0748f5b8b6ca4030ded7062",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdftotext",
+              "-v"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "e120219f19a713ea1177591426efeea7cd700c463fd2b903286141de8c47307c",
+            "stderr": "pdftotext version 24.02.0\nCopyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC\n",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/kpsewhich",
+              "biblatex.sty"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "f4f9d5280515a38a1eac75e3e3f3272f49d180719743baf9bdc043b3a30021c8",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/kpsewhich",
+              "numeric.bbx"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "f4ddb1a069abe406c0dac5977c952047e82378d4c3bd105c9f7c2405d2ef1208",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/kpsewhich",
+              "numeric.cbx"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "8fe64fb9d64bf562c5e5fd540035a74cb5bd1d6a2ceb6d6f4234e75a0a9964e7",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/tmp/ackredit122-bin219/biber",
+              "--tool",
+              "--output-format=biblatexml",
+              "--output-file=reader.xml",
+              "references.bib"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "bb0d11c6dbca2330b1fd25ed16c3ea7277f9dfffe72aa77e036ea36002de04df",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "-no-shell-escape",
+              "-recorder",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "manuscript.tex"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "ff13f40212e3b3f71da46727a8aa7481f453dbc9d785821b8357c9fb3102a508",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/tmp/ackredit122-bin219/biber",
+              "manuscript"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "33d2574dbd470a3c92197749e2608dee69ff4083abe69c8c45c9447056941f71",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "-no-shell-escape",
+              "-recorder",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "manuscript.tex"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "f94e5fbd6bd500b31107beabb61cdcff0cadad125932dfa12f52cd61ef295d24",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdflatex",
+              "-no-shell-escape",
+              "-recorder",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "manuscript.tex"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "9934df03ff6a1068ef214b140691c23283d486de71ec402d7bd88e62c7e018aa",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          },
+          {
+            "command": [
+              "/usr/bin/pdftotext",
+              "-layout",
+              "manuscript.pdf",
+              "rendered.txt"
+            ],
+            "exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr": "",
+            "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes"
+          }
+        ],
+        "warnings": {
+          "references.bib.blg": [
+            "[406] Biber.pm:131> WARN - ISBN '978-0-00-000000-0' in entry 'preferred:collection' is invalid - run biber with '--validate_datamodel' for details."
+          ],
+          "manuscript.blg": [
+            "[398] Biber.pm:131> WARN - ISBN '978-0-00-000000-0' in entry 'preferred:collection' is invalid - run biber with '--validate_datamodel' for details."
+          ],
+          "manuscript.log": []
+        },
+        "files": {
+          "attribution.json": {
+            "sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+            "bytes": 3491
+          },
+          "manuscript.aux": {
+            "sha256": "a80217933caa1aec8b62e4bd1779590496755f2b931d9a1d5979b8e209505071",
+            "bytes": 599
+          },
+          "manuscript.bbl": {
+            "sha256": "2d43e095e58b8cd8f64b885c57cf317e7c14701fe013d5c5821caa198b3d4cc3",
+            "bytes": 7547
+          },
+          "manuscript.bcf": {
+            "sha256": "c24c9129e2a1333615384572f01589a02e0dcdd31217040ebfe14a5243e10b08",
+            "bytes": 107768
+          },
+          "manuscript.blg": {
+            "sha256": "8de0b5e0768b5c52a9bfa4be523f7bce06658618df72bf0c1fbc4509d0e31b79",
+            "bytes": 1268
+          },
+          "manuscript.fls": {
+            "sha256": "cd9ad117bd261d1cd3d4b596d2bfecaf7c6b5d55985f1209c3b69fce0aa668da",
+            "bytes": 6047
+          },
+          "manuscript.log": {
+            "sha256": "b597ffa51e4a082fe71bb34cbbe132286372cc23aa848b82a771d3f0382ece1d",
+            "bytes": 13800
+          },
+          "manuscript.pdf": {
+            "sha256": "60d806c71d7f2339cf3ad842ed429bd87aea8cf54a70131a7b8a503dae42cb0c",
+            "bytes": 94771
+          },
+          "manuscript.run.xml": {
+            "sha256": "96ab4bc794701d77e11264b706ebb810de7b269f386b71c37ea847922befb26f",
+            "bytes": 2347
+          },
+          "manuscript.tex": {
+            "sha256": "32f3bd34e61437c97f4e084ff5f0edf15ac798df6d93306e87c12b08bd8be7bc",
+            "bytes": 222
+          },
+          "process-1.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-1.stdout.txt": {
+            "sha256": "ca1abf9355708ab1aacb51e3febe4de2b962f4aedef3a55d2b63cc0e78ab33a0",
+            "bytes": 20
+          },
+          "process-10.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-10.stdout.txt": {
+            "sha256": "f94e5fbd6bd500b31107beabb61cdcff0cadad125932dfa12f52cd61ef295d24",
+            "bytes": 3006
+          },
+          "process-11.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-11.stdout.txt": {
+            "sha256": "9934df03ff6a1068ef214b140691c23283d486de71ec402d7bd88e62c7e018aa",
+            "bytes": 2907
+          },
+          "process-12.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-12.stdout.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-2.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-2.stdout.txt": {
+            "sha256": "64d3bedadc9885f9fbc5ebc4eb66de7dbb72dcf3f0748f5b8b6ca4030ded7062",
+            "bytes": 541
+          },
+          "process-3.stderr.txt": {
+            "sha256": "e120219f19a713ea1177591426efeea7cd700c463fd2b903286141de8c47307c",
+            "bytes": 145
+          },
+          "process-3.stdout.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-4.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-4.stdout.txt": {
+            "sha256": "f4f9d5280515a38a1eac75e3e3f3272f49d180719743baf9bdc043b3a30021c8",
+            "bytes": 56
+          },
+          "process-5.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-5.stdout.txt": {
+            "sha256": "f4ddb1a069abe406c0dac5977c952047e82378d4c3bd105c9f7c2405d2ef1208",
+            "bytes": 59
+          },
+          "process-6.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-6.stdout.txt": {
+            "sha256": "8fe64fb9d64bf562c5e5fd540035a74cb5bd1d6a2ceb6d6f4234e75a0a9964e7",
+            "bytes": 59
+          },
+          "process-7.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-7.stdout.txt": {
+            "sha256": "bb0d11c6dbca2330b1fd25ed16c3ea7277f9dfffe72aa77e036ea36002de04df",
+            "bytes": 807
+          },
+          "process-8.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-8.stdout.txt": {
+            "sha256": "ff13f40212e3b3f71da46727a8aa7481f453dbc9d785821b8357c9fb3102a508",
+            "bytes": 2419
+          },
+          "process-9.stderr.txt": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "process-9.stdout.txt": {
+            "sha256": "33d2574dbd470a3c92197749e2608dee69ff4083abe69c8c45c9447056941f71",
+            "bytes": 887
+          },
+          "processes.json": {
+            "sha256": "91305443faac17cdd2ef65b3b26e3a5664244e30a85357ec8a83d15ddb6e5567",
+            "bytes": 5188
+          },
+          "reader.xml": {
+            "sha256": "57583063690a1ed97df18cc382e95f4b1fcfe4bc89fb4caa9d40efdab9947ee5",
+            "bytes": 5252
+          },
+          "references.bib": {
+            "sha256": "5866d4e1a0e2e515d5d3d89459f53e2d9c66e25ea733169518314b0233ddc001",
+            "bytes": 1544
+          },
+          "references.bib.blg": {
+            "sha256": "25d015191285110bec2fb607a01ac67f9cc68cd84c2f41427493977033b0e585",
+            "bytes": 1141
+          },
+          "references.rng": {
+            "sha256": "23cf25bc435eef25a2bc1bfec23eb02acc27e8bb176aa6294869a0910ed3dfae",
+            "bytes": 40193
+          },
+          "rendered.txt": {
+            "sha256": "ce7cc70559e2cb0b103f4cb8c287d852b5eaa9db3c1d9805bbded950540cbfd3",
+            "bytes": 1069
+          }
+        },
+        "limits": [
+          "Only the explicitly selected BibLaTeX/Biber pair and standard style",
+          "Biber tool-mode XML and manuscript BBL are separate receiving outputs",
+          "Reader recoding and style presentation do not replace original metadata",
+          "No manager GUI, journal style, arbitrary Unicode or release qualification"
+        ]
+      },
+      "exports": {
+        "references.bib": {
+          "sha256": "5866d4e1a0e2e515d5d3d89459f53e2d9c66e25ea733169518314b0233ddc001",
+          "bytes": 1544,
+          "text": "@misc{software:1.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/1.0},\n  version = {1.0}\n}\n\n@misc{software:2.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2025},\n  doi = {https://doi.org/10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/2.0},\n  version = {2.0}\n}\n\n@misc{dataset:2024,\n  title = {Datos de México: 50\\% coverage},\n  howpublished = {Dataset},\n  author = {{Instituto de Investigación, México}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.dataset},\n  version = {2024.1}\n}\n\n@article{article:2023,\n  title = {Analysis of Órbita \\& datasets},\n  author = {García, Ana},\n  year = {2023},\n  doi = {10.5555/ackredit.fixture.article},\n  journal = {Methods \\& Data},\n  number = {2},\n  pages = {101--115},\n  volume = {12}\n}\n\n@misc{edited:structured,\n  title = {Structured editor collection},\n  year = {2022},\n  editor = {García, Ana and {Research and Development, Consortium}},\n  publisher = {Example Press},\n  key = {Structured editor collection}\n}\n\n@book{preferred:collection,\n  title = {Méthodes \\& données},\n  year = {2021},\n  doi = {10.5555/ackredit.fixture.collection},\n  editor = {de la Cruz, III, María and {Research and Development, Consortium}},\n  date-published = {2021-02-28},\n  isbn = {978-0-00-000000-0},\n  publisher = {Example Press}\n}"
+        },
+        "reader.xml": {
+          "sha256": "57583063690a1ed97df18cc382e95f4b1fcfe4bc89fb4caa9d40efdab9947ee5",
+          "bytes": 5252,
+          "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?xml-model href=\"references.rng\" type=\"application/xml\" schematypens=\"http://relaxng.org/ns/structure/1.0\"?>\n<!-- Auto-generated by Biber::Output::biblatexml -->\n\n<bltx:entries xmlns:bltx=\"http://biblatex-biber.sourceforge.net/biblatexml\">\n  <bltx:entry id=\"software:1.0\" entrytype=\"misc\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>10.5555/ackredit.fixture.software</bltx:doi>\n    <bltx:howpublished>Software</bltx:howpublished>\n    <bltx:title>Órbita \\&amp; Analysis</bltx:title>\n    <bltx:url>https://example.org/software/1.0</bltx:url>\n    <bltx:version>1.0</bltx:version>\n    <bltx:date>2024</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"software:2.0\" entrytype=\"misc\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>https://doi.org/10.5555/ackredit.fixture.software</bltx:doi>\n    <bltx:howpublished>Software</bltx:howpublished>\n    <bltx:title>Órbita \\&amp; Analysis</bltx:title>\n    <bltx:url>https://example.org/software/2.0</bltx:url>\n    <bltx:version>2.0</bltx:version>\n    <bltx:date>2025</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"dataset:2024\" entrytype=\"misc\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"I\">Instituto</bltx:namepart>\n          <bltx:namepart>de</bltx:namepart>\n          <bltx:namepart>Investigación,</bltx:namepart>\n          <bltx:namepart>México</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>10.5555/ackredit.fixture.dataset</bltx:doi>\n    <bltx:howpublished>Dataset</bltx:howpublished>\n    <bltx:title>Datos de México: 50\\% coverage</bltx:title>\n    <bltx:version>2024.1</bltx:version>\n    <bltx:date>2024</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"article:2023\" entrytype=\"article\">\n    <bltx:names type=\"author\">\n      <bltx:name>\n        <bltx:namepart type=\"family\" initial=\"G\">García</bltx:namepart>\n        <bltx:namepart type=\"given\" initial=\"A\">Ana</bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:doi>10.5555/ackredit.fixture.article</bltx:doi>\n    <bltx:journaltitle>Methods \\&amp; Data</bltx:journaltitle>\n    <bltx:number>2</bltx:number>\n    <bltx:title>Analysis of Órbita \\&amp; datasets</bltx:title>\n    <bltx:volume>12</bltx:volume>\n    <bltx:pages>\n      <bltx:list>\n        <bltx:item>\n          <bltx:start>101</bltx:start>\n          <bltx:end>115</bltx:end>\n        </bltx:item>\n      </bltx:list>\n    </bltx:pages>\n    <bltx:date>2023</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"edited:structured\" entrytype=\"misc\">\n    <bltx:names type=\"editor\">\n      <bltx:name>\n        <bltx:namepart type=\"family\" initial=\"G\">García</bltx:namepart>\n        <bltx:namepart type=\"given\" initial=\"A\">Ana</bltx:namepart>\n      </bltx:name>\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:publisher>\n      <bltx:list>\n        <bltx:item>Example Press</bltx:item>\n      </bltx:list>\n    </bltx:publisher>\n    <bltx:sortkey>Structured editor collection</bltx:sortkey>\n    <bltx:title>Structured editor collection</bltx:title>\n    <bltx:date>2022</bltx:date>\n  </bltx:entry>\n  <bltx:entry id=\"preferred:collection\" entrytype=\"book\">\n    <bltx:names type=\"editor\">\n      <bltx:name>\n        <bltx:namepart type=\"family\" initial=\"C\">Cruz</bltx:namepart>\n        <bltx:namepart type=\"given\" initial=\"M\">María</bltx:namepart>\n        <bltx:namepart type=\"prefix\">\n          <bltx:namepart initial=\"d\">de</bltx:namepart>\n          <bltx:namepart initial=\"l\">la</bltx:namepart>\n        </bltx:namepart>\n        <bltx:namepart type=\"suffix\" initial=\"I\">III</bltx:namepart>\n      </bltx:name>\n      <bltx:name>\n        <bltx:namepart type=\"family\">\n          <bltx:namepart initial=\"R\">Research</bltx:namepart>\n          <bltx:namepart>and</bltx:namepart>\n          <bltx:namepart>Development,</bltx:namepart>\n          <bltx:namepart>Consortium</bltx:namepart>\n        </bltx:namepart>\n      </bltx:name>\n    </bltx:names>\n    <bltx:publisher>\n      <bltx:list>\n        <bltx:item>Example Press</bltx:item>\n      </bltx:list>\n    </bltx:publisher>\n    <bltx:doi>10.5555/ackredit.fixture.collection</bltx:doi>\n    <bltx:isbn>978-0-00-000000-0</bltx:isbn>\n    <bltx:title>Méthodes \\&amp; données</bltx:title>\n    <bltx:date>2021</bltx:date>\n  </bltx:entry>\n</bltx:entries>\n"
+        },
+        "manuscript.bbl": {
+          "sha256": "2d43e095e58b8cd8f64b885c57cf317e7c14701fe013d5c5821caa198b3d4cc3",
+          "bytes": 7547,
+          "text": "% $ biblatex auxiliary file $\n% $ biblatex bbl format version 3.2 $\n% Do not modify the above lines!\n%\n% This is an auxiliary file used by the 'biblatex' package.\n% This file may safely be deleted. It will be recreated by\n% biber as required.\n%\n\\begingroup\n\\makeatletter\n\\@ifundefined{ver@biblatex.sty}\n  {\\@latex@error\n     {Missing 'biblatex' package}\n     {The bibliography requires the 'biblatex' package.}\n      \\aftergroup\\endinput}\n  {}\n\\endgroup\n\n\n\\refsection{0}\n  \\datalist[entry]{nty/global//global/global}\n    \\entry{preferred:collection}{book}{}\n      \\name{editor}{2}{}{%\n        {{hash=2de1b9e564cc79c054149c0a9eedc0ac}{%\n           family={Cruz},\n           familyi={C\\bibinitperiod},\n           given={María},\n           giveni={M\\bibinitperiod},\n           prefix={de\\bibnamedelima la},\n           prefixi={d\\bibinitperiod\\bibinitdelim l\\bibinitperiod},\n           suffix={III},\n           suffixi={I\\bibinitperiod}}}%\n        {{hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\list{publisher}{1}{%\n        {Example Press}%\n      }\n      \\strng{namehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{fullhash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{bibnamehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{editorbibnamehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{editornamehash}{fbcc6cca489299683fe88fad29b9120e}\n      \\strng{editorfullhash}{fbcc6cca489299683fe88fad29b9120e}\n      \\field{sortinit}{C}\n      \\field{sortinithash}{4d103a86280481745c9c897c925753c0}\n      \\field{labelnamesource}{editor}\n      \\field{labeltitlesource}{title}\n      \\field{isbn}{978-0-00-000000-0}\n      \\field{title}{Méthodes \\& données}\n      \\field{year}{2021}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.collection\n      \\endverb\n    \\endentry\n    \\entry{article:2023}{article}{}\n      \\name{author}{1}{}{%\n        {{hash=37d77e61a0b7af40993ccd2f942246c2}{%\n           family={García},\n           familyi={G\\bibinitperiod},\n           given={Ana},\n           giveni={A\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{fullhash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{bibnamehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{authorbibnamehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{authornamehash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\strng{authorfullhash}{37d77e61a0b7af40993ccd2f942246c2}\n      \\field{sortinit}{G}\n      \\field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{journaltitle}{Methods \\& Data}\n      \\field{number}{2}\n      \\field{title}{Analysis of Órbita \\& datasets}\n      \\field{volume}{12}\n      \\field{year}{2023}\n      \\true{nocite}\n      \\field{pages}{101\\bibrangedash 115}\n      \\range{pages}{15}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.article\n      \\endverb\n    \\endentry\n    \\entry{dataset:2024}{misc}{}\n      \\name{author}{1}{}{%\n        {{hash=1d27fd79440e741eb1ac7b77d1884ef8}{%\n           family={{Instituto de Investigación, México}},\n           familyi={I\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{fullhash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{bibnamehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{authorbibnamehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{authornamehash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\strng{authorfullhash}{1d27fd79440e741eb1ac7b77d1884ef8}\n      \\field{sortinit}{I}\n      \\field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{howpublished}{Dataset}\n      \\field{title}{Datos de México: 50\\% coverage}\n      \\field{version}{2024.1}\n      \\field{year}{2024}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.dataset\n      \\endverb\n    \\endentry\n    \\entry{software:1.0}{misc}{}\n      \\name{author}{1}{}{%\n        {{hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{fullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{bibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorbibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authornamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorfullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\field{extraname}{1}\n      \\field{sortinit}{R}\n      \\field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{howpublished}{Software}\n      \\field{title}{Órbita \\& Analysis}\n      \\field{version}{1.0}\n      \\field{year}{2024}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb 10.5555/ackredit.fixture.software\n      \\endverb\n      \\verb{urlraw}\n      \\verb https://example.org/software/1.0\n      \\endverb\n      \\verb{url}\n      \\verb https://example.org/software/1.0\n      \\endverb\n    \\endentry\n    \\entry{software:2.0}{misc}{}\n      \\name{author}{1}{}{%\n        {{hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\strng{namehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{fullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{bibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorbibnamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authornamehash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\strng{authorfullhash}{b2d1cfad90c7c4cccf716737df428acf}\n      \\field{extraname}{2}\n      \\field{sortinit}{R}\n      \\field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}\n      \\field{labelnamesource}{author}\n      \\field{labeltitlesource}{title}\n      \\field{howpublished}{Software}\n      \\field{title}{Órbita \\& Analysis}\n      \\field{version}{2.0}\n      \\field{year}{2025}\n      \\true{nocite}\n      \\verb{doi}\n      \\verb https://doi.org/10.5555/ackredit.fixture.software\n      \\endverb\n      \\verb{urlraw}\n      \\verb https://example.org/software/2.0\n      \\endverb\n      \\verb{url}\n      \\verb https://example.org/software/2.0\n      \\endverb\n    \\endentry\n    \\entry{edited:structured}{misc}{}\n      \\name{editor}{2}{}{%\n        {{hash=37d77e61a0b7af40993ccd2f942246c2}{%\n           family={García},\n           familyi={G\\bibinitperiod},\n           given={Ana},\n           giveni={A\\bibinitperiod}}}%\n        {{hash=b2d1cfad90c7c4cccf716737df428acf}{%\n           family={{Research and Development, Consortium}},\n           familyi={R\\bibinitperiod}}}%\n      }\n      \\list{publisher}{1}{%\n        {Example Press}%\n      }\n      \\strng{namehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{fullhash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{bibnamehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{editorbibnamehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{editornamehash}{d507404072414f6425a8cb43b9be28fc}\n      \\strng{editorfullhash}{d507404072414f6425a8cb43b9be28fc}\n      \\field{sortinit}{S}\n      \\field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}\n      \\field{labelnamesource}{editor}\n      \\field{labeltitlesource}{title}\n      \\field{title}{Structured editor collection}\n      \\field{year}{2022}\n      \\true{nocite}\n    \\endentry\n  \\enddatalist\n\\endrefsection\n\\endinput\n\n"
+        },
+        "manuscript.tex": {
+          "sha256": "32f3bd34e61437c97f4e084ff5f0edf15ac798df6d93306e87c12b08bd8be7bc",
+          "bytes": 222,
+          "text": "\\documentclass{article}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage[backend=biber,style=numeric]{biblatex}\n\\addbibresource{references.bib}\n\\begin{document}\n\\nocite{*}\n\\printbibliography\n\\end{document}\n"
+        },
+        "rendered.txt": {
+          "sha256": "ce7cc70559e2cb0b103f4cb8c287d852b5eaa9db3c1d9805bbded950540cbfd3",
+          "bytes": 1069,
+          "text": "References\n[1]   María de la Cruz III and Research and Development, Consortium, eds.\n      Méthodes & données. Example Press, 2021. isbn: 978-0-00-000000-0. doi:\n      10.5555/ackredit.fixture.collection.\n[2]   Ana García. “Analysis of Órbita & datasets”. In: Methods & Data 12.2\n      (2023), pp. 101–115. doi: 10.5555/ackredit.fixture.article.\n[3]   Instituto de Investigación, México. Datos de México: 50% coverage. Dataset.\n      Version 2024.1. 2024. doi: 10.5555/ackredit.fixture.dataset.\n[4]   Research and Development, Consortium. Órbita & Analysis. Software. Ver-\n      sion 1.0. 2024. doi: 10.5555/ackredit.fixture.software. url: https:\n      //example.org/software/1.0.\n[5]   Research and Development, Consortium. Órbita & Analysis. Software. Ver-\n      sion 2.0. 2025. doi: https : / / doi . org / 10 . 5555 / ackredit . fixture .\n      software. url: https://example.org/software/2.0.\n[6]   Ana García and Research and Development, Consortium, eds. Structured\n      editor collection. 2022.\n\n\n\n\n                                         1\n\f"
+        }
+      }
+    }
+  },
+  "fixtures": {
+    "tests/fixtures/publication/records.json": "0002fffa4e589de0e42f5a1d9ce0354ff3087e691a06c16dcca10a62fb94bfe5",
+    "tests/fixtures/publication/preferred.cff": "937f45bbaa92f543bf9f5ff08023363d7c7a3c9b6e537d3a985e8eca81ec85f5"
+  },
+  "sources": {
+    "devtools/check_biblatex.py": {
+      "sha256": "7b705414dd76d729891120582b7505093d233fa2ccbb56ebe04ab35ad9d833b4",
+      "bytes": 8214,
+      "text": "\"\"\"Receive detached BibTeX with optional Biber and BibLaTeX standard styles.\n\nRun outside the checkout with the intended normally installed Ackredit. Required\nsystem tools are biber, kpsewhich, pdflatex and pdftotext; TeX must find biblatex.\nTEXINPUTS may select an isolated TeX tree. No tool is installed or downloaded by\nthis probe. A new destination retains reader XML, backend BBL, compiled PDF,\nextracted presentation, process output, loaded TeX resources and their hashes.\nOriginal attribution and exported fields are never replaced by engine output.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport re\nimport shutil\nimport sys\nfrom datetime import datetime, timezone\nfrom importlib.metadata import version\nfrom pathlib import Path\n\nfrom check_publication_tools import _run, _sha\n\nimport ackredit\nfrom ackredit.formats.bibtex import cite_keys\n\nSTYLES = (\"authoryear\", \"numeric\")\n\n\ndef check(attribution_path: Path, destination: Path, *, style=\"authoryear\") -> dict:\n    \"\"\"Run the selected real receiving route, preserving failures and warnings.\n\n    Standard authoryear/numeric styles are accepted; neither is a journal style.\n    Each resolved executable is also the command actually executed. Missing\n    tools/resources fail, subprocess failures retain evidence and propagate,\n    and an existing destination is refused. No backend or engine fallback occurs.\n    \"\"\"\n    if style not in STYLES:\n        raise ValueError(f\"Unsupported publication probe style: {style}\")\n    executables = {}\n    for name in (\"biber\", \"kpsewhich\", \"pdflatex\", \"pdftotext\"):\n        if (path := shutil.which(name)) is None:\n            raise FileNotFoundError(f\"Required BibLaTeX probe tool unavailable: {name}\")\n        executables[name] = path\n\n    original = attribution_path.read_bytes()\n    attribution = ackredit.Attribution.from_json(original.decode(\"utf-8\"))\n    before = attribution.to_dict()\n    used_before = ackredit.get_used_items()\n    destination.mkdir(parents=True, exist_ok=False)\n    (destination / \"attribution.json\").write_bytes(original)\n    exported = attribution.report(\"bibtex\").encode(\"utf-8\")\n    (destination / \"references.bib\").write_bytes(exported)\n    steps: list[dict] = []\n    versions = {\n        name: _run([executables[name], \"--version\"], destination, steps)\n        for name in (\"biber\", \"pdflatex\")\n    }\n    _run([executables[\"pdftotext\"], \"-v\"], destination, steps)\n    resources = {}\n    for name in (\"biblatex.sty\", f\"{style}.bbx\", f\"{style}.cbx\"):\n        found = _run([executables[\"kpsewhich\"], name], destination, steps).strip()\n        path = Path(found)\n        if not found or not path.is_file():\n            raise FileNotFoundError(f\"Required BibLaTeX resource unavailable: {name}\")\n        resources[name] = {\"path\": str(path), \"sha256\": _sha(path.read_bytes())}\n    package = Path(resources[\"biblatex.sty\"][\"path\"]).read_text(encoding=\"utf-8\")\n    versions[\"biblatex\"] = re.search(r\"\\\\def\\\\abx@version\\{([^}]+)\\}\", package)[1]\n\n    # Tool-mode reading is observed separately from the manuscript's data model.\n    _run(\n        [\n            executables[\"biber\"],\n            \"--tool\",\n            \"--output-format=biblatexml\",\n            \"--output-file=reader.xml\",\n            \"references.bib\",\n        ],\n        destination,\n        steps,\n    )\n    (destination / \"manuscript.tex\").write_text(\n        \"\\\\documentclass{article}\\n\"\n        \"\\\\usepackage[T1]{fontenc}\\n\"\n        \"\\\\usepackage[utf8]{inputenc}\\n\"\n        f\"\\\\usepackage[backend=biber,style={style}]{{biblatex}}\\n\"\n        \"\\\\addbibresource{references.bib}\\n\"\n        \"\\\\begin{document}\\n\\\\nocite{*}\\n\\\\printbibliography\\n\\\\end{document}\\n\",\n        encoding=\"utf-8\",\n    )\n    latex = [\n        executables[\"pdflatex\"],\n        \"-no-shell-escape\",\n        \"-recorder\",\n        \"-interaction=nonstopmode\",\n        \"-halt-on-error\",\n        \"manuscript.tex\",\n    ]\n    _run(latex, destination, steps)\n    _run([executables[\"biber\"], \"manuscript\"], destination, steps)\n    _run(latex, destination, steps)\n    _run(latex, destination, steps)\n    _run(\n        [executables[\"pdftotext\"], \"-layout\", \"manuscript.pdf\", \"rendered.txt\"],\n        destination,\n        steps,\n    )\n\n    # Identify every external file actually consumed by the final TeX pass,\n    # including format, style dependencies and fonts rather than only its name.\n    loaded = {}\n    for line in (destination / \"manuscript.fls\").read_text().splitlines():\n        if not line.startswith(\"INPUT \"):\n            continue\n        path = Path(line[6:])\n        if not path.is_absolute():\n            path = destination / path\n        path = path.resolve()\n        if path.is_file() and not path.is_relative_to(destination.resolve()):\n            loaded[str(path)] = {\n                \"sha256\": _sha(path.read_bytes()),\n                \"bytes\": path.stat().st_size,\n            }\n    for resource in resources.values():\n        if (\n            resource[\"sha256\"]\n            != loaded[str(Path(resource[\"path\"]).resolve())][\"sha256\"]\n        ):\n            raise RuntimeError(\"Resolved BibLaTeX resource differs from loaded file\")\n    if attribution.to_dict() != before or attribution_path.read_bytes() != original:\n        raise RuntimeError(\"BibLaTeX probe changed original attribution\")\n    if (destination / \"references.bib\").read_bytes() != exported:\n        raise RuntimeError(\"BibLaTeX probe changed exported bibliography\")\n    if ackredit.get_used_items() != used_before:\n        raise RuntimeError(\"BibLaTeX probe recorded new execution credit\")\n    warnings = {\n        filename: [\n            line\n            for line in (destination / filename)\n            .read_bytes()\n            .decode(\"utf-8\", errors=\"backslashreplace\")\n            .splitlines()\n            if \"WARN -\" in line or \"Warning:\" in line\n        ]\n        for filename in (\"references.bib.blg\", \"manuscript.blg\", \"manuscript.log\")\n    }\n    return {\n        \"schema\": \"ackredit.biblatex-tools@1\",\n        \"checked_at\": datetime.now(timezone.utc).isoformat(),\n        \"python\": sys.version,\n        \"ackredit\": {\"version\": version(\"ackredit\"), \"origin\": ackredit.__file__},\n        \"tool_sha256\": _sha(Path(__file__).read_bytes()),\n        \"process_owner_sha256\": _sha(\n            Path(__file__).with_name(\"check_publication_tools.py\").read_bytes()\n        ),\n        \"executables\": {\n            name: {\"path\": path, \"sha256\": _sha(Path(path).read_bytes())}\n            for name, path in executables.items()\n        },\n        \"versions\": versions,\n        \"style\": style,\n        \"resources\": resources,\n        \"loaded_tex_files\": loaded,\n        \"citation_keys\": cite_keys(item[\"id\"] for item in before[\"items\"]),\n        \"input_sha256\": _sha(original),\n        \"original_preserved\": True,\n        \"export_preserved\": True,\n        \"new_execution_credit\": False,\n        \"processes\": steps,\n        \"warnings\": warnings,\n        \"files\": {\n            path.name: {\"sha256\": _sha(path.read_bytes()), \"bytes\": path.stat().st_size}\n            for path in sorted(destination.iterdir())\n            if path.is_file()\n        },\n        \"limits\": [\n            \"Only the explicitly selected BibLaTeX/Biber pair and standard style\",\n            \"Biber tool-mode XML and manuscript BBL are separate receiving outputs\",\n            \"Reader recoding and style presentation do not replace original metadata\",\n            \"No manager GUI, journal style, arbitrary Unicode or release qualification\",\n        ],\n    }\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--attribution\", type=Path, required=True)\n    parser.add_argument(\"--output\", type=Path, required=True)\n    parser.add_argument(\"--style\", choices=STYLES, default=\"authoryear\")\n    args = parser.parse_args()\n    result = check(args.attribution.resolve(), args.output.resolve(), style=args.style)\n    (args.output / \"receipt.json\").write_text(json.dumps(result, indent=2) + \"\\n\")\n    print(\n        json.dumps(\n            {\n                \"output\": str(args.output),\n                \"style\": args.style,\n                \"warnings\": result[\"warnings\"],\n            }\n        )\n    )\n\n\nif __name__ == \"__main__\":\n    main()\n"
+    },
+    "devtools/check_publication_tools.py": {
+      "sha256": "08952ede33d436484e195c8f9beed33b328478ccb061bf7be3fdc1e18129bfeb",
+      "bytes": 8064,
+      "text": "\"\"\"Probe a saved bibliography with optional BibTeX/plain and Pandoc/citeproc.\n\nRun outside the producing checkout with a normally installed Ackredit. This is\nan offline receiving probe, not a reference-manager import or a release gate.\nAn existing destination is refused so inputs and engine results cannot be\nsilently replaced. Engines/style files and all outputs are identified by SHA-256.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport hashlib\nimport json\nimport os\nimport shutil\nimport subprocess\nimport sys\nfrom datetime import datetime, timezone\nfrom importlib.metadata import version\nfrom pathlib import Path\n\nimport ackredit\nfrom ackredit.formats.bibtex import cite_keys\n\n\ndef _sha(content: bytes) -> str:\n    return hashlib.sha256(content).hexdigest()\n\n\ndef _run(command: list[str], directory: Path, steps: list[dict]) -> str:\n    \"\"\"Retain exact process bytes; render undecodable bytes as explicit escapes.\n\n    TeX output can mix encodings. Capture bytes before decoding so a diagnostic\n    cannot prevent preservation of either stream or the real process status.\n    \"\"\"\n    process = subprocess.run(\n        command,\n        cwd=directory,\n        capture_output=True,\n        timeout=60,\n        env={**os.environ, \"TEXMFVAR\": str(directory / \"texmf-var\")},\n    )\n    name = f\"process-{len(steps) + 1}\"\n    (directory / f\"{name}.stdout.txt\").write_bytes(process.stdout)\n    (directory / f\"{name}.stderr.txt\").write_bytes(process.stderr)\n    steps.append(\n        {\n            \"command\": command,\n            \"exit_code\": process.returncode,\n            \"stdout_sha256\": _sha(process.stdout),\n            \"stderr_sha256\": _sha(process.stderr),\n            \"stderr\": process.stderr.decode(\"utf-8\", errors=\"backslashreplace\"),\n            \"text_rendering\": \"UTF-8 with explicit backslash escapes for undecodable bytes\",\n        }\n    )\n    (directory / \"processes.json\").write_text(json.dumps(steps, indent=2) + \"\\n\")\n    process.check_returncode()\n    return process.stdout.decode(\"utf-8\", errors=\"backslashreplace\")\n\n\ndef check(attribution_path: Path, destination: Path) -> dict:\n    \"\"\"Export detached attribution and retain actual engine receiving results.\n\n    Required executables are optional system tools, not Ackredit dependencies.\n    Process failures propagate and retain their stdout/stderr at the destination.\n    No engine output is used to replace original attribution or exported fields.\n    \"\"\"\n    executables = {}\n    for name in (\"bibtex\", \"kpsewhich\", \"pdflatex\", \"pandoc\"):\n        if (executable := shutil.which(name)) is None:\n            raise FileNotFoundError(\n                f\"Required publication probe tool unavailable: {name}\"\n            )\n        executables[name] = executable\n\n    original = attribution_path.read_bytes()\n    attribution = ackredit.Attribution.from_json(original.decode(\"utf-8\"))\n    before = attribution.to_dict()\n    used_before = ackredit.get_used_items()\n    modules_before = set(sys.modules)\n    destination.mkdir(parents=True, exist_ok=False)\n    steps: list[dict] = []\n    (destination / \"attribution.json\").write_bytes(original)\n    for fmt, filename in (\n        (\"bibtex\", \"references.bib\"),\n        (\"csl-json\", \"references.csl.json\"),\n    ):\n        (destination / filename).write_text(attribution.report(fmt), encoding=\"utf-8\")\n\n    versions = {}\n    for name in (\"bibtex\", \"pdflatex\", \"pandoc\"):\n        versions[name] = _run([executables[name], \"--version\"], destination, steps)\n    style_path = Path(\n        _run([executables[\"kpsewhich\"], \"plain.bst\"], destination, steps).strip()\n    )\n    (destination / \"plain.bst\").write_bytes(style_path.read_bytes())\n    csl = _run(\n        [executables[\"pandoc\"], \"--print-default-data-file=default.csl\"],\n        destination,\n        steps,\n    )\n    (destination / \"style.csl\").write_text(csl, encoding=\"utf-8\")\n\n    # Probe the engine readers separately from style-driven presentation.\n    for fmt, filename, output in (\n        (\"csljson\", \"references.csl.json\", \"csl-read.json\"),\n        (\"bibtex\", \"references.bib\", \"bibtex-read.json\"),\n    ):\n        _run(\n            [executables[\"pandoc\"], \"-f\", fmt, \"-t\", \"csljson\", filename, \"-o\", output],\n            destination,\n            steps,\n        )\n\n    (destination / \"references.aux\").write_text(\n        \"\\\\citation{*}\\n\\\\bibdata{references}\\n\\\\bibstyle{plain}\\n\", encoding=\"utf-8\"\n    )\n    _run([executables[\"bibtex\"], \"references\"], destination, steps)\n    (destination / \"manuscript.tex\").write_text(\n        \"\\\\documentclass{article}\\n\"\n        \"\\\\usepackage[T1]{fontenc}\\n\"\n        \"\\\\usepackage[utf8]{inputenc}\\n\"\n        \"\\\\begin{document}\\n\"\n        \"\\\\input{references.bbl}\\n\"\n        \"\\\\end{document}\\n\",\n        encoding=\"utf-8\",\n    )\n    _run(\n        [\n            executables[\"pdflatex\"],\n            \"-no-shell-escape\",\n            \"-interaction=nonstopmode\",\n            \"-halt-on-error\",\n            \"manuscript.tex\",\n        ],\n        destination,\n        steps,\n    )\n    (destination / \"manuscript.md\").write_text(\n        \"---\\nnocite: '@*'\\n---\\n\\nDetached bibliography.\\n\", encoding=\"utf-8\"\n    )\n    _run(\n        [\n            executables[\"pandoc\"],\n            \"--citeproc\",\n            \"--csl=style.csl\",\n            \"--bibliography=references.csl.json\",\n            \"-f\",\n            \"markdown\",\n            \"-t\",\n            \"html\",\n            \"manuscript.md\",\n            \"-o\",\n            \"bibliography.html\",\n        ],\n        destination,\n        steps,\n    )\n\n    if attribution.to_dict() != before or attribution_path.read_bytes() != original:\n        raise RuntimeError(\"Publication probe changed original attribution\")\n    if ackredit.get_used_items() != used_before:\n        raise RuntimeError(\"Publication probe recorded new execution credit\")\n    files = {\n        path.name: {\"sha256\": _sha(path.read_bytes()), \"bytes\": path.stat().st_size}\n        for path in sorted(destination.iterdir())\n        if path.is_file()\n    }\n    return {\n        \"schema\": \"ackredit.publication-tools@1\",\n        \"checked_at\": datetime.now(timezone.utc).isoformat(),\n        \"python\": sys.version,\n        \"ackredit\": {\"version\": version(\"ackredit\"), \"origin\": ackredit.__file__},\n        \"tool_sha256\": _sha(Path(__file__).read_bytes()),\n        \"executables\": {\n            name: {\"path\": path, \"sha256\": _sha(Path(path).read_bytes())}\n            for name, path in executables.items()\n        },\n        \"versions\": versions,\n        \"styles\": {\n            \"bibtex\": {\"name\": \"plain.bst\", \"sha256\": files[\"plain.bst\"][\"sha256\"]},\n            \"csl\": {\n                \"name\": \"Pandoc default.csl\",\n                \"sha256\": files[\"style.csl\"][\"sha256\"],\n            },\n        },\n        \"citation_keys\": cite_keys(item[\"id\"] for item in before[\"items\"]),\n        \"input_sha256\": _sha(original),\n        \"original_preserved\": True,\n        \"new_execution_credit\": False,\n        \"modules_added\": sorted(set(sys.modules) - modules_before),\n        \"processes\": steps,\n        \"bibtex_warnings\": [\n            line\n            for line in (destination / \"references.blg\").read_text().splitlines()\n            if line.startswith(\"Warning--\")\n        ],\n        \"files\": files,\n        \"limits\": [\n            \"No reference-manager GUI import, BibLaTeX/Biber or journal-style qualification\",\n            \"Metadata preservation and selected-style output are separate observations\",\n            \"No duplicate merging or new public-release qualification\",\n        ],\n    }\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--attribution\", type=Path, required=True)\n    parser.add_argument(\"--output\", type=Path, required=True)\n    args = parser.parse_args()\n    result = check(args.attribution.resolve(), args.output.resolve())\n    (args.output / \"receipt.json\").write_text(json.dumps(result, indent=2) + \"\\n\")\n    print(\n        json.dumps(\n            {\"output\": str(args.output), \"bibtex_warnings\": result[\"bibtex_warnings\"]}\n        )\n    )\n\n\nif __name__ == \"__main__\":\n    main()\n"
+    }
+  },
+  "previous_process_owner": {
+    "sha256": "c8a3fae782ab312fd0259b6a68266292a7e657fba920f39c3589ee5cbcde1705",
+    "bytes": 7649,
+    "text": "\"\"\"Probe a saved bibliography with optional BibTeX/plain and Pandoc/citeproc.\n\nRun outside the producing checkout with a normally installed Ackredit. This is\nan offline receiving probe, not a reference-manager import or a release gate.\nAn existing destination is refused so inputs and engine results cannot be\nsilently replaced. Engines/style files and all outputs are identified by SHA-256.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport hashlib\nimport json\nimport os\nimport shutil\nimport subprocess\nimport sys\nfrom datetime import datetime, timezone\nfrom importlib.metadata import version\nfrom pathlib import Path\n\nimport ackredit\nfrom ackredit.formats.bibtex import cite_keys\n\n\ndef _sha(content: bytes) -> str:\n    return hashlib.sha256(content).hexdigest()\n\n\ndef _run(command: list[str], directory: Path, steps: list[dict]) -> str:\n    process = subprocess.run(\n        command,\n        cwd=directory,\n        capture_output=True,\n        text=True,\n        timeout=60,\n        env={**os.environ, \"TEXMFVAR\": str(directory / \"texmf-var\")},\n    )\n    name = f\"process-{len(steps) + 1}\"\n    (directory / f\"{name}.stdout.txt\").write_text(process.stdout, encoding=\"utf-8\")\n    (directory / f\"{name}.stderr.txt\").write_text(process.stderr, encoding=\"utf-8\")\n    steps.append(\n        {\n            \"command\": command,\n            \"exit_code\": process.returncode,\n            \"stdout_sha256\": _sha(process.stdout.encode()),\n            \"stderr\": process.stderr,\n        }\n    )\n    (directory / \"processes.json\").write_text(json.dumps(steps, indent=2) + \"\\n\")\n    process.check_returncode()\n    return process.stdout\n\n\ndef check(attribution_path: Path, destination: Path) -> dict:\n    \"\"\"Export detached attribution and retain actual engine receiving results.\n\n    Required executables are optional system tools, not Ackredit dependencies.\n    Process failures propagate and retain their stdout/stderr at the destination.\n    No engine output is used to replace original attribution or exported fields.\n    \"\"\"\n    executables = {}\n    for name in (\"bibtex\", \"kpsewhich\", \"pdflatex\", \"pandoc\"):\n        if (executable := shutil.which(name)) is None:\n            raise FileNotFoundError(\n                f\"Required publication probe tool unavailable: {name}\"\n            )\n        executables[name] = executable\n\n    original = attribution_path.read_bytes()\n    attribution = ackredit.Attribution.from_json(original.decode(\"utf-8\"))\n    before = attribution.to_dict()\n    used_before = ackredit.get_used_items()\n    modules_before = set(sys.modules)\n    destination.mkdir(parents=True, exist_ok=False)\n    steps: list[dict] = []\n    (destination / \"attribution.json\").write_bytes(original)\n    for fmt, filename in (\n        (\"bibtex\", \"references.bib\"),\n        (\"csl-json\", \"references.csl.json\"),\n    ):\n        (destination / filename).write_text(attribution.report(fmt), encoding=\"utf-8\")\n\n    versions = {}\n    for name in (\"bibtex\", \"pdflatex\", \"pandoc\"):\n        versions[name] = _run([executables[name], \"--version\"], destination, steps)\n    style_path = Path(\n        _run([executables[\"kpsewhich\"], \"plain.bst\"], destination, steps).strip()\n    )\n    (destination / \"plain.bst\").write_bytes(style_path.read_bytes())\n    csl = _run(\n        [executables[\"pandoc\"], \"--print-default-data-file=default.csl\"],\n        destination,\n        steps,\n    )\n    (destination / \"style.csl\").write_text(csl, encoding=\"utf-8\")\n\n    # Probe the engine readers separately from style-driven presentation.\n    for fmt, filename, output in (\n        (\"csljson\", \"references.csl.json\", \"csl-read.json\"),\n        (\"bibtex\", \"references.bib\", \"bibtex-read.json\"),\n    ):\n        _run(\n            [executables[\"pandoc\"], \"-f\", fmt, \"-t\", \"csljson\", filename, \"-o\", output],\n            destination,\n            steps,\n        )\n\n    (destination / \"references.aux\").write_text(\n        \"\\\\citation{*}\\n\\\\bibdata{references}\\n\\\\bibstyle{plain}\\n\", encoding=\"utf-8\"\n    )\n    _run([executables[\"bibtex\"], \"references\"], destination, steps)\n    (destination / \"manuscript.tex\").write_text(\n        \"\\\\documentclass{article}\\n\"\n        \"\\\\usepackage[T1]{fontenc}\\n\"\n        \"\\\\usepackage[utf8]{inputenc}\\n\"\n        \"\\\\begin{document}\\n\"\n        \"\\\\input{references.bbl}\\n\"\n        \"\\\\end{document}\\n\",\n        encoding=\"utf-8\",\n    )\n    _run(\n        [\n            executables[\"pdflatex\"],\n            \"-no-shell-escape\",\n            \"-interaction=nonstopmode\",\n            \"-halt-on-error\",\n            \"manuscript.tex\",\n        ],\n        destination,\n        steps,\n    )\n    (destination / \"manuscript.md\").write_text(\n        \"---\\nnocite: '@*'\\n---\\n\\nDetached bibliography.\\n\", encoding=\"utf-8\"\n    )\n    _run(\n        [\n            executables[\"pandoc\"],\n            \"--citeproc\",\n            \"--csl=style.csl\",\n            \"--bibliography=references.csl.json\",\n            \"-f\",\n            \"markdown\",\n            \"-t\",\n            \"html\",\n            \"manuscript.md\",\n            \"-o\",\n            \"bibliography.html\",\n        ],\n        destination,\n        steps,\n    )\n\n    if attribution.to_dict() != before or attribution_path.read_bytes() != original:\n        raise RuntimeError(\"Publication probe changed original attribution\")\n    if ackredit.get_used_items() != used_before:\n        raise RuntimeError(\"Publication probe recorded new execution credit\")\n    files = {\n        path.name: {\"sha256\": _sha(path.read_bytes()), \"bytes\": path.stat().st_size}\n        for path in sorted(destination.iterdir())\n        if path.is_file()\n    }\n    return {\n        \"schema\": \"ackredit.publication-tools@1\",\n        \"checked_at\": datetime.now(timezone.utc).isoformat(),\n        \"python\": sys.version,\n        \"ackredit\": {\"version\": version(\"ackredit\"), \"origin\": ackredit.__file__},\n        \"tool_sha256\": _sha(Path(__file__).read_bytes()),\n        \"executables\": {\n            name: {\"path\": path, \"sha256\": _sha(Path(path).read_bytes())}\n            for name, path in executables.items()\n        },\n        \"versions\": versions,\n        \"styles\": {\n            \"bibtex\": {\"name\": \"plain.bst\", \"sha256\": files[\"plain.bst\"][\"sha256\"]},\n            \"csl\": {\n                \"name\": \"Pandoc default.csl\",\n                \"sha256\": files[\"style.csl\"][\"sha256\"],\n            },\n        },\n        \"citation_keys\": cite_keys(item[\"id\"] for item in before[\"items\"]),\n        \"input_sha256\": _sha(original),\n        \"original_preserved\": True,\n        \"new_execution_credit\": False,\n        \"modules_added\": sorted(set(sys.modules) - modules_before),\n        \"processes\": steps,\n        \"bibtex_warnings\": [\n            line\n            for line in (destination / \"references.blg\").read_text().splitlines()\n            if line.startswith(\"Warning--\")\n        ],\n        \"files\": files,\n        \"limits\": [\n            \"No reference-manager GUI import, BibLaTeX/Biber or journal-style qualification\",\n            \"Metadata preservation and selected-style output are separate observations\",\n            \"No duplicate merging or new public-release qualification\",\n        ],\n    }\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--attribution\", type=Path, required=True)\n    parser.add_argument(\"--output\", type=Path, required=True)\n    args = parser.parse_args()\n    result = check(args.attribution.resolve(), args.output.resolve())\n    (args.output / \"receipt.json\").write_text(json.dumps(result, indent=2) + \"\\n\")\n    print(\n        json.dumps(\n            {\"output\": str(args.output), \"bibtex_warnings\": result[\"bibtex_warnings\"]}\n        )\n    )\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  },
+  "official_tools": {
+    "biblatex": {
+      "version": "3.19",
+      "url": "https://downloads.sourceforge.net/project/biblatex/biblatex-3.19/biblatex-3.19.tds.tgz",
+      "sha256": "7db64bdcdab7bbda00b6065ed5388ab0ff2967006ba07c6006b1701e9858537d",
+      "bytes": 18989048
+    },
+    "biber": {
+      "version": "2.19",
+      "url": "https://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/2.19/binaries/Linux/biber-linux_x86_64.tar.gz",
+      "sha256": "e2eda3e6ea7ac7e78d60e99a0e2aeb1096829f95791c06b768ed31a12889e58e",
+      "bytes": 24640001
+    },
+    "logreq": {
+      "version": "1.0",
+      "url": "https://mirrors.ctan.org/macros/latex/contrib/logreq.zip",
+      "sha256": "14b1a51c4b4204be70d78c1789a89e7d28a3ee1b43f341d0f50f606d2c97f517",
+      "bytes": 11928
+    }
+  },
+  "not_qualified": {
+    "biblatex": "3.22a",
+    "biber_downloaded": "2.22; not used by the failed initial TeX pass",
+    "host_kernel": "LaTeX2e 2023-11-01 patch level 1 / TeX Live 2023 Debian",
+    "failure": "Initial pdfTeX pass exits 1: undefined control sequence IfDocumentMetadataT",
+    "reason": "Tool/kernel compatibility; no Ackredit receiving qualification follows"
+  },
+  "observations": {
+    "runtime_code_changed": false,
+    "original_input_and_bibtex_identical_for_both_styles": true,
+    "six_original_ids_and_distinct_release_versions_retained": true,
+    "names": "Biber retains one institutional name, two explicit editors and CFF prefix/suffix parts; style name order varies",
+    "presentation": "Both styles display software versions 1.0/2.0 and dataset version 2024.1; PDF extraction retains discretionary line-break hyphens",
+    "warnings": "Both Biber routes report the retained synthetic ISBN 978-0-00-000000-0 as invalid; no original field is repaired",
+    "style_omission": "Standard misc drivers omit publisher for the untyped edited record although reader XML retains it",
+    "process_capture_correction": "Capture exact stdout/stderr bytes before UTF-8 rendering with explicit escapes; preserve process status and original stream hashes"
+  },
+  "limits": [
+    "One local Linux/Python 3.14.8 installed wheel, unchanged from the #121 runtime candidate",
+    "Exactly BibLaTeX 3.19 / Biber 2.19 / pdfTeX 1.40.25 and standard authoryear/numeric",
+    "No latest-tool, other-kernel, manager GUI, journal-style or arbitrary-Unicode qualification",
+    "Biber tool-mode XML, manuscript BBL and formatted presentation are separate evidence",
+    "Original saved records remain authoritative; no merge, name/DOI/ISBN rewriting or new execution credit",
+    "Public Ackredit 0.11.0 files are unchanged; no new release or scientific equivalence claim"
+  ],
+  "validation": {
+    "normally_installed": {
+      "passed": 221,
+      "skipped": 0,
+      "profile": "llm",
+      "external_gates": [
+        "--require-publication-tools",
+        "--require-biblatex-tools"
+      ],
+      "scope": [
+        "tests/test_biblatex_receiving.py",
+        "tests/test_publication_tools.py",
+        "tests/test_doi_presentation.py",
+        "tests/test_bibtex.py",
+        "tests/test_bibtex_csl_authors.py",
+        "tests/test_bibtex_load.py",
+        "tests/test_bibtex_round_trip.py",
+        "tests/test_bibtex_parsing.py",
+        "tests/test_suite_isolation.py",
+        "tests/test_startup_imports.py"
+      ]
+    },
+    "limits": "The later guidance-only guard is separate from the 221-test installed selection; source/documentation checks overlap that selection.",
+    "source_documentation": {
+      "passed": 356,
+      "skipped": 0,
+      "profile": "llm",
+      "overlaps_installed_selection": true,
+      "scope": [
+        "tests/test_biblatex_receiving.py",
+        "tests/test_publication_tools.py",
+        "tests/test_doi_presentation.py",
+        "tests/test_reporting_protocol.py",
+        "tests/test_documented_api.py",
+        "tests/test_api_stability.py",
+        "tests/test_integration_guide.py",
+        "tests/test_devguide_claims.py",
+        "tests/test_docs_build.py",
+        "tests/test_latex_escaping.py"
+      ]
+    },
+    "local_gates": [
+      "Ruff lint and format",
+      "generated indexes",
+      "pinned dependency-route preflight",
+      "local MolSysSuite conformance",
+      "strict Sphinx",
+      "git diff whitespace"
+    ]
+  }
+}
