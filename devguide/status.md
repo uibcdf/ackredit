@@ -235,6 +235,15 @@ Public 0.11.0 completes stable-provider delivery; consumer adoption remains sepa
 original public 0.10.0/0.10.1 provisional contracts are unchanged. See the
 [accepted review](function_provider_contract_review.md).
 
+Development #113 adds a [concise provider author guide](../docs/content/user_guide/provider_authors.md)
+and `examples/citation_provider`, promoted from the single installed test
+fixture. Its normal installed-package guard verifies dependency-free operation,
+inert standalone validation through provisional development `validate_provider`,
+actual-call credit and producer-independent reading. Public 0.11.0 retains its
+stable observer/protocol contract and does not include that standalone API.
+The [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/provider_author_guide.md)
+and #113 keep delivery evidence separate from release qualification.
+
 The manually dispatched [coupled installed receiving gate](receiving_validation.md)
 builds one wheel bundle and requires eight Linux/macOS arm64 × Python 3.11–3.14
 cells. The first hosted qualification passes five tests per cell without skips

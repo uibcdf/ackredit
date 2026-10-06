@@ -326,9 +326,11 @@ measures portable capture separately from the historical plain tracking path.
       recording uses, installing wrappers, registering bibliography or querying
       a DOI; callers and tooling must reuse the provider-owned validation;
       source integration and public delivery remain separate from local evidence;
-- [ ] offer a concise third-party author guide and an independently installable
-      dependency-free producer example; a producer's declaration requires no
-      Ackredit import, decorator or runtime dependency;
+- [x] offer a [concise third-party author guide](../docs/content/user_guide/provider_authors.md)
+      and an independently installable dependency-free producer example under
+      #113; the existing installed guard now tests the published example;
+      a producer's declaration requires no Ackredit import, decorator or runtime
+      dependency;
 - [x] explicitly retain the reviewed observation exclusions for pre-activation
       aliases, methods/descriptors, generators and native internal calls. Any
       expansion needs a concrete use case, lifecycle contract and bounded cost.
@@ -624,8 +626,9 @@ feature before 1.0. A deliberate deferral remains visible in the roadmap.
 ## Execution order and release checkpoints
 
 The [development checkpoint](checkpoint.md) records the current resumption order:
-retain #108's completed distribution-input guard, then continue the provider
-author guide and independently installable example. The 0.11.0 release is complete;
+retain #108's completed distribution-input guard and #113's provider author
+guide/installable example, then review the separate evidence contracts.
+The 0.11.0 release is complete;
 central handoffs and the
 remaining product decisions below retain their own owners.
 

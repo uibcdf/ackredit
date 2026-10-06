@@ -1,5 +1,8 @@
 # Third-party function citation providers
 
+For a short publishing walkthrough and a maintained installable example, start
+with the [provider author guide](provider_authors.md).
+
 The principal maintainer accepted **stable source contracts** for `observe_calls`,
 `prepare_credit` and `ackredit.provider@1` on 2026-10-06 under Ackredit #84/#87,
 with coordination in MolSysSuite #97 and MOLI #46. Public 0.10.0/0.10.1 contain

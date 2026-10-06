@@ -75,21 +75,29 @@ Integrated development `7737d6ec7a477244f332e34080d26f1bc39822cc` passes all sev
 [publication policy](https://github.com/uibcdf/ackredit/actions/runs/37448900303).
 The subsequent documentation closeout receives its own applicable checks.
 
+[Ackredit #113](https://github.com/uibcdf/ackredit/issues/113) completes the
+[provider author guide](../docs/content/user_guide/provider_authors.md) and
+`examples/citation_provider`. The former installed fixture is now the single
+public example source, used by existing observer/evidence guards. It installs
+with no runtime dependencies and computes with Ackredit imports blocked.
+The installed guard also checks inert development validation, actual-call
+software/article credit and detached reading without the producer. Local
+Python 3.14.7 gates pass 389 selected tests without skips/warnings, Ruff,
+indexes, all 16 dependency routes and strict Sphinx. The owning issue retains
+the exact published head and its hosted controls. The
+[archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/provider_author_guide.md)
+keeps scope and evidence; the validator remains provisional and absent from
+public 0.11.0.
+
 ## Next work, in order
 
-1. **Provide third-party author tooling (roadmap G).** Open a focused Ackredit
-   issue before implementation. Reuse public `validate_provider` rather than
-   copying its parser; retain its provisional boundary and lazy-loader limits.
-   Supply an
-   independently installable dependency-free producer example and a concise
-   author guide for software/article references and per-function declarations.
-2. **Review the separate evidence contracts (roadmap J/F).** Decide schema and
+1. **Review the separate evidence contracts (roadmap J/F).** Decide schema and
    per-original association, unknown versus empty meanings, collection/failure
    guarantees and integrated rendering with receiving evidence. Record explicit
    acceptance, amendment or deferral; do not infer it from successful provider
    delivery. Additional recorders require concrete ownership/use cases, not an
    automatic expansion to every recorder.
-3. **Continue the wider roadmap with owning issues.** K needs platform/client
+2. **Continue the wider roadmap with owning issues.** K needs platform/client
    object-boundary decisions; L needs complete import/activation/runtime/memory/
    reporting cost measurements; M needs actual publication-tool/style round trips;
    N starts with accepting, deferring or excluding acknowledgements. The final
@@ -143,6 +151,6 @@ Guide adoption replies/commits are still separate owner evidence.
   executable changes need meaningful contract/behavior gates. Required source
   range remains Python 3.11–3.14, with installed Linux/macOS arm64 release gates.
 
-The completed #108/#111 implementations do not publish another release or accept
+The completed #108/#111/#113 work does not publish another release or accept
 the remaining evidence contracts. At resumption, inspect current local/remote
-state and owner replies, then start the provider-author guide/example task.
+state and owner replies, then begin their separate contract review.

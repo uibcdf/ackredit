@@ -20,7 +20,8 @@ from ackredit._private.smonitor.warnings import ProviderObservationWarning
 def provider():
     spec = importlib.util.spec_from_file_location(
         "citation_provider",
-        Path(__file__).parent / "fixtures/citation_provider/citation_provider.py",
+        Path(__file__).resolve().parents[1]
+        / "examples/citation_provider/citation_provider.py",
     )
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)

@@ -3,8 +3,10 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ackredit-test-provider"
+name = "ackredit-example-provider"
 version = "2.4.0"
+description = "Dependency-free function citation provider example"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
 

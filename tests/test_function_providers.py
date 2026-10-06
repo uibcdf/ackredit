@@ -17,7 +17,7 @@ import pytest
 import ackredit
 from ackredit._private.smonitor.warnings import ProviderObservationWarning
 
-FIXTURE = Path(__file__).parent / "fixtures" / "citation_provider"
+FIXTURE = Path(__file__).resolve().parents[1] / "examples" / "citation_provider"
 
 
 def test_declared_lazy_exports_are_resolved_only_on_activation(
@@ -600,7 +600,7 @@ def test_normally_installed_provider_and_reader_outside_checkout(tmp_path):
     )
     assert result.returncode == 0, result.stderr
     script = """
-import importlib.abc, pathlib, sys
+import importlib.abc, importlib.metadata, pathlib, sys
 sys.path.insert(0, sys.argv[1])
 class NoAckredit(importlib.abc.MetaPathFinder):
     def find_spec(self, fullname, path=None, target=None):
@@ -611,10 +611,26 @@ sys.meta_path.insert(0, blocked)
 import citation_provider as provider
 assert provider.normalize([1, 3]) == [0.25, 0.75]
 assert "ackredit" not in sys.modules
+distribution = importlib.metadata.distribution("ackredit-example-provider")
+assert distribution.version == "2.4.0"
+assert not distribution.requires
 sys.meta_path.remove(blocked)
 import ackredit
+from ackredit.core.registry import Registry
+original = provider.normalize
+declaration = ackredit.validate_provider(provider)
+assert provider.normalize is original
+assert ackredit.get_used_items() == {}
+assert Registry.items == {}
+assert declaration["software"] == {"name": "Citation Example", "version": "2.4.0"}
+assert "async_normalize" in declaration["functions"]
 with ackredit.observe_calls(provider), ackredit.capture("installed") as run:
+    assert run.attribution.to_dict()["items"] == []
     provider.normalize([1, 3])
+assert provider.normalize is original
+assert {item["id"] for item in run.attribution.to_dict()["items"]} == {
+    "example:software:2.4.0", "example:article"
+}
 pathlib.Path(sys.argv[2]).write_text(run.attribution.to_json())
 assert provider.__file__.startswith(sys.argv[1])
 assert ackredit.__file__.startswith(sys.argv[1])

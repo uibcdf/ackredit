@@ -1,4 +1,4 @@
-"""A genuine installable citation producer with no Ackredit dependency."""
+"""An installable, dependency-free producer with fictional demonstration citations."""
 
 import asyncio
 
