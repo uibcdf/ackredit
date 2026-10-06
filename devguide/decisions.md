@@ -210,13 +210,26 @@
     promote `validate_provider`, require other recorder integration or certify
     client adoption. Canonical guide distribution remains a separate owner route.
 
+19. **Non-bibliographic acknowledgements deferred (`uibcdf/ackredit#124`):**
+    On 2026-10-06 the maintainer chose to postpone independent acknowledgement
+    statements until a real use case exists. Current reports deliver bibliography
+    and contextual use; acknowledgement-labelled headings do not define separate
+    gratitude/funding records. Applications and manuscript authors retain those
+    authored statements. Reopen scope review for an identified workflow owner,
+    actual result, wording/source, saved/reporting route and receiving criterion
+    that show why a separate Ackredit contract is needed. The
+    [archived review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/acknowledgement_scope.md)
+    retains unaccepted design alternatives. No new API/schema, automatic inference,
+    release or current-product/1.0 requirement follows from the deferral.
+
 ## Pending Decisions
 
 Standalone `validate_provider` remains provisional under #111. Its author-facing
 signature/result need a separate promotion decision. The accepted evidence
 promise awaits its delivering release; general 1.0 API commitment, MOLI object
-boundaries, complete-cost measurements, publication-tool expectations and
-acknowledgement scope retain their own decisions in [the roadmap](roadmap.md).
+boundaries, complete-cost measurements and additional publication-tool expectations
+retain their own decisions in [the roadmap](roadmap.md). Acknowledgement scope
+has the explicit deferral in decision 19; revisit it only with the stated real case.
 Broader recorder integration needs a concrete owning use case. Existing portable
 0.9.0 and public provider 0.11.0 promises remain unchanged; source acceptance does
 not impose client adoption.

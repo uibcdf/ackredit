@@ -20,6 +20,23 @@ Choose `--format workflow` to include original contextual uses and graph, or
 [the portable attribution contract](portable_attribution.md) for input/output
 semantics and errors. The default session input mode retains identifier journals.
 
+## Acknowledgement scope
+
+Current Markdown, LaTeX and notebook reports may use acknowledgement-labelled
+headings, but their contents are bibliographic references and contextual credit.
+They do not separately record gratitude to people/institutions or funding
+statements. A bibliography note or use role does not create that separate contract.
+
+On 2026-10-06 the maintainer chose to defer non-bibliographic acknowledgements
+until a real use case exists ([Ackredit #124](https://github.com/uibcdf/ackredit/issues/124)).
+Keep authored acknowledgement text in the application or manuscript. Reopening
+the feature requires an identified workflow owner, an actual result and example
+wording/source, the intended saved/reporting route and observable receiving
+criteria. Existing opaque context remains available without a promise that it is
+a validated acknowledgement representation. Citation formats and original saved
+attribution retain their current contracts; no automatic funding or contributor
+inference is provided.
+
 ## Jupyter Notebook Summary
 In a notebook, you can see a stylized HTML table with clickable links.
 

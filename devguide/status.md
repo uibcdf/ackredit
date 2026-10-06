@@ -238,6 +238,14 @@ and subsequent executed hosted controls retained separately. Broader J work
 and provider/platform review remain open.
 New implementations need focused owning issues.
 
+Theme N's [acknowledgement scope review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/acknowledgement_scope.md)
+records the maintainer's 2026-10-06 decision under #124: defer non-bibliographic
+acknowledgements until an owned real use case supplies example wording/source,
+its intended saved/reporting route and receiving criteria. Current
+acknowledgement-labelled reports contain bibliography; no independent
+acknowledgement API/schema or receiving claim follows. Its implementation is
+conditional future work, separate from the current product and general 1.0 review.
+
 The next J representation milestone #104 implements a provisional explicit
 recorder-evidence companion. Source qualification passes 2,018 Python 3.14 tests
 without skips; a normal installed saved reader retains controlled declarations

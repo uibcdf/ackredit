@@ -104,12 +104,21 @@ collector ownership/failure and reporting limits to original receiving data and
 acceptance-head checks separately from that original qualification. Only
 `validate_provider` remains provisional; its promotion is a separate decision.
 
-1. **Continue the wider roadmap with owning issues.** K needs platform/client
-   object-boundary decisions; L needs complete import/activation/runtime/memory/
-   reporting cost measurements; M needs actual publication-tool/style round trips;
-   N starts with accepting, deferring or excluding acknowledgements. The final
-   general 1.0 review remains separate. #58's optional dashboard is not a priority
-   or a dependency of these steps.
+1. **Retain theme N's accepted deferral and continue the remaining reviews.**
+   The maintainer chose to postpone non-bibliographic acknowledgements until a
+   real use case exists under #124. The
+   [archived review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/acknowledgement_scope.md)
+   gives its reopen condition: an application/workflow owner, actual result,
+   authored wording/source, intended saved/reporting route and receiving criteria.
+   Its draft companion is unaccepted; do not implement it from this review.
+   Theme M is complete for #120–#123's recorded fixtures and real classic
+   BibTeX/Pandoc, BibLaTeX/Biber and JabRef routes; other managers/styles/platforms
+   remain unqualified. L has separate bounded lifecycle/startup/plugin/installed
+   footprint checkpoints #115–#119, with wider workloads and platforms retaining
+   their limits. K's platform/client decisions and the general 1.0 review keep
+   their owners. The next local review is F's general 1.0 stability commitment
+   against actual receiving evidence; that review does not authorize promotion or
+   release. #58's optional dashboard is not a priority or a dependency.
 2. **Qualify the accepted evidence promise when its release is authorized.**
    Select the version from a concrete scope and execute the exact-source,
    installed-file, real receiving and public gates. #114's acceptance does not

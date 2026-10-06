@@ -4,12 +4,13 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (117)
+### Resolved (118)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
 - [`a_cycle_empties_the_provenance_report.md`](a_cycle_empties_the_provenance_report.md) — [#46](https://github.com/uibcdf/ackredit/issues/46) — A recursive function made the provenance report come out empty, and a cycle below a root raised RecursionError. *(resolved, measured)*
 - [`a_renderer_is_handed_the_live_registry.md`](a_renderer_is_handed_the_live_registry.md) — [#53](https://github.com/uibcdf/ackredit/issues/53) — report passed the registry itself to a renderer, and options reached the latex format by name and were dropped for every other. *(resolved, measured)*
+- [`acknowledgement_scope.md`](acknowledgement_scope.md) — [#124](https://github.com/uibcdf/ackredit/issues/124) — Defer non-bibliographic acknowledgements until an owned real use case justifies their contract. *(resolved, asserted)*
 - [`ackredit_cannot_be_installed.md`](ackredit_cannot_be_installed.md) — [#22](https://github.com/uibcdf/ackredit/issues/22) — Publish and verify Ackredit 0.9.0 with its documented public Conda installation. *(resolved, reproduced)*
 - [`ackredit_cannot_cite_itself.md`](ackredit_cannot_cite_itself.md) — [#21](https://github.com/uibcdf/ackredit/issues/21) — A citation tracker that shipped no CITATION.cff and could not be found by its own discovery. *(resolved, reproduced)*
 - [`adopt_smonitor_and_depdigest.md`](adopt_smonitor_and_depdigest.md) — [#6](https://github.com/uibcdf/ackredit/issues/6) — Sixteen failure paths lost their reason; SMonitor and DepDigest replace the hand-rolled equivalents. *(resolved, reproduced)*

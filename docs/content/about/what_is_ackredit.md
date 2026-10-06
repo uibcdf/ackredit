@@ -3,6 +3,11 @@
 
 **Ackredit** is a lightweight Python library designed to provide **runtime-aware citation and acknowledgement tracking** for scientific software and workflows.
 
+Current reports provide bibliographic attribution and contextual use. Independent
+statements thanking people, institutions or funders are deferred until a real use
+case establishes their contract ([#124](https://github.com/uibcdf/ackredit/issues/124)).
+See [the reporting scope](../user_guide/reporting.md#acknowledgement-scope).
+
 ## The Challenge
 Scientific research increasingly relies on a complex stack of libraries, algorithms, and datasets. Typical citation practices are often imprecise:
 *   Users cite a large library (like SciPy) but not the specific algorithm used.

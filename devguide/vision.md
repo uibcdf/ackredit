@@ -3,6 +3,12 @@
 ## What is Ackredit?
 Ackredit is a runtime citation and acknowledgement tracking engine for scientific workflows in Python.
 
+The current product records bibliographic attribution and contextual use.
+Acknowledgement-labelled reports contain references; separate statements thanking
+people, institutions or funders are deferred until an owned real use case justifies
+their contract ([Ackredit #124](https://github.com/uibcdf/ackredit/issues/124)).
+Applications and manuscript authors retain their own acknowledgement text.
+
 Ackredit records references that a workflow credits during execution. Explicit
 tracking on an executed branch provides precise attribution; import hooks and
 static call inspection offer coarser opt-in discovery. Installing a library or

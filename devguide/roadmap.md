@@ -715,8 +715,16 @@ The original vision names citations and acknowledgements. Existing bibliographic
 records and use roles do not define a distinct product contract for thanking
 people, institutions or funders.
 
-- [ ] explicitly accept, defer or exclude non-bibliographic acknowledgements,
-      with concrete user stories and maintained guidance matching the decision;
+On 2026-10-06 the maintainer chose **deferral until a real use case exists** under
+[Ackredit #124](https://github.com/uibcdf/ackredit/issues/124). The
+[archived review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/acknowledgement_scope.md)
+retains alternatives and an unaccepted companion design. Current reports deliver
+bibliographic attribution; acknowledgement-labelled headings do not establish
+independent gratitude/funding records. Applications and manuscript authors retain
+their own authored statements. No new API/schema or automatic inference follows.
+
+- [x] explicitly accept, defer or exclude non-bibliographic acknowledgements:
+      deferred under #124, with candidate stories and maintained scope guidance;
 - [ ] if accepted, define their source, wording responsibility, identity,
       contextual use, distinction from bibliographic works and saved representation;
 - [ ] specify and implement the accepted acknowledgement section/export through
@@ -726,7 +734,12 @@ people, institutions or funders.
 
 This theme starts with a product decision. It does not already promise a funder
 database, automatic acknowledgements, inferred contributions or a mandatory
-feature before 1.0. A deliberate deferral remains visible in the roadmap.
+feature before 1.0. Under the chosen deferral, the remaining implementation and
+receiving criteria are conditional future work, not required current-product or
+1.0 work. Reopen review for an identified application/workflow owner with an
+actual result, authored example wording and source, intended saved/reporting route
+and observable receiving criteria. Establish why bibliography, opaque context or
+application/manuscript text is insufficient before accepting a new contract.
 
 ## Execution order and release checkpoints
 
@@ -751,7 +764,8 @@ The accepted continuation order is:
    completes stable-provider delivery and retains provisional evidence contracts.
 4. Run L's complete-cost measurements and M's publication-tool interoperability
    against selected actual candidates; optimize or repair measured boundaries.
-5. Decide N's acknowledgement scope and implement only its accepted branch.
+5. Retain N's accepted deferral under #124; reopen scope review only when an owned
+   real acknowledgement use case satisfies its stated condition.
 
 Prepare the next delivery from completed, reviewed work; it need not wait for
 every theme. Post-0.10.1 fidelity/performance and saved-result/evidence work is

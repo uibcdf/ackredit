@@ -22,6 +22,11 @@ workflows in Python. Instead of asking users to cite a whole library because the
 installed it, Ackredit records which algorithms, datasets and dependencies a run
 actually reached, and turns that into a citation report with full provenance.
 
+Current acknowledgement-labelled reports contain bibliographic references.
+Independent statements thanking people, institutions or funders are deferred
+until a real use case justifies their contract ([#124](https://github.com/uibcdf/ackredit/issues/124));
+applications and manuscript authors retain their own acknowledgement text.
+
 It is a MolSysSuite component, designed as an optional dependency: a host library keeps
 working when Ackredit is absent.
 
