@@ -195,7 +195,11 @@ The newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
 extension and integrated evidence reporting remain provisional. Their schema,
 positional original-result association, unknown/empty meanings and collection
 guarantees need separate explicit acceptance. Broader recorder coverage is not
-automatically a promotion prerequisite. General 1.0 API commitment, MOLI object
+automatically a promotion prerequisite. The [concrete review](recorder_evidence_contract_review.md)
+under #114 recommends bounded acceptance of the three surfaces and records
+their guarantees, evidence and exclusions; it awaits the principal-maintainer
+decision. It changes no classification or released promise. General 1.0 API
+commitment, MOLI object
 boundaries, publication-tool expectations and acknowledgement scope retain their
 own decisions in [the roadmap](roadmap.md). Existing portable 0.9.0 contracts
 remain unchanged; provider delivery does not impose client adoption.

@@ -145,6 +145,9 @@ schema/meaning changes require a new identifier and unknown identifiers are refu
 extension and integrated evidence reporting remain provisional. Their schema,
 positional per-result association, unknown/empty meanings and collection guarantees
 await separate acceptance; adding other recorders is not automatically required.
+The [concrete evidence review](../developer_guide/recorder_evidence_contract_review.md)
+under #114 maps proposed guarantees to saved receiving data and lifecycle guards;
+its recommendation is awaiting the principal-maintainer decision.
 Client adoption, guide synchronization and client release qualification are
 separate owner decisions. Optional clients retain their absence/failure behavior;
 no client must enable observation automatically.

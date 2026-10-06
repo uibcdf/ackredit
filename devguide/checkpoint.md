@@ -91,12 +91,17 @@ public 0.11.0.
 
 ## Next work, in order
 
-1. **Review the separate evidence contracts (roadmap J/F).** Decide schema and
-   per-original association, unknown versus empty meanings, collection/failure
-   guarantees and integrated rendering with receiving evidence. Record explicit
-   acceptance, amendment or deferral; do not infer it from successful provider
-   delivery. Additional recorders require concrete ownership/use cases, not an
-   automatic expansion to every recorder.
+1. **Record the evidence-contract decision (roadmap J/F, #114).** The
+   [concrete review](recorder_evidence_contract_review.md) recommends bounded
+   acceptance of representation, provider-observer collection and explicitly
+   requested integrated reporting. It maps schema/per-original association,
+   unknown/empty meanings, failure/ownership guarantees and exclusions to real
+   saved receiving data and 149 selected tests, including six supplementary
+   cases. The principal maintainer must explicitly accept, amend or defer each
+   surface. Classification remains provisional until that decision; do not
+   infer it from green tests. Accepted source guidance and a future delivering
+   release need their own scoped work. Additional recorders require concrete
+   owning use cases rather than automatic expansion.
 2. **Continue the wider roadmap with owning issues.** K needs platform/client
    object-boundary decisions; L needs complete import/activation/runtime/memory/
    reporting cost measurements; M needs actual publication-tool/style round trips;
@@ -153,4 +158,4 @@ Guide adoption replies/commits are still separate owner evidence.
 
 The completed #108/#111/#113 work does not publish another release or accept
 the remaining evidence contracts. At resumption, inspect current local/remote
-state and owner replies, then begin their separate contract review.
+state and owner replies, then resolve #114's explicit evidence-contract decision.

@@ -1,5 +1,7 @@
 """Explicit declarations retain bounds without rewriting original use evidence."""
 
+import hashlib
+import json
 import subprocess
 import sys
 from copy import deepcopy
@@ -14,6 +16,98 @@ from ackredit._private.smonitor.exceptions import (
 )
 
 FIXTURE = Path(__file__).parent / "data" / "attribution_v1_pyunitwizard.json"
+HOSTED_FIXTURE = (
+    Path(__file__).parent / "data" / "attribution_evidence_v1_pyunitwizard.json"
+)
+
+
+def test_original_hosted_companion_keeps_versions_occurrences_and_report_defaults():
+    """Read original #106 bytes, rather than regenerating input with this reader."""
+    content = HOSTED_FIXTURE.read_bytes()
+    assert hashlib.sha256(content).hexdigest() == (
+        "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67"
+    )
+    payload = json.loads(content)
+    saved = ackredit.AttributionEvidence.from_json(content.decode())
+    assert saved.to_dict() == payload
+    originals = saved.attribution.attributions
+    assert [item.to_dict()["name"] for item in originals] == [
+        "first",
+        "reused",
+        "recording fault",
+        "selected but unused",
+    ]
+    facts = saved.to_dict()["results"]
+    assert facts[0]["metadata_origins"] == facts[1]["metadata_origins"]
+    assert facts[2]["metadata_origins"] is None
+    assert facts[2]["recording_gaps"][0]["diagnostic_code"] == "ACKREDIT-W019"
+    assert originals[3].to_dict()["items"] == []
+    assert facts[3]["observation_scope"] and facts[3]["recording_gaps"] is None
+    assert all(
+        record["recorder"] == "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        for result in facts
+        for records in result.values()
+        for record in records or []
+    )
+    assert saved.report("workflow") == saved.attribution.report("workflow")
+    assert hashlib.sha256(saved.report("workflow").encode()).hexdigest() == (
+        "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb"
+    )
+    assert hashlib.sha256(
+        saved.report("workflow", include_evidence=True).encode()
+    ).hexdigest() == (
+        "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352"
+    )
+
+
+def test_original_hosted_companion_fresh_reader_is_offline_and_does_not_replay(
+    tmp_path,
+):
+    source = tmp_path / "original.json"
+    source.write_bytes(HOSTED_FIXTURE.read_bytes())
+    program = """
+import importlib.abc, json, pathlib, socket, sys, warnings
+class NoProducer(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname.split('.')[0] in {'pyunitwizard', 'pint', 'unyt'}:
+            raise AssertionError('producer import during original saved reading')
+sys.meta_path.insert(0, NoProducer())
+def forbidden(*args, **kwargs):
+    raise AssertionError('network or new recording during saved reading')
+socket.socket.connect = socket.create_connection = forbidden
+import ackredit
+from ackredit.core import registry, collector, session
+from ackredit.cli import main
+before = ackredit.get_attribution().to_dict()
+items = dict(registry.Registry.items)
+registry.register_item = collector.track_item = collector.aggregate = session.read = forbidden
+source = pathlib.Path(sys.argv[1])
+content = source.read_bytes()
+with warnings.catch_warnings(record=True) as emitted:
+    saved = ackredit.AttributionEvidence.from_json(content.decode())
+    assert saved.to_dict() == json.loads(content)
+    expected = saved.report('workflow', include_evidence=True)
+    assert saved.report('workflow') == saved.attribution.report('workflow')
+    sys.argv = ['ackredit', 'report', str(source), '--input-format', 'evidence',
+                '-f', 'workflow', '--include-evidence']
+    assert main() == 0
+assert emitted == []
+assert source.read_bytes() == content
+assert ackredit.get_attribution().to_dict() == before
+assert registry.Registry.items == items
+assert not {'pyunitwizard', 'pint', 'unyt'} & sys.modules.keys()
+"""
+    run = subprocess.run(
+        [sys.executable, "-c", program, str(source)],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert run.returncode == 0, run.stdout + run.stderr
+    saved = ackredit.AttributionEvidence.from_json(HOSTED_FIXTURE.read_text())
+    assert run.stdout == saved.report("workflow", include_evidence=True) + "\n"
+    assert source.read_bytes() == HOSTED_FIXTURE.read_bytes()
 
 
 def original():

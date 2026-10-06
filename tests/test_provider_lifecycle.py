@@ -1,4 +1,4 @@
-"""Termination and concurrency boundaries of the provisional provider contract."""
+"""Termination and concurrency of providers and provisional recorder evidence."""
 
 import asyncio
 import threading
@@ -46,8 +46,10 @@ def _completion_credit(module):
     )
 
 
+@pytest.mark.parametrize("record_evidence", [False, True])
 def test_cancelled_and_failed_tasks_retain_entry_without_completed_backend(
     lifecycle_provider,
+    record_evidence,
 ):
     module = lifecycle_provider
     credit = _completion_credit(module)
@@ -68,7 +70,10 @@ def test_cancelled_and_failed_tasks_retain_entry_without_completed_backend(
         module.calculate = original = calculate
 
         async def job(name):
-            with ackredit.session(name), ackredit.capture(name) as result:
+            with (
+                ackredit.session(name),
+                ackredit.capture(name, record_evidence=record_evidence) as result,
+            ):
                 captures[name] = result
                 with ackredit.scope("host.complete"), ackredit.observe_calls(module):
                     value = await module.calculate(name)
@@ -114,6 +119,23 @@ def test_cancelled_and_failed_tasks_retain_entry_without_completed_backend(
             assert saved.to_dict() == data
             assert "References:" in saved.report(format="workflow")
             assert ackredit.get_used_items() == {}
+        companion = captured.evidence
+        facts = companion.to_dict()["results"][0]
+        if record_evidence:
+            assert facts["recording_gaps"] is None
+            assert [origin["item_id"] for origin in facts["metadata_origins"]] == [
+                "lifecycle:method"
+            ]
+            assert [scope["boundary"] for scope in facts["observation_scope"]] == [
+                "lifecycle_provider.calculate"
+            ]
+        else:
+            assert all(value is None for value in facts.values())
+        assert companion.attribution.to_dict() == data
+        assert (
+            ackredit.AttributionEvidence.from_json(companion.to_json()).to_dict()
+            == companion.to_dict()
+        )
 
 
 def test_prepared_callable_uses_each_threads_session_and_reused_captures(
@@ -148,9 +170,11 @@ def test_prepared_callable_uses_each_threads_session_and_reused_captures(
     assert ackredit.get_used_items() == {}
 
 
+@pytest.mark.parametrize("record_evidence", [False, True])
 def test_warning_as_error_restores_observer_and_parent_scope(
     lifecycle_provider,
     clean_registry,
+    record_evidence,
 ):
     module = lifecycle_provider
     calls = []
@@ -165,7 +189,10 @@ def test_warning_as_error_restores_observer_and_parent_scope(
         with warnings.catch_warnings():
             warnings.simplefilter("error", ProviderObservationWarning)
             with pytest.raises(ProviderObservationWarning) as error:
-                with ackredit.observe_calls(module), ackredit.capture() as result:
+                with (
+                    ackredit.observe_calls(module),
+                    ackredit.capture(record_evidence=record_evidence) as result,
+                ):
                     clean_registry.items["lifecycle:method"]["title"] = "Changed"
                     module.calculate(3)
         assert error.value.code == "ACKREDIT-W019"
@@ -173,6 +200,17 @@ def test_warning_as_error_restores_observer_and_parent_scope(
         assert result.attribution.to_dict()["items"] == []
         assert get_current_scope() == "parent"
         assert module.calculate is calculate
+        facts = result.evidence.to_dict()["results"][0]
+        if record_evidence:
+            assert facts["metadata_origins"] is None
+            assert [gap["diagnostic_code"] for gap in facts["recording_gaps"]] == [
+                "ACKREDIT-W019"
+            ]
+            assert facts["recording_gaps"][0]["boundary"] == (
+                "lifecycle_provider.calculate"
+            )
+        else:
+            assert all(value is None for value in facts.values())
         # A refused observation leaves no wrapper lease that prevents reuse.
         clean_registry.items["lifecycle:method"] = declared
         with ackredit.observe_calls(module), ackredit.capture() as recovered:
@@ -182,8 +220,10 @@ def test_warning_as_error_restores_observer_and_parent_scope(
         assert module.calculate is calculate
 
 
+@pytest.mark.parametrize("record_evidence", [False, True])
 def test_unawaited_coroutine_cannot_earn_completed_or_entry_credit(
     lifecycle_provider,
+    record_evidence,
 ):
     module = lifecycle_provider
     entered = []
@@ -194,17 +234,22 @@ def test_unawaited_coroutine_cannot_earn_completed_or_entry_credit(
 
     module.calculate = calculate
     with ackredit.session("unawaited"), ackredit.observe_calls(module):
-        with ackredit.capture() as result:
+        with ackredit.capture(record_evidence=record_evidence) as result:
             coroutine = module.calculate()
         coroutine.close()
     assert entered == []
     assert result.attribution.to_dict()["items"] == []
     assert ackredit.get_used_items() == {}
     assert module.calculate is calculate
+    facts = result.evidence.to_dict()["results"][0]
+    assert facts["metadata_origins"] is facts["recording_gaps"] is None
+    assert bool(facts["observation_scope"]) is record_evidence
 
 
+@pytest.mark.parametrize("record_evidence", [False, True])
 def test_delayed_prepared_credit_cannot_change_an_expired_result_capture(
     lifecycle_provider,
+    record_evidence,
 ):
     credit = _completion_credit(lifecycle_provider)
 
@@ -215,21 +260,32 @@ def test_delayed_prepared_credit_cannot_change_an_expired_result_capture(
         async def child():
             ready.set()
             await release.wait()
-            with ackredit.capture("later result") as later:
+            with ackredit.capture(
+                "later result", record_evidence=record_evidence
+            ) as later:
                 credit()
-            return later.attribution.to_dict()
+            return later
 
         with ackredit.session("workflow"):
-            with ackredit.capture("earlier result") as earlier:
+            with ackredit.capture(
+                "earlier result", record_evidence=record_evidence
+            ) as earlier:
                 task = asyncio.create_task(child())
                 await ready.wait()
             saved = earlier.attribution.to_dict()
+            saved_evidence = earlier.evidence.to_dict()
             release.set()
             later = await task
             assert earlier.attribution.to_dict() == saved
+            assert earlier.evidence.to_dict() == saved_evidence
             assert saved["items"] == saved["uses"] == []
-            assert len(later["items"]) == len(later["uses"]) == 1
-            assert ackredit.get_attribution().to_dict()["uses"] == later["uses"]
+            later_data = later.attribution.to_dict()
+            assert len(later_data["items"]) == len(later_data["uses"]) == 1
+            assert ackredit.get_attribution().to_dict()["uses"] == later_data["uses"]
+            assert all(
+                value is None
+                for value in later.evidence.to_dict()["results"][0].values()
+            )
         assert ackredit.get_used_items() == {}
 
     asyncio.run(main())

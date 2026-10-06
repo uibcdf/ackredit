@@ -223,6 +223,14 @@ and [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/recei
 This presentation is delivered in public 0.11.0; provisional review remains
 a separate decision.
 
+The [separate recorder-evidence review](recorder_evidence_contract_review.md)
+under #114 now recommends bounded acceptance of representation, provider-observer
+collection and explicitly requested integrated presentation. An original #106
+hosted companion is retained unmodified; two saved-reader guards and four
+opted-in lifecycle variants pass within 149 selected Python 3.14.7 cases.
+The explicit principal-maintainer decision remains pending. Classification,
+public 0.11.0 and the separate general 1.0 review retain their existing boundaries.
+
 Completed core improvements are tracked separately: #84 implements
 dependency-free function providers and actual-call observation; #85 measures
 and reduces portable capture overhead; #87 prepares fixed explicit contextual

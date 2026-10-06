@@ -279,7 +279,11 @@ maintainer accepted stable source contracts for `observe_calls`,
 `prepare_credit` and `ackredit.provider@1` on 2026-10-06 under #84/#87.
 Their bounded promise is delivered in public 0.11.0; consumer adoption remains separate.
 The newer evidence surfaces still require their own explicit acceptance. Existing names have
-been decided once, on the evidence available now. Names were removed rather than promised:
+been decided once, on the evidence available now. The separate
+[evidence-contract review](recorder_evidence_contract_review.md) under #114
+recommends bounded acceptance of representation, collection and explicit
+presentation, with retained original receiving data and supplementary lifecycle
+guards. Its principal-maintainer decision remains pending. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
 What remains is the unchecked review above: adoption can reopen a decision
@@ -522,6 +526,13 @@ the [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/recei
 keeps the original hosted producer/wheel separate from the local build. This
 bounded presentation checkpoint is resolved and delivered in public 0.11.0 under
 #107; other recorders and final provisional review remain separate.
+
+The separate [J/F contract review](recorder_evidence_contract_review.md) under
+#114 maps the existing representation, collection and presentation to concrete
+guarantees/exclusions and 149 selected source tests, including original hosted
+saved-reader and opted-in lifecycle guards. It recommends accepting the bounded
+three-surface promise; the explicit principal-maintainer decision is pending.
+The wider unchecked J criteria and provisional classifications are retained.
 
 ### Theme K — Attribution at MOLI object boundaries
 

@@ -1,0 +1,432 @@
+{
+  "schema": "ackredit.attribution_evidence@1",
+  "attribution": {
+    "schema": "ackredit.attribution_bundle@1",
+    "name": "real provider evidence",
+    "context": {},
+    "attributions": [
+      {
+        "schema": "ackredit.attribution@1",
+        "name": "first",
+        "context": {},
+        "items": [
+          {
+            "id": "software:pyunitwizard:0.28.0+5.g0e422d0",
+            "type": "software",
+            "title": "UIBCDF/PyUnitWizard",
+            "authors": [
+              "Prada-Gracia, Diego",
+              "Ibarrola-Sánchez, Daniel",
+              "Moreno-Vargas, Liliana M."
+            ],
+            "doi": "10.5281/zenodo.8092688",
+            "url": "https://github.com/uibcdf/pyunitwizard",
+            "version": "0.28.0+5.g0e422d0"
+          },
+          {
+            "type": "software",
+            "title": "Pint: makes units easy",
+            "authors": [
+              "Pint contributors"
+            ],
+            "url": "https://github.com/hgrecco/pint",
+            "id": "software:pint:0.26.1",
+            "version": "0.26.1"
+          }
+        ],
+        "uses": [
+          {
+            "item_id": "software:pyunitwizard:0.28.0+5.g0e422d0",
+            "used_by": "pyunitwizard.convert",
+            "roles": [
+              "executed_software"
+            ],
+            "context": {
+              "software": "pyunitwizard",
+              "version": "0.28.0+5.g0e422d0"
+            }
+          },
+          {
+            "item_id": "software:pint:0.26.1",
+            "used_by": "pyunitwizard.forms.pint.convert",
+            "roles": [
+              "executed_software"
+            ],
+            "context": {
+              "software": "pint",
+              "version": "0.26.1"
+            }
+          }
+        ],
+        "usage_tree": {
+          "pyunitwizard.convert": {
+            "items": [
+              "software:pyunitwizard:0.28.0+5.g0e422d0"
+            ],
+            "children": [
+              "pyunitwizard.forms.pint.convert"
+            ]
+          },
+          "evidence.pipeline": {
+            "items": [],
+            "children": [
+              "pyunitwizard.convert"
+            ]
+          },
+          "pyunitwizard.forms.pint.convert": {
+            "items": [
+              "software:pint:0.26.1"
+            ],
+            "children": []
+          }
+        }
+      },
+      {
+        "schema": "ackredit.attribution@1",
+        "name": "reused",
+        "context": {},
+        "items": [
+          {
+            "id": "software:pyunitwizard:0.28.0+5.g0e422d0",
+            "type": "software",
+            "title": "UIBCDF/PyUnitWizard",
+            "authors": [
+              "Prada-Gracia, Diego",
+              "Ibarrola-Sánchez, Daniel",
+              "Moreno-Vargas, Liliana M."
+            ],
+            "doi": "10.5281/zenodo.8092688",
+            "url": "https://github.com/uibcdf/pyunitwizard",
+            "version": "0.28.0+5.g0e422d0"
+          },
+          {
+            "type": "software",
+            "title": "Pint: makes units easy",
+            "authors": [
+              "Pint contributors"
+            ],
+            "url": "https://github.com/hgrecco/pint",
+            "id": "software:pint:0.26.1",
+            "version": "0.26.1"
+          },
+          {
+            "type": "software",
+            "title": "unyt",
+            "authors": [
+              "unyt developers"
+            ],
+            "url": "https://github.com/yt-project/unyt",
+            "id": "software:unyt:3.1.0",
+            "version": "3.1.0"
+          },
+          {
+            "id": "doi:10.21105/joss.00809",
+            "type": "article",
+            "title": "unyt: Handle, manipulate, and convert data with units in Python",
+            "authors": [
+              "Goldbaum, Nathan J.",
+              "ZuHone, John A.",
+              "Turk, Matthew J.",
+              "Kowalik, Kacper",
+              "Rosen, Anna L."
+            ],
+            "doi": "10.21105/joss.00809",
+            "year": 2018,
+            "journal": "Journal of Open Source Software",
+            "volume": 3,
+            "number": 28,
+            "pages": "809"
+          }
+        ],
+        "uses": [
+          {
+            "item_id": "software:pyunitwizard:0.28.0+5.g0e422d0",
+            "used_by": "pyunitwizard.convert",
+            "roles": [
+              "executed_software"
+            ],
+            "context": {
+              "software": "pyunitwizard",
+              "version": "0.28.0+5.g0e422d0"
+            }
+          },
+          {
+            "item_id": "software:pint:0.26.1",
+            "used_by": "pyunitwizard.forms.pint.quantity_to_unyt",
+            "roles": [
+              "executed_software"
+            ],
+            "context": {
+              "software": "pint",
+              "version": "0.26.1"
+            }
+          },
+          {
+            "item_id": "software:unyt:3.1.0",
+            "used_by": "pyunitwizard.forms.pint.quantity_to_unyt",
+            "roles": [
+              "executed_software"
+            ],
+            "context": {
+              "software": "unyt",
+              "version": "3.1.0"
+            }
+          },
+          {
+            "item_id": "doi:10.21105/joss.00809",
+            "used_by": "pyunitwizard.forms.pint.quantity_to_unyt",
+            "roles": [
+              "software_description"
+            ],
+            "context": {
+              "software": "unyt",
+              "version": "3.1.0"
+            }
+          }
+        ],
+        "usage_tree": {
+          "pyunitwizard.convert": {
+            "items": [
+              "software:pyunitwizard:0.28.0+5.g0e422d0"
+            ],
+            "children": [
+              "pyunitwizard.forms.pint.quantity_to_unyt"
+            ]
+          },
+          "evidence.pipeline": {
+            "items": [],
+            "children": [
+              "pyunitwizard.convert"
+            ]
+          },
+          "pyunitwizard.forms.pint.quantity_to_unyt": {
+            "items": [
+              "doi:10.21105/joss.00809",
+              "software:pint:0.26.1",
+              "software:unyt:3.1.0"
+            ],
+            "children": []
+          }
+        }
+      },
+      {
+        "schema": "ackredit.attribution@1",
+        "name": "recording fault",
+        "context": {},
+        "items": [
+          {
+            "type": "software",
+            "title": "Pint: makes units easy",
+            "authors": [
+              "Pint contributors"
+            ],
+            "url": "https://github.com/hgrecco/pint",
+            "id": "software:pint:0.26.1",
+            "version": "0.26.1"
+          }
+        ],
+        "uses": [
+          {
+            "item_id": "software:pint:0.26.1",
+            "used_by": "pyunitwizard.forms.pint.convert",
+            "roles": [
+              "executed_software"
+            ],
+            "context": {
+              "software": "pint",
+              "version": "0.26.1"
+            }
+          }
+        ],
+        "usage_tree": {
+          "pyunitwizard.convert": {
+            "items": [],
+            "children": []
+          },
+          "evidence.pipeline": {
+            "items": [],
+            "children": [
+              "pyunitwizard.convert",
+              "pyunitwizard.forms.pint.convert"
+            ]
+          },
+          "pyunitwizard.forms.pint.convert": {
+            "items": [
+              "software:pint:0.26.1"
+            ],
+            "children": []
+          }
+        }
+      },
+      {
+        "schema": "ackredit.attribution@1",
+        "name": "selected but unused",
+        "context": {},
+        "items": [],
+        "uses": [],
+        "usage_tree": {}
+      }
+    ]
+  },
+  "results": [
+    {
+      "metadata_origins": [
+        {
+          "item_id": "software:pyunitwizard:0.28.0+5.g0e422d0",
+          "fields": [
+            "authors",
+            "doi",
+            "id",
+            "title",
+            "type",
+            "url",
+            "version"
+          ],
+          "method": "provider_declaration",
+          "source": "pyunitwizard.__ackredit__.items",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ],
+      "observation_scope": [
+        {
+          "boundary": "pyunitwizard.conversion_factor",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.convert",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.quantity",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.standardize",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ],
+      "recording_gaps": null
+    },
+    {
+      "metadata_origins": [
+        {
+          "item_id": "software:pyunitwizard:0.28.0+5.g0e422d0",
+          "fields": [
+            "authors",
+            "doi",
+            "id",
+            "title",
+            "type",
+            "url",
+            "version"
+          ],
+          "method": "provider_declaration",
+          "source": "pyunitwizard.__ackredit__.items",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ],
+      "observation_scope": [
+        {
+          "boundary": "pyunitwizard.conversion_factor",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.convert",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.quantity",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.standardize",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ],
+      "recording_gaps": null
+    },
+    {
+      "metadata_origins": null,
+      "observation_scope": [
+        {
+          "boundary": "pyunitwizard.conversion_factor",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.convert",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.quantity",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.standardize",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ],
+      "recording_gaps": [
+        {
+          "boundary": "pyunitwizard.convert",
+          "diagnostic_owner": "ackredit",
+          "diagnostic_code": "ACKREDIT-W019",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ]
+    },
+    {
+      "metadata_origins": null,
+      "observation_scope": [
+        {
+          "boundary": "pyunitwizard.conversion_factor",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.convert",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.quantity",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        },
+        {
+          "boundary": "pyunitwizard.standardize",
+          "mechanism": "provider_observer",
+          "status": "selected",
+          "recorder": "ackredit:0.10.1+20.g9ca7157:observe_calls"
+        }
+      ],
+      "recording_gaps": null
+    }
+  ]
+}
