@@ -19,6 +19,7 @@ import argparse
 import hashlib
 import json
 import platform
+import re
 import stat
 import sys
 from datetime import datetime, timezone
@@ -101,7 +102,15 @@ def _inventory(prefix: Path) -> dict:
     }
 
 
-def measure(control: Path, delivery: dict, public: dict, samples=7, memory_samples=3):
+def measure(
+    control: Path,
+    delivery: dict,
+    public: dict,
+    samples=7,
+    memory_samples=3,
+    *,
+    issue="uibcdf/ackredit#118",
+):
     """Retain actual public closure and bounded Ackredit import/first-report costs.
 
     Refuse source/shadowed providers, a stale public identity, replaced cached
@@ -111,6 +120,8 @@ def measure(control: Path, delivery: dict, public: dict, samples=7, memory_sampl
     """
     if samples < 2 or memory_samples < 2:
         raise ValueError("Timing and allocation each require at least two samples")
+    if not re.fullmatch(r"uibcdf/ackredit#[1-9][0-9]*", issue):
+        raise ValueError("The study needs an owning Ackredit issue")
     if sys.platform != "linux" or platform.machine() != "x86_64":
         raise ValueError("This study profile requires Linux x86-64")
     prefix, control = Path(sys.prefix).resolve(), control.resolve()
@@ -196,7 +207,7 @@ def measure(control: Path, delivery: dict, public: dict, samples=7, memory_sampl
     added = sorted(a.keys() - b.keys())
     return {
         "schema": "ackredit.public-footprint@1",
-        "issue": "uibcdf/ackredit#118",
+        "issue": issue,
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "platform": sys.platform,
         "architecture": platform.machine(),
@@ -242,6 +253,7 @@ def main():
     parser.add_argument("--public-verification", type=Path, required=True)
     parser.add_argument("--samples", type=int, default=7)
     parser.add_argument("--memory-samples", type=int, default=3)
+    parser.add_argument("--issue", default="uibcdf/ackredit#118")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists():
@@ -252,6 +264,7 @@ def main():
         json.loads(args.public_verification.read_text()),
         args.samples,
         args.memory_samples,
+        issue=args.issue,
     )
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
 

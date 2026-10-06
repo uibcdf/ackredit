@@ -24,6 +24,18 @@ from ackredit.core.registry import Registry
 from ackredit.core.session import current_session
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--require-scoped-providers",
+        action="store_true",
+        help="Fail rather than skip receiving checks when scoped provider APIs are absent",
+    )
+    parser.addoption(
+        "--diagnostic-receiving-python",
+        help="Interpreter for isolated diagnostic-provider probes; defaults to the test interpreter",
+    )
+
+
 @pytest.fixture(autouse=True)
 def _isolated_session():
     current_session().clear()

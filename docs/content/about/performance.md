@@ -7,6 +7,72 @@ Numbers below retain their own dates, sources and measurement boundaries.
 `devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
 Python-allocation measurements. Each is runnable in the stated environment.
 
+(published-diagnostic-providers-2026-10-06)=
+## Published diagnostic providers (2026-10-06)
+
+[#119](https://github.com/uibcdf/ackredit/issues/119) repeats the public receiving
+measurement after SMonitor **0.19.0** and ArgDigest **0.15.0** are published.
+Earlier #115 source-wheel evidence and #118's public 0.18.0/0.14.0 inventory
+retain their original identities below. This new Linux x86-64/Python 3.14.8
+environment selects exact ordinary-channel `smonitor=0.19.0=py_1` and
+`argdigest=0.15.0=py_0`, with the unchanged public Ackredit 0.11.0 archive.
+
+The [new raw receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/public_providers_119_2026-10-06.json)
+retains independently verified registry/index coordinates and actual installed
+provider origins. Public SMonitor's archive SHA-256 is
+`4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c`;
+ArgDigest's is
+`b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1`.
+Only those two package coordinates differ from #118. The same 24 Python-control
+packages remain unchanged, and the six-package increment is now **538,236
+compressed bytes (526 KiB)** and **2,718,363 recorded regular-file bytes
+(2.59 MiB)**. There is still no NumPy in the core receiving environment.
+The metric definitions and limits of the earlier section apply unchanged.
+
+Twenty fresh-process samples use seven timing and three separate allocation
+rounds for each of the two original cases. Cold import has median **177.11 ms**,
+range 154.13–184.80 ms, and median traced peak **10.67 MiB**. The one-reference
+first workflow report has median 1.211 ms. These are unpaired measurements
+against a different provider set; they do not establish a causal speedup over
+#118 or the developer-wheel studies.
+
+The isolated receiving guards configure the application before importing
+Ackredit, then check preserved policy, available catalog codes, repeated
+registration and pure audience-specific rendering. Explicit restrictive
+scopes preserve active Ackredit argument refusals, provider binding/pipelines,
+the native exception object and cause, and every independent result's original
+bibliography. Instrumented argument/native-error conversions remain zero for
+the controlled fixture, including a failed normalization pipeline. This is a
+test of automatic provider-owned capture, not general redaction of original
+citations, caller-supplied context or explicitly formatted metadata.
+
+Both the original public Ackredit file and a normally installed current-runtime
+wheel execute these guards with the new public providers. The fixture's explicit
+`argument_digestion=False` tests ArgDigest pipeline semantics; Ackredit's own
+compatible digestion defaults and four dependency floors remain unchanged.
+Runtime source `9a27f1b4f46c9392f911670f90ad7e8b12ff56c8` is built separately as
+`0.11.0+20.g9a27f1b`; it is a development candidate, not another public release.
+
+For a designated lane, run from outside the checkout:
+
+```bash
+python -m pytest --receptor=llm --require-scoped-providers /path/to/ackredit/tests/test_published_diagnostic_providers.py
+```
+
+`--require-scoped-providers` rejects unavailable capabilities rather than
+skipping. Ordinary lower-bound environments may skip only these optional new
+capability checks. To probe a separate untouched public interpreter without
+adding pytest to its core closure, the runner also accepts
+`--diagnostic-receiving-python /path/to/public/bin/python`; the isolated children
+remove `PYTHONPATH` and execute there.
+
+Reproduce the footprint with the previous commands, adding exact provider pins
+to `conda create` and verifying all three public files with the shared verifier's
+`--inventory` JSON route. Run `benchmark_public_installation.py` with
+`--issue uibcdf/ackredit#119`; its original default remains #118. Wider platform,
+scientific-workload and host-release qualification remain separate. Consumer
+coordination stays in [MolSysSuite #106](https://github.com/uibcdf/molsyssuite/issues/106).
+
 (public-conda-installation-2026-10-06)=
 ## Public Conda installation (2026-10-06)
 

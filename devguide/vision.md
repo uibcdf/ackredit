@@ -50,9 +50,11 @@ and worked examples.
     constructs the specification documents.
 
     **Ackredit's own payload is pure Python; its dependency tree is not.** The
-    published ArgDigest 0.14.0 core no longer requires NumPy; scientific extras
+    published ArgDigest 0.15.0 core does not require NumPy; scientific extras
     may add it. The clean public Linux/Python 3.14 route measured in
-    [#118](https://github.com/uibcdf/ackredit/issues/118) has no NumPy and adds six
+    [#118](https://github.com/uibcdf/ackredit/issues/118), followed by the
+    0.19.0/0.15.0 provider review
+    [#119](https://github.com/uibcdf/ackredit/issues/119), has no NumPy and adds six
     Conda packages, including compiled PyYAML/libyaml, to Python alone. Its
     bounded footprint and original public identity are retained in
     [performance](../docs/content/about/performance.md). ArgDigest also raises

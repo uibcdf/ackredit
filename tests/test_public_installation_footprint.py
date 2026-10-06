@@ -13,6 +13,21 @@ ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / "devtools/receipts/public_installation_118_2026-10-06.json"
 
 
+def _current_footprint():
+    records = [
+        json.loads(path.read_text())
+        for path in (ROOT / "devtools/receipts").glob("public_*.json")
+    ]
+    return max(
+        (
+            record
+            for record in records
+            if record.get("schema") == "ackredit.public-footprint@1"
+        ),
+        key=lambda record: record["checked_at"],
+    )
+
+
 @pytest.fixture
 def tools(monkeypatch):
     monkeypatch.syspath_prepend(str(ROOT / "devtools"))
@@ -233,17 +248,21 @@ def test_footprint_retains_the_original_public_file_and_unchanged_python_control
 
 
 def test_documented_public_argdigest_closure_does_not_require_numpy():
-    receipt = json.loads(RECEIPT.read_text())
+    receipt = _current_footprint()
     installed = receipt["receiving"]["packages"]
-    assert installed["argdigest"]["version"] == "0.14.0"
     assert "numpy" not in installed
     assert not any(d.split()[0] == "numpy" for d in installed["argdigest"]["depends"])
     page = (ROOT / "docs/content/about/installation.md").read_text()
-    assert "ArgDigest 0.14.0 does not require NumPy" in page
+    assert (
+        f"ArgDigest {installed['argdigest']['version']} does not require NumPy" in page
+    )
     assert "requires `numpy`, which conda brings with it" not in page
     assert "PyYAML" in page and "libyaml" in page
+    assert f"{receipt['increment']['archive_bytes'] / 1024:.0f} KiB" in page
     assert f"{receipt['increment']['linked_regular_bytes'] / 1048576:.2f} MiB" in page
-    performance = (ROOT / "docs/content/about/performance.md").read_text()
+    performance = " ".join(
+        (ROOT / "docs/content/about/performance.md").read_text().split()
+    )
     assert f"{receipt['increment']['archive_bytes']:,} compressed bytes" in performance
     assert f"{receipt['increment']['linked_regular_bytes']:,}" in performance
     assert receipt["installed_smoke"]["portable_attribution"] == "passed"
@@ -252,6 +271,45 @@ def test_documented_public_argdigest_closure_does_not_require_numpy():
         assert "numpy" not in sample["facts"]["loaded_roots_after_import"]
         assert "ackredit" not in sample["facts"]["modules_before_import"]
         assert sample["stderr"] == ""
+
+
+def test_followup_records_the_selected_public_providers_and_owning_issue():
+    receipt = _current_footprint()
+    assert receipt["issue"] == "uibcdf/ackredit#119"
+    installed = receipt["receiving"]["packages"]
+    expected = {
+        "smonitor": (
+            "0.19.0",
+            "py_1",
+            "4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c",
+        ),
+        "argdigest": (
+            "0.15.0",
+            "py_0",
+            "b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1",
+        ),
+    }
+    public = {r["package"]: r for r in receipt["shared_public_verification"]["files"]}
+    for name, (version, build, digest) in expected.items():
+        assert (
+            installed[name]["version"],
+            installed[name]["build"],
+            installed[name]["sha256"],
+        ) == (version, build, digest)
+        assert public[name]["sha256"] == digest
+    assert receipt["comparison_with_118"]["changed_packages"] == [
+        "argdigest",
+        "smonitor",
+    ]
+    assert (
+        receipt["public_identity"] == json.loads(RECEIPT.read_text())["public_identity"]
+    )
+
+
+def test_measurement_rejects_a_foreign_or_missing_owning_issue(tools, tmp_path):
+    for issue in ("uibcdf/smonitor#1", "uibcdf/ackredit#0", ""):
+        with pytest.raises(ValueError, match="owning Ackredit issue"):
+            tools.measure(tmp_path, {}, {}, issue=issue)
 
 
 def test_public_samples_keep_timing_and_allocations_separate():

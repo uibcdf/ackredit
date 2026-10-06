@@ -597,6 +597,14 @@ evidence does not close the complete theme: third-party plugin workloads,
 independent graph shapes, other receiving closures and platform coverage remain
 distinct work.
 
+[#119](https://github.com/uibcdf/ackredit/issues/119) extends that public receiving
+evidence to SMonitor 0.19.0 / ArgDigest 0.15.0. The original Ackredit archive is
+unchanged; the core still needs no NumPy. Isolated guards retain application
+policy, argument/pipeline refusals, native failures and each result's credits
+under requested restrictive capture. Current public and development runtime
+identities remain separate, with source/public consumer handoff in MolSysSuite
+#106. This does not change dependency floors/defaults or complete theme L.
+
 - [ ] measure cold import/first use, inactive operation, provider activation,
       tracking/capture, journal writes, snapshot/export and requested large
       reports separately, with actual source/dependency identities and raw samples;

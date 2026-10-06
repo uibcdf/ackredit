@@ -160,6 +160,13 @@ many land before 1.0.0 is an outcome rather than a plan.
   ArgDigest 0.14.0 needs no NumPy for core behavior; PyYAML/libyaml remain native.
   Twenty independent public-runtime samples and installed smoke evidence do not
   establish other closures/platforms, a new release or a scientific speedup.
+  Follow-up #119 receives public SMonitor 0.19.0 / ArgDigest 0.15.0 with the
+  unchanged Ackredit 0.11.0 file: six added packages, 538,236 compressed bytes
+  and 2,718,363 recorded regular-file bytes, still without NumPy. Separate public
+  and normally installed development lanes check application-policy preservation,
+  restrictive capture, native failures and independent result attribution.
+  Dependency floors/default digestion remain unchanged; MolSysSuite #106 owns
+  shared receiving coordination.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable
