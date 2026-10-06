@@ -482,7 +482,8 @@ no skips. All ten original artifact digests verify and independent aggregation
 equals the hosted result. The
 [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
 retains the original development wheel separately from the local build.
-Other recorder origins, broader requested workflow presentation and final
+At this historical checkpoint, broader requested presentation was still pending;
+#106 subsequently implements it. Other recorder origins and final
 provisional-contract review remain pending.
 
 Completed bounded J checkpoints are:
@@ -515,8 +516,8 @@ Original ZIP digests/extracted bytes verify independently and aggregation equals
 the hosted result. Head `30c622b` passes all seven CI jobs and both policies;
 the [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json)
 keeps the original hosted producer/wheel separate from the local build. This
-bounded presentation checkpoint is resolved; other recorders, public delivery
-and final provisional review remain separate.
+bounded presentation checkpoint is resolved and delivered in public 0.11.0 under
+#107; other recorders and final provisional review remain separate.
 
 ### Theme K — Attribution at MOLI object boundaries
 
@@ -578,7 +579,8 @@ fresh scientific benchmarks on every documentation or unchanged-code checkpoint.
 BibTeX, CSL-JSON and the format extension point exist. Development after public
 0.10.1 improves typed CFF work selection (#95), publication kinds/dates/pages
 (#96) and declared person/entity name identity (#98). Those repairs remain
-source changes until a later exact-artifact delivery qualifies them.
+delivered in public 0.11.0 under #107. Actual publication-tool interoperability
+remains the separate work below.
 
 - [ ] exercise exported records with representative real reference-manager
       imports and BibTeX/BibLaTeX or journal-style workflows, recording tested
@@ -619,6 +621,11 @@ feature before 1.0. A deliberate deferral remains visible in the roadmap.
 
 ## Execution order and release checkpoints
 
+The [development checkpoint](checkpoint.md) records the current resumption order:
+complete #108's distribution-input review, then standalone provider validation
+and author tooling. The 0.11.0 release is complete; central handoffs and the
+remaining product decisions below retain their own owners.
+
 The accepted continuation order is:
 
 1. Theme I: portable saved-result CLI and exports, then the reviewed composition
@@ -634,8 +641,9 @@ The accepted continuation order is:
 5. Decide N's acknowledgement scope and implement only its accepted branch.
 
 Prepare the next delivery from completed, reviewed work; it need not wait for
-every theme. Already implemented post-0.10.1 fidelity/performance changes and
-their development receipts remain distinct from a new published artifact.
+every theme. Post-0.10.1 fidelity/performance and saved-result/evidence work is
+delivered in qualified public 0.11.0. Original development receipts remain
+distinct from that published artifact's qualification.
 Select its version when the release scope is concrete, preserve the original
 producer and exact archive digest, and apply the existing source/installed/
 receiving/staging/promotion/public-verification gates. Source completion,

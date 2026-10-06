@@ -178,9 +178,24 @@
     its pipeline needs, without forking. The cost is one public name and three catalog
     codes.
 
+17. **Bounded provider compatibility delivered in 0.11.0 (`uibcdf/ackredit#84/#87/#107`):**
+    on 2026-10-06 the principal maintainer accepted `prepare_credit`, `observe_calls`
+    and `ackredit.provider@1` within their reviewed signatures, interpretation,
+    diagnostics and exclusions. Exact-file source/installed/real receiving gates,
+    public promotion and clean public installation deliver that promise in 0.11.0.
+    Later patch/minor versions retain those meanings; incompatible changes follow
+    the existing deprecation policy, and incompatible declaration interpretation
+    requires a new identifier. Original 0.10.0/0.10.1 provisional contracts are
+    unchanged. The [accepted review](function_provider_contract_review.md) and
+    [API stability](../docs/content/about/stability.md) define the precise boundary.
+
 ## Pending Decisions
 
-The new dependency-free provider schema and `observe_calls` API are provisional
-under Ackredit #84 and MolSysSuite #97. Real producer and receiving review must
-decide promotion or removal before 1.0. Existing portable 0.9.0 contracts remain
-unchanged; `devguide/roadmap.md` carries adoption and qualification separately.
+The newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
+extension and integrated evidence reporting remain provisional. Their schema,
+positional original-result association, unknown/empty meanings and collection
+guarantees need separate explicit acceptance. Broader recorder coverage is not
+automatically a promotion prerequisite. General 1.0 API commitment, MOLI object
+boundaries, publication-tool expectations and acknowledgement scope retain their
+own decisions in [the roadmap](roadmap.md). Existing portable 0.9.0 contracts
+remain unchanged; provider delivery does not impose client adoption.

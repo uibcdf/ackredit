@@ -1,0 +1,216 @@
+{
+  "schema": "ackredit.development-checkpoint@1",
+  "observed_on": "2026-10-06",
+  "reference_head": "aae9ad98c89d162b946a65fa01603707db02359a",
+  "scope": "Documentation-only resumption checkpoint, corrected accepted-provider terminology and incoming #108 record; no new implementation.",
+  "inputs": {
+    "devguide/README.md": "50009b11a73879dd351f83b4bef07235ac3174988b09bf64c7aceae57e9af0d1",
+    "devguide/architecture.md": "870c074ae0df1a3fed19dc7d4eeae47ce86433a7a2e5fab33c6230cc52ed24e5",
+    "devguide/decisions.md": "a818e568c869b3f4f9fc606ee2b21affb8db8d37f448728105ffe12157a1b582",
+    "devguide/checkpoint.md": "e247cdc52a156007e55e3973b689a8c8a7f1ff2df3667cff09e5da9a70aadb50",
+    "devguide/roadmap.md": "5260b21198c5fb679c9d10727837147d5c940adeb205b5a782deaddb7782f5b5",
+    "devguide/pending_proposals/README.md": "4fb775884cb3366dd1e465c15a320f011169abf64b137e9a37cf463bfac17b3e",
+    "devguide/pending_proposals/distribution_adoption_runtime_review.md": "9f032c37387445c799f12541fb6b0fa37803bd5d202176974763733636459385",
+    "docs/content/developer_guide/checkpoint.md": "f255235c67d776db33e95fda639b6219d6520dbf5a1e0f5baab6176b7d643c9a",
+    "docs/content/developer_guide/index.md": "a3520c26df4ae0dc341079151cbad02b99a742ff3c25112586c4683b42b21006"
+  },
+  "local_tests": {
+    "complete": true,
+    "integrity_valid": true,
+    "outcome": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 243,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 243,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 243,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 1.301524918526411,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "70a766888cbcc362118a116bb30b6f8b68306ab92cb9ebb894f05a9a60127930",
+        "records": 730
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "c0267ee485694c3d8f0fc57e9eea6331",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_sha256": "e6c5e31d138bb70067667f87b70dd597565d7e0ad537c72dd233fbbe3dae0ae6"
+  },
+  "strict_sphinx": {
+    "state": "passed",
+    "log_sha256": "b9ed9bb2e68621d71ac2ea2f987c9ded95e33852638032ecc2129cfdc0df76a3"
+  },
+  "report_index": "passed",
+  "diff_check": "passed",
+  "code_changes": "none",
+  "previous_closeout_native_controls": [
+    {
+      "run_id": 37433598657,
+      "head_sha": "aae9ad98c89d162b946a65fa01603707db02359a",
+      "conclusion": "success",
+      "jobs": 7,
+      "manifest_sha256": "fcfe3d68b40127a392d31e4b4160eac4fe9041a9355ce03343efc625a4fe8028",
+      "members": [
+        {
+          "bytes": 12992,
+          "complete": true,
+          "kind": "github.workflow_run",
+          "path": "run.json",
+          "sha256": "eaec2f18f6e54a9527c8733acae5b6b4ca99e659db9534e87fe4d22cab1ee0ba"
+        },
+        {
+          "bytes": 480,
+          "complete": true,
+          "kind": "github.workflow",
+          "path": "workflow.json",
+          "sha256": "150ad965dbdfe135d0661cc500d8046201b486576190cdde2aa3407f1d7ed8b4"
+        },
+        {
+          "bytes": 30163,
+          "complete": true,
+          "kind": "github.jobs",
+          "path": "jobs.json",
+          "sha256": "820b7140fc835d874de31ac0d0a3cc15071238e91f19e41ad1ed31295a879575"
+        },
+        {
+          "bytes": 42,
+          "complete": true,
+          "kind": "github.artifacts",
+          "path": "artifacts.json",
+          "sha256": "733015529a249a421892ec83190af9d23593d1877609d3653ae94f945a220490"
+        },
+        {
+          "bytes": 29954,
+          "complete": true,
+          "kind": "github.check_runs",
+          "path": "checks.json",
+          "sha256": "636f0c7976c9db87c13ed892486ba4073e6763a3df3865c9a9beb1dae36823ad"
+        }
+      ],
+      "complete": true,
+      "warnings": []
+    },
+    {
+      "run_id": 37433599205,
+      "head_sha": "aae9ad98c89d162b946a65fa01603707db02359a",
+      "conclusion": "success",
+      "jobs": 1,
+      "manifest_sha256": "9a28490701cc5cecc1d00c6282ced1d3d249dae440a09b7c293536d0459f501e",
+      "members": [
+        {
+          "bytes": 13231,
+          "complete": true,
+          "kind": "github.workflow_run",
+          "path": "run.json",
+          "sha256": "4ce23ccb55445b9692fc94d41d0c25ebd6c6f2c545db77591a5beebbc784a9c1"
+        },
+        {
+          "bytes": 544,
+          "complete": true,
+          "kind": "github.workflow",
+          "path": "workflow.json",
+          "sha256": "522f9c870b00a8e6fd537f4eae50c1f65ff7aca787e7f730456aae92ef545ff4"
+        },
+        {
+          "bytes": 4747,
+          "complete": true,
+          "kind": "github.jobs",
+          "path": "jobs.json",
+          "sha256": "1f65d7064ca279c1cdfe74d79f95ce55871cf24cb7f92600f94231e9af21e4f4"
+        },
+        {
+          "bytes": 42,
+          "complete": true,
+          "kind": "github.artifacts",
+          "path": "artifacts.json",
+          "sha256": "733015529a249a421892ec83190af9d23593d1877609d3653ae94f945a220490"
+        },
+        {
+          "bytes": 4306,
+          "complete": true,
+          "kind": "github.check_runs",
+          "path": "checks.json",
+          "sha256": "eee889a0e7f44d88ea11e028972c0f60b310a20e3d753065019736e79bb57141"
+        }
+      ],
+      "complete": true,
+      "warnings": []
+    },
+    {
+      "run_id": 37433599278,
+      "head_sha": "aae9ad98c89d162b946a65fa01603707db02359a",
+      "conclusion": "success",
+      "jobs": 1,
+      "manifest_sha256": "1fc5275246dae82bd19650cd3815962384a88d4f934d5c9ecdd9d9574337ffd4",
+      "members": [
+        {
+          "bytes": 13229,
+          "complete": true,
+          "kind": "github.workflow_run",
+          "path": "run.json",
+          "sha256": "3850183b8273d972816eb386b2964fc26da26c73d8813d4339bd51a8b187fab5"
+        },
+        {
+          "bytes": 570,
+          "complete": true,
+          "kind": "github.workflow",
+          "path": "workflow.json",
+          "sha256": "a19ae06388a8c4d12a4d290f679d9d9b2acb6188bcd891a9940711c289686b83"
+        },
+        {
+          "bytes": 4069,
+          "complete": true,
+          "kind": "github.jobs",
+          "path": "jobs.json",
+          "sha256": "53ded4ec04c412f7597b01e523849587a6fb5e5bc490b7de382f3a8a8e6d4843"
+        },
+        {
+          "bytes": 42,
+          "complete": true,
+          "kind": "github.artifacts",
+          "path": "artifacts.json",
+          "sha256": "733015529a249a421892ec83190af9d23593d1877609d3653ae94f945a220490"
+        },
+        {
+          "bytes": 4305,
+          "complete": true,
+          "kind": "github.check_runs",
+          "path": "checks.json",
+          "sha256": "dba93b2832037b6107805505419dcbb8fa197e87d2906b536b2d50f380ffd550"
+        }
+      ],
+      "complete": true,
+      "warnings": []
+    }
+  ],
+  "owning_next_issue": "uibcdf/ackredit#108",
+  "remaining_contracts": "Evidence APIs and general 1.0 review remain separate from delivered stable providers.",
+  "temporary_resource_policy": "Artifacts and evidence may remain in /tmp while needed and must be deleted when no longer needed; no relocation requirement. MolSysSuite #104/MOLI #61 own shared governance adoption.",
+  "limitations": "Local documentation checks do not replace scientific or exact-file qualification. The checkpoint publication head receives its own applicable native controls; future work must recheck environment, source and owner replies."
+}

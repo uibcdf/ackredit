@@ -19,7 +19,7 @@ declared references. Crediting every binding or observing an import is coarser
 than instrumenting the executed branch. Import hooks and static call inspection
 are opt-in discovery aids, not proof that every associated algorithm ran.
 
-Provisional `observe_calls` adds a separate, explicit observation mechanism for
+`observe_calls` adds a separate, explicit observation mechanism for
 dependency-free third-party declarations. A selected module's `__ackredit__`
 metadata (or function metadata referring to that bibliography) states the
 references earned on entry to each declared function. Temporary wrappers
@@ -27,9 +27,11 @@ delegate untouched scientific arguments, results and exceptions; a context-local
 observer lease controls credit and expiration. Original exports are restored
 when the last lease exits. Pre-existing aliases, generators and native internal
 calls are excluded. The [provider guide](../docs/content/user_guide/function_providers.md)
-defines the provisional schema and failure boundaries; this is not suite policy.
+defines the accepted schema and failure boundaries. The bounded compatibility
+promise is delivered in public 0.11.0; client adoption is separately owned.
 
-Provisional `prepare_credit` (#87) exposes preparation of one explicit fixed
+`prepare_credit` (#87), with its bounded promise delivered in public 0.11.0,
+exposes preparation of one explicit fixed
 contextual use for hosts that credit a backend only after completed dispatch.
 It reuses the same private prepared-reference writer as the function observer,
 but creates no scientific call scope or proof of entry. Per-call registry
