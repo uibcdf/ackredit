@@ -33,6 +33,58 @@ _MECHANISMS = {
 }
 
 
+class _ProviderEvidenceBuilder:
+    """Bounded positive facts from the observer, only for opted-in captures."""
+
+    def __init__(self):
+        from .. import __version__
+
+        self.recorder = f"ackredit:{__version__}:observe_calls"
+        self.scopes = {}
+        self.origins = {}
+        self.gaps = {}
+
+    def note(self, boundary, *, record=None, source=None, diagnostic=None):
+        if boundary not in self.scopes:
+            self.scopes[boundary] = dict(
+                boundary=boundary,
+                mechanism="provider_observer",
+                status="selected",
+                recorder=self.recorder,
+            )
+        if record is not None:
+            key = (record["id"], source)
+            if key not in self.origins:
+                self.origins[key] = dict(
+                    item_id=record["id"],
+                    fields=sorted(record),
+                    method="provider_declaration",
+                    source=source,
+                    recorder=self.recorder,
+                )
+        if diagnostic is not None:
+            self.gaps.setdefault(
+                (boundary, diagnostic.code),
+                dict(
+                    boundary=boundary,
+                    diagnostic_owner="ackredit",
+                    diagnostic_code=diagnostic.code,
+                    recorder=self.recorder,
+                ),
+            )
+
+    def payload(self):
+        # Only positive facts: no observations here certify another recorder's
+        # scope or absence of failures, even when this observer saw none.
+        return deepcopy(
+            dict(
+                metadata_origins=list(self.origins.values()) or None,
+                observation_scope=list(self.scopes.values()) or None,
+                recording_gaps=list(self.gaps.values()) or None,
+            )
+        )
+
+
 def _invalid(reason: str) -> None:
     raise AttributionEvidenceError(extra={"reason": reason})
 

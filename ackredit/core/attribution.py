@@ -13,6 +13,9 @@ from .._private.smonitor.exceptions import AttributionConflictError, Attribution
 
 _SCHEMA = "ackredit.attribution@1"
 _captures: ContextVar[tuple[capture, ...]] = ContextVar("ackredit_captures", default=())
+_evidence_captures: ContextVar[tuple[capture, ...]] = ContextVar(
+    "ackredit_evidence_captures", default=()
+)
 
 
 def _invalid(operation: str, reason: str) -> None:
@@ -260,8 +263,14 @@ class capture:
     """
 
     def __init__(
-        self, name: str = "capture", *, context: Mapping[str, Any] | None = None
+        self,
+        name: str = "capture",
+        *,
+        context: Mapping[str, Any] | None = None,
+        record_evidence: bool = False,
     ):
+        if type(record_evidence) is not bool:
+            _invalid("start capture", "record_evidence must be a boolean")
         self.name = _name(name, "start capture")
         self._context = _context(context, "start capture context")
         self._builder = _Builder()
@@ -270,6 +279,12 @@ class capture:
         self._token = None
         self._active = False
         self._entered = False
+        self._evidence_builder = None
+        self._evidence_token = None
+        if record_evidence:
+            from .evidence import _ProviderEvidenceBuilder
+
+            self._evidence_builder = _ProviderEvidenceBuilder()
 
     def __enter__(self) -> capture:
         from .session import current_session
@@ -278,6 +293,14 @@ class capture:
             _invalid("start capture", "a capture instance may be entered only once")
         self._entered = self._active = True
         self._state = current_session()
+        if self._evidence_builder is not None:
+            from .providers import _selected_targets
+
+            for target in _selected_targets():
+                self._evidence_builder.note(target)
+            self._evidence_token = _evidence_captures.set(
+                (*_evidence_captures.get(), self)
+            )
         self._token = _captures.set((*_captures.get(), self))
         return self
 
@@ -285,6 +308,8 @@ class capture:
         with self._lock:
             self._active = False
         _captures.reset(self._token)
+        if self._evidence_token is not None:
+            _evidence_captures.reset(self._evidence_token)
         return False
 
     @property
@@ -292,6 +317,49 @@ class capture:
         """A detached bibliography, retaining this calculation's own references."""
         with self._lock:
             return Attribution(self._builder.payload(self.name, self._context))
+
+    @property
+    def evidence(self):
+        """Provisional detached companion for opt-in provider-recorder evidence.
+
+        Use ``record_evidence=True`` to retain selected observer boundaries,
+        credited provider field sources and diagnosed observation gaps. Other
+        recorders remain unknown. Default captures return unrecorded planes.
+        Scientific completion, call counts and complete coverage are not inferred.
+        """
+        from .evidence import AttributionEvidence
+
+        with self._lock:
+            result = (
+                self._evidence_builder.payload()
+                if self._evidence_builder is not None
+                else None
+            )
+            return AttributionEvidence.from_attribution(
+                self.attribution, results=[result] if result is not None else None
+            )
+
+
+def _provider_evidence_receivers():
+    """The unselected path returns without session/registry lookup or allocation."""
+    active = _evidence_captures.get()
+    if not active:
+        return ()
+    from .session import current_session
+
+    state = current_session()
+    return tuple(run for run in active if run._active and run._state is state)
+
+
+def _note_provider_evidence(
+    receivers, target, *, record=None, source=None, diagnostic=None
+):
+    for run in receivers:
+        with run._lock:
+            if run._active:
+                run._evidence_builder.note(
+                    target, record=record, source=source, diagnostic=diagnostic
+                )
 
 
 def _observe_item(

@@ -14,7 +14,11 @@ from types import ModuleType
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.exceptions import ProviderDeclarationError
 from .._private.smonitor.warnings import ProviderObservationWarning
-from .attribution import _json_copy
+from .attribution import (
+    _json_copy,
+    _note_provider_evidence,
+    _provider_evidence_receivers,
+)
 from .collector import _track_prepared_item
 from .context import scope
 from .registry import Registry
@@ -23,6 +27,18 @@ _lock = threading.RLock()
 _patches = {}
 _observers: ContextVar[tuple] = ContextVar("ackredit_call_observers", default=())
 _SCHEMA = "ackredit.provider@1"
+
+
+def _selected_targets():
+    """Selected exports in this context, including an already active observer."""
+    return sorted(
+        {
+            binding.target
+            for run in _observers.get()
+            if run._active
+            for binding in run._bindings
+        }
+    )
 
 
 def _refuse(module, reason):
@@ -144,6 +160,7 @@ class _Patch:
         self.records = records
         self._registered = {item_id: registered[item_id] for item_id, _ in uses}
         self.target = f"{module.__name__}.{export}"
+        self._evidence_source = f"{module.__name__}.__ackredit__.items"
         self.leases = 0
         self._credits = [
             (
@@ -187,6 +204,7 @@ class _Patch:
     @contextmanager
     def entry(self):
         active_scope = scope(self.target)
+        receivers = _provider_evidence_receivers()
         try:
             # Never attach a replacement bibliography to the original producer
             # version. Check all references before recording any of this call.
@@ -196,18 +214,26 @@ class _Patch:
             active_scope.__enter__()
             for record, roles, key in self._credits:
                 _track_prepared_item(record, self.target, roles, self.context, key)
+                if receivers:
+                    _note_provider_evidence(
+                        receivers,
+                        self.target,
+                        record=record,
+                        source=self._evidence_source,
+                    )
         except Exception as error:
             active_scope.__exit__(None, None, None)
-            warn(
-                ProviderObservationWarning(
-                    extra={
-                        "target": self.target,
-                        "operation": "record call",
-                        "error_type": type(error).__name__,
-                        "error": str(error),
-                    }
-                )
+            diagnostic = ProviderObservationWarning(
+                extra={
+                    "target": self.target,
+                    "operation": "record call",
+                    "error_type": type(error).__name__,
+                    "error": str(error),
+                }
             )
+            if receivers:
+                _note_provider_evidence(receivers, self.target, diagnostic=diagnostic)
+            warn(diagnostic)
             # Scientific exceptions are outside the diagnostic catch. A failed
             # observation must never be mistaken for a scientific call failure.
             yield
@@ -313,6 +339,10 @@ class observe_calls:
                 setattr(binding.module, binding.export, binding.wrapped)
             self._entered = self._active = True
             self._token = _observers.set((*_observers.get(), self))
+        receivers = _provider_evidence_receivers()
+        if receivers:
+            for binding in sorted(self._bindings, key=lambda binding: binding.target):
+                _note_provider_evidence(receivers, binding.target)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -329,14 +359,16 @@ class observe_calls:
                     else:
                         changed.append(binding)
         for binding in changed:
-            warn(
-                ProviderObservationWarning(
-                    extra={
-                        "target": binding.target,
-                        "operation": "restore export",
-                        "error_type": "ExportRebound",
-                        "error": "the export changed during observation; its replacement is preserved",
-                    }
-                )
+            diagnostic = ProviderObservationWarning(
+                extra={
+                    "target": binding.target,
+                    "operation": "restore export",
+                    "error_type": "ExportRebound",
+                    "error": "the export changed during observation; its replacement is preserved",
+                }
             )
+            _note_provider_evidence(
+                _provider_evidence_receivers(), binding.target, diagnostic=diagnostic
+            )
+            warn(diagnostic)
         return False

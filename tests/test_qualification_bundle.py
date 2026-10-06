@@ -80,9 +80,9 @@ def complete_matrix(candidate, monkeypatch):
 
     directory, manifest = candidate
     counts = {
-        "collected": 8,
-        "executed": 8,
-        "passed": 8,
+        "collected": 9,
+        "executed": 9,
+        "passed": 9,
         "failed": 0,
         "skipped": 0,
         "xfailed": 0,
@@ -122,6 +122,9 @@ def complete_matrix(candidate, monkeypatch):
                 "composition.json",
                 "composition-report.md",
                 "composition-reader.json",
+                "provider-evidence.json",
+                "provider-evidence-report.md",
+                "provider-evidence-reader.json",
                 "tests.xml",
             ):
                 (cell / filename).write_text("test fixture")
@@ -176,6 +179,29 @@ def test_previous_seven_test_gate_does_not_qualify_composition(complete_matrix):
     "filename", ["composition.json", "composition-report.md", "composition-reader.json"]
 )
 def test_missing_composition_evidence_is_refused(complete_matrix, filename):
+    cells, directory, _ = complete_matrix
+    (cells / "linux-3.14" / filename).unlink()
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+def test_previous_eight_test_gate_does_not_qualify_provider_evidence(complete_matrix):
+    cells, directory, final = complete_matrix
+    for key in ("collected", "executed", "passed"):
+        final["counts"][key] = 8
+    with pytest.raises(AssertionError):
+        bundle.summarize(cells, directory)
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "provider-evidence.json",
+        "provider-evidence-report.md",
+        "provider-evidence-reader.json",
+    ],
+)
+def test_missing_provider_evidence_is_refused(complete_matrix, filename):
     cells, directory, _ = complete_matrix
     (cells / "linux-3.14" / filename).unlink()
     with pytest.raises(AssertionError):

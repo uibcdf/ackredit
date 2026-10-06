@@ -126,3 +126,12 @@ retains exact source/wheel, complete source events, installed identity and input
 output hashes. Qualification of the final hosted head remains pending; #104 stays
 active until applicable controls execute. Recorder integration and provisional
 promotion are separate follow-ups even after this representation milestone closes.
+
+## Final hosted head observation — 2026-10-05
+
+Head `d7120eb270d016b8b01360b7c5a8512141baf775` suite policy
+37374182562 and publication policy 37374182641 pass. CI 37374181512
+passes six jobs but cancels Linux/Python 3.11 job 111978448341 before any
+steps. Its native annotation identifies hosted runner acquisition failure.
+The missing executed CI cell keeps #104 open. Provider-recorder collection is
+independently owned in #105; no cancelled attempt is relabelled successful.

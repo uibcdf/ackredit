@@ -458,6 +458,13 @@ The [saved-reader receipt](https://github.com/uibcdf/ackredit/blob/main/devtools
 retains exact bytes and limits. Hosted final-head controls, automatic collection
 and real recorder/receiving review remain separate and pending.
 
+The next collector milestone [#105](https://github.com/uibcdf/ackredit/issues/105)
+adds provisional `capture(record_evidence=True)` / `.evidence` support. It collects
+actual overlapping observer selections, field sources for successfully credited
+provider items and owning recording diagnostics. Default captures and original
+portable records remain unchanged. Qualification is underway; other recorder
+origins and broader requested workflow presentation remain pending.
+
 ### Theme K — Attribution at MOLI object boundaries
 
 Coordinate platform decisions in [MOLI #46](https://github.com/uibcdf/moli/issues/46)

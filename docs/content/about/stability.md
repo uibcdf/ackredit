@@ -47,7 +47,7 @@ else links here, so they cannot drift apart.
 | `AttributionEvidence` | provisional | Explicit saved recorder declarations under `uibcdf/ackredit#104`; collection integration and real receiving review must qualify metadata origins, observation boundaries and diagnosed gaps before promotion. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
-| `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. |
+| `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. The opt-in `record_evidence` / `.evidence` development extension is separately provisional under `uibcdf/ackredit#105`. |
 | `get_attribution` | stable | Detaches the enclosing workflow bibliography with original contextual uses; shares the reviewed portable contract under `uibcdf/ackredit#75`. |
 | `bind` | stable | Declares what a target may require. Decision 4: a declaration with an opt-in runtime effect, never automatic. |
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |

@@ -69,6 +69,15 @@ def measure(iterations: int, samples: int) -> dict:
                 "provider_nested",
             ]
         )
+    if hasattr(ackredit.capture, "evidence"):
+        scenarios.extend(
+            [
+                "provider_evidence",
+                "provider_evidence_nested",
+                "evidence_snapshot",
+                "evidence_report",
+            ]
+        )
     prepared_credit = None
     if hasattr(ackredit, "prepare_credit"):
         prepared_credit = ackredit.prepare_credit(
@@ -81,7 +90,10 @@ def measure(iterations: int, samples: int) -> dict:
     for scenario in scenarios:
         timings = []
         count = (
-            min(iterations, 100) if scenario in ("snapshot", "bibtex") else iterations
+            min(iterations, 100)
+            if scenario
+            in ("snapshot", "bibtex", "evidence_snapshot", "evidence_report")
+            else iterations
         )
         for _ in range(samples):
             with ackredit.session("benchmark"), ExitStack() as stack:
@@ -98,12 +110,27 @@ def measure(iterations: int, samples: int) -> dict:
                     "provider_active",
                     "provider_capture",
                     "provider_nested",
+                    "provider_evidence",
+                    "provider_evidence_nested",
+                    "evidence_snapshot",
+                    "evidence_report",
                 ):
                     stack.enter_context(ackredit.observe_calls(provider))
                 if scenario in ("provider_capture", "provider_nested"):
                     stack.enter_context(ackredit.capture("outer"))
                 if scenario == "provider_nested":
                     stack.enter_context(ackredit.capture("inner"))
+                if scenario in (
+                    "provider_evidence",
+                    "provider_evidence_nested",
+                    "evidence_snapshot",
+                    "evidence_report",
+                ):
+                    evidence_run = stack.enter_context(
+                        ackredit.capture("outer", record_evidence=True)
+                    )
+                if scenario == "provider_evidence_nested":
+                    stack.enter_context(ackredit.capture("inner", record_evidence=True))
 
                 def credit():
                     ackredit.track_item(
@@ -130,6 +157,14 @@ def measure(iterations: int, samples: int) -> dict:
 
                     def operation():
                         return ackredit.get_attribution().report(format="bibtex")
+                elif scenario in ("evidence_snapshot", "evidence_report"):
+                    provider.compute(3)
+
+                    def operation():
+                        result = evidence_run.evidence
+                        return (
+                            result.report() if scenario == "evidence_report" else result
+                        )
 
                 operation()
                 start = perf_counter_ns()
@@ -163,6 +198,7 @@ def measure(iterations: int, samples: int) -> dict:
                 "core/attribution.py",
                 "core/collector.py",
                 "core/providers.py",
+                "core/evidence.py",
             )
             if (path := Path(ackredit.__file__).parent / name).is_file()
         },

@@ -537,3 +537,128 @@ assert all(data['uses'][0]['context']['software'] == 'pint' for data in captures
         bundle,
         output,
     )
+
+
+def test_provider_evidence_retains_actual_origins_and_diagnosed_gaps(
+    installed, monkeypatch
+):
+    ackredit, puw, _, output, _ = installed
+    from ackredit._private.smonitor.warnings import ProviderObservationWarning
+    from ackredit.core import providers
+
+    q = puw.quantity([1.0, 2.0], "meter", form="pint")
+    producer_id = puw.__ackredit__["items"][0]["id"]
+    producer_fields = sorted(puw.__ackredit__["items"][0])
+    with (
+        ackredit.session("evidence receiving"),
+        ackredit.scope("evidence.pipeline"),
+        ackredit.observe_calls(puw),
+        puw.attribution(),
+    ):
+        with ackredit.capture("first", record_evidence=True) as first:
+            converted = puw.convert(q, to_unit=q._REGISTRY.centimeter)
+        assert puw.get_value(converted).tolist() == [100.0, 200.0]
+        with ackredit.capture("reused", record_evidence=True) as reused:
+            translated = puw.convert(q, to_form="unyt")
+        assert translated.value.tolist() == [1.0, 2.0] and str(translated.units) == "m"
+        for run in (first, reused):
+            facts = run.evidence.to_dict()["results"][0]
+            assert len(facts["metadata_origins"]) == 1
+            origin = facts["metadata_origins"][0]
+            assert (
+                origin["item_id"] == producer_id and origin["fields"] == producer_fields
+            )
+            assert origin["method"] == "provider_declaration"
+            assert origin["source"] == "pyunitwizard.__ackredit__.items"
+            assert ackredit.__version__ in origin["recorder"]
+            assert facts["recording_gaps"] is None
+            assert len(run.attribution.to_dict()["items"]) > len(
+                facts["metadata_origins"]
+            )
+        with monkeypatch.context() as patch:
+
+            def fail_recording(*args, **kwargs):
+                raise RuntimeError("controlled provider-recorder fault")
+
+            patch.setattr(providers, "_track_prepared_item", fail_recording)
+            with ackredit.capture("recording fault", record_evidence=True) as failed:
+                with pytest.warns(ProviderObservationWarning) as emitted:
+                    result = puw.convert(q, to_unit=q._REGISTRY.centimeter)
+            assert puw.get_value(result).tolist() == [100.0, 200.0]
+            facts = failed.evidence.to_dict()["results"][0]
+            assert facts["metadata_origins"] is None
+            assert any(
+                record["boundary"] == "pyunitwizard.convert"
+                and record["diagnostic_code"] == emitted[0].message.code
+                for record in facts["recording_gaps"]
+            )
+            assert all(
+                record["diagnostic_owner"] == "ackredit"
+                for record in facts["recording_gaps"]
+            )
+        with ackredit.capture("selected but unused", record_evidence=True) as empty:
+            pass
+        assert empty.attribution.to_dict()["items"] == []
+        assert empty.evidence.to_dict()["results"][0]["observation_scope"]
+        runs = [first, reused, failed, empty]
+        bundle = ackredit.compose_attributions(
+            [run.attribution for run in runs], name="real provider evidence"
+        )
+        companion = ackredit.AttributionEvidence.from_attribution(
+            bundle, results=[run.evidence.to_dict()["results"][0] for run in runs]
+        )
+        assert companion.attribution.to_dict() == bundle.to_dict()
+    (output / "provider-evidence.json").write_text(
+        companion.to_json(), encoding="utf-8"
+    )
+    (output / "provider-evidence-workflow.md").write_text(
+        bundle.report(), encoding="utf-8"
+    )
+    _child(
+        """
+import importlib.abc, json, pathlib, socket, sys, warnings
+class NoProducer(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname.split('.')[0] in {'pyunitwizard','pint','unyt'}:
+            raise AssertionError('provider evidence reader imported a producer')
+sys.meta_path.insert(0, NoProducer())
+def forbidden(*args, **kwargs):
+    raise AssertionError('network or new recording')
+socket.create_connection = socket.socket.connect = forbidden
+import ackredit
+from ackredit.core import registry, collector, session
+from ackredit.cli import main
+before = ackredit.get_attribution().to_dict()
+items = dict(registry.Registry.items)
+registry.register_item = collector.track_item = collector.aggregate = session.read = forbidden
+output = pathlib.Path(sys.argv[1])
+path = output/'provider-evidence.json'
+original_bytes = path.read_bytes()
+with warnings.catch_warnings(record=True) as emitted:
+    saved = ackredit.AttributionEvidence.from_json(original_bytes.decode())
+    assert saved.to_dict() == json.loads(original_bytes)
+    results = saved.explain()['results']
+    assert len(results)==4
+    assert results[0]['metadata_origins'][0]['method']=='provider_declaration'
+    assert results[1]['metadata_origins'][0]['source']=='pyunitwizard.__ackredit__.items'
+    assert results[2]['metadata_origins'] is None and results[2]['recording_gaps']
+    assert results[3]['metadata_origins'] is None and results[3]['observation_scope']
+    assert saved.attribution.attributions[-1].to_dict()['items']==[]
+    assert saved.report('workflow') == (output/'provider-evidence-workflow.md').read_text()
+    rendered=saved.report()
+    sys.argv=['ackredit','report',str(path),'--input-format','evidence','-f','explanation','-o',str(output/'provider-evidence-report.md')]
+    assert main()==0
+    assert (output/'provider-evidence-report.md').read_text()==rendered
+assert emitted==[]
+assert path.read_bytes()==original_bytes
+assert ackredit.get_attribution().to_dict()==before and registry.Registry.items==items
+assert not {'pyunitwizard','pint','unyt'} & sys.modules.keys()
+(output/'provider-evidence-reader.json').write_text(json.dumps({
+    'producer_imports':0,'network_attempts':0,'new_credits':0,'new_diagnostics':0,
+    'original_versions_preserved':True,'actual_provider_declaration_origins':True,
+    'controlled_recording_fault_retained':True,'unchanged_workflow_report':True,
+    'scope':'Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown.'
+}))
+""",
+        output,
+    )

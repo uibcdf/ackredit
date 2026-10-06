@@ -241,3 +241,22 @@ ACKREDIT_QUALIFICATION_OUTPUT=/tmp/function-provider-evidence \
 python -m pytest --receptor=llm \
   /path/to/ackredit/devtools/qualification/test_pyunitwizard.py
 ```
+
+## Provider evidence checkpoint (#105)
+
+The next development checkpoint adds a ninth test per cell. It runs actual Pint
+unit conversion and Pint-to-unyt dispatch inside opted-in captures, checks the
+original PyUnitWizard declaration's retained field sources and recorder version,
+and preserves unknown origins for backend credits owned by another recorder.
+A controlled provider-recorder fault retains the diagnosed gap while conversion
+still returns the expected numerical values and units. A selected-but-unused
+capture records selection without creating bibliography.
+
+A fresh producer/engine-blocked, offline reader reconstructs the complete
+companion and unchanged workflow, compares CLI/library explanation and refuses
+new credits or diagnostic replay. Each cell must retain `provider-evidence.json`,
+`provider-evidence-report.md` and `provider-evidence-reader.json`; the aggregate
+now requires nine passing tests and these files. Previous eight-test evidence
+remains historical qualification of its original scope and cannot qualify this
+collector. Source/normal-installed local evidence and the eight-cell hosted
+checkpoint are separate; this milestone does not promote provisional APIs.

@@ -234,7 +234,7 @@ def summarize(directory: Path, bundle: Path) -> dict:
         assert final["complete"] and final["outcome"] == "PASS", final
         assert final["exitstatus"] == 0, final
         counts = final["counts"]
-        assert counts["collected"] == counts["executed"] == counts["passed"] == 8, (
+        assert counts["collected"] == counts["executed"] == counts["passed"] == 9, (
             counts
         )
         assert not any(
@@ -261,6 +261,9 @@ def summarize(directory: Path, bundle: Path) -> dict:
             "composition.json",
             "composition-report.md",
             "composition-reader.json",
+            "provider-evidence.json",
+            "provider-evidence-report.md",
+            "provider-evidence-reader.json",
             "tests.xml",
         ):
             assert (identity.parent / filename).is_file(), (cell, filename)
