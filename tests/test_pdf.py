@@ -6,7 +6,6 @@ still writes the LaTeX and BibTeX sources and reports that the PDF step was
 skipped.
 """
 
-import importlib
 import shutil
 import warnings
 
@@ -14,10 +13,6 @@ import pytest
 
 from ackredit import dump, register_item, track_item
 from ackredit._private.smonitor.warnings import PdfToolWarning
-
-# Resolved explicitly: ackredit.core re-exports a function named `report`,
-# which shadows the submodule of the same name.
-report_module = importlib.import_module("ackredit.core.report")
 
 needs_latex = pytest.mark.skipif(
     shutil.which("pdflatex") is None,
@@ -55,7 +50,7 @@ def test_compilation_emits_no_diagnostic_when_it_succeeds(tmp_path):
 def test_sources_are_written_and_reported_when_latex_is_missing(tmp_path, monkeypatch):
     """Simulated rather than skipped, so the degradation path is covered on a
     developer machine that has LaTeX as well as on a runner that does not."""
-    monkeypatch.setattr(report_module.shutil, "which", lambda name: None)
+    monkeypatch.setattr(shutil, "which", lambda name: None)
 
     register_item(id="paper:2", title="No LaTeX Here", authors=["Author B"], year=2024)
     track_item("paper:2")

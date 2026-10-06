@@ -103,3 +103,15 @@ Another 314 disjoint documentation/report/guide tests pass locally. Ruff lint
 and format, reporting indexes, dependency-route preflight, suite conformance
 and strict Sphinx pass. Sphinx's first restricted-network attempt could not
 download Python's inventory; the network-enabled strict rebuild succeeds.
+
+### Hosted correction (2026-10-06)
+
+The first hosted checkpoint `fad14af` passed docs and policies, but all five
+test jobs failed the same `tests/test_pdf.py` case. That existing test patched
+`report_module.shutil`, a private eager import removed by this change. The local
+selection had covered PDF warnings and real BibTeX compilation but omitted this
+file. It now patches the owning standard-library `shutil.which` directly, and
+the three PDF cases join the selected installed validation. The runtime candidate
+and its original measured wheel bytes are unchanged; final exact-head CI must
+execute again. The original failed run is
+[#37504900987](https://github.com/uibcdf/ackredit/actions/runs/37504900987).
