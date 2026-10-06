@@ -673,19 +673,37 @@ diagnostic from hiding evidence or process status. The host's old LaTeX kernel
 cannot run downloaded BibLaTeX 3.22a; latest-pair compatibility remains unqualified.
 These exact-tool guards do not close reference-manager or journal-style coverage.
 
-- [ ] exercise exported records with representative real reference-manager
+Checkpoint #123 supplies the separate real manager boundary: official portable
+JabRef 5.15 on Linux, explicit BibTeX import/save and native reopen/resave in a
+fresh process with independent preferences. All six citation keys, distinct
+versions/DOI spellings and declared names survive; the imported library adds
+only one final newline, and reopening is byte-identical. Pandoc independently
+reads each file identically, without becoming the manager importer or replacing
+original attribution. Manager/runtime and normally installed Ackredit identities
+verify unchanged. The key-store warning is retained. No GUI, enrichment,
+synchronization, duplicate merging or other-manager/version claim follows.
+
+Together #120–#123 complete the bounded theme M exit criteria for these
+representative fixtures and explicitly recorded manager/style routes. Further
+managers, GUI workflows, journals and tool/platform versions require separate
+qualification rather than an inferred universal compatibility promise.
+
+- [x] exercise exported records with representative real reference-manager
       imports and BibTeX/BibLaTeX or journal-style workflows, recording tested
-      versions, selected styles and intentional unsupported cases;
-- [ ] cover software, datasets, articles, institutional authors, preferred works,
-      structured editors/names, original versions and non-ASCII metadata;
+      versions, selected styles and intentional unsupported cases (#120–#123);
+- [x] cover software, datasets, articles, institutional authors, preferred works,
+      structured editors/names, original versions and non-ASCII metadata in the
+      retained six-record fixture and actual receiving routes (#120/#122/#123);
 - [x] decide duplicate bibliographic identity handling across caller-defined
       IDs/DOI forms under #121: preserve distinct IDs/releases, share only equal
       originals with the same ID and refuse conflicts without replacing them;
-- [ ] define supported presentation expectations and style/plugin boundaries,
+- [x] define supported presentation expectations and style/plugin boundaries,
       including software/dataset entries that a selected BibTeX style cannot
-      render. Reuse a suitable external style engine if one is required;
-- [ ] guard accepted interoperability with retained fixtures/round trips and
-      separate metadata preservation from a tool's chosen formatted output.
+      render, in the maintained publication guide; reuse the recorded Pandoc
+      and BibLaTeX engines for their explicitly selected styles;
+- [x] guard accepted interoperability with retained fixtures, manager fresh-process
+      round trips and original-file checks; separate metadata preservation from
+      the chosen formatted output in #120–#123 tests and receipts.
 
 Export fidelity and citation-style rendering are distinct operations. Ackredit
 must not guess authorship or rewrite original bibliographic claims to make a

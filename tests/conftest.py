@@ -26,6 +26,15 @@ from ackredit.core.session import current_session
 
 def pytest_addoption(parser):
     parser.addoption(
+        "--jabref-distribution",
+        help="Official portable Linux JabRef directory for the real manager receiving checks",
+    )
+    parser.addoption(
+        "--require-jabref-tools",
+        action="store_true",
+        help="Fail rather than skip the optional real JabRef receiving checks",
+    )
+    parser.addoption(
         "--require-biblatex-tools",
         action="store_true",
         help="Fail rather than skip the optional real BibLaTeX/Biber receiving checks",

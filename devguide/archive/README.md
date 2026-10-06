@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (116)
+### Resolved (117)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -59,6 +59,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`installed_plugin_lifecycle.md`](installed_plugin_lifecycle.md) — [#117](https://github.com/uibcdf/ackredit/issues/117) — Measure normally installed plugin packs and guard their actual lifecycle. *(resolved, measured)*
 - [`installed_wheel_omits_subpackages.md`](installed_wheel_omits_subpackages.md) — [#2](https://github.com/uibcdf/ackredit/issues/2) — A literal package list shipped only __init__ and cli, so an installed FlowCite could not be imported. *(resolved, reproduced)*
 - [`isolated_workflow_reader_imports_other_checkout.md`](isolated_workflow_reader_imports_other_checkout.md) — [#77](https://github.com/uibcdf/ackredit/issues/77) — Workflow output guards can import an editable provider from another checkout. *(resolved, reproduced)*
+- [`jabref_receiving.md`](jabref_receiving.md) — [#123](https://github.com/uibcdf/ackredit/issues/123) — Qualify detached BibTeX import and fresh-process resave in JabRef's real CLI. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
 - [`lifecycle_cost_study.md`](lifecycle_cost_study.md) — [#115](https://github.com/uibcdf/ackredit/issues/115) — Measure lifecycle costs and scaling before selecting further optimizations. *(resolved, measured)*
 - [`load_plugins_asks_twice_and_is_asked_nothing.md`](load_plugins_asks_twice_and_is_asked_nothing.md) — [#54](https://github.com/uibcdf/ackredit/issues/54) — The citation plugin loader carried a branch for a Python the package cannot run on, and nothing exercised the promise it makes. *(resolved, measured)*

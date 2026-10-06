@@ -174,7 +174,7 @@ many land before 1.0.0 is an outcome rather than a plan.
   releases, DOI forms and structured names. Selected-style omissions and full-URL
   DOI presentation are explicit in the
   [publication guide](../docs/content/user_guide/publication_tools.md). Other
-  styles and reference-manager imports remain open. Follow-up #121 repairs
+  styles and manager imports have separate receiving checkpoints below. #121 repairs
   supported DOI resolver/label presentation without changing original JSON/BibTeX
   or the explicit ID identity rule: equal same-ID originals share, conflicts
   refuse, and distinct IDs/software releases remain distinct.
@@ -185,7 +185,15 @@ many land before 1.0.0 is an outcome rather than a plan.
   PDFs display versions. The synthetic ISBN warning and generic publisher
   omission remain explicit. A shared devtool correction preserves mixed-encoding
   process bytes and status. Latest tools, journal styles and manager imports
-  remain unqualified; no runtime or release changes follow from this study.
+  remain unqualified by #122; no runtime or release changes follow from that study.
+  Checkpoint #123 adds actual JabRef 5.15 portable Linux CLI import/save and
+  independent-preference reopen/resave. All six original exported records remain
+  intact; the manager adds only a final newline, and reopening is byte-identical.
+  Original attribution, installed files and manager distribution identities
+  remain unchanged, with the key-store warning retained. #120–#123 complete
+  bounded roadmap M for those fixtures and recorded manager/style routes. Other
+  managers, GUI/enrichment/synchronization, journals and versions remain
+  unqualified; there is no new runtime or release change.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable

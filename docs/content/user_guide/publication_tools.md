@@ -108,6 +108,35 @@ The host's LaTeX 2023 kernel cannot run downloaded BibLaTeX 3.22a: its initial
 TeX pass fails on `\IfDocumentMetadataT`. The tested older pair is deliberately
 isolated; compatibility with the latest pair is unqualified.
 
+## JabRef manager import and resave
+
+Checkpoint [#123](https://github.com/uibcdf/ackredit/issues/123) imports the same
+detached bibliography in **JabRef 5.15**, using its official portable Linux
+x86-64 distribution and bundled Java through the no-GUI CLI. A second process
+with fresh preferences reopens and resaves the manager's library. Both preserve
+all six citation keys, distinct software versions and DOI spellings, dataset and
+article metadata, institutional names and declared preferred-work editors.
+The imported file differs from the original BibTeX export by one final newline;
+the reopened file is byte-identical to that imported library. Original attribution
+and export bytes remain unchanged, with no new execution credit.
+
+Pandoc 3.11 independently reads the original/imported/reopened files identically.
+Its BibTeX-to-CSL conversion can recode title case, pages and entry kinds; that
+converted data is separate from the manager's preserved BibTeX and the original
+attribution. All selected manager distribution files and normally installed
+Ackredit files verify unchanged. The
+[manager receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/jabref_receiving_123_2026-10-06.json)
+retains the official archive hash, launcher/runtime inventory, exact commands,
+isolated preference roots, original and manager files, reader conversions and
+process output identities.
+
+The explicit import emits `WARN: JabRef could not open the key store` in this
+environment; the warning and native process status are retained. This checkpoint
+covers the documented CLI import and persisted-file route on Linux/Python 3.14.8.
+GUI interaction, enrichment, synchronization, duplicate detection/merging and
+other managers or versions remain unqualified. The six synthetic records do not
+establish arbitrary-Unicode or every bibliographic-field compatibility.
+
 ## Presentation boundaries
 
 | Boundary | Observed behavior |
@@ -122,8 +151,10 @@ isolated; compatibility with the latest pair is unqualified.
 
 This does not establish Zotero, Mendeley or EndNote imports, general BibLaTeX/Biber
 compatibility, arbitrary Unicode with every TeX engine, or journal-style coverage.
-Reference-manager imports and other styles remain open roadmap work; duplicate
-identity follows the explicit ID/original-record policy above.
+The bounded roadmap M checkpoint is complete for these recorded manager/engine
+routes and fixtures. Additional managers, GUI routes and styles need their own
+receiving evidence; duplicate identity follows the explicit ID/original-record
+policy above.
 Distinct IDs and different software releases are not silently combined because
 their DOIs resemble one another. Other presentation can use an external style
 engine or the [format extension point](reporting.md#adding-your-own-format).
@@ -182,3 +213,35 @@ and receipt guards still execute. Publication probes share a process capture
 helper that preserves exact stdout/stderr bytes and exit status, rendering
 undecodable bytes as explicit escapes. Local raw streams remain available for
 diagnosis.
+
+For the separate JabRef route, supply the unpacked official portable Linux
+distribution and make Pandoc available:
+
+```bash
+python /path/to/ackredit/devtools/check_jabref.py \
+  --attribution /path/to/result.json --output /tmp/jabref-probe \
+  --distribution /path/to/JabRef
+```
+
+The tool executes that distribution's `lib/runtime/bin/JabRef` with `-n`, imports
+explicitly as BibTeX and writes a separate library, then reopens/resaves it with
+new preferences. Java home/preferences/temp and XDG config/cache/data roots are
+selected only for each child under the new output directory. It does not change
+the system Java, install a manager or open an existing human library. The output
+directory must be outside the manager distribution, whose files are checked
+before/after. The
+[official CLI documentation](https://docs.jabref.org/advanced/commandline)
+describes import, output and no-GUI options; #123 uses flags supported by the
+recorded 5.15 release.
+
+The designated local regression runs both ordinary and space-containing paths:
+
+```bash
+python -m pytest --receptor=llm --require-jabref-tools \
+  --jabref-distribution /path/to/JabRef tests/test_jabref_receiving.py
+```
+
+This command fails if the selected distribution or Pandoc is absent. Ordinary
+CI can skip the two live manager cases while still executing retained-file,
+identity, process-environment and failure guards. Successful CLI status alone
+does not substitute for reviewing the actual saved records and warnings.

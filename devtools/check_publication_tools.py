@@ -27,18 +27,26 @@ def _sha(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
 
 
-def _run(command: list[str], directory: Path, steps: list[dict]) -> str:
+def _run(
+    command: list[str],
+    directory: Path,
+    steps: list[dict],
+    *,
+    env: dict[str, str] | None = None,
+) -> str:
     """Retain exact process bytes; render undecodable bytes as explicit escapes.
 
     TeX output can mix encodings. Capture bytes before decoding so a diagnostic
     cannot prevent preservation of either stream or the real process status.
+    Explicit environment overrides affect only this child and are recorded
+    separately; inherited environment values are never printed into a receipt.
     """
     process = subprocess.run(
         command,
         cwd=directory,
         capture_output=True,
         timeout=60,
-        env={**os.environ, "TEXMFVAR": str(directory / "texmf-var")},
+        env={**os.environ, "TEXMFVAR": str(directory / "texmf-var"), **(env or {})},
     )
     name = f"process-{len(steps) + 1}"
     (directory / f"{name}.stdout.txt").write_bytes(process.stdout)
@@ -53,6 +61,8 @@ def _run(command: list[str], directory: Path, steps: list[dict]) -> str:
             "text_rendering": "UTF-8 with explicit backslash escapes for undecodable bytes",
         }
     )
+    if env is not None:
+        steps[-1]["environment_overrides"] = env
     (directory / "processes.json").write_text(json.dumps(steps, indent=2) + "\n")
     process.check_returncode()
     return process.stdout.decode("utf-8", errors="backslashreplace")
