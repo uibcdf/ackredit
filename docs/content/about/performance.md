@@ -7,7 +7,81 @@ Numbers below retain their own dates, sources and measurement boundaries.
 `devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
 Python-allocation measurements. Each is runnable in the stated environment.
 
+## Installed development follow-up (2026-10-06)
+
+The repeat under [#115](https://github.com/uibcdf/ackredit/issues/115) selects
+clean SMonitor `6feac97` and ArgDigest `5e7925d`, after their scoped-diagnostics
+changes. Ackredit `b8f7100`, DepDigest `0568f9a` and PyUnitWizard `2ab37a5`
+are also built once from clean temporary clones and normally installed as
+development wheels. Runtime and distribution versions now agree, and the
+existing receiving verifier checks every shipped file against its original
+wheel. See the [installation receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/lifecycle_installed_115_2026-10-06.json).
+The original checkouts are unchanged. This is Linux/Python 3.14.7 with scientific
+dependencies inherited from the maintained Conda environment, not a clean public
+Conda installation, a release or complete supported-platform qualification.
+
+The [follow-up samples](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/lifecycle_followup_115_2026-10-06.json)
+retain 34 cases, seven timing and three separate allocation samples each.
+The original 24 cases are joined by ten explicitly requested metadata-only
+scientific cases. Actual package fingerprints remain fixed throughout. Every
+final output element, unit and credited version passes the same guards; all
+scientific modes produce the same value digest for their input size. Journals
+and snapshots still round-trip, and all worker stderr fields are empty.
+
+Cold import has median 173.26 ms and range 151.22–191.88 ms, with a peak of
+10.69 MiB of traced Python allocations. First registration and first plain
+credit have medians 120.28 and 18.78 µs. Activation of a 1,000-function/reference
+provider takes 27.54 ms. With 1,000 unique references, a snapshot takes 20.21 ms,
+JSON export 2.38 ms and the first requested workflow report 49.16 ms. Journal
+tracking takes 75.34 ms, excluding its separately measured open/close and reports.
+These stages identify where to profile next. Their comparison with the earlier
+temporary-source snapshot changes source versions and installation layout;
+it is not an isolated before/after measurement of either dependency's speedup.
+
+SMonitor's metadata-only policy is entered explicitly around the scientific
+calls. Scope entry/exit and warm-up remain outside the timed loops. ArgDigest's
+new independent selection remains at its compatible default: Ackredit still
+runs its argument digesters, signature rules and refusal contracts. No public
+validation is bypassed. Microseconds per conversion below show median and range;
+each cell compares ordinary diagnostics with the explicitly restricted scope.
+
+| Conversion | One value: ordinary / metadata-only | 100,000 values: ordinary / metadata-only |
+| --- | --- | --- |
+| Unattributed control | 48.13 (46.52–55.49) / 59.79 (56.70–68.60) | 125.23 (123.17–126.92) / 127.56 (126.91–133.94) |
+| Backend attribution | 78.07 (74.68–94.65) / 88.35 (85.68–93.63) | 151.23 (145.99–156.48) / 158.36 (155.05–168.74) |
+| Public observation and backend | 95.27 (94.54–110.19) / 104.67 (101.06–109.60) | 172.14 (163.94–177.79) / 185.86 (176.98–225.40) |
+| Observation inside a result capture | 100.81 (98.00–111.60) / 110.20 (106.13–114.92) | 171.64 (166.20–181.01) / 183.83 (175.66–200.77) |
+| Capture with recorder evidence | 103.26 (102.51–120.00) / 115.37 (110.31–123.89) | 174.12 (171.51–178.63) / 187.95 (184.27–191.65) |
+
+The restricted scope adds about 9.4 and 12.2 µs to the captured conversion
+medians for these two sizes. Successful calls here do not format failure
+payloads, so this study cannot establish savings on error-heavy workflows.
+The policy restricts SMonitor/ArgDigest-owned diagnostic collection; original
+scientific bibliography and recorder evidence remain available. These successful
+workloads do not prove a general provider redaction contract.
+
+The unchanged portable tool has its
+[own follow-up receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/lifecycle_portable_followup_115_2026-10-06.json).
+Its medians include 0.085 µs for the unobserved synthetic function, 7.46 µs
+with observation and 2.85 µs for a prepared credit inside a capture. Those
+warmed figures exclude import, activation and first use.
+
+```bash
+python devtools/benchmark_lifecycle.py --scientific --scoped-diagnostics --samples 7 --memory-samples 3 --output lifecycle.json
+```
+
+`--scoped-diagnostics` requires the scientific cases and SMonitor's actual
+scope capability; it never silently substitutes ordinary diagnostics. This
+completes the first #115 measurement checkpoint. Next profiling should separate
+first-report format-plugin discovery from warmed rendering and investigate cold
+initialization in its owning modules. Plugin packs, independent graph shapes,
+external installed dependency closure and the wider platform matrix remain
+roadmap L work.
+
 ## Provisional lifecycle reference (2026-10-06)
+
+The installed follow-up above supersedes this snapshot as the current reference.
+Its original samples and limits remain historical evidence.
 
 [Ackredit #115](https://github.com/uibcdf/ackredit/issues/115) adds a bounded
 Linux/Python 3.14.7 study. It remains provisional while SMonitor development is

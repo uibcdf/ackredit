@@ -132,3 +132,25 @@ def test_changing_loaded_sources_cannot_produce_a_successful_study(monkeypatch):
     monkeypatch.setattr(benchmark, "child", changing_child)
     with pytest.raises(RuntimeError, match="Loaded package changed.*provider"):
         benchmark.study({"case": {"kind": "references", "size": 1}}, 2, 2)
+
+
+def test_scoped_diagnostics_require_actual_scientific_cases(tmp_path):
+    import subprocess
+    import sys
+
+    output = tmp_path / "study.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "devtools/benchmark_lifecycle.py"),
+            "--scoped-diagnostics",
+            "--output",
+            str(output),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 2
+    assert "scoped diagnostics require the scientific cases" in result.stderr
+    assert not output.exists()

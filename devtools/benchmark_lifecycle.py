@@ -324,6 +324,14 @@ def scientific(case, memory):
     target = quantity._REGISTRY.centimeter
     mode = case["mode"]
     with ackredit.session("scientific control"), ExitStack() as stack:
+        if case.get("metadata_only", False):
+            import smonitor
+
+            stack.enter_context(
+                smonitor.diagnostic_scope(
+                    safe_extra={"operation": "ackredit-lifecycle-benchmark"}
+                )
+            )
         if mode != "ordinary":
             stack.enter_context(puw.attribution())
         if mode in {"observed", "capture", "evidence"}:
@@ -372,6 +380,7 @@ def scientific(case, memory):
             "software": software,
             "references": len(data["items"]),
             "evidence_recorded": evidence is not None,
+            "metadata_only": case.get("metadata_only", False),
         }, stages
 
 
@@ -465,6 +474,11 @@ def main():
         action="store_true",
         help="Require and measure real PyUnitWizard conversion",
     )
+    parser.add_argument(
+        "--scoped-diagnostics",
+        action="store_true",
+        help="Also require and measure SMonitor's metadata-only scientific scopes",
+    )
     parser.add_argument("--output", type=Path)
     arguments = parser.parse_args()
     if arguments.worker:
@@ -472,6 +486,8 @@ def main():
         return
     if arguments.samples < 2 or arguments.memory_samples < 2 or not arguments.output:
         parser.error("output is required; timing and memory need at least two samples")
+    if arguments.scoped_diagnostics and not arguments.scientific:
+        parser.error("scoped diagnostics require the scientific cases")
     cases = {"cold_import": {"kind": "import"}}
     for size in (1, 100, 1000):
         cases[f"activation_{size}"] = {"kind": "activation", "size": size}
@@ -495,6 +511,11 @@ def main():
                     "mode": mode,
                     "iterations": 1000 if size == 1 else 100,
                 }
+                if arguments.scoped_diagnostics:
+                    cases[f"science_{size}_{mode}_metadata_only"] = {
+                        **cases[f"science_{size}_{mode}"],
+                        "metadata_only": True,
+                    }
     receipt = {
         "schema": "ackredit.lifecycle-benchmark@1",
         "python": platform.python_version(),
