@@ -62,19 +62,25 @@ public surface: `Registry` and `Collector` are reached through `register_item`,
 
 ## Decorators & Context
 
-`observe_calls(*modules)` is a provisional, opt-in context for observing actual
+`observe_calls(*modules)` is an opt-in context for observing actual
 calls to declared direct function exports of already imported modules. Its
 [third-party provider guide](../user_guide/function_providers.md) specifies
 dependency-free declarations, citation roles, restoration and observation limits.
-It is development functionality; public Ackredit 0.9.0 does not include it.
+Its bounded stable promise starts at public 0.11.0; public 0.9.0 does not include it.
 
-`prepare_credit(item_id, used_by, *, roles=(), context=None)` provisionally
+`prepare_credit(item_id, used_by, *, roles=(), context=None)`
 prepares a fixed contextual use of an already registered reference and returns
 an explicit credit callable. The host invokes it when scientific dispatch
 earns that reference; it creates no call scope or automatic observation.
 The same [provider guide](../user_guide/function_providers.md) documents its
 detachment, current-capture behavior and replacement diagnostics. Public 0.9.0
-does not expose it; its owning review is Ackredit #87.
+does not expose it; public 0.11.0 delivers its bounded stable promise under #87.
+
+`validate_provider(module) -> dict` is a provisional standalone preflight added
+in development after 0.11.0 under Ackredit #111. It returns a detached normalized
+declaration using the observer's parser, without credit, bibliography
+registration or Ackredit wrappers. The same provider guide specifies explicit
+lazy-export resolution, catalog refusals and validation limits.
 
 ```{eval-rst}
 .. automodule:: ackredit.core.decorators

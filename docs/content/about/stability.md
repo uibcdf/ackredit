@@ -35,7 +35,7 @@ promise below.
 
 ## The surface
 
-Forty-one names are stable and one provisional — every one has been decided once, on
+Forty-one names are stable and two provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -45,6 +45,7 @@ else links here, so they cannot drift apart.
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
 | `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; the unpublished bundle envelope is separate from the released schema-1 promise. |
 | `AttributionEvidence` | provisional | Representation, opt-in collection and integrated rendering are qualified under `uibcdf/ackredit#104/#105/#106`. Explicit acceptance of its schema, per-result association, unknown/empty meanings and collection guarantees remains separate from the provider decision. |
+| `validate_provider` | provisional | Standalone declaration preflight under `uibcdf/ackredit#111`; the module argument and detached normalized return are a development API pending author-tooling experience and explicit promotion. Accepted `ackredit.provider@1` meaning is unchanged. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
 | `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. The opt-in `record_evidence` / `.evidence` development extension is separately provisional under `uibcdf/ackredit#105`. |

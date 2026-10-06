@@ -11,6 +11,8 @@ from copy import deepcopy
 from functools import wraps
 from types import ModuleType
 
+from smonitor import signal
+
 from .._private.smonitor.emitter import warn
 from .._private.smonitor.exceptions import ProviderDeclarationError
 from .._private.smonitor.warnings import ProviderObservationWarning
@@ -147,7 +149,27 @@ def _read(module):
         ):
             _refuse(name, f"{export} yields; generator observation is unsupported")
         plans.append((module, export, function, normalized, context, records))
-    return plans, records
+    data["functions"] = declarations
+    return plans, records, data
+
+
+@signal(tags=["ackredit", "provider", "validation"])
+def validate_provider(module: ModuleType) -> dict:
+    """Validate one imported provider without activating observation.
+
+    Return a detached ``ackredit.provider@1`` declaration containing original
+    software identity, all local items and merged module/function uses. Role
+    order and duplicates are retained so function metadata continues to agree.
+    Invalid declarations raise catalog error ``ACKREDIT-E012`` (a ValueError).
+
+    This provisional API neither records uses, registers bibliography, patches
+    exports nor checks conflicts with the current registry. Explicit lazy
+    exports may invoke the producer's loader; unrelated exports are not swept.
+    Pass a trusted ordinary module object, not an import name or subclass.
+    """
+    with _lock:
+        _, _, declaration = _read(module)
+    return declaration
 
 
 class _Patch:
@@ -281,7 +303,7 @@ class observe_calls:
             # Read exports and manage leases under the same lock: concurrent
             # activation/exit must not capture an already expired wrapper.
             for module in unique:
-                selected, declared = _read(module)
+                selected, declared, _ = _read(module)
                 plans.extend(selected)
                 for item_id, record in declared.items():
                     if item_id in records and records[item_id] != record:

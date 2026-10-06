@@ -157,8 +157,10 @@ The maintainer-accepted continuation under Ackredit #100 is maintained in
 [roadmap themes I–N](roadmap.md): portable saved-result CLI and composition,
 scope/reference-origin/gap explanations, MOLI object-boundary decisions,
 complete lifecycle cost, real publication-tool interoperability and the scope
-of non-bibliographic acknowledgements. Theme G also plans a standalone inert
-declaration validator and a concise external-producer guide. These are planned
+of non-bibliographic acknowledgements. Theme G implements the provisional
+standalone declaration validator in development under #111 and still plans a
+concise external-producer guide. Its source integration, public delivery and
+API promotion remain separate. The other themes retain planned
 implementations or decisions, not capabilities already shipped or implicit
 conditions for every client or the general 1.0 stability commitment. Portable
 CLI report/export is implemented in development under #101. #102 implements

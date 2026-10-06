@@ -320,10 +320,12 @@ measures portable capture separately from the historical plain tracking path.
       coordinated with MolSysSuite #97/MOLI #46, without requiring client adoption;
 - [x] qualify and publish 0.11.0 delivering the accepted stable-provider promise,
       retaining the original exact file and separate public verification under #107;
-- [ ] provide a documented standalone declaration validator, with a chosen
+- [x] implement a documented standalone declaration validator in development
+      under #111, with a chosen provisional
       public/API stability boundary, that checks offline metadata without
       recording uses, installing wrappers, registering bibliography or querying
       a DOI; callers and tooling must reuse the provider-owned validation;
+      source integration and public delivery remain separate from local evidence;
 - [ ] offer a concise third-party author guide and an independently installable
       dependency-free producer example; a producer's declaration requires no
       Ackredit import, decorator or runtime dependency;

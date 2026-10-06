@@ -66,6 +66,44 @@ module and function declare the same export, their uses must agree. Roles such
 as `executed_software`, `software_description`, `scientific_criterion` and
 `reference_implementation` describe the use rather than modifying the article.
 
+## Validate without observing
+
+Development after public 0.11.0 adds provisional
+`ackredit.validate_provider(module) -> dict` under Ackredit #111. It is not
+available in public 0.11.0. Pass one already imported ordinary module:
+
+```python
+import ackredit
+import example
+
+declaration = ackredit.validate_provider(example)
+assert declaration["software"] == {"name": "Example", "version": "2.4.0"}
+```
+
+The returned dictionary is a detached `ackredit.provider@1` declaration. It
+includes all local bibliography and merges module declarations with metadata
+on direct function exports. Role order and duplicates are retained so a returned
+declaration still agrees with the producer's function metadata; unused items
+remain declared. JSON-compatible tuples become lists. Editing the result does
+not edit the producer. Each call reads
+current metadata afresh and uses the same declaration parser as observation.
+
+Validation checks required fields, local references, supported function kinds
+and module/function agreement. Invalid declarations raise catalog error
+`ACKREDIT-E012`, a `ValueError`; they do not return a partial result. Validation
+does not execute scientific functions, record uses, register bibliography,
+install Ackredit wrappers or query a DOI. It does not check the current
+registry's conflicts, DOI validity, scientific correctness or citation quality.
+An independently valid declaration can still conflict with another provider
+when an observer is activated.
+
+Declared lazy exports invoke the selected producer's loader, just as activation
+does. Such loaders may import code or populate the producer's cache; Ackredit
+does not roll back their side effects. Undeclared lazy exports are not resolved.
+Use trusted modules. The new validator's public signature and result
+construction remain provisional; the accepted declaration protocol and
+observer compatibility promise retain their separate release boundary.
+
 ## Observe actual entries into selected functions
 
 ```python

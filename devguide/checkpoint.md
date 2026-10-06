@@ -51,6 +51,18 @@ records the scope.
 
 ## Next work, in order
 
+The source proposal for standalone validation is now tracked in
+[Ackredit #111](https://github.com/uibcdf/ackredit/issues/111). It adds provisional
+`validate_provider(module) -> dict` through the observer's existing parser,
+without Ackredit credit/registry/export mutations. Local Python 3.14 validation
+passes 2,122 tests without skips or warnings, required Ruff and strict docs.
+The proposal uses an isolated branch/worktree; default-branch integration and
+its exact-head gates are distinct from public delivery. After integration,
+continue with the external-producer author guide/example in item 2. Distribution
+#108 still waits for acceptance of [MolSysSuite #105](https://github.com/uibcdf/molsyssuite/pull/105)
+and [Ackredit #110](https://github.com/uibcdf/ackredit/pull/110); the validator
+does not depend on those proposed distribution tools.
+
 1. **Complete the distribution-input review, #108.** Read the
    [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/distribution_adoption_runtime_review.md)
    and [owning issue](https://github.com/uibcdf/ackredit/issues/108).
