@@ -1,0 +1,98 @@
+# Requirements belong to pyproject.toml; this inventory classifies their routes.
+# Shared tool proposal: uibcdf/molsyssuite#45; consumer adoption: uibcdf/ackredit#108.
+schema = "molsyssuite.dependency-routes@1"
+reason = "Member-owned review of every maintained Ackredit runtime/build/CI route"
+source_routes = []
+source_reason = "No required Ackredit sibling is source-supplied. PyUnitWizard is a pinned receiving fixture, and candidate/released Ackredit wheels are qualified artifacts; smonitor/depdigest/argdigest remain Conda-supplied."
+
+[shared_tool]
+repository = "uibcdf/molsyssuite"
+commit = "43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc"
+
+[[recipes]]
+path = "devtools/conda-build/meta.yaml"
+kind = "shared-noarch"
+plan = "devtools/conda-build/release_plan.toml"
+resources = "devtools/conda-build/resources.toml"
+reason = "One architecture-independent public Conda artifact; existing recipe/resource/identity checks are reused."
+
+[[environments]]
+path = "devtools/conda-envs/development_env.yaml"
+kind = "runtime"
+reason = "Routine source development, tests and docs with all required runtime floors; use strict priority when creating this environment."
+channel_priority = "strict"
+python_minor = "3.14"
+
+[[environments]]
+path = "devtools/conda-envs/test_env.yaml"
+kind = "runtime"
+reason = "Ordinary/full/coverage/receiving installed tests; workflow Conda configuration selects strict priority."
+channel_priority = "strict"
+
+[[environments]]
+path = "devtools/conda-envs/test_env_next.yaml"
+kind = "runtime"
+reason = "Normal installed Python 3.14 validation; historical filename is retained and workflow selects strict priority."
+channel_priority = "strict"
+python_minor = "3.14"
+
+[[environments]]
+path = "devtools/conda-envs/docs_env.yaml"
+kind = "runtime"
+reason = "Sphinx imports installed Ackredit; CI supplies the complete runtime and selects strict priority."
+channel_priority = "strict"
+
+[[environments]]
+path = "devtools/conda-envs/build_env.yaml"
+kind = "build-only"
+reason = "Conda build/upload bootstrap only. The recipe host creates the separate build environment; this file does not install Ackredit."
+
+[[workflows]]
+path = ".github/workflows/CI.yaml"
+sha256 = "c49a45fe517771530fdedc5cc524f054d3ddc760701a1cb0c0ed596d56fec59c"
+reason = "Installed source tests on Linux 3.11-3.14 and macOS arm64 3.14 use test_env.yaml, pip --no-deps and pip check; docs use docs_env.yaml. Quality installs Ruff and runs the explicitly pinned shared dependency preflight; its parser tools do not install Ackredit."
+
+[[workflows]]
+path = ".github/workflows/CI_full_matrix.yaml"
+sha256 = "1fc420c4543ea247b0d666e171888950b201156d2a81af1b39fa481b9eee32ef"
+reason = "Weekly/manual installed source matrix uses test_env.yaml, pip --no-deps and pip check. Backlog decision is administrative."
+
+[[workflows]]
+path = ".github/workflows/coverage.yaml"
+sha256 = "e0c8f442d16b219c8e736a828a77fdd9b2f297ff46d1d4c3a34323dc92641b51"
+reason = "Installed Linux 3.14 coverage uses test_env.yaml, pip --no-deps and pip check; no source-supplied required sibling."
+
+[[workflows]]
+path = ".github/workflows/python314_feasibility.yaml"
+sha256 = "42007325d71a419b309fd33885ee2a555f571d63b58d84c82dbb041b8ae994cb"
+reason = "Historical filename; current installed 3.14 gate uses test_env_next.yaml, pip --no-deps and pip check on both claimed platforms."
+
+[[workflows]]
+path = ".github/workflows/function_provider_receiving.yaml"
+sha256 = "d67371a7d913cae5ac0dca7e619c6b2bfb5634bcdce3c5d4ad253798d9e42e42"
+reason = "Builds candidate/released Ackredit and pinned PyUnitWizard fixture wheels; receiving installs exact candidate/producer bytes with no-deps/no-index after test_env.yaml. Required Ackredit siblings remain Conda-supplied. Artifact summarizer installs only its reporting tool. Staged path verifies the exact Conda archive."
+
+[[workflows]]
+path = ".github/workflows/build_and_upload_conda_packages.yaml"
+sha256 = "d190d60cdeb90e54815215434b7d2333ecc7695e3e25800de4b799c487c0f11d"
+reason = "Manual wrapper pins the shared one-file noarch staging workflow. Its recipe host supplies build dependencies and its run requirements supply the artifact runtime."
+
+[[workflows]]
+path = ".github/workflows/test_staged_conda_package.yaml"
+sha256 = "58a730d2af9dbe56e6dfa95c21899cbb34812cda5361cb2bc98c1db8b7477221"
+reason = "Manual wrapper pins shared exact-file installed qualification; artifact runtime is acquired through the committed recipe and checked independently."
+
+[[workflows]]
+path = ".github/workflows/promote_conda_package.yaml"
+sha256 = "c28ab80780e346d63d6ca659b10035c6b6e317aaef8e55e3100bb2353283a53f"
+reason = "Manual pinned exact-file promotion; no source rebuild or runtime replacement. Shared verifier checks installed/source receipts and public poststate."
+
+[[workflows]]
+path = ".github/workflows/conda-publication-policy.yml"
+sha256 = "7b2660e305641cea839bbd692e2a24f03420400d8583e2bcbc1ea41c72c2fdd8"
+reason = "Pinned shared administrative publisher audit; no Ackredit runtime installation."
+
+[[workflows]]
+path = ".github/workflows/molsyssuite-policy.yml"
+sha256 = "4e378ccca06312cd6c0256e01773f515ea0446c4fcfa83be18c2b52fd0135a9d"
+reason = "Versioned shared repository policy/quality audit; no Ackredit runtime installation."

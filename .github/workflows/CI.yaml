@@ -23,6 +23,16 @@ jobs:
       - run: python -m pip install ruff==0.16.5
       - run: ruff check .
       - run: ruff format --check .
+      - name: Checkout pinned shared dependency preflight
+        uses: actions/checkout@v6
+        with:
+          repository: uibcdf/molsyssuite
+          ref: 43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc
+          path: .molsyssuite-dependencies
+      - name: Install shared preflight parser dependencies
+        run: python -m pip install 'PyYAML==6.0.3' 'Jinja2>=3,<4' 'packaging>=24'
+      - name: Check reviewed dependency and runtime routes
+        run: python devtools/check_dependency_routes.py --suite-root .molsyssuite-dependencies
 
   test:
     # Full supported-minor coverage remains gating (uibcdf/ackredit#63).
