@@ -1,9 +1,9 @@
 ---
 summary: Collect bounded provider-recorder facts only in opted-in overlapping captures.
 issue: uibcdf/ackredit#105
-status: active
+status: resolved
 opened: 2026-10-05
-closed:
+closed: 2026-10-05
 severity: medium
 verification: asserted
 area: [portability, providers, performance]
@@ -143,3 +143,32 @@ checks still require separate execution. This local case does not qualify anothe
 platform/minor, a public file or stable promotion. #105 remains active until its
 applicable hosted gates complete. Follow-up recorder origins and broader workflow
 presentation remain pending even after this provider collector qualifies.
+
+## Hosted receiving and closure — 2026-10-05
+
+Unskipped qualification head `6f8f361fc11143d7507ba9ff6c7aee75a7a4ac6e`
+passes all seven CI jobs in 37419490119, suite policy 37419490746 and publication
+policy 37419490614. GH Run Receptor reports each executed lane successful.
+Receiving run [37419599184](https://github.com/uibcdf/ackredit/actions/runs/37419599184)
+also passes all ten jobs. Its eight normally installed Linux/macOS arm64 ×
+Python 3.11–3.14 cells each execute all nine designated tests: 72 passed, zero
+skips/deselections. Actual real-provider origins, selected-but-unused boundaries,
+controlled recording faults and producer-free saved readers qualify together
+with the preceding scientific, optional-absence and released-fallback contracts.
+
+The original hosted candidate is
+`ackredit-0.10.1+17.gcbaa937-py3-none-any.whl`, SHA-256
+`b9d5caf7fab45a250b5d20dd1c1b4e63c0cf38bee0cb635a795148a8226662b3`,
+from the original clean `cbaa937` producer. It is built once and the same archive
+goes to every hosted cell. The separately built local wheel retains its different
+digest above; the complete 70-file package maps match, but the archives are not
+relabeled as each other. All ten GitHub artifact ZIP digests and extracted files
+verify independently; the owning aggregate reproduces the hosted result exactly.
+The [hosted receipt](../../devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
+retains source/package identity, each cell's reader proofs, original archive/file
+hashes and executed controls. The earlier local receipt remains historical.
+
+The bounded provider collector is qualified and this implementation record is
+resolved. All stated provisional contracts remain provisional. Broader recorder
+origins, workflow presentation, public delivery and final stability review stay
+separate. MolSysSuite #97 and MOLI #46 retain the cross-component review routes.

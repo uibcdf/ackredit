@@ -1,9 +1,9 @@
 ---
 summary: Preserve explicit recorder declarations separately from original portable attribution.
 issue: uibcdf/ackredit#104
-status: active
+status: resolved
 opened: 2026-10-05
-closed:
+closed: 2026-10-05
 severity: medium
 verification: asserted
 area: [portability, reporting]
@@ -135,3 +135,23 @@ passes six jobs but cancels Linux/Python 3.11 job 111978448341 before any
 steps. Its native annotation identifies hosted runner acquisition failure.
 The missing executed CI cell keeps #104 open. Provider-recorder collection is
 independently owned in #105; no cancelled attempt is relabelled successful.
+
+## Executed recovery and closure — 2026-10-05
+
+Later unskipped head `6f8f361fc11143d7507ba9ff6c7aee75a7a4ac6e`
+passes all seven CI jobs in run 37419490119, suite policy 37419490746 and
+publication policy 37419490614. GH Run Receptor retains the actual executed
+controls, including the missing Linux/Python 3.11 scope. Earlier acquisition
+cancellations remain cancelled; this later head establishes its expanded scope.
+
+Receiving run 37419599184 additionally qualifies #105's actual provider recorder
+around this representation in all eight Linux/macOS arm64 × Python 3.11–3.14
+cells, with nine passing tests per cell, no skips, and inert fresh readers.
+All ten original archives/digests verify and independent aggregation equals the
+hosted result in the
+[separate hosted receipt](../../devtools/receipts/provider_evidence_hosted_105_2026-10-05.json).
+The original #104 source/wheel and controlled-fixture receipt remain unchanged:
+they do not retroactively acquire real producer evidence. This closes the
+representation milestone and pending source controls. `AttributionEvidence`
+remains provisional; other recorder origins and broader workflow presentation
+remain subsequent work. No public file or stable promotion is claimed.

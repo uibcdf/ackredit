@@ -1,9 +1,9 @@
 ---
 summary: Explain recorded evidence while preserving unknown instrumentation, metadata origins and diagnosed gaps.
 issue: uibcdf/ackredit#103
-status: active
+status: resolved
 opened: 2026-10-05
-closed:
+closed: 2026-10-05
 severity: medium
 verification: reproduced
 area: [portability, reporting]
@@ -135,3 +135,22 @@ The maintainer reports the separate Codecov problem fixed. Exact-head source
 qualification still lacks those two executed hosted controls; #103 stays open.
 New roadmap J representation work is owned separately in #104. A future executed
 head must qualify its actual scope, without relabelling these attempts successful.
+
+## Executed recovery and closure — 2026-10-05
+
+Later unskipped head `6f8f361fc11143d7507ba9ff6c7aee75a7a4ac6e`
+passes all seven CI jobs in run 37419490119, suite policy 37419490746 and
+publication policy 37419490614. GH Run Receptor captures retain these executed
+controls, including the Linux/Python 3.11 cell. Earlier runner-acquisition
+cancellations remain cancelled; this qualifies the later expanded head.
+
+The same head's receiving run 37419599184 verifies the original development
+candidate producer `cbaa93727bcf8a64902a76e72d961909c203a6b9` across all
+eight platform/minor cells: 72 passed tests, no skips, including saved explanation
+and offline original-report reconstruction. The separate
+[hosted receipt](../../devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
+verifies all ten original archives and independently reproduces the aggregate.
+The original #103 source/wheel and saved-reader receipt above remain unchanged.
+This closes the bounded descriptive milestone and its pending hosted controls;
+collection, broader presentation and provisional-contract review retain their
+separate ownership. No public delivery or API promotion is inferred.

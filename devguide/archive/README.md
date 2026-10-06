@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (96)
+### Resolved (99)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -42,6 +42,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`dump_keeps_the_first_report.md`](dump_keeps_the_first_report.md) — [#65](https://github.com/uibcdf/ackredit/issues/65) — dump() wrote the first of several formats to a file and dropped the rest, ignored the file's name, and let two formats sharing an extension overwrite each other. *(resolved, reproduced)*
 - [`enrichment_stores_what_it_is_given.md`](enrichment_stores_what_it_is_given.md) — [#41](https://github.com/uibcdf/ackredit/issues/41) — Fetched metadata was applied unguarded, so entities became characters, a nameless creator became an author, and a record with no title ended the run. *(resolved, measured)*
 - [`example_host_libraries.md`](example_host_libraries.md) — [#23](https://github.com/uibcdf/ackredit/issues/23) — Two host libraries in the repository, integrated for real, used by the documentation and the tests. *(resolved, reproduced)*
+- [`explicit_attribution_evidence.md`](explicit_attribution_evidence.md) — [#104](https://github.com/uibcdf/ackredit/issues/104) — Preserve explicit recorder declarations separately from original portable attribution. *(resolved, asserted)*
 - [`export_to_duecredit_was_misfiled.md`](export_to_duecredit_was_misfiled.md) — [#56](https://github.com/uibcdf/ackredit/issues/56) — export_to_duecredit was provisional for depending on another project, which never reached its contract. *(resolved, measured)*
 - [`four_names_misfiled_as_provisional.md`](four_names_misfiled_as_provisional.md) — [#49](https://github.com/uibcdf/ackredit/issues/49) — Four names were classified provisional for open behavioural questions rather than for any expected change of name, meaning or signature. *(resolved, asserted)*
 - [`full_ci_routes_and_skipped_push_recovery.md`](full_ci_routes_and_skipped_push_recovery.md) — [#74](https://github.com/uibcdf/ackredit/issues/74) — Protect full CI routes and recover skipped direct pushes. *(resolved, measured)*
@@ -66,9 +67,11 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`portable_capture_overhead.md`](portable_capture_overhead.md) — [#85](https://github.com/uibcdf/ackredit/issues/85) — Measure and reduce portable capture overhead while preserving fidelity. *(resolved, measured)*
 - [`portable_scientific_result_attribution.md`](portable_scientific_result_attribution.md) — [#75](https://github.com/uibcdf/ackredit/issues/75) — Deliver the stable portable attribution contract in published Ackredit 0.9.0. *(resolved, reproduced)*
 - [`product_roadmap_continuation.md`](product_roadmap_continuation.md) — [#100](https://github.com/uibcdf/ackredit/issues/100) — Record the accepted product and architecture continuation with bounded milestones. *(resolved, reproduced)*
+- [`provider_evidence_collection.md`](provider_evidence_collection.md) — [#105](https://github.com/uibcdf/ackredit/issues/105) — Collect bounded provider-recorder facts only in opted-in overlapping captures. *(resolved, asserted)*
 - [`provider_registered_representation.md`](provider_registered_representation.md) — [#92](https://github.com/uibcdf/ackredit/issues/92) — Function observation rejects JSON-equivalent pre-existing tuple metadata. *(resolved, reproduced)*
 - [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
+- [`recorded_attribution_explanation.md`](recorded_attribution_explanation.md) — [#103](https://github.com/uibcdf/ackredit/issues/103) — Explain recorded evidence while preserving unknown instrumentation, metadata origins and diagnosed gaps. *(resolved, reproduced)*
 - [`register_published_release_identity.md`](register_published_release_identity.md) — [#82](https://github.com/uibcdf/ackredit/issues/82) — Register the published 0.9.0 Git identity and restore compatible editable metadata. *(resolved, measured)*
 - [`release_0100.md`](release_0100.md) — [#93](https://github.com/uibcdf/ackredit/issues/93) — Deliver the corrected 0.10.1 checkpoint with exact Conda qualification. *(resolved, reproduced)*
 - [`release_self_citation_version.md`](release_self_citation_version.md) — [#94](https://github.com/uibcdf/ackredit/issues/94) — Release qualification misses stale packaged self-citation versions. *(resolved, reproduced)*

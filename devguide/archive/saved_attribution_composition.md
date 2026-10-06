@@ -142,3 +142,19 @@ passes six jobs but cancels Linux/Python 3.11 before any steps, and suite policy
 hosted runner acquisition failure. The separately reported Codecov correction
 is not evidence that those cancelled controls executed. #102 remains open;
 its original source and exact installed artifact qualification above is retained.
+
+### Executed recovery and final closure — 2026-10-05
+
+Later unskipped head `6f8f361fc11143d7507ba9ff6c7aee75a7a4ac6e`
+passes all seven jobs in CI 37419490119, suite policy 37419490746 and publication
+policy 37419490614. GH Run Receptor retains their executed success, including
+the missing Linux/Python 3.11 scope. This clears the outstanding development-head
+control backlog; earlier runner-acquisition cancellations remain cancelled.
+
+The expanded receiving run 37419599184 also passes eight installed cells and
+72 tests without skips, including original saved composition. Its
+[independently verified receipt](../../devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
+preserves its separate original producer/file. Original #102 qualification remains
+64 tests on source `95ada1a` and its original wheel digest, without rebuilding or
+reidentifying it. The implementation/installed milestone and pending controls
+are resolved. No new public release or provisional API promotion is inferred.

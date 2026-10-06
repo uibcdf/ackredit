@@ -424,8 +424,9 @@ diagnosed gaps remain `not_recorded`. This descriptive view changes no portable
 schema or default workflow report. Source checks pass 1,956 tests without skips;
 a normal Linux/Python 3.14 installation explains the eight retained real input
 cells offline and reconstructs sixteen prior workflow reports identically.
-Hosted qualification and the stronger representation/collection work below
-remain separate and pending. The
+Later head `6f8f361` passes all seven CI jobs and both policy controls; the
+expanded eight-cell receiving gate also retains the saved-reader contract.
+The stronger representation/collection milestones below keep their own scope. The
 [saved-reader receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/recorded_attribution_explanation_103_2026-10-05.json)
 retains actual source, wheel and scope.
 
@@ -455,8 +456,10 @@ Local representation qualification passes 2,018 Python 3.14 source tests and a
 normal installed offline reader over the eight retained real input cells with
 controlled companion declarations; sixteen prior workflow reports stay identical.
 The [saved-reader receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/explicit_attribution_evidence_104_2026-10-05.json)
-retains exact bytes and limits. Hosted final-head controls, automatic collection
-and real recorder/receiving review remain separate and pending.
+retains exact bytes and limits. Later head `6f8f361` passes all seven CI jobs
+and both policies, clearing earlier runner-acquisition cancellations through
+new executed controls. The original source/wheel identities remain unchanged;
+real collector qualification belongs to the separate milestone below.
 
 The next collector milestone [#105](https://github.com/uibcdf/ackredit/issues/105)
 adds provisional `capture(record_evidence=True)` / `.evidence` support. It collects
@@ -465,9 +468,29 @@ provider items and owning recording diagnostics. Default captures and original
 portable records remain unchanged. Local Python 3.14 qualification passes 2,047
 source tests and nine normal-installed real receiving cases with inert saved
 readers. The [collector receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_collection_105_2026-10-05.json)
-retains exact bytes and bounded local costs. Expanded hosted receiving/source
-qualification, other recorder origins and broader requested workflow presentation
-remain separate and pending.
+retains exact local bytes and bounded costs. Expanded hosted receiving run
+[37419599184](https://github.com/uibcdf/ackredit/actions/runs/37419599184)
+passes all eight Linux/macOS arm64 × Python 3.11–3.14 cells and 72 tests with
+no skips. All ten original artifact digests verify and independent aggregation
+equals the hosted result. The
+[hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
+retains the original development wheel separately from the local build.
+Other recorder origins, broader requested workflow presentation and final
+provisional-contract review remain pending.
+
+Completed bounded J checkpoints are:
+
+- [x] inert descriptive explanation without inventing unknown scope/origins/gaps (#103);
+- [x] explicit, validated companion declarations around complete saved originals (#104);
+- [x] opt-in collection of actual provider-observer origins, selected boundaries
+      and catalog diagnostic identities, with bounded deduplication (#105);
+- [x] real normally installed collector/science and fresh-reader qualification
+      across Linux/macOS arm64 × Python 3.11–3.14 (#105).
+
+These do not complete the wider unchecked J criteria above. Explicit-credit,
+prepared-backend and discovery/enrichment recorder origins still need ownership
+decisions and focused implementation issues. Requested workflow presentation
+must combine the evidence with the narrative without changing report defaults.
 
 ### Theme K — Attribution at MOLI object boundaries
 

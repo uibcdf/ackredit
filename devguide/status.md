@@ -165,8 +165,9 @@ the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/arch
 development outcome separately from public 0.10.1 and provisional API review.
 The first bounded explanation tool/format is implemented in development under
 #103: describe saved evidence while scope/origin/diagnosed gaps remain unknown.
-Its qualification and J's later explicit evidence representation/collection
-remain separate. Provider/platform review can proceed in parallel.
+Its bounded qualification is complete, with the original saved-reader receipt
+and subsequent executed hosted controls retained separately. Broader J work
+and provider/platform review remain open.
 New implementations need focused owning issues.
 
 The next J representation milestone #104 implements a provisional explicit
@@ -174,18 +175,28 @@ recorder-evidence companion. Source qualification passes 2,018 Python 3.14 tests
 without skips; a normal installed saved reader retains controlled declarations
 over eight prior real input cells and reconstructs sixteen original workflow
 reports identically. These tests establish inert representation/reading, not
-automatic collection or a new scientific/platform matrix. Exact-head hosted
-controls remain pending. See the [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/explicit_attribution_evidence.md)
+automatic collection or a new scientific/platform matrix. Later head `6f8f361`
+passes all seven ordinary CI jobs and both policy controls, clearing the
+previous runner-acquisition backlog. See the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/explicit_attribution_evidence.md)
 and [receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/explicit_attribution_evidence_104_2026-10-05.json).
 
 Provider-recorder collection is implemented provisionally under #105 via
 `capture(record_evidence=True)` / `.evidence`. Source checks pass 2,047 Python
 3.14 tests and nine normal-installed local real receiving cases without skips.
 Provider origins and diagnosed gaps now come from the actual opt-in recorder;
-other recorder origins remain unknown. The expanded eight-cell hosted checkpoint
-and source/policy head are separate pending controls. The
+other recorder origins remain unknown. The expanded hosted receiving checkpoint
+[37419599184](https://github.com/uibcdf/ackredit/actions/runs/37419599184)
+passes all eight Linux/macOS arm64 × Python 3.11–3.14 cells: 72 tests without
+skips. All ten original archives verify, independent aggregation matches and
+each fresh reader retains actual origins/diagnostics without producer imports,
+network or new credit. Source/policy head `6f8f361` passes all applicable lanes.
+The
 [collector receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_collection_105_2026-10-05.json)
-preserves original source/file identity, receiving proofs and local cost limits.
+preserves original local source/file identity, receiving proofs and cost limits;
+the [separate hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
+retains the original hosted wheel/digest, eight cells and executed controls.
+These milestones are resolved development checkpoints. Other recorder origins,
+broader workflow presentation, public delivery and provisional review remain open.
 
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures
