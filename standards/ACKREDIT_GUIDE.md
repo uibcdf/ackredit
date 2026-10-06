@@ -134,20 +134,22 @@ reviewed member-owned exception with the affected rule, reason, owner and issue,
 interim controls, expiry and removal condition. Provider implementation and member
 runtime adoption remain separate.
 
-## Function providers and prepared credit (accepted; public delivery pending)
+## Function providers and prepared credit (stable from 0.11.0)
 
 Ackredit's principal maintainer accepted `prepare_credit`, `observe_calls` and
 `ackredit.provider@1` on 2026-10-06 under
 [Ackredit #84](https://github.com/uibcdf/ackredit/issues/84) /
 [#87](https://github.com/uibcdf/ackredit/issues/87), coordinated with
 [MolSysSuite #97](https://github.com/uibcdf/molsyssuite/issues/97) and
-[MOLI #46](https://github.com/uibcdf/moli/issues/46). This is stable source
-acceptance; the qualified public release delivering the compatibility promise
-is pending. Public 0.10.0/0.10.1 provide these capabilities under their original
+[MOLI #46](https://github.com/uibcdf/moli/issues/46). Public **0.11.0** delivers
+the accepted bounded compatibility promise after exact-file source, installed,
+real receiving and public-channel verification. Use `ackredit>=0.11.0` when
+requiring that stable-provider promise. Public 0.10.0/0.10.1 provide these
+capabilities under their original
 provisional contract; **they are not a stable-provider version floor**.
 The released portable minimum remains `ackredit>=0.9.0`.
 
-From the qualified delivering release, the reviewed signatures and meanings
+From public 0.11.0, the reviewed signatures and meanings
 remain compatible across later patch/minor versions, including pre-1.0 and 1.x.
 Incompatible changes follow the
 [deprecation policy](https://github.com/uibcdf/ackredit/blob/main/docs/content/about/stability.md).

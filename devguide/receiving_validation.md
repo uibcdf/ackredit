@@ -214,7 +214,7 @@ closure; public Sabueso 0.12.0 passes 56 unchanged receiving tests and its offli
 three-result/source-trace example. The
 [reviewed delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
 retains these separate proofs. Original public 0.10.0 remains unchanged with
-its stale-citation limitation recorded under #94. #84/#87 remain provisional;
+its stale-citation limitation recorded under #94. At that checkpoint #84/#87 remained provisional;
 publication creates no shared adoption or consumer-minimum requirement.
 
 ## Local reproduction
@@ -270,3 +270,27 @@ Previous eight-test evidence remains historical qualification of its original
 scope and cannot qualify this
 collector. Source/normal-installed local evidence and the eight-cell hosted
 checkpoint are separate; this milestone does not promote provisional APIs.
+
+## Exact-file public 0.11.0 checkpoint (2026-10-06)
+
+Original producer/tag `85deae594e65b2fd443d6ca9a7347eb2bda537e1` supplies
+`ackredit-0.11.0-py_0.tar.bz2`, SHA-256
+`df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f`.
+Installed run [37429662858](https://github.com/uibcdf/ackredit/actions/runs/37429662858)
+passes all eight required platform/minor cells. Real receiving run
+[37429666506](https://github.com/uibcdf/ackredit/actions/runs/37429666506)
+passes 72 mandatory tests without skips against that same Conda archive, the
+pinned real PyUnitWizard producer and normally installed original 0.9.0 fallback.
+Twenty original installed/receiving ZIP identities verify; the independent
+downloaded receiving aggregate matches. Fresh readers retain original attribution,
+composition and actual opt-in evidence; explicit integrated CLI and library
+reports match without producer imports, new credits or diagnostic replay.
+
+Promotion [37430816845](https://github.com/uibcdf/ackredit/actions/runs/37430816845)
+retains the same file. Public label/index and a clean public Linux/Python 3.14
+installation pass installed origins, citation identity, provider/prepared and
+portable readers, CLI and `pip check`. The
+[delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json)
+retains original native artifacts and explicit limits. The accepted bounded
+provider promise now starts at `>=0.11.0`; evidence APIs remain provisional,
+portable-only clients retain `>=0.9.0` and consumer release/adoption is separate.

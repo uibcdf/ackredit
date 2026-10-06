@@ -2,7 +2,7 @@
 
 This is the **accepted provider contract**, owned by Ackredit #84/#87 and
 coordinated through MolSysSuite #97 and MOLI #46. Source promotion and public
-delivery are separate: 0.11.0 is selected under #107 and awaits exact-file qualification.
+delivery are separate: public 0.11.0 now delivers the bounded promise under #107.
 The receiving pilot belongs to PyUnitWizard #94.
 
 ## Accepted principal-maintainer decision (2026-10-06)
@@ -11,7 +11,7 @@ Diego accepted the proposed promotion of `prepare_credit`, `observe_calls` and
 the declaration protocol `ackredit.provider@1` together ("ok, procede"), within
 the exact bounded guarantees below. This supersedes the earlier decision to
 retain their provisional classification. Source classification is now stable;
-the new public compatibility promise awaits the qualified delivering release.
+the bounded public compatibility promise is delivered in 0.11.0.
 
 | Surface | Accepted guarantee |
 | --- | --- |
@@ -45,8 +45,8 @@ support the product review; they are not qualification of a new public candidate
 Record the superseding decision in #84/#87 and hand it to MolSysSuite #97/MOLI #46.
 Source classification, compatibility guidance, release notes and the canonical
 client guide implement this acceptance. The authorized 0.11.0 delivery is tracked
-under [Ackredit #107](https://github.com/uibcdf/ackredit/issues/107); qualification
-and public verification remain pending.
+under [Ackredit #107](https://github.com/uibcdf/ackredit/issues/107); exact-file
+qualification and public verification are complete.
 Track guide synchronization and client adoption through their existing owners.
 Observation remains explicit and optional scientific hosts retain absence/failure
 behavior. Stable-provider acceptance imposes no mandatory adoption or automatic
@@ -225,7 +225,7 @@ completed for original 0.10.0 and additive corrected 0.10.1 under #93/#94.
 The canonical integration guide retains the existing released portable contract;
 stable provider-guide distribution waits for its separate review decision.
 
-### Stable source promotion accepted; public delivery pending
+### Accepted source promotion and authorized delivery sequence (2026-10-06)
 
 The accepted decision updates Ackredit's API stability page, release notes and
 canonical integration guide around the reviewed boundary. Hand the decision and
@@ -243,3 +243,26 @@ public channel and deliver its identity and evidence to receiving owners.
 Public Ackredit 0.9.0 remains the portable minimum until an actual new release
 provides a reviewed capability requiring another minimum. No package rebuild,
 withdrawal or new tag follows from source acceptance alone.
+
+## Verified public delivery (2026-10-06)
+
+Public **0.11.0** completes the accepted bounded provider promise. Original
+producer/tag `85deae594e65b2fd443d6ca9a7347eb2bda537e1` and `ackredit-0.11.0-py_0.tar.bz2`, SHA-256
+`df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f`, retain the same bytes from staging through promotion.
+All required native source gates pass. Installed run
+[37429662858](https://github.com/uibcdf/ackredit/actions/runs/37429662858)
+passes all eight platform/minor cells; real receiving run
+[37429666506](https://github.com/uibcdf/ackredit/actions/runs/37429666506)
+passes 72 tests without skips, including the original 0.9.0 fallback and fresh
+producer-independent readers. Native ZIP identities and the downloaded aggregate
+verify independently. Promotion
+[37430816845](https://github.com/uibcdf/ackredit/actions/runs/37430816845),
+public labels/index and a clean public Linux/Python 3.14 installation verify.
+The [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json) keeps these distinct claims.
+
+#84/#87 are complete for their accepted bounded surfaces. The additional
+standalone declaration validator and third-party author tooling remain roadmap
+work with their own future contracts; evidence APIs await separate acceptance.
+Portable-only clients can retain `>=0.9.0`; clients requiring this provider
+promise use `>=0.11.0`. Guide synchronization and consumer release/adoption
+remain owner-local outcomes through MolSysSuite #97/MOLI #46.

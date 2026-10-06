@@ -18,20 +18,20 @@ working, a test or a reproducible command backs it.
   Development after 0.10.1 preserves typed preferred CFF work identity and
   publication fields, without borrowing root software metadata or crediting
   unrelated listed references (#95). Root dataset types are retained. This repair
-  is not present in the public 0.10.1 archive.
+  is delivered in 0.11.0 and absent from the immutable public 0.10.1 archive.
   CSL-JSON now also interprets unambiguous original CFF kinds, full calendar
   dates and page counts (#96), preserving unknown kinds and literal/conflicting
-  date metadata in the portable records. This is development after 0.10.1.
+  date metadata in the portable records. This is delivered in 0.11.0.
 - **Metadata enrichment:** DOI lookup against Crossref and DataCite, with a local cache.
 - **Ecosystem integration:** entry-point plugin loading, a DueCredit bridge, session
   persistence and a multi-session aggregator.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
-  by `tests/test_packaging.py`. Public Ackredit 0.10.1 is available from the `uibcdf`
+  by `tests/test_packaging.py`. Public Ackredit 0.11.0 is available from the `uibcdf`
   Conda channel as one verified noarch file. The same archive passed Linux/macOS
   arm64 × Python 3.11–3.14 installed qualification and a clean public Linux/Python
   3.14 receiving installation. See [installation](../docs/content/about/installation.md)
-  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json).
+  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json).
 - **Portable attribution:** `capture` observes per-calculation references without
   replacing the application session; `get_attribution` snapshots the workflow.
   `Attribution` preserves detached bibliography, contextual roles, original versions
@@ -138,7 +138,7 @@ many land before 1.0.0 is an outcome rather than a plan.
   API commitment remains pre-1.0 intent. On 2026-10-06 the principal maintainer
   accepted the bounded stable source contracts for `prepare_credit`,
   `observe_calls` and `ackredit.provider@1`; their forward promise starts with
-  the qualified delivering release, which is pending. Output formats are extensible through `register_format` and the
+  verified public 0.11.0. Output formats are extensible through `register_format` and the
   `ackredit.formats` entry-point group. What remains of roadmap F is the review against
   demonstrated receiving workflows and released adoption; theme C already
   supplies that evidence, while the final stability decision remains explicit.
@@ -199,7 +199,8 @@ preserves original local source/file identity, receiving proofs and cost limits;
 the [separate hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
 retains the original hosted wheel/digest, eight cells and executed controls.
 These milestones are resolved development checkpoints. Other recorder origins,
-broader workflow presentation, public delivery and provisional review remain open.
+broader recorder coverage and provisional review remain open; public 0.11.0
+delivers the implemented opt-in evidence surfaces without promoting them.
 
 The bounded presentation milestone #106 adds provisional
 `evidence.report("workflow", include_evidence=True)` and an explicit CLI flag.
@@ -213,18 +214,18 @@ CLI/library integrated reports are identical without new credits or diagnostic
 replay. Qualification head `30c622b` passes all seven CI jobs and both policies;
 see the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/workflow_recorder_evidence.md)
 and [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json).
-This development presentation is resolved; provisional review and public delivery
-remain separate decisions.
+This presentation is delivered in public 0.11.0; provisional review remains
+a separate decision.
 
-Active core improvements are tracked separately: #84 implements
+Completed core improvements are tracked separately: #84 implements
 dependency-free function providers and actual-call observation; #85 measures
 and reduces portable capture overhead; #87 prepares fixed explicit contextual
 credits for completed dispatch. The first real function-provider pilot is
 PyUnitWizard #94, with lazy exports and before/after scientific conversion
 measurements. MolSysSuite #97 and MOLI #46 own cross-component
-review. These capabilities ship provisionally in 0.10.0 and recommended 0.10.1;
+review. These capabilities shipped provisionally in 0.10.0 and corrected 0.10.1;
 they are absent from 0.9.0. The 2026-10-06 maintainer decision accepts all three bounded source contracts.
-Stable-provider public delivery and consumer adoption remain pending and separate;
+Public 0.11.0 completes stable-provider delivery; consumer adoption remains separate;
 original public 0.10.0/0.10.1 provisional contracts are unchanged. See the
 [accepted review](function_provider_contract_review.md).
 

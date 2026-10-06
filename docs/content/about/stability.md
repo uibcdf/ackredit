@@ -53,7 +53,7 @@ else links here, so they cannot drift apart.
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
 | `credit_bound` | stable | The opt-in that makes a binding credit. Decision 4. |
 | `track_item` | stable | What a run actually reached. The central claim of the library. |
-| `prepare_credit` | stable | Accepted by the principal maintainer on 2026-10-06 under `uibcdf/ackredit#87`: inert detached preparation, explicit current-session/capture credit and E010 replacement/deletion refusal; the host owns completion. Public stable delivery is pending as specified below. |
+| `prepare_credit` | stable | Accepted by the principal maintainer on 2026-10-06 under `uibcdf/ackredit#87`: inert detached preparation, explicit current-session/capture credit and E010 replacement/deletion refusal; the host owns completion. The bounded public promise is delivered in 0.11.0 as specified below. |
 | `track_target` | stable | Decision 10 examined renaming it and refused: `target` already means "a named unit of code" in seven public functions. |
 | `scope` | stable | Context-local, decision 5. Used in every worked example and in both example libraries. |
 | `scoped_usage` | stable | Delegates to `scope`, so the isolation has one implementation. Decision 5. |
@@ -73,7 +73,7 @@ else links here, so they cannot drift apart.
 | `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
 | `aggregate` | stable | Merging saved runs into this one. `uibcdf/ackredit#39` settled what it does to the journal and exercised it; what it does across machines is decided rather than open — one journal per process, merged here. |
 | `auto_track_calls` | stable | Static detection remains per enclosing function, including untaken branches. The separate explicit entry observer does not change this coarse released contract. |
-| `observe_calls` | stable | Accepted by the principal maintainer on 2026-10-06 under `uibcdf/ackredit#84`: selected declared direct exports, sync entry/awaited execution, context-local leases and restoration; exclusions and W019 gaps remain explicit. Public stable delivery is pending as specified below. |
+| `observe_calls` | stable | Accepted by the principal maintainer on 2026-10-06 under `uibcdf/ackredit#84`: selected declared direct exports, sync entry/awaited execution, context-local leases and restoration; exclusions and W019 gaps remain explicit. The bounded public promise is delivered in 0.11.0 as specified below. |
 | `enable_import_hooks` | stable | Decision 13 settles what the hook does — it observes and never acts — and `uibcdf/ackredit#28` settles which source of metadata wins. `uibcdf/ackredit#34` gave it a counterpart. |
 | `compile_pdf` | stable | That `@software` is undefined in common `.bst` styles is a known limitation of those styles, recorded in `devguide/status.md`. It bears on what the PDF contains, not on this call. |
 | `enrich_all` | stable | Fills in what a DOI can supply. How it asks was settled in `uibcdf/ackredit#48` and how long a cached answer keeps in `#50`; both are what it does, not what it promises. |
@@ -121,7 +121,7 @@ gates. The [installation page](installation.md) links the exact public archive,
 installed matrix and clean public receiving evidence; it does not certify a
 client's own release or convert general pre-1.0 intent into a 1.x commitment.
 
-## Provider compatibility: accepted, public delivery pending
+## Provider compatibility: delivered in 0.11.0
 
 On 2026-10-06 the principal maintainer accepted stable source classification of
 `prepare_credit`, `observe_calls` and the separate declaration protocol
@@ -129,10 +129,11 @@ On 2026-10-06 the principal maintainer accepted stable source classification of
 bounded meanings are documented in [function providers](../user_guide/function_providers.md).
 The existing public 0.10.0/0.10.1 releases contain the capabilities with their
 original provisional classification; public 0.9.0 contains neither callable.
-**No new stable-provider public version is claimed yet.**
+**Public 0.11.0 delivers the accepted bounded promise**, verified through the
+exact archive's full installed/receiving matrices and clean public installation.
+See [installation](installation.md) and the [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json).
 
-The forward promise begins with the first qualified public release delivering
-this decision. From that release, these signatures and meanings remain compatible
+The forward promise begins with public 0.11.0. From that release, these signatures and meanings remain compatible
 across later patch/minor releases, including remaining pre-1.0 releases and 1.x.
 The removal/deprecation policy below applies to incompatible changes from that
 delivery. Compatible additive options and internal optimizations remain possible.
@@ -150,7 +151,7 @@ no client must enable observation automatically.
 ## Deprecation policy
 
 This is what we commit to from 1.0.0 onward. For the accepted provider surfaces
-above, it also applies from their qualified delivering release.
+above, it also applies from public 0.11.0.
 
 1. **A stable name is removed only in a major release.** Not in a patch, not in a minor.
 2. **A removal is announced first.** The name keeps working and emits an SMonitor

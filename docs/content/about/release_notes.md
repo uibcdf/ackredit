@@ -1,11 +1,13 @@
 # Release notes
 
-## 0.11.0 — candidate under qualification
+## 0.11.0 — stable provider contracts and faithful saved reports
 
 The maintainer-authorized checkpoint is tracked in
-[Ackredit #107](https://github.com/uibcdf/ackredit/issues/107). It is not yet
-publicly delivered. The exact staged archive must pass full source/installed
-and real receiving matrices before promotion and clean public verification.
+[Ackredit #107](https://github.com/uibcdf/ackredit/issues/107). Delivery is complete:
+one original noarch archive passes the full installed matrix, 72 real receiving
+tests across eight cells, exact-file public promotion and a clean public
+Linux/Python 3.14 installation. [Installation](installation.md) and the
+[delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json) retain the original file, SHA-256 and limits.
 
 - Typed CFF `preferred-citation` works retain their own work category and
   bibliography during import discovery, saved attribution and export. Preferred
@@ -48,7 +50,7 @@ These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackred
 and [#96](https://github.com/uibcdf/ackredit/issues/96); the writer optimization
 is tracked in [#97](https://github.com/uibcdf/ackredit/issues/97). CFF name
 identity is corrected in [#98](https://github.com/uibcdf/ackredit/issues/98).
-They are development changes, not features of the already published 0.10.1
+They are delivered in 0.11.0 and are absent from the immutable 0.10.1
 archive. The portable payload version and core dependencies remain unchanged.
 
 On 2026-10-06 the principal maintainer accepted stable source contracts for
@@ -57,8 +59,8 @@ Preparation remains inert; invocation credits the current session/captures and
 the host owns completion. Observation retains selected-export entry/awaited
 execution, context-local leases, restoration, documented exclusions and W019
 gaps. Incompatible declaration interpretations require a new schema identifier.
-The forward compatibility promise is planned for verified public **0.11.0**;
-**no new stable-provider public version is claimed yet**. See
+The bounded forward compatibility promise starts at verified public **0.11.0**;
+earlier public contracts remain unchanged. See
 [API stability](stability.md) and [function providers](../user_guide/function_providers.md).
 Newer evidence representation, opt-in collection and integrated reporting remain
 provisional pending their own explicit acceptance.

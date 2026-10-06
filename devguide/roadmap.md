@@ -277,7 +277,7 @@ A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside
 stability commitment would make the commitment meaningless. The principal
 maintainer accepted stable source contracts for `observe_calls`,
 `prepare_credit` and `ackredit.provider@1` on 2026-10-06 under #84/#87.
-Their qualified public delivering release and consumer adoption remain separate.
+Their bounded promise is delivered in public 0.11.0; consumer adoption remains separate.
 The newer evidence surfaces still require their own explicit acceptance. Existing names have
 been decided once, on the evidence available now. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
@@ -318,8 +318,8 @@ measures portable capture separately from the historical plain tracking path.
 - [x] real provider and receiving evidence informs the explicit principal-maintainer
       decision: accepted stable source contracts on 2026-10-06 under #84/#87;
       coordinated with MolSysSuite #97/MOLI #46, without requiring client adoption;
-- [ ] qualify and publish the release delivering the accepted stable-provider
-      promise, retaining the original exact file and separate public verification;
+- [x] qualify and publish 0.11.0 delivering the accepted stable-provider promise,
+      retaining the original exact file and separate public verification under #107;
 - [ ] provide a documented standalone declaration validator, with a chosen
       public/API stability boundary, that checks offline metadata without
       recording uses, installing wrappers, registering bibliography or querying
@@ -331,13 +331,14 @@ measures portable capture separately from the historical plain tracking path.
       aliases, methods/descriptors, generators and native internal calls. Any
       expansion needs a concrete use case, lifecycle contract and bounded cost.
 
-This work now ships provisionally in corrected public 0.10.1 under #93/#94.
+This work first shipped provisionally in corrected public 0.10.1 under #93/#94.
 Its exact Conda file passes eight installed cells and eight real PyUnitWizard
 cells (48 mandatory tests), followed by verified public promotion and clean
 public receiving checks. See the
 [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json).
-The 2026-10-06 decision supersedes provisionality in source within the bounded
-accepted contract; stable public delivery remains pending. The original release does
+The 2026-10-06 decision supersedes provisionality within the bounded accepted
+contract; public 0.11.0 delivers that promise under #107, with eight installed
+cells, 72 real receiving tests and clean public verification. The original release does
 not rebuild 0.9.0, require consumer adoption or certify a consumer release.
 
 Later development checkpoint #99 combines Ackredit's writer optimization #97
@@ -627,7 +628,7 @@ The accepted continuation order is:
 3. In parallel, resolve F/G's explicit provider stability decisions and K's
    platform/member boundaries with their existing owners. The 2026-10-06
    decision accepts the three provider surfaces; newer evidence contracts
-   remain provisional and stable-provider public delivery is still pending.
+   remain provisional; public 0.11.0 completes bounded stable-provider delivery.
 4. Run L's complete-cost measurements and M's publication-tool interoperability
    against selected actual candidates; optimize or repair measured boundaries.
 5. Decide N's acknowledgement scope and implement only its accepted branch.

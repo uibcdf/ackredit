@@ -1,9 +1,9 @@
 ---
 summary: Observe executed third-party functions through dependency-free declarations.
 issue: uibcdf/ackredit#84
-status: partial
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-06
 severity: medium
 verification: reproduced
 area: [core, integration]
@@ -241,3 +241,27 @@ producer without Ackredit and failed science that earns no completed credit.
 MolSysSuite #97 and MOLI #46 receive this decision and the guide-delivery request;
 central synchronization, shared adoption and client release remain separately
 owned. No sibling guide is edited locally and no automatic observation is added.
+
+## Public delivery and resolution (2026-10-06)
+
+Public **0.11.0** delivers the accepted bounded contracts. Original producer/tag
+`85deae594e65b2fd443d6ca9a7347eb2bda537e1`, archive `ackredit-0.11.0-py_0.tar.bz2` and SHA-256
+`df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f` are preserved from staging through promotion.
+All declared source gates pass; installed run
+[37429662858](https://github.com/uibcdf/ackredit/actions/runs/37429662858)
+passes eight cells and real receiving run
+[37429666506](https://github.com/uibcdf/ackredit/actions/runs/37429666506)
+passes 72 mandatory tests without skips. Downloaded original artifact identities
+and the receiving aggregate verify independently. Promotion
+[37430816845](https://github.com/uibcdf/ackredit/actions/runs/37430816845),
+public labels/index and clean public Linux/Python 3.14 provider/portable/CLI
+checks and `pip check` pass. The [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json)
+retains original identities and bounded evidence.
+
+Stable-provider compatibility starts at `ackredit>=0.11.0`; the portable-only
+minimum remains `>=0.9.0`. Original previous provisional releases are unchanged.
+The registered guard protects this report's release metadata or bounded
+provider/prepared behavior; exact-file native controls and receiving gates
+protect installed provenance separately. Evidence APIs remain provisional.
+Guide synchronization and client adoption/release retain their owners through
+MolSysSuite #97 and MOLI #46. No sibling implementation is changed here.

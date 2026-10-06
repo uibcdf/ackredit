@@ -1,0 +1,213 @@
+{
+  "schema": "ackredit.local-validation@1",
+  "date": "2026-10-06",
+  "issue": "uibcdf/ackredit#107",
+  "scope": "Public delivery documentation, report archival, canonical guide floor and one docstring; release archive and producer unchanged.",
+  "producer": "85deae594e65b2fd443d6ca9a7347eb2bda537e1",
+  "code_ast_unchanged_without_docstrings": true,
+  "python": "3.14.7",
+  "local_contract_tests": [
+    {
+      "sha256": "4f3004912ee29c50c7408abbbdfe23291a184a2851778db22a607ca54e0d4451",
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 262,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 262,
+          "failed": 2,
+          "not_executed": 0,
+          "passed": 260,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 1.616814591921866,
+        "exitstatus": 1,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 0
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "da958a70647d1da6387f80f406779c5ecdd8ab53533df05190b64a3793bc4851",
+          "records": 789
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "FAIL",
+        "root_causes": 2,
+        "run_id": "7d3b836b0e234ea5a33adc4438a61457",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "complete": true,
+      "integrity_valid": true
+    },
+    {
+      "sha256": "2da9183463c8fdd3543ea1ad47a027121e88e74314e9704fdfb3b0c38c140c98",
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 262,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 262,
+          "failed": 1,
+          "not_executed": 0,
+          "passed": 261,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 1.7144548268988729,
+        "exitstatus": 1,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 0
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "a7e49143f63120fb7c2495479a1e22c5471ccb15b935df90ee282e2fe40cf6cd",
+          "records": 788
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "FAIL",
+        "root_causes": 1,
+        "run_id": "3534a913ebab400ca99d5196d2cbb3e6",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "complete": true,
+      "integrity_valid": true
+    },
+    {
+      "sha256": "b1af3b272dcd4665eea07f12bedbd34ee6059b91467fd38411eb3011b95caf47",
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 262,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 262,
+          "failed": 1,
+          "not_executed": 0,
+          "passed": 261,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 1.5608782786875963,
+        "exitstatus": 1,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 0
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "d97ea3a62446402b41f10e2ea11d45d6271d4e262837d7bd189bb0066aa2e17a",
+          "records": 788
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "FAIL",
+        "root_causes": 1,
+        "run_id": "d917496565634d81b8cd3eda0cdbf441",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "complete": true,
+      "integrity_valid": true
+    },
+    {
+      "sha256": "d6aabb97094c931348c798b6f10167edd3ecbc8ed4460bba74351cede022cf9e",
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 262,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 262,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 262,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 1.5299760829657316,
+        "exitstatus": 0,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 0
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "1c6056b1e2afcadccf66fbffb0bc62e24b9684c7645cc418561f463a3653ea05",
+          "records": 787
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "PASS",
+        "root_causes": 0,
+        "run_id": "c427152f747945909039f50c58ecebdc",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      },
+      "complete": true,
+      "integrity_valid": true
+    }
+  ],
+  "recovery": "Temporary source checkout held old generated _version.py and ackredit.egg-info; regenerate both from the newly registered original-producer tag. Shared editable already reports >=0.11.0; no package runtime or public artifact fix.",
+  "strict_sphinx": {
+    "state": "passed",
+    "log_sha256": "6f7391e80f46fd9a7c571881e727a8f29e07b0e799bad37d5faef5948698f010"
+  },
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "report_indexes": "passed",
+  "human_work": "all nine primary human files retain original bytes",
+  "source_scientific_gate": "Original producer has 2078 local passes and mandatory exact-source hosted source/installed gates retained separately; documentation checks do not replace that qualification."
+}

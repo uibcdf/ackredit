@@ -7,6 +7,11 @@ receipts are retained in [the delivery record](../../devguide/archive/ackredit_c
 Corrected public 0.10.1 repeats this matrix and adds exact-file real PyUnitWizard
 qualification; its [delivery receipt](receipts/ackredit_0.10.1_public_2026-10-05.json)
 retains the source, installed, scientific, promotion and clean public proofs.
+Public 0.11.0 delivers the accepted bounded provider contracts and post-0.10.1
+features: eight installed cells, 72 real receiving tests without skips, verified
+promotion and a clean public Linux/Python 3.14 installation against the same
+original archive. Its [delivery receipt](receipts/ackredit_0.11.0_public_2026-10-06.json)
+keeps the original producer, immutable file/digest and separately bounded proofs.
 
 ## Committed candidate inputs
 

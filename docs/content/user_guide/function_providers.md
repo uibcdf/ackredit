@@ -4,8 +4,7 @@ The principal maintainer accepted **stable source contracts** for `observe_calls
 `prepare_credit` and `ackredit.provider@1` on 2026-10-06 under Ackredit #84/#87,
 with coordination in MolSysSuite #97 and MOLI #46. Public 0.10.0/0.10.1 contain
 the capabilities with their original provisional classification; public 0.9.0
-does not contain them. The qualified release delivering the stable promise is
-still pending. From that delivery, signatures/meanings remain compatible across
+does not contain them. Public 0.11.0 delivers the bounded stable promise. From that release, signatures/meanings remain compatible across
 later patch/minor releases, including pre-1.0 and 1.x. Incompatible declaration
 interpretations require a new identifier; later readers retain `ackredit.provider@1`
 and refuse unknown identifiers. See [API stability](../about/stability.md).
@@ -195,4 +194,4 @@ record with its original snapshot; replacement/deletion raises `ACKREDIT-E010`
 before credit instead of silently substituting bibliography. An optional host
 integration should diagnose that attribution gap and preserve completed science.
 The callable alone neither imports nor computes with the backend. This bounded
-surface is accepted within these limits; public stable delivery remains pending.
+surface is accepted within these limits and delivered in public 0.11.0.

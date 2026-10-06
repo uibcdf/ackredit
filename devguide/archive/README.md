@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (100)
+### Resolved (103)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -46,6 +46,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`export_to_duecredit_was_misfiled.md`](export_to_duecredit_was_misfiled.md) — [#56](https://github.com/uibcdf/ackredit/issues/56) — export_to_duecredit was provisional for depending on another project, which never reached its contract. *(resolved, measured)*
 - [`four_names_misfiled_as_provisional.md`](four_names_misfiled_as_provisional.md) — [#49](https://github.com/uibcdf/ackredit/issues/49) — Four names were classified provisional for open behavioural questions rather than for any expected change of name, meaning or signature. *(resolved, asserted)*
 - [`full_ci_routes_and_skipped_push_recovery.md`](full_ci_routes_and_skipped_push_recovery.md) — [#74](https://github.com/uibcdf/ackredit/issues/74) — Protect full CI routes and recover skipped direct pushes. *(resolved, measured)*
+- [`function_citation_providers.md`](function_citation_providers.md) — [#84](https://github.com/uibcdf/ackredit/issues/84) — Observe executed third-party functions through dependency-free declarations. *(resolved, reproduced)*
 - [`hooks_blind_to_what_came_first.md`](hooks_blind_to_what_came_first.md) — [#69](https://github.com/uibcdf/ackredit/issues/69) — Import hooks never credited a module loaded before them, and since ArgDigest arrived numpy always is, so the documented numpy example and the guide's injection recipe credited nothing. *(resolved, reproduced)*
 - [`hooks_warn_about_the_standard_library.md`](hooks_warn_about_the_standard_library.md) — [#70](https://github.com/uibcdf/ackredit/issues/70) — With import hooks on, every standard-library module imported warned that no citation was found and advised registering it by hand. *(resolved, reproduced)*
 - [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*
@@ -66,6 +67,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`portable_attribution_cli.md`](portable_attribution_cli.md) — [#101](https://github.com/uibcdf/ackredit/issues/101) — Read and export original saved attribution through the existing CLI report command. *(resolved, reproduced)*
 - [`portable_capture_overhead.md`](portable_capture_overhead.md) — [#85](https://github.com/uibcdf/ackredit/issues/85) — Measure and reduce portable capture overhead while preserving fidelity. *(resolved, measured)*
 - [`portable_scientific_result_attribution.md`](portable_scientific_result_attribution.md) — [#75](https://github.com/uibcdf/ackredit/issues/75) — Deliver the stable portable attribution contract in published Ackredit 0.9.0. *(resolved, reproduced)*
+- [`prepared_contextual_credit.md`](prepared_contextual_credit.md) — [#87](https://github.com/uibcdf/ackredit/issues/87) — Prepare fixed contextual credits for repeated scientific dispatch. *(resolved, reproduced)*
 - [`product_roadmap_continuation.md`](product_roadmap_continuation.md) — [#100](https://github.com/uibcdf/ackredit/issues/100) — Record the accepted product and architecture continuation with bounded milestones. *(resolved, reproduced)*
 - [`provider_evidence_collection.md`](provider_evidence_collection.md) — [#105](https://github.com/uibcdf/ackredit/issues/105) — Collect bounded provider-recorder facts only in opted-in overlapping captures. *(resolved, asserted)*
 - [`provider_registered_representation.md`](provider_registered_representation.md) — [#92](https://github.com/uibcdf/ackredit/issues/92) — Function observation rejects JSON-equivalent pre-existing tuple metadata. *(resolved, reproduced)*
@@ -85,6 +87,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`shared_provenance_expansion.md`](shared_provenance_expansion.md) — [#91](https://github.com/uibcdf/ackredit/issues/91) — Provenance rendering repeatedly expands shared graph descendants. *(resolved, reproduced)*
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
+- [`stable_provider_release_011.md`](stable_provider_release_011.md) — [#107](https://github.com/uibcdf/ackredit/issues/107) — Deliver 0.11.0 with accepted provider contracts and exact-file public qualification. *(resolved, measured)*
 - [`summary_shows_an_object_address.md`](summary_shows_an_object_address.md) — [#51](https://github.com/uibcdf/ackredit/issues/51) — summary() defined only _repr_html_, so printing it anywhere but a notebook gave the object's address in memory. *(resolved, measured)*
 - [`support_python_314.md`](support_python_314.md) — [#80](https://github.com/uibcdf/ackredit/issues/80) — Deliver normal public Python 3.14 installation and required consumer compatibility. *(resolved, reproduced)*
 - [`tests_share_tracking_state.md`](tests_share_tracking_state.md) — [#30](https://github.com/uibcdf/ackredit/issues/30) — The suite depended on the order its files ran in, so a test could pass for the reason of the test before it. *(resolved, measured)*

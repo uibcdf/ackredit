@@ -378,8 +378,8 @@ def prepare_credit(
     and refuses a replaced/deleted bibliography. It creates no call scope: the
     host owns that scope and the interpretation of a completed operation.
 
-    Stable source contract accepted under Ackredit #87 on 2026-10-06; its public
-    delivering release is pending. Public 0.9.0 does not provide this callable.
+    Stable bounded contract accepted under Ackredit #87 on 2026-10-06 and
+    delivered in public 0.11.0. Public 0.9.0 does not provide this callable.
     Mutating original inputs does not change a prepared credit.
     """
     import json
