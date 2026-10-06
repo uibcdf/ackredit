@@ -1,9 +1,9 @@
 ---
 summary: Expose inert public provider validation through the existing declaration parser.
 issue: uibcdf/ackredit#111
-status: partial
+status: resolved
 opened: 2026-10-06
-closed:
+closed: 2026-10-06
 verification: measured
 area: [core, integration, documentation]
 guard: tests/test_provider_validation.py
@@ -89,7 +89,23 @@ in [SMonitor #36](https://github.com/uibcdf/smonitor/issues/36). No provider sou
 is changed or warning suppressed here. Supported ordinary lazy-export tests pass
 without warning; arbitrary producer loader side effects remain explicit limits.
 
-Remaining: exact-head hosted gates and integration/acceptance in the default
-branch. The result/signature remains provisional after source adoption; a future
-promotion requires its own explicit decision. External-author tooling and a new
-public release remain separate tasks.
+## Resolution, 2026-10-06
+
+[PR #112](https://github.com/uibcdf/ackredit/pull/112) is integrated at
+`7737d6ec7a477244f332e34080d26f1bc39822cc`. Its combined exact candidate
+`4a4f65a1fe49fd012ac6e1765b194868cbab61fd` passes all seven
+[CI jobs](https://github.com/uibcdf/ackredit/actions/runs/37448030762),
+[suite policy](https://github.com/uibcdf/ackredit/actions/runs/37448031658) and
+[publication policy](https://github.com/uibcdf/ackredit/actions/runs/37448031462),
+inspected with GH Run Receptor. The 24 standalone guards include success and
+failure during active observation, preserving leases, captures and bibliography.
+Local combined source passes 303 selected tests and all 16 dependency routes.
+This closes the implementation task; the signature/result remains provisional
+and no new public package is claimed.
+
+Provider notices precede integration: [MolSysSuite #97](https://github.com/uibcdf/molsyssuite/issues/97#issuecomment-6013698549),
+[PyUnitWizard #94](https://github.com/uibcdf/pyunitwizard/issues/94#issuecomment-6014018944)
+and [Sabueso #108](https://github.com/uibcdf/sabueso/issues/108#issuecomment-6014020538).
+Candidate notice, source integration, guide synchronization, API promotion and
+future public artifacts remain distinct. External-author tooling is the next
+roadmap G implementation task.

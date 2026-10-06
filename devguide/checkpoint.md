@@ -49,54 +49,47 @@ Sphinx. The owning issue retains the published head and its applicable CI
 evidence; the [archived repair](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/bibtex_citation_keys.md)
 records the scope.
 
+## Completed development after 0.11.0
+
+The distribution-input review #108 is implemented through accepted
+[MolSysSuite #105](https://github.com/uibcdf/molsyssuite/pull/105) and integrated
+[Ackredit #110](https://github.com/uibcdf/ackredit/pull/110). One recipe, five
+environments and ten workflows use the pinned shared guard. The
+[archived review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/distribution_adoption_runtime_review.md)
+retains source/receipt evidence and limits. MolSysSuite #45 owns its separate
+central adopted/readiness/access inventory update.
+
+[Ackredit #111/#112](https://github.com/uibcdf/ackredit/pull/112) implements
+provisional `validate_provider(module) -> dict` through the observer's parser,
+without Ackredit credit, bibliography registration or export mutation. Explicit
+lazy loaders retain their producer side effects. The
+[archived implementation](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/standalone_provider_validation.md)
+records 24 guards and 2,122 local tests without skips/warnings; combined source
+also passes all 16 routes and 303 selected tests. Required Ruff and strict docs
+pass. The new export is absent from public 0.11.0; API promotion and future
+artifact delivery remain separate.
+
+Integrated development `7737d6ec7a477244f332e34080d26f1bc39822cc` passes all seven
+[CI jobs](https://github.com/uibcdf/ackredit/actions/runs/37448899290),
+[suite policy](https://github.com/uibcdf/ackredit/actions/runs/37448900271) and
+[publication policy](https://github.com/uibcdf/ackredit/actions/runs/37448900303).
+The subsequent documentation closeout receives its own applicable checks.
+
 ## Next work, in order
 
-The source proposal for standalone validation is now tracked in
-[Ackredit #111](https://github.com/uibcdf/ackredit/issues/111). It adds provisional
-`validate_provider(module) -> dict` through the observer's existing parser,
-without Ackredit credit/registry/export mutations. Local Python 3.14 validation
-passes 2,122 tests without skips or warnings, required Ruff and strict docs.
-The proposal uses an isolated branch/worktree; default-branch integration and
-its exact-head gates are distinct from public delivery. After integration,
-continue with the external-producer author guide/example in item 2. Distribution
-#108 still waits for acceptance of [MolSysSuite #105](https://github.com/uibcdf/molsyssuite/pull/105)
-and [Ackredit #110](https://github.com/uibcdf/ackredit/pull/110); the validator
-does not depend on those proposed distribution tools.
-
-1. **Complete the distribution-input review, #108.** Read the
-   [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/distribution_adoption_runtime_review.md)
-   and [owning issue](https://github.com/uibcdf/ackredit/issues/108).
-   Inspect existing shared operations before adding one. Review metadata,
-   recipe, all maintained runtime environments and actual CI/source routes,
-   including names, floors/ceilings and Python bounds. Classify build-only and
-   inapplicable routes. If a reusable check is missing for multiple members,
-   report it in [MolSysSuite #45](https://github.com/uibcdf/molsyssuite/issues/45)
-   before duplicating logic. Add relevant negative guards in the owning tool.
-   This formal adoption review does not reopen the completed release or request
-   another artifact, upload or scientific suite on every internal push.
-   The member route inventory and pinned consumer invocation are now prepared;
-   [the active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/distribution_adoption_runtime_review.md)
-   covers one recipe, five environments and ten workflows. The shared operation
-   and its negative guards are proposed in
-   [MolSysSuite #105](https://github.com/uibcdf/molsyssuite/pull/105), using existing
-   noarch checks. #108 remains partial pending provider-owner acceptance and
-   exact-head consumer CI/adoption; the central inventory must not advance merely
-   because the local preflight passes. Resume with those review/CI results before
-   starting the provider-author tooling work below.
-2. **Expose standalone provider validation, then third-party author tooling
-   (roadmap G).** Open focused Ackredit issues before implementation. Reuse the
-   parser/preflight owned by `ackredit/core/providers.py`; choose the public
-   signature/result and stability boundary first. Validation must remain offline
-   and inert: no use credit, wrappers or bibliography registration. Supply an
+1. **Provide third-party author tooling (roadmap G).** Open a focused Ackredit
+   issue before implementation. Reuse public `validate_provider` rather than
+   copying its parser; retain its provisional boundary and lazy-loader limits.
+   Supply an
    independently installable dependency-free producer example and a concise
    author guide for software/article references and per-function declarations.
-3. **Review the separate evidence contracts (roadmap J/F).** Decide schema and
+2. **Review the separate evidence contracts (roadmap J/F).** Decide schema and
    per-original association, unknown versus empty meanings, collection/failure
    guarantees and integrated rendering with receiving evidence. Record explicit
    acceptance, amendment or deferral; do not infer it from successful provider
    delivery. Additional recorders require concrete ownership/use cases, not an
    automatic expansion to every recorder.
-4. **Continue the wider roadmap with owning issues.** K needs platform/client
+3. **Continue the wider roadmap with owning issues.** K needs platform/client
    object-boundary decisions; L needs complete import/activation/runtime/memory/
    reporting cost measurements; M needs actual publication-tool/style round trips;
    N starts with accepting, deferring or excluding acknowledgements. The final
@@ -150,6 +143,6 @@ Guide adoption replies/commits are still separate owner evidence.
   executable changes need meaningful contract/behavior gates. Required source
   range remains Python 3.11–3.14, with installed Linux/macOS arm64 release gates.
 
-The clone-cleanup repair does not start #108 or the later roadmap themes. At
-resumption, inspect current local/remote state and owner replies before
-selecting the next change.
+The completed #108/#111 implementations do not publish another release or accept
+the remaining evidence contracts. At resumption, inspect current local/remote
+state and owner replies, then start the provider-author guide/example task.

@@ -1,14 +1,14 @@
 ---
 summary: Complete dependency-constraint and runtime-route review for member distribution adoption.
 issue: uibcdf/ackredit#108
-status: partial
+status: resolved
 opened: 2026-10-06
-closed:
+closed: 2026-10-06
 verification: measured
 area: [packaging, integration, governance]
 guard: tests/test_dependency_routes.py
 normative:
-blocked_by: [uibcdf/molsyssuite#105]
+blocked_by: []
 supersedes: []
 ---
 
@@ -156,11 +156,24 @@ Publication access is confirmed only for the observed authorized deliveries;
 future credential availability is unknown. Existing shared-environment conflicts
 remain MolSysSuite #82's scope and do not become an Ackredit dependency repair.
 
-## Remaining acceptance
+## Resolution and owner handoff, 2026-10-06
 
-- Provider-owner review and acceptance of MolSysSuite #105 are pending.
-- The consumer proposal needs exact-head applicable CI and acceptance before
-  its tool invocation becomes the maintained default-branch guard.
-- After those steps, hand the source/input checks and retained delivery evidence
-  to MolSysSuite #45 for its distinct adopted/readiness/access decisions; then
-  archive this report and synchronize #108. No adopted state or closure is claimed.
+MolSysSuite [accepted #105](https://github.com/uibcdf/molsyssuite/pull/105) at
+`689e226fe22367d39ee9aedbd3c0230b313f4edf`. Ackredit
+[integrated #110](https://github.com/uibcdf/ackredit/pull/110) at
+`edd6df2ae3ebe9143ca87043c3ccb94207a4a545`, retaining the reviewed exact provider
+pin. Its default-branch [seven-job CI](https://github.com/uibcdf/ackredit/actions/runs/37446922289)
+passes. The combined standalone-validator candidate
+`4a4f65a1fe49fd012ac6e1765b194868cbab61fd` also passes all seven
+[CI jobs](https://github.com/uibcdf/ackredit/actions/runs/37448030762),
+[suite policy](https://github.com/uibcdf/ackredit/actions/runs/37448031658) and
+[publication policy](https://github.com/uibcdf/ackredit/actions/runs/37448031462).
+These runs were inspected with GH Run Receptor. Local combined validation
+passes all 16 routes and 303 selected tests with Pytest Receptor.
+
+The member-owned whole-policy review and maintained guard are complete. The
+local guard protects provider identity/tamper/failure forwarding; the accepted
+provider owns actual constraint/source negative guards. This resolution does
+not infer a central registry update, requalify changed artifact bytes or promise
+future credentials. MolSysSuite #45 receives the completed source review and
+retained exact-file receipts for its separate adoption/readiness/access fields.

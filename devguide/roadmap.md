@@ -355,8 +355,8 @@ claim a new public artifact or cumulative speedup.
 The declaration protocol, observer and prepared callable are decided
 independently. Accepting the current bounded scope can be sufficient for a
 stable surface; broad observation or another scientific engine is not an added
-promotion gate. The proposed standalone validator is an implementation task,
-not a capability the existing activation-time validation already exposes.
+promotion gate. Standalone `validate_provider` is implemented provisionally in
+development under #111; public 0.11.0 exposes activation-time validation only.
 
 ### Theme H — Faithful, compact workflow reports
 
@@ -624,8 +624,9 @@ feature before 1.0. A deliberate deferral remains visible in the roadmap.
 ## Execution order and release checkpoints
 
 The [development checkpoint](checkpoint.md) records the current resumption order:
-complete #108's distribution-input review, then standalone provider validation
-and author tooling. The 0.11.0 release is complete; central handoffs and the
+retain #108's completed distribution-input guard, then continue the provider
+author guide and independently installable example. The 0.11.0 release is complete;
+central handoffs and the
 remaining product decisions below retain their own owners.
 
 The accepted continuation order is:

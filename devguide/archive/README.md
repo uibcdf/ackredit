@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (104)
+### Resolved (106)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -37,6 +37,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`csl_json_marks_every_author_as_literal.md`](csl_json_marks_every_author_as_literal.md) — [#38](https://github.com/uibcdf/ackredit/issues/38) — Every author reached a reference manager as a literal, declaring a name that could be decomposed to be indecomposable. *(resolved, measured)*
 - [`dependency_info_relays_a_promise.md`](dependency_info_relays_a_promise.md) — [#59](https://github.com/uibcdf/ackredit/issues/59) — dependency_info was promised by naming which of DepDigest's two shapes is the contract and verifying the version it relays. *(resolved, measured)*
 - [`discovery_test_requires_numpy.md`](discovery_test_requires_numpy.md) — [#88](https://github.com/uibcdf/ackredit/issues/88) — A discovery guard imports undeclared NumPy in the minimal CI environment. *(resolved, reproduced)*
+- [`distribution_adoption_runtime_review.md`](distribution_adoption_runtime_review.md) — [#108](https://github.com/uibcdf/ackredit/issues/108) — Complete dependency-constraint and runtime-route review for member distribution adoption. *(resolved, measured)*
 - [`documentation_build_is_broken.md`](documentation_build_is_broken.md) — [#4](https://github.com/uibcdf/ackredit/issues/4) — The Sphinx build aborted on a missing linkify dependency, and four further defects hid behind it. *(resolved, reproduced)*
 - [`documented_api_does_not_exist.md`](documented_api_does_not_exist.md) — [#3](https://github.com/uibcdf/ackredit/issues/3) — Documentation taught imports that raise ImportError, and the integration guide's except clause hid it. *(resolved, reproduced)*
 - [`doi_cache_key_collides.md`](doi_cache_key_collides.md) — [#12](https://github.com/uibcdf/ackredit/issues/12) — Two DOIs could share one cache file, so one work's metadata was served for another. *(resolved, reproduced)*
@@ -89,6 +90,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`shared_session_file_loses_data.md`](shared_session_file_loses_data.md) — [#8](https://github.com/uibcdf/ackredit/issues/8) — Two processes sharing a session file silently discarded most of their citations. *(resolved, reproduced)*
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
 - [`stable_provider_release_011.md`](stable_provider_release_011.md) — [#107](https://github.com/uibcdf/ackredit/issues/107) — Deliver 0.11.0 with accepted provider contracts and exact-file public qualification. *(resolved, measured)*
+- [`standalone_provider_validation.md`](standalone_provider_validation.md) — [#111](https://github.com/uibcdf/ackredit/issues/111) — Expose inert public provider validation through the existing declaration parser. *(resolved, measured)*
 - [`summary_shows_an_object_address.md`](summary_shows_an_object_address.md) — [#51](https://github.com/uibcdf/ackredit/issues/51) — summary() defined only _repr_html_, so printing it anywhere but a notebook gave the object's address in memory. *(resolved, measured)*
 - [`support_python_314.md`](support_python_314.md) — [#80](https://github.com/uibcdf/ackredit/issues/80) — Deliver normal public Python 3.14 installation and required consumer compatibility. *(resolved, reproduced)*
 - [`tests_share_tracking_state.md`](tests_share_tracking_state.md) — [#30](https://github.com/uibcdf/ackredit/issues/30) — The suite depended on the order its files ran in, so a test could pass for the reason of the test before it. *(resolved, measured)*
