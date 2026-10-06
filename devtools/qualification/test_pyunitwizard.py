@@ -614,6 +614,9 @@ def test_provider_evidence_retains_actual_origins_and_diagnosed_gaps(
     (output / "provider-evidence-workflow.md").write_text(
         bundle.report(), encoding="utf-8"
     )
+    (output / "provider-evidence-integrated-workflow.md").write_text(
+        companion.report("workflow", include_evidence=True), encoding="utf-8"
+    )
     _child(
         """
 import importlib.abc, json, pathlib, socket, sys, warnings
@@ -649,6 +652,16 @@ with warnings.catch_warnings(record=True) as emitted:
     sys.argv=['ackredit','report',str(path),'--input-format','evidence','-f','explanation','-o',str(output/'provider-evidence-report.md')]
     assert main()==0
     assert (output/'provider-evidence-report.md').read_text()==rendered
+    integrated=saved.report('workflow',include_evidence=True)
+    assert integrated==(output/'provider-evidence-integrated-workflow.md').read_text()
+    assert 'Provider declaration' in integrated and 'Metadata sources' in integrated
+    assert 'ACKREDIT-W019' in integrated and 'pyunitwizard.convert' in integrated
+    assert 'Selected boundaries do not establish that a function ran' in integrated
+    assert 'Other field origins remain unknown' in integrated
+    assert saved.attribution.to_dict()==saved.to_dict()['attribution']
+    sys.argv=['ackredit','report',str(path),'--input-format','evidence','-f','workflow','--include-evidence','-o',str(output/'provider-evidence-integrated-cli.md')]
+    assert main()==0
+    assert (output/'provider-evidence-integrated-cli.md').read_text()==integrated
 assert emitted==[]
 assert path.read_bytes()==original_bytes
 assert ackredit.get_attribution().to_dict()==before and registry.Registry.items==items
@@ -657,6 +670,7 @@ assert not {'pyunitwizard','pint','unyt'} & sys.modules.keys()
     'producer_imports':0,'network_attempts':0,'new_credits':0,'new_diagnostics':0,
     'original_versions_preserved':True,'actual_provider_declaration_origins':True,
     'controlled_recording_fault_retained':True,'unchanged_workflow_report':True,
+    'integrated_workflow_matches_cli':True,'original_workflow_default_unchanged':True,
     'scope':'Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown.'
 }))
 """,

@@ -268,17 +268,35 @@ class AttributionEvidence:
             ],
         }
 
-    def report(self, format: str = "explanation", **options: Any) -> str:
+    def report(
+        self,
+        format: str = "explanation",
+        *,
+        include_evidence: bool = False,
+        **options: Any,
+    ) -> str:
         """Explain explicit declarations, or render the original bibliography/graph.
 
-        Only explanation renders the companion. Other formats delegate to the
-        complete original and remain byte-identical; to_json saves both planes.
+        Explanation renders the companion. Workflow includes it only on explicit
+        request; defaults delegate to the complete original byte-identically.
+        The include_evidence extension is provisional; to_json saves both planes.
         """
         from .report import _resolve_format
 
         if not isinstance(format, str) or not format.strip():
             _invalid("a non-empty report format is required")
-        if _resolve_format(format) == "explanation":
+        if not isinstance(include_evidence, bool):
+            _invalid("include_evidence must be a boolean")
+        canonical = _resolve_format(format)
+        if include_evidence:
+            if canonical != "workflow" or options:
+                _invalid(
+                    "include_evidence requires workflow format without other options"
+                )
+            from ..formats.workflow import render_evidence
+
+            return render_evidence(self)
+        if canonical == "explanation":
             if options:
                 _invalid("evidence explanations take no report options")
             from ..formats.explanation import render_evidence

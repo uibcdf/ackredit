@@ -26,6 +26,7 @@ from smonitor import signal
 
 from ._private.smonitor.exceptions import (
     AckreditError,
+    AttributionEvidenceError,
     CliFileError,
     ReportInputOverwriteError,
 )
@@ -107,6 +108,11 @@ def build_parser() -> argparse.ArgumentParser:
     report_parser.add_argument(
         "--output", "-o", help="Export to a UTF-8 file instead of standard output."
     )
+    report_parser.add_argument(
+        "--include-evidence",
+        action="store_true",
+        help="Include recorder declarations (requires evidence input and workflow output).",
+    )
 
     agg_parser = subparsers.add_parser(
         "aggregate", help="Merge multiple session files."
@@ -130,7 +136,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 @signal(tags=["ackredit", "cli"])
 def _attribution_report(
-    path_text: str, format: str, *, input_format: str = "attribution"
+    path_text: str,
+    format: str,
+    *,
+    input_format: str = "attribution",
+    include_evidence: bool = False,
 ) -> str:
     try:
         content = Path(path_text).read_text(encoding="utf-8")
@@ -148,7 +158,8 @@ def _attribution_report(
         "bundle": AttributionBundle,
         "evidence": AttributionEvidence,
     }[input_format]
-    return reader.from_json(content).report(format=format)
+    options = {"include_evidence": True} if include_evidence else {}
+    return reader.from_json(content).report(format=format, **options)
 
 
 @signal(tags=["ackredit", "cli"])
@@ -173,9 +184,20 @@ def _export_report(content: str, output_text: str, input_text: str) -> None:
 
 def _report(args) -> int:
     try:
+        if args.include_evidence and (
+            args.input_format != "evidence" or args.format != "workflow"
+        ):
+            raise AttributionEvidenceError(
+                extra={
+                    "reason": "--include-evidence requires evidence input and workflow output"
+                }
+            )
         if args.input_format in {"attribution", "bundle", "evidence"}:
             rendered = _attribution_report(
-                args.session_file, args.format, input_format=args.input_format
+                args.session_file,
+                args.format,
+                input_format=args.input_format,
+                include_evidence=args.include_evidence,
             )
         else:
             if _load(args.session_file) is None:

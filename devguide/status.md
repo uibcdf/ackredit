@@ -198,6 +198,14 @@ retains the original hosted wheel/digest, eight cells and executed controls.
 These milestones are resolved development checkpoints. Other recorder origins,
 broader workflow presentation, public delivery and provisional review remain open.
 
+The next bounded presentation milestone #106 adds provisional
+`evidence.report("workflow", include_evidence=True)` and an explicit CLI flag.
+The owning workflow renderer joins original references/uses/graphs with each
+original occurrence's field-source declarations, observation boundaries and
+diagnosed recording gaps. Defaults and schemas stay unchanged. Its source,
+normally installed reader and hosted qualification are separate pending controls;
+see the [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/workflow_recorder_evidence.md).
+
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures
 and reduces portable capture overhead; #87 prepares fixed explicit contextual

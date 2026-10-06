@@ -72,7 +72,7 @@ again, deciding scientific completion or guessing which reference was lost.
 recorder declarations, plus explicit interpretation limits. Original schema-1
 scope remains unknown in that descriptive view. The companion is the separate
 contract carrying the stronger declarations. `report("explanation")` renders both.
-Other formats render the original and stay byte-identical; `report("json")`
+Other formats render the original by default and stay byte-identical; `report("json")`
 exports bibliography, while `to_json()` retains the complete companion.
 
 ```bash
@@ -131,3 +131,37 @@ acquire guessed origins or invented scope through this extension. Broader record
 integration remains pending. `run.attribution` and existing workflow/bibliography
 reports retain their original contracts; `.evidence` is the explicitly requested
 companion carrying these extra bounded facts.
+
+## Include evidence in the workflow report
+
+Development under #106 adds a **provisional**, explicitly requested presentation:
+
+```python
+# evidence is the saved companion or run.evidence from the calculation above.
+print(evidence.report("workflow", include_evidence=True))
+```
+
+The workflow keeps its original reference numbers, bibliography, software versions,
+contextual use roles and graph. Each original result then shows metadata sources
+for specific retained fields, declared observation boundaries and owning recording
+diagnostic identities. Bundle references are numbered once; repeated names/inputs
+still have separate declarations beside their own graphs. Locators are inert and
+recorder versions come from the original producer, not the reader's installation.
+
+Unknown planes say **Not recorded**; explicitly empty declarations say none were
+supplied. Missing source declarations leave origins unknown. Neither implies a
+missing citation, complete instrumentation or absence of recording failures.
+Multiple sources for one field remain separate without choosing a winner or
+inventing chronology. A selected boundary can be unused; unsupported/unobserved
+boundaries can legitimately have no graph node. Stored recording gaps are not
+emitted again and do not decide scientific success.
+
+```bash
+ackredit report saved-evidence.json --input-format evidence -f workflow --include-evidence -o workflow.md
+```
+
+The option requires evidence input and workflow output. Invalid combinations are
+refused through `ACKREDIT-E016` before reading/aggregating a session. The input
+cannot be overwritten. Reading and rendering need no producer, engines, metadata
+services or new credits. Omitting the option or passing `False` keeps the original
+workflow report byte-identical; all other defaults and portable schemas stay unchanged.

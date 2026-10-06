@@ -264,6 +264,8 @@ def summarize(directory: Path, bundle: Path) -> dict:
             "provider-evidence.json",
             "provider-evidence-report.md",
             "provider-evidence-reader.json",
+            "provider-evidence-integrated-workflow.md",
+            "provider-evidence-integrated-cli.md",
             "tests.xml",
         ):
             assert (identity.parent / filename).is_file(), (cell, filename)

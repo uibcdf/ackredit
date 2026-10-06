@@ -259,6 +259,14 @@ companion and unchanged workflow, compares CLI/library explanation and refuses
 new credits or diagnostic replay. Each cell must retain `provider-evidence.json`,
 `provider-evidence-report.md` and `provider-evidence-reader.json`; the aggregate
 now requires nine passing tests and these files. Previous eight-test evidence
-remains historical qualification of its original scope and cannot qualify this
+does not qualify that collector. Development #106 further extends that ninth
+case to compare the explicitly requested integrated workflow with its fresh CLI
+export, while retaining the original default report identically. Each cell must
+also retain `provider-evidence-integrated-workflow.md` and
+`provider-evidence-integrated-cli.md`; historical #105 files are not relabeled
+as this new qualification. Original source/package identities remain separate.
+
+Previous eight-test evidence remains historical qualification of its original
+scope and cannot qualify this
 collector. Source/normal-installed local evidence and the eight-cell hosted
 checkpoint are separate; this milestone does not promote provisional APIs.

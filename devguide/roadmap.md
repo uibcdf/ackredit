@@ -492,6 +492,14 @@ prepared-backend and discovery/enrichment recorder origins still need ownership
 decisions and focused implementation issues. Requested workflow presentation
 must combine the evidence with the narrative without changing report defaults.
 
+The focused presentation milestone [#106](https://github.com/uibcdf/ackredit/issues/106)
+implements provisional `evidence.report("workflow", include_evidence=True)` and
+the explicit saved-evidence CLI option. It extends the owning renderer, keeping
+shared reference numbering and attaching recorder declarations to their original
+result occurrence. Unknown planes, empty declarations and actual diagnostic
+identities retain their bounds. Defaults and schemas stay unchanged; source,
+normally installed receiving and exact-head qualification remain pending.
+
 ### Theme K — Attribution at MOLI object boundaries
 
 Coordinate platform decisions in [MOLI #46](https://github.com/uibcdf/moli/issues/46)

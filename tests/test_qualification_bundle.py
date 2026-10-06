@@ -125,6 +125,8 @@ def complete_matrix(candidate, monkeypatch):
                 "provider-evidence.json",
                 "provider-evidence-report.md",
                 "provider-evidence-reader.json",
+                "provider-evidence-integrated-workflow.md",
+                "provider-evidence-integrated-cli.md",
                 "tests.xml",
             ):
                 (cell / filename).write_text("test fixture")
@@ -199,6 +201,8 @@ def test_previous_eight_test_gate_does_not_qualify_provider_evidence(complete_ma
         "provider-evidence.json",
         "provider-evidence-report.md",
         "provider-evidence-reader.json",
+        "provider-evidence-integrated-workflow.md",
+        "provider-evidence-integrated-cli.md",
     ],
 )
 def test_missing_provider_evidence_is_refused(complete_matrix, filename):

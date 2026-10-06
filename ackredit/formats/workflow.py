@@ -100,6 +100,7 @@ def render_payload(
     numbers: dict[str, int] | None = None,
     include_references: bool = True,
     heading_level: int = 1,
+    evidence: dict | None = None,
 ) -> str:
     """Render validated original records; do not inspect the reader's registry."""
     items = payload["items"]
@@ -143,6 +144,8 @@ def render_payload(
         lines.append("")
     else:
         lines.extend(["No contextual uses were recorded.", ""])
+    if evidence is not None:
+        lines.extend(_evidence_lines(evidence, items, numbers, heading_level + 1))
     lines.extend([f"{'#' * (heading_level + 1)} Recorded graph", ""])
     records = {
         item["id"]: {
@@ -161,7 +164,9 @@ def render_payload(
     return "\n".join(lines).rstrip() + "\n"
 
 
-def render_bundle(payload: dict, items: list[dict]) -> str:
+def render_bundle(
+    payload: dict, items: list[dict], *, evidence: list[dict] | None = None
+) -> str:
     """Number shared references once while retaining every original result graph."""
     numbers = {item["id"]: number for number, item in enumerate(items, 1)}
     lines = [
@@ -182,9 +187,129 @@ def render_bundle(payload: dict, items: list[dict]) -> str:
         lines.extend([f"## Result {index}: {escape(record['name'])}", ""])
         lines.append(
             render_payload(
-                record, numbers=numbers, include_references=False, heading_level=3
+                record,
+                numbers=numbers,
+                include_references=False,
+                heading_level=3,
+                evidence=evidence[index - 1] if evidence is not None else None,
             )
         )
     if not payload["attributions"]:
         lines.extend(["No input attributions were supplied.", ""])
     return "\n".join(lines).rstrip() + "\n"
+
+
+def _evidence_lines(result, items, numbers, heading_level):
+    """Present validated declarations without inferring unrecorded facts."""
+    heading = "#" * heading_level
+    lines = [
+        f"{heading} Recorder evidence",
+        "",
+        "These are recorder declarations, not certification of bibliographic truth, scientific success or complete instrumentation.",
+        "",
+        f"{heading} Metadata sources",
+        "",
+        "Sources describe only the listed retained fields. Other field origins remain unknown; this does not imply a missing or incorrect citation. Source locators are not opened.",
+        "",
+    ]
+    origins = result["metadata_origins"]
+    if origins is None:
+        lines.extend(["Metadata origins: Not recorded.", ""])
+    elif not origins:
+        lines.extend(
+            [
+                "No metadata-source declarations supplied. Field origins remain unknown.",
+                "",
+            ]
+        )
+    if origins:
+        methods = {
+            "explicit_declaration": "Explicit declaration",
+            "provider_declaration": "Provider declaration",
+            "citation_file": "Citation file",
+            "bibtex_file": "BibTeX file",
+            "plugin": "Plugin",
+            "doi_enrichment": "DOI enrichment",
+            "fallback": "Fallback",
+        }
+        lines.extend(
+            [
+                "| Reference | Retained fields | Method | Source | Recorder |",
+                "| --- | --- | --- | --- | --- |",
+            ]
+        )
+        for origin in origins:
+            cells = [
+                str(numbers[origin["item_id"]]),
+                _cell(_json(origin["fields"])),
+                methods[origin["method"]],
+                _cell(origin["source"]),
+                _cell(origin["recorder"]),
+            ]
+            lines.append("| " + " | ".join(cells) + " |")
+        lines.append("")
+        supplied = {origin["item_id"] for origin in origins}
+        absent = [
+            str(numbers[item["id"]]) for item in items if item["id"] not in supplied
+        ]
+        if absent:
+            lines.extend(
+                [
+                    "References with no metadata-source declaration: "
+                    + ", ".join(absent)
+                    + ". Their origins remain unknown.",
+                    "",
+                ]
+            )
+    for plane, title, headers, keys, limit in (
+        (
+            "observation_scope",
+            "Observation boundaries",
+            ("Boundary", "Mechanism", "Declared status", "Recorder"),
+            ("boundary", "mechanism", "status", "recorder"),
+            "Selected boundaries do not establish that a function ran. Unsupported or unobserved boundaries need not have a recorded graph node.",
+        ),
+        (
+            "recording_gaps",
+            "Diagnosed recording gaps",
+            ("Boundary", "Diagnostic owner", "Diagnostic code", "Recorder"),
+            ("boundary", "diagnostic_owner", "diagnostic_code", "recorder"),
+            "Stored diagnostic identities are not emitted again. They do not identify a missing citation or establish scientific failure; absence of declarations does not establish absence of failures.",
+        ),
+    ):
+        lines.extend([f"{heading} {title}", "", limit, ""])
+        records = result[plane]
+        if records is None:
+            lines.extend(["Not recorded.", ""])
+        elif not records:
+            lines.extend(
+                ["No declarations supplied. This does not establish completeness.", ""]
+            )
+        else:
+            lines.extend(
+                [
+                    "| " + " | ".join(headers) + " |",
+                    "| " + " | ".join("---" for _ in keys) + " |",
+                ]
+            )
+            for record in records:
+                lines.append(
+                    "| " + " | ".join(_cell(record[key]) for key in keys) + " |"
+                )
+            lines.append("")
+    return lines
+
+
+def render_evidence(evidence) -> str:
+    """Join a validated companion with the owning workflow presentation."""
+    from ..core.composition import _bibliography
+
+    payload = evidence.to_dict()
+    original = payload["attribution"]
+    if original["schema"] == "ackredit.attribution_bundle@1":
+        return render_bundle(
+            original,
+            list(_bibliography(original["attributions"]).values()),
+            evidence=payload["results"],
+        )
+    return render_payload(original, evidence=payload["results"][0])
