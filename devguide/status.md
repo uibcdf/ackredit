@@ -178,6 +178,15 @@ automatic collection or a new scientific/platform matrix. Exact-head hosted
 controls remain pending. See the [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/explicit_attribution_evidence.md)
 and [receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/explicit_attribution_evidence_104_2026-10-05.json).
 
+Provider-recorder collection is implemented provisionally under #105 via
+`capture(record_evidence=True)` / `.evidence`. Source checks pass 2,047 Python
+3.14 tests and nine normal-installed local real receiving cases without skips.
+Provider origins and diagnosed gaps now come from the actual opt-in recorder;
+other recorder origins remain unknown. The expanded eight-cell hosted checkpoint
+and source/policy head are separate pending controls. The
+[collector receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_collection_105_2026-10-05.json)
+preserves original source/file identity, receiving proofs and local cost limits.
+
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures
 and reduces portable capture overhead; #87 prepares fixed explicit contextual

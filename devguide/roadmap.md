@@ -462,8 +462,12 @@ The next collector milestone [#105](https://github.com/uibcdf/ackredit/issues/10
 adds provisional `capture(record_evidence=True)` / `.evidence` support. It collects
 actual overlapping observer selections, field sources for successfully credited
 provider items and owning recording diagnostics. Default captures and original
-portable records remain unchanged. Qualification is underway; other recorder
-origins and broader requested workflow presentation remain pending.
+portable records remain unchanged. Local Python 3.14 qualification passes 2,047
+source tests and nine normal-installed real receiving cases with inert saved
+readers. The [collector receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_collection_105_2026-10-05.json)
+retains exact bytes and bounded local costs. Expanded hosted receiving/source
+qualification, other recorder origins and broader requested workflow presentation
+remain separate and pending.
 
 ### Theme K — Attribution at MOLI object boundaries
 

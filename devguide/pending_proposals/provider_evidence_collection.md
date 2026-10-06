@@ -109,3 +109,37 @@ skips, with complete/integrity-valid receptor events. The mandatory receiving
 module adds its ninth real pipeline case and the aggregate requires the new
 proof files in all eight platform/minor cells. Local normal-installed execution
 and subsequent hosted qualification remain separate checkpoints below.
+
+## Normal installed receiving checkpoint — 2026-10-05
+
+Clean producer `cbaa93727bcf8a64902a76e72d961909c203a6b9` builds one
+local candidate `ackredit-0.10.1+17.gcbaa937-py3-none-any.whl`, SHA-256
+`bad4e656038cde1ddb6bc8f4f45cb2d97d2aaf4516163a91d9427d97a44d5485`.
+The owning qualification bundle verifies its archive and all 70 package files.
+Ackredit and pinned PyUnitWizard `0e422d06b0af56e4dd2b43cafd00f059221eb405`
+are installed normally into a separate Linux/Python 3.14.7 environment with real
+Pint/unyt. `pip check` passes; neither editable/source import substitutes for this
+receiving checkpoint. The temporary environment reuses the shared dependency
+foundation and its existing installed unit engines, not a fresh Conda solve.
+
+All nine designated cases pass without skips, including the new actual collector
+case, preceding pipeline/report/composition checks, optional absence and original
+0.9.0 fallback. The new case checks real field-bounded provider declaration origins,
+unknown backend-recorder origins, selected-but-unused scope and a controlled writer
+fault without changing scientific values/units. A fresh offline reader blocks
+producer/engine imports and new credits, retains the original companion/workflow,
+and replays no diagnostics. The fault is deliberately injected into the recorder;
+it is not a discovered scientific/backend failure.
+
+The first local nine-test pass lacked its receptor stream because its output
+folder was created after the receptor opened. After the directory existed, the
+entire designated gate reran: all nine pass with complete, integrity-valid events.
+Only that latter stream qualifies this receipt. No artifact requirement is waived.
+The [reviewed receipt](../../devtools/receipts/provider_evidence_collection_105_2026-10-05.json)
+retains exact source/packages, events, proofs and all benchmark samples/limits.
+
+The expanded eight-cell hosted scientific matrix and final-head source/policy
+checks still require separate execution. This local case does not qualify another
+platform/minor, a public file or stable promotion. #105 remains active until its
+applicable hosted gates complete. Follow-up recorder origins and broader workflow
+presentation remain pending even after this provider collector qualifies.

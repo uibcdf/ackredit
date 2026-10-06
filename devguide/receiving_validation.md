@@ -15,9 +15,11 @@ The #102 composition checkpoint adds an eighth real PyUnitWizard case: original
 Pint/unyt results, reused/empty inputs, shared bibliography, unchanged session,
 conflict preflight and an independent producer-free bundle/CLI reader. Each
 cell retains `composition.json`, `composition-report.md` and
-`composition-reader.json`. The aggregate requires all eight tests and these
-proofs; previous six/seven-test or missing-proof evidence cannot qualify this
-new boundary. Historical receipts below retain their original counts/inputs.
+`composition-reader.json`. Its historical aggregate required eight tests and these
+proofs; previous six/seven-test or missing-proof evidence could not qualify that
+boundary. The current #105 collector checkpoint requires nine tests and its
+additional provider-evidence proofs, as specified below. Historical receipts
+retain their original counts/inputs.
 New source/receiving qualification does not publish an artifact or promote the
 observer/prepared APIs.
 
@@ -70,7 +72,7 @@ and provider-absence evidence, released fallback, JUnit and Pytest Receptor even
 Inspect the remote execution with `gh run-receptor inspect RUN_ID --receptor=llm`.
 All eight receiving jobs must pass; a successful subset is incomplete evidence.
 The final job uses Pytest Receptor's supported `read_artifact` API to require
-eight distinct platform/minor receipts, matching bundle identities and eight
+eight distinct platform/minor receipts, matching bundle identities and nine
 passed tests per cell, with no skips, deselections, incomplete or failed tests.
 It retains a combined `function-provider-matrix` artifact only after those
 checks succeed. JUnit and per-cell evidence remain available independently.

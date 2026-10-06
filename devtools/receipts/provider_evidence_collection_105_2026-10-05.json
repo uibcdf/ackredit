@@ -1,0 +1,546 @@
+{
+  "schema": "ackredit.provider-evidence-receiving@1",
+  "date": "2026-10-05",
+  "issue": "uibcdf/ackredit#105",
+  "source_commit": "cbaa93727bcf8a64902a76e72d961909c203a6b9",
+  "scope": "Normal-installed local Linux/Python 3.14.7 real Pint/unyt receiving plus original fallback/absence/offline readers; nine executed tests. Hosted platform matrix remains separate.",
+  "packages": {
+    "candidate": {
+      "package": "ackredit",
+      "source_commit": "cbaa93727bcf8a64902a76e72d961909c203a6b9",
+      "version": "0.10.1+17.gcbaa937",
+      "filename": "ackredit-0.10.1+17.gcbaa937-py3-none-any.whl",
+      "sha256": "bad4e656038cde1ddb6bc8f4f45cb2d97d2aaf4516163a91d9427d97a44d5485"
+    },
+    "producer": {
+      "package": "pyunitwizard",
+      "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+      "version": "0.28.0+5.g0e422d0",
+      "filename": "pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl",
+      "sha256": "988071bdcba2c27710bb91443760432219c4a1939e808f0613597431894eee34"
+    },
+    "released": {
+      "package": "ackredit",
+      "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "version": "0.9.0",
+      "filename": "ackredit-0.9.0-py3-none-any.whl",
+      "sha256": "4bf0314d61afac582b54af815bc6be87bc1d32d87abfdcdae56d827c97067cc5"
+    }
+  },
+  "installed_identity": {
+    "ackredit": {
+      "version": "0.10.1+17.gcbaa937",
+      "origin": "/tmp/ackredit102-env/lib/python3.14/site-packages/ackredit/__init__.py",
+      "wheel_sha256": "bad4e656038cde1ddb6bc8f4f45cb2d97d2aaf4516163a91d9427d97a44d5485"
+    },
+    "pyunitwizard": {
+      "version": "0.28.0+5.g0e422d0",
+      "origin": "/tmp/ackredit102-env/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+      "wheel_sha256": "988071bdcba2c27710bb91443760432219c4a1939e808f0613597431894eee34"
+    },
+    "pint": {
+      "version": "0.25.3",
+      "origin": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/site-packages/pint/__init__.py"
+    },
+    "unyt": {
+      "version": "3.1.0",
+      "origin": "/tmp/ackredit102-env/lib/python3.14/site-packages/unyt/__init__.py"
+    }
+  },
+  "candidate_package_files_verified": 70,
+  "source_validation": {
+    "python": "3.14.7",
+    "counts": {
+      "collected": 2047,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 2047,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 2047,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "event_integrity_valid": true,
+    "events_sha256": "dc21d6e1f3011e76d68584ce4737b95358ce927910086bd1aa04fd419d093544",
+    "ruff_check": "PASS",
+    "ruff_format": "PASS",
+    "strict_sphinx": "PASS",
+    "report_indexes": "PASS"
+  },
+  "receiving_validation": {
+    "counts": {
+      "collected": 9,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 9,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 9,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "event_integrity_valid": true,
+    "events_sha256": "2f06f336c61ef695bc5165b40fb58297aebb4d6b309cf58fdfae0a95dd381c81",
+    "proof": {
+      "producer_imports": 0,
+      "network_attempts": 0,
+      "new_credits": 0,
+      "new_diagnostics": 0,
+      "original_versions_preserved": true,
+      "actual_provider_declaration_origins": true,
+      "controlled_recording_fault_retained": true,
+      "unchanged_workflow_report": true,
+      "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+    },
+    "proof_sha256": "d1250f0b552026ef2cefccb202f91a7db7c4e1a15c6ecc41c25d8cc3c883ff55",
+    "saved_companion_sha256": "a691664459fe8279f589a3f150f2c9d4d16418d15cacea40d2295c61f4c6f128",
+    "explanation_report_sha256": "cf9d7100ece2228f903c7b7b4838834c571b614f307f082a37f36d3c64870ecc",
+    "unchanged_workflow_sha256": "3fdd9723ae5eea1b76526a7476bbc5c67e960596e873da401a582064c6b646f2",
+    "normal_install_pip_check": "PASS",
+    "fault_scope": "Actual conversion with controlled fault injection into the provider recording writer, not a discovered scientific/backend defect."
+  },
+  "local_benchmark": {
+    "before": {
+      "schema": "ackredit.benchmark.portable@1",
+      "source": "d7120eb270d016b8b01360b7c5a8512141baf775",
+      "dirty": false,
+      "python": "3.14.7",
+      "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+      "executable": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/bin/python",
+      "ackredit_origin": "/tmp/ackredit105-baseline/ackredit/__init__.py",
+      "runtime_files_sha256": {
+        "core/attribution.py": "31f2169c78643c99da0c61e00b868dab837111735035e69f5bcff85babe3f28f",
+        "core/collector.py": "eb9bf60d3232a251f60e3e9e672b1a13d68dca0414ed027d97dc4aaa741e9db5",
+        "core/providers.py": "17859616e5a3e2bcbf2f4962edf2a0b1de4c3f2189ac06ca09c80cb295e0e656"
+      },
+      "benchmark_sha256": "747ad75f7464b4dfe1e2e2609873132b117ef8bdcef211ade9efd746b5d67d11",
+      "samples": 5,
+      "results": {
+        "plain": {
+          "iterations": 2000,
+          "samples_us": [
+            1.42494,
+            1.4681785,
+            1.4030665,
+            1.2906099999999998,
+            1.3050335
+          ],
+          "median_us": 1.4030665,
+          "minimum_us": 1.2906099999999998,
+          "spread_us": 0.17756850000000024
+        },
+        "contextual": {
+          "iterations": 2000,
+          "samples_us": [
+            45.310913,
+            43.765034,
+            43.382279000000004,
+            43.7934325,
+            43.786908499999996
+          ],
+          "median_us": 43.786908499999996,
+          "minimum_us": 43.382279000000004,
+          "spread_us": 1.9286339999999953
+        },
+        "capture": {
+          "iterations": 2000,
+          "samples_us": [
+            45.899507,
+            45.252396,
+            45.387782,
+            44.5825115,
+            48.688286500000004
+          ],
+          "median_us": 45.387782,
+          "minimum_us": 44.5825115,
+          "spread_us": 4.105775000000001
+        },
+        "nested": {
+          "iterations": 2000,
+          "samples_us": [
+            49.8707425,
+            45.955713,
+            45.4166505,
+            49.7356295,
+            48.004883
+          ],
+          "median_us": 48.004883,
+          "minimum_us": 45.4166505,
+          "spread_us": 4.454091999999996
+        },
+        "snapshot": {
+          "iterations": 100,
+          "samples_us": [
+            151.39554,
+            156.33454,
+            154.27631,
+            157.12436,
+            156.98904000000002
+          ],
+          "median_us": 156.33454,
+          "minimum_us": 151.39554,
+          "spread_us": 5.728819999999985
+        },
+        "bibtex": {
+          "iterations": 100,
+          "samples_us": [
+            281.82525,
+            267.3635,
+            264.85379,
+            266.19378,
+            275.3097
+          ],
+          "median_us": 267.3635,
+          "minimum_us": 264.85379,
+          "spread_us": 16.97145999999998
+        },
+        "provider_inactive": {
+          "iterations": 2000,
+          "samples_us": [
+            0.096411,
+            0.1007065,
+            0.0976345,
+            0.0973265,
+            0.112359
+          ],
+          "median_us": 0.0976345,
+          "minimum_us": 0.096411,
+          "spread_us": 0.015948000000000004
+        },
+        "provider_active": {
+          "iterations": 2000,
+          "samples_us": [
+            8.5702755,
+            8.1512565,
+            8.1200705,
+            7.8385489999999995,
+            7.380018
+          ],
+          "median_us": 8.1200705,
+          "minimum_us": 7.380018,
+          "spread_us": 1.1902574999999995
+        },
+        "provider_capture": {
+          "iterations": 2000,
+          "samples_us": [
+            9.3742515,
+            9.61119,
+            9.8370775,
+            9.7700285,
+            10.192911500000001
+          ],
+          "median_us": 9.7700285,
+          "minimum_us": 9.3742515,
+          "spread_us": 0.8186600000000013
+        },
+        "provider_nested": {
+          "iterations": 2000,
+          "samples_us": [
+            11.524272499999999,
+            11.0569945,
+            10.102084999999999,
+            10.171473,
+            10.6919255
+          ],
+          "median_us": 10.6919255,
+          "minimum_us": 10.102084999999999,
+          "spread_us": 1.4221874999999997
+        },
+        "prepared": {
+          "iterations": 2000,
+          "samples_us": [
+            1.7457395,
+            1.7292315,
+            1.7285585,
+            1.7869365,
+            1.8731205
+          ],
+          "median_us": 1.7457395,
+          "minimum_us": 1.7285585,
+          "spread_us": 0.14456199999999986
+        },
+        "prepared_capture": {
+          "iterations": 2000,
+          "samples_us": [
+            2.822906,
+            3.5304095,
+            2.9225065,
+            2.830054,
+            2.851127
+          ],
+          "median_us": 2.851127,
+          "minimum_us": 2.822906,
+          "spread_us": 0.7075035000000001
+        },
+        "prepared_nested": {
+          "iterations": 2000,
+          "samples_us": [
+            4.0520214999999995,
+            4.38314,
+            3.840807,
+            3.7918060000000002,
+            4.389385
+          ],
+          "median_us": 4.0520214999999995,
+          "minimum_us": 3.7918060000000002,
+          "spread_us": 0.5975789999999996
+        }
+      }
+    },
+    "after": {
+      "schema": "ackredit.benchmark.portable@1",
+      "source": "d7120eb270d016b8b01360b7c5a8512141baf775",
+      "dirty": true,
+      "python": "3.14.7",
+      "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+      "executable": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/bin/python",
+      "ackredit_origin": "/tmp/ackredit-portable-release-75/ackredit/__init__.py",
+      "runtime_files_sha256": {
+        "core/attribution.py": "69f7f7b57c41c3dec7b6cb69337f7960c976068ddd4f290a109f67b9d59dc9dd",
+        "core/collector.py": "eb9bf60d3232a251f60e3e9e672b1a13d68dca0414ed027d97dc4aaa741e9db5",
+        "core/providers.py": "96ce0173eecbdcb87f56257459dae287f43196caa4871fa607ab6a5c9615d0ae",
+        "core/evidence.py": "11cba392cfe6f568d9a8de18abb8d541a9af3d8fb235adac215902f0c5e8751c"
+      },
+      "benchmark_sha256": "e4de2a2f1207b188cb380ed3a4c7ed710c7d93eda21ca66fa6af76c063fe5f8a",
+      "samples": 5,
+      "results": {
+        "plain": {
+          "iterations": 2000,
+          "samples_us": [
+            1.4606565,
+            1.550325,
+            1.5219745,
+            1.4148005000000001,
+            1.3895685
+          ],
+          "median_us": 1.4606565,
+          "minimum_us": 1.3895685,
+          "spread_us": 0.16075649999999997
+        },
+        "contextual": {
+          "iterations": 2000,
+          "samples_us": [
+            47.852250500000004,
+            41.246612500000005,
+            41.318329,
+            40.175334,
+            41.1449075
+          ],
+          "median_us": 41.246612500000005,
+          "minimum_us": 40.175334,
+          "spread_us": 7.676916500000004
+        },
+        "capture": {
+          "iterations": 2000,
+          "samples_us": [
+            42.970214,
+            42.519555,
+            41.967358,
+            42.444561500000006,
+            44.1817875
+          ],
+          "median_us": 42.519555,
+          "minimum_us": 41.967358,
+          "spread_us": 2.2144295000000014
+        },
+        "nested": {
+          "iterations": 2000,
+          "samples_us": [
+            48.0632955,
+            51.1205365,
+            47.455819000000005,
+            45.638131,
+            45.662495
+          ],
+          "median_us": 47.455819000000005,
+          "minimum_us": 45.638131,
+          "spread_us": 5.482405499999999
+        },
+        "snapshot": {
+          "iterations": 100,
+          "samples_us": [
+            148.50937,
+            142.60282,
+            146.24461,
+            143.06794,
+            142.01139999999998
+          ],
+          "median_us": 143.06794,
+          "minimum_us": 142.01139999999998,
+          "spread_us": 6.497970000000009
+        },
+        "bibtex": {
+          "iterations": 100,
+          "samples_us": [
+            258.70237,
+            261.00163,
+            260.15772,
+            266.38125,
+            266.16906
+          ],
+          "median_us": 261.00163,
+          "minimum_us": 258.70237,
+          "spread_us": 7.678880000000049
+        },
+        "provider_inactive": {
+          "iterations": 2000,
+          "samples_us": [
+            0.1016615,
+            0.1061265,
+            0.096535,
+            0.09668500000000001,
+            0.11358599999999999
+          ],
+          "median_us": 0.1016615,
+          "minimum_us": 0.096535,
+          "spread_us": 0.017050999999999997
+        },
+        "provider_active": {
+          "iterations": 2000,
+          "samples_us": [
+            7.545577000000001,
+            7.831485499999999,
+            7.5233335,
+            7.409576,
+            7.6957070000000005
+          ],
+          "median_us": 7.545577000000001,
+          "minimum_us": 7.409576,
+          "spread_us": 0.42190949999999905
+        },
+        "provider_capture": {
+          "iterations": 2000,
+          "samples_us": [
+            9.158799,
+            9.107474,
+            9.288829,
+            9.373253,
+            9.274752000000001
+          ],
+          "median_us": 9.274752000000001,
+          "minimum_us": 9.107474,
+          "spread_us": 0.2657790000000002
+        },
+        "provider_nested": {
+          "iterations": 2000,
+          "samples_us": [
+            10.473458,
+            10.5429515,
+            10.8846925,
+            10.545628500000001,
+            10.810464
+          ],
+          "median_us": 10.545628500000001,
+          "minimum_us": 10.473458,
+          "spread_us": 0.41123449999999906
+        },
+        "provider_evidence": {
+          "iterations": 2000,
+          "samples_us": [
+            11.7169425,
+            11.641790499999999,
+            11.848595999999999,
+            12.282656999999999,
+            12.194347
+          ],
+          "median_us": 11.848595999999999,
+          "minimum_us": 11.641790499999999,
+          "spread_us": 0.6408664999999996
+        },
+        "provider_evidence_nested": {
+          "iterations": 2000,
+          "samples_us": [
+            13.990776,
+            14.144776,
+            14.242906999999999,
+            14.1404295,
+            14.335805500000001
+          ],
+          "median_us": 14.144776,
+          "minimum_us": 13.990776,
+          "spread_us": 0.34502950000000077
+        },
+        "evidence_snapshot": {
+          "iterations": 100,
+          "samples_us": [
+            394.83121,
+            402.85144,
+            432.89575,
+            426.63509000000005,
+            428.9521
+          ],
+          "median_us": 426.63509000000005,
+          "minimum_us": 394.83121,
+          "spread_us": 38.06454000000002
+        },
+        "evidence_report": {
+          "iterations": 100,
+          "samples_us": [
+            944.24907,
+            930.95151,
+            862.13258,
+            891.5559300000001,
+            872.1049
+          ],
+          "median_us": 891.5559300000001,
+          "minimum_us": 862.13258,
+          "spread_us": 82.11649
+        },
+        "prepared": {
+          "iterations": 2000,
+          "samples_us": [
+            1.7385195000000002,
+            1.778246,
+            1.722499,
+            1.6411555,
+            1.915584
+          ],
+          "median_us": 1.7385195000000002,
+          "minimum_us": 1.6411555,
+          "spread_us": 0.27442849999999996
+        },
+        "prepared_capture": {
+          "iterations": 2000,
+          "samples_us": [
+            3.207462,
+            3.4042649999999997,
+            3.293297,
+            3.255886,
+            3.216225
+          ],
+          "median_us": 3.255886,
+          "minimum_us": 3.207462,
+          "spread_us": 0.19680299999999962
+        },
+        "prepared_nested": {
+          "iterations": 2000,
+          "samples_us": [
+            4.1173265,
+            4.1342955,
+            4.069166,
+            4.108406,
+            3.7827159999999997
+          ],
+          "median_us": 4.108406,
+          "minimum_us": 3.7827159999999997,
+          "spread_us": 0.3515795000000006
+        }
+      }
+    },
+    "limitations": "Five sequential local samples, one reference and warmed calls; no global speedup, cold import, dense workflow or memory-budget claim."
+  },
+  "hosted_gates_at_receipt": {
+    "state": "not_started",
+    "reason": "Two local commits are batched for one unskipped push; source/policy and the expanded eight-cell receiving matrix require separate executions."
+  },
+  "release_state": "Unreleased provisional opt-in collector; no tag, public artifact or stable promotion."
+}
