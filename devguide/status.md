@@ -14,6 +14,10 @@ working, a test or a reproducible command backs it.
 - **Scientific formats:** Markdown, plain text, BibTeX, CSL-JSON, JSON, provenance tree
   and LaTeX, plus contextual workflow Markdown, `dump()` to a directory and PDF
   compilation when `pdflatex` is present.
+  Development after public 0.11.0 preserves valid BibTeX citation keys and uses
+  a shared deterministic allocator for invalid/case-clashing IDs; generated
+  authorless references have meaningful natbib labels (#109). Guarded by
+  `tests/test_cite_keys.py`, including real compilation and forced collisions.
 - **Automated discovery:** import hooks, `CITATION.cff` parsing and PEP 621 metadata.
   Development after 0.10.1 preserves typed preferred CFF work identity and
   publication fields, without borrowing root software metadata or crediting

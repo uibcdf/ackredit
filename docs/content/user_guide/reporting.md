@@ -49,6 +49,18 @@ together with any format a plugin added, and asking for a name that is not there
 `ACKREDIT-E004` rather than quietly returning a different report. A test keeps this page
 and that function in agreement.
 
+### BibTeX citation keys
+
+Development after 0.11.0 preserves valid original keys such as `Smith_2020`
+and `smith:2020a`, so exporting an imported bibliography keeps manuscript
+references intact. Invalid or case-clashing IDs get distinct fallback keys;
+generated keys cannot take a nonclashing original key. LaTeX reports use the
+same mapping as the exported BibTeX. Generated references without an author or
+editor supply an escaped work title as their natbib label. Imported BibTeX
+fields retain their original LaTeX handling. These changes are tracked in
+[Ackredit #109](https://github.com/uibcdf/ackredit/issues/109) and are absent
+from the immutable public 0.11.0 file.
+
 ### CFF references in CSL-JSON
 
 Development after 0.10.1 also carries original CFF work kinds into CSL-JSON:

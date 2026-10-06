@@ -39,6 +39,16 @@ remain provisional. General 1.0 API commitment is still a separate decision.
 See [the accepted provider review](function_provider_contract_review.md) and
 [API stability](../docs/content/about/stability.md).
 
+The final clone-cleanup request authorizes publication of the previously
+preserved BibTeX/LaTeX changes, format tests and workflow notebook outputs.
+Review added collision/newline guards and completed the source repair under
+[Ackredit #109](https://github.com/uibcdf/ackredit/issues/109). This is development
+after public 0.11.0; the release file and original producer remain unchanged.
+Local Python 3.14.7 validation passes 6,207 tests without skips, Ruff and strict
+Sphinx. The owning issue retains the published head and its applicable CI
+evidence; the [archived repair](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/bibtex_citation_keys.md)
+records the scope.
+
 ## Next work, in order
 
 1. **Complete the distribution-input review, #108.** Read the
@@ -98,12 +108,12 @@ Guide adoption replies/commits are still separate owner evidence.
   Verify interpreter, import path and matching runtime/distribution versions
   at or above 0.11.0. A development suffix and dirty primary checkout are not
   the immutable release. Keep clean artifact tests separate.
-- The primary checkout contains nine preserved human files: BibTeX/LaTeX
-  implementation and tests, self-citation tests, the workflow notebook and
-  untracked `tests/test_cite_keys.py`. Review `git status` and preserve them;
-  use a clean owned worktree for independent work. Never reset them to make a
-  test pass. The clean release branch is `feat/portable-contract-release-75`;
-  its temporary path may be removed when no longer useful.
+- The formerly preserved nine human files are included in the authorized #109
+  publication. The primary branch is `main`, tracking `origin/main` (the remote
+  is named `origin`, not `upstream`). Verify a clean `git status` and matching
+  local/remote heads at resumption. Historical local branch commits are already
+  reachable remotely; their worktrees may still contain independent work.
+  Never reset or discard such work to make a test pass.
 - The read-only `/tmp` inventory found approximately 65.7 GiB total and 7.2 GiB
   in 298 Ackredit-prefixed directories at the recorded snapshot. Old release
   environments/caches and generated outputs are cleanup candidates, not proof
@@ -119,5 +129,6 @@ Guide adoption replies/commits are still separate owner evidence.
   executable changes need meaningful contract/behavior gates. Required source
   range remains Python 3.11–3.14, with installed Linux/macOS arm64 release gates.
 
-No new implementation is started by this checkpoint. At resumption, inspect
-current local/remote state and owner replies before selecting the next change.
+The clone-cleanup repair does not start #108 or the later roadmap themes. At
+resumption, inspect current local/remote state and owner replies before
+selecting the next change.

@@ -1,5 +1,15 @@
 # Release notes
 
+## Development after 0.11.0 — faithful BibTeX citation keys
+
+The source repair in [Ackredit #109](https://github.com/uibcdf/ackredit/issues/109)
+preserves valid original citation keys, including colons and underscores.
+Invalid and case-clashing IDs receive distinct deterministic fallbacks, including
+when generated keys collide with originals or with each other. BibTeX entries
+and LaTeX citations share the same allocation. Generated authorless references
+use escaped work titles for natbib labels. Imported LaTeX fields retain their
+existing escaping rules. The public 0.11.0 artifact is unchanged.
+
 ## 0.11.0 — stable provider contracts and faithful saved reports
 
 The maintainer-authorized checkpoint is tracked in

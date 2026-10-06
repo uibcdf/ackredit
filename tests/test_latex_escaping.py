@@ -94,7 +94,7 @@ def test_bibtex_output_escapes_every_field():
     track_item("esc:bib")
 
     rendered = report(format="bibtex")
-    entry = [block for block in rendered.split("\n\n") if "esc-bib" in block][0]
+    entry = [block for block in rendered.split("\n\n") if "esc:bib" in block][0]
 
     assert r"Surfaces \& Pockets" in entry
     assert r"Computing in Science \& Engineering" in entry
@@ -120,19 +120,20 @@ def test_latex_output_escapes_titles_and_callers():
     assert r"my\_module.run\_analysis" in rendered
 
 
-def test_citation_keys_are_safe_as_printed_labels():
-    """With no author, natbib prints the key as the label. A bare underscore
-    there is read in math mode and aborts the compilation, and auto-discovered
-    items frequently have no author."""
+def test_an_authorless_entry_is_labelled_by_a_field_not_by_its_key():
+    """With no author, natbib labels an entry with its `key` field, and failing
+    that with the first characters of the citation key — where a bare
+    underscore is read in math mode and aborts the compilation. So the label
+    comes from the field, escaped, and the citation key stays the id."""
     register_item(
-        id="key_check:with_underscore", type="article", title="No author here"
+        id="key_check:with_underscore", type="article", title="No author_here"
     )
     track_item("key_check:with_underscore")
 
     rendered = report(format="bibtex")
 
-    assert "key-check-with-underscore" in rendered
-    assert "key_check" not in rendered
+    assert "@article{key_check:with_underscore," in rendered
+    assert "key = {No author\\_here}" in rendered
 
 
 @pytest.mark.parametrize(
@@ -163,7 +164,7 @@ def test_an_unparseable_author_name_is_brace_protected():
     )
     track_item("many:commas")
 
-    entry = [b for b in report(format="bibtex").split("\n\n") if "many-commas" in b][0]
+    entry = [b for b in report(format="bibtex").split("\n\n") if "many:commas" in b][0]
 
     assert "{{A Person, B Person, C Person, D Person}}" in entry
 
@@ -174,7 +175,7 @@ def test_ordinary_author_names_are_not_brace_protected():
     )
     track_item("normal:author")
 
-    entry = [b for b in report(format="bibtex").split("\n\n") if "normal-author" in b][
+    entry = [b for b in report(format="bibtex").split("\n\n") if "normal:author" in b][
         0
     ]
 

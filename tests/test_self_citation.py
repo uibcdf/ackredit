@@ -111,7 +111,7 @@ def test_a_citing_workflow_produces_a_usable_entry(clean_registry):
 
     rendered = ackredit.report(format="bibtex")
 
-    assert "@misc{ackredit-self," in rendered
+    assert "@misc{ackredit:self," in rendered
     assert "Ackredit" in rendered
     assert "Prada-Gracia, Diego" in rendered
 

@@ -136,7 +136,7 @@ def test_a_type_ackredit_knows_still_maps_when_there_is_no_original(clean_regist
     ackredit.track_item("x:1")
     rendered = ackredit.report(format="bibtex")
 
-    assert "@misc{x-1," in rendered
+    assert "@misc{x:1," in rendered
     assert "howpublished = {Dataset}" in rendered
 
 

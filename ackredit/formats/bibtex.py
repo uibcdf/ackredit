@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import re
+from typing import Iterable
+
 from ._latex import escape, is_latex_source
 
 # The fields whose BibTeX name differs from Ackredit's, in the order a reader
@@ -58,9 +62,60 @@ def _bibtex_name(author: object, *, latex_source: bool = False) -> str:
     return f"{{{name}}}" if name.count(",") > 2 else name
 
 
-def _cite_key(item_id: str) -> str:
-    """Return a citation key that is safe as a printed natbib label."""
-    return item_id.replace(":", "-").replace(" ", "-").replace("_", "-")
+# What a citation key may carry and still be read the same by BibTeX, by
+# `\citep` and by hyperref's anchors. Everything reference managers generate
+# fits: `Smith_2020`, `smith:2020a`, `10.1021/ct500000x`.
+_KEY = re.compile(r"^[A-Za-z0-9_:./+-]+$")
+_NOT_KEY = re.compile(r"[^A-Za-z0-9_:./+-]+")
+
+
+def _digest(item_id: str) -> str:
+    return hashlib.sha256(item_id.encode("utf-8")).hexdigest()[:8]
+
+
+def _made_valid(item_id: str) -> str:
+    """A readable fallback candidate for *item_id*.
+
+    The readable part alone is lossy — "a b" and "a,b" both read "a-b" — so it
+    carries a digest of the id itself, as the DOI cache names do (#38).
+    The report-wide allocator resolves remaining collisions, including hashes.
+    """
+    readable = _NOT_KEY.sub("-", item_id).strip("-")
+    return f"{readable}-{_digest(item_id)}" if readable else _digest(item_id)
+
+
+def cite_keys(item_ids: Iterable[str]) -> dict[str, str]:
+    """The citation key of each id, distinct for distinct ids.
+
+    An id that is already a valid key is its own key, so an entry read from a
+    `.bib` file is written back under the name the manuscript cites. This used
+    to rewrite every `:`, `_` and space to `-`, which renamed what was loaded
+    and mapped `Smith_2020` and `Smith:2020` to one key, losing a citation.
+
+    BibTeX compares keys ignoring case, so ids that differ only in case need
+    fallback keys. Reserve original nonclashing valid keys first, then allocate
+    unique fallback keys in sorted id order. Even generated-key/hash collisions
+    cannot rename those originals or collapse two works. One table for a whole
+    report, so `bibtex` entries and `latex` `\\citep` calls cannot disagree.
+    """
+    ids = list(dict.fromkeys(item_ids))
+    folded: dict[str, list[str]] = {}
+    for item_id in ids:
+        if _KEY.fullmatch(item_id):
+            folded.setdefault(item_id.casefold(), []).append(item_id)
+    keys = {group[0]: group[0] for group in folded.values() if len(group) == 1}
+    reserved = {key.casefold() for key in keys.values()}
+    for item_id in sorted(item_id for item_id in ids if item_id not in keys):
+        base = _made_valid(item_id)
+        candidate = base
+        suffix = 2
+        while candidate.casefold() in reserved:
+            candidate = f"{base}-{suffix}"
+            suffix += 1
+        keys[item_id] = candidate
+        reserved.add(candidate.casefold())
+
+    return {item_id: keys[item_id] for item_id in ids}
 
 
 def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
@@ -72,6 +127,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         return ""
 
     entries: list[str] = []
+    keys = cite_keys(used)
 
     # Ackredit's types mapped onto BibTeX's own vocabulary. `@software` and
     # `@dataset` come from biblatex and are not defined by a BibTeX style, so a
@@ -101,12 +157,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             # If item not in registry, create a minimal misc entry
             item = {"title": item_id, "id": item_id}
 
-        item_id = item.get("id", item_id)
-        # A hyphen, not an underscore: when an entry has no author, natbib
-        # derives the printed label from the key, and a bare underscore there is
-        # read in math mode and aborts the compilation. Auto-discovered items
-        # frequently have no author.
-        key = _cite_key(item_id)
+        key = keys[item_id]
 
         latex_source = is_latex_source(item)
 
@@ -164,6 +215,17 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             if fc_key in _NOT_A_FIELD or fc_key.startswith("_"):
                 continue
             add_field(fc_key, fc_key)
+
+        # With no author or editor, a natbib style labels the entry with its
+        # `key` field, and without one with the first three characters of the
+        # citation key — so every discovered package printed as "(dis, 2020)".
+        # BibTeX defines `key` for exactly this; the label is the work's name.
+        # An entry read from a .bib file is left as its author wrote it.
+        if not latex_source and not any(
+            item.get(name) for name in ("authors", "editor", "editors", "key")
+        ):
+            label = escape(str(item.get("title") or item_id))
+            fields.append(f"  key = {{{label}}}")
 
         entry = f"@{bib_type}{{{key},\n" + ",\n".join(fields) + "\n}"
         entries.append(entry)

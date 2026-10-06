@@ -84,3 +84,14 @@ Met by commit `89d71e2`:
   which fails seven of them;
 - the test suite emits no diagnostics at all, where before `test_pdf_compilation` passed
   while reporting a failed compilation.
+
+## Correction — 2026-10-06
+
+The historical hyphen-only citation-key rule above renamed valid imported keys
+and collapsed distinct references. Development after public 0.11.0 replaces it
+under [Ackredit #109](https://github.com/uibcdf/ackredit/issues/109): reserve valid
+nonclashing keys, allocate distinct fallbacks and share the mapping between
+BibTeX and LaTeX. Authorless generated entries use an escaped title in the `key`
+field for natbib's printed label. Existing field escaping and imported LaTeX
+provenance remain in effect. `tests/test_cite_keys.py` guards both key integrity
+and real compilation. The historical commit and released artifacts are unchanged.
