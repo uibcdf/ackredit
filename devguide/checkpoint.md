@@ -62,6 +62,15 @@ records the scope.
    before duplicating logic. Add relevant negative guards in the owning tool.
    This formal adoption review does not reopen the completed release or request
    another artifact, upload or scientific suite on every internal push.
+   The member route inventory and pinned consumer invocation are now prepared;
+   [the active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/distribution_adoption_runtime_review.md)
+   covers one recipe, five environments and ten workflows. The shared operation
+   and its negative guards are proposed in
+   [MolSysSuite #105](https://github.com/uibcdf/molsyssuite/pull/105), using existing
+   noarch checks. #108 remains partial pending provider-owner acceptance and
+   exact-head consumer CI/adoption; the central inventory must not advance merely
+   because the local preflight passes. Resume with those review/CI results before
+   starting the provider-author tooling work below.
 2. **Expose standalone provider validation, then third-party author tooling
    (roadmap G).** Open focused Ackredit issues before implementation. Reuse the
    parser/preflight owned by `ackredit/core/providers.py`; choose the public
