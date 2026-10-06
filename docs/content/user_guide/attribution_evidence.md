@@ -1,6 +1,11 @@
 # Explicit recorder evidence
 
-The development `AttributionEvidence` API is **provisional**. It saves explicit
+`AttributionEvidence` has an **accepted bounded stable source contract** under
+Ackredit #114. Its forward public compatibility promise awaits a separately
+qualified future release; public 0.11.0 retains its original provisional evidence
+classification. See [API stability](../about/stability.md) and the
+[accepted review](../developer_guide/recorder_evidence_contract_review.md).
+It saves explicit
 recorder declarations alongside a complete `Attribution` or `AttributionBundle`.
 It does not collect those declarations automatically. Existing saved attribution
 continues to use its original contract and remains separately readable.
@@ -87,7 +92,8 @@ embedded original-contract errors retain their own diagnostic identities.
 
 ## Collect provider-recorder evidence during a calculation
 
-The development capture extension is also **provisional**:
+The bounded provider-observer capture extension is accepted under the same
+source contract and separate future public-delivery boundary:
 
 ```python
 import ackredit
@@ -134,7 +140,8 @@ companion carrying these extra bounded facts.
 
 ## Include evidence in the workflow report
 
-Development under #106 adds a **provisional**, explicitly requested presentation:
+Development under #106 adds an explicitly requested presentation, now accepted
+under #114 within the same bounded source contract and future delivery boundary:
 
 ```python
 # evidence is the saved companion or run.evidence from the calculation above.

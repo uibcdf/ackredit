@@ -1,5 +1,24 @@
 # Release notes
 
+## Development after 0.11.0 — accepted bounded recorder evidence
+
+The maintainer explicitly accepted `AttributionEvidence`, bounded
+`capture(record_evidence=True)` / `.evidence` provider-observer collection and
+explicit integrated workflow/CLI reporting under
+[Ackredit #114](https://github.com/uibcdf/ackredit/issues/114) on 2026-10-06.
+Source classification is stable within the
+[reviewed guarantees](../developer_guide/recorder_evidence_contract_review.md):
+complete detached originals, positional occurrence association, closed versioned
+meanings, unknown/empty declarations, active same-session positive facts,
+diagnosed gaps and inert/default saved reading. Warning filters, scientific
+completion, declaration trust and other recorder exclusions remain explicit.
+
+This decision changes classification and guidance, without runtime/schema
+changes. The bounded forward public promise starts with a separately selected,
+qualified future delivering release. Public 0.11.0 retains its original
+provisional evidence classification. Standalone `validate_provider` remains
+provisional; general 1.0 and client/platform adoption remain separate.
+
 ## Development after 0.11.0 — faithful BibTeX citation keys
 
 The source repair in [Ackredit #109](https://github.com/uibcdf/ackredit/issues/109)

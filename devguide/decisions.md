@@ -189,17 +189,34 @@
     unchanged. The [accepted review](function_provider_contract_review.md) and
     [API stability](../docs/content/about/stability.md) define the precise boundary.
 
+18. **Bounded recorder-evidence source acceptance (`uibcdf/ackredit#114`):**
+    on 2026-10-06 the maintainer explicitly approved the concrete review
+    ("si lo apruebo"), accepting `AttributionEvidence`, provider-observer opt-in
+    `capture(record_evidence=True)` / `.evidence`, and explicitly requested
+    integrated workflow/CLI reporting. Preserve detached complete originals,
+    positional occurrence association, closed schema-1 meanings, unknown/empty
+    declarations, active same-session positive facts, diagnostic/scientific
+    failure ownership and inert/default readers. Warning filters, declaration
+    trust and broader recorder exclusions remain bounded by the
+    [accepted review](recorder_evidence_contract_review.md).
+
+    Source classification is stable. The forward public promise begins with a
+    separately selected, qualified future release delivering this acceptance;
+    public 0.11.0 retains its original provisional evidence classification.
+    From that delivery, later patch/minor releases, including pre-1.0 and 1.x,
+    retain reviewed signatures/meanings under the existing deprecation policy.
+    Incompatible schema/meaning changes need new identifiers; later readers keep
+    schema-1 interpretations. Source acceptance does not authorize a release,
+    promote `validate_provider`, require other recorder integration or certify
+    client adoption. Canonical guide distribution remains a separate owner route.
+
 ## Pending Decisions
 
-The newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
-extension and integrated evidence reporting remain provisional. Their schema,
-positional original-result association, unknown/empty meanings and collection
-guarantees need separate explicit acceptance. Broader recorder coverage is not
-automatically a promotion prerequisite. The [concrete review](recorder_evidence_contract_review.md)
-under #114 recommends bounded acceptance of the three surfaces and records
-their guarantees, evidence and exclusions; it awaits the principal-maintainer
-decision. It changes no classification or released promise. General 1.0 API
-commitment, MOLI object
-boundaries, publication-tool expectations and acknowledgement scope retain their
-own decisions in [the roadmap](roadmap.md). Existing portable 0.9.0 contracts
-remain unchanged; provider delivery does not impose client adoption.
+Standalone `validate_provider` remains provisional under #111. Its author-facing
+signature/result need a separate promotion decision. The accepted evidence
+promise awaits its delivering release; general 1.0 API commitment, MOLI object
+boundaries, complete-cost measurements, publication-tool expectations and
+acknowledgement scope retain their own decisions in [the roadmap](roadmap.md).
+Broader recorder integration needs a concrete owning use case. Existing portable
+0.9.0 and public provider 0.11.0 promises remain unchanged; source acceptance does
+not impose client adoption.

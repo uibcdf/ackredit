@@ -320,7 +320,7 @@ class capture:
 
     @property
     def evidence(self):
-        """Provisional detached companion for opt-in provider-recorder evidence.
+        """Detached companion for opt-in provider-recorder evidence.
 
         Use ``record_evidence=True`` to retain selected observer boundaries,
         credited provider field sources and diagnosed observation gaps. Other

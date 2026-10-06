@@ -35,7 +35,10 @@ documentation-only commit receives its own applicable validation.
 accepted bounded public compatibility promise from **`>=0.11.0`**. Portable-only
 clients retain **`>=0.9.0`**. Earlier provisional releases are unchanged.
 `AttributionEvidence`, opt-in capture evidence and integrated evidence reports
-remain provisional. General 1.0 API commitment is still a separate decision.
+were separately accepted as bounded stable source contracts under #114 below;
+their forward public promise awaits a future delivering release. Public 0.11.0
+retains their original provisional classification. General 1.0 API commitment
+is still a separate decision.
 See [the accepted provider review](function_provider_contract_review.md) and
 [API stability](../docs/content/about/stability.md).
 
@@ -91,23 +94,28 @@ public 0.11.0.
 
 ## Next work, in order
 
-1. **Record the evidence-contract decision (roadmap J/F, #114).** The
-   [concrete review](recorder_evidence_contract_review.md) recommends bounded
-   acceptance of representation, provider-observer collection and explicitly
-   requested integrated reporting. It maps schema/per-original association,
-   unknown/empty meanings, failure/ownership guarantees and exclusions to real
-   saved receiving data and 149 selected tests, including six supplementary
-   cases. The principal maintainer must explicitly accept, amend or defer each
-   surface. Classification remains provisional until that decision; do not
-   infer it from green tests. Accepted source guidance and a future delivering
-   release need their own scoped work. Additional recorders require concrete
-   owning use cases rather than automatic expansion.
-2. **Continue the wider roadmap with owning issues.** K needs platform/client
+The maintainer explicitly approved all three surfaces in the
+[accepted J/F review](recorder_evidence_contract_review.md) under #114
+("si lo apruebo") on 2026-10-06. Source classification, API guidance, development
+release notes and the canonical host guide implement the bounded decision.
+The review maps original-occurrence association, unknown/empty declarations,
+collector ownership/failure and reporting limits to original receiving data and
+149 selected tests, including six supplementary cases. The owning issue records
+acceptance-head checks separately from that original qualification. Only
+`validate_provider` remains provisional; its promotion is a separate decision.
+
+1. **Continue the wider roadmap with owning issues.** K needs platform/client
    object-boundary decisions; L needs complete import/activation/runtime/memory/
    reporting cost measurements; M needs actual publication-tool/style round trips;
    N starts with accepting, deferring or excluding acknowledgements. The final
    general 1.0 review remains separate. #58's optional dashboard is not a priority
    or a dependency of these steps.
+2. **Qualify the accepted evidence promise when its release is authorized.**
+   Select the version from a concrete scope and execute the exact-source,
+   installed-file, real receiving and public gates. #114's acceptance does not
+   authorize publication or replace the original 0.11.0 artifact. Canonical-guide
+   synchronization and consumer adoption retain their existing owners. Additional
+   recorder integration needs concrete owning use cases.
 
 ## External handoffs and constraints
 
@@ -156,6 +164,7 @@ Guide adoption replies/commits are still separate owner evidence.
   executable changes need meaningful contract/behavior gates. Required source
   range remains Python 3.11–3.14, with installed Linux/macOS arm64 release gates.
 
-The completed #108/#111/#113 work does not publish another release or accept
-the remaining evidence contracts. At resumption, inspect current local/remote
-state and owner replies, then resolve #114's explicit evidence-contract decision.
+The completed #108/#111/#113/#114 source work does not publish another release
+or accept the general 1.0 contract. At resumption, inspect current local/remote
+state and owner replies, then continue the wider roadmap and separate delivery
+work within its authorization.

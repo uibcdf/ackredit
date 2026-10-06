@@ -27,11 +27,13 @@ to incompatible changes. Internal optimizations and additive compatible options
 remain possible. Do not retroactively relabel public 0.10.0/0.10.1 as delivering
 the new promise; availability and stable delivery retain separate version floors.
 
-Keep the newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
-and integrated evidence-report extension outside this decision. Their schema,
-positional per-result association, unknown/empty plane meanings and collection
-guarantees need their own explicit acceptance. Expanding to other recorders is
-not imposed as an automatic promotion prerequisite.
+The newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
+and integrated evidence-report extension stay outside this provider decision.
+Their separate bounded source acceptance was explicitly approved on 2026-10-06
+under [#114](recorder_evidence_contract_review.md); the forward public evidence
+promise awaits a separately qualified future release. Public 0.11.0 retains its
+original provisional evidence classification. Expanding to other recorders is
+not an automatic promotion prerequisite.
 
 Public 0.10.1 qualification, supplementary lifecycle guards and #99/#105/#106
 real installed receiving provide bounded evidence for this review. The latest

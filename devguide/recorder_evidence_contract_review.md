@@ -1,41 +1,48 @@
 # Recorder evidence contract review
 
-This is the **proposal awaiting principal-maintainer decision** under
-[Ackredit #114](https://github.com/uibcdf/ackredit/issues/114), prepared on
-2026-10-06 after #113. Coordination belongs to MolSysSuite #97 and MOLI #46.
-It covers three separately decidable surfaces. Their public 0.11.0
-classification remains provisional; the accepted provider decision excludes them.
+This is the **accepted bounded recorder-evidence contract** under
+[Ackredit #114](https://github.com/uibcdf/ackredit/issues/114), reviewed and
+accepted on 2026-10-06 after #113. Coordination belongs to MolSysSuite #97 and
+MOLI #46. Source classification is stable; a separately qualified future release
+will deliver the forward public promise. Public 0.11.0 retains its original
+provisional evidence classification.
 
-## Recommendation and decision choices
+## Accepted maintainer decision (2026-10-06)
 
-Accept the existing bounded representation, provider-observer collector and
-explicit integrated presentation together, preserving the guarantees below.
-Their receiving evidence and supplementary guards support that scope. Additional
-recorder integration need not precede acceptance; it requires a concrete owning
-use case. General 1.0 acceptance and platform object boundaries remain separate.
+The maintainer explicitly approved all three reviewed surfaces together
+("si lo apruebo"), answering the concrete promotion question for review source
+`f29d0f170c7eb758e85d9a583bda13c7cf6958a4`. The
+[recorded approval](https://github.com/uibcdf/ackredit/issues/114#issuecomment-6017132450)
+accepts exactly the guarantees and exclusions below. Additional recorder
+integration requires a concrete owning use case. General 1.0 acceptance,
+standalone `validate_provider` promotion and platform object boundaries remain
+separate.
 
-| Surface | Recommended decision | Meaning to preserve |
+| Surface | Accepted decision | Meaning to preserve |
 | --- | --- | --- |
 | `AttributionEvidence` | Accept bounded stable source contract | Complete detached originals, positional declarations, closed versioned envelope, unknown/empty distinction and inert readers. |
 | `capture(record_evidence=True)` / `.evidence` | Accept bounded provider-observer collection | Active overlapping captures in the same session retain positive selection/origin/diagnostic facts; default captures allocate no collector and other recorder origins remain unknown. |
 | Integrated workflow reporting and explicit CLI options | Accept bounded opt-in presentation | Original reference numbering, bibliography, versions, roles and graph retain their meaning; declarations stay beside their own original occurrence; defaults and offline reading remain unchanged. |
 
-The maintainer can accept any subset, amend a specific guarantee, or defer a
-surface with its unresolved reason. This recommendation is neither that decision
-nor a release authorization. Retain provisional classifications until the
-explicit outcome is recorded in #114 and the decision log. Do not infer approval
-from green tests or from the earlier provider acceptance.
+This supersedes the earlier recommendation/pending decision for these surfaces;
+approval is explicit rather than inferred from green tests. Preserve the reviewed
+signatures and meanings across later patch/minor releases, including remaining
+pre-1.0 releases and 1.x, from the first qualified public release delivering this
+decision. Apply the existing deprecation/removal policy to incompatible changes
+from that delivery. Internal optimizations and compatible additive options remain
+possible. This acceptance does not authorize a release or retroactively reclassify
+the original public 0.11.0 artifact.
 
 ## Representation and reading
 
-The proposed saved envelope is `ackredit.attribution_evidence@1`, containing
+The accepted saved envelope is `ackredit.attribution_evidence@1`, containing
 exactly `schema`, `attribution` and `results`. `attribution` is a complete original
 `ackredit.attribution@1` or `ackredit.attribution_bundle@1`, separately readable
 through its own existing contract. The companion is not a replacement original.
 `explain()` uses `ackredit.attribution_evidence_explanation@1` to separate the
 existing descriptive attribution view from these recorder declarations.
 
-| Guarantee | Proposed boundary | Durable guard |
+| Guarantee | Accepted boundary | Durable guard |
 | --- | --- | --- |
 | Original occurrence association | Exactly one result entry per original, including repeated names/inputs; an empty bundle has zero entries. Position is the association. Reordering originals requires reordering their declarations. | `tests/test_attribution_evidence.py::test_reused_names_empty_members_and_order_keep_separate_declarations` |
 | Detached originals and declarations | Construction validates and detaches inputs; returned originals, dictionaries and explanations are fresh detached objects. Reading and rendering create no credit. | `tests/test_attribution_evidence.py::test_payload_properties_and_explanation_are_deeply_detached` |
@@ -65,7 +72,7 @@ Only the provider observer currently owns automatic recorder collection. Existin
 accepted entry semantics, lazy-loader effects, observation exclusions and warning
 filters remain those of the [provider contract](function_provider_contract_review.md).
 
-| Guarantee | Proposed boundary | Durable guard |
+| Guarantee | Accepted boundary | Durable guard |
 | --- | --- | --- |
 | Opt-in and defaults | Strict boolean opt-in. Default captures allocate no evidence collector; `.evidence` still supplies a detached companion with unknown planes. | `tests/test_provider_evidence.py::test_default_and_unobserved_captures_keep_unknown_planes_and_no_builder` |
 | Context overlap | Selection is retained whether observation or capture starts first. Successfully activated selected exports can be unused. No successful overlap leaves planes unknown. | `tests/test_provider_evidence.py::test_selected_boundaries_do_not_imply_calls_or_citations` |
@@ -84,7 +91,7 @@ companion accepts supported declarations for those mechanisms without claiming
 they were automatically collected. Pre-activation aliases and refused generators
 receive no guessed origin or successful selection. General resource-exhaustion
 recovery, every internal failure mode and complete performance/memory guarantees
-are outside this proposal; roadmap L owns measured complete costs. Application
+are outside this contract; roadmap L owns measured complete costs. Application
 diagnostic filters and the existing scientific-result boundary are explicit limits.
 
 ## Presentation and compatibility
@@ -99,7 +106,7 @@ References shared across a bundle retain one reference number; repeated original
 occurrences retain separate declarations and graphs. Unknown/empty declarations,
 unsupported/unobserved scope, original versions and diagnosed gap identities keep
 their meanings. Locators and untrusted strings are escaped as data. Stored gaps
-are not emitted again. This proposed promise covers content/association and
+are not emitted again. This accepted promise covers content/association and
 default delegation, not a universal freeze of cosmetic whitespace.
 
 `tests/test_workflow_evidence.py` guards per-occurrence rendering, unknown/empty
@@ -135,24 +142,28 @@ Four supplementary opted-in lifecycle variants in `tests/test_provider_lifecycle
 exercise cancellation/scientific failure, strict warning filters, unawaited
 execution and delayed completed credit. The selected contract qualification
 passes **149 Python 3.14.7 tests without skips or warnings**. Representation,
-capture, workflow/explanation renderer and CLI implementation files are unchanged
-from original public 0.11.0. The later provider parser/validator work #111 retains
-its separately qualified scope; this review changes no runtime code.
+capture, workflow/explanation renderer and CLI implementation files were unchanged
+from original public 0.11.0 at the review checkpoint. The accepted classification
+changes only docstrings in the representation/capture modules; their executable
+ASTs remain identical. The later provider parser/validator work #111 retains its
+separately qualified scope; no executable behavior changes in this acceptance.
 
 These cases do not claim other recorder adoption, Windows qualification,
 comprehensive instrumentation, scientific equivalence across all engines,
 cryptographic authentication of declarations or full cost measurements. Current
 source and exact-head controls belong to #114, separately from prior release receipts.
 
-## After the explicit decision
+## Source acceptance and remaining delivery
 
-1. Record acceptance/amendment/deferral for each surface in #114, the decision log
-   and this review; leave an unresolved surface provisional with a concrete reason.
-2. For accepted surfaces, update source classification, API counts, release notes
-   and the canonical host guide to the exact accepted promise. Coordinate that
-   guide through MolSysSuite #97/MOLI #46 and consumer owners; never repair copies.
-3. Select and qualify the future release delivering the promise. Its exact source,
+The accepted source change records the decision, stability classification,
+canonical host guidance and development release notes. The owning #114 issue
+retains its scoped local checks and exact published-head controls. The separate
+original receiving receipts above continue to identify their own runtime/files.
+
+1. Coordinate canonical-guide synchronization and actual consumer adoption
+   through MolSysSuite #97/MOLI #46 and consumer owners; never repair copies.
+2. Select and qualify the future release delivering the promise. Its exact source,
    installed file, real receiving and public delivery require their own applicable
    gates. Public 0.11.0 keeps its original provisional evidence classification.
-4. Keep general 1.0, broader recorders, platform object contracts, full cost work
+3. Keep general 1.0, broader recorders, platform object contracts, full cost work
    and publication/acknowledgement decisions independently visible in the roadmap.

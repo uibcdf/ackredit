@@ -32,6 +32,18 @@ the public 0.9.0 delivery boundary.
    :members: Attribution, capture, get_attribution
 ```
 
+## Recorder evidence (accepted source contract)
+
+`AttributionEvidence` preserves a complete original attribution or bundle with
+positional recorder declarations. `capture(record_evidence=True)` collects
+bounded provider-observer facts; `.evidence` returns a detached companion.
+Explicit `report("workflow", include_evidence=True)` and evidence-input CLI
+options attach those declarations without changing default reports.
+The [evidence guide](../user_guide/attribution_evidence.md) defines unknown/empty
+meanings, ownership and failure limits. Source acceptance under #114 awaits its
+separately qualified future public delivery; public 0.11.0 retains provisional
+evidence classification.
+
 ## Core Components
 
 These are internals, documented for anyone working on Ackredit. They are not part of the

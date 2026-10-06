@@ -262,10 +262,59 @@ still defer Ackredit until its requested attribution boundary. Fixed preparation
 reduces repeated declaration work without removing registry/capture checks; use
 meaningful operations rather than instrumenting every scalar iteration.
 
-`AttributionEvidence`, opt-in capture evidence and integrated evidence reporting
-remain provisional and outside this decision. Their schema and collection
-guarantees require separate acceptance. No additional recorder, automatic
-enrichment, hook, journal or reminder is required by provider promotion.
+No additional recorder, automatic enrichment, hook, journal or reminder is
+required by provider promotion.
+
+## Recorder evidence (accepted source contract; public delivery pending)
+
+On 2026-10-06 the maintainer explicitly accepted `AttributionEvidence`, bounded
+`capture(record_evidence=True)` / `.evidence` provider-observer collection and
+explicit integrated workflow/CLI reporting under
+[Ackredit #114](https://github.com/uibcdf/ackredit/issues/114). Source classification
+is stable. Its bounded forward public promise starts at a separately selected,
+qualified future release delivering this decision; **public 0.11.0 retains its
+original provisional evidence classification**. Do not infer a stable-evidence
+minimum from the existing stable-provider minimum `>=0.11.0`.
+
+From that future delivery, retain reviewed signatures and meanings across later
+patch/minor releases, including remaining pre-1.0 and 1.x, under the existing
+deprecation/removal policy. Retain interpretation of
+`ackredit.attribution_evidence@1` and `ackredit.attribution_evidence_explanation@1`;
+incompatible structural/meaning changes require new identifiers. Source
+acceptance, exact-file public delivery, guide-copy synchronization and actual
+consumer adoption remain separate. Standalone `validate_provider` remains
+provisional; this decision does not accept the general 1.0 API.
+
+- Preserve complete detached original attribution/bundles. One evidence entry
+  belongs to each original occurrence by position, including repeated names or
+  inputs. Producers own truthful association; readers do not authenticate it.
+- Preserve three separate planes: metadata field sources, selected/unsupported/
+  unobserved boundaries and diagnosed recording gaps. `null` means unrecorded;
+  `[]` means no declarations supplied. Neither proves complete instrumentation,
+  absence of failures or absence of citable work.
+- Automatic collection is explicitly opt-in and bounded to active overlapping
+  provider observers/captures in the same session. Retain positive deduplicated
+  selection, successfully credited original provider fields and owning W019
+  diagnostic identities. Other recorder origins remain unknown; additional
+  integration needs a concrete owning use case.
+- Scientific failure/cancellation does not itself become a recording gap or
+  completed-backend credit. Partial recording retains successful origins and
+  diagnosed gaps. Application warning-as-error policy can stop the scientific
+  body; observer/scope cleanup and capture ownership retain their reviewed limits.
+- Saved reading/rendering needs no producer or service, creates no credit and
+  never emits a stored diagnostic again. Source locators and recorder identities
+  are declarations, not execution/scientific truth or authenticated provenance.
+- Default original reports remain unchanged. Explicit integrated workflow output
+  retains original numbering, bibliography, versions, roles and graph, with
+  declarations beside their own occurrence. Content and association are promised;
+  cosmetic whitespace is not universally frozen. CLI selection requires evidence
+  input and workflow output, refuses invalid combinations and input overwrite.
+
+See the [accepted contract and guards](https://github.com/uibcdf/ackredit/blob/main/devguide/recorder_evidence_contract_review.md)
+and [evidence user guide](https://github.com/uibcdf/ackredit/blob/main/docs/content/user_guide/attribution_evidence.md).
+Clients decide whether to request these optional facts; this guide neither enables
+observation automatically nor certifies a client release. Consumer guide copies
+are synchronized centrally and are never repaired locally.
 
 ## Eager demonstration profile
 

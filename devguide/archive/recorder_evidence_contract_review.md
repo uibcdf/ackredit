@@ -1,12 +1,12 @@
 ---
 summary: Review bounded recorder evidence guarantees for an explicit stability decision.
 issue: uibcdf/ackredit#114
-status: partial
+status: resolved
 opened: 2026-10-06
-closed:
+closed: 2026-10-06
 verification: measured
 area: [api, evidence, compatibility]
-guard: tests/test_provider_lifecycle.py
+guard: tests/test_attribution_evidence.py
 normative:
 blocked_by: []
 supersedes: []
@@ -18,8 +18,8 @@ supersedes: []
 
 Prepare the separate J/F product review of `AttributionEvidence`, opt-in capture
 collection and explicitly requested integrated reports. The accepted provider
-decision explicitly excludes these newer surfaces. All remain provisional until
-the principal maintainer records acceptance, amendment or deferral.
+decision explicitly excludes these newer surfaces. Their separately reviewed
+bounded source contract was explicitly accepted on 2026-10-06.
 
 ## How
 
@@ -46,9 +46,10 @@ Additional recorder integration is not an automatic promotion prerequisite.
 ## Scope and exclusions
 
 Review and supplementary qualification of the existing bounded contracts. No
-runtime/schema change, new recorder, sibling source change, API reclassification
-or new public release is implied. General 1.0 and client object boundaries remain
-independent decisions. The issue stays open for the actual maintainer decision.
+runtime/schema change, new recorder or sibling source change is introduced.
+The explicit approval authorizes source reclassification and canonical guidance;
+it does not authorize a public release. General 1.0 and client object boundaries
+remain independent decisions.
 
 ## Acceptance criteria
 
@@ -65,18 +66,41 @@ independent decisions. The issue stays open for the actual maintainer decision.
 
 ## Review outcome
 
-The [maintained review](../recorder_evidence_contract_review.md) recommends
-bounded acceptance of all three surfaces, mapping concrete guarantees to existing
+The [maintained review](../recorder_evidence_contract_review.md) records accepted
+bounded contracts for all three surfaces, mapping concrete guarantees to existing
 and supplementary guards. Four evidence-enabled lifecycle variants and two
 original hosted saved-reader cases pass within 149 selected Python 3.14.7 tests,
 without skips or warnings. The original #106 native ZIP and saved JSON hashes
 were verified before retaining the unmodified compatibility fixture. Runtime
-implementation and provisional classification remain unchanged.
+implementation remains unchanged; only runtime docstrings change in the source
+acceptance, alongside explicit stable classification and maintained guidance.
 
-Analysis and selected qualification are complete. #114 remains open for the
-principal-maintainer's acceptance, amendment or deferral; there is no inferred
-approval, new release or broad-recorder obligation. Another 231 documented-API,
+The maintainer explicitly approved all three surfaces ("si lo apruebo") after
+review source `f29d0f170c7eb758e85d9a583bda13c7cf6958a4`; the
+[recorded approval](https://github.com/uibcdf/ackredit/issues/114#issuecomment-6017132450)
+supersedes pending status. There is no inferred approval, new release or
+broad-recorder obligation. Another 231 documented-API,
 stability and reporting cases pass. Ruff 0.16.5 lint/format, generated indexes,
 current suite repository conformance and strict Sphinx pass. Sphinx required
 authorized network access for its Python inventory after sandbox DNS failed.
 Exact published-head controls are recorded in the owning issue.
+
+## Acceptance implementation
+
+Source stability, counts, API/user documentation, development release notes,
+decision log, roadmap/checkpoint and canonical `standards/ACKREDIT_GUIDE.md`
+implement the approved scope. Runtime ASTs are unchanged after removing
+docstrings. Local acceptance validation passes 381 selected Python 3.14.7
+contract/documentation/API/reporting cases without skips or warnings, using
+Pytest Receptor. Required Ruff 0.16.5, indexes, current suite repository
+conformance and strict Sphinx pass; the Python inventory needed authorized
+network access after sandbox DNS failure. The owning issue records exact-head
+hosted controls and consumer handoffs separately from the original review gates.
+
+The forward public promise starts with a separately selected, qualified future
+release, retaining signatures/meanings in subsequent patch/minor releases,
+including pre-1.0 and 1.x. Later readers retain both schema-1 interpretations;
+incompatible schema/meaning changes need new identifiers. Original public 0.11.0
+keeps its provisional evidence classification. Guide-copy synchronization,
+consumer adoption, new release qualification, standalone validator promotion
+and general 1.0 remain separate.

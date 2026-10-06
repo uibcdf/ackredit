@@ -220,16 +220,19 @@ CLI/library integrated reports are identical without new credits or diagnostic
 replay. Qualification head `30c622b` passes all seven CI jobs and both policies;
 see the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/workflow_recorder_evidence.md)
 and [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json).
-This presentation is delivered in public 0.11.0; provisional review remains
-a separate decision.
+This presentation is delivered provisionally in public 0.11.0; the separate
+source acceptance under #114 follows below.
 
 The [separate recorder-evidence review](recorder_evidence_contract_review.md)
-under #114 now recommends bounded acceptance of representation, provider-observer
+under #114 records explicit bounded acceptance of representation, provider-observer
 collection and explicitly requested integrated presentation. An original #106
 hosted companion is retained unmodified; two saved-reader guards and four
 opted-in lifecycle variants pass within 149 selected Python 3.14.7 cases.
-The explicit principal-maintainer decision remains pending. Classification,
-public 0.11.0 and the separate general 1.0 review retain their existing boundaries.
+The maintainer approved all three surfaces on 2026-10-06. Source classification
+and canonical host guidance are stable within the reviewed limits; their forward
+public promise awaits a separately qualified future release. Public 0.11.0
+retains its original provisional evidence classification, and the general 1.0
+review remains separate.
 
 Completed core improvements are tracked separately: #84 implements
 dependency-free function providers and actual-call observation; #85 measures

@@ -178,7 +178,7 @@ def _validate_result(result, original):
 
 
 class AttributionEvidence:
-    """Provisional saved companion for explicit, bounded recorder declarations.
+    """Saved companion for explicit, bounded recorder declarations.
 
     The embedded attribution remains its own complete contract. Evidence is
     positional per original result, never joined by a potentially repeated name.
@@ -279,7 +279,7 @@ class AttributionEvidence:
 
         Explanation renders the companion. Workflow includes it only on explicit
         request; defaults delegate to the complete original byte-identically.
-        The include_evidence extension is provisional; to_json saves both planes.
+        The include_evidence extension is explicitly opt-in; to_json saves both planes.
         """
         from .report import _resolve_format
 

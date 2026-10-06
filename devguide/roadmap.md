@@ -278,12 +278,12 @@ stability commitment would make the commitment meaningless. The principal
 maintainer accepted stable source contracts for `observe_calls`,
 `prepare_credit` and `ackredit.provider@1` on 2026-10-06 under #84/#87.
 Their bounded promise is delivered in public 0.11.0; consumer adoption remains separate.
-The newer evidence surfaces still require their own explicit acceptance. Existing names have
-been decided once, on the evidence available now. The separate
+The newer evidence surfaces received their separate bounded source acceptance
+on 2026-10-06 under #114; their future public delivery remains pending. The
 [evidence-contract review](recorder_evidence_contract_review.md) under #114
-recommends bounded acceptance of representation, collection and explicit
-presentation, with retained original receiving data and supplementary lifecycle
-guards. Its principal-maintainer decision remains pending. Names were removed rather than promised:
+records explicit acceptance of representation, collection and requested
+presentation, supported by original receiving data and supplementary lifecycle
+guards. General 1.0 remains a separate decision. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
 What remains is the unchecked review above: adoption can reopen a decision
@@ -448,9 +448,10 @@ retains actual source, wheel and scope.
 - [ ] define which scope information can be recorded: selected observation
       boundaries, explicit credits, declared-provider/discovery metadata origins,
       incomplete bibliography and diagnosed recording gaps;
-- [ ] decide representation, ownership and compatibility before adding fields;
+- [x] decide bounded representation, ownership and compatibility under #114;
       distinguish the origin of bibliographic metadata from evidence of use and
-      from any claim about bibliographic or scientific truth;
+      from any claim about bibliographic or scientific truth; broader recorder
+      ownership requires separate concrete use cases;
 - [x] preserve recorded gap/scope information in saved results and explain it
       in the requested workflow report, with no producer imports or new credit;
 - [ ] guard partial failure, unsupported/unobserved operations, metadata fallback
@@ -530,9 +531,10 @@ bounded presentation checkpoint is resolved and delivered in public 0.11.0 under
 The separate [J/F contract review](recorder_evidence_contract_review.md) under
 #114 maps the existing representation, collection and presentation to concrete
 guarantees/exclusions and 149 selected source tests, including original hosted
-saved-reader and opted-in lifecycle guards. It recommends accepting the bounded
-three-surface promise; the explicit principal-maintainer decision is pending.
-The wider unchecked J criteria and provisional classifications are retained.
+saved-reader and opted-in lifecycle guards. The maintainer explicitly accepted
+the bounded three-surface source promise on 2026-10-06. Forward public delivery
+awaits a separately qualified future release; public 0.11.0 retains its original
+provisional evidence classification. Wider unchecked J criteria remain visible.
 
 ### Theme K — Attribution at MOLI object boundaries
 
@@ -638,7 +640,8 @@ feature before 1.0. A deliberate deferral remains visible in the roadmap.
 
 The [development checkpoint](checkpoint.md) records the current resumption order:
 retain #108's completed distribution-input guard and #113's provider author
-guide/installable example, then review the separate evidence contracts.
+guide/installable example and #114's accepted bounded evidence contracts, then
+continue the wider roadmap and separately authorized release qualification.
 The 0.11.0 release is complete;
 central handoffs and the
 remaining product decisions below retain their own owners.
@@ -651,8 +654,9 @@ The accepted continuation order is:
 2. Theme J: scope/origin/gap explanations, built on those preserved saved results.
 3. In parallel, resolve F/G's explicit provider stability decisions and K's
    platform/member boundaries with their existing owners. The 2026-10-06
-   decision accepts the three provider surfaces; newer evidence contracts
-   remain provisional; public 0.11.0 completes bounded stable-provider delivery.
+   decision accepts the three provider surfaces; #114 separately accepts the
+   bounded evidence source contracts with future delivery pending. Public 0.11.0
+   completes stable-provider delivery and retains provisional evidence contracts.
 4. Run L's complete-cost measurements and M's publication-tool interoperability
    against selected actual candidates; optimize or repair measured boundaries.
 5. Decide N's acknowledgement scope and implement only its accepted branch.

@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (107)
+### Resolved (108)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -77,6 +77,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`public_names_exported_as_bound_methods.md`](public_names_exported_as_bound_methods.md) — [#33](https://github.com/uibcdf/ackredit/issues/33) — Two public names were attributes of the Collector class rather than functions, binding the API to a class we intend to change. *(resolved, measured)*
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
 - [`recorded_attribution_explanation.md`](recorded_attribution_explanation.md) — [#103](https://github.com/uibcdf/ackredit/issues/103) — Explain recorded evidence while preserving unknown instrumentation, metadata origins and diagnosed gaps. *(resolved, reproduced)*
+- [`recorder_evidence_contract_review.md`](recorder_evidence_contract_review.md) — [#114](https://github.com/uibcdf/ackredit/issues/114) — Review bounded recorder evidence guarantees for an explicit stability decision. *(resolved, measured)*
 - [`register_published_release_identity.md`](register_published_release_identity.md) — [#82](https://github.com/uibcdf/ackredit/issues/82) — Register the published 0.9.0 Git identity and restore compatible editable metadata. *(resolved, measured)*
 - [`release_0100.md`](release_0100.md) — [#93](https://github.com/uibcdf/ackredit/issues/93) — Deliver the corrected 0.10.1 checkpoint with exact Conda qualification. *(resolved, reproduced)*
 - [`release_self_citation_version.md`](release_self_citation_version.md) — [#94](https://github.com/uibcdf/ackredit/issues/94) — Release qualification misses stale packaged self-citation versions. *(resolved, reproduced)*

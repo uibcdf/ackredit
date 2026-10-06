@@ -6,7 +6,7 @@
 Ackredit is pre-1.0. **1.0.0 means the public API is stable and we commit to not breaking
 it**, and this page says in advance which names that covers.
 
-Except for the bounded portable and provider compatibility promises below, until 1.0.0 is
+Except for the bounded compatibility promises and delivery boundaries below, until 1.0.0 is
 tagged the table is a statement of intent, not the commitment itself. It
 exists so the commitment, when it is made, is made on purpose: a name reaches 1.0.0 as
 `stable` because someone decided it should, not because it happened to be exported.
@@ -35,7 +35,7 @@ promise below.
 
 ## The surface
 
-Forty-one names are stable and two provisional — every one has been decided once, on
+Forty-two names are stable and one provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -44,11 +44,11 @@ else links here, so they cannot drift apart.
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
 | `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; the unpublished bundle envelope is separate from the released schema-1 promise. |
-| `AttributionEvidence` | provisional | Representation, opt-in collection and integrated rendering are qualified under `uibcdf/ackredit#104/#105/#106`. Explicit acceptance of its schema, per-result association, unknown/empty meanings and collection guarantees remains separate from the provider decision. |
+| `AttributionEvidence` | stable | Explicitly accepted on 2026-10-06 under `uibcdf/ackredit#114`: detached original-occurrence evidence, closed schema-1 meanings, unknown/empty declarations and inert readers. The bounded forward public promise awaits its separately qualified delivering release below. |
 | `validate_provider` | provisional | Standalone declaration preflight under `uibcdf/ackredit#111`; the module argument and detached normalized return are a development API pending author-tooling experience and explicit promotion. Accepted `ackredit.provider@1` meaning is unchanged. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
-| `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. The opt-in `record_evidence` / `.evidence` development extension is separately provisional under `uibcdf/ackredit#105`. |
+| `capture` | stable | Observes reused calculation references without replacing the application session under `uibcdf/ackredit#75`. The bounded opt-in provider-observer `record_evidence` / `.evidence` extension is explicitly accepted under `uibcdf/ackredit#114`; its forward public promise awaits separate delivery. |
 | `get_attribution` | stable | Detaches the enclosing workflow bibliography with original contextual uses; shares the reviewed portable contract under `uibcdf/ackredit#75`. |
 | `bind` | stable | Declares what a target may require. Decision 4: a declaration with an opt-in runtime effect, never automatic. |
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
@@ -141,21 +141,34 @@ delivery. Compatible additive options and internal optimizations remain possible
 Later readers retain the accepted `ackredit.provider@1` interpretation; incompatible
 schema/meaning changes require a new identifier and unknown identifiers are refused.
 
-`AttributionEvidence`, the newer `capture(record_evidence=True)` / `.evidence`
-extension and integrated evidence reporting remain provisional. Their schema,
-positional per-result association, unknown/empty meanings and collection guarantees
-await separate acceptance; adding other recorders is not automatically required.
-The [concrete evidence review](../developer_guide/recorder_evidence_contract_review.md)
-under #114 maps proposed guarantees to saved receiving data and lifecycle guards;
-its recommendation is awaiting the principal-maintainer decision.
+## Accepted recorder evidence; public delivery pending
+
+On 2026-10-06 the maintainer explicitly accepted `AttributionEvidence`, bounded
+`capture(record_evidence=True)` / `.evidence` provider-observer collection and
+explicit integrated workflow/CLI reporting under #114. The
+[accepted review](../developer_guide/recorder_evidence_contract_review.md)
+defines the exact schemas, positional original-occurrence association,
+unknown/empty meanings, collector ownership, diagnostic/scientific failure
+boundaries and exclusions, supported by saved receiving data and lifecycle guards.
+
+Source classification is stable. The forward public promise begins with the
+first separately qualified release delivering this acceptance; its version has
+not been selected. Original public 0.11.0 retains its provisional evidence
+classification. From that future delivery, reviewed signatures and meanings
+remain compatible across later patch/minor releases, including remaining
+pre-1.0 and 1.x, under the deprecation/removal policy below. Later readers retain
+`ackredit.attribution_evidence@1` and `ackredit.attribution_evidence_explanation@1`
+interpretations; incompatible schema/meaning changes require new identifiers.
+Additional recorder integration is not a promotion prerequisite.
 Client adoption, guide synchronization and client release qualification are
 separate owner decisions. Optional clients retain their absence/failure behavior;
 no client must enable observation automatically.
 
 ## Deprecation policy
 
-This is what we commit to from 1.0.0 onward. For the accepted provider surfaces
-above, it also applies from public 0.11.0.
+This is what we commit to from 1.0.0 onward. For accepted provider surfaces it
+also applies from public 0.11.0; for accepted recorder-evidence surfaces it
+applies from their separately qualified future delivering release.
 
 1. **A stable name is removed only in a major release.** Not in a patch, not in a minor.
 2. **A removal is announced first.** The name keeps working and emits an SMonitor
