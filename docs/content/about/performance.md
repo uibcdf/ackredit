@@ -1,7 +1,109 @@
 (About_Performance)=
 # What Ackredit costs
 
-Numbers, not adjectives. They come from `devtools/benchmark.py`, which you can run.
+Numbers below retain their own dates, sources and measurement boundaries.
+`devtools/benchmark.py` covers the historical MolSysMT workflow;
+`devtools/benchmark_portable.py` covers warmed repeated credits;
+`devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
+Python-allocation measurements. Each is runnable in the stated environment.
+
+## Provisional lifecycle reference (2026-10-06)
+
+[Ackredit #115](https://github.com/uibcdf/ackredit/issues/115) adds a bounded
+Linux/Python 3.14.7 study. It remains provisional while SMonitor development is
+in progress. Seven timing samples and three separate allocation samples run
+in fresh interpreters and independent directories for each of 24 cases.
+Cold import starts before the benchmark's metadata/reporting imports; timings
+do not run under tracemalloc. Scenario order reverses on alternate rounds.
+
+The [raw receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/lifecycle_cost_115_2026-10-06.json)
+records actual origins, runtime and distribution versions, package source
+fingerprints, all samples, ranges and output dimensions. A
+[source manifest](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/lifecycle_sources_115_2026-10-06.json)
+records every copied file and the original checkout states. Ackredit source
+is based on `0e077a9`; five development packages were copied to a fixed temporary
+directory to preserve concurrent work. These are source measurements, not a
+normal installation or public release qualification. SMonitor's copied runtime
+version is `0.18.0+38.g677dc0f.dirty`, while its installed distribution metadata
+still says `0.18.0+37.g6cdba4d`. The tool keeps those facts separate and rejects
+changing loaded source fingerprints, even if a version string stays constant.
+Exact snapshot reconstruction requires the recorded working files; the original
+Git heads alone do not contain those uncommitted provider changes.
+
+| Separate stage | Median | Observed range |
+| --- | ---: | ---: |
+| Cold Ackredit import | 189.14 ms | 161.66–344.10 ms |
+| First reference registration | 150.95 µs | 118.58–162.18 µs |
+| First plain credit | 21.73 µs | 19.00–25.07 µs |
+| Provider activation, one reference/function | 186.81 µs | 174.31–200.36 µs |
+| Provider activation, 1,000 references/functions | 29.65 ms | 26.81–35.86 ms |
+| First workflow report, one reference | 26.67 ms | 24.63–28.47 ms |
+
+Import has a large outlier, retained in the range. Python allocation peaks for
+import and the 1,000-function activation are respectively 10.64 MiB and
+3.12 MiB. These allocation figures exclude interpreter startup, native buffers,
+RSS and installed dependency size. Activation excludes creation of the producer's
+input declaration. No installed citation plugin packs were present, and NumPy
+was absent from the modules loaded by cold Ackredit import in this snapshot.
+ArgDigest declares NumPy through optional extras here; that does not establish
+the dependency closure of the lowest supported or currently published artifact.
+
+Scaling cases retain one reference per leaf, with a shared root: 1,000 references
+mean 1,001 nodes and 1,000 edges. Medians for that case are 54.62 ms for unique
+tracking, 22.32 ms for a detached snapshot, 2.49 ms for JSON export, 52.59 ms
+for the first requested workflow report and 12.22 ms for the subsequent BibTeX
+report. The first report includes format-plugin discovery; the following
+BibTeX stage does not repeat that initialization. These are complete stage
+times, not per-call costs or equivalent warmed renderer comparisons.
+
+Tracking 100 references in one, four and sixteen active captures takes 5.77,
+8.54 and 20.00 ms, with peak extra Python allocations of 427, 819 and 2,396 KiB.
+All captures retain the full independent bibliography. Keeping 100 independent
+one-reference results takes 11.02 ms and retains approximately 279 KiB of
+additional traced allocations. Journal-enabled tracking of 1,000 unique
+reference/graph updates takes 75.94 ms; journal open and close are separately
+0.34 and 2.68 ms. Snapshot/export/report stages are excluded from those journal
+figures, and every journal passes a retained-state round trip.
+
+Real controls use PyUnitWizard `0.28.1+3.g2ab37a5`, Pint 0.25.3, unyt 3.1.0 and
+NumPy 2.4.6. Pint converts meter arrays to centimeters; the study asserts every
+value, output unit and original credited version outside the timed region.
+Within each input size, every mode and sample produces the same value digest.
+Imports, activation, input creation and the warm-up call are excluded. Values
+below are microseconds per conversion: median followed by minimum–maximum.
+
+| Warmed real conversion | One value | 100,000 values |
+| --- | ---: | ---: |
+| Ordinary control | 50.58 (47.47–56.06) | 127.88 (120.71–146.26) |
+| Completed-backend attribution | 81.80 (80.10–91.35) | 157.29 (151.86–168.86) |
+| Backend and public-function observation | 101.40 (95.30–108.89) | 184.81 (166.74–214.54) |
+| Observation inside a result capture | 106.74 (100.88–108.19) | 184.22 (172.41–201.22) |
+| Capture with explicit recorder evidence | 113.05 (107.03–124.08) | 192.01 (180.86–216.39) |
+
+Backend attribution credits Pint; public observation additionally credits
+PyUnitWizard. Ordinary variation remains visible, and overlapping ranges do
+not establish that adding capture makes a computation faster. These costs do
+not combine with historical speedup percentages elsewhere on this page.
+
+Re-run the protocol with fixed package sources in the selected environment:
+
+```bash
+python devtools/benchmark_lifecycle.py --scientific --samples 7 --memory-samples 3 --output lifecycle.json
+python devtools/benchmark_portable.py --samples 7 --iterations 5000
+```
+
+The scientific option requires the real producer and engines and never skips
+an unavailable dependency. Separate unobserved/prepared-credit timings remain
+the portable tool's responsibility. In the same fixed-source environment,
+its seven-sample medians are 0.12 µs for the unobserved synthetic function,
+8.68 µs with active observation, 2.00 µs for a prepared credit and 3.10 µs
+for a prepared credit inside a capture. The
+[separate raw receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/lifecycle_portable_115_2026-10-06.json)
+retains all warmed samples; these exclude activation, import and first credit.
+The next #115 checkpoint repeats the
+affected cases against the final selected SMonitor source before choosing an
+optimization. Real plugin-pack initialization, independent graph shapes,
+clean installed dependency closure and other platforms remain roadmap L work.
 
 ## One instrumented call
 
@@ -225,9 +327,10 @@ that.
 
 ## What these numbers do not say
 
-They are one machine, one workload, one day. What is stable across machines is the shape:
-the per-call cost is microseconds, the workflow cost is invisible beneath ordinary
-variance, and auto-discovery is a one-off at import.
+These historical measurements cover one machine, one workload and one day.
+They do not establish cost on another host, input, provider or environment.
+Cold imports, initialization, retained results and requested reports have
+separate costs; measure the stages your application actually uses.
 
 If your run is different — an inner loop instrumented, a session with a hundred thousand
 items — measure it. The script takes the workload as its first few lines and the rest of it

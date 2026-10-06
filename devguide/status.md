@@ -135,6 +135,13 @@ many land before 1.0.0 is an outcome rather than a plan.
   instrumented call, tens of milliseconds once for auto-discovery at import, and on the
   workflow itself a difference smaller than the run-to-run spread. `devtools/benchmark.py`
   reproduces it (roadmap D, done).
+  Roadmap L extends that historical evidence under #115 with a reproducible
+  lifecycle tool, separate Python-allocation samples and paired real Pint
+  conversions. Its bounded local study does not establish clean installed
+  dependency cost, plugin-pack scaling or complete platform coverage.
+  The study remains partial: the first reference uses fixed development-source
+  copies while SMonitor is being changed; repeat affected cases against its
+  final selected source before choosing an optimization.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable
