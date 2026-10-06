@@ -167,6 +167,15 @@ many land before 1.0.0 is an outcome rather than a plan.
   restrictive capture, native failures and independent result attribution.
   Dependency floors/default digestion remain unchanged; MolSysSuite #106 owns
   shared receiving coordination.
+- **Publication interoperability:** the first bounded theme M checkpoint #120
+  receives detached exports in BibTeX/plain and Pandoc/citeproc, with six synthetic
+  records and normally installed Python 3.14 evidence. BibTeX now retains editor
+  names and declared CFF book kinds; actual readers preserve both software
+  releases, DOI forms and structured names. Selected-style omissions and full-URL
+  DOI presentation are explicit in the
+  [publication guide](../docs/content/user_guide/publication_tools.md). Other
+  styles, reference-manager imports and duplicate-identity decisions remain open.
+  The repair is development work pending a separately qualified future release.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable

@@ -1,7 +1,9 @@
 """Real publication engines must retain identifiable exported works (#120)."""
 
+import hashlib
 import importlib
 import json
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -14,6 +16,74 @@ from ackredit.core.registry import Registry
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "tests/fixtures/publication"
+
+
+def test_retained_receipt_binds_the_same_original_input_to_verified_wheels():
+    receipt = json.loads(
+        (ROOT / "devtools/receipts/publication_tools_120_2026-10-06.json").read_text()
+    )
+    assert receipt["issue"] == "uibcdf/ackredit#120"
+    candidate = receipt["candidate"]
+    assert candidate["before"] == candidate["after"]
+    assert (
+        candidate["before"]["original_wheel"]["source_commit"]
+        != receipt["baseline"]["installed_identity"]["original_wheel"]["source_commit"]
+    )
+    original = ackredit.Attribution.from_dict(
+        receipt["paired_input"]["payload"]
+    ).to_json()
+    assert (
+        hashlib.sha256(original.encode()).hexdigest()
+        == receipt["paired_input"]["sha256"]
+        == candidate["probe"]["input_sha256"]
+    )
+    for relative, digest in receipt["fixtures"].items():
+        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest
+    assert (
+        hashlib.sha256(
+            (ROOT / "devtools/check_publication_tools.py").read_bytes()
+        ).hexdigest()
+        == candidate["probe"]["tool_sha256"]
+    )
+    for side in (receipt["baseline"], candidate):
+        for export in side["exports"].values():
+            assert (
+                hashlib.sha256(export["text"].encode()).hexdigest() == export["sha256"]
+            )
+    assert candidate["probe"]["bibtex_warnings"] == []
+    before_bib = receipt["baseline"]["exports"]["references.bib"]["text"]
+    after_bib = candidate["exports"]["references.bib"]["text"]
+    assert "editors =" in before_bib and "@misc{preferred:collection," in before_bib
+    assert "editor =" in after_bib and "@book{preferred:collection," in after_bib
+    assert (
+        "Research and Development, Consortium}, editors"
+        in candidate["exports"]["references.bbl"]["text"]
+    )
+
+
+def test_publication_guidance_states_the_executed_receiving_boundary():
+    receipt = json.loads(
+        (ROOT / "devtools/receipts/publication_tools_120_2026-10-06.json").read_text()
+    )
+    page = (ROOT / "docs/content/user_guide/publication_tools.md").read_text()
+    prose = " ".join(page.split())
+    for executable in ("bibtex", "pandoc"):
+        first_line = receipt["candidate"]["probe"]["versions"][executable].splitlines()[
+            0
+        ]
+        version = re.search(r"\d+\.\d+[a-z]?", first_line).group()
+        assert version in prose
+    assert receipt["candidate"]["csl_style_identity"]["title"] in prose.replace(
+        "**", ""
+    )
+    for boundary in (
+        "immutable public 0.11.0",
+        "full URL",
+        "BibLaTeX/Biber",
+        "duplicate identity",
+        "--require-publication-tools",
+    ):
+        assert boundary in prose
 
 
 @pytest.fixture

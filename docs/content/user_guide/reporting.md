@@ -33,7 +33,7 @@ ackredit.summary()
 Use `report(format=...)` to get a string in any of these formats:
 *   `markdown` (Rich markdown with links)
 *   `bibtex` (Standard BibTeX file content)
-*   `csl-json` (For Zotero, Mendeley, and EndNote)
+*   `csl-json` (CSL bibliography data; tested with Pandoc/citeproc)
 *   `json` (Every registered field, plus what used it; for your own tooling)
 *   `provenance` (Hierarchical tree showing *why* each item was cited)
 *   `latex` (A complete, compilable LaTeX document)
@@ -50,6 +50,10 @@ together with any format a plugin added, and asking for a name that is not there
 and that function in agreement.
 
 ### BibTeX citation keys
+
+See [bibliography for publication tools](publication_tools.md) for actual
+BibTeX/Pandoc receiving evidence, development editor/name repairs and the
+distinction between exported metadata and a selected style's output.
 
 Development after 0.11.0 preserves valid original keys such as `Smith_2020`
 and `smith:2020a`, so exporting an imported bibliography keeps manuscript
@@ -198,7 +202,7 @@ A file holds one report, and its name chooses it:
 
 ```python
 ackredit.dump("refs.bib")  # BibTeX
-ackredit.dump("refs.csl.json")  # CSL-JSON, for Zotero and friends
+ackredit.dump("refs.csl.json")  # CSL bibliography data
 ackredit.dump("citations.md")  # Markdown
 ```
 

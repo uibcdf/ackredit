@@ -1,0 +1,1440 @@
+{
+  "schema": "ackredit.publication-checkpoint@1",
+  "issue": "uibcdf/ackredit#120",
+  "checked_at": "2026-10-06T21:21:21.648888+00:00",
+  "profile": "linux-python314-bibtex-plain-pandoc-default-2026-10-06",
+  "fixtures": {
+    "tests/fixtures/publication/preferred.cff": "937f45bbaa92f543bf9f5ff08023363d7c7a3c9b6e537d3a985e8eca81ec85f5",
+    "tests/fixtures/publication/records.json": "0002fffa4e589de0e42f5a1d9ce0354ff3087e691a06c16dcca10a62fb94bfe5"
+  },
+  "paired_input": {
+    "sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+    "payload": {
+      "schema": "ackredit.attribution@1",
+      "name": "publication-fixture",
+      "context": {},
+      "items": [
+        {
+          "id": "software:1.0",
+          "type": "software",
+          "title": "Órbita & Analysis",
+          "authors": [
+            {
+              "literal": "Research and Development, Consortium"
+            }
+          ],
+          "year": "2024",
+          "version": "1.0",
+          "doi": "10.5555/ackredit.fixture.software",
+          "url": "https://example.org/software/1.0"
+        },
+        {
+          "id": "software:2.0",
+          "type": "software",
+          "title": "Órbita & Analysis",
+          "authors": [
+            {
+              "literal": "Research and Development, Consortium"
+            }
+          ],
+          "year": "2025",
+          "version": "2.0",
+          "doi": "https://doi.org/10.5555/ackredit.fixture.software",
+          "url": "https://example.org/software/2.0"
+        },
+        {
+          "id": "dataset:2024",
+          "type": "dataset",
+          "title": "Datos de México: 50% coverage",
+          "authors": [
+            {
+              "literal": "Instituto de Investigación, México"
+            }
+          ],
+          "year": "2024",
+          "version": "2024.1",
+          "doi": "10.5555/ackredit.fixture.dataset"
+        },
+        {
+          "id": "article:2023",
+          "type": "article",
+          "title": "Analysis of Órbita & datasets",
+          "authors": [
+            {
+              "family": "García",
+              "given": "Ana"
+            }
+          ],
+          "year": "2023",
+          "journal": "Methods & Data",
+          "volume": "12",
+          "number": "2",
+          "pages": "101--115",
+          "doi": "10.5555/ackredit.fixture.article"
+        },
+        {
+          "id": "edited:structured",
+          "type": "other",
+          "title": "Structured editor collection",
+          "editors": [
+            {
+              "family": "García",
+              "given": "Ana"
+            },
+            {
+              "literal": "Research and Development, Consortium"
+            }
+          ],
+          "year": "2022",
+          "publisher": "Example Press"
+        },
+        {
+          "id": "preferred:collection",
+          "title": "Méthodes & données",
+          "date-published": "2021-02-28",
+          "isbn": "978-0-00-000000-0",
+          "type": "other",
+          "_cff_type": "edited-work",
+          "editors": [
+            "Cruz, María",
+            "Research and Development, Consortium"
+          ],
+          "_cff_editors": {
+            "text": [
+              "Cruz, María",
+              "Research and Development, Consortium"
+            ],
+            "names": [
+              {
+                "family-names": "Cruz",
+                "given-names": "María",
+                "name-particle": "de la",
+                "name-suffix": "III"
+              },
+              {
+                "name": "Research and Development, Consortium"
+              }
+            ]
+          },
+          "publisher": "Example Press",
+          "doi": "10.5555/ackredit.fixture.collection",
+          "year": "2021",
+          "_cff_source": "preferred-citation"
+        }
+      ],
+      "uses": [
+        {
+          "item_id": "software:1.0",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "software:2.0",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "dataset:2024",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "article:2023",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "edited:structured",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        },
+        {
+          "item_id": "preferred:collection",
+          "used_by": null,
+          "roles": [],
+          "context": {}
+        }
+      ],
+      "usage_tree": {}
+    },
+    "identical_bytes": true
+  },
+  "baseline": {
+    "installed_identity": {
+      "identities": {
+        "ackredit": {
+          "direct_url": {
+            "archive_info": {
+              "hash": "sha256=67383a1ef31554a9bb8160e89ad691cf4d6f7f6a5d3eb31ff072ff8189e61f6d",
+              "hashes": {
+                "sha256": "67383a1ef31554a9bb8160e89ad691cf4d6f7f6a5d3eb31ff072ff8189e61f6d"
+              }
+            },
+            "url": "file:///tmp/ackredit119-study/wheels/ackredit-0.11.0%2B20.g9a27f1b-py3-none-any.whl"
+          },
+          "distribution_version": "0.11.0+20.g9a27f1b",
+          "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/ackredit/__init__.py",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "runtime_version": "0.11.0+20.g9a27f1b",
+          "source_file_count": 70,
+          "source_tree_sha256": "b6b5894dfb58e89e5af1465003242aa30a10ebc67a3c41acba6306f73ff5d979"
+        },
+        "argdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/argdigest_1791317734110/work"
+          },
+          "distribution_version": "0.15.0",
+          "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/argdigest/__init__.py",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "runtime_version": "0.15.0",
+          "source_file_count": 38,
+          "source_tree_sha256": "5c5b8355266aa568ea2230033a36a8251d7068fa2da579cdd266f451d750c973"
+        },
+        "depdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/depdigest_1791108193170/work"
+          },
+          "distribution_version": "0.13.0",
+          "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/depdigest/__init__.py",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "runtime_version": "0.13.0",
+          "source_file_count": 16,
+          "source_tree_sha256": "3983ad92ffe919bb2d164204acb27e75acd8749a20dcd16339b91c9134a3d384"
+        },
+        "smonitor": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/smonitor_1791315669680/work"
+          },
+          "distribution_version": "0.19.0",
+          "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/smonitor/__init__.py",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "runtime_version": "0.19.0",
+          "source_file_count": 40,
+          "source_tree_sha256": "658f6dc6a4bd91a37eb0bdfc594fdd29e492bec7a095bc57c6dc606e6401c2d9"
+        },
+        "yaml": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/conda/feedstock_root/build_artifacts/pyyaml_1770223234623/work"
+          },
+          "distribution_version": "6.0.3",
+          "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/yaml/__init__.py",
+          "requirements": [],
+          "runtime_version": "6.0.3",
+          "source_file_count": 17,
+          "source_tree_sha256": "2008311890b5df4690faeb978431ced7f85b13c81808cc9bf02cab257bf253d5"
+        }
+      },
+      "installed_smoke": {
+        "portable_attribution": "passed",
+        "providers": {
+          "ackredit": {
+            "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/ackredit/__init__.py",
+            "version": "0.11.0+20.g9a27f1b"
+          },
+          "argdigest": {
+            "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/argdigest/__init__.py",
+            "version": "0.15.0"
+          },
+          "depdigest": {
+            "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/depdigest/__init__.py",
+            "version": "0.13.0"
+          },
+          "smonitor": {
+            "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/smonitor/__init__.py",
+            "version": "0.19.0"
+          }
+        },
+        "python": "3.14.8",
+        "requires_python": "<3.15,>=3.11"
+      },
+      "original_wheel": {
+        "filename": "ackredit-0.11.0+20.g9a27f1b-py3-none-any.whl",
+        "files": {
+          "ackredit/CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+          "ackredit/__init__.py": "43264d45f63ed941ac032aed67c882543a952bc6f58a3555e1a100a5d7b13533",
+          "ackredit/_argdigest.py": "eaa776aa242fc07f495d055d74857f661b80c26e538c722aaa6b19c8879fd1d3",
+          "ackredit/_depdigest.py": "e9eb4a868e08758f73d7892a801a2e5ff2c0b1eb161f67c272807ddbd9ba2201",
+          "ackredit/_private/__init__.py": "452139d5dcf653b77651a44e44f18fb906666a135f789709b14bc062dae1d0b6",
+          "ackredit/_private/argdigest/__init__.py": "68817bbc727f44ff6d0d4cf15599363b1a5d9ac4f34b5027c662c24ef7564ae8",
+          "ackredit/_private/argdigest/argument/__init__.py": "59f7cc04925c937aca576b7426b5f86229383717e97e657cb93c4b571299f44b",
+          "ackredit/_private/argdigest/argument/build_pdf.py": "cbbd71861212a98767adc1857a6fa34d3623a4fba0e723ae2eab716a686d1d8a",
+          "ackredit/_private/argdigest/argument/directory.py": "8d9c264179d5ebecc349015ad4bf1af8bec014b5789c7df965109d44785e09c9",
+          "ackredit/_private/argdigest/argument/file_path.py": "aefc9e60c024208596a62c60c33eee16180719df42c75a7b6d8332744d507e64",
+          "ackredit/_private/argdigest/argument/format.py": "a022143df6011badfe90a05cfe56d2dd7d19c927770f38f77d77f70a50d1beda",
+          "ackredit/_private/argdigest/argument/formats.py": "65acfd7815d7276078db0458e358510c47593fad22ed948fc32932b29c6cf703",
+          "ackredit/_private/argdigest/argument/items.py": "6560421f413e7609bc8600318f34b9ae72a9ec9ca8842b49d2483d07e1f8c65d",
+          "ackredit/_private/argdigest/argument/path.py": "f9fcf0358cf5787f291b38302dab0a8c19a210f22b586e5ca96d0624c4e5929f",
+          "ackredit/_private/argdigest/argument/paths.py": "7ae2c6eb6b5b097745eb01d561be3347f358ce82164e93d67be96aac18e66585",
+          "ackredit/_private/argdigest/argument/target.py": "618e5729e8056ddc7e619dacdaa9b0a917b1af41075c17eb08635dd93bdd1073",
+          "ackredit/_private/argdigest/argument/target_module.py": "96236ee750f60d7bd0e97abf2f6407cf64b49e7daaee8159f017e7da73df3ef1",
+          "ackredit/_private/argdigest/digest.py": "97a3b1f77962094e33fe96388c337bc7eb118549e171f7b193527028e16f19b0",
+          "ackredit/_private/argdigest/domain/__init__.py": "56a90db8119c576465c831003446ce7587d8b0e96853d070947c130e19c80745",
+          "ackredit/_private/argdigest/domain/citation_field.py": "c8ec2b0427e2c7c3626f985f4c8d7b800eae62be02b847ee8253b448858903b1",
+          "ackredit/_private/argdigest/domain/format_options.py": "3991ba1c7f49551011021a1eedbb0ea6ae169ec6d78178c73fa19735afc18172",
+          "ackredit/_private/argdigest/function/__init__.py": "17535577b86be582620d815110f43f5aecfa886676f07bc84f259d0bad1b94ac",
+          "ackredit/_private/argdigest/function/register_item.py": "75b5f04f8de6fe9c834341651c079daceda9269a0409737602ded7b327b25529",
+          "ackredit/_private/argdigest/function/report.py": "48756217a14ebe89d1677975d84c609c6346b0c864bbf462dbe44df3457303f5",
+          "ackredit/_private/argdigest/normalization/__init__.py": "20185860374d7bff4f85ace7f3cc1fd8366a749d5421862be37070bdfe3f6b17",
+          "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d",
+          "ackredit/_private/smonitor/__init__.py": "dd94fb78fb113423ddacc2a380997bdc063523798df30b30b5c05d7ccf5b5eab",
+          "ackredit/_private/smonitor/catalog.py": "85e69c1a740dd82cae064a6f0510bbd0e990afe85fec18301233ee47bfe17e52",
+          "ackredit/_private/smonitor/emitter.py": "e0eab9c9d44d59c656a0766808d87b5d076dac1a14983518d7a9a849f9442605",
+          "ackredit/_private/smonitor/exceptions.py": "9eb0479eb759d5f052d5838809c47c376d65d77920332f3bce07f7acd05eee88",
+          "ackredit/_private/smonitor/meta.py": "63f4202183ce21b5ad3ea3f972f1f5a7b9acb46a07cf30a7101aeed3906418f7",
+          "ackredit/_private/smonitor/warnings.py": "fab9ef05a9c9c8bbcba5e2bfb4a5d4e042a6897bdf87f76fb3d79fc6d209080a",
+          "ackredit/_smonitor.py": "dfc5f5e015ca062ec364599e6d230c3433c03411c463ac50b50df4dbf48e1ef8",
+          "ackredit/_version.py": "2b3926c46fbb0dfc2e9a2cb11e6c46e9ce31cb721f1fccb8825498fad23bf49c",
+          "ackredit/cli.py": "fa9af7c8c01b5120607db4a95ce7b10f024f315efbb6d8cc81a903ffbf1caf8e",
+          "ackredit/contrib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "ackredit/contrib/duecredit_compat.py": "9143f42759defdcf5d76416d346ad8ef1a7f4f7b59b87c59ea8961a058b4daf0",
+          "ackredit/contrib/jupyter.py": "70e9b21d15d2017deccea4fcf8fa549c244e3482a019952e93d2c3b5464b8b57",
+          "ackredit/core/__init__.py": "b2bb26103ec489f126a4f2a0598d9a5bb2ef49452508cd8ab10f724da1b7de97",
+          "ackredit/core/attribution.py": "527950fbd77b94828b9e45fb719c08ca098722e7439eb7b3babd15a7a5e1791d",
+          "ackredit/core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+          "ackredit/core/collector.py": "4beab98293a24919b3ffe26cd8fc062c5b1aa2f1d1aa24e47ee03a7451ef2139",
+          "ackredit/core/composition.py": "69f3fc1601c1ad87bfec6feed2fadca9e23549af8a4d8aae15670c4d4a2ac389",
+          "ackredit/core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b",
+          "ackredit/core/decorators.py": "0baa9f1279b7ae453dc8abedcf28d9c2a0e86a06791f1c5b56eb0c27c8d15e83",
+          "ackredit/core/evidence.py": "88d97a57f421e978c1cb9f3598fbd6afb2061ed585fd25b5a1211940f81e3e31",
+          "ackredit/core/explanation.py": "33cb35d8876af730566b3286ed86234de885475ff2c9c33e49d720552db8a27b",
+          "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "ackredit/core/injections.py": "85719e4da382861245eb7f268cc94b0f37638d73527a219db1c6743892104932",
+          "ackredit/core/inspection.py": "b9efba1c647ffd510ef44321958e915b2e87f0f87a56a14a0f4c036cc28765c6",
+          "ackredit/core/providers.py": "1cefe5b60965d3b466483c6e746270fcff0ffa65f3e981f370649fbfb591efde",
+          "ackredit/core/registry.py": "46c211d8ecda1b5357b6de8f6c73ebe55fb8c9c81649b11f92e649a1011b1f55",
+          "ackredit/core/report.py": "b89a4f8fcba2c5dc232411d6d8d7753984c80bc178131e18c5f6b4fbc7ac7ad6",
+          "ackredit/core/session.py": "456e3db08e36adb4adaa1bc9b397276e7c787a146752fd9ce69644e188f1aa07",
+          "ackredit/core/standard_injections.py": "d61a165142d9f85a129505fab4c6e6d03236556a00fdb346eee98a1afa768b56",
+          "ackredit/formats/__init__.py": "ab6a057cb393d9338654792772912a5ae66031fc563a43256e2d795e44128a13",
+          "ackredit/formats/_html.py": "af6326733d57462740a563c6efeb9f8bf2a94675fd76b94c10ea93f21b635472",
+          "ackredit/formats/_latex.py": "bbd98671010150ec8f59e34bfc2f5a7dfa5401e661ff4bb1a85481d223480f56",
+          "ackredit/formats/_links.py": "84c64bd8f6adb510dcf4f4139f5eab9daa283c3c2850eab12772b470ed23106a",
+          "ackredit/formats/_markdown.py": "b751beeddc61b6b3fa5b1e45de8e164c8d75c089d6f058cce85f2a83d62800a6",
+          "ackredit/formats/_names.py": "6ea0b31aac965c6c81fa3658598279a880d92efa691baf5fbeacf758f087f31a",
+          "ackredit/formats/bibtex.py": "24acc985fcc9545aee2fcdc2f9cbbd13d61b7e6f2090e20ec0560a249b04f0ea",
+          "ackredit/formats/csl_json.py": "615eaf894f4b837aaec8fdd0a898843c991d3c40afe19ad897c3ac88660539d8",
+          "ackredit/formats/explanation.py": "2d114f00d0d910179d7eb82b6e84969e5b9cbd9c3637c475cde5a319c4934f2d",
+          "ackredit/formats/jsonfmt.py": "05bf25adda78109d5354cafd49c01f5fe542a8b71b6cbf780b8026b58ae1548b",
+          "ackredit/formats/latex.py": "f25aff15888cfcb17a69d021196ee0421eba6a76883ab0bb6e0d1bda98dfb23c",
+          "ackredit/formats/markdown.py": "f4887f14394a142a9a5dc3f8a0fb8f90a0ffb8809363c42a0d11956313b2e897",
+          "ackredit/formats/provenance.py": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+          "ackredit/formats/text.py": "dd8f2d4ca6eff518af8978d97b55ab4af1c89c6a6d4ce14637af3619ece2faaa",
+          "ackredit/formats/workflow.py": "9d2ab11fcea617eb563e867710cffb6c96f12724d3fab471014516f5fc7e6fd3"
+        },
+        "package": "ackredit",
+        "sha256": "67383a1ef31554a9bb8160e89ad691cf4d6f7f6a5d3eb31ff072ff8189e61f6d",
+        "source_commit": "9a27f1b4f46c9392f911670f90ad7e8b12ff56c8",
+        "version": "0.11.0+20.g9a27f1b"
+      },
+      "provider_records": {
+        "argdigest": {
+          "build": "py_0",
+          "depends": [
+            "depdigest >=0.11.0",
+            "python >=3.11,<3.15",
+            "smonitor >=0.16.0"
+          ],
+          "name": "argdigest",
+          "sha256": "b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.15.0-py_0.tar.bz2",
+          "version": "0.15.0"
+        },
+        "depdigest": {
+          "build": "py_0",
+          "depends": [
+            "python >=3.11,<3.15",
+            "smonitor >=0.13.0"
+          ],
+          "name": "depdigest",
+          "sha256": "e011d725c8a831ae46cd6b8d114185d04248e32b4d6701c70f988d19cc69f67b",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.13.0-py_0.tar.bz2",
+          "version": "0.13.0"
+        },
+        "pyyaml": {
+          "build": "py314h67df5f8_1",
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "libgcc >=14",
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "yaml >=0.2.5,<0.3.0a0"
+          ],
+          "name": "pyyaml",
+          "sha256": "b318fb070c7a1f89980ef124b80a0b5ccf3928143708a85e0053cde0169c699d",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h67df5f8_1.conda",
+          "version": "6.0.3"
+        },
+        "smonitor": {
+          "build": "py_1",
+          "depends": [
+            "python >=3.11,<3.15"
+          ],
+          "name": "smonitor",
+          "sha256": "4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.19.0-py_1.tar.bz2",
+          "version": "0.19.0"
+        }
+      },
+      "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+      "wheel": {
+        "origin": "/tmp/ackredit119-study/installed/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.11.0+20.g9a27f1b",
+        "wheel_sha256": "67383a1ef31554a9bb8160e89ad691cf4d6f7f6a5d3eb31ff072ff8189e61f6d"
+      }
+    },
+    "processes": [
+      {
+        "command": [
+          "bibtex",
+          "references"
+        ],
+        "exit_code": 0,
+        "stdout": "This is BibTeX, Version 0.99d (TeX Live 2023/Debian)\nThe top-level auxiliary file: references.aux\nThe style file: plain.bst\nDatabase file #1: references.bib\nWarning--to sort, need author or key in edited:structured\nWarning--to sort, need author or key in preferred:collection\n(There were 2 warnings)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "pandoc",
+          "-f",
+          "bibtex",
+          "-t",
+          "csljson",
+          "references.bib",
+          "-o",
+          "bibtex-read.csl.json"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "pandoc",
+          "--citeproc",
+          "--bibliography",
+          "references.csl.json",
+          "-t",
+          "html",
+          "manuscript.md",
+          "-o",
+          "bibliography.html"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "exports": {
+      "references.bib": {
+        "sha256": "e3d70c84139320a3e7552d63a67b1c8ca8fd83a557f8c5e3ea47713dbcc0e8c7",
+        "text": "@misc{software:1.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/1.0},\n  version = {1.0}\n}\n\n@misc{software:2.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2025},\n  doi = {https://doi.org/10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/2.0},\n  version = {2.0}\n}\n\n@misc{dataset:2024,\n  title = {Datos de México: 50\\% coverage},\n  howpublished = {Dataset},\n  author = {{Instituto de Investigación, México}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.dataset},\n  version = {2024.1}\n}\n\n@article{article:2023,\n  title = {Analysis of Órbita \\& datasets},\n  author = {García, Ana},\n  year = {2023},\n  doi = {10.5555/ackredit.fixture.article},\n  journal = {Methods \\& Data},\n  number = {2},\n  pages = {101--115},\n  volume = {12}\n}\n\n@misc{edited:structured,\n  title = {Structured editor collection},\n  year = {2022},\n  editors = {\\{'family': 'García', 'given': 'Ana'\\} and \\{'literal': 'Research and Development, Consortium'\\}},\n  publisher = {Example Press}\n}\n\n@misc{preferred:collection,\n  title = {Méthodes \\& données},\n  year = {2021},\n  doi = {10.5555/ackredit.fixture.collection},\n  date-published = {2021-02-28},\n  editors = {Cruz, María and Research and Development, Consortium},\n  isbn = {978-0-00-000000-0},\n  publisher = {Example Press}\n}"
+      },
+      "references.csl.json": {
+        "sha256": "4ffa4c7265dd20628bb3e7232861cc3886cc365dd72b8c44057906e20e8025e6",
+        "text": "[\n  {\n    \"id\": \"software:1.0\",\n    \"type\": \"software\",\n    \"title\": \"\\u00d3rbita & Analysis\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"DOI\": \"10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/1.0\",\n    \"version\": \"1.0\"\n  },\n  {\n    \"id\": \"software:2.0\",\n    \"type\": \"software\",\n    \"title\": \"\\u00d3rbita & Analysis\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2025\n        ]\n      ]\n    },\n    \"DOI\": \"https://doi.org/10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/2.0\",\n    \"version\": \"2.0\"\n  },\n  {\n    \"id\": \"dataset:2024\",\n    \"type\": \"dataset\",\n    \"title\": \"Datos de M\\u00e9xico: 50% coverage\",\n    \"author\": [\n      {\n        \"literal\": \"Instituto de Investigaci\\u00f3n, M\\u00e9xico\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"DOI\": \"10.5555/ackredit.fixture.dataset\",\n    \"version\": \"2024.1\"\n  },\n  {\n    \"id\": \"article:2023\",\n    \"type\": \"article-journal\",\n    \"title\": \"Analysis of \\u00d3rbita & datasets\",\n    \"author\": [\n      {\n        \"family\": \"Garc\\u00eda\",\n        \"given\": \"Ana\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2023\n        ]\n      ]\n    },\n    \"DOI\": \"10.5555/ackredit.fixture.article\",\n    \"volume\": \"12\",\n    \"issue\": \"2\",\n    \"page\": \"101--115\",\n    \"container-title\": \"Methods & Data\"\n  },\n  {\n    \"id\": \"edited:structured\",\n    \"type\": \"document\",\n    \"title\": \"Structured editor collection\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2022\n        ]\n      ]\n    },\n    \"editor\": [\n      {\n        \"family\": \"Garc\\u00eda\",\n        \"given\": \"Ana\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"publisher\": \"Example Press\"\n  },\n  {\n    \"id\": \"preferred:collection\",\n    \"type\": \"book\",\n    \"title\": \"M\\u00e9thodes & donn\\u00e9es\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2021,\n          2,\n          28\n        ]\n      ]\n    },\n    \"editor\": [\n      {\n        \"family\": \"de la Cruz\",\n        \"given\": \"Mar\\u00eda\",\n        \"suffix\": \"III\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"DOI\": \"10.5555/ackredit.fixture.collection\",\n    \"ISBN\": \"978-0-00-000000-0\",\n    \"publisher\": \"Example Press\"\n  }\n]"
+      },
+      "references.bbl": {
+        "sha256": "c539da95a1f832674df3a01b12753ca41f14bb4992e781ff63209474fc859e90",
+        "text": "\\begin{thebibliography}{1}\n\n\\bibitem{preferred:collection}\nMéthodes \\& données, 2021.\n\n\\bibitem{edited:structured}\nStructured editor collection, 2022.\n\n\\bibitem{article:2023}\nAna García.\n\\newblock Analysis of Órbita \\& datasets.\n\\newblock {\\em Methods \\& Data}, 12(2):101--115, 2023.\n\n\\bibitem{dataset:2024}\n{Instituto de Investigación, México}.\n\\newblock Datos de méxico: 50\\% coverage.\n\\newblock Dataset, 2024.\n\n\\bibitem{software:1.0}\n{Research and Development, Consortium}.\n\\newblock Órbita \\& analysis.\n\\newblock Software, 2024.\n\n\\bibitem{software:2.0}\n{Research and Development, Consortium}.\n\\newblock Órbita \\& analysis.\n\\newblock Software, 2025.\n\n\\end{thebibliography}\n"
+      },
+      "bibtex-read.csl.json": {
+        "sha256": "8d42c2e80e09e73afba85e741141f8546b646dca8f23378f02b4335bb1dd8b47",
+        "text": "[\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/1.0\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"software:1.0\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"publisher\": \"Software\",\n    \"title\": \"Órbita & analysis\",\n    \"type\": \"\",\n    \"version\": \"1.0\"\n  },\n  {\n    \"DOI\": \"https://doi.org/10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/2.0\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"software:2.0\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2025\n        ]\n      ]\n    },\n    \"publisher\": \"Software\",\n    \"title\": \"Órbita & analysis\",\n    \"type\": \"\",\n    \"version\": \"2.0\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.dataset\",\n    \"author\": [\n      {\n        \"literal\": \"Instituto de Investigación, México\"\n      }\n    ],\n    \"id\": \"dataset:2024\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"publisher\": \"Dataset\",\n    \"title\": \"Datos de méxico: 50% coverage\",\n    \"title-short\": \"Datos de méxico\",\n    \"type\": \"\",\n    \"version\": \"2024.1\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.article\",\n    \"author\": [\n      {\n        \"family\": \"García\",\n        \"given\": \"Ana\"\n      }\n    ],\n    \"container-title\": \"Methods & Data\",\n    \"id\": \"article:2023\",\n    \"issue\": \"2\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2023\n        ]\n      ]\n    },\n    \"page\": \"101-115\",\n    \"title\": \"Analysis of órbita & datasets\",\n    \"type\": \"article-journal\",\n    \"volume\": \"12\"\n  },\n  {\n    \"id\": \"edited:structured\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2022\n        ]\n      ]\n    },\n    \"publisher\": \"Example Press\",\n    \"title\": \"Structured editor collection\",\n    \"type\": \"\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.collection\",\n    \"ISBN\": \"978-0-00-000000-0\",\n    \"id\": \"preferred:collection\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2021\n        ]\n      ]\n    },\n    \"publisher\": \"Example Press\",\n    \"title\": \"Méthodes & données\",\n    \"type\": \"\"\n  }\n]\n"
+      },
+      "bibliography.html": {
+        "sha256": "9644b95ab13b9741424a04c206da2e396f76fd565d766e581772faafa21fab4a",
+        "text": "<p>Publication fixture.</p>\n<div id=\"refs\" class=\"references csl-bib-body hanging-indent\"\nrole=\"list\">\n<div id=\"ref-preferred:collection\" class=\"csl-entry\" role=\"listitem\">\nCruz, María de la, III, and Research and Development, Consortium, eds.\n2021. <em>Méthodes &amp; Données</em>. Example Press. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.collection\">https://doi.org/10.5555/ackredit.fixture.collection</a>.\n</div>\n<div id=\"ref-article:2023\" class=\"csl-entry\" role=\"listitem\">\nGarcía, Ana. 2023. <span>“Analysis of Órbita &amp; Datasets.”</span>\n<em>Methods &amp; Data</em> 12 (2): 101--115. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.article\">https://doi.org/10.5555/ackredit.fixture.article</a>.\n</div>\n<div id=\"ref-edited:structured\" class=\"csl-entry\" role=\"listitem\">\nGarcía, Ana, and Research and Development, Consortium, eds. 2022.\n<span>“Structured Editor Collection.”</span> Example Press.\n</div>\n<div id=\"ref-dataset:2024\" class=\"csl-entry\" role=\"listitem\">\nInstituto de Investigación, México. 2024. <span>“Datos de México: 50%\nCoverage.”</span> Version 2024.1. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.dataset\">https://doi.org/10.5555/ackredit.fixture.dataset</a>.\n</div>\n<div id=\"ref-software:1.0\" class=\"csl-entry\" role=\"listitem\">\nResearch and Development, Consortium. 2024. <em>Órbita &amp;\nAnalysis</em>. V. 1.0. Released. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.software\">https://doi.org/10.5555/ackredit.fixture.software</a>.\n</div>\n<div id=\"ref-software:2.0\" class=\"csl-entry\" role=\"listitem\">\nResearch and Development, Consortium. 2025. <em>Órbita &amp;\nAnalysis</em>. V. 2.0. Released. https://doi.org/<a\nhref=\"https://doi.org/10.5555/ackredit.fixture.software\">https://doi.org/10.5555/ackredit.fixture.software</a>.\n</div>\n</div>\n"
+      }
+    },
+    "observation": "Two BibTeX sorting warnings; both editor lists lost; CFF preferred edited-work becomes misc."
+  },
+  "candidate": {
+    "before": {
+      "identities": {
+        "ackredit": {
+          "direct_url": {
+            "archive_info": {
+              "hash": "sha256=294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a",
+              "hashes": {
+                "sha256": "294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a"
+              }
+            },
+            "url": "file:///tmp/ackredit120-study/wheels/ackredit-0.11.0%2B22.g9efa863-py3-none-any.whl"
+          },
+          "distribution_version": "0.11.0+22.g9efa863",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "runtime_version": "0.11.0+22.g9efa863",
+          "source_file_count": 70,
+          "source_tree_sha256": "7c81ae1f978d129ba4d0472dd29bd501d4d6212d5839db5b8af5c25591bc8c86"
+        },
+        "argdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/argdigest_1791317734110/work"
+          },
+          "distribution_version": "0.15.0",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "runtime_version": "0.15.0",
+          "source_file_count": 38,
+          "source_tree_sha256": "5c5b8355266aa568ea2230033a36a8251d7068fa2da579cdd266f451d750c973"
+        },
+        "depdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/depdigest_1791108193170/work"
+          },
+          "distribution_version": "0.13.0",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "runtime_version": "0.13.0",
+          "source_file_count": 16,
+          "source_tree_sha256": "3983ad92ffe919bb2d164204acb27e75acd8749a20dcd16339b91c9134a3d384"
+        },
+        "smonitor": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/smonitor_1791315669680/work"
+          },
+          "distribution_version": "0.19.0",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "runtime_version": "0.19.0",
+          "source_file_count": 40,
+          "source_tree_sha256": "658f6dc6a4bd91a37eb0bdfc594fdd29e492bec7a095bc57c6dc606e6401c2d9"
+        },
+        "yaml": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/conda/feedstock_root/build_artifacts/pyyaml_1770223234623/work"
+          },
+          "distribution_version": "6.0.3",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/yaml/__init__.py",
+          "requirements": [],
+          "runtime_version": "6.0.3",
+          "source_file_count": 17,
+          "source_tree_sha256": "2008311890b5df4690faeb978431ced7f85b13c81808cc9bf02cab257bf253d5"
+        }
+      },
+      "installed_smoke": {
+        "portable_attribution": "passed",
+        "providers": {
+          "ackredit": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+            "version": "0.11.0+22.g9efa863"
+          },
+          "argdigest": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+            "version": "0.15.0"
+          },
+          "depdigest": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+            "version": "0.13.0"
+          },
+          "smonitor": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+            "version": "0.19.0"
+          }
+        },
+        "python": "3.14.8",
+        "requires_python": "<3.15,>=3.11"
+      },
+      "original_wheel": {
+        "filename": "ackredit-0.11.0+22.g9efa863-py3-none-any.whl",
+        "files": {
+          "ackredit/CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+          "ackredit/__init__.py": "43264d45f63ed941ac032aed67c882543a952bc6f58a3555e1a100a5d7b13533",
+          "ackredit/_argdigest.py": "eaa776aa242fc07f495d055d74857f661b80c26e538c722aaa6b19c8879fd1d3",
+          "ackredit/_depdigest.py": "e9eb4a868e08758f73d7892a801a2e5ff2c0b1eb161f67c272807ddbd9ba2201",
+          "ackredit/_private/__init__.py": "452139d5dcf653b77651a44e44f18fb906666a135f789709b14bc062dae1d0b6",
+          "ackredit/_private/argdigest/__init__.py": "68817bbc727f44ff6d0d4cf15599363b1a5d9ac4f34b5027c662c24ef7564ae8",
+          "ackredit/_private/argdigest/argument/__init__.py": "59f7cc04925c937aca576b7426b5f86229383717e97e657cb93c4b571299f44b",
+          "ackredit/_private/argdigest/argument/build_pdf.py": "cbbd71861212a98767adc1857a6fa34d3623a4fba0e723ae2eab716a686d1d8a",
+          "ackredit/_private/argdigest/argument/directory.py": "8d9c264179d5ebecc349015ad4bf1af8bec014b5789c7df965109d44785e09c9",
+          "ackredit/_private/argdigest/argument/file_path.py": "aefc9e60c024208596a62c60c33eee16180719df42c75a7b6d8332744d507e64",
+          "ackredit/_private/argdigest/argument/format.py": "a022143df6011badfe90a05cfe56d2dd7d19c927770f38f77d77f70a50d1beda",
+          "ackredit/_private/argdigest/argument/formats.py": "65acfd7815d7276078db0458e358510c47593fad22ed948fc32932b29c6cf703",
+          "ackredit/_private/argdigest/argument/items.py": "6560421f413e7609bc8600318f34b9ae72a9ec9ca8842b49d2483d07e1f8c65d",
+          "ackredit/_private/argdigest/argument/path.py": "f9fcf0358cf5787f291b38302dab0a8c19a210f22b586e5ca96d0624c4e5929f",
+          "ackredit/_private/argdigest/argument/paths.py": "7ae2c6eb6b5b097745eb01d561be3347f358ce82164e93d67be96aac18e66585",
+          "ackredit/_private/argdigest/argument/target.py": "618e5729e8056ddc7e619dacdaa9b0a917b1af41075c17eb08635dd93bdd1073",
+          "ackredit/_private/argdigest/argument/target_module.py": "96236ee750f60d7bd0e97abf2f6407cf64b49e7daaee8159f017e7da73df3ef1",
+          "ackredit/_private/argdigest/digest.py": "97a3b1f77962094e33fe96388c337bc7eb118549e171f7b193527028e16f19b0",
+          "ackredit/_private/argdigest/domain/__init__.py": "56a90db8119c576465c831003446ce7587d8b0e96853d070947c130e19c80745",
+          "ackredit/_private/argdigest/domain/citation_field.py": "c8ec2b0427e2c7c3626f985f4c8d7b800eae62be02b847ee8253b448858903b1",
+          "ackredit/_private/argdigest/domain/format_options.py": "3991ba1c7f49551011021a1eedbb0ea6ae169ec6d78178c73fa19735afc18172",
+          "ackredit/_private/argdigest/function/__init__.py": "17535577b86be582620d815110f43f5aecfa886676f07bc84f259d0bad1b94ac",
+          "ackredit/_private/argdigest/function/register_item.py": "75b5f04f8de6fe9c834341651c079daceda9269a0409737602ded7b327b25529",
+          "ackredit/_private/argdigest/function/report.py": "48756217a14ebe89d1677975d84c609c6346b0c864bbf462dbe44df3457303f5",
+          "ackredit/_private/argdigest/normalization/__init__.py": "20185860374d7bff4f85ace7f3cc1fd8366a749d5421862be37070bdfe3f6b17",
+          "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d",
+          "ackredit/_private/smonitor/__init__.py": "dd94fb78fb113423ddacc2a380997bdc063523798df30b30b5c05d7ccf5b5eab",
+          "ackredit/_private/smonitor/catalog.py": "85e69c1a740dd82cae064a6f0510bbd0e990afe85fec18301233ee47bfe17e52",
+          "ackredit/_private/smonitor/emitter.py": "e0eab9c9d44d59c656a0766808d87b5d076dac1a14983518d7a9a849f9442605",
+          "ackredit/_private/smonitor/exceptions.py": "9eb0479eb759d5f052d5838809c47c376d65d77920332f3bce07f7acd05eee88",
+          "ackredit/_private/smonitor/meta.py": "63f4202183ce21b5ad3ea3f972f1f5a7b9acb46a07cf30a7101aeed3906418f7",
+          "ackredit/_private/smonitor/warnings.py": "fab9ef05a9c9c8bbcba5e2bfb4a5d4e042a6897bdf87f76fb3d79fc6d209080a",
+          "ackredit/_smonitor.py": "dfc5f5e015ca062ec364599e6d230c3433c03411c463ac50b50df4dbf48e1ef8",
+          "ackredit/_version.py": "f17e41883f2dc0869eb84e53ae752bfb03eb02d6a77a3937a8341f8950cd8b81",
+          "ackredit/cli.py": "fa9af7c8c01b5120607db4a95ce7b10f024f315efbb6d8cc81a903ffbf1caf8e",
+          "ackredit/contrib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "ackredit/contrib/duecredit_compat.py": "9143f42759defdcf5d76416d346ad8ef1a7f4f7b59b87c59ea8961a058b4daf0",
+          "ackredit/contrib/jupyter.py": "70e9b21d15d2017deccea4fcf8fa549c244e3482a019952e93d2c3b5464b8b57",
+          "ackredit/core/__init__.py": "b2bb26103ec489f126a4f2a0598d9a5bb2ef49452508cd8ab10f724da1b7de97",
+          "ackredit/core/attribution.py": "527950fbd77b94828b9e45fb719c08ca098722e7439eb7b3babd15a7a5e1791d",
+          "ackredit/core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+          "ackredit/core/collector.py": "4beab98293a24919b3ffe26cd8fc062c5b1aa2f1d1aa24e47ee03a7451ef2139",
+          "ackredit/core/composition.py": "69f3fc1601c1ad87bfec6feed2fadca9e23549af8a4d8aae15670c4d4a2ac389",
+          "ackredit/core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b",
+          "ackredit/core/decorators.py": "0baa9f1279b7ae453dc8abedcf28d9c2a0e86a06791f1c5b56eb0c27c8d15e83",
+          "ackredit/core/evidence.py": "88d97a57f421e978c1cb9f3598fbd6afb2061ed585fd25b5a1211940f81e3e31",
+          "ackredit/core/explanation.py": "33cb35d8876af730566b3286ed86234de885475ff2c9c33e49d720552db8a27b",
+          "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "ackredit/core/injections.py": "85719e4da382861245eb7f268cc94b0f37638d73527a219db1c6743892104932",
+          "ackredit/core/inspection.py": "b9efba1c647ffd510ef44321958e915b2e87f0f87a56a14a0f4c036cc28765c6",
+          "ackredit/core/providers.py": "1cefe5b60965d3b466483c6e746270fcff0ffa65f3e981f370649fbfb591efde",
+          "ackredit/core/registry.py": "46c211d8ecda1b5357b6de8f6c73ebe55fb8c9c81649b11f92e649a1011b1f55",
+          "ackredit/core/report.py": "b89a4f8fcba2c5dc232411d6d8d7753984c80bc178131e18c5f6b4fbc7ac7ad6",
+          "ackredit/core/session.py": "456e3db08e36adb4adaa1bc9b397276e7c787a146752fd9ce69644e188f1aa07",
+          "ackredit/core/standard_injections.py": "d61a165142d9f85a129505fab4c6e6d03236556a00fdb346eee98a1afa768b56",
+          "ackredit/formats/__init__.py": "ab6a057cb393d9338654792772912a5ae66031fc563a43256e2d795e44128a13",
+          "ackredit/formats/_html.py": "af6326733d57462740a563c6efeb9f8bf2a94675fd76b94c10ea93f21b635472",
+          "ackredit/formats/_latex.py": "bbd98671010150ec8f59e34bfc2f5a7dfa5401e661ff4bb1a85481d223480f56",
+          "ackredit/formats/_links.py": "84c64bd8f6adb510dcf4f4139f5eab9daa283c3c2850eab12772b470ed23106a",
+          "ackredit/formats/_markdown.py": "b751beeddc61b6b3fa5b1e45de8e164c8d75c089d6f058cce85f2a83d62800a6",
+          "ackredit/formats/_names.py": "25176af1e308c08ed8ea03633e7b41ae041a79142d983531035010c785db4dea",
+          "ackredit/formats/bibtex.py": "acafe9b163a0ce81f9999839a6c6520606de46e90a69365de5390ddcea2bd8e7",
+          "ackredit/formats/csl_json.py": "615eaf894f4b837aaec8fdd0a898843c991d3c40afe19ad897c3ac88660539d8",
+          "ackredit/formats/explanation.py": "2d114f00d0d910179d7eb82b6e84969e5b9cbd9c3637c475cde5a319c4934f2d",
+          "ackredit/formats/jsonfmt.py": "05bf25adda78109d5354cafd49c01f5fe542a8b71b6cbf780b8026b58ae1548b",
+          "ackredit/formats/latex.py": "f25aff15888cfcb17a69d021196ee0421eba6a76883ab0bb6e0d1bda98dfb23c",
+          "ackredit/formats/markdown.py": "f4887f14394a142a9a5dc3f8a0fb8f90a0ffb8809363c42a0d11956313b2e897",
+          "ackredit/formats/provenance.py": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+          "ackredit/formats/text.py": "dd8f2d4ca6eff518af8978d97b55ab4af1c89c6a6d4ce14637af3619ece2faaa",
+          "ackredit/formats/workflow.py": "9d2ab11fcea617eb563e867710cffb6c96f12724d3fab471014516f5fc7e6fd3"
+        },
+        "package": "ackredit",
+        "sha256": "294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a",
+        "source_commit": "9efa863914b69f7fc35442f1baab4c25fd08c881",
+        "version": "0.11.0+22.g9efa863"
+      },
+      "provider_records": {
+        "argdigest": {
+          "build": "py_0",
+          "depends": [
+            "depdigest >=0.11.0",
+            "python >=3.11,<3.15",
+            "smonitor >=0.16.0"
+          ],
+          "name": "argdigest",
+          "sha256": "b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.15.0-py_0.tar.bz2",
+          "version": "0.15.0"
+        },
+        "depdigest": {
+          "build": "py_0",
+          "depends": [
+            "python >=3.11,<3.15",
+            "smonitor >=0.13.0"
+          ],
+          "name": "depdigest",
+          "sha256": "e011d725c8a831ae46cd6b8d114185d04248e32b4d6701c70f988d19cc69f67b",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.13.0-py_0.tar.bz2",
+          "version": "0.13.0"
+        },
+        "pytest-receptor": {
+          "build": "py_0",
+          "depends": [
+            "pytest >=8.0.0",
+            "python >=3.11,<3.15"
+          ],
+          "name": "pytest-receptor",
+          "sha256": "77bf3694bc903f606d4323b88e3bb3aea9628618036b53073f5a5dbd5dbc73cb",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.1-py_0.tar.bz2",
+          "version": "1.2.1"
+        },
+        "pyyaml": {
+          "build": "py314h67df5f8_1",
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "libgcc >=14",
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "yaml >=0.2.5,<0.3.0a0"
+          ],
+          "name": "pyyaml",
+          "sha256": "b318fb070c7a1f89980ef124b80a0b5ccf3928143708a85e0053cde0169c699d",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h67df5f8_1.conda",
+          "version": "6.0.3"
+        },
+        "smonitor": {
+          "build": "py_1",
+          "depends": [
+            "python >=3.11,<3.15"
+          ],
+          "name": "smonitor",
+          "sha256": "4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.19.0-py_1.tar.bz2",
+          "version": "0.19.0"
+        }
+      },
+      "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+      "wheel": {
+        "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.11.0+22.g9efa863",
+        "wheel_sha256": "294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a"
+      }
+    },
+    "after": {
+      "identities": {
+        "ackredit": {
+          "direct_url": {
+            "archive_info": {
+              "hash": "sha256=294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a",
+              "hashes": {
+                "sha256": "294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a"
+              }
+            },
+            "url": "file:///tmp/ackredit120-study/wheels/ackredit-0.11.0%2B22.g9efa863-py3-none-any.whl"
+          },
+          "distribution_version": "0.11.0+22.g9efa863",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "runtime_version": "0.11.0+22.g9efa863",
+          "source_file_count": 70,
+          "source_tree_sha256": "7c81ae1f978d129ba4d0472dd29bd501d4d6212d5839db5b8af5c25591bc8c86"
+        },
+        "argdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/argdigest_1791317734110/work"
+          },
+          "distribution_version": "0.15.0",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "runtime_version": "0.15.0",
+          "source_file_count": 38,
+          "source_tree_sha256": "5c5b8355266aa568ea2230033a36a8251d7068fa2da579cdd266f451d750c973"
+        },
+        "depdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/depdigest_1791108193170/work"
+          },
+          "distribution_version": "0.13.0",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "runtime_version": "0.13.0",
+          "source_file_count": 16,
+          "source_tree_sha256": "3983ad92ffe919bb2d164204acb27e75acd8749a20dcd16339b91c9134a3d384"
+        },
+        "smonitor": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/smonitor_1791315669680/work"
+          },
+          "distribution_version": "0.19.0",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "runtime_version": "0.19.0",
+          "source_file_count": 40,
+          "source_tree_sha256": "658f6dc6a4bd91a37eb0bdfc594fdd29e492bec7a095bc57c6dc606e6401c2d9"
+        },
+        "yaml": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/conda/feedstock_root/build_artifacts/pyyaml_1770223234623/work"
+          },
+          "distribution_version": "6.0.3",
+          "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/yaml/__init__.py",
+          "requirements": [],
+          "runtime_version": "6.0.3",
+          "source_file_count": 17,
+          "source_tree_sha256": "2008311890b5df4690faeb978431ced7f85b13c81808cc9bf02cab257bf253d5"
+        }
+      },
+      "installed_smoke": {
+        "portable_attribution": "passed",
+        "providers": {
+          "ackredit": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+            "version": "0.11.0+22.g9efa863"
+          },
+          "argdigest": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/argdigest/__init__.py",
+            "version": "0.15.0"
+          },
+          "depdigest": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/depdigest/__init__.py",
+            "version": "0.13.0"
+          },
+          "smonitor": {
+            "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/smonitor/__init__.py",
+            "version": "0.19.0"
+          }
+        },
+        "python": "3.14.8",
+        "requires_python": "<3.15,>=3.11"
+      },
+      "original_wheel": {
+        "filename": "ackredit-0.11.0+22.g9efa863-py3-none-any.whl",
+        "files": {
+          "ackredit/CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+          "ackredit/__init__.py": "43264d45f63ed941ac032aed67c882543a952bc6f58a3555e1a100a5d7b13533",
+          "ackredit/_argdigest.py": "eaa776aa242fc07f495d055d74857f661b80c26e538c722aaa6b19c8879fd1d3",
+          "ackredit/_depdigest.py": "e9eb4a868e08758f73d7892a801a2e5ff2c0b1eb161f67c272807ddbd9ba2201",
+          "ackredit/_private/__init__.py": "452139d5dcf653b77651a44e44f18fb906666a135f789709b14bc062dae1d0b6",
+          "ackredit/_private/argdigest/__init__.py": "68817bbc727f44ff6d0d4cf15599363b1a5d9ac4f34b5027c662c24ef7564ae8",
+          "ackredit/_private/argdigest/argument/__init__.py": "59f7cc04925c937aca576b7426b5f86229383717e97e657cb93c4b571299f44b",
+          "ackredit/_private/argdigest/argument/build_pdf.py": "cbbd71861212a98767adc1857a6fa34d3623a4fba0e723ae2eab716a686d1d8a",
+          "ackredit/_private/argdigest/argument/directory.py": "8d9c264179d5ebecc349015ad4bf1af8bec014b5789c7df965109d44785e09c9",
+          "ackredit/_private/argdigest/argument/file_path.py": "aefc9e60c024208596a62c60c33eee16180719df42c75a7b6d8332744d507e64",
+          "ackredit/_private/argdigest/argument/format.py": "a022143df6011badfe90a05cfe56d2dd7d19c927770f38f77d77f70a50d1beda",
+          "ackredit/_private/argdigest/argument/formats.py": "65acfd7815d7276078db0458e358510c47593fad22ed948fc32932b29c6cf703",
+          "ackredit/_private/argdigest/argument/items.py": "6560421f413e7609bc8600318f34b9ae72a9ec9ca8842b49d2483d07e1f8c65d",
+          "ackredit/_private/argdigest/argument/path.py": "f9fcf0358cf5787f291b38302dab0a8c19a210f22b586e5ca96d0624c4e5929f",
+          "ackredit/_private/argdigest/argument/paths.py": "7ae2c6eb6b5b097745eb01d561be3347f358ce82164e93d67be96aac18e66585",
+          "ackredit/_private/argdigest/argument/target.py": "618e5729e8056ddc7e619dacdaa9b0a917b1af41075c17eb08635dd93bdd1073",
+          "ackredit/_private/argdigest/argument/target_module.py": "96236ee750f60d7bd0e97abf2f6407cf64b49e7daaee8159f017e7da73df3ef1",
+          "ackredit/_private/argdigest/digest.py": "97a3b1f77962094e33fe96388c337bc7eb118549e171f7b193527028e16f19b0",
+          "ackredit/_private/argdigest/domain/__init__.py": "56a90db8119c576465c831003446ce7587d8b0e96853d070947c130e19c80745",
+          "ackredit/_private/argdigest/domain/citation_field.py": "c8ec2b0427e2c7c3626f985f4c8d7b800eae62be02b847ee8253b448858903b1",
+          "ackredit/_private/argdigest/domain/format_options.py": "3991ba1c7f49551011021a1eedbb0ea6ae169ec6d78178c73fa19735afc18172",
+          "ackredit/_private/argdigest/function/__init__.py": "17535577b86be582620d815110f43f5aecfa886676f07bc84f259d0bad1b94ac",
+          "ackredit/_private/argdigest/function/register_item.py": "75b5f04f8de6fe9c834341651c079daceda9269a0409737602ded7b327b25529",
+          "ackredit/_private/argdigest/function/report.py": "48756217a14ebe89d1677975d84c609c6346b0c864bbf462dbe44df3457303f5",
+          "ackredit/_private/argdigest/normalization/__init__.py": "20185860374d7bff4f85ace7f3cc1fd8366a749d5421862be37070bdfe3f6b17",
+          "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d",
+          "ackredit/_private/smonitor/__init__.py": "dd94fb78fb113423ddacc2a380997bdc063523798df30b30b5c05d7ccf5b5eab",
+          "ackredit/_private/smonitor/catalog.py": "85e69c1a740dd82cae064a6f0510bbd0e990afe85fec18301233ee47bfe17e52",
+          "ackredit/_private/smonitor/emitter.py": "e0eab9c9d44d59c656a0766808d87b5d076dac1a14983518d7a9a849f9442605",
+          "ackredit/_private/smonitor/exceptions.py": "9eb0479eb759d5f052d5838809c47c376d65d77920332f3bce07f7acd05eee88",
+          "ackredit/_private/smonitor/meta.py": "63f4202183ce21b5ad3ea3f972f1f5a7b9acb46a07cf30a7101aeed3906418f7",
+          "ackredit/_private/smonitor/warnings.py": "fab9ef05a9c9c8bbcba5e2bfb4a5d4e042a6897bdf87f76fb3d79fc6d209080a",
+          "ackredit/_smonitor.py": "dfc5f5e015ca062ec364599e6d230c3433c03411c463ac50b50df4dbf48e1ef8",
+          "ackredit/_version.py": "f17e41883f2dc0869eb84e53ae752bfb03eb02d6a77a3937a8341f8950cd8b81",
+          "ackredit/cli.py": "fa9af7c8c01b5120607db4a95ce7b10f024f315efbb6d8cc81a903ffbf1caf8e",
+          "ackredit/contrib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "ackredit/contrib/duecredit_compat.py": "9143f42759defdcf5d76416d346ad8ef1a7f4f7b59b87c59ea8961a058b4daf0",
+          "ackredit/contrib/jupyter.py": "70e9b21d15d2017deccea4fcf8fa549c244e3482a019952e93d2c3b5464b8b57",
+          "ackredit/core/__init__.py": "b2bb26103ec489f126a4f2a0598d9a5bb2ef49452508cd8ab10f724da1b7de97",
+          "ackredit/core/attribution.py": "527950fbd77b94828b9e45fb719c08ca098722e7439eb7b3babd15a7a5e1791d",
+          "ackredit/core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+          "ackredit/core/collector.py": "4beab98293a24919b3ffe26cd8fc062c5b1aa2f1d1aa24e47ee03a7451ef2139",
+          "ackredit/core/composition.py": "69f3fc1601c1ad87bfec6feed2fadca9e23549af8a4d8aae15670c4d4a2ac389",
+          "ackredit/core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b",
+          "ackredit/core/decorators.py": "0baa9f1279b7ae453dc8abedcf28d9c2a0e86a06791f1c5b56eb0c27c8d15e83",
+          "ackredit/core/evidence.py": "88d97a57f421e978c1cb9f3598fbd6afb2061ed585fd25b5a1211940f81e3e31",
+          "ackredit/core/explanation.py": "33cb35d8876af730566b3286ed86234de885475ff2c9c33e49d720552db8a27b",
+          "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+          "ackredit/core/injections.py": "85719e4da382861245eb7f268cc94b0f37638d73527a219db1c6743892104932",
+          "ackredit/core/inspection.py": "b9efba1c647ffd510ef44321958e915b2e87f0f87a56a14a0f4c036cc28765c6",
+          "ackredit/core/providers.py": "1cefe5b60965d3b466483c6e746270fcff0ffa65f3e981f370649fbfb591efde",
+          "ackredit/core/registry.py": "46c211d8ecda1b5357b6de8f6c73ebe55fb8c9c81649b11f92e649a1011b1f55",
+          "ackredit/core/report.py": "b89a4f8fcba2c5dc232411d6d8d7753984c80bc178131e18c5f6b4fbc7ac7ad6",
+          "ackredit/core/session.py": "456e3db08e36adb4adaa1bc9b397276e7c787a146752fd9ce69644e188f1aa07",
+          "ackredit/core/standard_injections.py": "d61a165142d9f85a129505fab4c6e6d03236556a00fdb346eee98a1afa768b56",
+          "ackredit/formats/__init__.py": "ab6a057cb393d9338654792772912a5ae66031fc563a43256e2d795e44128a13",
+          "ackredit/formats/_html.py": "af6326733d57462740a563c6efeb9f8bf2a94675fd76b94c10ea93f21b635472",
+          "ackredit/formats/_latex.py": "bbd98671010150ec8f59e34bfc2f5a7dfa5401e661ff4bb1a85481d223480f56",
+          "ackredit/formats/_links.py": "84c64bd8f6adb510dcf4f4139f5eab9daa283c3c2850eab12772b470ed23106a",
+          "ackredit/formats/_markdown.py": "b751beeddc61b6b3fa5b1e45de8e164c8d75c089d6f058cce85f2a83d62800a6",
+          "ackredit/formats/_names.py": "25176af1e308c08ed8ea03633e7b41ae041a79142d983531035010c785db4dea",
+          "ackredit/formats/bibtex.py": "acafe9b163a0ce81f9999839a6c6520606de46e90a69365de5390ddcea2bd8e7",
+          "ackredit/formats/csl_json.py": "615eaf894f4b837aaec8fdd0a898843c991d3c40afe19ad897c3ac88660539d8",
+          "ackredit/formats/explanation.py": "2d114f00d0d910179d7eb82b6e84969e5b9cbd9c3637c475cde5a319c4934f2d",
+          "ackredit/formats/jsonfmt.py": "05bf25adda78109d5354cafd49c01f5fe542a8b71b6cbf780b8026b58ae1548b",
+          "ackredit/formats/latex.py": "f25aff15888cfcb17a69d021196ee0421eba6a76883ab0bb6e0d1bda98dfb23c",
+          "ackredit/formats/markdown.py": "f4887f14394a142a9a5dc3f8a0fb8f90a0ffb8809363c42a0d11956313b2e897",
+          "ackredit/formats/provenance.py": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+          "ackredit/formats/text.py": "dd8f2d4ca6eff518af8978d97b55ab4af1c89c6a6d4ce14637af3619ece2faaa",
+          "ackredit/formats/workflow.py": "9d2ab11fcea617eb563e867710cffb6c96f12724d3fab471014516f5fc7e6fd3"
+        },
+        "package": "ackredit",
+        "sha256": "294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a",
+        "source_commit": "9efa863914b69f7fc35442f1baab4c25fd08c881",
+        "version": "0.11.0+22.g9efa863"
+      },
+      "provider_records": {
+        "argdigest": {
+          "build": "py_0",
+          "depends": [
+            "depdigest >=0.11.0",
+            "python >=3.11,<3.15",
+            "smonitor >=0.16.0"
+          ],
+          "name": "argdigest",
+          "sha256": "b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.15.0-py_0.tar.bz2",
+          "version": "0.15.0"
+        },
+        "depdigest": {
+          "build": "py_0",
+          "depends": [
+            "python >=3.11,<3.15",
+            "smonitor >=0.13.0"
+          ],
+          "name": "depdigest",
+          "sha256": "e011d725c8a831ae46cd6b8d114185d04248e32b4d6701c70f988d19cc69f67b",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.13.0-py_0.tar.bz2",
+          "version": "0.13.0"
+        },
+        "pytest-receptor": {
+          "build": "py_0",
+          "depends": [
+            "pytest >=8.0.0",
+            "python >=3.11,<3.15"
+          ],
+          "name": "pytest-receptor",
+          "sha256": "77bf3694bc903f606d4323b88e3bb3aea9628618036b53073f5a5dbd5dbc73cb",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.1-py_0.tar.bz2",
+          "version": "1.2.1"
+        },
+        "pyyaml": {
+          "build": "py314h67df5f8_1",
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "libgcc >=14",
+            "python >=3.14,<3.15.0a0",
+            "python_abi 3.14.* *_cp314",
+            "yaml >=0.2.5,<0.3.0a0"
+          ],
+          "name": "pyyaml",
+          "sha256": "b318fb070c7a1f89980ef124b80a0b5ccf3928143708a85e0053cde0169c699d",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h67df5f8_1.conda",
+          "version": "6.0.3"
+        },
+        "smonitor": {
+          "build": "py_1",
+          "depends": [
+            "python >=3.11,<3.15"
+          ],
+          "name": "smonitor",
+          "sha256": "4b876b4993b1e2caeed40851402a931f3b245ed7c1916d9483d81bc90274e31c",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.19.0-py_1.tar.bz2",
+          "version": "0.19.0"
+        }
+      },
+      "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+      "wheel": {
+        "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.11.0+22.g9efa863",
+        "wheel_sha256": "294abc93d7f4015f3428c7ec86e8de7f3737b6504c1c3a2d3fbf4d6f29497e4a"
+      }
+    },
+    "identical_verified_files": true,
+    "probe": {
+      "schema": "ackredit.publication-tools@1",
+      "checked_at": "2026-10-06T21:21:21.648888+00:00",
+      "python": "3.14.8 | packaged by conda-forge | (main, Oct  6 2026, 13:38:01) [GCC 15.3.0]",
+      "ackredit": {
+        "version": "0.11.0+22.g9efa863",
+        "origin": "/tmp/ackredit120-study/candidate/lib/python3.14/site-packages/ackredit/__init__.py"
+      },
+      "tool_sha256": "c8a3fae782ab312fd0259b6a68266292a7e657fba920f39c3589ee5cbcde1705",
+      "executables": {
+        "bibtex": {
+          "path": "/usr/bin/bibtex",
+          "sha256": "09d80947981f425cf7ca25d8a3bdb32df352fecd4eb00973771edf8598e6edd7"
+        },
+        "kpsewhich": {
+          "path": "/usr/bin/kpsewhich",
+          "sha256": "e3f241dab416169b9a7c8e0ef719a3cc8568bf51256c7e354811b3963254fcda"
+        },
+        "pdflatex": {
+          "path": "/usr/bin/pdflatex",
+          "sha256": "bdf084260e5e3ca3b1453a8ec1465efa5c0b23180d3bba7992fdd3ee1aeee45b"
+        },
+        "pandoc": {
+          "path": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.13/bin/pandoc",
+          "sha256": "870b811354a230a1864dd2b50dec3b850a981926ff4659ae460aea96ab6b8d28"
+        }
+      },
+      "versions": {
+        "bibtex": "BibTeX 0.99d (TeX Live 2023/Debian)\nkpathsea version 6.3.5\nCopyright 2023 Oren Patashnik.\nThere is NO warranty.  Redistribution of this software is\ncovered by the terms of both the BibTeX copyright and\nthe Lesser GNU General Public License.\nFor more information about these matters, see the file\nnamed COPYING and the BibTeX source.\nPrimary author of BibTeX: Oren Patashnik.\n",
+        "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)\nkpathsea version 6.3.5\nCopyright 2023 Han The Thanh (pdfTeX) et al.\nThere is NO warranty.  Redistribution of this software is\ncovered by the terms of both the pdfTeX copyright and\nthe Lesser GNU General Public License.\nFor more information about these matters, see the file\nnamed COPYING and the pdfTeX source.\nPrimary author of pdfTeX: Han The Thanh (pdfTeX) et al.\nCompiled with libpng 1.6.43; using libpng 1.6.43\nCompiled with zlib 1.3; using zlib 1.3\nCompiled with xpdf version 4.04\n",
+        "pandoc": "pandoc 3.11\nFeatures: +server +lua\nScripting engine: Lua 5.4\nUser data directory: /home/liliana/.local/share/pandoc\nCopyright (C) 2006-2025 John MacFarlane. Web:  https://pandoc.org\nThis is free software; see the source for copying conditions. There is no\nwarranty, not even for merchantability or fitness for a particular purpose.\n"
+      },
+      "styles": {
+        "bibtex": {
+          "name": "plain.bst",
+          "sha256": "19f2cf88686b86aaa8e65d5f0313a92499815761e04b42e84ea2c3dc3685ada9"
+        },
+        "csl": {
+          "name": "Pandoc default.csl",
+          "sha256": "42a41c813009fcf5b3450345fda4d67464738a2379f1bb90f65f9cc267502075"
+        }
+      },
+      "citation_keys": {
+        "software:1.0": "software:1.0",
+        "software:2.0": "software:2.0",
+        "dataset:2024": "dataset:2024",
+        "article:2023": "article:2023",
+        "edited:structured": "edited:structured",
+        "preferred:collection": "preferred:collection"
+      },
+      "input_sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+      "original_preserved": true,
+      "new_execution_credit": false,
+      "modules_added": [],
+      "processes": [
+        {
+          "command": [
+            "/usr/bin/bibtex",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "5a424c58f1e6bd404fe4f4d183365623886fda6507e1d0f64b49b00523ffceb9",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/usr/bin/pdflatex",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "64d3bedadc9885f9fbc5ebc4eb66de7dbb72dcf3f0748f5b8b6ca4030ded7062",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.13/bin/pandoc",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "af1fb85c3354d207ed8f070240b7234039c899852e2472ef6b6c2670a69067a9",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/usr/bin/kpsewhich",
+            "plain.bst"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "87f9d64dd68a3ed4b256571b3c2138482c0c08d3ccf14cf40f3a675ad726e710",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.13/bin/pandoc",
+            "--print-default-data-file=default.csl"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "42a41c813009fcf5b3450345fda4d67464738a2379f1bb90f65f9cc267502075",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.13/bin/pandoc",
+            "-f",
+            "csljson",
+            "-t",
+            "csljson",
+            "references.csl.json",
+            "-o",
+            "csl-read.json"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.13/bin/pandoc",
+            "-f",
+            "bibtex",
+            "-t",
+            "csljson",
+            "references.bib",
+            "-o",
+            "bibtex-read.json"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/usr/bin/bibtex",
+            "references"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "860bd116aef5fe0ac28d8880f6f2ce908a110201094f389289f4ac39e55a6c7b",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/usr/bin/pdflatex",
+            "-no-shell-escape",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "manuscript.tex"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "b71e518c1e0480936205cc108264fcf67b229451892ec9611420b6cd3b9c2717",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.13/bin/pandoc",
+            "--citeproc",
+            "--csl=style.csl",
+            "--bibliography=references.csl.json",
+            "-f",
+            "markdown",
+            "-t",
+            "html",
+            "manuscript.md",
+            "-o",
+            "bibliography.html"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": ""
+        }
+      ],
+      "bibtex_warnings": [],
+      "files": {
+        "attribution.json": {
+          "sha256": "8affe31a1b1e3f66991630e59ed4a1f017025796bf880b1ec237a2f1834128eb",
+          "bytes": 3491
+        },
+        "bibliography.html": {
+          "sha256": "d46707954ccdcdb4042e7a2b19d29924e29fe0004bd5a6cc941375a9a05af3c0",
+          "bytes": 1811
+        },
+        "bibtex-read.json": {
+          "sha256": "6251050e197b79401f56dae472097363595579000972393c3fdb525bdb070408",
+          "bytes": 2633
+        },
+        "csl-read.json": {
+          "sha256": "94ea4434ee7c4a9bb7a9ccd62dafef4fb62f774535c8b7f6aa2829fb9ac2785b",
+          "bytes": 2571
+        },
+        "manuscript.aux": {
+          "sha256": "1975a13bb489e826933d602f8f75366f9f999c076b9f9602cf2821699317dfc5",
+          "bytes": 201
+        },
+        "manuscript.log": {
+          "sha256": "10fdf1cd8f80376f69024ad54f518ac3f1b263cd66020116da487246510d0c3d",
+          "bytes": 3350
+        },
+        "manuscript.md": {
+          "sha256": "5ef2ab55f4e42a53a4d5f8d081bf25f0807fe20b10191947d67f60e34f6988a0",
+          "bytes": 45
+        },
+        "manuscript.pdf": {
+          "sha256": "dd7c6f0fbcbd2f795bc92bc783caf068ea4ba6295bbea446aa347f0a7e5cf8f7",
+          "bytes": 49885
+        },
+        "manuscript.tex": {
+          "sha256": "23774794fdd724b4ed906d8c49408d1b22077fe4219cc8d3f5c5b130d3669d21",
+          "bytes": 132
+        },
+        "plain.bst": {
+          "sha256": "19f2cf88686b86aaa8e65d5f0313a92499815761e04b42e84ea2c3dc3685ada9",
+          "bytes": 20613
+        },
+        "process-1.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-1.stdout.txt": {
+          "sha256": "5a424c58f1e6bd404fe4f4d183365623886fda6507e1d0f64b49b00523ffceb9",
+          "bytes": 375
+        },
+        "process-10.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-10.stdout.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-2.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-2.stdout.txt": {
+          "sha256": "64d3bedadc9885f9fbc5ebc4eb66de7dbb72dcf3f0748f5b8b6ca4030ded7062",
+          "bytes": 541
+        },
+        "process-3.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-3.stdout.txt": {
+          "sha256": "af1fb85c3354d207ed8f070240b7234039c899852e2472ef6b6c2670a69067a9",
+          "bytes": 332
+        },
+        "process-4.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-4.stdout.txt": {
+          "sha256": "87f9d64dd68a3ed4b256571b3c2138482c0c08d3ccf14cf40f3a675ad726e710",
+          "bytes": 56
+        },
+        "process-5.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-5.stdout.txt": {
+          "sha256": "42a41c813009fcf5b3450345fda4d67464738a2379f1bb90f65f9cc267502075",
+          "bytes": 152596
+        },
+        "process-6.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-6.stdout.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-7.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-7.stdout.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-8.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-8.stdout.txt": {
+          "sha256": "860bd116aef5fe0ac28d8880f6f2ce908a110201094f389289f4ac39e55a6c7b",
+          "bytes": 157
+        },
+        "process-9.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "process-9.stdout.txt": {
+          "sha256": "b71e518c1e0480936205cc108264fcf67b229451892ec9611420b6cd3b9c2717",
+          "bytes": 1123
+        },
+        "processes.json": {
+          "sha256": "0283730f484a7165d8e5a398bf08898964dd043c7448529cd3653458f5bd97ae",
+          "bytes": 2814
+        },
+        "references.aux": {
+          "sha256": "f721c61dd9d8614ad6710e0739345c4ca4d88b1f57f16a3cd62dc2d9d97d883e",
+          "bytes": 51
+        },
+        "references.bbl": {
+          "sha256": "3039440b6e1646c7fecf7462749ac7ae216eb10f4e1b1f6363e36c19a2ac98f1",
+          "bytes": 802
+        },
+        "references.bib": {
+          "sha256": "5866d4e1a0e2e515d5d3d89459f53e2d9c66e25ea733169518314b0233ddc001",
+          "bytes": 1544
+        },
+        "references.blg": {
+          "sha256": "ed20820bb3192b352e45c83c841ae8ccacac1f0d0f3c5082b5e06ea24b81bf19",
+          "bytes": 892
+        },
+        "references.csl.json": {
+          "sha256": "4ffa4c7265dd20628bb3e7232861cc3886cc365dd72b8c44057906e20e8025e6",
+          "bytes": 2578
+        },
+        "style.csl": {
+          "sha256": "42a41c813009fcf5b3450345fda4d67464738a2379f1bb90f65f9cc267502075",
+          "bytes": 152596
+        }
+      },
+      "limits": [
+        "No reference-manager GUI import, BibLaTeX/Biber or journal-style qualification",
+        "Metadata preservation and selected-style output are separate observations",
+        "No duplicate merging or new public-release qualification"
+      ]
+    },
+    "csl_style_identity": {
+      "title": "Chicago Manual of Style 18th edition (author-date)",
+      "id": "http://www.zotero.org/styles/chicago-author-date",
+      "updated": "2025-08-07T00:00:00+00:00"
+    },
+    "exports": {
+      "references.bib": {
+        "sha256": "5866d4e1a0e2e515d5d3d89459f53e2d9c66e25ea733169518314b0233ddc001",
+        "text": "@misc{software:1.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/1.0},\n  version = {1.0}\n}\n\n@misc{software:2.0,\n  title = {Órbita \\& Analysis},\n  howpublished = {Software},\n  author = {{Research and Development, Consortium}},\n  year = {2025},\n  doi = {https://doi.org/10.5555/ackredit.fixture.software},\n  url = {https://example.org/software/2.0},\n  version = {2.0}\n}\n\n@misc{dataset:2024,\n  title = {Datos de México: 50\\% coverage},\n  howpublished = {Dataset},\n  author = {{Instituto de Investigación, México}},\n  year = {2024},\n  doi = {10.5555/ackredit.fixture.dataset},\n  version = {2024.1}\n}\n\n@article{article:2023,\n  title = {Analysis of Órbita \\& datasets},\n  author = {García, Ana},\n  year = {2023},\n  doi = {10.5555/ackredit.fixture.article},\n  journal = {Methods \\& Data},\n  number = {2},\n  pages = {101--115},\n  volume = {12}\n}\n\n@misc{edited:structured,\n  title = {Structured editor collection},\n  year = {2022},\n  editor = {García, Ana and {Research and Development, Consortium}},\n  publisher = {Example Press},\n  key = {Structured editor collection}\n}\n\n@book{preferred:collection,\n  title = {Méthodes \\& données},\n  year = {2021},\n  doi = {10.5555/ackredit.fixture.collection},\n  editor = {de la Cruz, III, María and {Research and Development, Consortium}},\n  date-published = {2021-02-28},\n  isbn = {978-0-00-000000-0},\n  publisher = {Example Press}\n}"
+      },
+      "references.csl.json": {
+        "sha256": "4ffa4c7265dd20628bb3e7232861cc3886cc365dd72b8c44057906e20e8025e6",
+        "text": "[\n  {\n    \"id\": \"software:1.0\",\n    \"type\": \"software\",\n    \"title\": \"\\u00d3rbita & Analysis\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"DOI\": \"10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/1.0\",\n    \"version\": \"1.0\"\n  },\n  {\n    \"id\": \"software:2.0\",\n    \"type\": \"software\",\n    \"title\": \"\\u00d3rbita & Analysis\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2025\n        ]\n      ]\n    },\n    \"DOI\": \"https://doi.org/10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/2.0\",\n    \"version\": \"2.0\"\n  },\n  {\n    \"id\": \"dataset:2024\",\n    \"type\": \"dataset\",\n    \"title\": \"Datos de M\\u00e9xico: 50% coverage\",\n    \"author\": [\n      {\n        \"literal\": \"Instituto de Investigaci\\u00f3n, M\\u00e9xico\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"DOI\": \"10.5555/ackredit.fixture.dataset\",\n    \"version\": \"2024.1\"\n  },\n  {\n    \"id\": \"article:2023\",\n    \"type\": \"article-journal\",\n    \"title\": \"Analysis of \\u00d3rbita & datasets\",\n    \"author\": [\n      {\n        \"family\": \"Garc\\u00eda\",\n        \"given\": \"Ana\"\n      }\n    ],\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2023\n        ]\n      ]\n    },\n    \"DOI\": \"10.5555/ackredit.fixture.article\",\n    \"volume\": \"12\",\n    \"issue\": \"2\",\n    \"page\": \"101--115\",\n    \"container-title\": \"Methods & Data\"\n  },\n  {\n    \"id\": \"edited:structured\",\n    \"type\": \"document\",\n    \"title\": \"Structured editor collection\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2022\n        ]\n      ]\n    },\n    \"editor\": [\n      {\n        \"family\": \"Garc\\u00eda\",\n        \"given\": \"Ana\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"publisher\": \"Example Press\"\n  },\n  {\n    \"id\": \"preferred:collection\",\n    \"type\": \"book\",\n    \"title\": \"M\\u00e9thodes & donn\\u00e9es\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2021,\n          2,\n          28\n        ]\n      ]\n    },\n    \"editor\": [\n      {\n        \"family\": \"de la Cruz\",\n        \"given\": \"Mar\\u00eda\",\n        \"suffix\": \"III\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"DOI\": \"10.5555/ackredit.fixture.collection\",\n    \"ISBN\": \"978-0-00-000000-0\",\n    \"publisher\": \"Example Press\"\n  }\n]"
+      },
+      "references.bbl": {
+        "sha256": "3039440b6e1646c7fecf7462749ac7ae216eb10f4e1b1f6363e36c19a2ac98f1",
+        "text": "\\begin{thebibliography}{1}\n\n\\bibitem{preferred:collection}\nMaría de~la Cruz, III and {Research and Development, Consortium}, editors.\n\\newblock {\\em Méthodes \\& données}.\n\\newblock Example Press, 2021.\n\n\\bibitem{article:2023}\nAna García.\n\\newblock Analysis of Órbita \\& datasets.\n\\newblock {\\em Methods \\& Data}, 12(2):101--115, 2023.\n\n\\bibitem{dataset:2024}\n{Instituto de Investigación, México}.\n\\newblock Datos de méxico: 50\\% coverage.\n\\newblock Dataset, 2024.\n\n\\bibitem{software:1.0}\n{Research and Development, Consortium}.\n\\newblock Órbita \\& analysis.\n\\newblock Software, 2024.\n\n\\bibitem{software:2.0}\n{Research and Development, Consortium}.\n\\newblock Órbita \\& analysis.\n\\newblock Software, 2025.\n\n\\bibitem{edited:structured}\nStructured editor collection, 2022.\n\n\\end{thebibliography}\n"
+      },
+      "csl-read.json": {
+        "sha256": "94ea4434ee7c4a9bb7a9ccd62dafef4fb62f774535c8b7f6aa2829fb9ac2785b",
+        "text": "[\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/1.0\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"software:1.0\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"title\": \"Órbita & Analysis\",\n    \"type\": \"software\",\n    \"version\": \"1.0\"\n  },\n  {\n    \"DOI\": \"https://doi.org/10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/2.0\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"software:2.0\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2025\n        ]\n      ]\n    },\n    \"title\": \"Órbita & Analysis\",\n    \"type\": \"software\",\n    \"version\": \"2.0\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.dataset\",\n    \"author\": [\n      {\n        \"literal\": \"Instituto de Investigación, México\"\n      }\n    ],\n    \"id\": \"dataset:2024\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"title\": \"Datos de México: 50% coverage\",\n    \"type\": \"dataset\",\n    \"version\": \"2024.1\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.article\",\n    \"author\": [\n      {\n        \"family\": \"García\",\n        \"given\": \"Ana\"\n      }\n    ],\n    \"container-title\": \"Methods & Data\",\n    \"id\": \"article:2023\",\n    \"issue\": \"2\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2023\n        ]\n      ]\n    },\n    \"page\": \"101--115\",\n    \"title\": \"Analysis of Órbita & datasets\",\n    \"type\": \"article-journal\",\n    \"volume\": \"12\"\n  },\n  {\n    \"editor\": [\n      {\n        \"family\": \"García\",\n        \"given\": \"Ana\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"edited:structured\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2022\n        ]\n      ]\n    },\n    \"publisher\": \"Example Press\",\n    \"title\": \"Structured editor collection\",\n    \"type\": \"document\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.collection\",\n    \"ISBN\": \"978-0-00-000000-0\",\n    \"editor\": [\n      {\n        \"family\": \"Cruz\",\n        \"given\": \"María\",\n        \"non-dropping-particle\": \"de la\",\n        \"suffix\": \"III\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"preferred:collection\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2021,\n          2,\n          28\n        ]\n      ]\n    },\n    \"publisher\": \"Example Press\",\n    \"title\": \"Méthodes & données\",\n    \"type\": \"book\"\n  }\n]\n"
+      },
+      "bibtex-read.json": {
+        "sha256": "6251050e197b79401f56dae472097363595579000972393c3fdb525bdb070408",
+        "text": "[\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/1.0\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"software:1.0\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"publisher\": \"Software\",\n    \"title\": \"Órbita & analysis\",\n    \"type\": \"\",\n    \"version\": \"1.0\"\n  },\n  {\n    \"DOI\": \"https://doi.org/10.5555/ackredit.fixture.software\",\n    \"URL\": \"https://example.org/software/2.0\",\n    \"author\": [\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"software:2.0\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2025\n        ]\n      ]\n    },\n    \"publisher\": \"Software\",\n    \"title\": \"Órbita & analysis\",\n    \"type\": \"\",\n    \"version\": \"2.0\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.dataset\",\n    \"author\": [\n      {\n        \"literal\": \"Instituto de Investigación, México\"\n      }\n    ],\n    \"id\": \"dataset:2024\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2024\n        ]\n      ]\n    },\n    \"publisher\": \"Dataset\",\n    \"title\": \"Datos de méxico: 50% coverage\",\n    \"title-short\": \"Datos de méxico\",\n    \"type\": \"\",\n    \"version\": \"2024.1\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.article\",\n    \"author\": [\n      {\n        \"family\": \"García\",\n        \"given\": \"Ana\"\n      }\n    ],\n    \"container-title\": \"Methods & Data\",\n    \"id\": \"article:2023\",\n    \"issue\": \"2\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2023\n        ]\n      ]\n    },\n    \"page\": \"101-115\",\n    \"title\": \"Analysis of órbita & datasets\",\n    \"type\": \"article-journal\",\n    \"volume\": \"12\"\n  },\n  {\n    \"editor\": [\n      {\n        \"family\": \"García\",\n        \"given\": \"Ana\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"edited:structured\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2022\n        ]\n      ]\n    },\n    \"publisher\": \"Example Press\",\n    \"title\": \"Structured editor collection\",\n    \"type\": \"\"\n  },\n  {\n    \"DOI\": \"10.5555/ackredit.fixture.collection\",\n    \"ISBN\": \"978-0-00-000000-0\",\n    \"editor\": [\n      {\n        \"dropping-particle\": \"de la\",\n        \"family\": \"Cruz\",\n        \"given\": \"María\",\n        \"suffix\": \"III\"\n      },\n      {\n        \"literal\": \"Research and Development, Consortium\"\n      }\n    ],\n    \"id\": \"preferred:collection\",\n    \"issued\": {\n      \"date-parts\": [\n        [\n          2021\n        ]\n      ]\n    },\n    \"publisher\": \"Example Press\",\n    \"title\": \"Méthodes & données\",\n    \"type\": \"book\"\n  }\n]\n"
+      },
+      "bibliography.html": {
+        "sha256": "d46707954ccdcdb4042e7a2b19d29924e29fe0004bd5a6cc941375a9a05af3c0",
+        "text": "<p>Detached bibliography.</p>\n<div id=\"refs\" class=\"references csl-bib-body hanging-indent\"\nrole=\"list\">\n<div id=\"ref-preferred:collection\" class=\"csl-entry\" role=\"listitem\">\nCruz, María de la, III, and Research and Development, Consortium, eds.\n2021. <em>Méthodes &amp; Données</em>. Example Press. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.collection\">https://doi.org/10.5555/ackredit.fixture.collection</a>.\n</div>\n<div id=\"ref-article:2023\" class=\"csl-entry\" role=\"listitem\">\nGarcía, Ana. 2023. <span>“Analysis of Órbita &amp; Datasets.”</span>\n<em>Methods &amp; Data</em> 12 (2): 101--115. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.article\">https://doi.org/10.5555/ackredit.fixture.article</a>.\n</div>\n<div id=\"ref-edited:structured\" class=\"csl-entry\" role=\"listitem\">\nGarcía, Ana, and Research and Development, Consortium, eds. 2022.\n<span>“Structured Editor Collection.”</span> Example Press.\n</div>\n<div id=\"ref-dataset:2024\" class=\"csl-entry\" role=\"listitem\">\nInstituto de Investigación, México. 2024. <span>“Datos de México: 50%\nCoverage.”</span> Version 2024.1. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.dataset\">https://doi.org/10.5555/ackredit.fixture.dataset</a>.\n</div>\n<div id=\"ref-software:1.0\" class=\"csl-entry\" role=\"listitem\">\nResearch and Development, Consortium. 2024. <em>Órbita &amp;\nAnalysis</em>. V. 1.0. Released. <a\nhref=\"https://doi.org/10.5555/ackredit.fixture.software\">https://doi.org/10.5555/ackredit.fixture.software</a>.\n</div>\n<div id=\"ref-software:2.0\" class=\"csl-entry\" role=\"listitem\">\nResearch and Development, Consortium. 2025. <em>Órbita &amp;\nAnalysis</em>. V. 2.0. Released. https://doi.org/<a\nhref=\"https://doi.org/10.5555/ackredit.fixture.software\">https://doi.org/10.5555/ackredit.fixture.software</a>.\n</div>\n</div>\n"
+      }
+    },
+    "observations": {
+      "works": 6,
+      "distinct_software_releases": [
+        "1.0",
+        "2.0"
+      ],
+      "bibtex_warning_count": 0,
+      "pdf_compiled": true,
+      "preferred_root_version_or_doi_borrowed": false,
+      "plain_omits_doi_and_version": true,
+      "plain_misc_omits_editor_presentation": true,
+      "full_url_doi_csl_presentation_has_duplicate_prefix": true
+    }
+  },
+  "validation": {
+    "installed_selected_tests": 255,
+    "installed_selected_exit_code": 0,
+    "receptor": "llm",
+    "require_publication_tools": true,
+    "modules": [
+      "test_publication_tools",
+      "test_bibtex",
+      "test_bibtex_csl_authors",
+      "test_bibtex_round_trip",
+      "test_bibtex_load",
+      "test_bibtex_parsing",
+      "test_csl_json",
+      "test_csl_names",
+      "test_csl_fidelity",
+      "test_cff_csl_export",
+      "test_cff_name_identity",
+      "test_cff",
+      "test_cff_preferred_fidelity",
+      "test_report_formats"
+    ],
+    "installed_pip_check": "No broken requirements found."
+  },
+  "limits": [
+    "Synthetic receiving fixtures; no real reference-manager GUI import.",
+    "Only the identified BibTeX/plain and Pandoc/default-CSL engines/styles; no BibLaTeX/Biber or journal-style qualification.",
+    "Original saved records are authoritative; engine conversions and capitalization are not exact metadata round trips.",
+    "No DOI normalization or duplicate identity merge decision. Distinct software releases remain separate.",
+    "Development wheel receiving evidence only; original public Ackredit 0.11.0 bytes remain unchanged and lack this repair."
+  ]
+}

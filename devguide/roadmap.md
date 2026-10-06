@@ -635,6 +635,19 @@ BibTeX, CSL-JSON and the format extension point exist. Development after public
 delivered in public 0.11.0 under #107. Actual publication-tool interoperability
 remains the separate work below.
 
+The first bounded checkpoint #120 exercises six detached synthetic records in a
+normally installed development wheel with BibTeX 0.99d / `plain.bst`, pdfTeX
+1.40.25 and Pandoc 3.11 / its bundled Chicago 18 author-date CSL style. It repairs
+BibTeX editor names and CFF book/edited-work mapping, preserves original releases
+and name declarations, and retains engine-read records separately from formatted
+output. `plain.bst` omits version/DOI fields and ignores editors on `@misc`;
+imported `@software` remains original and warns under that style. A full-URL DOI
+is preserved but gets a duplicated prefix in the tested CSL presentation.
+The [publication guide](../docs/content/user_guide/publication_tools.md) records
+reproduction and exact evidence. This is development receiving evidence, not a
+new release or reference-manager/BibLaTeX qualification; all broader items below
+remain open.
+
 - [ ] exercise exported records with representative real reference-manager
       imports and BibTeX/BibLaTeX or journal-style workflows, recording tested
       versions, selected styles and intentional unsupported cases;
