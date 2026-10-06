@@ -1,10 +1,66 @@
 # Function-provider contract and release handoff
 
-This is a concrete **proposal for maintainer review**, owned by Ackredit
-#84/#87, coordinated through MolSysSuite #97 and MOLI #46. It does not promote
-an API or authorize a release. The receiving pilot belongs to PyUnitWizard #94.
+This is the **accepted provider contract**, owned by Ackredit #84/#87 and
+coordinated through MolSysSuite #97 and MOLI #46. Source promotion and public
+delivery are separate: the delivering release is not yet selected or qualified.
+The receiving pilot belongs to PyUnitWizard #94.
 
-## Current decision and delivery (2026-10-05)
+## Accepted principal-maintainer decision (2026-10-06)
+
+Diego accepted the proposed promotion of `prepare_credit`, `observe_calls` and
+the declaration protocol `ackredit.provider@1` together ("ok, procede"), within
+the exact bounded guarantees below. This supersedes the earlier decision to
+retain their provisional classification. Source classification is now stable;
+the new public compatibility promise awaits the qualified delivering release.
+
+| Surface | Accepted guarantee |
+| --- | --- |
+| `prepare_credit` | Inert fixed-use preparation; its zero-argument callable credits the current session and active captures. Inputs remain detached, replacement/deletion is diagnosed before credit, and the host owns scientific completion and when the callable runs. |
+| `observe_calls` | Explicit observation of declared direct exports in ordinary modules; synchronous entry and awaited coroutine execution, context-local ownership, nested/concurrent leases and export restoration. Keep pre-activation aliases, generators, descriptors, custom module subclasses, native internal calls and subprocesses outside the guarantee. Preserve W019 partial-attribution and application warning-filter behavior. |
+| `ackredit.provider@1` | Accept the existing required fields, locally resolved references, original producer name/version, function/module agreement and declaration-only zero-credit behavior. Later readers retain this interpretation; incompatible schema/meaning changes use a new identifier and unknown identifiers remain refused. |
+
+The accepted bounded forward compatibility promise applies to these surfaces from the
+first qualified public release delivering the accepted decision: preserve their
+reviewed signatures and meanings in later patch/minor releases, including the
+remaining pre-1.0 releases and 1.x. Apply the existing removal/deprecation policy
+to incompatible changes. Internal optimizations and additive compatible options
+remain possible. Do not retroactively relabel public 0.10.0/0.10.1 as delivering
+the new promise; availability and stable delivery retain separate version floors.
+
+Keep the newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
+and integrated evidence-report extension outside this decision. Their schema,
+positional per-result association, unknown/empty plane meanings and collection
+guarantees need their own explicit acceptance. Expanding to other recorders is
+not imposed as an automatic promotion prerequisite.
+
+Public 0.10.1 qualification, supplementary lifecycle guards and #99/#105/#106
+real installed receiving provide bounded evidence for this review. The latest
+receiving run 37421954520 passes eight Linux/macOS arm64 × Python 3.11–3.14
+cells and 72 tests without skips. Its original source/files and independent
+aggregate are retained in the
+[hosted receipt](https://github.com/uibcdf/ackredit/blob/42d30e4e081601ec1198331f0fb3e23b6b12f12b/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json).
+Final head `42d30e4` passes all seven CI jobs and both policy lanes. These gates
+support the product review; they are not qualification of a new public candidate.
+
+Record the superseding decision in #84/#87 and hand it to MolSysSuite #97/MOLI #46.
+Source classification, compatibility guidance, release notes and the canonical
+client guide implement this acceptance. Next select and qualify the delivering release.
+Track guide synchronization and client adoption through their existing owners.
+Observation remains explicit and optional scientific hosts retain absence/failure
+behavior. Stable-provider acceptance imposes no mandatory adoption or automatic
+hooks, enrichment, journals or observation on a client.
+
+Local decision validation covers all 310 selected contract/documentation cases:
+309 passed initially and the unchanged normal-installed provider guard passed
+after enabling network for its build tools. There are no skips or deselections;
+the initial DNS failure and successful recovery remain separate complete event
+streams. Ruff, report-index checks and strict Sphinx pass. Package-code ASTs
+are unchanged after removing docstrings. The
+[decision receipt](../devtools/receipts/provider_promotion_decision_2026-10-06.json)
+preserves that bounded source evidence separately from hosted controls and future
+exact-file release qualification.
+
+## Previous decision and public delivery (2026-10-05)
 
 The [principal-maintainer decision](https://github.com/uibcdf/ackredit/issues/87#issuecomment-5984968710),
 retained centrally in immutable MolSysSuite
@@ -24,16 +80,16 @@ Sabueso receiving tests. The release repairs self-citation under #94 and leaves
 original 0.10.0 bytes/tag unchanged. The older source-wheel checkpoints below
 remain evidence for their own inputs.
 
-## Recommended product boundary
+## Accepted product boundary
 
 Retain `observe_calls(*modules)`, the offline `ackredit.provider@1` declaration
 and `prepare_credit(item_id, used_by, *, roles=(), context=None)` as bounded
-provisional public capabilities while resolving the decisions below.
+stable source capabilities under the accepted decision above.
 Their combination supplies function-level
 and completed-backend attribution without a profiler or producer dependency.
 Do not require scientific hosts to adopt either capability.
 
-| Capability | Proposed guarantee | Explicit limit |
+| Capability | Accepted guarantee | Explicit limit |
 | --- | --- | --- |
 | Declaration | Offline JSON-compatible bibliography, original producer name/version and per-export uses; no import of Ackredit or credit on declaration | Metadata is the producer's claim; Ackredit does not verify the underlying scientific citation |
 | Function metadata | `function.__ackredit__ = {"uses": [...]}` resolves against the module bibliography without wrapping the producer's function | If both forms declare an export, their declared lists must agree; an unmaterialized metadata-only lazy export is undiscoverable |
@@ -51,7 +107,7 @@ mutable-identity cache, broad import scan, background service or network lookup
 belongs in these contracts. Applications should instrument coarse operations,
 not millions of scalar iterations.
 
-## Exit criteria for provisionality
+## Review checklist and remaining delivery
 
 Evaluate the declaration protocol, observer and prepared callable separately.
 A stable prepared callable does not require a stable observer. The existing
@@ -63,7 +119,7 @@ portable attribution contract remains stable throughout this review.
 | `observe_calls` | Accept entry semantics, awaited execution, selected direct exports, context-local ownership and restoration. Retain documented exclusions and define W019 partial-attribution behavior, including application warning filters. | Existing installed producer/reader gate, eight-cell real receiving matrix and cancellation/failure/strict-warning lifecycle guards below. |
 | `prepare_credit` | Accept inert preparation, the zero-argument call into the current session/captures, host-owned completion, detached inputs and E010 replacement/deletion refusal. No prepared callable owns a scientific outcome or creates a scope. | Reused/nested captures, journal writer, real completed-backend pilot, concurrent prepared-callable and expired-capture lifecycle guards below. |
 
-Completion requires the following **recorded decisions**, rather than another
+Source acceptance required the following **recorded decisions**, rather than another
 identical scientific run against unchanged runtime bytes:
 
 - Ackredit's principal maintainer explicitly accepts, amends or defers each
@@ -136,13 +192,12 @@ it is not a new real-producer matrix, performance measurement or stable decision
    tuple authors through the public API. Downloaded identities and the aggregate
    independently verify. Its [reviewed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_registered_representation_matrix_2026-10-04.json)
    retains the exact candidate identity; earlier gates remain dated evidence.
-4. **Later maintainer decision.** The accepted current decision is to remain
-   provisional. A later explicit decision may accept or amend the bounded
-   guarantees above and choose provider-schema compatibility and stability
-   classification. Recommendation: preserve accepted
-   `ackredit.provider@1` interpretation, use a new identifier for incompatible
-   schema/meaning changes, and diagnose unknown identifiers. This forward
-   guarantee is proposed here, not already granted to provisional releases.
+4. **Superseding maintainer decision.** The 2026-10-06 decision above accepts
+   the bounded guarantees and stable source classification of all three surfaces.
+   Preserve accepted `ackredit.provider@1` interpretation, use a new identifier
+   for incompatible schema/meaning changes and diagnose unknown identifiers.
+   This forward guarantee begins with the qualified delivering release; it is
+   not retroactively granted to previous provisional releases.
 5. **Receiving adoption.** PyUnitWizard owns its final citation selection,
    optional boundary, entry/completion meanings and released fallback. MOLI
    owns the direct-component contract; MolSysSuite owns a shared adoption
@@ -161,11 +216,11 @@ completed for original 0.10.0 and additive corrected 0.10.1 under #93/#94.
 The canonical integration guide retains the existing released portable contract;
 stable provider-guide distribution waits for its separate review decision.
 
-### Stable promotion remains a separate decision
+### Stable source promotion accepted; public delivery pending
 
-Record the accepted decision and receiving owners first. Update Ackredit's API
-stability page, release notes and canonical integration guide around the
-accepted boundary; propose consumer delivery through the central registry.
+The accepted decision updates Ackredit's API stability page, release notes and
+canonical integration guide around the reviewed boundary. Hand the decision and
+consumer delivery request to the existing owners through the central registry.
 Do not edit synchronized consumer copies locally. Select the next tag only
 when the maintainer chooses a release checkpoint.
 
@@ -178,4 +233,4 @@ public channel and deliver its identity and evidence to receiving owners.
 
 Public Ackredit 0.9.0 remains the portable minimum until an actual new release
 provides a reviewed capability requiring another minimum. No package rebuild,
-withdrawal or new tag follows from this proposal.
+withdrawal or new tag follows from source acceptance alone.

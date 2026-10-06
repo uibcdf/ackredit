@@ -1,0 +1,167 @@
+{
+  "base_commit": "42d30e4e081601ec1198331f0fb3e23b6b12f12b",
+  "checked_at": "2026-10-06T06:51:05.787349+00:00",
+  "contract": "devguide/function_provider_contract_review.md",
+  "coordination": [
+    "uibcdf/molsyssuite#97",
+    "uibcdf/moli#46"
+  ],
+  "decision": "Accept all three reviewed bounded source contracts; supersede provisionality decision retained centrally at 05f866ab7f17af6b046e89befa014460d5d13160.",
+  "files_sha256": {
+    "ackredit/core/collector.py": "c1861316362d36a2960744cf78bb3f48ec586df75b8ce42ad76cd06000c264f6",
+    "ackredit/core/providers.py": "91be9ea3f62ae01a571a307f790c8dd5b4a7eb76e1dcdeb5a297416aec206a8e",
+    "devguide/README.md": "5c9ff4cfeba3d7f221c8730816b71db672acb916afa54169d334dffd404dd3c3",
+    "devguide/function_provider_contract_review.md": "4741637b63bbb548f47a85c0b84281d6333a0000a0a2b6563bac44b1a0f61b02",
+    "devguide/pending_proposals/function_citation_providers.md": "0af3a5e0bcf98bb4d4b0e31daac2326c9eea108d7b4f65a800f23e6de07988d2",
+    "devguide/pending_proposals/prepared_contextual_credit.md": "a75e63f48831ab7c61031bc65e66adc337552c5e18f088473809189c0ee9ed54",
+    "devguide/roadmap.md": "ea608585037ac6338af126457ded1e8a052d05ab6290f8a43e5d86e3e4e33fa1",
+    "devguide/status.md": "7eb9c39bab5a29c188222116d56a5af44ecfef96bbe97558b3606214fc9238f9",
+    "docs/content/about/release_notes.md": "b3e3a2bdf9f009863846f5923845a8210a954ab9fbc066749fd90732670acec3",
+    "docs/content/about/stability.md": "1425be6cce4208486d2bca445e5e3748e4321d547ebb7925a3f976f4ed716a8c",
+    "docs/content/user_guide/function_providers.md": "3c18ebd7e3c70d2c3079e191e27db6f1eb4949fd3f17c996a5027aa757b79024",
+    "standards/ACKREDIT_GUIDE.md": "782e2ce0fe39172b4a1974b47040d543c253fb0a367b4258ec82b2e7b3e6be32",
+    "tests/test_api_stability.py": "41c008ac4ab66ec0ca0904ae32aed3d31a674ed348f8117f39f37e53817cbca1",
+    "tests/test_integration_guide.py": "49cbcf68db6112d17ba432022841925ce31ef56849a5d3af81951ca4c728b46a"
+  },
+  "forward_promise": "From the qualified delivering public release, preserve reviewed signatures and meanings across later patch/minor releases, including pre-1.0 and 1.x; incompatible changes follow removal/deprecation policy. Retain provider@1 interpretation; incompatible schema/meaning uses a new identifier.",
+  "hosted_controls": "Pending unskipped decision-head CI and both policy lanes; inspect exact head with GH Run Receptor. Prior gates are not claimed for this head.",
+  "limits": [
+    "No new package, tag, public floor or scientific/platform qualification created by this source acceptance.",
+    "Client-guide synchronization and adoption remain owned centrally and by receiving clients."
+  ],
+  "local_environment": {
+    "machine": "x86_64",
+    "platform": "Linux",
+    "prefix": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14",
+    "python": "3.14.7"
+  },
+  "local_verification": {
+    "canonical_guide_examples": "passed; dependency-free producer, restored observer and offline software/article reader, inert prepared credit and original scientific failure without completed credit",
+    "devguide_index": "passed",
+    "diff_check": "passed",
+    "human_work": "All nine human-owned primary files retain original SHA-256 values; sibling worktrees preserved.",
+    "pytest": [
+      {
+        "events_sha256": "864b112c6e3dc74085e80dab8a43a052029925699086bab4fc5703861bffe22a",
+        "finish": {
+          "artifact_policy": {
+            "dropped_records": 0,
+            "max_bytes": 52428800,
+            "truncated": false
+          },
+          "complete": true,
+          "counts": {
+            "collected": 310,
+            "deselected": 0,
+            "errors": 0,
+            "executed": 310,
+            "failed": 1,
+            "not_executed": 0,
+            "passed": 309,
+            "reruns": 0,
+            "skipped": 0,
+            "subtests": {},
+            "warnings": 0,
+            "xfailed": 0,
+            "xpassed": 0
+          },
+          "duration": 13.15623633004725,
+          "exitstatus": 1,
+          "extensions": {
+            "dropped": 0,
+            "incomplete": false,
+            "recorded": 7
+          },
+          "integrity": {
+            "algorithm": "sha256",
+            "digest": "467c90c808658225d972c13820da231a157308be4a6d4dc6641b7a2b4495fc50",
+            "records": 939
+          },
+          "invalid_selections": [],
+          "note": "",
+          "outcome": "FAIL",
+          "root_causes": 1,
+          "run_id": "fa637f5d83f248eeb6b4b025287115b4",
+          "schema": "pytest-receptor.events@1",
+          "stop_reason": "",
+          "type": "session_finish"
+        }
+      },
+      {
+        "events_sha256": "b9aeaefc56f7706402e005f22d2ec301bb31e06fe0b06ceca8ddca8c7f4023f0",
+        "finish": {
+          "artifact_policy": {
+            "dropped_records": 0,
+            "max_bytes": 52428800,
+            "truncated": false
+          },
+          "complete": true,
+          "counts": {
+            "collected": 1,
+            "deselected": 0,
+            "errors": 0,
+            "executed": 1,
+            "failed": 0,
+            "not_executed": 0,
+            "passed": 1,
+            "reruns": 0,
+            "skipped": 0,
+            "subtests": {},
+            "warnings": 0,
+            "xfailed": 0,
+            "xpassed": 0
+          },
+          "duration": 13.21660558320582,
+          "exitstatus": 0,
+          "extensions": {
+            "dropped": 0,
+            "incomplete": false,
+            "recorded": 0
+          },
+          "integrity": {
+            "algorithm": "sha256",
+            "digest": "dbaf81adf05d53c410e180de2800707d5465d3da88ba43fd950afc4cff5f3fc3",
+            "records": 4
+          },
+          "invalid_selections": [],
+          "note": "",
+          "outcome": "PASS",
+          "root_causes": 0,
+          "run_id": "897c0f3299164ff69f0a5f90a4368cc0",
+          "schema": "pytest-receptor.events@1",
+          "stop_reason": "",
+          "type": "session_finish"
+        }
+      }
+    ],
+    "recovery": "Initial 309 passed/one failed solely because sandbox DNS blocked PyPI build tools for the existing normal-installed provider guard. The unchanged failed node passed after enabling network; all 310 selected tests have applicable passing evidence, no skips or deselections. This is not a single green full-suite run.",
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "strict_sphinx": "passed; -E -n -W --keep-going, official Python inventory with network enabled"
+  },
+  "maintainer": "Diego Prada-Gracia (dprada)",
+  "owning_issues": [
+    "uibcdf/ackredit#84",
+    "uibcdf/ackredit#87"
+  ],
+  "prior_supporting_evidence": [
+    "devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json",
+    "devtools/receipts/provider_lifecycle_2026-10-05.json",
+    "devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json"
+  ],
+  "provisional_evidence_surfaces_retained": [
+    "AttributionEvidence",
+    "capture(record_evidence=True)",
+    "capture.evidence",
+    "AttributionEvidence.report(include_evidence=True)"
+  ],
+  "public_stable_provider_version": null,
+  "qualified_delivering_release": "pending_selection_and_qualification",
+  "runtime_statement": "Only docstrings changed in executable package files; AST comparison with base after removing docstrings passes. No runtime implementation, dependency or payload-schema change.",
+  "schema": "ackredit.provider-promotion-decision@1",
+  "surfaces": [
+    "prepare_credit",
+    "observe_calls",
+    "ackredit.provider@1"
+  ]
+}

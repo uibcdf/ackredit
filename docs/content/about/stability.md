@@ -6,7 +6,7 @@
 Ackredit is pre-1.0. **1.0.0 means the public API is stable and we commit to not breaking
 it**, and this page says in advance which names that covers.
 
-Except for the bounded portable compatibility promise below, until 1.0.0 is
+Except for the bounded portable and provider compatibility promises below, until 1.0.0 is
 tagged the table is a statement of intent, not the commitment itself. It
 exists so the commitment, when it is made, is made on purpose: a name reaches 1.0.0 as
 `stable` because someone decided it should, not because it happened to be exported.
@@ -35,7 +35,7 @@ promise below.
 
 ## The surface
 
-Thirty-nine names are stable and three provisional — every one has been decided once, on
+Forty-one names are stable and one provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -44,7 +44,7 @@ else links here, so they cannot drift apart.
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
 | `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; the unpublished bundle envelope is separate from the released schema-1 promise. |
-| `AttributionEvidence` | provisional | Explicit saved recorder declarations under `uibcdf/ackredit#104`; collection integration and real receiving review must qualify metadata origins, observation boundaries and diagnosed gaps before promotion. |
+| `AttributionEvidence` | provisional | Representation, opt-in collection and integrated rendering are qualified under `uibcdf/ackredit#104/#105/#106`. Explicit acceptance of its schema, per-result association, unknown/empty meanings and collection guarantees remains separate from the provider decision. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
 | `capture` | stable | Observes reused calculation references without replacing the application session; PyUnitWizard and Sabueso exercise the reviewed contract under `uibcdf/ackredit#75`. The opt-in `record_evidence` / `.evidence` development extension is separately provisional under `uibcdf/ackredit#105`. |
@@ -53,7 +53,7 @@ else links here, so they cannot drift apart.
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
 | `credit_bound` | stable | The opt-in that makes a binding credit. Decision 4. |
 | `track_item` | stable | What a run actually reached. The central claim of the library. |
-| `prepare_credit` | provisional | Fixed contextual credit for repeated completed dispatch, shipped in 0.10.0/0.10.1; real PyUnitWizard performance and receiving review under #87 precede promotion. Not included in public 0.9.0. |
+| `prepare_credit` | stable | Accepted by the principal maintainer on 2026-10-06 under `uibcdf/ackredit#87`: inert detached preparation, explicit current-session/capture credit and E010 replacement/deletion refusal; the host owns completion. Public stable delivery is pending as specified below. |
 | `track_target` | stable | Decision 10 examined renaming it and refused: `target` already means "a named unit of code" in seven public functions. |
 | `scope` | stable | Context-local, decision 5. Used in every worked example and in both example libraries. |
 | `scoped_usage` | stable | Delegates to `scope`, so the isolation has one implementation. Decision 5. |
@@ -72,8 +72,8 @@ else links here, so they cannot drift apart.
 | `enable_persistence` | stable | Was exported as a bound method of `Collector`, which bound a public name to a provisional class; `uibcdf/ackredit#33` gave it a function like its siblings. |
 | `close_persistence` | stable | The counterpart of `enable_persistence`, and stable with it. Closing is where the single `fsync` is paid. |
 | `aggregate` | stable | Merging saved runs into this one. `uibcdf/ackredit#39` settled what it does to the journal and exercised it; what it does across machines is decided rather than open — one journal per process, merged here. |
-| `auto_track_calls` | stable | Static detection remains per enclosing function, including untaken branches. The separate provisional observer does not change this coarse released contract. |
-| `observe_calls` | provisional | Dependency-free function declarations and opt-in observation of direct exports need real provider and receiving review under `uibcdf/ackredit#84` and `uibcdf/molsyssuite#97`; aliases and generators remain explicitly excluded. |
+| `auto_track_calls` | stable | Static detection remains per enclosing function, including untaken branches. The separate explicit entry observer does not change this coarse released contract. |
+| `observe_calls` | stable | Accepted by the principal maintainer on 2026-10-06 under `uibcdf/ackredit#84`: selected declared direct exports, sync entry/awaited execution, context-local leases and restoration; exclusions and W019 gaps remain explicit. Public stable delivery is pending as specified below. |
 | `enable_import_hooks` | stable | Decision 13 settles what the hook does — it observes and never acts — and `uibcdf/ackredit#28` settles which source of metadata wins. `uibcdf/ackredit#34` gave it a counterpart. |
 | `compile_pdf` | stable | That `@software` is undefined in common `.bst` styles is a known limitation of those styles, recorded in `devguide/status.md`. It bears on what the PDF contains, not on this call. |
 | `enrich_all` | stable | Fills in what a DOI can supply. How it asks was settled in `uibcdf/ackredit#48` and how long a cached answer keeps in `#50`; both are what it does, not what it promises. |
@@ -121,9 +121,36 @@ gates. The [installation page](installation.md) links the exact public archive,
 installed matrix and clean public receiving evidence; it does not certify a
 client's own release or convert general pre-1.0 intent into a 1.x commitment.
 
+## Provider compatibility: accepted, public delivery pending
+
+On 2026-10-06 the principal maintainer accepted stable source classification of
+`prepare_credit`, `observe_calls` and the separate declaration protocol
+`ackredit.provider@1` under Ackredit #84/#87. Their current signatures and
+bounded meanings are documented in [function providers](../user_guide/function_providers.md).
+The existing public 0.10.0/0.10.1 releases contain the capabilities with their
+original provisional classification; public 0.9.0 contains neither callable.
+**No new stable-provider public version is claimed yet.**
+
+The forward promise begins with the first qualified public release delivering
+this decision. From that release, these signatures and meanings remain compatible
+across later patch/minor releases, including remaining pre-1.0 releases and 1.x.
+The removal/deprecation policy below applies to incompatible changes from that
+delivery. Compatible additive options and internal optimizations remain possible.
+Later readers retain the accepted `ackredit.provider@1` interpretation; incompatible
+schema/meaning changes require a new identifier and unknown identifiers are refused.
+
+`AttributionEvidence`, the newer `capture(record_evidence=True)` / `.evidence`
+extension and integrated evidence reporting remain provisional. Their schema,
+positional per-result association, unknown/empty meanings and collection guarantees
+await separate acceptance; adding other recorders is not automatically required.
+Client adoption, guide synchronization and client release qualification are
+separate owner decisions. Optional clients retain their absence/failure behavior;
+no client must enable observation automatically.
+
 ## Deprecation policy
 
-This is what we commit to from 1.0.0 onward.
+This is what we commit to from 1.0.0 onward. For the accepted provider surfaces
+above, it also applies from their qualified delivering release.
 
 1. **A stable name is removed only in a major release.** Not in a patch, not in a minor.
 2. **A removal is announced first.** The name keeps working and emits an SMonitor

@@ -135,7 +135,10 @@ many land before 1.0.0 is an outcome rather than a plan.
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable
   schema/operations have a bounded released compatibility promise. The general
-  API commitment remains pre-1.0 intent. Output formats are extensible through `register_format` and the
+  API commitment remains pre-1.0 intent. On 2026-10-06 the principal maintainer
+  accepted the bounded stable source contracts for `prepare_credit`,
+  `observe_calls` and `ackredit.provider@1`; their forward promise starts with
+  the qualified delivering release, which is pending. Output formats are extensible through `register_format` and the
   `ackredit.formats` entry-point group. What remains of roadmap F is the review against
   demonstrated receiving workflows and released adoption; theme C already
   supplies that evidence, while the final stability decision remains explicit.
@@ -213,15 +216,17 @@ and [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/recei
 This development presentation is resolved; provisional review and public delivery
 remain separate decisions.
 
-Active core improvements are tracked separately: #84 implements provisional
+Active core improvements are tracked separately: #84 implements
 dependency-free function providers and actual-call observation; #85 measures
 and reduces portable capture overhead; #87 prepares fixed explicit contextual
 credits for completed dispatch. The first real function-provider pilot is
 PyUnitWizard #94, with lazy exports and before/after scientific conversion
 measurements. MolSysSuite #97 and MOLI #46 own cross-component
 review. These capabilities ship provisionally in 0.10.0 and recommended 0.10.1;
-they are absent from 0.9.0. Publication does not establish stable promotion or
-consumer adoption.
+they are absent from 0.9.0. The 2026-10-06 maintainer decision accepts all three bounded source contracts.
+Stable-provider public delivery and consumer adoption remain pending and separate;
+original public 0.10.0/0.10.1 provisional contracts are unchanged. See the
+[accepted review](function_provider_contract_review.md).
 
 The manually dispatched [coupled installed receiving gate](receiving_validation.md)
 builds one wheel bundle and requires eight Linux/macOS arm64 × Python 3.11–3.14

@@ -369,7 +369,7 @@ def prepare_credit(
     roles: list[str] | tuple[str, ...] = (),
     context: dict | None = None,
 ) -> Callable[[], None]:
-    """Provisionally prepare an explicit fixed credit for repeated dispatch.
+    """Prepare an explicit fixed credit for repeated dispatch.
 
     The reference must already be registered. Preparation validates and detaches
     its bibliography, roles and context, but credits nothing. Invoke the returned
@@ -378,8 +378,9 @@ def prepare_credit(
     and refuses a replaced/deleted bibliography. It creates no call scope: the
     host owns that scope and the interpretation of a completed operation.
 
-    This development API is provisional under Ackredit #87; public 0.9.0 does
-    not provide it. Mutating original inputs does not change a prepared credit.
+    Stable source contract accepted under Ackredit #87 on 2026-10-06; its public
+    delivering release is pending. Public 0.9.0 does not provide this callable.
+    Mutating original inputs does not change a prepared credit.
     """
     import json
 

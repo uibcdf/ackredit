@@ -245,7 +245,7 @@ class _Patch:
 
 
 class observe_calls:
-    """Provisionally observe declared exports of already imported modules.
+    """Observe declared exports of already imported modules.
 
     ``with observe_calls(module): module.function(...)`` records references only
     when a declared function is entered (or its coroutine is awaited). Producers

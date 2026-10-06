@@ -8,7 +8,7 @@ verification: reproduced
 area: [core, performance, integration]
 guard: tests/test_prepared_credit.py::test_prepared_credit_is_detached_and_reused_in_independent_captures
 normative:
-blocked_by: [uibcdf/molsyssuite#97, uibcdf/moli#46]
+blocked_by: []
 supersedes: []
 ---
 
@@ -210,3 +210,31 @@ the reviewed receipt is
 This removes the outstanding producer-copy dependency from development
 qualification. It neither adds a cumulative timing claim nor publishes new
 bytes or promotes the callable. The separate stability decision stays open.
+
+## Accepted source promotion; public delivery pending (2026-10-06)
+
+Diego explicitly accepted the proposed bounded stable contracts for
+`prepare_credit`, `observe_calls` and `ackredit.provider@1` together
+("ok, procede"). This supersedes the earlier provisional decision without
+retroactively changing original public 0.10.0/0.10.1 releases. The maintained
+[accepted contract](../function_provider_contract_review.md) gives the exact
+signatures, entry versus host-chosen completion boundary, exclusions, diagnostics
+and forward compatibility scope. Source classification, user guidance and the
+canonical integration guide implement that decision. Newer evidence APIs remain
+provisional for their own explicit review.
+
+The issue stays **partial** until the qualified public release delivering the
+promise is selected, staged, installed/received on the required eight cells,
+promoted as the same exact file and verified publicly. The forward promise
+begins at that delivery, retaining signatures/meanings across later patch/minor
+releases (including pre-1.0 and 1.x) and applying the removal/deprecation policy
+to incompatible changes. Later readers preserve `ackredit.provider@1`;
+incompatible interpretation requires another identifier.
+
+Existing source/lifecycle/real receiving evidence supports the acceptance; it
+does not qualify an unbuilt new release. `tests/test_integration_guide.py`
+executes the canonical declaration/observation/prepared examples, including a
+producer without Ackredit and failed science that earns no completed credit.
+MolSysSuite #97 and MOLI #46 receive this decision and the guide-delivery request;
+central synchronization, shared adoption and client release remain separately
+owned. No sibling guide is edited locally and no automatic observation is added.

@@ -274,9 +274,11 @@ The last theme, and the one that earns the number.
       theme C's demonstrated receiving workflows and released application.
 
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
-stability commitment would make the commitment meaningless. The new `observe_calls`
-surface, and `prepare_credit` under #87, remain provisional pending provider and receiving review under #84 and
-MolSysSuite #97; it must be promoted or removed before 1.0. Existing names have
+stability commitment would make the commitment meaningless. The principal
+maintainer accepted stable source contracts for `observe_calls`,
+`prepare_credit` and `ackredit.provider@1` on 2026-10-06 under #84/#87.
+Their qualified public delivering release and consumer adoption remain separate.
+The newer evidence surfaces still require their own explicit acceptance. Existing names have
 been decided once, on the evidence available now. Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
@@ -313,8 +315,11 @@ measures portable capture separately from the historical plain tracking path.
       [37217520167](https://github.com/uibcdf/ackredit/actions/runs/37217520167);
       the manual gate and evidence requirements are documented in
       [`receiving_validation.md`](receiving_validation.md);
-- [ ] real provider and receiving review resolves the provisional API, coordinated
-      through MolSysSuite #97 before any shared adoption requirement.
+- [x] real provider and receiving evidence informs the explicit principal-maintainer
+      decision: accepted stable source contracts on 2026-10-06 under #84/#87;
+      coordinated with MolSysSuite #97/MOLI #46, without requiring client adoption;
+- [ ] qualify and publish the release delivering the accepted stable-provider
+      promise, retaining the original exact file and separate public verification;
 - [ ] provide a documented standalone declaration validator, with a chosen
       public/API stability boundary, that checks offline metadata without
       recording uses, installing wrappers, registering bibliography or querying
@@ -322,7 +327,7 @@ measures portable capture separately from the historical plain tracking path.
 - [ ] offer a concise third-party author guide and an independently installable
       dependency-free producer example; a producer's declaration requires no
       Ackredit import, decorator or runtime dependency;
-- [ ] explicitly retain or revise the observation exclusions for pre-activation
+- [x] explicitly retain the reviewed observation exclusions for pre-activation
       aliases, methods/descriptors, generators and native internal calls. Any
       expansion needs a concrete use case, lifecycle contract and bounded cost.
 
@@ -331,7 +336,8 @@ Its exact Conda file passes eight installed cells and eight real PyUnitWizard
 cells (48 mandatory tests), followed by verified public promotion and clean
 public receiving checks. See the
 [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json).
-The outstanding API/producer review remains the next step. This release does
+The 2026-10-06 decision supersedes provisionality in source within the bounded
+accepted contract; stable public delivery remains pending. The original release does
 not rebuild 0.9.0, require consumer adoption or certify a consumer release.
 
 Later development checkpoint #99 combines Ackredit's writer optimization #97
@@ -619,8 +625,9 @@ The accepted continuation order is:
    and meaningful receiving guards before implementation.
 2. Theme J: scope/origin/gap explanations, built on those preserved saved results.
 3. In parallel, resolve F/G's explicit provider stability decisions and K's
-   platform/member boundaries with their existing owners. The accepted current
-   provisional classification remains until a recorded decision changes it.
+   platform/member boundaries with their existing owners. The 2026-10-06
+   decision accepts the three provider surfaces; newer evidence contracts
+   remain provisional and stable-provider public delivery is still pending.
 4. Run L's complete-cost measurements and M's publication-tool interoperability
    against selected actual candidates; optimize or repair measured boundaries.
 5. Decide N's acknowledgement scope and implement only its accepted branch.

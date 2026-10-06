@@ -1,11 +1,15 @@
 # Third-party function citation providers
 
-This is a **provisional capability**, shipped in public Ackredit 0.10.0 and
-retained in recommended 0.10.1, owned by Ackredit #84 with cross-component review
-in MolSysSuite #97 and MOLI #46. Public Ackredit 0.9.0 does not contain
-`observe_calls`. Review with real producers and receivers is required before
-the declaration protocol or observation API becomes stable. Existing portable
-schema `ackredit.attribution@1` and released APIs retain their contracts.
+The principal maintainer accepted **stable source contracts** for `observe_calls`,
+`prepare_credit` and `ackredit.provider@1` on 2026-10-06 under Ackredit #84/#87,
+with coordination in MolSysSuite #97 and MOLI #46. Public 0.10.0/0.10.1 contain
+the capabilities with their original provisional classification; public 0.9.0
+does not contain them. The qualified release delivering the stable promise is
+still pending. From that delivery, signatures/meanings remain compatible across
+later patch/minor releases, including pre-1.0 and 1.x. Incompatible declaration
+interpretations require a new identifier; later readers retain `ackredit.provider@1`
+and refuse unknown identifiers. See [API stability](../about/stability.md).
+Existing portable schema `ackredit.attribution@1` and released APIs retain their contracts.
 
 ## Declare citations without depending on Ackredit
 
@@ -158,7 +162,7 @@ credits; use the function observer alone when testing call-level precision.
 ## Prepare explicit credits for completed scientific dispatch
 
 Some hosts credit a backend only after its operation succeeds. That differs from
-observing function entry. The provisional `prepare_credit` factory (#87), also
+observing function entry. The accepted `prepare_credit` factory (#87), also
 shipped in 0.10.0/0.10.1 and absent from 0.9.0, prepares one fixed contextual use without observation
 wrappers or repeated declaration/JSON work:
 
@@ -191,4 +195,4 @@ record with its original snapshot; replacement/deletion raises `ACKREDIT-E010`
 before credit instead of silently substituting bibliography. An optional host
 integration should diagnose that attribution gap and preserve completed science.
 The callable alone neither imports nor computes with the backend. This bounded
-surface requires receiver review before stabilization.
+surface is accepted within these limits; public stable delivery remains pending.

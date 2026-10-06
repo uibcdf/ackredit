@@ -134,6 +134,137 @@ reviewed member-owned exception with the affected rule, reason, owner and issue,
 interim controls, expiry and removal condition. Provider implementation and member
 runtime adoption remain separate.
 
+## Function providers and prepared credit (accepted; public delivery pending)
+
+Ackredit's principal maintainer accepted `prepare_credit`, `observe_calls` and
+`ackredit.provider@1` on 2026-10-06 under
+[Ackredit #84](https://github.com/uibcdf/ackredit/issues/84) /
+[#87](https://github.com/uibcdf/ackredit/issues/87), coordinated with
+[MolSysSuite #97](https://github.com/uibcdf/molsyssuite/issues/97) and
+[MOLI #46](https://github.com/uibcdf/moli/issues/46). This is stable source
+acceptance; the qualified public release delivering the compatibility promise
+is pending. Public 0.10.0/0.10.1 provide these capabilities under their original
+provisional contract; **they are not a stable-provider version floor**.
+The released portable minimum remains `ackredit>=0.9.0`.
+
+From the qualified delivering release, the reviewed signatures and meanings
+remain compatible across later patch/minor versions, including pre-1.0 and 1.x.
+Incompatible changes follow the
+[deprecation policy](https://github.com/uibcdf/ackredit/blob/main/docs/content/about/stability.md).
+Later readers retain `ackredit.provider@1` interpretation; incompatible declaration
+schema/meaning changes require a new identifier and unknown identifiers are refused.
+Client adoption, release qualification and synchronization of this guide remain
+separate. Observation is an explicit application choice; scientific libraries
+must not automatically enable it.
+
+### Dependency-free provider declaration
+
+A third-party library can publish this ordinary module dictionary (for example,
+in `example_provider.py` or imported from its own `_citations.py`). All metadata
+below is illustrative; authors supply their actual original bibliography.
+
+```python
+__ackredit__ = {
+    "schema": "ackredit.provider@1",
+    "software": {"name": "Example", "version": "2.4.0"},
+    "items": [
+        {
+            "id": "example:software:2.4.0",
+            "type": "software",
+            "title": "Example",
+            "version": "2.4.0",
+        },
+        {"id": "example:method", "type": "article", "title": "Example method"},
+    ],
+    "functions": {
+        "normalize": [
+            {"item_id": "example:software:2.4.0", "roles": ["executed_software"]},
+            {"item_id": "example:method", "roles": ["software_description"]},
+        ],
+    },
+}
+
+
+def normalize(values):
+    total = sum(values)
+    return [value / total for value in values]
+```
+
+Declaration and import credit nothing and require no Ackredit dependency.
+All schema fields are required. `software` has exactly non-empty `name` and
+`version`; `items` supplies unique non-empty IDs and JSON-compatible records;
+`functions` maps direct export names to non-empty use lists. Each use contains
+exactly `item_id` and `roles`, a list of non-empty role names, and references
+resolve locally. Keep software releases under distinct IDs. Function metadata
+`function.__ackredit__ = {"uses": [...]}` can supply the same uses instead;
+if both declarations name an export, they must agree. A producer's decorator
+can attach that attribute and return the original function unchanged.
+
+### Explicit application observation
+
+```python
+import ackredit
+import example_provider
+
+with ackredit.session("analysis"), ackredit.scope("pipeline"):
+    with ackredit.observe_calls(example_provider):
+        with ackredit.capture("normalization") as run:
+            values = example_provider.normalize([1, 3])
+    saved_references = run.attribution.to_json()
+
+bibliography = ackredit.Attribution.from_json(saved_references).report("bibtex")
+```
+
+Only entry into declared synchronous exports or execution of awaited coroutines
+earns their references. Entry does not establish scientific success. Context-local
+nested/concurrent leases restore original module exports after the last exit;
+expired owners stop recording. Threads do not automatically inherit context.
+Pre-activation aliases, generators, descriptors, custom module subclasses, native
+internal calls and subprocesses are outside the guarantee. Ordinary PEP 562
+modules resolve only declared missing exports; their loader's caching/import
+side effects cannot be rolled back. Invalid declarations receive `ACKREDIT-E012`
+before observation/registration; recording or restoration gaps receive
+`ACKREDIT-W019`. Application warning-as-error filters remain effective.
+See the complete
+[provider contract](https://github.com/uibcdf/ackredit/blob/main/docs/content/user_guide/function_providers.md).
+
+### Explicit fixed credit at the host's completion boundary
+
+```python
+import ackredit
+
+ackredit.register_item(
+    id="backend:software:2", type="software", title="Backend", version="2"
+)
+credit = ackredit.prepare_credit(
+    "backend:software:2",
+    "host.convert",
+    roles=["executed_software"],
+    context={"software": "Backend", "version": "2"},
+)
+with ackredit.session("conversion"), ackredit.capture("result") as run:
+    with ackredit.scope("host.convert"):
+        converted = backend_convert([1, 3])  # scientific exceptions propagate
+        credit()  # the host decides that this operation earned its reference
+saved_references = run.attribution.to_json()
+```
+
+Preparation validates and detaches one already registered reference and fixed
+roles/context; it credits nothing. The zero-argument callable contributes to the
+current session and every active capture, including reused references. It creates
+no scientific scope or success interpretation. Changed/deleted registered
+bibliography receives `ACKREDIT-E010` before credit. Optional clients diagnose
+provider failures and preserve completed science. Clients retaining compatibility
+with 0.9.0 can keep their public `track_item` fallback; importing the host must
+still defer Ackredit until its requested attribution boundary. Fixed preparation
+reduces repeated declaration work without removing registry/capture checks; use
+meaningful operations rather than instrumenting every scalar iteration.
+
+`AttributionEvidence`, opt-in capture evidence and integrated evidence reporting
+remain provisional and outside this decision. Their schema and collection
+guarantees require separate acceptance. No additional recorder, automatic
+enrichment, hook, journal or reminder is required by provider promotion.
+
 ## Eager demonstration profile
 
 Sections 1–6 and the worked examples below describe the existing eager profile

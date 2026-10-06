@@ -29,8 +29,19 @@ and [#96](https://github.com/uibcdf/ackredit/issues/96); the writer optimization
 is tracked in [#97](https://github.com/uibcdf/ackredit/issues/97). CFF name
 identity is corrected in [#98](https://github.com/uibcdf/ackredit/issues/98).
 They are development changes, not features of the already published 0.10.1
-archive. The portable payload version, core dependencies and provisional
-provider API classifications remain unchanged.
+archive. The portable payload version and core dependencies remain unchanged.
+
+On 2026-10-06 the principal maintainer accepted stable source contracts for
+`prepare_credit`, `observe_calls` and `ackredit.provider@1` under #84/#87.
+Preparation remains inert; invocation credits the current session/captures and
+the host owns completion. Observation retains selected-export entry/awaited
+execution, context-local leases, restoration, documented exclusions and W019
+gaps. Incompatible declaration interpretations require a new schema identifier.
+The forward compatibility promise starts with the qualified release delivering
+this decision; **no new stable-provider public version is claimed yet**. See
+[API stability](stability.md) and [function providers](../user_guide/function_providers.md).
+Newer evidence representation, opt-in collection and integrated reporting remain
+provisional pending their own explicit acceptance.
 
 ## 0.10.1 — corrected public checkpoint
 
@@ -62,8 +73,8 @@ separate proofs are linked from [installation](installation.md).
   traversal. Report plugins receive detached nested bibliography. Equivalent
   registered tuple/list metadata is accepted without replacing the registration.
 
-`observe_calls`, `prepare_credit` and provider declaration interpretation remain
-**provisional**. Observation covers selected direct module exports, not existing
+At this original release, `observe_calls`, `prepare_credit` and provider
+declaration interpretation were **provisional**. Observation covers selected direct module exports, not existing
 aliases, generators, native internal calls or subprocesses. Credits do not claim
 invocation counts, scientific success or a complete execution trace. See
 [function providers](../user_guide/function_providers.md) and

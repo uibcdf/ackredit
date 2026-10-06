@@ -9,6 +9,7 @@ like a missing package. These tests execute the template instead of trusting it.
 import inspect
 import sys
 from pathlib import Path
+from types import ModuleType
 
 import pytest
 
@@ -41,6 +42,74 @@ def test_portable_capture_example_runs_and_reads_without_new_credit(clean_regist
         == namespace["workflow_references"]["items"]
     )
     assert "Example" in namespace["bibliography"]
+    assert ackredit.get_used_items() == {}
+
+
+def _section_example(heading):
+    text = GUIDE.read_text(encoding="utf-8")
+    section = text.split(heading, 1)[1]
+    return section.split("```python", 1)[1].split("```", 1)[0]
+
+
+def test_provider_guide_records_software_and_article_only_on_entry(
+    clean_registry, monkeypatch
+):
+    declaration = _section_example("### Dependency-free provider declaration")
+    provider = ModuleType("example_provider")
+    # A provider must still work when Ackredit cannot be imported.
+    monkeypatch.setitem(sys.modules, "ackredit", None)
+    exec(compile(declaration, "<provider_guide>", "exec"), provider.__dict__)
+    original = provider.normalize
+    assert provider.normalize([1, 3]) == [0.25, 0.75]
+    assert ackredit.get_used_items() == {}
+    monkeypatch.setitem(sys.modules, "ackredit", ackredit)
+    monkeypatch.setitem(sys.modules, "example_provider", provider)
+
+    source = _section_example("### Explicit application observation")
+    namespace = {}
+    exec(compile(source, "<observer_guide>", "exec"), namespace)
+    assert namespace["values"] == [0.25, 0.75]
+    assert provider.normalize is original
+    saved = ackredit.Attribution.from_json(namespace["saved_references"]).to_dict()
+    assert {item["id"] for item in saved["items"]} == {
+        "example:software:2.4.0",
+        "example:method",
+    }
+    assert {role for use in saved["uses"] for role in use["roles"]} == {
+        "executed_software",
+        "software_description",
+    }
+    assert "Example method" in namespace["bibliography"]
+    assert ackredit.get_used_items() == {}
+
+
+@pytest.mark.parametrize("fails", [False, True])
+def test_prepared_guide_preserves_science_and_credits_only_after_completion(
+    clean_registry, fails
+):
+    source = _section_example(
+        "### Explicit fixed credit at the host's completion boundary"
+    )
+    failure = ValueError("scientific failure")
+
+    def backend_convert(values):
+        assert ackredit.get_used_items() == {}  # preparation must be inert
+        if fails:
+            raise failure
+        return [value * 2 for value in values]
+
+    namespace = {"backend_convert": backend_convert}
+    if fails:
+        with pytest.raises(ValueError) as caught:
+            exec(compile(source, "<prepared_guide>", "exec"), namespace)
+        assert caught.value is failure
+        assert namespace["run"].attribution.to_dict()["items"] == []
+    else:
+        exec(compile(source, "<prepared_guide>", "exec"), namespace)
+        assert namespace["converted"] == [2, 6]
+        saved = ackredit.Attribution.from_json(namespace["saved_references"])
+        assert saved.to_dict()["items"][0]["version"] == "2"
+        assert saved.to_dict()["uses"][0]["used_by"] == "host.convert"
     assert ackredit.get_used_items() == {}
 
 
