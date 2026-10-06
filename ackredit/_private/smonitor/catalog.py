@@ -14,8 +14,8 @@ Prose belongs here. The typed facts of an occurrence belong to the call site, in
 CODES = {
     "ACKREDIT-E012": {
         "title": "Citation provider declaration refused",
-        "user_message": "Cannot observe provider '{provider}': {reason}.",
-        "user_hint": "Use the provisional ackredit.provider@1 schema and direct, supported function exports. No observation was activated.",
+        "user_message": "Invalid declaration for provider '{provider}': {reason}.",
+        "user_hint": "Use ackredit.provider@1 and direct, supported function exports. Validation does not activate observation.",
     },
     "ACKREDIT-W019": {
         "title": "Function attribution incomplete",

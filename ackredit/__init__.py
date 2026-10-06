@@ -56,7 +56,7 @@ from .core.hooks import (
     enable_import_hooks,
 )
 from .core.inspection import auto_track_calls
-from .core.providers import observe_calls
+from .core.providers import observe_calls, validate_provider
 from .core.registry import (
     add_injection,
     bind,
@@ -111,6 +111,7 @@ __all__ = [
     "dependency_info",
     "auto_track_calls",
     "observe_calls",
+    "validate_provider",
     "current_session",
     "scope",
     "session",
