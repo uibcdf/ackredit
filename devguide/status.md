@@ -153,8 +153,13 @@ many land before 1.0.0 is an outcome rather than a plan.
   variants and 100 raw process samples. Real entry-point guards retain catalog
   failures/conflicts, reentry, late-provider discovery, independent captures and
   an exact plugin-free saved reader. This is fixture installation evidence;
-  external plugin workloads and dependency closure remain unqualified. The
-  reusable discovery/freshness proposal belongs to DepDigest #31.
+  external plugin workloads remain unqualified. The reusable discovery/freshness
+  proposal belongs to DepDigest #31. Checkpoint #118 separately measures the
+  clean public Linux/Python 3.14 route against Python alone: six added packages,
+  531,471 compressed bytes and 2,640,785 recorded regular-file bytes. Published
+  ArgDigest 0.14.0 needs no NumPy for core behavior; PyYAML/libyaml remain native.
+  Twenty independent public-runtime samples and installed smoke evidence do not
+  establish other closures/platforms, a new release or a scientific speedup.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable

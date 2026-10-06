@@ -586,9 +586,16 @@ measures five normally installed controlled pack variants and guards failures,
 conflicts, reentry, late installation, independent captures and plugin-free saved
 readers. Reusable grouped discovery/freshness is handed to
 [DepDigest #31](https://github.com/uibcdf/depdigest/issues/31); no cache is adopted.
-This local development evidence does not close the complete theme: installed
-dependency closure, third-party plugin workloads, independent graph shapes
-and platform coverage remain distinct work.
+The public installation checkpoint
+[#118](https://github.com/uibcdf/ackredit/issues/118) measures a clean
+Linux/Python 3.14 route against a matching Python-only control. The original
+0.11.0 file adds six packages, 531,471 compressed bytes and 2,640,785 recorded
+regular-file bytes. Published ArgDigest 0.14.0 core needs no NumPy; PyYAML/libyaml
+still make the closure partly native. Public runtime versions and their import
+samples remain separate from newer developer-wheel measurements. This bounded
+evidence does not close the complete theme: third-party plugin workloads,
+independent graph shapes, other receiving closures and platform coverage remain
+distinct work.
 
 - [ ] measure cold import/first use, inactive operation, provider activation,
       tracking/capture, journal writes, snapshot/export and requested large
@@ -599,7 +606,7 @@ and platform coverage remain distinct work.
       numerical parity and ordinary variation. Do not add percentages from
       independent historical measurements;
 - [ ] review plugin initialization and the external user's dependency closure,
-      including NumPy through ArgDigest. Keep the accepted four core dependencies
+      including optional NumPy routes and compiled PyYAML/libyaml. Keep the accepted four core dependencies
       unless a separately recorded owner/shared decision changes that boundary;
 - [ ] identify measured bottlenecks and improve the owning reusable operations
       while preserving validation, conflict preflight, diagnostics and every

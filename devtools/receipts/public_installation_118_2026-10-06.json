@@ -1,0 +1,4068 @@
+{
+  "architecture": "x86_64",
+  "checked_at": "2026-10-06T19:36:11.169973+00:00",
+  "control": {
+    "archive_bytes": 57867975,
+    "linked_regular_bytes": 210742499,
+    "package_count": 24,
+    "packages": {
+      "_openmp_mutex": {
+        "build": "20_gnu",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgomp >=7.5.0"
+        ],
+        "fn": "_openmp_mutex-4.5-20_gnu.conda",
+        "linked": {
+          "regular_bytes": 0,
+          "regular_file_count": 0,
+          "symlink_count": 1
+        },
+        "name": "_openmp_mutex",
+        "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+        "size": 28948,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda",
+        "version": "4.5"
+      },
+      "bzip2": {
+        "build": "hda65f42_10",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "bzip2-1.0.8-hda65f42_10.conda",
+        "linked": {
+          "regular_bytes": 1522721,
+          "regular_file_count": 18,
+          "symlink_count": 6
+        },
+        "name": "bzip2",
+        "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+        "size": 257808,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda",
+        "version": "1.0.8"
+      },
+      "ca-certificates": {
+        "build": "hbd8a1cb_0",
+        "depends": [
+          "__unix"
+        ],
+        "fn": "ca-certificates-2026.7.22-hbd8a1cb_0.conda",
+        "linked": {
+          "regular_bytes": 240216,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "ca-certificates",
+        "sha256": "0a0544cf95f64394fe4959286f5c71f5444ad58feb0602e53becb27448d24da6",
+        "size": 131780,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.7.22-hbd8a1cb_0.conda",
+        "version": "2026.7.22"
+      },
+      "ld_impl_linux-64": {
+        "build": "default_hbd61a6d_102",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "zstd >=1.5.7,<1.6.0a0"
+        ],
+        "fn": "ld_impl_linux-64-2.46.1-default_hbd61a6d_102.conda",
+        "linked": {
+          "regular_bytes": 2966864,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "ld_impl_linux-64",
+        "sha256": "27d83f1188cd19bcb7754a078b3fa7f4cfb8527f8eb2fde54dd01fc529d1adec",
+        "size": 745303,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_102.conda",
+        "version": "2.46.1"
+      },
+      "libexpat": {
+        "build": "hd2095e1_0",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15"
+        ],
+        "fn": "libexpat-2.8.5-hd2095e1_0.conda",
+        "linked": {
+          "regular_bytes": 195584,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "libexpat",
+        "sha256": "6de73033a7c5f712c9c5a54124e4581e025691029835e5bceaf10a333a7e7bc0",
+        "size": 77893,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.8.5-hd2095e1_0.conda",
+        "version": "2.8.5"
+      },
+      "libffi": {
+        "build": "h81df57d_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15"
+        ],
+        "fn": "libffi-3.7.0-h81df57d_1.conda",
+        "linked": {
+          "regular_bytes": 231719,
+          "regular_file_count": 10,
+          "symlink_count": 2
+        },
+        "name": "libffi",
+        "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+        "size": 68004,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda",
+        "version": "3.7.0"
+      },
+      "libgcc": {
+        "build": "ha9f2e26_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "_openmp_mutex >=4.5"
+        ],
+        "fn": "libgcc-16.2.0-ha9f2e26_7.conda",
+        "linked": {
+          "regular_bytes": 3539617,
+          "regular_file_count": 9,
+          "symlink_count": 6
+        },
+        "name": "libgcc",
+        "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+        "size": 1058444,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda",
+        "version": "16.2.0"
+      },
+      "libgomp": {
+        "build": "he0feb66_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0"
+        ],
+        "fn": "libgomp-16.2.0-he0feb66_7.conda",
+        "linked": {
+          "regular_bytes": 1677940,
+          "regular_file_count": 2,
+          "symlink_count": 1
+        },
+        "name": "libgomp",
+        "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+        "size": 640566,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda",
+        "version": "16.2.0"
+      },
+      "liblzma": {
+        "build": "hb03c661_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "liblzma-5.8.3-hb03c661_1.conda",
+        "linked": {
+          "regular_bytes": 445424,
+          "regular_file_count": 2,
+          "symlink_count": 0
+        },
+        "name": "liblzma",
+        "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+        "size": 112995,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda",
+        "version": "5.8.3"
+      },
+      "libmpdec": {
+        "build": "hb03c661_2",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "libmpdec-4.0.0-hb03c661_2.conda",
+        "linked": {
+          "regular_bytes": 232000,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "libmpdec",
+        "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+        "size": 92759,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda",
+        "version": "4.0.0"
+      },
+      "libpython": {
+        "build": "hdc7f604_100_cp314",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15",
+          "libstdcxx >=15"
+        ],
+        "fn": "libpython-3.14.8-hdc7f604_100_cp314.conda",
+        "linked": {
+          "regular_bytes": 36135456,
+          "regular_file_count": 2,
+          "symlink_count": 1
+        },
+        "name": "libpython",
+        "sha256": "1bb70b5d17d013d339861aa267fa4eaeb5fd77c2ec0f957bdcedb182191a5bab",
+        "size": 10533011,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.8-hdc7f604_100_cp314.conda",
+        "version": "3.14.8"
+      },
+      "libsqlite": {
+        "build": "h0737f62_103",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15",
+          "libzlib >=1.3.2,<2.0a0"
+        ],
+        "fn": "libsqlite-3.53.4-h0737f62_103.conda",
+        "linked": {
+          "regular_bytes": 2501182,
+          "regular_file_count": 4,
+          "symlink_count": 2
+        },
+        "name": "libsqlite",
+        "sha256": "66f4831f4ee3055f0ffe94e01901198cf3601e2c1b4f6b51d05c3f2d8557ce1d",
+        "size": 967489,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.4-h0737f62_103.conda",
+        "version": "3.53.4"
+      },
+      "libstdcxx": {
+        "build": "h934c35e_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc 16.2.0 ha9f2e26_7"
+        ],
+        "fn": "libstdcxx-16.2.0-h934c35e_7.conda",
+        "linked": {
+          "regular_bytes": 23877868,
+          "regular_file_count": 2,
+          "symlink_count": 2
+        },
+        "name": "libstdcxx",
+        "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+        "size": 6615436,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda",
+        "version": "16.2.0"
+      },
+      "libuuid": {
+        "build": "hcfc3c73_0",
+        "depends": [
+          "libgcc >=15",
+          "__glibc >=2.17,<3.0.a0"
+        ],
+        "fn": "libuuid-2.42.4-hcfc3c73_0.conda",
+        "linked": {
+          "regular_bytes": 45362,
+          "regular_file_count": 3,
+          "symlink_count": 2
+        },
+        "name": "libuuid",
+        "sha256": "f34b8d1de9a2bf62476d8608057d9b8a918d97444236dc53a47128f2fae79041",
+        "size": 34442,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_0.conda",
+        "version": "2.42.4"
+      },
+      "libzlib": {
+        "build": "h25fd6f3_3",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0"
+        ],
+        "fn": "libzlib-1.3.2-h25fd6f3_3.conda",
+        "linked": {
+          "regular_bytes": 117168,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "libzlib",
+        "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+        "size": 63713,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda",
+        "version": "1.3.2"
+      },
+      "ncurses": {
+        "build": "hdb14827_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "ncurses-6.6-hdb14827_1.conda",
+        "linked": {
+          "regular_bytes": 4745811,
+          "regular_file_count": 1917,
+          "symlink_count": 1097
+        },
+        "name": "ncurses",
+        "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+        "size": 911196,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda",
+        "version": "6.6"
+      },
+      "openssl": {
+        "build": "h781a0a9_0",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "ca-certificates",
+          "libgcc >=15"
+        ],
+        "fn": "openssl-3.6.5-h781a0a9_0.conda",
+        "linked": {
+          "regular_bytes": 11864201,
+          "regular_file_count": 158,
+          "symlink_count": 3
+        },
+        "name": "openssl",
+        "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+        "size": 3195299,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda",
+        "version": "3.6.5"
+      },
+      "pip": {
+        "build": "pyh145f28c_0",
+        "depends": [
+          "python >=3.13.0a0"
+        ],
+        "fn": "pip-26.2.1-pyh145f28c_0.conda",
+        "linked": {
+          "regular_bytes": 11470862,
+          "regular_file_count": 885,
+          "symlink_count": 0
+        },
+        "name": "pip",
+        "sha256": "0f7021cfb3ff454c91a5e28e1f5060906a52c6d1cde3f879a7d03ac33c28b1c3",
+        "size": 1198163,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda",
+        "version": "26.2.1"
+      },
+      "python": {
+        "build": "hcd007b5_100_cp314",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "bzip2 >=1.0.8,<2.0a0",
+          "ld_impl_linux-64 >=2.36.1",
+          "libexpat >=2.8.5,<3.0a0",
+          "libffi >=3.7.0,<3.8.0a0",
+          "libgcc >=15",
+          "liblzma >=5.8.3,<6.0a0",
+          "libmpdec >=4.0.0,<5.0a0",
+          "libpython 3.14.8 hdc7f604_100_cp314",
+          "libsqlite >=3.53.4,<4.0a0",
+          "libuuid >=2.42.4,<3.0a0",
+          "libzlib >=1.3.2,<2.0a0",
+          "ncurses >=6.6,<7.0a0",
+          "openssl >=3.5.9,<4.0a0",
+          "python_abi 3.14.* *_cp314",
+          "readline >=8.3,<9.0a0",
+          "tk >=8.6.13,<8.7.0a0",
+          "tzdata",
+          "zstd >=1.5.7,<1.6.0a0",
+          "pip"
+        ],
+        "fn": "python-3.14.8-hcd007b5_100_cp314.conda",
+        "linked": {
+          "regular_bytes": 93400895,
+          "regular_file_count": 1932,
+          "symlink_count": 11
+        },
+        "name": "python",
+        "sha256": "c47b0695966c0f5c61dbad05b4d8964fdfbe91943be5c1a7e97d728e921f5f8e",
+        "size": 26492080,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.8-hcd007b5_100_cp314.conda",
+        "version": "3.14.8"
+      },
+      "python_abi": {
+        "build": "9_cp314",
+        "depends": [],
+        "fn": "python_abi-3.14-9_cp314.conda",
+        "linked": {
+          "regular_bytes": 0,
+          "regular_file_count": 0,
+          "symlink_count": 0
+        },
+        "name": "python_abi",
+        "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+        "size": 6791,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda",
+        "version": "3.14"
+      },
+      "readline": {
+        "build": "hd6e31c0_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15",
+          "ncurses >=6.6,<7.0a0"
+        ],
+        "fn": "readline-8.3-hd6e31c0_1.conda",
+        "linked": {
+          "regular_bytes": 1939467,
+          "regular_file_count": 23,
+          "symlink_count": 4
+        },
+        "name": "readline",
+        "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+        "size": 348899,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda",
+        "version": "8.3"
+      },
+      "tk": {
+        "build": "noxft_h1df4ec4_4",
+        "depends": [
+          "libgcc >=15",
+          "__glibc >=2.17,<3.0.a0",
+          "libzlib >=1.3.2,<2.0a0"
+        ],
+        "fn": "tk-8.6.13-noxft_h1df4ec4_4.conda",
+        "linked": {
+          "regular_bytes": 11437118,
+          "regular_file_count": 518,
+          "symlink_count": 2
+        },
+        "name": "tk",
+        "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+        "size": 3566806,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda",
+        "version": "8.6.13"
+      },
+      "tzdata": {
+        "build": "h151e31d_0",
+        "depends": [],
+        "fn": "tzdata-2026c-h151e31d_0.conda",
+        "linked": {
+          "regular_bytes": 509706,
+          "regular_file_count": 606,
+          "symlink_count": 0
+        },
+        "name": "tzdata",
+        "sha256": "b928c30ddcb0e3f544c6eade8352737e6e610e263276b90232db6a578ef899d8",
+        "size": 118849,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda",
+        "version": "2026c"
+      },
+      "zstd": {
+        "build": "hb78ec9c_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libzlib >=1.3.2,<2.0a0"
+        ],
+        "fn": "zstd-1.5.7-hb78ec9c_7.conda",
+        "linked": {
+          "regular_bytes": 1645318,
+          "regular_file_count": 13,
+          "symlink_count": 5
+        },
+        "name": "zstd",
+        "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+        "size": 601301,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda",
+        "version": "1.5.7"
+      }
+    },
+    "prefix": "/tmp/ackredit118-study/python"
+  },
+  "increment": {
+    "archive_bytes": 531471,
+    "changed_control_packages": [],
+    "linked_regular_bytes": 2640785,
+    "packages": [
+      "ackredit",
+      "argdigest",
+      "depdigest",
+      "pyyaml",
+      "smonitor",
+      "yaml"
+    ],
+    "shared_linked_regular_bytes_delta": 0
+  },
+  "installation_observations": {
+    "channel_priority": "strict",
+    "channels": [
+      "uibcdf",
+      "conda-forge"
+    ],
+    "conda_version": "26.7.1",
+    "default_packages": false,
+    "execution": "The two native creates overlapped; each used its own initially empty repodata/archive cache. Wall times are observations only, not a latency comparison.",
+    "transactions": {
+      "public": {
+        "cache": "new separate package and repodata cache",
+        "command": [
+          "conda",
+          "create",
+          "--yes",
+          "--json",
+          "--no-default-packages",
+          "--prefix",
+          "/tmp/ackredit118-study/public",
+          "--override-channels",
+          "--strict-channel-priority",
+          "-c",
+          "uibcdf",
+          "-c",
+          "conda-forge",
+          "python=3.14",
+          "ackredit=0.11.0=py_0"
+        ],
+        "configuration": {
+          "create_default_packages": []
+        },
+        "elapsed_seconds": 20.356293021002784,
+        "native_transaction_sha256": "a6a90a447f15de455b3237406b6074072249c55a7570e86660b84d0d67cd34c1",
+        "returncode": 0,
+        "stderr": "WARNING conda.conda_pypi.main:notify_externally_managed_future(156): \n  Did you know? You can install many PyPI packages with conda\n  using the conda-pypi beta. Get started:\n    https://docs.conda.io/projects/conda/en/stable/new-features.html\n\n",
+        "success": true
+      },
+      "python": {
+        "cache": "new separate package and repodata cache",
+        "command": [
+          "conda",
+          "create",
+          "--yes",
+          "--json",
+          "--no-default-packages",
+          "--prefix",
+          "/tmp/ackredit118-study/python",
+          "--override-channels",
+          "--strict-channel-priority",
+          "-c",
+          "uibcdf",
+          "-c",
+          "conda-forge",
+          "python=3.14"
+        ],
+        "configuration": {
+          "create_default_packages": []
+        },
+        "elapsed_seconds": 20.30019155400805,
+        "native_transaction_sha256": "eaa79a6e5b99d2731a9f1ca04d9e58b3dd3682c68210de080cf56d6da17d6e16",
+        "returncode": 0,
+        "stderr": "WARNING conda.conda_pypi.main:notify_externally_managed_future(156): \n  Did you know? You can install many PyPI packages with conda\n  using the conda-pypi beta. Get started:\n    https://docs.conda.io/projects/conda/en/stable/new-features.html\n\n",
+        "success": true
+      }
+    }
+  },
+  "installed_smoke": {
+    "portable_attribution": "passed",
+    "providers": {
+      "ackredit": {
+        "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/ackredit/__init__.py",
+        "version": "0.11.0"
+      },
+      "argdigest": {
+        "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/argdigest/__init__.py",
+        "version": "0.14.0"
+      },
+      "depdigest": {
+        "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/depdigest/__init__.py",
+        "version": "0.13.0"
+      },
+      "smonitor": {
+        "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/smonitor/__init__.py",
+        "version": "0.18.0"
+      }
+    },
+    "python": "3.14.8",
+    "requires_python": "<3.15,>=3.11"
+  },
+  "issue": "uibcdf/ackredit#118",
+  "lifecycle": {
+    "identities": {
+      "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944": {
+        "ackredit": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/ackredit_1791271301123/work"
+          },
+          "distribution_version": "0.11.0",
+          "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/ackredit/__init__.py",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "runtime_version": "0.11.0",
+          "source_file_count": 70,
+          "source_tree_sha256": "e11ec809e06dea860cd7d8852072363c24c916cb4e5ee8d4e63a88cfe5efed56"
+        },
+        "argdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/miniconda3/envs/noarch-publisher/conda-bld/argdigest_1791125235223/work"
+          },
+          "distribution_version": "0.14.0",
+          "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/argdigest/__init__.py",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "runtime_version": "0.14.0",
+          "source_file_count": 37,
+          "source_tree_sha256": "e8316180022324f9afe620e3f90fa7b85d26b44376dad680657be7a2e13f123e"
+        },
+        "depdigest": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/depdigest_1791108193170/work"
+          },
+          "distribution_version": "0.13.0",
+          "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/depdigest/__init__.py",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "runtime_version": "0.13.0",
+          "source_file_count": 16,
+          "source_tree_sha256": "3983ad92ffe919bb2d164204acb27e75acd8749a20dcd16339b91c9134a3d384"
+        },
+        "smonitor": {
+          "direct_url": {
+            "dir_info": {},
+            "url": "file:///home/runner/micromamba/envs/build/conda-bld/smonitor_1790456540381/work"
+          },
+          "distribution_version": "0.18.0",
+          "origin": "/tmp/ackredit118-study/public/lib/python3.14/site-packages/smonitor/__init__.py",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "runtime_version": "0.18.0",
+          "source_file_count": 37,
+          "source_tree_sha256": "ee96f875d1e59e61243cf996cbaac8248a5863275afc716cd41021b50e75e9e9"
+        }
+      }
+    },
+    "results": {
+      "cold_import": {
+        "case": {
+          "kind": "import"
+        },
+        "memory_samples": [
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_compat_pickle",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_pickle",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_tracemalloc",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "gc",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pickle",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "tracemalloc",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_compat_pickle",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_imp",
+                "_io",
+                "_operator",
+                "_pickle",
+                "_signal",
+                "_sitebuiltins",
+                "_sre",
+                "_stat",
+                "_struct",
+                "_thread",
+                "_tracemalloc",
+                "_types",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "collections",
+                "collections.abc",
+                "copyreg",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "enum",
+                "errno",
+                "fnmatch",
+                "functools",
+                "gc",
+                "genericpath",
+                "io",
+                "itertools",
+                "keyword",
+                "linecache",
+                "marshal",
+                "operator",
+                "os",
+                "os.path",
+                "pickle",
+                "posix",
+                "posixpath",
+                "re",
+                "re._casefix",
+                "re._compiler",
+                "re._constants",
+                "re._parser",
+                "reprlib",
+                "site",
+                "stat",
+                "struct",
+                "sys",
+                "time",
+                "tracemalloc",
+                "types",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "peak_extra_bytes": 171,
+                "retained_delta_bytes": 171
+              },
+              "first_registration": {
+                "peak_extra_bytes": 3232,
+                "retained_delta_bytes": 1275
+              },
+              "import": {
+                "peak_extra_bytes": 11032415,
+                "retained_delta_bytes": 10888584
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_compat_pickle",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_pickle",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_tracemalloc",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "gc",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pickle",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "tracemalloc",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_compat_pickle",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_imp",
+                "_io",
+                "_operator",
+                "_pickle",
+                "_signal",
+                "_sitebuiltins",
+                "_sre",
+                "_stat",
+                "_struct",
+                "_thread",
+                "_tracemalloc",
+                "_types",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "collections",
+                "collections.abc",
+                "copyreg",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "enum",
+                "errno",
+                "fnmatch",
+                "functools",
+                "gc",
+                "genericpath",
+                "io",
+                "itertools",
+                "keyword",
+                "linecache",
+                "marshal",
+                "operator",
+                "os",
+                "os.path",
+                "pickle",
+                "posix",
+                "posixpath",
+                "re",
+                "re._casefix",
+                "re._compiler",
+                "re._constants",
+                "re._parser",
+                "reprlib",
+                "site",
+                "stat",
+                "struct",
+                "sys",
+                "time",
+                "tracemalloc",
+                "types",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "peak_extra_bytes": 216,
+                "retained_delta_bytes": 216
+              },
+              "first_registration": {
+                "peak_extra_bytes": 3143,
+                "retained_delta_bytes": 1131
+              },
+              "import": {
+                "peak_extra_bytes": 11033228,
+                "retained_delta_bytes": 10889397
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_compat_pickle",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_pickle",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_tracemalloc",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "gc",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pickle",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "tracemalloc",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_compat_pickle",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_imp",
+                "_io",
+                "_operator",
+                "_pickle",
+                "_signal",
+                "_sitebuiltins",
+                "_sre",
+                "_stat",
+                "_struct",
+                "_thread",
+                "_tracemalloc",
+                "_types",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "collections",
+                "collections.abc",
+                "copyreg",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "enum",
+                "errno",
+                "fnmatch",
+                "functools",
+                "gc",
+                "genericpath",
+                "io",
+                "itertools",
+                "keyword",
+                "linecache",
+                "marshal",
+                "operator",
+                "os",
+                "os.path",
+                "pickle",
+                "posix",
+                "posixpath",
+                "re",
+                "re._casefix",
+                "re._compiler",
+                "re._constants",
+                "re._parser",
+                "reprlib",
+                "site",
+                "stat",
+                "struct",
+                "sys",
+                "time",
+                "tracemalloc",
+                "types",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "peak_extra_bytes": 216,
+                "retained_delta_bytes": 216
+              },
+              "first_registration": {
+                "peak_extra_bytes": 3322,
+                "retained_delta_bytes": 1365
+              },
+              "import": {
+                "peak_extra_bytes": 11032593,
+                "retained_delta_bytes": 10888762
+              }
+            },
+            "stderr": ""
+          }
+        ],
+        "memory_summary": {
+          "first_credit": {
+            "peak_extra_bytes": {
+              "maximum": 216,
+              "median": 216,
+              "minimum": 171,
+              "spread": 45
+            },
+            "retained_delta_bytes": {
+              "maximum": 216,
+              "median": 216,
+              "minimum": 171,
+              "spread": 45
+            }
+          },
+          "first_registration": {
+            "peak_extra_bytes": {
+              "maximum": 3322,
+              "median": 3232,
+              "minimum": 3143,
+              "spread": 179
+            },
+            "retained_delta_bytes": {
+              "maximum": 1365,
+              "median": 1275,
+              "minimum": 1131,
+              "spread": 234
+            }
+          },
+          "import": {
+            "peak_extra_bytes": {
+              "maximum": 11033228,
+              "median": 11032593,
+              "minimum": 11032415,
+              "spread": 813
+            },
+            "retained_delta_bytes": {
+              "maximum": 10889397,
+              "median": 10888762,
+              "minimum": 10888584,
+              "spread": 813
+            }
+          }
+        },
+        "timing_samples": [
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 21.863
+              },
+              "first_registration": {
+                "elapsed_us": 142.791
+              },
+              "import": {
+                "elapsed_us": 170129.757
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 24.301
+              },
+              "first_registration": {
+                "elapsed_us": 149.064
+              },
+              "import": {
+                "elapsed_us": 171733.677
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 23.762
+              },
+              "first_registration": {
+                "elapsed_us": 161.178
+              },
+              "import": {
+                "elapsed_us": 167946.34
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 21.888
+              },
+              "first_registration": {
+                "elapsed_us": 149.134
+              },
+              "import": {
+                "elapsed_us": 163704.989
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 23.772
+              },
+              "first_registration": {
+                "elapsed_us": 147.018
+              },
+              "import": {
+                "elapsed_us": 173698.693
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 22.15
+              },
+              "first_registration": {
+                "elapsed_us": 144.473
+              },
+              "import": {
+                "elapsed_us": 166601.031
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "loaded_roots_after_import": [
+                "__future__",
+                "__main__",
+                "_abc",
+                "_ast",
+                "_bisect",
+                "_blake2",
+                "_bz2",
+                "_codecs",
+                "_collections",
+                "_collections_abc",
+                "_colorize",
+                "_contextvars",
+                "_datetime",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_functools",
+                "_hashlib",
+                "_heapq",
+                "_imp",
+                "_io",
+                "_json",
+                "_locale",
+                "_lzma",
+                "_opcode",
+                "_opcode_metadata",
+                "_operator",
+                "_posixsubprocess",
+                "_py_warnings",
+                "_random",
+                "_signal",
+                "_sitebuiltins",
+                "_socket",
+                "_sre",
+                "_ssl",
+                "_stat",
+                "_string",
+                "_struct",
+                "_thread",
+                "_tokenize",
+                "_types",
+                "_typing",
+                "_uuid",
+                "_warnings",
+                "_weakref",
+                "_weakrefset",
+                "_zstd",
+                "abc",
+                "ackredit",
+                "annotationlib",
+                "argdigest",
+                "ast",
+                "atexit",
+                "base64",
+                "binascii",
+                "bisect",
+                "builtins",
+                "bz2",
+                "codecs",
+                "codeop",
+                "collections",
+                "compression",
+                "contextlib",
+                "contextvars",
+                "copy",
+                "copyreg",
+                "dataclasses",
+                "datetime",
+                "depdigest",
+                "difflib",
+                "dis",
+                "email",
+                "encodings",
+                "enum",
+                "errno",
+                "fcntl",
+                "fnmatch",
+                "functools",
+                "genericpath",
+                "glob",
+                "grp",
+                "hashlib",
+                "heapq",
+                "html",
+                "http",
+                "importlib",
+                "inspect",
+                "io",
+                "ipaddress",
+                "itertools",
+                "json",
+                "keyword",
+                "linecache",
+                "locale",
+                "logging",
+                "lzma",
+                "marshal",
+                "math",
+                "ntpath",
+                "opcode",
+                "operator",
+                "os",
+                "pathlib",
+                "pkgutil",
+                "platform",
+                "posix",
+                "posixpath",
+                "pwd",
+                "quopri",
+                "random",
+                "re",
+                "reprlib",
+                "select",
+                "selectors",
+                "shutil",
+                "signal",
+                "site",
+                "smonitor",
+                "socket",
+                "ssl",
+                "stat",
+                "string",
+                "struct",
+                "subprocess",
+                "sys",
+                "tempfile",
+                "textwrap",
+                "threading",
+                "time",
+                "token",
+                "tokenize",
+                "traceback",
+                "types",
+                "typing",
+                "urllib",
+                "uuid",
+                "warnings",
+                "weakref",
+                "zipfile",
+                "zipimport",
+                "zlib"
+              ],
+              "modules_before_import": [
+                "__main__",
+                "_abc",
+                "_codecs",
+                "_collections_abc",
+                "_frozen_importlib",
+                "_frozen_importlib_external",
+                "_imp",
+                "_io",
+                "_signal",
+                "_sitebuiltins",
+                "_stat",
+                "_thread",
+                "_warnings",
+                "_weakref",
+                "abc",
+                "builtins",
+                "codecs",
+                "encodings",
+                "encodings.aliases",
+                "encodings.utf_8",
+                "encodings.utf_8_sig",
+                "errno",
+                "genericpath",
+                "linecache",
+                "marshal",
+                "os",
+                "os.path",
+                "posix",
+                "posixpath",
+                "site",
+                "stat",
+                "sys",
+                "time",
+                "zipimport"
+              ],
+              "plugins": []
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "first_credit": {
+                "elapsed_us": 22.271
+              },
+              "first_registration": {
+                "elapsed_us": 141.247
+              },
+              "import": {
+                "elapsed_us": 183267.13
+              }
+            },
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "first_credit": {
+            "elapsed_us": {
+              "maximum": 24.301,
+              "median": 22.271,
+              "minimum": 21.863,
+              "spread": 2.437999999999999
+            }
+          },
+          "first_registration": {
+            "elapsed_us": {
+              "maximum": 161.178,
+              "median": 147.018,
+              "minimum": 141.247,
+              "spread": 19.930999999999983
+            }
+          },
+          "import": {
+            "elapsed_us": {
+              "maximum": 183267.13,
+              "median": 170129.757,
+              "minimum": 163704.989,
+              "spread": 19562.141000000003
+            }
+          }
+        }
+      },
+      "first_report": {
+        "case": {
+          "kind": "references",
+          "repeat_report": true,
+          "size": 1
+        },
+        "memory_samples": [
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "peak_extra_bytes": 2024,
+                "retained_delta_bytes": 772
+              },
+              "capture_entry": {
+                "peak_extra_bytes": 1858,
+                "retained_delta_bytes": 1818
+              },
+              "capture_exit": {
+                "peak_extra_bytes": 344,
+                "retained_delta_bytes": -16
+              },
+              "json_export": {
+                "peak_extra_bytes": 2221,
+                "retained_delta_bytes": 533
+              },
+              "repeated_workflow_report": {
+                "peak_extra_bytes": 4850,
+                "retained_delta_bytes": 1792
+              },
+              "snapshot": {
+                "peak_extra_bytes": 7825,
+                "retained_delta_bytes": 5748
+              },
+              "unique_tracking": {
+                "peak_extra_bytes": 8311,
+                "retained_delta_bytes": 7815
+              },
+              "workflow_report": {
+                "peak_extra_bytes": 145171,
+                "retained_delta_bytes": 7871
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "peak_extra_bytes": 2024,
+                "retained_delta_bytes": 772
+              },
+              "capture_entry": {
+                "peak_extra_bytes": 1858,
+                "retained_delta_bytes": 1818
+              },
+              "capture_exit": {
+                "peak_extra_bytes": 344,
+                "retained_delta_bytes": -16
+              },
+              "json_export": {
+                "peak_extra_bytes": 2221,
+                "retained_delta_bytes": 533
+              },
+              "repeated_workflow_report": {
+                "peak_extra_bytes": 4850,
+                "retained_delta_bytes": 1792
+              },
+              "snapshot": {
+                "peak_extra_bytes": 7825,
+                "retained_delta_bytes": 5748
+              },
+              "unique_tracking": {
+                "peak_extra_bytes": 8311,
+                "retained_delta_bytes": 7815
+              },
+              "workflow_report": {
+                "peak_extra_bytes": 145171,
+                "retained_delta_bytes": 7871
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "peak_extra_bytes": 2024,
+                "retained_delta_bytes": 772
+              },
+              "capture_entry": {
+                "peak_extra_bytes": 1858,
+                "retained_delta_bytes": 1818
+              },
+              "capture_exit": {
+                "peak_extra_bytes": 344,
+                "retained_delta_bytes": -16
+              },
+              "json_export": {
+                "peak_extra_bytes": 2221,
+                "retained_delta_bytes": 533
+              },
+              "repeated_workflow_report": {
+                "peak_extra_bytes": 4850,
+                "retained_delta_bytes": 1792
+              },
+              "snapshot": {
+                "peak_extra_bytes": 7825,
+                "retained_delta_bytes": 5748
+              },
+              "unique_tracking": {
+                "peak_extra_bytes": 8311,
+                "retained_delta_bytes": 7815
+              },
+              "workflow_report": {
+                "peak_extra_bytes": 145171,
+                "retained_delta_bytes": 7871
+              }
+            },
+            "stderr": ""
+          }
+        ],
+        "memory_summary": {
+          "bibtex_report": {
+            "peak_extra_bytes": {
+              "maximum": 2024,
+              "median": 2024,
+              "minimum": 2024,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 772,
+              "median": 772,
+              "minimum": 772,
+              "spread": 0
+            }
+          },
+          "capture_entry": {
+            "peak_extra_bytes": {
+              "maximum": 1858,
+              "median": 1858,
+              "minimum": 1858,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 1818,
+              "median": 1818,
+              "minimum": 1818,
+              "spread": 0
+            }
+          },
+          "capture_exit": {
+            "peak_extra_bytes": {
+              "maximum": 344,
+              "median": 344,
+              "minimum": 344,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": -16,
+              "median": -16,
+              "minimum": -16,
+              "spread": 0
+            }
+          },
+          "json_export": {
+            "peak_extra_bytes": {
+              "maximum": 2221,
+              "median": 2221,
+              "minimum": 2221,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 533,
+              "median": 533,
+              "minimum": 533,
+              "spread": 0
+            }
+          },
+          "repeated_workflow_report": {
+            "peak_extra_bytes": {
+              "maximum": 4850,
+              "median": 4850,
+              "minimum": 4850,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 1792,
+              "median": 1792,
+              "minimum": 1792,
+              "spread": 0
+            }
+          },
+          "snapshot": {
+            "peak_extra_bytes": {
+              "maximum": 7825,
+              "median": 7825,
+              "minimum": 7825,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 5748,
+              "median": 5748,
+              "minimum": 5748,
+              "spread": 0
+            }
+          },
+          "unique_tracking": {
+            "peak_extra_bytes": {
+              "maximum": 8311,
+              "median": 8311,
+              "minimum": 8311,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 7815,
+              "median": 7815,
+              "minimum": 7815,
+              "spread": 0
+            }
+          },
+          "workflow_report": {
+            "peak_extra_bytes": {
+              "maximum": 145171,
+              "median": 145171,
+              "minimum": 145171,
+              "spread": 0
+            },
+            "retained_delta_bytes": {
+              "maximum": 7871,
+              "median": 7871,
+              "minimum": 7871,
+              "spread": 0
+            }
+          }
+        },
+        "timing_samples": [
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 153.617
+              },
+              "capture_entry": {
+                "elapsed_us": 37.332
+              },
+              "capture_exit": {
+                "elapsed_us": 15.618
+              },
+              "json_export": {
+                "elapsed_us": 28.494
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 305.831
+              },
+              "snapshot": {
+                "elapsed_us": 142.635
+              },
+              "unique_tracking": {
+                "elapsed_us": 185.577
+              },
+              "workflow_report": {
+                "elapsed_us": 2136.275
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 101.777
+              },
+              "capture_entry": {
+                "elapsed_us": 37.634
+              },
+              "capture_exit": {
+                "elapsed_us": 12.327
+              },
+              "json_export": {
+                "elapsed_us": 27.932
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 199.023
+              },
+              "snapshot": {
+                "elapsed_us": 142.641
+              },
+              "unique_tracking": {
+                "elapsed_us": 189.663
+              },
+              "workflow_report": {
+                "elapsed_us": 1289.014
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 100.789
+              },
+              "capture_entry": {
+                "elapsed_us": 39.004
+              },
+              "capture_exit": {
+                "elapsed_us": 12.245
+              },
+              "json_export": {
+                "elapsed_us": 27.979
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 186.503
+              },
+              "snapshot": {
+                "elapsed_us": 149.618
+              },
+              "unique_tracking": {
+                "elapsed_us": 187.244
+              },
+              "workflow_report": {
+                "elapsed_us": 1275.078
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 106.715
+              },
+              "capture_entry": {
+                "elapsed_us": 31.767
+              },
+              "capture_exit": {
+                "elapsed_us": 15.871
+              },
+              "json_export": {
+                "elapsed_us": 21.728
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 197.998
+              },
+              "snapshot": {
+                "elapsed_us": 143.132
+              },
+              "unique_tracking": {
+                "elapsed_us": 170.654
+              },
+              "workflow_report": {
+                "elapsed_us": 1302.103
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 104.021
+              },
+              "capture_entry": {
+                "elapsed_us": 38.959
+              },
+              "capture_exit": {
+                "elapsed_us": 11.95
+              },
+              "json_export": {
+                "elapsed_us": 27.97
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 189.212
+              },
+              "snapshot": {
+                "elapsed_us": 152.744
+              },
+              "unique_tracking": {
+                "elapsed_us": 185.989
+              },
+              "workflow_report": {
+                "elapsed_us": 1296.069
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 121.242
+              },
+              "capture_entry": {
+                "elapsed_us": 47.267
+              },
+              "capture_exit": {
+                "elapsed_us": 11.514
+              },
+              "json_export": {
+                "elapsed_us": 21.867
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 140.507
+              },
+              "snapshot": {
+                "elapsed_us": 129.421
+              },
+              "unique_tracking": {
+                "elapsed_us": 145.228
+              },
+              "workflow_report": {
+                "elapsed_us": 1171.938
+              }
+            },
+            "stderr": ""
+          },
+          {
+            "facts": {
+              "bibtex_bytes": 44,
+              "edges": 1,
+              "json_bytes": 492,
+              "nodes": 2,
+              "references": 1,
+              "workflow_bytes": 647
+            },
+            "identity_id": "ab20320c21eda9a15e81a4d5c833336eff517e65b2af052529286015e8544944",
+            "measurements": {
+              "bibtex_report": {
+                "elapsed_us": 105.88
+              },
+              "capture_entry": {
+                "elapsed_us": 40.542
+              },
+              "capture_exit": {
+                "elapsed_us": 12.007
+              },
+              "json_export": {
+                "elapsed_us": 27.741
+              },
+              "repeated_workflow_report": {
+                "elapsed_us": 197.188
+              },
+              "snapshot": {
+                "elapsed_us": 144.354
+              },
+              "unique_tracking": {
+                "elapsed_us": 196.725
+              },
+              "workflow_report": {
+                "elapsed_us": 1327.311
+              }
+            },
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "bibtex_report": {
+            "elapsed_us": {
+              "maximum": 153.617,
+              "median": 105.88,
+              "minimum": 100.789,
+              "spread": 52.82799999999999
+            }
+          },
+          "capture_entry": {
+            "elapsed_us": {
+              "maximum": 47.267,
+              "median": 38.959,
+              "minimum": 31.767,
+              "spread": 15.500000000000004
+            }
+          },
+          "capture_exit": {
+            "elapsed_us": {
+              "maximum": 15.871,
+              "median": 12.245,
+              "minimum": 11.514,
+              "spread": 4.357000000000001
+            }
+          },
+          "json_export": {
+            "elapsed_us": {
+              "maximum": 28.494,
+              "median": 27.932,
+              "minimum": 21.728,
+              "spread": 6.765999999999998
+            }
+          },
+          "repeated_workflow_report": {
+            "elapsed_us": {
+              "maximum": 305.831,
+              "median": 197.188,
+              "minimum": 140.507,
+              "spread": 165.324
+            }
+          },
+          "snapshot": {
+            "elapsed_us": {
+              "maximum": 152.744,
+              "median": 143.132,
+              "minimum": 129.421,
+              "spread": 23.323000000000008
+            }
+          },
+          "unique_tracking": {
+            "elapsed_us": {
+              "maximum": 196.725,
+              "median": 185.989,
+              "minimum": 145.228,
+              "spread": 51.496999999999986
+            }
+          },
+          "workflow_report": {
+            "elapsed_us": {
+              "maximum": 2136.275,
+              "median": 1296.069,
+              "minimum": 1171.938,
+              "spread": 964.337
+            }
+          }
+        }
+      }
+    }
+  },
+  "limits": [
+    "One Linux/Python 3.14 public closure; no new release qualification.",
+    "Archive lengths and recorded regular-file lengths, not RSS or physical disk usage.",
+    "Native recorded files include bytecode; unrecorded later imports are excluded.",
+    "Fresh processes use warmed OS/filesystem caches after smoke verification.",
+    "No installation latency benchmark, scientific workload or third-party plugin claim.",
+    "Public runtime identities differ from the newer developer-wheel studies."
+  ],
+  "platform": "linux",
+  "public_identity": {
+    "filename": "ackredit-0.11.0-py_0.tar.bz2",
+    "producer_source": "85deae594e65b2fd443d6ca9a7347eb2bda537e1",
+    "sha256": "df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f"
+  },
+  "python": "3.14.8",
+  "receiving": {
+    "archive_bytes": 58399446,
+    "linked_regular_bytes": 213383284,
+    "package_count": 30,
+    "packages": {
+      "_openmp_mutex": {
+        "build": "20_gnu",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgomp >=7.5.0"
+        ],
+        "fn": "_openmp_mutex-4.5-20_gnu.conda",
+        "linked": {
+          "regular_bytes": 0,
+          "regular_file_count": 0,
+          "symlink_count": 1
+        },
+        "name": "_openmp_mutex",
+        "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+        "size": 28948,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda",
+        "version": "4.5"
+      },
+      "ackredit": {
+        "build": "py_0",
+        "depends": [
+          "argdigest >=0.13.0",
+          "depdigest >=0.11.0",
+          "python >=3.11,<3.15",
+          "pyyaml >=6",
+          "smonitor >=0.16.0"
+        ],
+        "fn": "ackredit-0.11.0-py_0.tar.bz2",
+        "linked": {
+          "regular_bytes": 678116,
+          "regular_file_count": 149,
+          "symlink_count": 0
+        },
+        "name": "ackredit",
+        "sha256": "df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f",
+        "size": 115481,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.11.0-py_0.tar.bz2",
+        "version": "0.11.0"
+      },
+      "argdigest": {
+        "build": "py_0",
+        "depends": [
+          "depdigest >=0.11.0",
+          "python >=3.11,<3.15",
+          "smonitor >=0.16.0"
+        ],
+        "fn": "argdigest-0.14.0-py_0.tar.bz2",
+        "linked": {
+          "regular_bytes": 354073,
+          "regular_file_count": 84,
+          "symlink_count": 0
+        },
+        "name": "argdigest",
+        "sha256": "983dca0f6bd0944d81fb1efc01e1dfa5c951e95abac6e7a0a08a13b7370d3b9e",
+        "size": 51615,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.14.0-py_0.tar.bz2",
+        "version": "0.14.0"
+      },
+      "bzip2": {
+        "build": "hda65f42_10",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "bzip2-1.0.8-hda65f42_10.conda",
+        "linked": {
+          "regular_bytes": 1522721,
+          "regular_file_count": 18,
+          "symlink_count": 6
+        },
+        "name": "bzip2",
+        "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+        "size": 257808,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda",
+        "version": "1.0.8"
+      },
+      "ca-certificates": {
+        "build": "hbd8a1cb_0",
+        "depends": [
+          "__unix"
+        ],
+        "fn": "ca-certificates-2026.7.22-hbd8a1cb_0.conda",
+        "linked": {
+          "regular_bytes": 240216,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "ca-certificates",
+        "sha256": "0a0544cf95f64394fe4959286f5c71f5444ad58feb0602e53becb27448d24da6",
+        "size": 131780,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.7.22-hbd8a1cb_0.conda",
+        "version": "2026.7.22"
+      },
+      "depdigest": {
+        "build": "py_0",
+        "depends": [
+          "python >=3.11,<3.15",
+          "smonitor >=0.13.0"
+        ],
+        "fn": "depdigest-0.13.0-py_0.tar.bz2",
+        "linked": {
+          "regular_bytes": 98323,
+          "regular_file_count": 42,
+          "symlink_count": 0
+        },
+        "name": "depdigest",
+        "sha256": "e011d725c8a831ae46cd6b8d114185d04248e32b4d6701c70f988d19cc69f67b",
+        "size": 26366,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.13.0-py_0.tar.bz2",
+        "version": "0.13.0"
+      },
+      "ld_impl_linux-64": {
+        "build": "default_hbd61a6d_102",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "zstd >=1.5.7,<1.6.0a0"
+        ],
+        "fn": "ld_impl_linux-64-2.46.1-default_hbd61a6d_102.conda",
+        "linked": {
+          "regular_bytes": 2966864,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "ld_impl_linux-64",
+        "sha256": "27d83f1188cd19bcb7754a078b3fa7f4cfb8527f8eb2fde54dd01fc529d1adec",
+        "size": 745303,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_102.conda",
+        "version": "2.46.1"
+      },
+      "libexpat": {
+        "build": "hd2095e1_0",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15"
+        ],
+        "fn": "libexpat-2.8.5-hd2095e1_0.conda",
+        "linked": {
+          "regular_bytes": 195584,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "libexpat",
+        "sha256": "6de73033a7c5f712c9c5a54124e4581e025691029835e5bceaf10a333a7e7bc0",
+        "size": 77893,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.8.5-hd2095e1_0.conda",
+        "version": "2.8.5"
+      },
+      "libffi": {
+        "build": "h81df57d_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15"
+        ],
+        "fn": "libffi-3.7.0-h81df57d_1.conda",
+        "linked": {
+          "regular_bytes": 231719,
+          "regular_file_count": 10,
+          "symlink_count": 2
+        },
+        "name": "libffi",
+        "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+        "size": 68004,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda",
+        "version": "3.7.0"
+      },
+      "libgcc": {
+        "build": "ha9f2e26_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "_openmp_mutex >=4.5"
+        ],
+        "fn": "libgcc-16.2.0-ha9f2e26_7.conda",
+        "linked": {
+          "regular_bytes": 3539617,
+          "regular_file_count": 9,
+          "symlink_count": 6
+        },
+        "name": "libgcc",
+        "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+        "size": 1058444,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda",
+        "version": "16.2.0"
+      },
+      "libgomp": {
+        "build": "he0feb66_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0"
+        ],
+        "fn": "libgomp-16.2.0-he0feb66_7.conda",
+        "linked": {
+          "regular_bytes": 1677940,
+          "regular_file_count": 2,
+          "symlink_count": 1
+        },
+        "name": "libgomp",
+        "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+        "size": 640566,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda",
+        "version": "16.2.0"
+      },
+      "liblzma": {
+        "build": "hb03c661_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "liblzma-5.8.3-hb03c661_1.conda",
+        "linked": {
+          "regular_bytes": 445424,
+          "regular_file_count": 2,
+          "symlink_count": 0
+        },
+        "name": "liblzma",
+        "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+        "size": 112995,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda",
+        "version": "5.8.3"
+      },
+      "libmpdec": {
+        "build": "hb03c661_2",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "libmpdec-4.0.0-hb03c661_2.conda",
+        "linked": {
+          "regular_bytes": 232000,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "libmpdec",
+        "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+        "size": 92759,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda",
+        "version": "4.0.0"
+      },
+      "libpython": {
+        "build": "hdc7f604_100_cp314",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15",
+          "libstdcxx >=15"
+        ],
+        "fn": "libpython-3.14.8-hdc7f604_100_cp314.conda",
+        "linked": {
+          "regular_bytes": 36135456,
+          "regular_file_count": 2,
+          "symlink_count": 1
+        },
+        "name": "libpython",
+        "sha256": "1bb70b5d17d013d339861aa267fa4eaeb5fd77c2ec0f957bdcedb182191a5bab",
+        "size": 10533011,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.8-hdc7f604_100_cp314.conda",
+        "version": "3.14.8"
+      },
+      "libsqlite": {
+        "build": "h0737f62_103",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15",
+          "libzlib >=1.3.2,<2.0a0"
+        ],
+        "fn": "libsqlite-3.53.4-h0737f62_103.conda",
+        "linked": {
+          "regular_bytes": 2501182,
+          "regular_file_count": 4,
+          "symlink_count": 2
+        },
+        "name": "libsqlite",
+        "sha256": "66f4831f4ee3055f0ffe94e01901198cf3601e2c1b4f6b51d05c3f2d8557ce1d",
+        "size": 967489,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.4-h0737f62_103.conda",
+        "version": "3.53.4"
+      },
+      "libstdcxx": {
+        "build": "h934c35e_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc 16.2.0 ha9f2e26_7"
+        ],
+        "fn": "libstdcxx-16.2.0-h934c35e_7.conda",
+        "linked": {
+          "regular_bytes": 23877868,
+          "regular_file_count": 2,
+          "symlink_count": 2
+        },
+        "name": "libstdcxx",
+        "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+        "size": 6615436,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda",
+        "version": "16.2.0"
+      },
+      "libuuid": {
+        "build": "hcfc3c73_0",
+        "depends": [
+          "libgcc >=15",
+          "__glibc >=2.17,<3.0.a0"
+        ],
+        "fn": "libuuid-2.42.4-hcfc3c73_0.conda",
+        "linked": {
+          "regular_bytes": 45362,
+          "regular_file_count": 3,
+          "symlink_count": 2
+        },
+        "name": "libuuid",
+        "sha256": "f34b8d1de9a2bf62476d8608057d9b8a918d97444236dc53a47128f2fae79041",
+        "size": 34442,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_0.conda",
+        "version": "2.42.4"
+      },
+      "libzlib": {
+        "build": "h25fd6f3_3",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0"
+        ],
+        "fn": "libzlib-1.3.2-h25fd6f3_3.conda",
+        "linked": {
+          "regular_bytes": 117168,
+          "regular_file_count": 1,
+          "symlink_count": 1
+        },
+        "name": "libzlib",
+        "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+        "size": 63713,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda",
+        "version": "1.3.2"
+      },
+      "ncurses": {
+        "build": "hdb14827_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14"
+        ],
+        "fn": "ncurses-6.6-hdb14827_1.conda",
+        "linked": {
+          "regular_bytes": 4745811,
+          "regular_file_count": 1917,
+          "symlink_count": 1097
+        },
+        "name": "ncurses",
+        "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+        "size": 911196,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda",
+        "version": "6.6"
+      },
+      "openssl": {
+        "build": "h781a0a9_0",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "ca-certificates",
+          "libgcc >=15"
+        ],
+        "fn": "openssl-3.6.5-h781a0a9_0.conda",
+        "linked": {
+          "regular_bytes": 11864201,
+          "regular_file_count": 158,
+          "symlink_count": 3
+        },
+        "name": "openssl",
+        "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+        "size": 3195299,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda",
+        "version": "3.6.5"
+      },
+      "pip": {
+        "build": "pyh145f28c_0",
+        "depends": [
+          "python >=3.13.0a0"
+        ],
+        "fn": "pip-26.2.1-pyh145f28c_0.conda",
+        "linked": {
+          "regular_bytes": 11470862,
+          "regular_file_count": 885,
+          "symlink_count": 0
+        },
+        "name": "pip",
+        "sha256": "0f7021cfb3ff454c91a5e28e1f5060906a52c6d1cde3f879a7d03ac33c28b1c3",
+        "size": 1198163,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda",
+        "version": "26.2.1"
+      },
+      "python": {
+        "build": "hcd007b5_100_cp314",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "bzip2 >=1.0.8,<2.0a0",
+          "ld_impl_linux-64 >=2.36.1",
+          "libexpat >=2.8.5,<3.0a0",
+          "libffi >=3.7.0,<3.8.0a0",
+          "libgcc >=15",
+          "liblzma >=5.8.3,<6.0a0",
+          "libmpdec >=4.0.0,<5.0a0",
+          "libpython 3.14.8 hdc7f604_100_cp314",
+          "libsqlite >=3.53.4,<4.0a0",
+          "libuuid >=2.42.4,<3.0a0",
+          "libzlib >=1.3.2,<2.0a0",
+          "ncurses >=6.6,<7.0a0",
+          "openssl >=3.5.9,<4.0a0",
+          "python_abi 3.14.* *_cp314",
+          "readline >=8.3,<9.0a0",
+          "tk >=8.6.13,<8.7.0a0",
+          "tzdata",
+          "zstd >=1.5.7,<1.6.0a0",
+          "pip"
+        ],
+        "fn": "python-3.14.8-hcd007b5_100_cp314.conda",
+        "linked": {
+          "regular_bytes": 93400895,
+          "regular_file_count": 1932,
+          "symlink_count": 11
+        },
+        "name": "python",
+        "sha256": "c47b0695966c0f5c61dbad05b4d8964fdfbe91943be5c1a7e97d728e921f5f8e",
+        "size": 26492080,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.8-hcd007b5_100_cp314.conda",
+        "version": "3.14.8"
+      },
+      "python_abi": {
+        "build": "9_cp314",
+        "depends": [],
+        "fn": "python_abi-3.14-9_cp314.conda",
+        "linked": {
+          "regular_bytes": 0,
+          "regular_file_count": 0,
+          "symlink_count": 0
+        },
+        "name": "python_abi",
+        "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+        "size": 6791,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda",
+        "version": "3.14"
+      },
+      "pyyaml": {
+        "build": "py314h67df5f8_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=14",
+          "python >=3.14,<3.15.0a0",
+          "python_abi 3.14.* *_cp314",
+          "yaml >=0.2.5,<0.3.0a0"
+        ],
+        "fn": "pyyaml-6.0.3-py314h67df5f8_1.conda",
+        "linked": {
+          "regular_bytes": 736031,
+          "regular_file_count": 45,
+          "symlink_count": 0
+        },
+        "name": "pyyaml",
+        "sha256": "b318fb070c7a1f89980ef124b80a0b5ccf3928143708a85e0053cde0169c699d",
+        "size": 202391,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h67df5f8_1.conda",
+        "version": "6.0.3"
+      },
+      "readline": {
+        "build": "hd6e31c0_1",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15",
+          "ncurses >=6.6,<7.0a0"
+        ],
+        "fn": "readline-8.3-hd6e31c0_1.conda",
+        "linked": {
+          "regular_bytes": 1939467,
+          "regular_file_count": 23,
+          "symlink_count": 4
+        },
+        "name": "readline",
+        "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+        "size": 348899,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda",
+        "version": "8.3"
+      },
+      "smonitor": {
+        "build": "py_0",
+        "depends": [
+          "python >=3.11,<3.15"
+        ],
+        "fn": "smonitor-0.18.0-py_0.tar.bz2",
+        "linked": {
+          "regular_bytes": 404430,
+          "regular_file_count": 85,
+          "symlink_count": 0
+        },
+        "name": "smonitor",
+        "sha256": "7fba29b56853771ceaf477de50aeed0cf9e93e2053e484de4e18c18ea1abe578",
+        "size": 50682,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.18.0-py_0.tar.bz2",
+        "version": "0.18.0"
+      },
+      "tk": {
+        "build": "noxft_h1df4ec4_4",
+        "depends": [
+          "libgcc >=15",
+          "__glibc >=2.17,<3.0.a0",
+          "libzlib >=1.3.2,<2.0a0"
+        ],
+        "fn": "tk-8.6.13-noxft_h1df4ec4_4.conda",
+        "linked": {
+          "regular_bytes": 11437118,
+          "regular_file_count": 518,
+          "symlink_count": 2
+        },
+        "name": "tk",
+        "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+        "size": 3566806,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda",
+        "version": "8.6.13"
+      },
+      "tzdata": {
+        "build": "h151e31d_0",
+        "depends": [],
+        "fn": "tzdata-2026c-h151e31d_0.conda",
+        "linked": {
+          "regular_bytes": 509706,
+          "regular_file_count": 606,
+          "symlink_count": 0
+        },
+        "name": "tzdata",
+        "sha256": "b928c30ddcb0e3f544c6eade8352737e6e610e263276b90232db6a578ef899d8",
+        "size": 118849,
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda",
+        "version": "2026c"
+      },
+      "yaml": {
+        "build": "hebe6cf0_3",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libgcc >=15"
+        ],
+        "fn": "yaml-0.2.5-hebe6cf0_3.conda",
+        "linked": {
+          "regular_bytes": 369812,
+          "regular_file_count": 4,
+          "symlink_count": 2
+        },
+        "name": "yaml",
+        "sha256": "d164dfa75ecd538f6fd68765defcc06aa875bc697b9b215362d79a2a73125dd0",
+        "size": 84936,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-hebe6cf0_3.conda",
+        "version": "0.2.5"
+      },
+      "zstd": {
+        "build": "hb78ec9c_7",
+        "depends": [
+          "__glibc >=2.17,<3.0.a0",
+          "libzlib >=1.3.2,<2.0a0"
+        ],
+        "fn": "zstd-1.5.7-hb78ec9c_7.conda",
+        "linked": {
+          "regular_bytes": 1645318,
+          "regular_file_count": 13,
+          "symlink_count": 5
+        },
+        "name": "zstd",
+        "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+        "size": 601301,
+        "subdir": "linux-64",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda",
+        "version": "1.5.7"
+      }
+    },
+    "prefix": "/tmp/ackredit118-study/public"
+  },
+  "schema": "ackredit.public-footprint@1",
+  "shared_public_verification": {
+    "checked_at": "2026-10-06T19:26:19.668857+00:00",
+    "files": [
+      {
+        "filename": "ackredit-0.11.0-py_0.tar.bz2",
+        "main_label": "verified",
+        "owner": "uibcdf",
+        "package": "ackredit",
+        "sha256": "df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f",
+        "solver_index": "verified",
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/ackredit-0.11.0-py_0.tar.bz2",
+        "version": "0.11.0"
+      }
+    ],
+    "schema": "molsyssuite.public-conda@1",
+    "state": "verified"
+  },
+  "shared_tools": {
+    "public_verifier_sha256": "bb743343ec7a58659b90e6cbae1a06380c7fd8e2328b1b7c11c85e52fc890567",
+    "repository": "uibcdf/molsyssuite",
+    "source_commit": "25363f2a2c902c04b2cdc8b301a3e1c1ff0c0918"
+  },
+  "tools": {
+    "benchmark_lifecycle.py": "2e59c340acdb0848a6b5869af2f44b95b83d208fef54b0cf85fbf648e1153b14",
+    "benchmark_public_installation.py": "b4a6f36da2dd14cadd658ec46db23db2b06923eeb564f8af133b704e97287500",
+    "installed_smoke.py": "551d13e5b13a52be1cedaef1312554b62c0fcee1a0d240ff428d4defe2a8a236"
+  }
+}

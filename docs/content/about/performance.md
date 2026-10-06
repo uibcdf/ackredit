@@ -7,6 +7,94 @@ Numbers below retain their own dates, sources and measurement boundaries.
 `devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
 Python-allocation measurements. Each is runnable in the stated environment.
 
+(public-conda-installation-2026-10-06)=
+## Public Conda installation (2026-10-06)
+
+[#118](https://github.com/uibcdf/ackredit/issues/118) measures the documented
+public route on Linux x86-64/Python 3.14.8. Native Conda creates two new
+environments with separate initially empty package/repodata caches, strict
+`uibcdf`, `conda-forge` priority and no default package additions: Python alone,
+and Python plus `ackredit=0.11.0=py_0`. All 24 control packages retain exactly
+the same versions, builds and archive hashes in the 30-package receiving
+environment. The Python control includes pip and the interpreter's native
+dependencies; it is not just the Python executable's size.
+
+The [raw receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/public_installation_118_2026-10-06.json)
+retains every package's public URL, hash, dependency list and measured file
+counts, plus installed smoke behavior, the shared public-registry verification,
+tool hashes and 20 raw lifecycle samples. The original Ackredit archive remains
+115,481 bytes, SHA-256
+`df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f`,
+from producer `85deae594e65b2fd443d6ca9a7347eb2bda537e1`. Nothing is rebuilt or
+published by this study.
+
+| Added package | Version/build | Compressed archive, KiB | Recorded regular files, MiB |
+| --- | --- | ---: | ---: |
+| Ackredit | 0.11.0 / py_0 | 112.77 | 0.647 |
+| ArgDigest | 0.14.0 / py_0 | 50.41 | 0.338 |
+| DepDigest | 0.13.0 / py_0 | 25.75 | 0.094 |
+| SMonitor | 0.18.0 / py_0 | 49.49 | 0.386 |
+| PyYAML | 6.0.3 / py314h67df5f8_1 | 197.65 | 0.702 |
+| libyaml (`yaml`) | 0.2.5 / hebe6cf0_3 | 82.95 | 0.353 |
+
+The increment is **531,471 compressed bytes (519 KiB)** and **2,640,785
+recorded regular-file bytes (2.52 MiB)**. Recorded file lengths include installed
+bytecode, exclude symlinks/directories, Conda metadata and unrecorded later
+imports, and count logical lengths rather than physical disk allocation.
+Hard links, filesystem compression and shared caches affect physical usage.
+Compressed package payload excludes channel indexes, network overhead and
+retries. The two native create commands overlapped and each has only one wall
+time observation; those observations do not establish installation latency or
+an incremental solver/download time.
+
+Published ArgDigest 0.14.0 does not require NumPy for the core route. Its Python
+metadata places NumPy behind scientific extras, its Conda run dependencies omit
+it, and neither installed records nor cold-import module inventories contain
+NumPy. Core citations, independent reused captures, portable saved readers and
+BibTeX reporting pass in this environment. PyYAML/libyaml still make the closure
+partly native. The accepted four direct dependencies remain unchanged; a
+scientific host can add its own NumPy or optional engine requirements.
+
+Seven fresh-process timings and three separate Python-allocation samples per
+case reuse `benchmark_lifecycle`: cold import has median **170.13 ms**, range
+163.70–183.27 ms, with a 10.52 MiB median traced peak. First registration has
+median 147.02 µs and first credit 22.27 µs. In the separate one-reference report
+case, the first workflow report takes median 1.296 ms and a repeat 0.197 ms;
+capture, tracking, snapshot, export and BibTeX stages remain separate in the
+receipt. These processes start after smoke verification with warm filesystem
+caches. This public runtime and its small distribution inventory differ from
+the newer developer wheels and inherited environments in #115–#117. Comparing
+their numbers does not establish an optimization effect or scientific speedup.
+
+Reproduce with a new directory and a maintained MolSysSuite tools checkout:
+
+```bash
+STUDY_ROOT=$(mktemp -d)
+CONDA_PKGS_DIRS="$STUDY_ROOT/python-cache" conda create --yes --json --no-default-packages --prefix "$STUDY_ROOT/python" --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 > "$STUDY_ROOT/python-create.json"
+CONDA_PKGS_DIRS="$STUDY_ROOT/public-cache" conda create --yes --json --no-default-packages --prefix "$STUDY_ROOT/public" --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 ackredit=0.11.0=py_0 > "$STUDY_ROOT/public-create.json"
+python /path/to/molsyssuite/devtools/scripts/verify_public_conda.py --package ackredit --version 0.11.0 --subdir noarch --filename ackredit-0.11.0-py_0.tar.bz2 --sha256 df8963ca2d286f50b19eb778e95c54c5ebb79c12fb55a6504e7c23daf5717d4f --attempts 1 --output "$STUDY_ROOT/public-verification.json"
+```
+
+Require success at each step. Then, from outside the Ackredit checkout:
+
+```bash
+"$STUDY_ROOT/public/bin/python" /path/to/ackredit/devtools/benchmark_public_installation.py --control "$STUDY_ROOT/python" --delivery-receipt /path/to/ackredit/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json --public-verification "$STUDY_ROOT/public-verification.json" --output "$STUDY_ROOT/receipt.json"
+```
+
+The output must be new. Keep both caches until measurement finishes: the tool
+hashes the original archives, rejects nonpublic channels, verifies loaded
+provider origins and versions, and checks recorded file lengths and tool hashes
+again after sampling. It uses native Conda records, the shared verification
+receipt, `installed_smoke` and `benchmark_lifecycle`; it does not introduce an
+installer or a new release gate. Future solver results may select other builds.
+The shared verifier source used here is MolSysSuite
+`25363f2a2c902c04b2cdc8b301a3e1c1ff0c0918`.
+
+This verifies a practical public receiving route with a bounded small increment
+on one host. It is not an unconditional footprint target, another platform's
+closure, third-party plugin workload, scientific equivalence check or new
+release qualification. Roadmap L remains open.
+
 ## Normally installed plugin packs (2026-10-06)
 
 [#117](https://github.com/uibcdf/ackredit/issues/117) adds

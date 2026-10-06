@@ -3,8 +3,14 @@
 
 Ackredit has four runtime dependencies: three MolSysSuite infrastructure components,
 `smonitor`, `depdigest` and `argdigest`, and `pyyaml`. The three suite components are
-distributed through the `uibcdf` conda channel and not through PyPI. They are pure
-Python, but the tree is not: ArgDigest requires `numpy`, which conda brings with it.
+distributed through the `uibcdf` conda channel and not through PyPI.
+Published ArgDigest 0.14.0 does not require NumPy for this core route; its scientific
+extras can add it. The tree still includes compiled components: PyYAML and libyaml.
+The clean Linux/Python 3.14 measurement adds six Conda packages, about 519 KiB of
+compressed package payload and 2.52 MiB of recorded regular files to Python alone.
+These exclude channel metadata and are logical file lengths, not physical disk
+usage. See [the public installation measurement](performance.md#public-conda-installation-2026-10-06)
+for exact versions, raw evidence and limits.
 
 Ackredit **0.11.0** is available from the public `uibcdf` Conda channel. It retains
 `Attribution`, `capture`, `get_attribution` and the portable

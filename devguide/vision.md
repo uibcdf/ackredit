@@ -49,12 +49,14 @@ and worked examples.
     `CITATION.cff` is YAML and reading it with less produces confident wrong answers on
     constructs the specification documents.
 
-    **Ackredit's own payload is pure Python; its dependency tree is not.** ArgDigest
-    requires `numpy`, so adopting it put a compiled dependency into what a host installs. That was
-    not part of the evidence the adoption was decided on and it is recorded here rather
-    than left to be discovered: a library that is optional and meant to be light now
-    carries numpy behind it. ArgDigest also raises Ackredit's floors to `smonitor>=0.16`
-    and `depdigest>=0.11`, which is what those lines now say.
+    **Ackredit's own payload is pure Python; its dependency tree is not.** The
+    published ArgDigest 0.14.0 core no longer requires NumPy; scientific extras
+    may add it. The clean public Linux/Python 3.14 route measured in
+    [#118](https://github.com/uibcdf/ackredit/issues/118) has no NumPy and adds six
+    Conda packages, including compiled PyYAML/libyaml, to Python alone. Its
+    bounded footprint and original public identity are retained in
+    [performance](../docs/content/about/performance.md). ArgDigest also raises
+    Ackredit's floors to `smonitor>=0.16` and `depdigest>=0.11`.
 
     This supersedes the original "Zero Core Dependencies" pillar. Reimplementing
     diagnostics, optional-dependency handling, argument auditing or a YAML parser inside a
