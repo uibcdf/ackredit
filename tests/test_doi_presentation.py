@@ -1,6 +1,8 @@
 """DOI display projection must never become bibliography identity (#121)."""
 
+import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -20,6 +22,45 @@ FORMS = [
     f"HTTPS://DX.DOI.ORG/{NAME}",
     f"  https://doi.org/{NAME}  ",
 ]
+
+
+def test_receiving_receipt_retains_original_bytes_and_the_paired_projection():
+    root = Path(__file__).resolve().parents[1]
+    receipt = json.loads(
+        (root / "devtools/receipts/doi_presentation_121_2026-10-06.json").read_text()
+    )
+    assert receipt["issue"] == "uibcdf/ackredit#121"
+    assert receipt["candidate"]["before"] == receipt["candidate"]["after"]
+    old, new = receipt["baseline"]["probe"], receipt["candidate"]["probe"]
+    assert old["styles"] == new["styles"] and old["executables"] == new["executables"]
+    assert (
+        old["input_sha256"] == new["input_sha256"] == receipt["paired_input"]["sha256"]
+    )
+    for side in (receipt["baseline"], receipt["candidate"]):
+        for export in side["exports"].values():
+            assert (
+                hashlib.sha256(export["text"].encode()).hexdigest() == export["sha256"]
+            )
+    assert (
+        receipt["baseline"]["exports"]["references.bib"]
+        == receipt["candidate"]["exports"]["references.bib"]
+    )
+    assert (
+        "https://doi.org/<a"
+        in receipt["baseline"]["exports"]["bibliography.html"]["text"]
+    )
+    assert (
+        "https://doi.org/<a"
+        not in receipt["candidate"]["exports"]["bibliography.html"]["text"]
+    )
+    source = ackredit.Attribution.from_dict(receipt["paired_input"]["payload"])
+    assert hashlib.sha256(source.to_json().encode()).hexdigest() == new["input_sha256"]
+    assert json.loads(source.report("csl-json")) == json.loads(
+        receipt["candidate"]["exports"]["references.csl.json"]["text"]
+    )
+    policy = receipt["identity_policy"]
+    assert policy["same_id_conflicting_originals"] == "ACKREDIT-E011"
+    assert not policy["doi_display_projection_is_merge_key"]
 
 
 def saved(item_id="original", doi=NAME, version="1.0", **fields):

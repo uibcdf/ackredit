@@ -42,6 +42,16 @@ and the current session/registry remain unchanged. Distinct software releases
 need distinct IDs. DOI spelling is not normalized to guess a shared identity,
 and more complete metadata never silently replaces an original record.
 
+Development follow-up [#121](https://github.com/uibcdf/ackredit/issues/121)
+separates DOI presentation from this identity rule. Supported resolver/label
+wrappers are stripped for CSL export and human DOI links, while original records
+remain verbatim. Two originals with the same ID but different DOI spellings still
+raise `ACKREDIT-E011`, even when their CSL exports would match. Equal records
+under different IDs still produce different entries. Software releases sharing
+one DOI retain their original IDs and versions; neither display projection nor
+style formatting silently aliases them. See the
+[publication-tool contract](publication_tools.md#doi-presentation-and-duplicate-identity).
+
 Identical target labels can belong to independent results. Their graphs remain
 separate: composition cannot make a path between two original graphs, rename
 their scientific targets or manufacture parent/child observations.

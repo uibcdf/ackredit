@@ -645,17 +645,30 @@ imported `@software` remains original and warns under that style. A full-URL DOI
 is preserved but gets a duplicated prefix in the tested CSL presentation.
 The [publication guide](../docs/content/user_guide/publication_tools.md) records
 reproduction and exact evidence. This is development receiving evidence, not a
-new release or reference-manager/BibLaTeX qualification; all broader items below
-remain open.
+new release or reference-manager/BibLaTeX qualification; wider coverage remains
+open, with the DOI/identity follow-up below.
+
+Follow-up #121 projects bare/label/unambiguous resolver DOI forms for CSL and
+human-facing links without changing saved JSON, BibTeX, case/punctuation or
+composition identity. Its paired normally installed probe retains exactly the
+same six-record input, BibTeX bytes and style identities while removing the CSL
+duplicate prefix. Percent-escaped/query/fragment resolver URLs, unrelated hosts,
+shortDOIs and registration validation remain outside the bounded projection.
+The existing conservative identity policy is explicit and guarded: caller IDs
+remain primary; equal originals under one ID share, conflicting originals refuse,
+and different IDs/releases remain distinct even when their presented DOIs match.
+No automatic merge or alias inference is accepted. Further merge tooling needs
+its own use case and explicit contract; reference-manager/other-style coverage
+and separately qualified release delivery remain open.
 
 - [ ] exercise exported records with representative real reference-manager
       imports and BibTeX/BibLaTeX or journal-style workflows, recording tested
       versions, selected styles and intentional unsupported cases;
 - [ ] cover software, datasets, articles, institutional authors, preferred works,
       structured editors/names, original versions and non-ASCII metadata;
-- [ ] decide duplicate bibliographic identity handling across caller-defined
-      IDs/DOI forms without silently merging different software releases or
-      replacing conflicting original records;
+- [x] decide duplicate bibliographic identity handling across caller-defined
+      IDs/DOI forms under #121: preserve distinct IDs/releases, share only equal
+      originals with the same ID and refuse conflicts without replacing them;
 - [ ] define supported presentation expectations and style/plugin boundaries,
       including software/dataset entries that a selected BibTeX style cannot
       render. Reuse a suitable external style engine if one is required;

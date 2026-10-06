@@ -43,6 +43,42 @@ become `@book`; other previously unmapped kinds keep their existing fallback.
 Imported BibTeX entry types and LaTeX names remain original. These repairs await
 a future qualified release; the immutable public 0.11.0 artifact lacks them.
 
+## DOI presentation and duplicate identity
+
+The follow-up [#121](https://github.com/uibcdf/ackredit/issues/121) repairs supported
+DOI presentation in development after public 0.11.0. For example, an original
+`https://doi.org/10.5555/work` becomes CSL `DOI: "10.5555/work"`; the selected
+style then creates one resolver link. Markdown, workflow and notebook links
+likewise use one `https://doi.org/` prefix. The workflow's DOI label still shows
+the original text.
+
+Supported forms are bare `10.<digits>/<suffix>` names, `doi:` labels, and exact
+HTTP(S) `doi.org` or legacy `dx.doi.org` URLs with an unambiguous suffix. Wrapper
+case and outer whitespace do not affect the projection; identifier case and
+punctuation remain intact. This is presentation, not registration validation.
+Resolver URLs with percent escapes, queries or fragments, nested wrappers,
+shortDOIs, other hosts/ports and unknown values are left unchanged. No decoding,
+network lookup or guess supplies a different identifier.
+
+Saved attribution, the complete bundle and JSON/BibTeX exports keep the original
+DOI field. The existing [composition identity contract](attribution_composition.md)
+continues to use caller IDs and exact original records, independently of DOI
+presentation:
+
+- Equal originals with the same ID share one bibliographic entry.
+- Different original records under one ID raise `ACKREDIT-E011`, even when their
+  CSL DOI fields would look identical. No preferred spelling replaces a claim.
+- Different IDs remain distinct, including releases sharing one DOI or equivalent
+  DOI forms. There is no automatic alias detection or duplicate merging.
+
+The new normally installed receiving checkpoint repeats the same six-record
+saved input and unchanged engines/styles from #120: CSL readers keep all IDs and
+versions, the full-URL DOI gets one prefix, and original BibTeX bytes remain
+identical. The
+[paired receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/doi_presentation_121_2026-10-06.json)
+retains baseline/candidate identities and the original unmodified input. These
+development repairs await their own future release qualification.
+
 ## Presentation boundaries
 
 | Boundary | Observed behavior |
@@ -52,12 +88,13 @@ a future qualified release; the immutable public 0.11.0 artifact lacks them.
 | Editors on an untyped `other` record | Export retains `editor`; `plain.bst`'s `@misc` layout does not print it. A declared CFF book supplies a book layout without guessing its kind. |
 | Imported `@software` | Export keeps the type. A real `plain.bst` run warns that it is undefined and falls back; this is not qualified software styling. |
 | CSL-JSON and citeproc | Keeps software/dataset/book kinds; the selected Chicago style prints versions and DOI links in the fixture. |
-| DOI stored as a full URL | Original text remains. The tested CSL style adds another DOI prefix, producing unsuitable presentation. Use a bare DOI for new declarations; no automatic normalization or duplicate merging is promised. |
+| DOI stored as a full URL | #120 retained the duplicate-prefix defect. Development #121 strips supported wrappers only for presentation; saved originals and BibTeX remain intact. Ambiguous URL forms remain outside that projection. |
 | Capitalization, particles and sorting | Engines/styles can change displayed capitalization and name order. Converted or formatted text is not an exact copy of the original. |
 
 This does not establish Zotero, Mendeley or EndNote imports, BibLaTeX/Biber
 compatibility, arbitrary Unicode with every TeX engine, or journal-style coverage.
-Reference-manager imports and duplicate identity remain open roadmap work.
+Reference-manager imports and other styles remain open roadmap work; duplicate
+identity follows the explicit ID/original-record policy above.
 Distinct IDs and different software releases are not silently combined because
 their DOIs resemble one another. Other presentation can use an external style
 engine or the [format extension point](reporting.md#adding-your-own-format).

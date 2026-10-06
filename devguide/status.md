@@ -174,7 +174,10 @@ many land before 1.0.0 is an outcome rather than a plan.
   releases, DOI forms and structured names. Selected-style omissions and full-URL
   DOI presentation are explicit in the
   [publication guide](../docs/content/user_guide/publication_tools.md). Other
-  styles, reference-manager imports and duplicate-identity decisions remain open.
+  styles and reference-manager imports remain open. Follow-up #121 repairs
+  supported DOI resolver/label presentation without changing original JSON/BibTeX
+  or the explicit ID identity rule: equal same-ID originals share, conflicts
+  refuse, and distinct IDs/software releases remain distinct.
   The repair is development work pending a separately qualified future release.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
