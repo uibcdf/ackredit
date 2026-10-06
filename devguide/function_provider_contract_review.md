@@ -54,11 +54,18 @@ Local decision validation covers all 310 selected contract/documentation cases:
 309 passed initially and the unchanged normal-installed provider guard passed
 after enabling network for its build tools. There are no skips or deselections;
 the initial DNS failure and successful recovery remain separate complete event
-streams. Ruff, report-index checks and strict Sphinx pass. Package-code ASTs
+streams. Ruff and report-index checks pass. Package-code ASTs
 are unchanged after removing docstrings. The
-[decision receipt](../devtools/receipts/provider_promotion_decision_2026-10-06.json)
+[decision receipt](https://github.com/uibcdf/ackredit/blob/4af7383d85e1b2f17a3e94ccab774cb6ba63192e/devtools/receipts/provider_promotion_decision_2026-10-06.json)
 preserves that bounded source evidence separately from hosted controls and future
 exact-file release qualification.
+
+The receipt's initial strict Sphinx result applies to the documentation before
+the final receipt link was added. Decision-head CI 37426110394 passes Ruff and
+all five installed test jobs, but its documentation job rejects that relative
+JSON link as an unresolved MyST target. The correction uses the immutable
+published receipt URL and receives a fresh strict build and new exact-head CI;
+the original failed checkpoint is retained rather than represented as green.
 
 ## Previous decision and public delivery (2026-10-05)
 
