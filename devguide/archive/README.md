@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (109)
+### Resolved (110)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -94,6 +94,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`shipped_citation_data_is_not_true.md`](shipped_citation_data_is_not_true.md) — [#26](https://github.com/uibcdf/ackredit/issues/26) — Half the citation entries Ackredit ships listed a truncation as an author, one named a paper that does not exist, and the guide taught the same. *(resolved, measured)*
 - [`stable_provider_release_011.md`](stable_provider_release_011.md) — [#107](https://github.com/uibcdf/ackredit/issues/107) — Deliver 0.11.0 with accepted provider contracts and exact-file public qualification. *(resolved, measured)*
 - [`standalone_provider_validation.md`](standalone_provider_validation.md) — [#111](https://github.com/uibcdf/ackredit/issues/111) — Expose inert public provider validation through the existing declaration parser. *(resolved, measured)*
+- [`startup_discovery_costs.md`](startup_discovery_costs.md) — [#116](https://github.com/uibcdf/ackredit/issues/116) — Separate startup discovery costs and defer unused network and PDF imports. *(resolved, measured)*
 - [`summary_shows_an_object_address.md`](summary_shows_an_object_address.md) — [#51](https://github.com/uibcdf/ackredit/issues/51) — summary() defined only _repr_html_, so printing it anywhere but a notebook gave the object's address in memory. *(resolved, measured)*
 - [`support_python_314.md`](support_python_314.md) — [#80](https://github.com/uibcdf/ackredit/issues/80) — Deliver normal public Python 3.14 installation and required consumer compatibility. *(resolved, reproduced)*
 - [`tests_share_tracking_state.md`](tests_share_tracking_state.md) — [#30](https://github.com/uibcdf/ackredit/issues/30) — The suite depended on the order its files ran in, so a test could pass for the reason of the test before it. *(resolved, measured)*

@@ -577,8 +577,12 @@ Real PyUnitWizard controls cover Pint conversions of one and 100,000 values.
 The follow-up normally installs five development wheels from clean sources and
 verifies every shipped file, including completed SMonitor/ArgDigest changes.
 Explicit metadata-only scientific cases preserve the values and original credits;
-argument digestion stays active. Next profiling separates first-report format
-discovery from warmed rendering and cold initialization from repeated calls.
+argument digestion stays active. The next bounded checkpoint
+[#116](https://github.com/uibcdf/ackredit/issues/116) separates first-report format
+discovery from warmed rendering and profiles cold initialization. Deferring
+network/PDF imports lowers cold traced allocations; latency ranges overlap.
+Plugin discovery retains its lifecycle, pending real-pack measurements and an
+owned reusable discovery/invalidation contract.
 This local development evidence does not close the complete theme: installed
 dependency closure, real plugin-pack initialization, independent graph shapes
 and platform coverage remain distinct work.

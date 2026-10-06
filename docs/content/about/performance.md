@@ -7,6 +7,64 @@ Numbers below retain their own dates, sources and measurement boundaries.
 `devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
 Python-allocation measurements. Each is runnable in the stated environment.
 
+## Startup discovery and deferred imports (2026-10-06)
+
+[#116](https://github.com/uibcdf/ackredit/issues/116) separates format discovery
+from rendering using `--startup-only`. Five cases run with nine timing and
+three separate allocation samples each, before and after delaying network
+support until DOI fetching and process support until PDF compilation. Both
+developer wheels are normally installed at the same path, with the same four
+provider wheels. Every shipped file is verified; the other 322 distribution
+versions and entry-point text digests match. Sources are the #115 runtime
+baseline `b8f7100` and candidate `45294c4`.
+
+The [baseline samples](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/startup_before_116_2026-10-06.json),
+[candidate samples](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/startup_after_116_2026-10-06.json)
+and [installation evidence](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/startup_installed_116_2026-10-06.json)
+retain 120 raw samples and original wheel identities. Cohorts run sequentially,
+baseline then candidate, without concurrent task builds/tests. This local
+Linux/Python 3.14.7 lane inherits the maintained Conda dependencies; it is not
+a clean public installation or release qualification.
+
+| Stage | Baseline median (range), ms | Candidate median (range), ms |
+| --- | --- | --- |
+| Cold import, including citation discovery | 161.86 (148.53–194.88) | 160.48 (149.04–172.85) |
+| First workflow report, one reference | 25.82 (24.24–27.47) | 24.77 (23.32–28.52) |
+| Explicit format discovery, one reference | 25.91 (24.05–26.42) | 24.34 (23.09–26.98) |
+| Workflow after explicit discovery, one reference | 0.290 (0.229–0.413) | 0.248 (0.219–0.338) |
+| Repeated workflow, one reference | 0.162 (0.141–0.192) | 0.148 (0.138–0.226) |
+| First workflow report, 1,000 references | 51.75 (49.26–53.26) | 49.36 (48.40–50.97) |
+| Workflow after explicit discovery, 1,000 references | 25.96 (25.20–26.77) | 24.24 (23.19–25.96) |
+
+Cold-import traced Python allocation peak falls from 10.68 to 8.95 MiB;
+retained allocations fall from 10.41 to 8.68 MiB. Successful offline operations
+in this fixed environment no longer load `urllib.request`, `ssl` or `subprocess`.
+The imports move to the features that need them, so first network/PDF use still
+pays their initialization. Latency ranges overlap: these samples do not establish
+a reliable cold-import speedup or a report-rendering optimization.
+
+The [exploratory profile](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/startup_profile_116_2026-10-06.json)
+locates the dominant one-reference first-report work in standard-library
+`importlib.metadata.entry_points`: the scan reads distribution entry-point text
+even when no Ackredit plugins are installed. Its instrumented cumulative times
+overlap and must not be added or used as latency estimates. With 1,000 references,
+rendering itself also matters. Repeated reports are checked for exact equality;
+journals, snapshots, argument validation and plugin lifecycle stay intact.
+
+Citation discovery still runs on import and explicit `load_plugins()` calls;
+format discovery still runs on first demand, with its reentry guard. A shared
+startup cache would change late-provider discovery unless it has a separate
+invalidation contract. DepDigest's inspected `LazyRegistry` delegates to the
+same standard-library enumeration and adds module-registry behavior, so it is
+not an equivalent faster replacement for Ackredit's registration callbacks.
+Investigate real plugin packs and an owned reusable discovery contract before
+changing that boundary. Broader dependency closure, graph shapes and platform
+qualification remain roadmap L work.
+
+```bash
+python devtools/benchmark_lifecycle.py --startup-only --samples 9 --memory-samples 3 --output startup.json
+```
+
 ## Installed development follow-up (2026-10-06)
 
 The repeat under [#115](https://github.com/uibcdf/ackredit/issues/115) selects

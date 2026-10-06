@@ -1,0 +1,6560 @@
+{
+  "schema": "ackredit.lifecycle-benchmark@1",
+  "python": "3.14.7",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "executable": "/tmp/ackredit115-updated-env/bin/python",
+  "benchmark_sha256": "2e59c340acdb0848a6b5869af2f44b95b83d208fef54b0cf85fbf648e1153b14",
+  "method": "Fresh interpreter per case/sample, alternating case order; timing without tracemalloc; separate Python allocation runs. Import includes automatic installed plugin loading. Warm science excludes activation/setup; synthetic scaling includes first unique credits. No release qualification or distribution-installation measurement.",
+  "identities": {
+    "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063": {
+      "ackredit": {
+        "origin": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/__init__.py",
+        "runtime_version": "0.11.0+13.gb8f7100",
+        "distribution_version": "0.11.0+13.gb8f7100",
+        "requirements": [
+          "smonitor>=0.16.0",
+          "depdigest>=0.11.0",
+          "argdigest>=0.13.0",
+          "pyyaml>=6",
+          "duecredit; extra == \"duecredit\"",
+          "duecredit; extra == \"full\"",
+          "pytest>=8; extra == \"test\"",
+          "ruff==0.16.5; extra == \"test\"",
+          "sphinx; extra == \"docs\"",
+          "pydata-sphinx-theme; extra == \"docs\"",
+          "sphinx-copybutton; extra == \"docs\"",
+          "sphinx-design; extra == \"docs\"",
+          "myst-nb; extra == \"docs\""
+        ],
+        "source_tree_sha256": "09ea7ad728d58e9750f487ae6f35a4f28efaf063683de6945a03a233628d5ddf",
+        "source_file_count": 70,
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=d6d0523213e8e570c5453cdd18995374d7aed08dd35eaa9e9d5cf6a8fb913b2a",
+            "hashes": {
+              "sha256": "d6d0523213e8e570c5453cdd18995374d7aed08dd35eaa9e9d5cf6a8fb913b2a"
+            }
+          },
+          "url": "file:///tmp/ackredit115-updated-wheels/ackredit-0.11.0%2B13.gb8f7100-py3-none-any.whl"
+        }
+      },
+      "smonitor": {
+        "origin": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/smonitor/__init__.py",
+        "runtime_version": "0.18.0+39.g6feac97",
+        "distribution_version": "0.18.0+39.g6feac97",
+        "requirements": [
+          "rich>=13; extra == \"rich\"",
+          "pytest<10,>=8; extra == \"pytest\"",
+          "pytest-receptor<2,>=1.2; extra == \"pytest\""
+        ],
+        "source_tree_sha256": "745dbb7c8bd3dd830ca55f0d48e8a38bae9116c556796d90cac7d9b82ebcd587",
+        "source_file_count": 40,
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=c100dde71d8f294a6d64c22d9d1d2ee51910ed6513826b5edcf6ad1d54d15414",
+            "hashes": {
+              "sha256": "c100dde71d8f294a6d64c22d9d1d2ee51910ed6513826b5edcf6ad1d54d15414"
+            }
+          },
+          "url": "file:///tmp/ackredit115-updated-wheels/smonitor-0.18.0%2B39.g6feac97-py3-none-any.whl"
+        }
+      },
+      "depdigest": {
+        "origin": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/depdigest/__init__.py",
+        "runtime_version": "0.13.0+3.g0568f9a",
+        "distribution_version": "0.13.0+3.g0568f9a",
+        "requirements": [
+          "smonitor>=0.13.0"
+        ],
+        "source_tree_sha256": "c6fdd788f88cea8ab29016d84a3772ceefd72c2aab23e7ccfeb94e3c8d7a4de2",
+        "source_file_count": 16,
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=074f08ac8c21d514b479e50314b25b6ecfe6c7b2bcc84d18c5d557355d33f919",
+            "hashes": {
+              "sha256": "074f08ac8c21d514b479e50314b25b6ecfe6c7b2bcc84d18c5d557355d33f919"
+            }
+          },
+          "url": "file:///tmp/ackredit115-updated-wheels/depdigest-0.13.0%2B3.g0568f9a-py3-none-any.whl"
+        }
+      },
+      "argdigest": {
+        "origin": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/argdigest/__init__.py",
+        "runtime_version": "0.14.0+7.g5e7925d",
+        "distribution_version": "0.14.0+7.g5e7925d",
+        "requirements": [
+          "depdigest>=0.11.0",
+          "smonitor>=0.16.0",
+          "numpy>=1.20.0; extra == \"science\"",
+          "beartype>=0.16.0; extra == \"beartype\"",
+          "pydantic>=2.0.0; extra == \"pydantic\"",
+          "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+          "numpy>=1.20.0; extra == \"pyunitwizard\"",
+          "beartype>=0.16.0; extra == \"all\"",
+          "pydantic>=2.0.0; extra == \"all\"",
+          "pyunitwizard>=0.11.0; extra == \"all\"",
+          "PyYAML>=6.0; extra == \"all\"",
+          "numpy>=1.20.0; extra == \"all\"",
+          "pandas>=2.0.0; extra == \"all\""
+        ],
+        "source_tree_sha256": "b47ae0c6fccfdd56adfc01a0f6b1b8654bdf42b626c8404124a525fe1b17a603",
+        "source_file_count": 38,
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=1ce26a85f3d039b934ebc61cecee8caea893003386b3faef106e6d253401754d",
+            "hashes": {
+              "sha256": "1ce26a85f3d039b934ebc61cecee8caea893003386b3faef106e6d253401754d"
+            }
+          },
+          "url": "file:///tmp/ackredit115-updated-wheels/argdigest-0.14.0%2B7.g5e7925d-py3-none-any.whl"
+        }
+      }
+    }
+  },
+  "results": {
+    "cold_import": {
+      "case": {
+        "kind": "import"
+      },
+      "timing_samples": [
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 181688.163
+            },
+            "first_registration": {
+              "elapsed_us": 127.684
+            },
+            "first_credit": {
+              "elapsed_us": 20.804
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 188817.052
+            },
+            "first_registration": {
+              "elapsed_us": 136.97
+            },
+            "first_credit": {
+              "elapsed_us": 19.339
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 194884.447
+            },
+            "first_registration": {
+              "elapsed_us": 165.637
+            },
+            "first_credit": {
+              "elapsed_us": 23.587
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 159340.138
+            },
+            "first_registration": {
+              "elapsed_us": 135.719
+            },
+            "first_credit": {
+              "elapsed_us": 21.739
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 159108.422
+            },
+            "first_registration": {
+              "elapsed_us": 135.511
+            },
+            "first_credit": {
+              "elapsed_us": 20.336
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 161859.882
+            },
+            "first_registration": {
+              "elapsed_us": 141.366
+            },
+            "first_credit": {
+              "elapsed_us": 21.788
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 166083.629
+            },
+            "first_registration": {
+              "elapsed_us": 184.375
+            },
+            "first_credit": {
+              "elapsed_us": 22.504
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 151316.554
+            },
+            "first_registration": {
+              "elapsed_us": 118.75
+            },
+            "first_credit": {
+              "elapsed_us": 16.955
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "elapsed_us": 148528.407
+            },
+            "first_registration": {
+              "elapsed_us": 114.498
+            },
+            "first_credit": {
+              "elapsed_us": 16.757
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_thread",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "sys",
+              "time",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "memory_samples": [
+        {
+          "measurements": {
+            "import": {
+              "retained_delta_bytes": 10911322,
+              "peak_extra_bytes": 11203156
+            },
+            "first_registration": {
+              "retained_delta_bytes": 973,
+              "peak_extra_bytes": 3226
+            },
+            "first_credit": {
+              "retained_delta_bytes": 216,
+              "peak_extra_bytes": 216
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_compat_pickle",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_pickle",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_tracemalloc",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "gc",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pickle",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "tracemalloc",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_compat_pickle",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_pickle",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_struct",
+              "_thread",
+              "_tracemalloc",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "gc",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "pickle",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "struct",
+              "sys",
+              "time",
+              "tracemalloc",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "retained_delta_bytes": 10913598,
+              "peak_extra_bytes": 11205508
+            },
+            "first_registration": {
+              "retained_delta_bytes": 945,
+              "peak_extra_bytes": 3257
+            },
+            "first_credit": {
+              "retained_delta_bytes": 171,
+              "peak_extra_bytes": 171
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_compat_pickle",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_pickle",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_tracemalloc",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "gc",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pickle",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "tracemalloc",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_compat_pickle",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_pickle",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_struct",
+              "_thread",
+              "_tracemalloc",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "gc",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "pickle",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "struct",
+              "sys",
+              "time",
+              "tracemalloc",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "import": {
+              "retained_delta_bytes": 10911220,
+              "peak_extra_bytes": 11202995
+            },
+            "first_registration": {
+              "retained_delta_bytes": 1077,
+              "peak_extra_bytes": 3330
+            },
+            "first_credit": {
+              "retained_delta_bytes": 216,
+              "peak_extra_bytes": 216
+            }
+          },
+          "facts": {
+            "loaded_roots_after_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_ast",
+              "_bisect",
+              "_blake2",
+              "_bz2",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_colorize",
+              "_compat_pickle",
+              "_contextvars",
+              "_datetime",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_hashlib",
+              "_heapq",
+              "_imp",
+              "_io",
+              "_json",
+              "_locale",
+              "_lzma",
+              "_opcode",
+              "_opcode_metadata",
+              "_operator",
+              "_pickle",
+              "_posixsubprocess",
+              "_py_warnings",
+              "_random",
+              "_signal",
+              "_sitebuiltins",
+              "_socket",
+              "_sre",
+              "_ssl",
+              "_stat",
+              "_string",
+              "_struct",
+              "_thread",
+              "_tokenize",
+              "_tracemalloc",
+              "_types",
+              "_typing",
+              "_uuid",
+              "_warnings",
+              "_weakref",
+              "_weakrefset",
+              "_zstd",
+              "abc",
+              "ackredit",
+              "annotationlib",
+              "argdigest",
+              "ast",
+              "atexit",
+              "base64",
+              "binascii",
+              "bisect",
+              "builtins",
+              "bz2",
+              "codecs",
+              "codeop",
+              "collections",
+              "compression",
+              "contextlib",
+              "contextvars",
+              "copy",
+              "copyreg",
+              "dataclasses",
+              "datetime",
+              "depdigest",
+              "difflib",
+              "dis",
+              "email",
+              "encodings",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "gc",
+              "genericpath",
+              "glob",
+              "grp",
+              "hashlib",
+              "heapq",
+              "html",
+              "http",
+              "importlib",
+              "inspect",
+              "io",
+              "ipaddress",
+              "itertools",
+              "json",
+              "keyword",
+              "linecache",
+              "locale",
+              "logging",
+              "lzma",
+              "marshal",
+              "math",
+              "ntpath",
+              "opcode",
+              "operator",
+              "os",
+              "pathlib",
+              "pickle",
+              "pkgutil",
+              "platform",
+              "posix",
+              "posixpath",
+              "pwd",
+              "quopri",
+              "random",
+              "re",
+              "reprlib",
+              "select",
+              "selectors",
+              "shutil",
+              "signal",
+              "site",
+              "smonitor",
+              "socket",
+              "sphinxcontrib",
+              "ssl",
+              "stat",
+              "string",
+              "struct",
+              "subprocess",
+              "sys",
+              "tempfile",
+              "textwrap",
+              "threading",
+              "time",
+              "token",
+              "tokenize",
+              "traceback",
+              "tracemalloc",
+              "types",
+              "typing",
+              "urllib",
+              "uuid",
+              "warnings",
+              "weakref",
+              "zipfile",
+              "zipimport",
+              "zlib"
+            ],
+            "modules_before_import": [
+              "__editable___ackredit_0_10_1_finder",
+              "__editable___argdigest_0_14_0_3_g94cffa8_finder",
+              "__editable___depdigest_0_13_0_3_g0568f9a_finder",
+              "__editable___dockingmt_0_0_0_127_gd419fee_finder",
+              "__editable___elastnetmt_0_1_0_finder",
+              "__editable___gh_run_receptor_1_2_0_13_gf1a5901_finder",
+              "__editable___lindelint_0_2_0_finder",
+              "__editable___molsysmt_0_22_4_215_g5bd893c85_finder",
+              "__editable___molsysviewer_0_23_4_90_gc046fca1_finder",
+              "__editable___pharmacophoremt_0_3_0_108_g864dcf5_finder",
+              "__editable___pytest_receptor_1_2_1_13_gac0aa03_finder",
+              "__editable___pyunitwizard_0_28_1_3_g2ab37a5_finder",
+              "__editable___sabueso_0_13_0_4_g68dac8f_finder",
+              "__editable___smonitor_0_18_0_37_g6cdba4d_finder",
+              "__editable___topomt_0_5_0_310_gbfbd28f_dirty_finder",
+              "__future__",
+              "__main__",
+              "_abc",
+              "_codecs",
+              "_collections",
+              "_collections_abc",
+              "_compat_pickle",
+              "_contextvars",
+              "_distutils_hack",
+              "_frozen_importlib",
+              "_frozen_importlib_external",
+              "_functools",
+              "_imp",
+              "_io",
+              "_operator",
+              "_pickle",
+              "_py_warnings",
+              "_signal",
+              "_sitebuiltins",
+              "_sre",
+              "_stat",
+              "_struct",
+              "_thread",
+              "_tracemalloc",
+              "_types",
+              "_warnings",
+              "_weakref",
+              "abc",
+              "builtins",
+              "codecs",
+              "collections",
+              "collections.abc",
+              "contextlib",
+              "copyreg",
+              "encodings",
+              "encodings.aliases",
+              "encodings.utf_8",
+              "encodings.utf_8_sig",
+              "enum",
+              "errno",
+              "fcntl",
+              "fnmatch",
+              "functools",
+              "gc",
+              "genericpath",
+              "glob",
+              "grp",
+              "importlib",
+              "importlib._abc",
+              "importlib._bootstrap",
+              "importlib._bootstrap_external",
+              "importlib.machinery",
+              "importlib.util",
+              "io",
+              "itertools",
+              "keyword",
+              "linecache",
+              "marshal",
+              "ntpath",
+              "operator",
+              "os",
+              "os.path",
+              "pathlib",
+              "pathlib._os",
+              "pickle",
+              "posix",
+              "posixpath",
+              "pwd",
+              "re",
+              "re._casefix",
+              "re._compiler",
+              "re._constants",
+              "re._parser",
+              "reprlib",
+              "site",
+              "sphinxcontrib",
+              "stat",
+              "struct",
+              "sys",
+              "time",
+              "tracemalloc",
+              "types",
+              "warnings",
+              "zipimport"
+            ],
+            "plugins": []
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "timing_summary": {
+        "import": {
+          "elapsed_us": {
+            "median": 161859.882,
+            "minimum": 148528.407,
+            "maximum": 194884.447,
+            "spread": 46356.03999999998
+          }
+        },
+        "first_registration": {
+          "elapsed_us": {
+            "median": 135.719,
+            "minimum": 114.498,
+            "maximum": 184.375,
+            "spread": 69.877
+          }
+        },
+        "first_credit": {
+          "elapsed_us": {
+            "median": 20.804,
+            "minimum": 16.757,
+            "maximum": 23.587,
+            "spread": 6.829999999999998
+          }
+        }
+      },
+      "memory_summary": {
+        "import": {
+          "retained_delta_bytes": {
+            "median": 10911322,
+            "minimum": 10911220,
+            "maximum": 10913598,
+            "spread": 2378
+          },
+          "peak_extra_bytes": {
+            "median": 11203156,
+            "minimum": 11202995,
+            "maximum": 11205508,
+            "spread": 2513
+          }
+        },
+        "first_registration": {
+          "retained_delta_bytes": {
+            "median": 973,
+            "minimum": 945,
+            "maximum": 1077,
+            "spread": 132
+          },
+          "peak_extra_bytes": {
+            "median": 3257,
+            "minimum": 3226,
+            "maximum": 3330,
+            "spread": 104
+          }
+        },
+        "first_credit": {
+          "retained_delta_bytes": {
+            "median": 216,
+            "minimum": 171,
+            "maximum": 216,
+            "spread": 45
+          },
+          "peak_extra_bytes": {
+            "median": 216,
+            "minimum": 171,
+            "maximum": 216,
+            "spread": 45
+          }
+        }
+      }
+    },
+    "report_1_first": {
+      "case": {
+        "kind": "references",
+        "size": 1,
+        "separate_format_discovery": false,
+        "repeat_report": true
+      },
+      "timing_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 29.323
+            },
+            "unique_tracking": {
+              "elapsed_us": 153.42
+            },
+            "snapshot": {
+              "elapsed_us": 154.35
+            },
+            "json_export": {
+              "elapsed_us": 24.587
+            },
+            "workflow_report": {
+              "elapsed_us": 25267.118
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 158.819
+            },
+            "bibtex_report": {
+              "elapsed_us": 97.324
+            },
+            "capture_exit": {
+              "elapsed_us": 11.758
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 29.358
+            },
+            "unique_tracking": {
+              "elapsed_us": 205.142
+            },
+            "snapshot": {
+              "elapsed_us": 126.462
+            },
+            "json_export": {
+              "elapsed_us": 22.595
+            },
+            "workflow_report": {
+              "elapsed_us": 26184.566
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 181.267
+            },
+            "bibtex_report": {
+              "elapsed_us": 96.852
+            },
+            "capture_exit": {
+              "elapsed_us": 11.554
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 27.017
+            },
+            "unique_tracking": {
+              "elapsed_us": 170.794
+            },
+            "snapshot": {
+              "elapsed_us": 107.121
+            },
+            "json_export": {
+              "elapsed_us": 21.029
+            },
+            "workflow_report": {
+              "elapsed_us": 27468.239
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 162.033
+            },
+            "bibtex_report": {
+              "elapsed_us": 133.473
+            },
+            "capture_exit": {
+              "elapsed_us": 11.336
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 26.869
+            },
+            "unique_tracking": {
+              "elapsed_us": 183.249
+            },
+            "snapshot": {
+              "elapsed_us": 134.465
+            },
+            "json_export": {
+              "elapsed_us": 52.436
+            },
+            "workflow_report": {
+              "elapsed_us": 25818.922
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 167.361
+            },
+            "bibtex_report": {
+              "elapsed_us": 126.862
+            },
+            "capture_exit": {
+              "elapsed_us": 36.602
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 27.366
+            },
+            "unique_tracking": {
+              "elapsed_us": 145.351
+            },
+            "snapshot": {
+              "elapsed_us": 141.089
+            },
+            "json_export": {
+              "elapsed_us": 21.257
+            },
+            "workflow_report": {
+              "elapsed_us": 25740.363
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 169.365
+            },
+            "bibtex_report": {
+              "elapsed_us": 99.415
+            },
+            "capture_exit": {
+              "elapsed_us": 10.804
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 29.058
+            },
+            "unique_tracking": {
+              "elapsed_us": 213.018
+            },
+            "snapshot": {
+              "elapsed_us": 121.976
+            },
+            "json_export": {
+              "elapsed_us": 21.054
+            },
+            "workflow_report": {
+              "elapsed_us": 26470.158
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 161.909
+            },
+            "bibtex_report": {
+              "elapsed_us": 134.419
+            },
+            "capture_exit": {
+              "elapsed_us": 10.929
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 42.245
+            },
+            "unique_tracking": {
+              "elapsed_us": 137.933
+            },
+            "snapshot": {
+              "elapsed_us": 102.442
+            },
+            "json_export": {
+              "elapsed_us": 19.764
+            },
+            "workflow_report": {
+              "elapsed_us": 26412.395
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 153.091
+            },
+            "bibtex_report": {
+              "elapsed_us": 101.654
+            },
+            "capture_exit": {
+              "elapsed_us": 12.188
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 24.16
+            },
+            "unique_tracking": {
+              "elapsed_us": 148.576
+            },
+            "snapshot": {
+              "elapsed_us": 100.277
+            },
+            "json_export": {
+              "elapsed_us": 19.714
+            },
+            "workflow_report": {
+              "elapsed_us": 24908.989
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 191.676
+            },
+            "bibtex_report": {
+              "elapsed_us": 93.273
+            },
+            "capture_exit": {
+              "elapsed_us": 10.241
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 22.163
+            },
+            "unique_tracking": {
+              "elapsed_us": 128.954
+            },
+            "snapshot": {
+              "elapsed_us": 107.633
+            },
+            "json_export": {
+              "elapsed_us": 21.109
+            },
+            "workflow_report": {
+              "elapsed_us": 24235.313
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 140.852
+            },
+            "bibtex_report": {
+              "elapsed_us": 92.3
+            },
+            "capture_exit": {
+              "elapsed_us": 9.59
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "memory_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1882,
+              "peak_extra_bytes": 1922
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 7815,
+              "peak_extra_bytes": 8311
+            },
+            "snapshot": {
+              "retained_delta_bytes": 5748,
+              "peak_extra_bytes": 7825
+            },
+            "json_export": {
+              "retained_delta_bytes": 533,
+              "peak_extra_bytes": 2221
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 29968,
+              "peak_extra_bytes": 322932
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 1552,
+              "peak_extra_bytes": 4850
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 618,
+              "peak_extra_bytes": 2062
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -80,
+              "peak_extra_bytes": 352
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 7815,
+              "peak_extra_bytes": 8311
+            },
+            "snapshot": {
+              "retained_delta_bytes": 5748,
+              "peak_extra_bytes": 7825
+            },
+            "json_export": {
+              "retained_delta_bytes": 533,
+              "peak_extra_bytes": 2221
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 32977,
+              "peak_extra_bytes": 326059
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 1552,
+              "peak_extra_bytes": 4850
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 618,
+              "peak_extra_bytes": 2062
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 7815,
+              "peak_extra_bytes": 8311
+            },
+            "snapshot": {
+              "retained_delta_bytes": 5748,
+              "peak_extra_bytes": 7825
+            },
+            "json_export": {
+              "retained_delta_bytes": 533,
+              "peak_extra_bytes": 2221
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 33095,
+              "peak_extra_bytes": 326059
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 1552,
+              "peak_extra_bytes": 4850
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 618,
+              "peak_extra_bytes": 2062
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -75,
+              "peak_extra_bytes": 285
+            }
+          },
+          "facts": {
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "timing_summary": {
+        "capture_entry": {
+          "elapsed_us": {
+            "median": 27.366,
+            "minimum": 22.163,
+            "maximum": 42.245,
+            "spread": 20.081999999999997
+          }
+        },
+        "unique_tracking": {
+          "elapsed_us": {
+            "median": 153.42,
+            "minimum": 128.954,
+            "maximum": 213.018,
+            "spread": 84.064
+          }
+        },
+        "snapshot": {
+          "elapsed_us": {
+            "median": 121.976,
+            "minimum": 100.277,
+            "maximum": 154.35,
+            "spread": 54.07299999999999
+          }
+        },
+        "json_export": {
+          "elapsed_us": {
+            "median": 21.109,
+            "minimum": 19.714,
+            "maximum": 52.436,
+            "spread": 32.722
+          }
+        },
+        "workflow_report": {
+          "elapsed_us": {
+            "median": 25818.922,
+            "minimum": 24235.313,
+            "maximum": 27468.239,
+            "spread": 3232.926000000003
+          }
+        },
+        "repeated_workflow_report": {
+          "elapsed_us": {
+            "median": 162.033,
+            "minimum": 140.852,
+            "maximum": 191.676,
+            "spread": 50.823999999999984
+          }
+        },
+        "bibtex_report": {
+          "elapsed_us": {
+            "median": 99.415,
+            "minimum": 92.3,
+            "maximum": 134.419,
+            "spread": 42.119000000000014
+          }
+        },
+        "capture_exit": {
+          "elapsed_us": {
+            "median": 11.336,
+            "minimum": 9.59,
+            "maximum": 36.602,
+            "spread": 27.011999999999997
+          }
+        }
+      },
+      "memory_summary": {
+        "capture_entry": {
+          "retained_delta_bytes": {
+            "median": 1818,
+            "minimum": 1818,
+            "maximum": 1882,
+            "spread": 64
+          },
+          "peak_extra_bytes": {
+            "median": 1858,
+            "minimum": 1858,
+            "maximum": 1922,
+            "spread": 64
+          }
+        },
+        "unique_tracking": {
+          "retained_delta_bytes": {
+            "median": 7815,
+            "minimum": 7815,
+            "maximum": 7815,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 8311,
+            "minimum": 8311,
+            "maximum": 8311,
+            "spread": 0
+          }
+        },
+        "snapshot": {
+          "retained_delta_bytes": {
+            "median": 5748,
+            "minimum": 5748,
+            "maximum": 5748,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 7825,
+            "minimum": 7825,
+            "maximum": 7825,
+            "spread": 0
+          }
+        },
+        "json_export": {
+          "retained_delta_bytes": {
+            "median": 533,
+            "minimum": 533,
+            "maximum": 533,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2221,
+            "minimum": 2221,
+            "maximum": 2221,
+            "spread": 0
+          }
+        },
+        "workflow_report": {
+          "retained_delta_bytes": {
+            "median": 32977,
+            "minimum": 29968,
+            "maximum": 33095,
+            "spread": 3127
+          },
+          "peak_extra_bytes": {
+            "median": 326059,
+            "minimum": 322932,
+            "maximum": 326059,
+            "spread": 3127
+          }
+        },
+        "repeated_workflow_report": {
+          "retained_delta_bytes": {
+            "median": 1552,
+            "minimum": 1552,
+            "maximum": 1552,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 4850,
+            "minimum": 4850,
+            "maximum": 4850,
+            "spread": 0
+          }
+        },
+        "bibtex_report": {
+          "retained_delta_bytes": {
+            "median": 618,
+            "minimum": 618,
+            "maximum": 618,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2062,
+            "minimum": 2062,
+            "maximum": 2062,
+            "spread": 0
+          }
+        },
+        "capture_exit": {
+          "retained_delta_bytes": {
+            "median": -75,
+            "minimum": -80,
+            "maximum": -16,
+            "spread": 64
+          },
+          "peak_extra_bytes": {
+            "median": 344,
+            "minimum": 285,
+            "maximum": 352,
+            "spread": 67
+          }
+        }
+      }
+    },
+    "report_1_separated": {
+      "case": {
+        "kind": "references",
+        "size": 1,
+        "separate_format_discovery": true,
+        "repeat_report": true
+      },
+      "timing_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 27.545
+            },
+            "unique_tracking": {
+              "elapsed_us": 170.007
+            },
+            "snapshot": {
+              "elapsed_us": 102.441
+            },
+            "json_export": {
+              "elapsed_us": 20.138
+            },
+            "format_discovery": {
+              "elapsed_us": 24414.248
+            },
+            "workflow_report": {
+              "elapsed_us": 289.685
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 157.729
+            },
+            "bibtex_report": {
+              "elapsed_us": 96.999
+            },
+            "capture_exit": {
+              "elapsed_us": 10.876
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 30.464
+            },
+            "unique_tracking": {
+              "elapsed_us": 149.91
+            },
+            "snapshot": {
+              "elapsed_us": 121.041
+            },
+            "json_export": {
+              "elapsed_us": 20.667
+            },
+            "format_discovery": {
+              "elapsed_us": 26424.458
+            },
+            "workflow_report": {
+              "elapsed_us": 413.486
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 153.055
+            },
+            "bibtex_report": {
+              "elapsed_us": 107.846
+            },
+            "capture_exit": {
+              "elapsed_us": 14.184
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 26.038
+            },
+            "unique_tracking": {
+              "elapsed_us": 153.957
+            },
+            "snapshot": {
+              "elapsed_us": 109.561
+            },
+            "json_export": {
+              "elapsed_us": 21.433
+            },
+            "format_discovery": {
+              "elapsed_us": 26204.517
+            },
+            "workflow_report": {
+              "elapsed_us": 282.785
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 136.701
+            },
+            "bibtex_report": {
+              "elapsed_us": 96.892
+            },
+            "capture_exit": {
+              "elapsed_us": 10.397
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 41.66
+            },
+            "unique_tracking": {
+              "elapsed_us": 165.386
+            },
+            "snapshot": {
+              "elapsed_us": 113.197
+            },
+            "json_export": {
+              "elapsed_us": 22.077
+            },
+            "format_discovery": {
+              "elapsed_us": 25908.587
+            },
+            "workflow_report": {
+              "elapsed_us": 319.6
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 179.158
+            },
+            "bibtex_report": {
+              "elapsed_us": 102.704
+            },
+            "capture_exit": {
+              "elapsed_us": 12.9
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 38.304
+            },
+            "unique_tracking": {
+              "elapsed_us": 135.593
+            },
+            "snapshot": {
+              "elapsed_us": 103.601
+            },
+            "json_export": {
+              "elapsed_us": 21.349
+            },
+            "format_discovery": {
+              "elapsed_us": 24948.167
+            },
+            "workflow_report": {
+              "elapsed_us": 230.79
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 139.227
+            },
+            "bibtex_report": {
+              "elapsed_us": 119.467
+            },
+            "capture_exit": {
+              "elapsed_us": 10.051
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 25.459
+            },
+            "unique_tracking": {
+              "elapsed_us": 144.707
+            },
+            "snapshot": {
+              "elapsed_us": 124.343
+            },
+            "json_export": {
+              "elapsed_us": 23.283
+            },
+            "format_discovery": {
+              "elapsed_us": 26354.868
+            },
+            "workflow_report": {
+              "elapsed_us": 305.415
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 147.38
+            },
+            "bibtex_report": {
+              "elapsed_us": 100.365
+            },
+            "capture_exit": {
+              "elapsed_us": 37.562
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 27.471
+            },
+            "unique_tracking": {
+              "elapsed_us": 145.871
+            },
+            "snapshot": {
+              "elapsed_us": 110.48
+            },
+            "json_export": {
+              "elapsed_us": 21.386
+            },
+            "format_discovery": {
+              "elapsed_us": 25944.718
+            },
+            "workflow_report": {
+              "elapsed_us": 309.831
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 175.452
+            },
+            "bibtex_report": {
+              "elapsed_us": 150.601
+            },
+            "capture_exit": {
+              "elapsed_us": 10.958
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 22.14
+            },
+            "unique_tracking": {
+              "elapsed_us": 126.92
+            },
+            "snapshot": {
+              "elapsed_us": 99.783
+            },
+            "json_export": {
+              "elapsed_us": 19.804
+            },
+            "format_discovery": {
+              "elapsed_us": 24302.404
+            },
+            "workflow_report": {
+              "elapsed_us": 261.426
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 176.078
+            },
+            "bibtex_report": {
+              "elapsed_us": 98.183
+            },
+            "capture_exit": {
+              "elapsed_us": 10.055
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 23.62
+            },
+            "unique_tracking": {
+              "elapsed_us": 132.674
+            },
+            "snapshot": {
+              "elapsed_us": 104.081
+            },
+            "json_export": {
+              "elapsed_us": 21.375
+            },
+            "format_discovery": {
+              "elapsed_us": 24051.791
+            },
+            "workflow_report": {
+              "elapsed_us": 229.327
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 138.944
+            },
+            "bibtex_report": {
+              "elapsed_us": 92.614
+            },
+            "capture_exit": {
+              "elapsed_us": 9.244
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "memory_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 7815,
+              "peak_extra_bytes": 8311
+            },
+            "snapshot": {
+              "retained_delta_bytes": 5748,
+              "peak_extra_bytes": 7825
+            },
+            "json_export": {
+              "retained_delta_bytes": 533,
+              "peak_extra_bytes": 2221
+            },
+            "format_discovery": {
+              "retained_delta_bytes": 30407,
+              "peak_extra_bytes": 324824
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 2552,
+              "peak_extra_bytes": 5610
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 1432,
+              "peak_extra_bytes": 4850
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 743,
+              "peak_extra_bytes": 2038
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 7815,
+              "peak_extra_bytes": 8311
+            },
+            "snapshot": {
+              "retained_delta_bytes": 5748,
+              "peak_extra_bytes": 7825
+            },
+            "json_export": {
+              "retained_delta_bytes": 533,
+              "peak_extra_bytes": 2221
+            },
+            "format_discovery": {
+              "retained_delta_bytes": 29050,
+              "peak_extra_bytes": 323467
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 2375,
+              "peak_extra_bytes": 5433
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 1432,
+              "peak_extra_bytes": 4850
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 802,
+              "peak_extra_bytes": 2062
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 7815,
+              "peak_extra_bytes": 8311
+            },
+            "snapshot": {
+              "retained_delta_bytes": 5748,
+              "peak_extra_bytes": 7825
+            },
+            "json_export": {
+              "retained_delta_bytes": 533,
+              "peak_extra_bytes": 2221
+            },
+            "format_discovery": {
+              "retained_delta_bytes": 26867,
+              "peak_extra_bytes": 321284
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 2552,
+              "peak_extra_bytes": 5610
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 1432,
+              "peak_extra_bytes": 4850
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 802,
+              "peak_extra_bytes": 2062
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1,
+            "nodes": 2,
+            "edges": 1,
+            "json_bytes": 492,
+            "workflow_bytes": 647,
+            "bibtex_bytes": 67
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "timing_summary": {
+        "capture_entry": {
+          "elapsed_us": {
+            "median": 27.471,
+            "minimum": 22.14,
+            "maximum": 41.66,
+            "spread": 19.519999999999996
+          }
+        },
+        "unique_tracking": {
+          "elapsed_us": {
+            "median": 145.871,
+            "minimum": 126.92,
+            "maximum": 170.007,
+            "spread": 43.087
+          }
+        },
+        "snapshot": {
+          "elapsed_us": {
+            "median": 109.561,
+            "minimum": 99.783,
+            "maximum": 124.343,
+            "spread": 24.560000000000002
+          }
+        },
+        "json_export": {
+          "elapsed_us": {
+            "median": 21.375,
+            "minimum": 19.804,
+            "maximum": 23.283,
+            "spread": 3.4790000000000028
+          }
+        },
+        "format_discovery": {
+          "elapsed_us": {
+            "median": 25908.587,
+            "minimum": 24051.791,
+            "maximum": 26424.458,
+            "spread": 2372.6669999999976
+          }
+        },
+        "workflow_report": {
+          "elapsed_us": {
+            "median": 289.685,
+            "minimum": 229.327,
+            "maximum": 413.486,
+            "spread": 184.159
+          }
+        },
+        "repeated_workflow_report": {
+          "elapsed_us": {
+            "median": 153.055,
+            "minimum": 136.701,
+            "maximum": 179.158,
+            "spread": 42.456999999999994
+          }
+        },
+        "bibtex_report": {
+          "elapsed_us": {
+            "median": 100.365,
+            "minimum": 92.614,
+            "maximum": 150.601,
+            "spread": 57.986999999999995
+          }
+        },
+        "capture_exit": {
+          "elapsed_us": {
+            "median": 10.876,
+            "minimum": 9.244,
+            "maximum": 37.562,
+            "spread": 28.317999999999998
+          }
+        }
+      },
+      "memory_summary": {
+        "capture_entry": {
+          "retained_delta_bytes": {
+            "median": 1818,
+            "minimum": 1818,
+            "maximum": 1818,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 1858,
+            "minimum": 1858,
+            "maximum": 1858,
+            "spread": 0
+          }
+        },
+        "unique_tracking": {
+          "retained_delta_bytes": {
+            "median": 7815,
+            "minimum": 7815,
+            "maximum": 7815,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 8311,
+            "minimum": 8311,
+            "maximum": 8311,
+            "spread": 0
+          }
+        },
+        "snapshot": {
+          "retained_delta_bytes": {
+            "median": 5748,
+            "minimum": 5748,
+            "maximum": 5748,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 7825,
+            "minimum": 7825,
+            "maximum": 7825,
+            "spread": 0
+          }
+        },
+        "json_export": {
+          "retained_delta_bytes": {
+            "median": 533,
+            "minimum": 533,
+            "maximum": 533,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2221,
+            "minimum": 2221,
+            "maximum": 2221,
+            "spread": 0
+          }
+        },
+        "format_discovery": {
+          "retained_delta_bytes": {
+            "median": 29050,
+            "minimum": 26867,
+            "maximum": 30407,
+            "spread": 3540
+          },
+          "peak_extra_bytes": {
+            "median": 323467,
+            "minimum": 321284,
+            "maximum": 324824,
+            "spread": 3540
+          }
+        },
+        "workflow_report": {
+          "retained_delta_bytes": {
+            "median": 2552,
+            "minimum": 2375,
+            "maximum": 2552,
+            "spread": 177
+          },
+          "peak_extra_bytes": {
+            "median": 5610,
+            "minimum": 5433,
+            "maximum": 5610,
+            "spread": 177
+          }
+        },
+        "repeated_workflow_report": {
+          "retained_delta_bytes": {
+            "median": 1432,
+            "minimum": 1432,
+            "maximum": 1432,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 4850,
+            "minimum": 4850,
+            "maximum": 4850,
+            "spread": 0
+          }
+        },
+        "bibtex_report": {
+          "retained_delta_bytes": {
+            "median": 802,
+            "minimum": 743,
+            "maximum": 802,
+            "spread": 59
+          },
+          "peak_extra_bytes": {
+            "median": 2062,
+            "minimum": 2038,
+            "maximum": 2062,
+            "spread": 24
+          }
+        },
+        "capture_exit": {
+          "retained_delta_bytes": {
+            "median": -16,
+            "minimum": -16,
+            "maximum": -16,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 344,
+            "minimum": 344,
+            "maximum": 344,
+            "spread": 0
+          }
+        }
+      }
+    },
+    "report_1000_first": {
+      "case": {
+        "kind": "references",
+        "size": 1000,
+        "separate_format_discovery": false,
+        "repeat_report": true
+      },
+      "timing_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 28.991
+            },
+            "unique_tracking": {
+              "elapsed_us": 55275.511
+            },
+            "snapshot": {
+              "elapsed_us": 21318.239
+            },
+            "json_export": {
+              "elapsed_us": 2769.802
+            },
+            "workflow_report": {
+              "elapsed_us": 53262.065
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23654.109
+            },
+            "bibtex_report": {
+              "elapsed_us": 12774.4
+            },
+            "capture_exit": {
+              "elapsed_us": 16.935
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 29.4
+            },
+            "unique_tracking": {
+              "elapsed_us": 55223.945
+            },
+            "snapshot": {
+              "elapsed_us": 20756.899
+            },
+            "json_export": {
+              "elapsed_us": 2655.588
+            },
+            "workflow_report": {
+              "elapsed_us": 51084.202
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24975.306
+            },
+            "bibtex_report": {
+              "elapsed_us": 11887.096
+            },
+            "capture_exit": {
+              "elapsed_us": 33.914
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 33.565
+            },
+            "unique_tracking": {
+              "elapsed_us": 57510.351
+            },
+            "snapshot": {
+              "elapsed_us": 20605.723
+            },
+            "json_export": {
+              "elapsed_us": 2521.415
+            },
+            "workflow_report": {
+              "elapsed_us": 51666.703
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 25568.526
+            },
+            "bibtex_report": {
+              "elapsed_us": 12016.954
+            },
+            "capture_exit": {
+              "elapsed_us": 14.892
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 27.155
+            },
+            "unique_tracking": {
+              "elapsed_us": 56045.023
+            },
+            "snapshot": {
+              "elapsed_us": 21269.282
+            },
+            "json_export": {
+              "elapsed_us": 2885.308
+            },
+            "workflow_report": {
+              "elapsed_us": 51746.738
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24325.622
+            },
+            "bibtex_report": {
+              "elapsed_us": 11281.191
+            },
+            "capture_exit": {
+              "elapsed_us": 14.723
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 30.714
+            },
+            "unique_tracking": {
+              "elapsed_us": 60035.573
+            },
+            "snapshot": {
+              "elapsed_us": 21733.403
+            },
+            "json_export": {
+              "elapsed_us": 2728.221
+            },
+            "workflow_report": {
+              "elapsed_us": 51251.849
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24400.753
+            },
+            "bibtex_report": {
+              "elapsed_us": 12065.297
+            },
+            "capture_exit": {
+              "elapsed_us": 15.269
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 34.757
+            },
+            "unique_tracking": {
+              "elapsed_us": 68573.345
+            },
+            "snapshot": {
+              "elapsed_us": 26279.06
+            },
+            "json_export": {
+              "elapsed_us": 3309.293
+            },
+            "workflow_report": {
+              "elapsed_us": 51776.356
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24778.005
+            },
+            "bibtex_report": {
+              "elapsed_us": 11932.127
+            },
+            "capture_exit": {
+              "elapsed_us": 16.277
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 31.707
+            },
+            "unique_tracking": {
+              "elapsed_us": 55386.833
+            },
+            "snapshot": {
+              "elapsed_us": 22190.166
+            },
+            "json_export": {
+              "elapsed_us": 2611.709
+            },
+            "workflow_report": {
+              "elapsed_us": 51906.138
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24705.682
+            },
+            "bibtex_report": {
+              "elapsed_us": 12310.102
+            },
+            "capture_exit": {
+              "elapsed_us": 16.969
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 23.834
+            },
+            "unique_tracking": {
+              "elapsed_us": 52253.961
+            },
+            "snapshot": {
+              "elapsed_us": 20740.725
+            },
+            "json_export": {
+              "elapsed_us": 2382.909
+            },
+            "workflow_report": {
+              "elapsed_us": 49259.809
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23137.309
+            },
+            "bibtex_report": {
+              "elapsed_us": 11100.382
+            },
+            "capture_exit": {
+              "elapsed_us": 16.969
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 32.015
+            },
+            "unique_tracking": {
+              "elapsed_us": 55582.71
+            },
+            "snapshot": {
+              "elapsed_us": 19990.03
+            },
+            "json_export": {
+              "elapsed_us": 2850.504
+            },
+            "workflow_report": {
+              "elapsed_us": 51812.335
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23319.96
+            },
+            "bibtex_report": {
+              "elapsed_us": 11719.549
+            },
+            "capture_exit": {
+              "elapsed_us": 15.485
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "memory_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 3971198,
+              "peak_extra_bytes": 3971726
+            },
+            "snapshot": {
+              "retained_delta_bytes": 1249693,
+              "peak_extra_bytes": 2326774
+            },
+            "json_export": {
+              "retained_delta_bytes": 303473,
+              "peak_extra_bytes": 348966
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 598126,
+              "peak_extra_bytes": 2650154
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 497370,
+              "peak_extra_bytes": 2549334
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 75915,
+              "peak_extra_bytes": 909612
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1882,
+              "peak_extra_bytes": 1922
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 3971198,
+              "peak_extra_bytes": 3971726
+            },
+            "snapshot": {
+              "retained_delta_bytes": 1249693,
+              "peak_extra_bytes": 2326774
+            },
+            "json_export": {
+              "retained_delta_bytes": 303473,
+              "peak_extra_bytes": 348966
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 597595,
+              "peak_extra_bytes": 2649623
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 497370,
+              "peak_extra_bytes": 2549334
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 80484,
+              "peak_extra_bytes": 909612
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -80,
+              "peak_extra_bytes": 352
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 3971198,
+              "peak_extra_bytes": 3971726
+            },
+            "snapshot": {
+              "retained_delta_bytes": 1249693,
+              "peak_extra_bytes": 2326774
+            },
+            "json_export": {
+              "retained_delta_bytes": 303473,
+              "peak_extra_bytes": 348966
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 598126,
+              "peak_extra_bytes": 2650154
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 497370,
+              "peak_extra_bytes": 2549334
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 77418,
+              "peak_extra_bytes": 909612
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "timing_summary": {
+        "capture_entry": {
+          "elapsed_us": {
+            "median": 30.714,
+            "minimum": 23.834,
+            "maximum": 34.757,
+            "spread": 10.922999999999998
+          }
+        },
+        "unique_tracking": {
+          "elapsed_us": {
+            "median": 55582.71,
+            "minimum": 52253.961,
+            "maximum": 68573.345,
+            "spread": 16319.383999999998
+          }
+        },
+        "snapshot": {
+          "elapsed_us": {
+            "median": 21269.282,
+            "minimum": 19990.03,
+            "maximum": 26279.06,
+            "spread": 6289.0300000000025
+          }
+        },
+        "json_export": {
+          "elapsed_us": {
+            "median": 2728.221,
+            "minimum": 2382.909,
+            "maximum": 3309.293,
+            "spread": 926.384
+          }
+        },
+        "workflow_report": {
+          "elapsed_us": {
+            "median": 51746.738,
+            "minimum": 49259.809,
+            "maximum": 53262.065,
+            "spread": 4002.256000000001
+          }
+        },
+        "repeated_workflow_report": {
+          "elapsed_us": {
+            "median": 24400.753,
+            "minimum": 23137.309,
+            "maximum": 25568.526,
+            "spread": 2431.2170000000006
+          }
+        },
+        "bibtex_report": {
+          "elapsed_us": {
+            "median": 11932.127,
+            "minimum": 11100.382,
+            "maximum": 12774.4,
+            "spread": 1674.018
+          }
+        },
+        "capture_exit": {
+          "elapsed_us": {
+            "median": 16.277,
+            "minimum": 14.723,
+            "maximum": 33.914,
+            "spread": 19.191000000000003
+          }
+        }
+      },
+      "memory_summary": {
+        "capture_entry": {
+          "retained_delta_bytes": {
+            "median": 1818,
+            "minimum": 1818,
+            "maximum": 1882,
+            "spread": 64
+          },
+          "peak_extra_bytes": {
+            "median": 1858,
+            "minimum": 1858,
+            "maximum": 1922,
+            "spread": 64
+          }
+        },
+        "unique_tracking": {
+          "retained_delta_bytes": {
+            "median": 3971198,
+            "minimum": 3971198,
+            "maximum": 3971198,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 3971726,
+            "minimum": 3971726,
+            "maximum": 3971726,
+            "spread": 0
+          }
+        },
+        "snapshot": {
+          "retained_delta_bytes": {
+            "median": 1249693,
+            "minimum": 1249693,
+            "maximum": 1249693,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2326774,
+            "minimum": 2326774,
+            "maximum": 2326774,
+            "spread": 0
+          }
+        },
+        "json_export": {
+          "retained_delta_bytes": {
+            "median": 303473,
+            "minimum": 303473,
+            "maximum": 303473,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 348966,
+            "minimum": 348966,
+            "maximum": 348966,
+            "spread": 0
+          }
+        },
+        "workflow_report": {
+          "retained_delta_bytes": {
+            "median": 598126,
+            "minimum": 597595,
+            "maximum": 598126,
+            "spread": 531
+          },
+          "peak_extra_bytes": {
+            "median": 2650154,
+            "minimum": 2649623,
+            "maximum": 2650154,
+            "spread": 531
+          }
+        },
+        "repeated_workflow_report": {
+          "retained_delta_bytes": {
+            "median": 497370,
+            "minimum": 497370,
+            "maximum": 497370,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2549334,
+            "minimum": 2549334,
+            "maximum": 2549334,
+            "spread": 0
+          }
+        },
+        "bibtex_report": {
+          "retained_delta_bytes": {
+            "median": 77418,
+            "minimum": 75915,
+            "maximum": 80484,
+            "spread": 4569
+          },
+          "peak_extra_bytes": {
+            "median": 909612,
+            "minimum": 909612,
+            "maximum": 909612,
+            "spread": 0
+          }
+        },
+        "capture_exit": {
+          "retained_delta_bytes": {
+            "median": -16,
+            "minimum": -80,
+            "maximum": -16,
+            "spread": 64
+          },
+          "peak_extra_bytes": {
+            "median": 344,
+            "minimum": 344,
+            "maximum": 352,
+            "spread": 8
+          }
+        }
+      }
+    },
+    "report_1000_separated": {
+      "case": {
+        "kind": "references",
+        "size": 1000,
+        "separate_format_discovery": true,
+        "repeat_report": true
+      },
+      "timing_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 33.539
+            },
+            "unique_tracking": {
+              "elapsed_us": 57493.431
+            },
+            "snapshot": {
+              "elapsed_us": 21341.451
+            },
+            "json_export": {
+              "elapsed_us": 2536.184
+            },
+            "format_discovery": {
+              "elapsed_us": 25541.819
+            },
+            "workflow_report": {
+              "elapsed_us": 25202.256
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 25617.84
+            },
+            "bibtex_report": {
+              "elapsed_us": 11746.479
+            },
+            "capture_exit": {
+              "elapsed_us": 28.32
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 29.724
+            },
+            "unique_tracking": {
+              "elapsed_us": 57331.686
+            },
+            "snapshot": {
+              "elapsed_us": 21489.153
+            },
+            "json_export": {
+              "elapsed_us": 2683.338
+            },
+            "format_discovery": {
+              "elapsed_us": 26363.272
+            },
+            "workflow_report": {
+              "elapsed_us": 25521.674
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24318.872
+            },
+            "bibtex_report": {
+              "elapsed_us": 11588.411
+            },
+            "capture_exit": {
+              "elapsed_us": 15.269
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 26.35
+            },
+            "unique_tracking": {
+              "elapsed_us": 54906.862
+            },
+            "snapshot": {
+              "elapsed_us": 20341.332
+            },
+            "json_export": {
+              "elapsed_us": 2952.662
+            },
+            "format_discovery": {
+              "elapsed_us": 26059.667
+            },
+            "workflow_report": {
+              "elapsed_us": 25980.254
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24841.189
+            },
+            "bibtex_report": {
+              "elapsed_us": 11663.347
+            },
+            "capture_exit": {
+              "elapsed_us": 14.208
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 31.499
+            },
+            "unique_tracking": {
+              "elapsed_us": 56361.566
+            },
+            "snapshot": {
+              "elapsed_us": 21966.519
+            },
+            "json_export": {
+              "elapsed_us": 3034.654
+            },
+            "format_discovery": {
+              "elapsed_us": 25409.886
+            },
+            "workflow_report": {
+              "elapsed_us": 26010.07
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23865.276
+            },
+            "bibtex_report": {
+              "elapsed_us": 11354.809
+            },
+            "capture_exit": {
+              "elapsed_us": 36.266
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 30.376
+            },
+            "unique_tracking": {
+              "elapsed_us": 54591.395
+            },
+            "snapshot": {
+              "elapsed_us": 21411.881
+            },
+            "json_export": {
+              "elapsed_us": 2612.56
+            },
+            "format_discovery": {
+              "elapsed_us": 24219.045
+            },
+            "workflow_report": {
+              "elapsed_us": 26770.912
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 24365.321
+            },
+            "bibtex_report": {
+              "elapsed_us": 11385.933
+            },
+            "capture_exit": {
+              "elapsed_us": 16.954
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 28.726
+            },
+            "unique_tracking": {
+              "elapsed_us": 55915.238
+            },
+            "snapshot": {
+              "elapsed_us": 20840.7
+            },
+            "json_export": {
+              "elapsed_us": 2687.105
+            },
+            "format_discovery": {
+              "elapsed_us": 26296.127
+            },
+            "workflow_report": {
+              "elapsed_us": 25353.819
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23836.144
+            },
+            "bibtex_report": {
+              "elapsed_us": 11908.388
+            },
+            "capture_exit": {
+              "elapsed_us": 14.003
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 37.659
+            },
+            "unique_tracking": {
+              "elapsed_us": 59290.172
+            },
+            "snapshot": {
+              "elapsed_us": 21324.617
+            },
+            "json_export": {
+              "elapsed_us": 2763.534
+            },
+            "format_discovery": {
+              "elapsed_us": 26024.64
+            },
+            "workflow_report": {
+              "elapsed_us": 26131.027
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 25015.7
+            },
+            "bibtex_report": {
+              "elapsed_us": 11787.425
+            },
+            "capture_exit": {
+              "elapsed_us": 15.036
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 25.662
+            },
+            "unique_tracking": {
+              "elapsed_us": 55444.749
+            },
+            "snapshot": {
+              "elapsed_us": 21115.479
+            },
+            "json_export": {
+              "elapsed_us": 2657.183
+            },
+            "format_discovery": {
+              "elapsed_us": 26700.53
+            },
+            "workflow_report": {
+              "elapsed_us": 25886.295
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23767.853
+            },
+            "bibtex_report": {
+              "elapsed_us": 12875.259
+            },
+            "capture_exit": {
+              "elapsed_us": 20.42
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "elapsed_us": 28.568
+            },
+            "unique_tracking": {
+              "elapsed_us": 52747.884
+            },
+            "snapshot": {
+              "elapsed_us": 19849.77
+            },
+            "json_export": {
+              "elapsed_us": 2306.51
+            },
+            "format_discovery": {
+              "elapsed_us": 25737.189
+            },
+            "workflow_report": {
+              "elapsed_us": 25955.263
+            },
+            "repeated_workflow_report": {
+              "elapsed_us": 23816.375
+            },
+            "bibtex_report": {
+              "elapsed_us": 11235.219
+            },
+            "capture_exit": {
+              "elapsed_us": 16.884
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "memory_samples": [
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 3971198,
+              "peak_extra_bytes": 3971726
+            },
+            "snapshot": {
+              "retained_delta_bytes": 1249693,
+              "peak_extra_bytes": 2326774
+            },
+            "json_export": {
+              "retained_delta_bytes": 303473,
+              "peak_extra_bytes": 348966
+            },
+            "format_discovery": {
+              "retained_delta_bytes": 17760,
+              "peak_extra_bytes": 312177
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 581007,
+              "peak_extra_bytes": 2633035
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 497250,
+              "peak_extra_bytes": 2549214
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 79429,
+              "peak_extra_bytes": 909732
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 3971198,
+              "peak_extra_bytes": 3971726
+            },
+            "snapshot": {
+              "retained_delta_bytes": 1249693,
+              "peak_extra_bytes": 2326774
+            },
+            "json_export": {
+              "retained_delta_bytes": 303473,
+              "peak_extra_bytes": 348966
+            },
+            "format_discovery": {
+              "retained_delta_bytes": 12627,
+              "peak_extra_bytes": 307044
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 581066,
+              "peak_extra_bytes": 2633094
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 497250,
+              "peak_extra_bytes": 2549214
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 76928,
+              "peak_extra_bytes": 909732
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        },
+        {
+          "measurements": {
+            "capture_entry": {
+              "retained_delta_bytes": 1818,
+              "peak_extra_bytes": 1858
+            },
+            "unique_tracking": {
+              "retained_delta_bytes": 3971198,
+              "peak_extra_bytes": 3971726
+            },
+            "snapshot": {
+              "retained_delta_bytes": 1249693,
+              "peak_extra_bytes": 2326774
+            },
+            "json_export": {
+              "retained_delta_bytes": 303473,
+              "peak_extra_bytes": 348966
+            },
+            "format_discovery": {
+              "retained_delta_bytes": 17288,
+              "peak_extra_bytes": 311764
+            },
+            "workflow_report": {
+              "retained_delta_bytes": 581007,
+              "peak_extra_bytes": 2633035
+            },
+            "repeated_workflow_report": {
+              "retained_delta_bytes": 497250,
+              "peak_extra_bytes": 2549214
+            },
+            "bibtex_report": {
+              "retained_delta_bytes": 76505,
+              "peak_extra_bytes": 909732
+            },
+            "capture_exit": {
+              "retained_delta_bytes": -16,
+              "peak_extra_bytes": 344
+            }
+          },
+          "facts": {
+            "formats": [
+              "bibtex",
+              "csl-json",
+              "explanation",
+              "json",
+              "latex",
+              "markdown",
+              "provenance",
+              "text",
+              "workflow"
+            ],
+            "references": 1000,
+            "nodes": 1001,
+            "edges": 1000,
+            "json_bytes": 303432,
+            "workflow_bytes": 262538,
+            "bibtex_bytes": 74668
+          },
+          "identity_id": "526c6157d841be340bff2cd85a3886d0d253c65066179dca3c9c43fdd5377063",
+          "stderr": ""
+        }
+      ],
+      "timing_summary": {
+        "capture_entry": {
+          "elapsed_us": {
+            "median": 29.724,
+            "minimum": 25.662,
+            "maximum": 37.659,
+            "spread": 11.997
+          }
+        },
+        "unique_tracking": {
+          "elapsed_us": {
+            "median": 55915.238,
+            "minimum": 52747.884,
+            "maximum": 59290.172,
+            "spread": 6542.2880000000005
+          }
+        },
+        "snapshot": {
+          "elapsed_us": {
+            "median": 21324.617,
+            "minimum": 19849.77,
+            "maximum": 21966.519,
+            "spread": 2116.749
+          }
+        },
+        "json_export": {
+          "elapsed_us": {
+            "median": 2683.338,
+            "minimum": 2306.51,
+            "maximum": 3034.654,
+            "spread": 728.1439999999998
+          }
+        },
+        "format_discovery": {
+          "elapsed_us": {
+            "median": 26024.64,
+            "minimum": 24219.045,
+            "maximum": 26700.53,
+            "spread": 2481.4850000000006
+          }
+        },
+        "workflow_report": {
+          "elapsed_us": {
+            "median": 25955.263,
+            "minimum": 25202.256,
+            "maximum": 26770.912,
+            "spread": 1568.655999999999
+          }
+        },
+        "repeated_workflow_report": {
+          "elapsed_us": {
+            "median": 24318.872,
+            "minimum": 23767.853,
+            "maximum": 25617.84,
+            "spread": 1849.987000000001
+          }
+        },
+        "bibtex_report": {
+          "elapsed_us": {
+            "median": 11663.347,
+            "minimum": 11235.219,
+            "maximum": 12875.259,
+            "spread": 1640.0400000000009
+          }
+        },
+        "capture_exit": {
+          "elapsed_us": {
+            "median": 16.884,
+            "minimum": 14.003,
+            "maximum": 36.266,
+            "spread": 22.262999999999998
+          }
+        }
+      },
+      "memory_summary": {
+        "capture_entry": {
+          "retained_delta_bytes": {
+            "median": 1818,
+            "minimum": 1818,
+            "maximum": 1818,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 1858,
+            "minimum": 1858,
+            "maximum": 1858,
+            "spread": 0
+          }
+        },
+        "unique_tracking": {
+          "retained_delta_bytes": {
+            "median": 3971198,
+            "minimum": 3971198,
+            "maximum": 3971198,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 3971726,
+            "minimum": 3971726,
+            "maximum": 3971726,
+            "spread": 0
+          }
+        },
+        "snapshot": {
+          "retained_delta_bytes": {
+            "median": 1249693,
+            "minimum": 1249693,
+            "maximum": 1249693,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2326774,
+            "minimum": 2326774,
+            "maximum": 2326774,
+            "spread": 0
+          }
+        },
+        "json_export": {
+          "retained_delta_bytes": {
+            "median": 303473,
+            "minimum": 303473,
+            "maximum": 303473,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 348966,
+            "minimum": 348966,
+            "maximum": 348966,
+            "spread": 0
+          }
+        },
+        "format_discovery": {
+          "retained_delta_bytes": {
+            "median": 17288,
+            "minimum": 12627,
+            "maximum": 17760,
+            "spread": 5133
+          },
+          "peak_extra_bytes": {
+            "median": 311764,
+            "minimum": 307044,
+            "maximum": 312177,
+            "spread": 5133
+          }
+        },
+        "workflow_report": {
+          "retained_delta_bytes": {
+            "median": 581007,
+            "minimum": 581007,
+            "maximum": 581066,
+            "spread": 59
+          },
+          "peak_extra_bytes": {
+            "median": 2633035,
+            "minimum": 2633035,
+            "maximum": 2633094,
+            "spread": 59
+          }
+        },
+        "repeated_workflow_report": {
+          "retained_delta_bytes": {
+            "median": 497250,
+            "minimum": 497250,
+            "maximum": 497250,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 2549214,
+            "minimum": 2549214,
+            "maximum": 2549214,
+            "spread": 0
+          }
+        },
+        "bibtex_report": {
+          "retained_delta_bytes": {
+            "median": 76928,
+            "minimum": 76505,
+            "maximum": 79429,
+            "spread": 2924
+          },
+          "peak_extra_bytes": {
+            "median": 909732,
+            "minimum": 909732,
+            "maximum": 909732,
+            "spread": 0
+          }
+        },
+        "capture_exit": {
+          "retained_delta_bytes": {
+            "median": -16,
+            "minimum": -16,
+            "maximum": -16,
+            "spread": 0
+          },
+          "peak_extra_bytes": {
+            "median": 344,
+            "minimum": 344,
+            "maximum": 344,
+            "spread": 0
+          }
+        }
+      }
+    }
+  }
+}

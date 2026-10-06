@@ -144,6 +144,11 @@ many land before 1.0.0 is an outcome rather than a plan.
   Explicit metadata-only scopes preserve scientific values and references, while
   argument validation stays active. Source snapshots remain historical evidence;
   no public release or universal speedup follows from this local installed lane.
+  The startup checkpoint #116 separates distribution discovery from rendering
+  and defers network/PDF imports until their owning operations. Two normally
+  installed wheels retain 120 raw samples with identical providers and other
+  distribution metadata. Cold traced allocation peak falls from 10.68 to
+  8.95 MiB; latency ranges overlap, so no reliable import speedup is claimed.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable

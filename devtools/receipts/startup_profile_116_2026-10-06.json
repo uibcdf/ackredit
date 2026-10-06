@@ -1,0 +1,468 @@
+{
+  "schema": "ackredit.startup-profile@1",
+  "method": "Exploratory single baseline process: cProfile and pstats imported before Ackredit; profile cold import, then _load_plugins_once. Profiler priming/overhead excludes these numbers from latency comparison. Cumulative times overlap and must not be added. Fixed installed baseline identities are in startup_installed_116_2026-10-06.json.",
+  "profiles": {
+    "cold_import": {
+      "total_seconds": 0.3132329329999999,
+      "total_calls": 230399,
+      "functions": [
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/__init__.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.000110606,
+          "cumulative_seconds": 0.31287763100000004
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/contrib/duecredit_compat.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 3.3267000000000005e-05,
+          "cumulative_seconds": 0.14579023800000002
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/__init__.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.761e-05,
+          "cumulative_seconds": 0.12623483900000002
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/collector.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 8.0283e-05,
+          "cumulative_seconds": 0.08234896700000001
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/registry.py",
+          "line": 707,
+          "function": "load_plugins",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 5.862e-06,
+          "cumulative_seconds": 0.08144298600000001
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/registry.py",
+          "line": 574,
+          "function": "load_plugins",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.0034e-05,
+          "cumulative_seconds": 0.081437124
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 999,
+          "function": "entry_points",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.000315037,
+          "cumulative_seconds": 0.08142518500000001
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 1008,
+          "function": "<genexpr>",
+          "primitive_calls": 319,
+          "calls": 319,
+          "self_seconds": 0.00036993700000000003,
+          "cumulative_seconds": 0.079800285
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/_private/argdigest/__init__.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.4099000000000002e-05,
+          "cumulative_seconds": 0.069955867
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/_private/argdigest/digest.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 9.869e-06,
+          "cumulative_seconds": 0.069482189
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/_itertools.py",
+          "line": 4,
+          "function": "unique_everseen",
+          "primitive_calls": 319,
+          "calls": 319,
+          "self_seconds": 0.0017100090000000002,
+          "cumulative_seconds": 0.047641063000000004
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 488,
+          "function": "entry_points",
+          "primitive_calls": 318,
+          "calls": 318,
+          "self_seconds": 0.000542169,
+          "cumulative_seconds": 0.031789285
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 980,
+          "function": "version",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 4.073000000000001e-06,
+          "cumulative_seconds": 0.027188979000000002
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/registry.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 9.468100000000001e-05,
+          "cumulative_seconds": 0.027043617000000002
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 483,
+          "function": "version",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 8.013000000000001e-06,
+          "cumulative_seconds": 0.022065854000000003
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 448,
+          "function": "metadata",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.3022e-05,
+          "cumulative_seconds": 0.022042309000000003
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 907,
+          "function": "read_text",
+          "primitive_calls": 319,
+          "calls": 319,
+          "self_seconds": 0.0021141740000000003,
+          "cumulative_seconds": 0.02090511
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 334,
+          "function": "__new__",
+          "primitive_calls": 325,
+          "calls": 325,
+          "self_seconds": 0.009747283,
+          "cumulative_seconds": 0.01804971
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 924,
+          "function": "_normalized_name",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.0016218130000000002,
+          "cumulative_seconds": 0.017952457
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/_adapters.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.1977e-05,
+          "cumulative_seconds": 0.01743312
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 890,
+          "function": "<genexpr>",
+          "primitive_calls": 21,
+          "calls": 21,
+          "self_seconds": 6.6561e-05,
+          "cumulative_seconds": 0.014515309
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 756,
+          "function": "search",
+          "primitive_calls": 19,
+          "calls": 19,
+          "self_seconds": 6.9047e-05,
+          "cumulative_seconds": 0.014414523
+        },
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/report.py",
+          "line": 1,
+          "function": "<module>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 9.8169e-05,
+          "cumulative_seconds": 0.013787511
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 765,
+          "function": "lookup",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_seconds": 3.2877000000000004e-05,
+          "cumulative_seconds": 0.013607049000000001
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 775,
+          "function": "__init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "self_seconds": 0.003388662,
+          "cumulative_seconds": 0.013574172
+        }
+      ]
+    },
+    "format_discovery": {
+      "total_seconds": 0.06599962900000002,
+      "total_calls": 83119,
+      "functions": [
+        {
+          "file": "/tmp/ackredit115-updated-env/lib/python3.14/site-packages/ackredit/core/report.py",
+          "line": 160,
+          "function": "_load_plugins_once",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 6.938e-06,
+          "cumulative_seconds": 0.06598477900000001
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 999,
+          "function": "entry_points",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.00028005500000000003,
+          "cumulative_seconds": 0.06597219
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 1008,
+          "function": "<genexpr>",
+          "primitive_calls": 319,
+          "calls": 319,
+          "self_seconds": 0.00036684200000000004,
+          "cumulative_seconds": 0.06443359700000001
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/_itertools.py",
+          "line": 4,
+          "function": "unique_everseen",
+          "primitive_calls": 319,
+          "calls": 319,
+          "self_seconds": 0.001622816,
+          "cumulative_seconds": 0.033880981000000004
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 488,
+          "function": "entry_points",
+          "primitive_calls": 318,
+          "calls": 318,
+          "self_seconds": 0.000546122,
+          "cumulative_seconds": 0.030185774000000002
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 907,
+          "function": "read_text",
+          "primitive_calls": 318,
+          "calls": 318,
+          "self_seconds": 0.001995981,
+          "cumulative_seconds": 0.020199619000000002
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 334,
+          "function": "__new__",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.009228829000000001,
+          "cumulative_seconds": 0.016977207
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _io.open>",
+          "primitive_calls": 327,
+          "calls": 327,
+          "self_seconds": 0.005242282,
+          "cumulative_seconds": 0.012434342000000001
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 924,
+          "function": "_normalized_name",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.00145264,
+          "cumulative_seconds": 0.011453127
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 294,
+          "function": "_from_text_for",
+          "primitive_calls": 318,
+          "calls": 318,
+          "self_seconds": 0.0009602520000000001,
+          "cumulative_seconds": 0.009440033
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 296,
+          "function": "<genexpr>",
+          "primitive_calls": 672,
+          "calls": 672,
+          "self_seconds": 0.00047780500000000004,
+          "cumulative_seconds": 0.007695986
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 300,
+          "function": "<genexpr>",
+          "primitive_calls": 672,
+          "calls": 672,
+          "self_seconds": 0.000830373,
+          "cumulative_seconds": 0.0067612900000000005
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 104,
+          "function": "<genexpr>",
+          "primitive_calls": 672,
+          "calls": 672,
+          "self_seconds": 0.0008692810000000001,
+          "cumulative_seconds": 0.005217931
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/_functools.py",
+          "line": 89,
+          "function": "pass_none",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.0009608650000000001,
+          "cumulative_seconds": 0.003918009
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 890,
+          "function": "<genexpr>",
+          "primitive_calls": 15,
+          "calls": 15,
+          "self_seconds": 2.8942000000000002e-05,
+          "cumulative_seconds": 0.00358258
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 756,
+          "function": "search",
+          "primitive_calls": 14,
+          "calls": 14,
+          "self_seconds": 2.9342e-05,
+          "cumulative_seconds": 0.003550352
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 765,
+          "function": "lookup",
+          "primitive_calls": 10,
+          "calls": 10,
+          "self_seconds": 2.6728000000000002e-05,
+          "cumulative_seconds": 0.003262267
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 775,
+          "function": "__init__",
+          "primitive_calls": 10,
+          "calls": 10,
+          "self_seconds": 0.001009827,
+          "cumulative_seconds": 0.0032355390000000004
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/_functools.py",
+          "line": 99,
+          "function": "wrapper",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.00045484700000000003,
+          "cumulative_seconds": 0.0030792610000000002
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 851,
+          "function": "normalize",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.0005658610000000001,
+          "cumulative_seconds": 0.0026244140000000003
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 110,
+          "function": "read",
+          "primitive_calls": 672,
+          "calls": 672,
+          "self_seconds": 0.0013895440000000002,
+          "cumulative_seconds": 0.0024553680000000003
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 936,
+          "function": "_name_from_stem",
+          "primitive_calls": 324,
+          "calls": 324,
+          "self_seconds": 0.000500764,
+          "cumulative_seconds": 0.001909593
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 742,
+          "function": "children",
+          "primitive_calls": 10,
+          "calls": 10,
+          "self_seconds": 6.981500000000001e-05,
+          "cumulative_seconds": 0.001387322
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 273,
+          "function": "select",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 3.304e-06,
+          "cumulative_seconds": 0.0012420810000000001
+        },
+        {
+          "file": "/home/liliana/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/importlib/metadata/__init__.py",
+          "line": 278,
+          "function": "<genexpr>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.000416833,
+          "cumulative_seconds": 0.0012387770000000002
+        }
+      ]
+    }
+  }
+}

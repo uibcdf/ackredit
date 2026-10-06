@@ -9,10 +9,18 @@ import pytest
 @pytest.mark.parametrize("operation", ["report", "cached_enrichment", "missing_pdf"])
 def test_offline_operations_leave_feature_imports_deferred(tmp_path, operation):
     code = """
-import importlib.metadata, json, pathlib, sys, warnings
+import builtins, importlib.metadata, json, pathlib, sys, warnings
 # Third-party citation/format code has its own import requirements. Exercise
 # Ackredit's built-in operations with no installed plugins, in a fresh process.
 importlib.metadata.entry_points = lambda **kwargs: ()
+original_import = builtins.__import__
+feature_imports = []
+def record_import(name, globals=None, locals=None, fromlist=(), level=0):
+    if (globals and globals.get('__name__', '').startswith('ackredit.')
+            and name in {'urllib.request', 'urllib.error', 'subprocess'}):
+        feature_imports.append(name)
+    return original_import(name, globals, locals, fromlist, level)
+builtins.__import__ = record_import
 import ackredit
 ackredit.register_item(id='local', doi='10.1/local',
                       title='' if sys.argv[1] == 'cached_enrichment' else 'Local reference')
@@ -34,7 +42,8 @@ else:
     assert 'Local reference' in ackredit.report(format='text')
 assert 'argdigest' in sys.modules
 assert 'smonitor' in sys.modules
-assert not {'urllib.request', 'ssl', 'subprocess'} & sys.modules.keys()
+# Providers can import their own support; only Ackredit owns this guard.
+assert not feature_imports, feature_imports
 """
     subprocess.run(
         [sys.executable, "-c", code, operation],
