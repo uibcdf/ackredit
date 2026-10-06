@@ -89,7 +89,8 @@ Python 3.14.7 gates pass 389 selected tests without skips/warnings, Ruff,
 indexes, all 16 dependency routes and strict Sphinx. The owning issue retains
 the exact published head and its hosted controls. The
 [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/provider_author_guide.md)
-keeps scope and evidence; the validator remains provisional and absent from
+keeps scope and evidence; the validator was provisional at that checkpoint.
+Its later source promotion is accepted under #125; it remains absent from
 public 0.11.0.
 
 ## Next work, in order
@@ -101,8 +102,12 @@ release notes and the canonical host guide implement the bounded decision.
 The review maps original-occurrence association, unknown/empty declarations,
 collector ownership/failure and reporting limits to original receiving data and
 149 selected tests, including six supplementary cases. The owning issue records
-acceptance-head checks separately from that original qualification. Only
-`validate_provider` remains provisional; its promotion is a separate decision.
+acceptance-head checks separately from that original qualification. The later
+#125 decision accepts the general bounded 1.x source commitment and separately
+promotes `validate_provider`; its public promise awaits its first qualified
+delivering release, while the general promise begins at qualified public 1.0.0.
+There are no provisional exports in the current source inventory. Neither source
+decision selects a version/tag or authorizes publication.
 
 1. **Retain theme N's accepted deferral and continue the remaining reviews.**
    The maintainer chose to postpone non-bibliographic acknowledgements until a
@@ -116,15 +121,20 @@ acceptance-head checks separately from that original qualification. Only
    remain unqualified. L has separate bounded lifecycle/startup/plugin/installed
    footprint checkpoints #115–#119, with wider workloads and platforms retaining
    their limits. K's platform/client decisions and the general 1.0 review keep
-   their owners. The next local review is F's general 1.0 stability commitment
-   against actual receiving evidence; that review does not authorize promotion or
-   release. #58's optional dashboard is not a priority or a dependency.
-2. **Qualify the accepted evidence promise when its release is authorized.**
+   their owners. F's [general stability review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
+   is now accepted under #125, including the separate validator promotion.
+   The next owner-local step is to prepare a concrete future delivery scope from
+   completed development, including accepted evidence/validator promises and
+   qualified runtime repairs. Version selection, exact-candidate execution and
+   publication require their own explicit release authorization. #58's optional
+   dashboard is not a priority or a dependency.
+2. **Qualify the accepted promises when their release is authorized.**
    Select the version from a concrete scope and execute the exact-source,
-   installed-file, real receiving and public gates. #114's acceptance does not
+   installed-file, real receiving and public gates. #114/#125's acceptance does not
    authorize publication or replace the original 0.11.0 artifact. Canonical-guide
    synchronization and consumer adoption retain their existing owners. Additional
-   recorder integration needs concrete owning use cases.
+   recorder integration needs concrete owning use cases. Preserve separate
+   general 1.0 and bounded pre-1.0 delivery meanings when choosing the version.
 
 ## External handoffs and constraints
 

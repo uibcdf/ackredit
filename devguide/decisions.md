@@ -222,11 +222,32 @@
     retains unaccepted design alternatives. No new API/schema, automatic inference,
     release or current-product/1.0 requirement follows from the deferral.
 
+20. **General 1.x source commitment accepted (`uibcdf/ackredit#125`):**
+    On 2026-10-06 the maintainer accepted the documented stable signatures and
+    meanings across future 1.x after review against actual adoption. Preserve
+    separate saved-file/CLI/plugin meanings and the existing major-removal rule
+    with at least two minor deprecation releases. The general public promise
+    begins with a separately authorized, qualified public 1.0.0; source acceptance
+    does not authorize a version/tag or publication. Existing bounded public
+    promises and original artifacts retain their own release boundaries. The
+    [accepted review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
+    records contract families, original receiving evidence and practical limits.
+
+21. **Standalone validator promoted (`uibcdf/ackredit#125`):**
+    The maintainer separately accepted `validate_provider(module) -> dict` on
+    2026-10-06: a trusted imported ordinary module, detached merged declaration
+    retaining original software/items and role ordering, fresh reads, E012
+    refusal and no Ackredit credit/registration/wrapping/scientific calls or DOI
+    query. Selected lazy-loader effects stay producer-owned; registry compatibility
+    and scientific/citation truth are excluded. The bounded forward public promise
+    starts with the first separately qualified delivering release, including later
+    pre-1.0 and 1.x. Public 0.11.0 lacks the export; the version is not selected.
+    The shared parser is unchanged, and empty roles remain unspecified.
+
 ## Pending Decisions
 
-Standalone `validate_provider` remains provisional under #111. Its author-facing
-signature/result need a separate promotion decision. The accepted evidence
-promise awaits its delivering release; general 1.0 API commitment, MOLI object
+The accepted evidence/validator promises await their delivering releases; the
+general public 1.x commitment awaits qualified public 1.0.0. MOLI object
 boundaries, complete-cost measurements and additional publication-tool expectations
 retain their own decisions in [the roadmap](roadmap.md). Acknowledgement scope
 has the explicit deferral in decision 19; revisit it only with the stated real case.

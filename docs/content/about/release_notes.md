@@ -1,5 +1,30 @@
 # Release notes
 
+## Development after 0.11.0 — accepted general stability and standalone validation
+
+On 2026-10-06 the maintainer accepted both bounded decisions in
+[Ackredit #125](https://github.com/uibcdf/ackredit/issues/125). The general stable
+API's documented signatures and meanings are accepted for 1.x under the existing
+major-removal/two-minor deprecation policy. That general public commitment starts
+with a separately authorized, qualified public 1.0.0; no version/tag or publication
+is authorized by this decision.
+
+`validate_provider(module) -> dict` is separately promoted to stable source
+classification: one imported trusted ordinary module, detached merged declaration,
+original software/items and returned role ordering, fresh reads, E012 refusal and
+no Ackredit credit/registration/wrappers/scientific call or DOI lookup. Selected
+producer lazy-loader effects and current-registry/scientific validation remain
+outside its guarantee. The author guide is corrected to allow the existing
+empty-role-list contract, guarded through actual entry and detached reporting.
+
+The validator's bounded forward public promise starts with its first separately
+qualified delivering release, including later pre-1.0 and 1.x. Public 0.11.0 lacks
+the export; the delivering version is not selected. Parser behavior, provider and
+portable schemas and dependency floors are unchanged. The
+[accepted review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
+retains original adoption evidence and limits. Public portable/provider promises
+and the separately accepted recorder-evidence delivery keep their own boundaries.
+
 ## Development after 0.11.0 — accepted bounded recorder evidence
 
 The maintainer explicitly accepted `AttributionEvidence`, bounded
@@ -16,8 +41,10 @@ completion, declaration trust and other recorder exclusions remain explicit.
 This decision changes classification and guidance, without runtime/schema
 changes. The bounded forward public promise starts with a separately selected,
 qualified future delivering release. Public 0.11.0 retains its original
-provisional evidence classification. Standalone `validate_provider` remains
-provisional; general 1.0 and client/platform adoption remain separate.
+provisional evidence classification. At that decision, standalone
+`validate_provider` and the general 1.0 review remained separate; their later
+source acceptance is recorded under #125 above. Client/platform adoption and
+public delivery retain their owners.
 
 ## Development after 0.11.0 — faithful BibTeX citation keys
 

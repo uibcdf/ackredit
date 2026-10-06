@@ -270,8 +270,10 @@ The last theme, and the one that earns the number.
       than closed, built in `uibcdf/ackredit#36`: `register_format` and an
       `ackredit.formats` entry-point group, with a registered name never replaced. That
       settles `_RENDERERS` as implementation;
-- [ ] **the decisions reviewed once more against what adoption taught**, using
-      theme C's demonstrated receiving workflows and released application.
+- [x] **the decisions reviewed once more against what adoption taught**, using
+      theme C's demonstrated receiving workflows and released application;
+      the maintainer accepted the bounded general 1.x source commitment and
+      standalone validator promotion on 2026-10-06 under #125.
 
 A provisional name reaches 1.0.0 either promoted or removed. Shipping one inside a
 stability commitment would make the commitment meaningless. The principal
@@ -283,16 +285,28 @@ on 2026-10-06 under #114; their future public delivery remains pending. The
 [evidence-contract review](recorder_evidence_contract_review.md) under #114
 records explicit acceptance of representation, collection and requested
 presentation, supported by original receiving data and supplementary lifecycle
-guards. General 1.0 remains a separate decision. Names were removed rather than promised:
+guards. General 1.0 had its separate later acceptance under #125 below.
+Names were removed rather than promised:
 `Registry` and `Collector` in `uibcdf/ackredit#55`, `serve_ui` in `#57`.
 
-What remains is the unchecked review above: adoption can reopen a decision
-taken without it, and the real receiving evidence is now available. Review session ownership,
-capture/reused-reference semantics, software/article versions, failure boundaries,
-saved-reader compatibility and extension contracts against actual receiving
-workflows. Existing tests and a stable-intent classification do not substitute
-for that final general 1.0 decision. The released portable promise remains
-bounded as [API stability](../docs/content/about/stability.md) specifies.
+The final review covers session ownership, capture/reused-reference semantics,
+software/article versions, failure boundaries, saved readers and extensions
+against actual receiving workflows. The general stable signature/meaning promise
+begins with a future separately authorized, qualified public 1.0.0 under the
+existing major-removal/two-minor deprecation policy. `validate_provider` received
+its own bounded source promotion; its forward public promise begins with the
+first separately qualified delivering release. Public 0.11.0 lacks that export.
+No version/tag or publication is authorized by these source decisions. Existing
+public promises retain their boundaries in
+[API stability](../docs/content/about/stability.md).
+
+The [accepted general stability review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
+under [Ackredit #125](https://github.com/uibcdf/ackredit/issues/125) now maps those
+contracts to original adoption evidence and current guards, including validator
+return/side-effect boundaries and empty-role preservation. The current source
+inventory has no provisional export. This completes theme F's source review;
+exact-source, installed-file, real receiving and public release qualification
+remain separate work for an explicitly authorized concrete candidate.
 
 ### Theme G — Accurate, lightweight function providers
 
@@ -361,8 +375,10 @@ claim a new public artifact or cumulative speedup.
 The declaration protocol, observer and prepared callable are decided
 independently. Accepting the current bounded scope can be sufficient for a
 stable surface; broad observation or another scientific engine is not an added
-promotion gate. Standalone `validate_provider` is implemented provisionally in
-development under #111; public 0.11.0 exposes activation-time validation only.
+promotion gate. Standalone `validate_provider` was implemented provisionally in
+development under #111 and received bounded source promotion under #125.
+Its public promise awaits a separately qualified delivering release; public
+0.11.0 exposes activation-time validation only.
 
 ### Theme H — Faithful, compact workflow reports
 

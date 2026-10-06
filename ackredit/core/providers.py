@@ -162,10 +162,12 @@ def validate_provider(module: ModuleType) -> dict:
     order and duplicates are retained so function metadata continues to agree.
     Invalid declarations raise catalog error ``ACKREDIT-E012`` (a ValueError).
 
-    This provisional API neither records uses, registers bibliography, patches
+    This accepted bounded API neither records uses, registers bibliography, patches
     exports nor checks conflicts with the current registry. Explicit lazy
     exports may invoke the producer's loader; unrelated exports are not swept.
     Pass a trusted ordinary module object, not an import name or subclass.
+    Its forward public promise begins with a separately qualified delivering
+    release; original public 0.11.0 does not contain this standalone function.
     """
     with _lock:
         _, _, declaration = _read(module)

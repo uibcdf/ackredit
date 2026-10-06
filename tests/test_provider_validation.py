@@ -110,6 +110,39 @@ def test_empty_exports_keep_original_software_and_all_items(provider):
     assert ackredit.validate_provider(provider) == provider.__ackredit__
 
 
+def test_empty_role_list_keeps_unspecified_use_through_validation_and_saved_report(
+    provider, clean_registry
+):
+    provider.__ackredit__["functions"]["calculate"] = [
+        {"item_id": "example:paper", "roles": []}
+    ]
+
+    def calculate():
+        return 7
+
+    provider.calculate = calculate
+    declaration = ackredit.validate_provider(provider)
+    assert declaration["functions"]["calculate"][0]["roles"] == []
+    assert provider.calculate is calculate
+    assert not ackredit.get_used_items()
+    assert not Registry.items
+    declaration["functions"]["calculate"][0]["roles"].append("not-declared")
+    assert provider.__ackredit__["functions"]["calculate"][0]["roles"] == []
+
+    with ackredit.observe_calls(provider), ackredit.capture("unspecified-role") as run:
+        assert provider.calculate() == 7
+    assert provider.calculate is calculate
+    original = run.attribution.to_dict()
+    assert len(original["uses"]) == 1
+    assert original["uses"][0]["item_id"] == "example:paper"
+    assert original["uses"][0]["roles"] == []
+    before = ackredit.get_attribution().to_dict()
+    saved = ackredit.Attribution.from_json(run.attribution.to_json())
+    assert saved.to_dict() == original
+    assert "| Not recorded |" in saved.report(format="workflow")
+    assert ackredit.get_attribution().to_dict() == before
+
+
 def test_active_observer_and_capture_are_unchanged(provider, clean_registry):
     original = provider.calculate
     with ackredit.observe_calls(provider), ackredit.capture("existing") as capture:

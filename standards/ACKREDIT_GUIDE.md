@@ -201,6 +201,8 @@ resolve locally. Keep software releases under distinct IDs. Function metadata
 `function.__ackredit__ = {"uses": [...]}` can supply the same uses instead;
 if both declarations name an export, they must agree. A producer's decorator
 can attach that attribute and return the original function unchanged.
+The role list may be empty when no role is declared; it remains unspecified
+rather than receiving an inferred relationship.
 
 ### Explicit application observation
 
@@ -282,8 +284,9 @@ deprecation/removal policy. Retain interpretation of
 `ackredit.attribution_evidence@1` and `ackredit.attribution_evidence_explanation@1`;
 incompatible structural/meaning changes require new identifiers. Source
 acceptance, exact-file public delivery, guide-copy synchronization and actual
-consumer adoption remain separate. Standalone `validate_provider` remains
-provisional; this decision does not accept the general 1.0 API.
+consumer adoption remain separate. Standalone validation and the general 1.0
+source commitment were separately accepted under #125 below; their delivery
+boundaries are not implied by the evidence decision.
 
 - Preserve complete detached original attribution/bundles. One evidence entry
   belongs to each original occurrence by position, including repeated names or
@@ -315,6 +318,42 @@ and [evidence user guide](https://github.com/uibcdf/ackredit/blob/main/docs/cont
 Clients decide whether to request these optional facts; this guide neither enables
 observation automatically nor certifies a client release. Consumer guide copies
 are synchronized centrally and are never repaired locally.
+
+## Standalone validation (accepted source contract; public delivery pending)
+
+The maintainer promoted `validate_provider(module) -> dict` on 2026-10-06 under
+[Ackredit #125](https://github.com/uibcdf/ackredit/issues/125). Pass an already
+imported trusted ordinary module. The operation reuses the observer's parser and
+returns a detached merged `ackredit.provider@1` declaration, preserving original
+software/items and returned role order/duplicates. Each call reads current
+metadata. Invalid declarations raise `ValueError` with catalog `ACKREDIT-E012`.
+It does not call science, credit uses, register bibliography, patch exports,
+change observer ownership or query DOIs. Selected lazy loaders retain their
+producer-owned caching/import effects. Validation alone does not establish
+current-registry compatibility, citation truth or successful scientific use.
+
+The bounded public forward promise starts with the first separately qualified
+release delivering this acceptance; the version is not selected. Public 0.11.0
+lacks this standalone export and is not its version floor. Existing portable
+`>=0.9.0`, stable-provider `>=0.11.0` and recorder-evidence delivery boundaries
+remain distinct. Author validation is optional; hosts need not add it to normal
+execution. See the [provider author guide](https://github.com/uibcdf/ackredit/blob/main/docs/content/user_guide/provider_authors.md).
+
+## General 1.0 source commitment (public delivery pending)
+
+Under #125 the maintainer also accepted the documented stable API's signatures
+and meanings for future 1.x, preserving the existing major-removal/two-minor
+deprecation policy and separately versioned saved-reader/plugin/report contracts.
+The general public promise begins with a separately authorized, qualified public
+1.0.0. This is source acceptance, not a release/tag, automatic guide-copy rollout,
+mandatory client adoption or change to a host's optional-provider behavior.
+Private implementation and cosmetic whitespace are not universally frozen;
+scientific success, complete instrumentation and arbitrary publication-tool
+compatibility are not inferred. Original public artifacts retain their historical
+contracts. Review [API stability](https://github.com/uibcdf/ackredit/blob/main/docs/content/about/stability.md)
+and the [accepted contract map](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md).
+Consumer copies remain synchronized through the central registry, never locally
+repaired.
 
 ## Eager demonstration profile
 

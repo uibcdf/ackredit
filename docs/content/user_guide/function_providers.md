@@ -59,6 +59,8 @@ of JSON-compatible bibliographic objects with unique non-empty `id` strings.
 Keep distinct software releases under distinct identifiers. `functions` maps
 direct export names to non-empty lists of uses. Each use has exactly `item_id`
 and `roles`, a list of non-empty role names; every used item is declared locally.
+The role list may be empty when no role is declared; an empty list remains
+unspecified rather than receiving an inferred role.
 No DOI lookup, citation guessing or journal-specific rewrite occurs at runtime.
 
 An individual function can instead carry `function.__ackredit__ = {"uses": [...]}`.
@@ -71,8 +73,10 @@ as `executed_software`, `software_description`, `scientific_criterion` and
 
 ## Validate without observing
 
-Development after public 0.11.0 adds provisional
-`ackredit.validate_provider(module) -> dict` under Ackredit #111. It is not
+Development after public 0.11.0 adds
+`ackredit.validate_provider(module) -> dict` under Ackredit #111. The maintainer
+accepted its bounded stable source contract under #125 on 2026-10-06; its forward
+public promise awaits a separately qualified delivering release. It is not
 available in public 0.11.0. Pass one already imported ordinary module:
 
 ```python
@@ -103,9 +107,12 @@ when an observer is activated.
 Declared lazy exports invoke the selected producer's loader, just as activation
 does. Such loaders may import code or populate the producer's cache; Ackredit
 does not roll back their side effects. Undeclared lazy exports are not resolved.
-Use trusted modules. The new validator's public signature and result
-construction remain provisional; the accepted declaration protocol and
-observer compatibility promise retain their separate release boundary.
+Use trusted modules. The validator's accepted signature and result construction
+retain these bounds. From the first qualified delivering release, preserve their
+meaning across later patch/minor releases, including remaining pre-1.0 and 1.x,
+under the [deprecation policy](../about/stability.md). Its version is not selected;
+the accepted declaration protocol and observer keep their separate public
+0.11.0 boundary. Source promotion does not authorize publication or client adoption.
 
 ## Observe actual entries into selected functions
 

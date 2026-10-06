@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (118)
+### Resolved (119)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -52,6 +52,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`four_names_misfiled_as_provisional.md`](four_names_misfiled_as_provisional.md) — [#49](https://github.com/uibcdf/ackredit/issues/49) — Four names were classified provisional for open behavioural questions rather than for any expected change of name, meaning or signature. *(resolved, asserted)*
 - [`full_ci_routes_and_skipped_push_recovery.md`](full_ci_routes_and_skipped_push_recovery.md) — [#74](https://github.com/uibcdf/ackredit/issues/74) — Protect full CI routes and recover skipped direct pushes. *(resolved, measured)*
 - [`function_citation_providers.md`](function_citation_providers.md) — [#84](https://github.com/uibcdf/ackredit/issues/84) — Observe executed third-party functions through dependency-free declarations. *(resolved, reproduced)*
+- [`general_stability_review.md`](general_stability_review.md) — [#125](https://github.com/uibcdf/ackredit/issues/125) — Accept the bounded general 1.x source commitment and promote standalone provider validation. *(resolved, reproduced)*
 - [`hooks_blind_to_what_came_first.md`](hooks_blind_to_what_came_first.md) — [#69](https://github.com/uibcdf/ackredit/issues/69) — Import hooks never credited a module loaded before them, and since ArgDigest arrived numpy always is, so the documented numpy example and the guide's injection recipe credited nothing. *(resolved, reproduced)*
 - [`hooks_warn_about_the_standard_library.md`](hooks_warn_about_the_standard_library.md) — [#70](https://github.com/uibcdf/ackredit/issues/70) — With import hooks on, every standard-library module imported warned that no citation was found and advised registering it by hand. *(resolved, reproduced)*
 - [`html_output_is_not_escaped.md`](html_output_is_not_escaped.md) — [#25](https://github.com/uibcdf/ackredit/issues/25) — The notebook and dashboard renderers interpolated citation metadata into HTML without escaping it or validating the link. *(resolved, measured)*

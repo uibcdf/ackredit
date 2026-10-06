@@ -54,8 +54,10 @@ IDs. Give different software releases different IDs. Supply verified authors,
 year, DOI and other bibliographic fields where applicable; validation checks
 structure and references, not whether a paper exists or supports your method.
 
-Each use refers to an item declared locally and has a non-empty list of role
-names. `executed_software` describes software execution; `software_description`
+Each use refers to an item declared locally and has a list of role names.
+The list may be empty when no role is declared; each supplied name must be a
+non-empty string. An empty list does not infer a relationship.
+`executed_software` describes software execution; `software_description`
 describes a paper about that software. Use `scientific_criterion` or
 `reference_implementation` only when that is the actual relationship. Declaring
 unused references gives no credit. Static per-function uses apply on every
@@ -70,7 +72,7 @@ function declarations for the same export must agree. List lazy exports in
 
 ## Validate in your author environment
 
-With development Ackredit after public 0.11.0, use the existing provisional API:
+With development Ackredit after public 0.11.0, use the accepted bounded source API:
 
 ```python
 import ackredit
@@ -88,6 +90,9 @@ Selected lazy loaders may import code or populate the producer's cache; their
 side effects are not rolled back. Validation does not detect conflicts with
 the caller's current bibliography registry. Public **0.11.0 lacks this API**
 and validates declarations when `observe_calls` is activated.
+Standalone validation was promoted under #125 on 2026-10-06; its forward public
+compatibility promise starts with a separately qualified delivering release,
+whose version is not selected. See [API stability](../about/stability.md).
 
 ## Let the client observe actual calls
 

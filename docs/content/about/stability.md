@@ -6,8 +6,9 @@
 Ackredit is pre-1.0. **1.0.0 means the public API is stable and we commit to not breaking
 it**, and this page says in advance which names that covers.
 
-Except for the bounded compatibility promises and delivery boundaries below, until 1.0.0 is
-tagged the table is a statement of intent, not the commitment itself. It
+Except for the bounded compatibility promises and delivery boundaries below, until a
+qualified public 1.0.0 is delivered the table is accepted source intent, not the
+general public commitment itself. It
 exists so the commitment, when it is made, is made on purpose: a name reaches 1.0.0 as
 `stable` because someone decided it should, not because it happened to be exported.
 
@@ -17,6 +18,20 @@ may be renamed or removed without notice — including the modules under `ackred
 `Collector` classes inside them, which `uibcdf/ackredit#55` took off this list: the
 supported surface is `register_item`, `bound_items` and `get_used_items`, the functions in
 front of them.
+
+Documented members of exported classes, versioned saved-file representations,
+report/CLI operations and plugin contracts have their own stated boundaries;
+they are distinct from top-level module exports. Private helpers inside those
+owners remain implementation details.
+
+On 2026-10-06 the maintainer accepted the final general 1.0 source review under
+[Ackredit #125](https://github.com/uibcdf/ackredit/issues/125), with its
+[adoption-informed contract map](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md).
+The general decision preserves documented stable signatures and meanings through
+1.x under the deprecation policy below, beginning with a future qualified public
+1.0.0. The standalone validator received its own bounded source promotion.
+Existing public promises retain their original release boundaries; these
+decisions do not authorize a version/tag or publication.
 
 ## What the two levels mean
 
@@ -35,7 +50,7 @@ promise below.
 
 ## The surface
 
-Forty-two names are stable and one provisional — every one has been decided once, on
+Forty-three names are stable and zero provisional — every one has been decided once, on
 the evidence available now. This is the only place those counts are written; everything
 else links here, so they cannot drift apart.
 
@@ -43,9 +58,9 @@ else links here, so they cannot drift apart.
 | --- | --- | --- |
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
-| `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; the unpublished bundle envelope is separate from the released schema-1 promise. |
+| `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; its separate envelope is available in public 0.11.0 and distinct from the original released attribution-schema promise. |
 | `AttributionEvidence` | stable | Explicitly accepted on 2026-10-06 under `uibcdf/ackredit#114`: detached original-occurrence evidence, closed schema-1 meanings, unknown/empty declarations and inert readers. The bounded forward public promise awaits its separately qualified delivering release below. |
-| `validate_provider` | provisional | Standalone declaration preflight under `uibcdf/ackredit#111`; the module argument and detached normalized return are a development API pending author-tooling experience and explicit promotion. Accepted `ackredit.provider@1` meaning is unchanged. |
+| `validate_provider` | stable | Explicitly promoted on 2026-10-06 under `uibcdf/ackredit#125`: one trusted imported ordinary module, detached merged declaration, retained original metadata/role ordering and E012 refusal without credit or wrapping. Producer lazy-loader effects remain outside Ackredit's inertness guarantee; the bounded public promise awaits its separately qualified delivering release. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
 | `capture` | stable | Observes reused calculation references without replacing the application session under `uibcdf/ackredit#75`. The bounded opt-in provider-observer `record_evidence` / `.evidence` extension is explicitly accepted under `uibcdf/ackredit#114`; its forward public promise awaits separate delivery. |
@@ -164,11 +179,34 @@ Client adoption, guide synchronization and client release qualification are
 separate owner decisions. Optional clients retain their absence/failure behavior;
 no client must enable observation automatically.
 
+## Accepted standalone validation; public delivery pending
+
+On 2026-10-06 the maintainer separately promoted
+`validate_provider(module: ModuleType) -> dict` under #125. It validates one
+trusted already imported ordinary module through the observer's existing parser
+and returns a detached merged `ackredit.provider@1` declaration. Original
+software/items, function/module agreement, returned role order/duplicates and
+fresh reads retain their documented meaning. Invalid declarations raise
+catalog `ACKREDIT-E012` as a `ValueError`. No scientific function execution,
+Ackredit credit, registration, wrappers, observer changes or DOI query occurs.
+Explicit lazy loaders retain producer-owned import/cache effects. Successful
+preflight is not current-registry compatibility or scientific/citation validation.
+
+Source classification is stable. Its bounded forward promise begins with the
+first separately qualified public release delivering this acceptance, including
+later pre-1.0 and 1.x patch/minor releases under the policy below. The version is
+not selected. **Public 0.11.0 lacks this standalone export**; it is not a validator
+minimum. See [the provider contract](../user_guide/function_providers.md#validate-without-observing)
+and [the accepted review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md).
+
 ## Deprecation policy
 
 This is what we commit to from 1.0.0 onward. For accepted provider surfaces it
 also applies from public 0.11.0; for accepted recorder-evidence surfaces it
 applies from their separately qualified future delivering release.
+The accepted standalone validator follows the same rule from its first qualified
+delivering release. General source acceptance under #125 does not bring the
+otherwise general 1.x public promise forward into an earlier pre-1.0 artifact.
 
 1. **A stable name is removed only in a major release.** Not in a patch, not in a minor.
 2. **A removal is announced first.** The name keeps working and emits an SMonitor

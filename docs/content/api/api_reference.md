@@ -88,11 +88,14 @@ The same [provider guide](../user_guide/function_providers.md) documents its
 detachment, current-capture behavior and replacement diagnostics. Public 0.9.0
 does not expose it; public 0.11.0 delivers its bounded stable promise under #87.
 
-`validate_provider(module) -> dict` is a provisional standalone preflight added
-in development after 0.11.0 under Ackredit #111. It returns a detached normalized
+`validate_provider(module) -> dict` is a standalone preflight added
+in development after 0.11.0 under Ackredit #111 and promoted to a bounded stable
+source contract under #125. It returns a detached merged
 declaration using the observer's parser, without credit, bibliography
 registration or Ackredit wrappers. The same provider guide specifies explicit
-lazy-export resolution, catalog refusals and validation limits.
+lazy-export resolution, catalog refusals and validation limits. Its forward
+public promise awaits a separately qualified delivering release; public 0.11.0
+lacks the standalone export.
 
 ```{eval-rst}
 .. automodule:: ackredit.core.decorators

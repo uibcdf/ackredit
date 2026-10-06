@@ -143,7 +143,10 @@ integration claims. MolSysSuite owns common policy, admission and registered
 guide synchronization.
 
 The portable compatibility promise is bounded to the released schema and
-reviewed operations; general API stability remains pre-1.0 intent. See
+reviewed operations. Under #125 the maintainer accepted the general 1.x source
+commitment, whose public promise begins with a future qualified public 1.0.0,
+and separately promoted standalone validation with its own future delivery
+boundary. Source acceptance does not authorize publication. See
 [API stability](../docs/content/about/stability.md), the
 [portable contract](../docs/content/user_guide/portable_attribution.md),
 [integration guide](https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDIT_GUIDE.md)

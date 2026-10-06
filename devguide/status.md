@@ -129,7 +129,8 @@ many land before 1.0.0 is an outcome rather than a plan.
   resolved, and its #111 optimization is jointly qualified under Ackredit #99.
   Further released integration claims remain client-owned. MolSysMT #292 still
   owns its portable-adapter adoption. The original real-adoption milestone is
-  demonstrated; the explicit final stability review remains open (roadmap C/F).
+  demonstrated; the final bounded source stability review is accepted under #125,
+  with future public 1.0 delivery still separate (roadmap C/F).
 - **Performance:** measured on a real MolSysMT workflow and published in
   `docs/content/about/performance.md`, which is where the numbers live: microseconds per
   instrumented call, tens of milliseconds once for auto-discovery at import, and on the
@@ -194,17 +195,20 @@ many land before 1.0.0 is an outcome rather than a plan.
   bounded roadmap M for those fixtures and recorded manager/style routes. Other
   managers, GUI/enrichment/synchronization, journals and versions remain
   unqualified; there is no new runtime or release change.
-- **API hardening:** done but for what adoption teaches. Every public name is classified
+- **API hardening:** bounded source review complete under #125. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable
   schema/operations have a bounded released compatibility promise. The general
-  API commitment remains pre-1.0 intent. On 2026-10-06 the principal maintainer
+  1.x source commitment is accepted on 2026-10-06; its public promise starts
+  with a future qualified public 1.0.0. The principal maintainer also
   accepted the bounded stable source contracts for `prepare_credit`,
   `observe_calls` and `ackredit.provider@1`; their forward promise starts with
   verified public 0.11.0. Output formats are extensible through `register_format` and the
-  `ackredit.formats` entry-point group. What remains of roadmap F is the review against
-  demonstrated receiving workflows and released adoption; theme C already
-  supplies that evidence, while the final stability decision remains explicit.
+  `ackredit.formats` entry-point group. #125 separately promotes `validate_provider`
+  with detached declaration/E012/side-effect bounds, leaving no provisional export
+  in the current source inventory. Its public promise awaits its first qualified
+  delivering release; public 0.11.0 lacks it. Source acceptance does not select a
+  version or authorize publication, and future candidate qualification is separate.
 - **MolSysSuite membership:** granted in `uibcdf/molsyssuite#28`. Ackredit is a
   registered, incubating support library. Common policy and admission records
   remain MolSysSuite-owned; registration, source compatibility, public delivery
@@ -212,14 +216,21 @@ many land before 1.0.0 is an outcome rather than a plan.
 
 ## Future strategic concepts
 
+Theme F's final [general stability review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
+is accepted under #125. It maps documented contract families to actual adoption
+and records separate explicit general 1.x and validator source decisions.
+Existing public promises and release boundaries are unchanged. The review corrects
+the author guide to retain the provider protocol's existing empty-role-list
+behavior without changing the parser or inferring an unspecified role.
+
 The maintainer-accepted continuation under Ackredit #100 is maintained in
 [roadmap themes I–N](roadmap.md): portable saved-result CLI and composition,
 scope/reference-origin/gap explanations, MOLI object-boundary decisions,
 complete lifecycle cost, real publication-tool interoperability and the scope
-of non-bibliographic acknowledgements. Theme G implements the provisional
-standalone declaration validator in development under #111 and still plans a
-concise external-producer guide. Its source integration, public delivery and
-API promotion remain separate. The other themes retain planned
+of non-bibliographic acknowledgements. Theme G implements standalone declaration
+validation in development under #111 and the concise author guide/example under
+#113; #125 accepts the validator's bounded source promotion. Public delivery remains
+separate. The other themes retain planned
 implementations or decisions, not capabilities already shipped or implicit
 conditions for every client or the general 1.0 stability commitment. Portable
 CLI report/export is implemented in development under #101. #102 implements
