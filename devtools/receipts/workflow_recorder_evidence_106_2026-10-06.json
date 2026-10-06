@@ -1,0 +1,134 @@
+{
+  "schema": "ackredit.workflow-evidence-receiving@1",
+  "date": "2026-10-06",
+  "issue": "uibcdf/ackredit#106",
+  "scope": "Local Linux/Python 3.14.7 normally installed workflow-evidence development qualification; not public delivery or provisional API promotion.",
+  "outcome": "PASS",
+  "ackredit_source": "9ca7157323d816925da99560dc4ef68b604396ed",
+  "packages": {
+    "candidate": {
+      "package": "ackredit",
+      "source_commit": "9ca7157323d816925da99560dc4ef68b604396ed",
+      "version": "0.10.1+20.g9ca7157",
+      "filename": "ackredit-0.10.1+20.g9ca7157-py3-none-any.whl",
+      "sha256": "52db9e95e85d5ae5344201c86833853f0a5faa566787a295fdaf4a03cbec08c7"
+    },
+    "producer": {
+      "package": "pyunitwizard",
+      "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+      "version": "0.28.0+5.g0e422d0",
+      "filename": "pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl",
+      "sha256": "07b2ed0ca830794e9796e5fd21d3eea154b672e9ad5efc0952e92d78fc58b79f"
+    },
+    "released": {
+      "package": "ackredit",
+      "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "version": "0.9.0",
+      "filename": "ackredit-0.9.0-py3-none-any.whl",
+      "sha256": "145736252b7fc6f54bc2fa73cacc0dbeaae1ba6cfc6a818a2c5c585a94e4d05c"
+    }
+  },
+  "candidate_package_files_verified": 70,
+  "installed_identity": {
+    "ackredit": {
+      "version": "0.10.1+20.g9ca7157",
+      "origin": "/tmp/ackredit102-env/lib/python3.14/site-packages/ackredit/__init__.py",
+      "wheel_sha256": "52db9e95e85d5ae5344201c86833853f0a5faa566787a295fdaf4a03cbec08c7"
+    },
+    "pyunitwizard": {
+      "version": "0.28.0+5.g0e422d0",
+      "origin": "/tmp/ackredit102-env/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+      "wheel_sha256": "07b2ed0ca830794e9796e5fd21d3eea154b672e9ad5efc0952e92d78fc58b79f"
+    }
+  },
+  "pip_check": "No broken requirements found.",
+  "bundle_manifest_sha256": "9adae8ea2478eccb1c88d1aee2c6844dbf9d603c8c4a8c74360f85cbf501649b",
+  "qualification_module_sha256": "6c61c1fa68f2aaf99a24c719206074434f5d9fe1ed8c353b2002b029390c63c8",
+  "events": {
+    "source": {
+      "path": "/tmp/ackredit106-source-events.jsonl",
+      "sha256": "b07b18d295bd9ed3b1c5c4cdb7028eb84e44feee64078db3bf1532b33db46702",
+      "counts": {
+        "collected": 2073,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 2073,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 2073,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "complete": true,
+      "integrity_valid": true
+    },
+    "receiving": {
+      "path": "/tmp/ackredit106-local-cell/events.jsonl",
+      "sha256": "85549714bfc3150a3cb3227a0ffcbce574039fd7c2a5aac900fc98f5a40be256",
+      "counts": {
+        "collected": 9,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 9,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 9,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "complete": true,
+      "integrity_valid": true
+    }
+  },
+  "provider_evidence_reader": {
+    "producer_imports": 0,
+    "network_attempts": 0,
+    "new_credits": 0,
+    "new_diagnostics": 0,
+    "original_versions_preserved": true,
+    "actual_provider_declaration_origins": true,
+    "controlled_recording_fault_retained": true,
+    "unchanged_workflow_report": true,
+    "integrated_workflow_matches_cli": true,
+    "original_workflow_default_unchanged": true,
+    "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+  },
+  "receiving_files_sha256": {
+    "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+    "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+    "composition-report.md": "f709c32dd3191eb57c5fd1d32cf33cc3755e8be1b8d50b2f6a5212e0cf3d4599",
+    "composition.json": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+    "events.jsonl": "85549714bfc3150a3cb3227a0ffcbce574039fd7c2a5aac900fc98f5a40be256",
+    "identity.json": "c2d097915df48608a3fe125bc858f5aa54c428b603c3e092eba0856520e2df92",
+    "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+    "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+    "provider-evidence-integrated-cli.md": "451acd64070a2ec1a964cc5ab44ee8b358d69b0eb0f46c33e9e6042a50d9579e",
+    "provider-evidence-integrated-workflow.md": "451acd64070a2ec1a964cc5ab44ee8b358d69b0eb0f46c33e9e6042a50d9579e",
+    "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+    "provider-evidence-report.md": "0a07b41dc31f474c9024872b372ef1b5e33a9da72a85963de8b39337519f14db",
+    "provider-evidence-workflow.md": "3fdd9723ae5eea1b76526a7476bbc5c67e960596e873da401a582064c6b646f2",
+    "provider-evidence.json": "3ff6522a0b74e1ab06388b41c8592d77d451aa8d9e4d5b91f2ccd5930d2d9048",
+    "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+    "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506",
+    "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+    "tests.xml": "10d4af676acac66ed008ade70038c18f3a107b1428a3ca801b34b7d3776550ff",
+    "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+    "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3"
+  },
+  "hosted_qualification": "not_started",
+  "limitations": [
+    "Temporary normal environment reuses the shared Python 3.14 dependency foundation and installed real Pint/unyt; not a fresh Conda solve.",
+    "Real scientific values/units are checked by the receiving tests; the deliberately injected recording fault is not a discovered science/backend failure.",
+    "Original defaults, saved payload, shared bibliography and independent result graphs retain their contracts.",
+    "Other recorder origins remain unknown; selected boundaries and metadata origins do not certify execution, bibliography truth or complete instrumentation.",
+    "This local case does not qualify other platforms/minors, a public artifact or stable promotion."
+  ]
+}
