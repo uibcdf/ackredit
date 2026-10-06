@@ -4,8 +4,6 @@ import inspect
 import json
 import logging
 import re
-import shutil
-import subprocess
 from copy import deepcopy
 from pathlib import Path
 from types import MappingProxyType
@@ -435,6 +433,9 @@ def compile_pdf(directory: str | Path) -> None:
             )
         )
         return
+
+    import shutil
+    import subprocess
 
     pdflatex = shutil.which("pdflatex")
     bibtex = shutil.which("bibtex")

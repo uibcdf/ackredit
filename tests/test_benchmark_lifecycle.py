@@ -13,6 +13,33 @@ benchmark = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(benchmark)
 
 
+def test_startup_separates_discovery_and_preserves_repeated_report():
+    result = benchmark.study(
+        {
+            "first": {"kind": "references", "repeat_report": True},
+            "separated": {
+                "kind": "references",
+                "separate_format_discovery": True,
+                "repeat_report": True,
+            },
+        },
+        2,
+        2,
+    )
+    for mode in ("timing_samples", "memory_samples"):
+        for first, separated in zip(
+            result["results"]["first"][mode],
+            result["results"]["separated"][mode],
+        ):
+            assert "format_discovery" not in first["measurements"]
+            assert "format_discovery" in separated["measurements"]
+            assert "repeated_workflow_report" in first["measurements"]
+            assert "workflow" in separated["facts"]["formats"]
+            assert (
+                first["facts"]["workflow_bytes"] == separated["facts"]["workflow_bytes"]
+            )
+
+
 def test_cold_import_is_not_primed_by_benchmark_machinery(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     result = benchmark.worker({"kind": "import"})

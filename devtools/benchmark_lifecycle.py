@@ -276,9 +276,19 @@ def worker(case: dict, memory=False) -> dict:
                     stages.call("unique_tracking", track)
                     result = stages.call("snapshot", lambda: runs[0].attribution)
                     encoded = stages.call("json_export", result.to_json)
+                    if case.get("separate_format_discovery"):
+                        facts["formats"] = stages.call(
+                            "format_discovery", ackredit.available_formats
+                        )
                     rendered = stages.call(
                         "workflow_report", lambda: result.report(format="workflow")
                     )
+                    if case.get("repeat_report"):
+                        repeated = stages.call(
+                            "repeated_workflow_report",
+                            lambda: result.report(format="workflow"),
+                        )
+                        assert repeated == rendered
                     bibtex = stages.call(
                         "bibtex_report", lambda: result.report(format="bibtex")
                     )
@@ -470,6 +480,11 @@ def main():
     parser.add_argument("--samples", type=int, default=7)
     parser.add_argument("--memory-samples", type=int, default=3)
     parser.add_argument(
+        "--startup-only",
+        action="store_true",
+        help="Compare first reports with explicit format discovery and warm repeats",
+    )
+    parser.add_argument(
         "--scientific",
         action="store_true",
         help="Require and measure real PyUnitWizard conversion",
@@ -488,6 +503,8 @@ def main():
         parser.error("output is required; timing and memory need at least two samples")
     if arguments.scoped_diagnostics and not arguments.scientific:
         parser.error("scoped diagnostics require the scientific cases")
+    if arguments.startup_only and arguments.scientific:
+        parser.error("startup-only excludes scientific cases")
     cases = {"cold_import": {"kind": "import"}}
     for size in (1, 100, 1000):
         cases[f"activation_{size}"] = {"kind": "activation", "size": size}
@@ -502,6 +519,16 @@ def main():
         }
     for size in (100, 1000):
         cases[f"journal_{size}"] = {"kind": "journal", "size": size}
+    if arguments.startup_only:
+        cases = {"cold_import": {"kind": "import"}}
+        for size in (1, 1000):
+            for separated in (False, True):
+                cases[f"report_{size}_{'separated' if separated else 'first'}"] = {
+                    "kind": "references",
+                    "size": size,
+                    "separate_format_discovery": separated,
+                    "repeat_report": True,
+                }
     if arguments.scientific:
         for size in (1, 100000):
             for mode in ("ordinary", "backend", "observed", "capture", "evidence"):

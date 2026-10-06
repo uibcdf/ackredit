@@ -7,8 +7,6 @@ import os
 import re
 import threading
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 from typing import Any, Dict, Iterator, Literal, TypedDict
 
@@ -275,6 +273,10 @@ def _fetch(url: str, headers: dict) -> dict:
     `ACKREDIT-W006`, whose user message says to check network access. The
     network was fine; we asked too fast.
     """
+    # Network support belongs to enrichment, not every host's cold import.
+    import urllib.error
+    import urllib.request
+
     for attempt in (1, 2):
         _wait_turn()
         request = urllib.request.Request(url, headers=headers)
