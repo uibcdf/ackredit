@@ -13,6 +13,8 @@ reported and only the link is withheld.
 
 from __future__ import annotations
 
+import re
+
 # Schemes a citation link may use. A DOI or a landing page is fetched over HTTP;
 # anything else in this position is not a reference to a work.
 _ALLOWED_SCHEMES = ("http://", "https://")
@@ -22,6 +24,37 @@ _ALLOWED_SCHEMES = ("http://", "https://")
 # They are removed here for the same reason, and only for the test.
 _STRIPPED = {code: None for code in range(0x21)}
 _STRIPPED[0x7F] = None
+
+_DOI_WRAPPER = re.compile(
+    r"(?P<resolver>https?://(?:dx\.)?doi\.org/)|doi:\s*", re.IGNORECASE
+)
+_DOI_SHAPE = re.compile(r"10\.[0-9]+/\S+")
+
+
+def doi_name(value: object) -> object:
+    """Project a recognized DOI presentation into a name, preserving originals.
+
+    This is shape recognition, not registration validation or an identity key.
+    Strip at most one supported wrapper and outer whitespace; keep identifier
+    case/punctuation. Resolver URL escapes, queries and fragments are ambiguous
+    here, so retain them verbatim rather than decoding or guessing a DOI.
+    Unknown values, including nonstrings, retain the existing export behavior.
+    """
+    if not isinstance(value, str):
+        return value
+    candidate = value.strip()
+    if wrapper := _DOI_WRAPPER.match(candidate):
+        candidate = candidate[wrapper.end() :]
+        if wrapper.group("resolver") and any(mark in candidate for mark in "%?#"):
+            return value
+    if _DOI_SHAPE.fullmatch(candidate):
+        return candidate
+    return value
+
+
+def doi_link(value: object) -> str | None:
+    """Present a DOI with one HTTPS resolver; unknown text keeps its fallback."""
+    return f"https://doi.org/{doi_name(value)}" if value else None
 
 
 def safe_link(url: object) -> str | None:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from ._links import doi_link
 from ._markdown import destination, escape, safe_link
 from ._names import author_list
 
@@ -33,7 +34,7 @@ def _reference_lines(item_id, item, used_by):
     note = item.get("note")
 
     doi = item.get("doi")
-    link = f"https://doi.org/{doi}" if doi else safe_link(item.get("url"))
+    link = doi_link(doi) if doi else safe_link(item.get("url"))
     display_title = f"**{title}**"
     if link:
         display_title = f"[{display_title}]({destination(link)})"

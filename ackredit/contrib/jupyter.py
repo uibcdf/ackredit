@@ -3,6 +3,7 @@ from __future__ import annotations
 from ..core.collector import get_used_items
 from ..core.registry import Registry
 from ..formats._html import escape, safe_link
+from ..formats._links import doi_link
 from ..formats._names import author_list
 
 
@@ -56,7 +57,7 @@ class CitationsHTML:
             # A DOI builds its own https link; a url is taken as given, so it is
             # the one that has to prove it can be followed safely.
             doi = item.get("doi")
-            link = f"https://doi.org/{doi}" if doi else safe_link(item.get("url"))
+            link = doi_link(doi) if doi else safe_link(item.get("url"))
 
             display_title = f"<b>{title}</b>"
             if link:

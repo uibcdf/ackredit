@@ -6,6 +6,7 @@ import json
 import re
 
 from . import markdown, provenance
+from ._links import doi_link
 from ._markdown import destination, escape, safe_link
 
 
@@ -61,9 +62,7 @@ def _references(
                 lines.append(f"  - {label}: {escape(item[field])}")
         if item.get("doi"):
             doi = str(item["doi"])
-            lines.append(
-                f"  - DOI: [{escape(doi)}]({destination('https://doi.org/' + doi)})"
-            )
+            lines.append(f"  - DOI: [{escape(doi)}]({destination(doi_link(doi))})")
         url = safe_link(item.get("url"))
         if url:
             lines.append(f"  - URL: [{escape(url)}]({destination(url)})")

@@ -143,7 +143,17 @@ def test_detached_exports_preserve_releases_names_and_original_preferred_work(de
     assert set(csl) == set(records)
     for item_id in ("software:1.0", "software:2.0", "dataset:2024"):
         assert csl[item_id]["version"] == records[item_id]["version"]
-        assert csl[item_id]["DOI"] == records[item_id]["doi"]
+        expected = (
+            "10.5555/ackredit.fixture.software"
+            if item_id.startswith("software:")
+            else "10.5555/ackredit.fixture.dataset"
+        )
+        assert csl[item_id]["DOI"] == expected
+    assert (
+        records["software:2.0"]["doi"]
+        == "https://doi.org/10.5555/ackredit.fixture.software"
+    )
+    assert "doi = {https://doi.org/10.5555/ackredit.fixture.software}" in bibtex
     assert "version = {1.0}" in bibtex and "version = {2.0}" in bibtex
     assert "@book{preferred:collection," in bibtex
     assert (
@@ -231,7 +241,10 @@ def test_real_readers_retain_editor_identity_and_distinct_versions(received):
         assert set(records) == set(source)
         for item_id in ("software:1.0", "software:2.0", "dataset:2024"):
             assert records[item_id]["version"] == source[item_id]["version"]
-            assert records[item_id]["DOI"] == source[item_id]["DOI"]
+            expected = source[item_id]["DOI"]
+            if filename == "bibtex-read.json" and item_id == "software:2.0":
+                expected = "https://doi.org/10.5555/ackredit.fixture.software"
+            assert records[item_id]["DOI"] == expected
         assert records["preferred:collection"]["type"] == "book"
         editors = records["preferred:collection"]["editor"]
         assert editors[1] == {"literal": "Research and Development, Consortium"}
@@ -270,6 +283,8 @@ def test_real_selected_styles_render_works_editors_and_compile(received):
     assert "10.5555/ackredit.fixture" not in bbl
     assert "version" not in bbl.lower()
     assert "https://doi.org/10.5555/ackredit.fixture.article" in html
+    assert "https://doi.org/<a" not in html
+    assert "doi.org/https://" not in html
 
 
 def test_imported_software_entry_is_retained_with_explicit_plain_style_limit(

@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 
 from .._private.dates import calendar_date_parts
+from ._links import doi_name
 from ._names import csl_names
 
 # Ackredit's key to CSL's field, for values that are plain text.
@@ -198,7 +199,7 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
 
         for fc_key, csl_key in _DIRECT.items():
             if value := item.get(fc_key):
-                csl_item[csl_key] = value
+                csl_item[csl_key] = doi_name(value) if fc_key == "doi" else value
 
         for csl_key, fc_keys in _FALLBACKS.items():
             for fc_key in fc_keys:
