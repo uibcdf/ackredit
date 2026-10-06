@@ -87,7 +87,7 @@ def test_publication_guidance_states_the_executed_receiving_boundary():
 
 
 @pytest.fixture
-def detached(tmp_path, clean_registry):
+def detached(tmp_path, clean_registry, monkeypatch):
     with ackredit.capture("publication-fixture") as captured:
         for item in json.loads((FIXTURES / "records.json").read_text()):
             ackredit.register_item(**item)
@@ -100,7 +100,7 @@ def detached(tmp_path, clean_registry):
         )
         ackredit.track_item("preferred:collection")
     saved = captured.attribution.to_json()
-    Registry.items.clear()
+    monkeypatch.setattr(Registry, "items", {})
     ackredit.current_session().clear()
     path = tmp_path / "original.json"
     path.write_text(saved)

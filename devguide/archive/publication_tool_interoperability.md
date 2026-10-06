@@ -121,3 +121,18 @@ other-style coverage or public release qualification is inferred.
 
 The [publication guide](../../docs/content/user_guide/publication_tools.md) and
 roadmap record this bounded checkpoint; all broader M checkboxes remain open.
+
+## Hosted isolation correction (2026-10-06)
+
+Initial head `19e12975dd3dc0a45a4c97914b625ca80d5f606b` passes lint/docs and
+both policies but fails one assertion in each full test cell in
+[run 37534019846](https://github.com/uibcdf/ackredit/actions/runs/37534019846):
+`test_suite_isolation` rejects the new fixture's direct `Registry.items.clear()`.
+The fixture already requests `clean_registry`, but the repository additionally
+requires fixture-owned temporary replacement for the detached reader probe.
+It now uses `monkeypatch.setattr`, restoring the prior registry automatically.
+The isolation guard is retained unchanged. The corrected publication module and
+complete isolation guard pass **114 normally installed cases** with the required
+external engines. Ruff check/format pass. Runtime files, original candidate wheel
+and receiving receipt remain unchanged; a new exact-head full CI run is required
+before closing #120. This correction does not rewrite the original local evidence.
