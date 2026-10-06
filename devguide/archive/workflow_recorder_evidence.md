@@ -1,9 +1,9 @@
 ---
 summary: Join bounded recorder declarations with original workflow bibliography and uses on explicit request.
 issue: uibcdf/ackredit#106
-status: active
+status: resolved
 opened: 2026-10-05
-closed:
+closed: 2026-10-06
 severity: medium
 verification: asserted
 area: [portability, reporting]
@@ -103,3 +103,31 @@ replay. The original report and saved companion remain unchanged. The
 retains exact sources/packages, complete receptor streams and every proof hash.
 The installed eight-cell hosted matrix and final-head source/policy controls
 remain separate pending checks. Prior files and receipts retain their identity.
+
+## Hosted qualification and closure — 2026-10-06
+
+Unskipped qualification head `30c622b321250b269530eff67758adafb481d66f`
+passes all seven ordinary CI jobs in 37421917342, suite policy 37421917506 and
+publication policy 37421917442. GH Run Receptor verifies their executed success.
+Receiving run [37421954520](https://github.com/uibcdf/ackredit/actions/runs/37421954520)
+passes all ten jobs: eight Linux/macOS arm64 × Python 3.11–3.14 installed cells,
+nine designated tests per cell, 72 passed and no skips/deselections. Every cell
+retains both integrated report files and confirms fresh CLI/library equality
+with the original workflow default unchanged and no new credits/diagnostics.
+
+The original hosted wheel is `ackredit-0.10.1+20.g9ca7157-py3-none-any.whl`,
+SHA-256 `95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da`,
+from the original clean `9ca7157` producer. It is built once and the same archive
+goes to all hosted cells. The separate local build keeps its different digest
+above; their complete 70-file package maps match, without relabelling archives.
+All ten original GitHub ZIP digests and extracted bytes verify independently;
+the owning aggregate reproduces the hosted result exactly. The
+[hosted receipt](../../devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json)
+retains the original source/file, eight cells, every reader proof and artifact/file
+hashes. The earlier local receipt remains historical.
+
+This resolves only the explicitly requested integrated workflow presentation.
+Other recorder origins, non-bibliographic acknowledgement decisions, platform
+object boundaries, public delivery and final stability review retain their own
+scope. Existing provisional contracts remain provisional; shared review stays
+in MolSysSuite #97 and MOLI #46.

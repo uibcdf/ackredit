@@ -1,0 +1,900 @@
+{
+  "schema": "ackredit.workflow-evidence-hosted@1",
+  "date": "2026-10-06",
+  "issue": "uibcdf/ackredit#106",
+  "outcome": "PASS",
+  "scope": "Normally installed development integrated workflow-evidence qualification; no public artifact, stable API promotion, Windows or scientific-completeness claim.",
+  "ackredit_source": "9ca7157323d816925da99560dc4ef68b604396ed",
+  "qualification_head": "30c622b321250b269530eff67758adafb481d66f",
+  "qualification_module_sha256": "6c61c1fa68f2aaf99a24c719206074434f5d9fe1ed8c353b2002b029390c63c8",
+  "bundle_manifest_sha256": "f5f5579d489ad540cc574ac655712d765260a5494ba41997920d431be9cddc35",
+  "independent_matrix_sha256": "06ac5b2386ea88807babc9bba7cb094492546aac3940b5a02500b3b997ed06e0",
+  "independent_aggregate_equals_hosted": true,
+  "runs": {
+    "full_ci": {
+      "id": 37421917342,
+      "head_sha": "30c622b321250b269530eff67758adafb481d66f",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37421917342",
+      "run_attempt": 1,
+      "receptor_manifest_sha256": "3f69342536d2f1f7fb83abcefb0f847ca6e9b993354de9e1b5585096aef49a03",
+      "jobs": [
+        {
+          "id": 112132924922,
+          "name": "Ruff on ubuntu-latest",
+          "conclusion": "success"
+        },
+        {
+          "id": 112132925030,
+          "name": "Documentation build on ubuntu-latest",
+          "conclusion": "success"
+        },
+        {
+          "id": 112132925128,
+          "name": "Test on ubuntu-latest, Python 3.13",
+          "conclusion": "success"
+        },
+        {
+          "id": 112132925169,
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "conclusion": "success"
+        },
+        {
+          "id": 112132925238,
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "conclusion": "success"
+        },
+        {
+          "id": 112132925317,
+          "name": "Test on macos-15, Python 3.14",
+          "conclusion": "success"
+        },
+        {
+          "id": 112132925331,
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "suite_policy": {
+      "id": 37421917506,
+      "head_sha": "30c622b321250b269530eff67758adafb481d66f",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37421917506",
+      "run_attempt": 1,
+      "receptor_manifest_sha256": "fedf909e3394ed229ce4c0f5575aaa3efc23475fc2e7a32af4da8a61b2ebd3a6",
+      "jobs": [
+        {
+          "id": 112132926967,
+          "name": "policy / conformance",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "publication_policy": {
+      "id": 37421917442,
+      "head_sha": "30c622b321250b269530eff67758adafb481d66f",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37421917442",
+      "run_attempt": 1,
+      "receptor_manifest_sha256": "cba5a2222682516d289fda11b0cd87eaf2f37d7218fc5b09547da05a37b443aa",
+      "jobs": [
+        {
+          "id": 112132925397,
+          "name": "publication / check",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "receiving": {
+      "id": 37421954520,
+      "head_sha": "30c622b321250b269530eff67758adafb481d66f",
+      "conclusion": "success",
+      "html_url": "https://github.com/uibcdf/ackredit/actions/runs/37421954520",
+      "run_attempt": 1,
+      "receptor_manifest_sha256": "2091274d7f5ed111bde2da628b9fbb159f06108a3fcf542f4ae94220ab2a816b",
+      "jobs": [
+        {
+          "id": 112133044993,
+          "name": "Build immutable receiving bundle",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146527,
+          "name": "Receiving on ubuntu-latest, Python 3.11",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146571,
+          "name": "Receiving on macos-15, Python 3.14",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146587,
+          "name": "Receiving on macos-15, Python 3.11",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146588,
+          "name": "Receiving on ubuntu-latest, Python 3.14",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146626,
+          "name": "Receiving on ubuntu-latest, Python 3.12",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146635,
+          "name": "Receiving on macos-15, Python 3.12",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146646,
+          "name": "Receiving on macos-15, Python 3.13",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133146665,
+          "name": "Receiving on ubuntu-latest, Python 3.13",
+          "conclusion": "success"
+        },
+        {
+          "id": 112133475088,
+          "name": "Verify eight complete receiving receipts",
+          "conclusion": "success"
+        }
+      ]
+    }
+  },
+  "packages": {
+    "candidate": {
+      "package": "ackredit",
+      "source_commit": "9ca7157323d816925da99560dc4ef68b604396ed",
+      "version": "0.10.1+20.g9ca7157",
+      "filename": "ackredit-0.10.1+20.g9ca7157-py3-none-any.whl",
+      "sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+    },
+    "producer": {
+      "package": "pyunitwizard",
+      "source_commit": "0e422d06b0af56e4dd2b43cafd00f059221eb405",
+      "version": "0.28.0+5.g0e422d0",
+      "filename": "pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl",
+      "sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+    },
+    "released": {
+      "package": "ackredit",
+      "source_commit": "598abf993a2409c025de5e912acd7eb45a257ebd",
+      "version": "0.9.0",
+      "filename": "ackredit-0.9.0-py3-none-any.whl",
+      "sha256": "2dae5f0a7200c905b7a702c8ce42de3fd1fda1cd73ab2ee2469d1c3573278c05"
+    }
+  },
+  "candidate_package_files_verified": 70,
+  "local_candidate": {
+    "package": "ackredit",
+    "source_commit": "9ca7157323d816925da99560dc4ef68b604396ed",
+    "version": "0.10.1+20.g9ca7157",
+    "filename": "ackredit-0.10.1+20.g9ca7157-py3-none-any.whl",
+    "sha256": "52db9e95e85d5ae5344201c86833853f0a5faa566787a295fdaf4a03cbec08c7"
+  },
+  "local_candidate_package_files_identical": true,
+  "artifact_identity_limit": "The hosted wheel and separately built local wheel have different archive SHA-256 values. All eight hosted cells receive only the original hosted wheel. Their complete package-file maps match; neither archive is relabelled as the other.",
+  "passed": 72,
+  "skipped": 0,
+  "cells": [
+    {
+      "platform": "darwin",
+      "python": "3.11.16",
+      "architecture": "arm64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.11/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.11/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.25.3",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.11/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.11/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.12.14",
+      "architecture": "arm64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.12/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.12/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.26.1",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.12/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.12/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.13.15",
+      "architecture": "arm64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.13/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.13/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.26.1",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.13/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.13/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "darwin",
+      "python": "3.14.7",
+      "architecture": "arm64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.14/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.26.1",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.14/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/Users/runner/micromamba/envs/receiving/lib/python3.14/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.11.16",
+      "architecture": "x86_64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.11/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.11/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.25.3",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.11/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.11/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.12.14",
+      "architecture": "x86_64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.12/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.12/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.26.1",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.12/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.12/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.13.15",
+      "architecture": "x86_64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.13/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.13/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.26.1",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.13/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.13/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    },
+    {
+      "platform": "linux",
+      "python": "3.14.7",
+      "architecture": "x86_64",
+      "providers": {
+        "ackredit": {
+          "version": "0.10.1+20.g9ca7157",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.14/site-packages/ackredit/__init__.py",
+          "wheel_sha256": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da"
+        },
+        "pyunitwizard": {
+          "version": "0.28.0+5.g0e422d0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+          "wheel_sha256": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf"
+        },
+        "pint": {
+          "version": "0.26.1",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.14/site-packages/pint/__init__.py"
+        },
+        "unyt": {
+          "version": "3.1.0",
+          "origin": "/home/runner/micromamba/envs/receiving/lib/python3.14/site-packages/unyt/__init__.py"
+        }
+      },
+      "test_outcome": {
+        "outcome": "PASS",
+        "counts": {
+          "collected": 9,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 9,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 9,
+          "reruns": 0,
+          "skipped": 0,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        }
+      },
+      "provider_evidence_reader": {
+        "producer_imports": 0,
+        "network_attempts": 0,
+        "new_credits": 0,
+        "new_diagnostics": 0,
+        "original_versions_preserved": true,
+        "actual_provider_declaration_origins": true,
+        "controlled_recording_fault_retained": true,
+        "unchanged_workflow_report": true,
+        "integrated_workflow_matches_cli": true,
+        "original_workflow_default_unchanged": true,
+        "scope": "Real Pint/unyt calculation with opt-in provider evidence and controlled recorder fault; broader recorder origins remain unknown."
+      }
+    }
+  ],
+  "native_archives": [
+    {
+      "id": 11393945286,
+      "name": "receiving-ubuntu-latest-py3.13",
+      "sha256": "509b3f084e7861996d3a3d186a978085a6a312077d377a569404a4446ed243cb",
+      "size_in_bytes": 29566,
+      "github_digest_verified": true,
+      "files": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "fbeef1b4a4647b3b93dc6115f6291b68e6900d00b6794a0a4dc4e31237279b65",
+        "identity.json": "a0507c7c24b844a8efa71656f62427c38a94f99cd1c95e3303037d11909d6954",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "provider-evidence-integrated-cli.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-integrated-workflow.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "36327a0dc3f196c6a78257b0e67166568349a2fafcff3a6f84383dce59affb45",
+        "provider-evidence-workflow.md": "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb",
+        "provider-evidence.json": "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "2e50790eca68fb40dc041377fdb5c11775ee0bada35cb76667153a4a2cb3a131",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "id": 11393945274,
+      "name": "receiving-ubuntu-latest-py3.11",
+      "sha256": "6e5fe603db8843c380402808842a04ec2809d5fe445bd117caf7d2b97395f8a8",
+      "size_in_bytes": 29562,
+      "github_digest_verified": true,
+      "files": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "f709c32dd3191eb57c5fd1d32cf33cc3755e8be1b8d50b2f6a5212e0cf3d4599",
+        "composition.json": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "identity.json": "401e358204062907f8d222863f53001e519049c7d158ee8d15535cd9d8127690",
+        "events.jsonl": "e04bc74f05c68b6df71e13afeda7b5a4abb2c946c53fa3dfa1036f010dac905b",
+        "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+        "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+        "provider-evidence-integrated-cli.md": "451acd64070a2ec1a964cc5ab44ee8b358d69b0eb0f46c33e9e6042a50d9579e",
+        "provider-evidence-integrated-workflow.md": "451acd64070a2ec1a964cc5ab44ee8b358d69b0eb0f46c33e9e6042a50d9579e",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "0a07b41dc31f474c9024872b372ef1b5e33a9da72a85963de8b39337519f14db",
+        "provider-evidence-workflow.md": "3fdd9723ae5eea1b76526a7476bbc5c67e960596e873da401a582064c6b646f2",
+        "provider-evidence.json": "3ff6522a0b74e1ab06388b41c8592d77d451aa8d9e4d5b91f2ccd5930d2d9048",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506",
+        "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "tests.xml": "20b3303f68bb385dbb7a285db2af5f49ca5d4060b5e4f4c737279a24301bb870",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3"
+      }
+    },
+    {
+      "id": 11393890560,
+      "name": "receiving-macos-15-py3.13",
+      "sha256": "ecb38271abfbf6abceedee815c39b4639cf8c88d67cb2475019e376ca78e37c2",
+      "size_in_bytes": 29613,
+      "github_digest_verified": true,
+      "files": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "events.jsonl": "a7b2c9b5f419e7b09f2a629016d8ac64cf9385fcc869698fd20075c31b84ce54",
+        "identity.json": "fc87614bd9c36f2f525e7c6ce3c668e223566924739a78f37009b1b241c827c6",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "provider-evidence-integrated-cli.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-integrated-workflow.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "36327a0dc3f196c6a78257b0e67166568349a2fafcff3a6f84383dce59affb45",
+        "provider-evidence-workflow.md": "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb",
+        "provider-evidence.json": "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "ae6296daf71c8dcbe691934be13e3412fa7da8f664b2c3879f0803b13cd02d02",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "id": 11393581142,
+      "name": "receiving-ubuntu-latest-py3.14",
+      "sha256": "b4b9f5dc48d2c6ac89a0db8d9414174ae27af0e5de7ea0444111e398c9df0215",
+      "size_in_bytes": 29558,
+      "github_digest_verified": true,
+      "files": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "0ac38224b25bf7a788eab1fee82546b7a4c2e7ba295802be3a9334e7f1c06901",
+        "identity.json": "8a16de41a5214d575dd4559ba3d7f1d7ce13bae6efc06fe6feb160bd33b2a058",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "provider-evidence-integrated-cli.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-integrated-workflow.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "36327a0dc3f196c6a78257b0e67166568349a2fafcff3a6f84383dce59affb45",
+        "provider-evidence-workflow.md": "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb",
+        "provider-evidence.json": "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "5ac269930281e72cc63d08b0d08c2e273f6c7a839ce5172f4381d2cd1cdd6609",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "id": 11393407429,
+      "name": "receiving-macos-15-py3.14",
+      "sha256": "e39213061891b78e0dfde0dd05262d900a7b4934cd12998bbab6213375e842f1",
+      "size_in_bytes": 29598,
+      "github_digest_verified": true,
+      "files": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "b8791d753ddc048093f3b9087b41ac7d1ea440a171e042cb9cfef7b29fd02e88",
+        "identity.json": "a5634463b4a0d3fe76f14d501e4b90be58f0d5eb6a5b05c5a6b93b67881ea13e",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "provider-evidence-integrated-cli.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-integrated-workflow.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "36327a0dc3f196c6a78257b0e67166568349a2fafcff3a6f84383dce59affb45",
+        "provider-evidence-workflow.md": "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb",
+        "provider-evidence.json": "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "e7faf10744082e2f8d09e1f65d29b48f2bbd68192a3bb122456dba994ca36c99",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "id": 11393327767,
+      "name": "receiving-macos-15-py3.12",
+      "sha256": "4de502d29115bfe1fedf3fe85b1ce2ec7d38f10ffc711cbe787bb7f74e38dc88",
+      "size_in_bytes": 29611,
+      "github_digest_verified": true,
+      "files": {
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "events.jsonl": "324e92efd768e4c033a4820a3d84745b4c47d82c1b270a7fb9f1091e21aa8951",
+        "identity.json": "9d7c68a5006d0490224524088054f387b0a1e583d8531217faaa1949c17a41bd",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "provider-evidence-integrated-cli.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-integrated-workflow.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "36327a0dc3f196c6a78257b0e67166568349a2fafcff3a6f84383dce59affb45",
+        "provider-evidence-workflow.md": "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb",
+        "provider-evidence.json": "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "dc3ff82eb3c06341a0c41d047673ffee199eb54f36881a5cac646baa524c9761",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "id": 11393227804,
+      "name": "receiving-macos-15-py3.11",
+      "sha256": "32ddad43cc7082101087e642f12039594c9d5006431343cd879f01bdc19c9963",
+      "size_in_bytes": 29620,
+      "github_digest_verified": true,
+      "files": {
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition.json": "ba073a664b978849d5ae98ba50fdf20040c01fc502d2a454c6e23e521e3b24a7",
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-report.md": "f709c32dd3191eb57c5fd1d32cf33cc3755e8be1b8d50b2f6a5212e0cf3d4599",
+        "events.jsonl": "849827f5260a445b18d5e2b7f7b250338886b7bdecac89604eb66877ac6bbabf",
+        "identity.json": "c68c431cc2504129170f931ae057226359396c21c171dbad6db971f057286e9c",
+        "pipeline.json": "bf0ae335600c1e092c47ecda25a2e8c8ef4e272ab7a8d9fd6520ad3539a7dba1",
+        "prepared-reuse.json": "044b3dc61b6b9294ecebf500f236eb48462fb5175c66ff0b0cae55b3e147d197",
+        "provider-evidence-integrated-cli.md": "451acd64070a2ec1a964cc5ab44ee8b358d69b0eb0f46c33e9e6042a50d9579e",
+        "provider-evidence-integrated-workflow.md": "451acd64070a2ec1a964cc5ab44ee8b358d69b0eb0f46c33e9e6042a50d9579e",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "0a07b41dc31f474c9024872b372ef1b5e33a9da72a85963de8b39337519f14db",
+        "provider-evidence-workflow.md": "3fdd9723ae5eea1b76526a7476bbc5c67e960596e873da401a582064c6b646f2",
+        "provider-evidence.json": "3ff6522a0b74e1ab06388b41c8592d77d451aa8d9e4d5b91f2ccd5930d2d9048",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "32d5ddfb7f73cf4d4aa2b80c932dde29e65900260744fb80e14f40e880ab9506",
+        "reported-pipeline.json": "281060af37d30e31bb4d195726257da276d0049df413bd46eeb5a2fcfd41fba6",
+        "tests.xml": "777862c708958110fd3f668f9ee9b5c7efa9bae7fe4f4f0cf60c8e4cf000a60d",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "f3f0edab8c5367a67a215c2355db9f1a34e61e00adce5ba70d594de7ad0893d3"
+      }
+    },
+    {
+      "id": 11392929323,
+      "name": "function-provider-bundle",
+      "sha256": "df1f36ae470a5670c9fc653c6a1a86fcd699521f457000a34e309057920c2c91",
+      "size_in_bytes": 306484,
+      "github_digest_verified": true,
+      "files": {
+        "bundle.json": "f5f5579d489ad540cc574ac655712d765260a5494ba41997920d431be9cddc35",
+        "producer/pyunitwizard-0.28.0+5.g0e422d0-py3-none-any.whl": "629de290e21a5741fac023adb50eef6610d462335bf11e8f1c181d4a12f74faf",
+        "candidate/ackredit-0.10.1+20.g9ca7157-py3-none-any.whl": "95aefd46963917f1fcbd026a355bb42df2f63431a756732c0b43ae03ed5699da",
+        "released/ackredit-0.9.0-py3-none-any.whl": "2dae5f0a7200c905b7a702c8ce42de3fd1fda1cd73ab2ee2469d1c3573278c05"
+      }
+    },
+    {
+      "id": 11392893090,
+      "name": "receiving-ubuntu-latest-py3.12",
+      "sha256": "1b8ed07e7c597c38e0e9f1d038a7f8bb135850614689c5a34a6edebcf323f105",
+      "size_in_bytes": 29560,
+      "github_digest_verified": true,
+      "files": {
+        "absence.json": "83bac57b92796def58aadb85c2292d7df88522ac1b889c7fabbe097819df5536",
+        "composition-report.md": "55f283b193c796dc6e1608273e32c4faccf0f1baff6948df5bc7ee2893980153",
+        "composition-reader.json": "977c2716e115944a13734bbb850099cc7e78cb30cf88e44871087144cd7d87b1",
+        "composition.json": "70338bceb4becd1683a13cc9596bb8d0166d909d592710b4107cfec1825cc2f7",
+        "events.jsonl": "bd556b8bf3284ad2cca039a39024f94a4968b8d17053c49c9be074c3ac74d9d4",
+        "identity.json": "cc8ccb813c0b5044e24ebb75bc06297102e8b795ada3c65cfa2146044122b622",
+        "pipeline.json": "b87d168ddc3049c44e43b147406e8687c60fed18e3bf492021b88ab97e1c1544",
+        "prepared-reuse.json": "680c259c49fcbb8f305f6e75f4d56ccf8b1cf98c5cdd86cd3af6e0a29da3bec7",
+        "provider-evidence-integrated-cli.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-integrated-workflow.md": "4d27d18ea4754fe4c942832ab36de6ce7bad95caa41b9ab5e794151b48155352",
+        "provider-evidence-reader.json": "512fdc8e9de1b622e4d955d273d50794539f978d443ea0344f7d9f2965040906",
+        "provider-evidence-report.md": "36327a0dc3f196c6a78257b0e67166568349a2fafcff3a6f84383dce59affb45",
+        "provider-evidence-workflow.md": "0c845c63908c05e8bbe1e9539c7146fd7fe050489a3bf6f3a8b4d3f9eaf559bb",
+        "provider-evidence.json": "25c2807ba903d3136d8a4469012837a9b3b74bd9d09b9702e9ab27641fee7b67",
+        "reader.json": "2d74bf195a96457cbfcad0e10b476709d8b483f1594dcefd6efb21da37d4100f",
+        "released-fallback.json": "9dff1450a5e821a5c80a3b85e8489f1c13b05772004cab1a618c955f8bf00ed4",
+        "reported-pipeline.json": "f97ec062be4995df350c40d6b2e9d9f98d1190aeadd4b8909bdf74bebfc028a0",
+        "tests.xml": "33a0020f1fcf3dc868e9b5a4758e809a1820adfae4d0ac1d754f84d6358f2f1b",
+        "workflow-reader.json": "510275b3ad075965993f40008ffaed20441a3a226ea981bb9360642d1481ea4a",
+        "workflow-report.md": "0bb52bc2241484df1713bee3c79d1f243e3123a505afdb215b082ff12895ec6e"
+      }
+    },
+    {
+      "id": 11392869949,
+      "name": "function-provider-matrix",
+      "sha256": "b8dbf90c6d8db013c73e34bb2e92f4bf6951d0139bb2c352ed33acf29422c075",
+      "size_in_bytes": 11501,
+      "github_digest_verified": true,
+      "files": {
+        "receiving-matrix.json": "06ac5b2386ea88807babc9bba7cb094492546aac3940b5a02500b3b997ed06e0"
+      }
+    }
+  ],
+  "limitations": [
+    "The retained recorder fault is deliberately injected; it is not a discovered scientific/backend failure.",
+    "Selected scope is not proof of a call. Metadata origin is not bibliographic/scientific truth or complete instrumentation.",
+    "Only opted-in observer-owned provider declarations and diagnosed gaps are collected; other recorder origins remain unknown.",
+    "Earlier cancelled runner-acquisition attempts remain cancelled; successful controls qualify this later exact head.",
+    "This rendering qualification does not certify all performance or memory; no scientific-loop recorder code changed.",
+    "This development wheel is not a public Conda delivery and does not promote provisional contracts."
+  ]
+}

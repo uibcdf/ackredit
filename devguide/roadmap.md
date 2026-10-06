@@ -436,7 +436,7 @@ retains actual source, wheel and scope.
 - [ ] decide representation, ownership and compatibility before adding fields;
       distinguish the origin of bibliographic metadata from evidence of use and
       from any claim about bibliographic or scientific truth;
-- [ ] preserve recorded gap/scope information in saved results and explain it
+- [x] preserve recorded gap/scope information in saved results and explain it
       in the requested workflow report, with no producer imports or new credit;
 - [ ] guard partial failure, unsupported/unobserved operations, metadata fallback
       and complete absence of scope information. An empty capture means no
@@ -492,13 +492,24 @@ prepared-backend and discovery/enrichment recorder origins still need ownership
 decisions and focused implementation issues. Requested workflow presentation
 must combine the evidence with the narrative without changing report defaults.
 
+That requested presentation is qualified below. Broader recorder origin/scope
+decisions remain part of the unchecked criteria above.
+
 The focused presentation milestone [#106](https://github.com/uibcdf/ackredit/issues/106)
 implements provisional `evidence.report("workflow", include_evidence=True)` and
 the explicit saved-evidence CLI option. It extends the owning renderer, keeping
 shared reference numbering and attaching recorder declarations to their original
 result occurrence. Unknown planes, empty declarations and actual diagnostic
-identities retain their bounds. Defaults and schemas stay unchanged; source,
-normally installed receiving and exact-head qualification remain pending.
+identities retain their bounds. Defaults and schemas stay unchanged. Source
+qualification passes 2,073 Python 3.14 tests; all eight normally installed cells
+pass 72 tests without skips in
+[run 37421954520](https://github.com/uibcdf/ackredit/actions/runs/37421954520).
+Original ZIP digests/extracted bytes verify independently and aggregation equals
+the hosted result. Head `30c622b` passes all seven CI jobs and both policies;
+the [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json)
+keeps the original hosted producer/wheel separate from the local build. This
+bounded presentation checkpoint is resolved; other recorders, public delivery
+and final provisional review remain separate.
 
 ### Theme K — Attribution at MOLI object boundaries
 

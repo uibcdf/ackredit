@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (99)
+### Resolved (100)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -105,6 +105,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`track_item_scans_its_callers.md`](track_item_scans_its_callers.md) — [#19](https://github.com/uibcdf/ackredit/issues/19) — track_item tested caller membership against a list, so an item reached from many call sites got slower with every one. *(resolved, reproduced)*
 - [`version_missing_and_its_gate_dead.md`](version_missing_and_its_gate_dead.md) — [#11](https://github.com/uibcdf/ackredit/issues/11) — The package stated no version, and the CI step checking it printed a traceback on a green run. *(resolved, reproduced)*
 - [`what_is_switched_on_cannot_be_switched_off.md`](what_is_switched_on_cannot_be_switched_off.md) — [#34](https://github.com/uibcdf/ackredit/issues/34) — enable_import_hooks and enable_auto_reminder changed the process permanently, with no counterpart to undo either. *(resolved, measured)*
+- [`workflow_recorder_evidence.md`](workflow_recorder_evidence.md) — [#106](https://github.com/uibcdf/ackredit/issues/106) — Join bounded recorder declarations with original workflow bibliography and uses on explicit request. *(resolved, asserted)*
 
 ### Superseded (1)
 

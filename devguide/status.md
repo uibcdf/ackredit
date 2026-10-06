@@ -198,13 +198,20 @@ retains the original hosted wheel/digest, eight cells and executed controls.
 These milestones are resolved development checkpoints. Other recorder origins,
 broader workflow presentation, public delivery and provisional review remain open.
 
-The next bounded presentation milestone #106 adds provisional
+The bounded presentation milestone #106 adds provisional
 `evidence.report("workflow", include_evidence=True)` and an explicit CLI flag.
 The owning workflow renderer joins original references/uses/graphs with each
 original occurrence's field-source declarations, observation boundaries and
-diagnosed recording gaps. Defaults and schemas stay unchanged. Its source,
-normally installed reader and hosted qualification are separate pending controls;
-see the [active record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/workflow_recorder_evidence.md).
+diagnosed recording gaps. Defaults and schemas stay unchanged. Source checks
+pass 2,073 Python 3.14 tests; all eight normally installed platform/minor cells
+pass 72 tests in [run 37421954520](https://github.com/uibcdf/ackredit/actions/runs/37421954520).
+Original artifact hashes verify, independent aggregation matches and fresh
+CLI/library integrated reports are identical without new credits or diagnostic
+replay. Qualification head `30c622b` passes all seven CI jobs and both policies;
+see the [archived record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/workflow_recorder_evidence.md)
+and [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json).
+This development presentation is resolved; provisional review and public delivery
+remain separate decisions.
 
 Active core improvements are tracked separately: #84 implements provisional
 dependency-free function providers and actual-call observation; #85 measures
