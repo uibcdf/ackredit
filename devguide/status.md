@@ -149,6 +149,12 @@ many land before 1.0.0 is an outcome rather than a plan.
   installed wheels retain 120 raw samples with identical providers and other
   distribution metadata. Cold traced allocation peak falls from 10.68 to
   8.95 MiB; latency ranges overlap, so no reliable import speedup is claimed.
+  Checkpoint #117 adds five controlled, normally installed citation/format-pack
+  variants and 100 raw process samples. Real entry-point guards retain catalog
+  failures/conflicts, reentry, late-provider discovery, independent captures and
+  an exact plugin-free saved reader. This is fixture installation evidence;
+  external plugin workloads and dependency closure remain unqualified. The
+  reusable discovery/freshness proposal belongs to DepDigest #31.
 - **API hardening:** done but for what adoption teaches. Every public name is classified
   in [API stability](../docs/content/about/stability.md), which is the authority
   for classifications and counts. The deprecation policy is written and portable

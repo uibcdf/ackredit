@@ -7,6 +7,77 @@ Numbers below retain their own dates, sources and measurement boundaries.
 `devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
 Python-allocation measurements. Each is runnable in the stated environment.
 
+## Normally installed plugin packs (2026-10-06)
+
+[#117](https://github.com/uibcdf/ackredit/issues/117) adds
+`devtools/benchmark_plugins.py`. The existing entry-point unit tests substitute
+objects; this tool builds controlled citation/format packages with setuptools
+and installs their original wheels normally. Fixtures are fictional registration
+workloads, not third-party scientific libraries or published client adoption.
+Each variant has a disposable environment with the same four normally installed
+Ackredit/SMonitor/ArgDigest/DepDigest wheels and inherited Conda dependencies.
+The Ackredit runtime remains the #116 candidate `45294c4`; this checkpoint changes
+tooling/tests/evidence only. Other provider identities remain those recorded in
+the raw receipt. This is local Linux/Python 3.14.7 evidence, not clean external
+dependency closure or wider platform qualification.
+
+The [raw installed receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/installed_plugins_117_2026-10-06.json)
+retains original core/fixture wheel hashes and package-file maps, verified loaded
+origins, actual entry points, tool hashes and 100 raw process samples: five variants,
+seven timing and three separate allocation rounds, with cold and warm-operation
+processes independent. Case order alternates. Build/install, verification and
+the plugin-free reader are outside timing. This environment layout has its own
+zero-pack control; do not infer a speedup by comparing its cold import with #116.
+
+| Packs × references per pack | Cold import median (range), ms | Citation reload median, ms | First format discovery median, ms | Cold traced peak, MiB |
+| --- | --- | --- | --- | --- |
+| 0, one manually declared control | 130.94 (129.23–148.24) | 23.37 | 23.17 | 8.96 |
+| 1 × 1 | 132.20 (130.82–148.76) | 23.86 | 23.39 | 8.96 |
+| 10 × 1 | 136.03 (135.17–159.17) | 25.76 | 26.37 | 8.98 |
+| 1 × 1,000 | 173.41 (170.82–201.97) | 65.29 | 24.16 | 9.11 |
+| 10 × 100 | 169.77 (166.33–191.77) | 57.42 | 27.08 | 9.23 |
+
+One to ten small packs has overlapping cold-import ranges. Registering 1,000
+references is a larger cost in these fixtures, while format discovery depends
+mostly on distribution scanning and format callback loading. Repeated discovery
+has medians of 1.19–1.98 µs because format activation is already guarded once.
+Those distinct stages must not be added to estimate a scientific workflow.
+
+Two captures, each calling every pack's square function and retaining every
+bound reference, take median 0.365 ms for one reference, 1.572 ms for ten,
+and about 103.6–104.9 ms for 1,000. Snapshot work is included in that stage;
+it is not a per-credit-loop benchmark. Workflow rendering after discovery takes
+about 22.0 ms for 1,000 references. The custom ID renderer takes about 4.27–4.46 ms
+for that size; the zero-pack control instead requests the built-in text renderer,
+so its requested-report timing has a different renderer contract.
+
+Every capture retains its own original bibliography and fixture-version note,
+repeated reports are equal, and snapshots round-trip. A separate environment with
+no plugin entry points restores the exact saved JSON, renders the workflow and
+adds no execution credit. Actual installed guards cover broken citation/format
+callbacks, a built-in name conflict, surviving neighbors, lazy/reentrant format
+activation, repeated citation reload, a provider installed after import and a
+fixture operation with Ackredit absent. No failures or skips are normalized away.
+
+Reproduce with the four original runtime wheels and their `qualification_bundle`
+records in `CORE_DIRECTORY/manifest.json`:
+
+```bash
+python devtools/benchmark_plugins.py --core-wheels CORE_DIRECTORY --destination NEW_DIRECTORY --samples 7 --memory-samples 3
+```
+
+The destination must be new; it retains fixture sources, original wheels, normal
+environments, saved results and `receipt.json`. The standard build uses isolation;
+`--no-build-isolation` selects a prepared build interpreter with setuptools>=64.
+The tool reuses `benchmark_lifecycle` and `qualification_bundle`, rather than
+introducing a separate timing or installed-file verification implementation.
+
+The next reusable discovery/freshness decision is handed to
+[DepDigest #31](https://github.com/uibcdf/depdigest/issues/31). A startup cache
+cannot silently lose late-installed providers. This checkpoint does not implement
+that proposal, alter public discovery timing or close roadmap L's dependency,
+scientific-workload, graph-shape and platform criteria.
+
 ## Startup discovery and deferred imports (2026-10-06)
 
 [#116](https://github.com/uibcdf/ackredit/issues/116) separates format discovery

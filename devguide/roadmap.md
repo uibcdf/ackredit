@@ -581,10 +581,13 @@ argument digestion stays active. The next bounded checkpoint
 [#116](https://github.com/uibcdf/ackredit/issues/116) separates first-report format
 discovery from warmed rendering and profiles cold initialization. Deferring
 network/PDF imports lowers cold traced allocations; latency ranges overlap.
-Plugin discovery retains its lifecycle, pending real-pack measurements and an
-owned reusable discovery/invalidation contract.
+Plugin discovery retains its lifecycle. [#117](https://github.com/uibcdf/ackredit/issues/117)
+measures five normally installed controlled pack variants and guards failures,
+conflicts, reentry, late installation, independent captures and plugin-free saved
+readers. Reusable grouped discovery/freshness is handed to
+[DepDigest #31](https://github.com/uibcdf/depdigest/issues/31); no cache is adopted.
 This local development evidence does not close the complete theme: installed
-dependency closure, real plugin-pack initialization, independent graph shapes
+dependency closure, third-party plugin workloads, independent graph shapes
 and platform coverage remain distinct work.
 
 - [ ] measure cold import/first use, inactive operation, provider activation,
