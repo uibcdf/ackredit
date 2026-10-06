@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: Cite the preferred collection.
+type: software
+title: Root software is not the preferred work
+version: '9.9'
+doi: 10.5555/ackredit.fixture.root
+authors:
+  - name: Root Team
+preferred-citation:
+  type: edited-work
+  title: Méthodes & données
+  date-published: '2021-02-28'
+  editors:
+    - family-names: Cruz
+      given-names: María
+      name-particle: de la
+      name-suffix: III
+    - name: Research and Development, Consortium
+  publisher:
+    name: Example Press
+  isbn: 978-0-00-000000-0
+  doi: 10.5555/ackredit.fixture.collection

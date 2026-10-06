@@ -1,0 +1,54 @@
+[
+  {
+    "id": "software:1.0",
+    "type": "software",
+    "title": "Órbita & Analysis",
+    "authors": [{"literal": "Research and Development, Consortium"}],
+    "year": "2024",
+    "version": "1.0",
+    "doi": "10.5555/ackredit.fixture.software",
+    "url": "https://example.org/software/1.0"
+  },
+  {
+    "id": "software:2.0",
+    "type": "software",
+    "title": "Órbita & Analysis",
+    "authors": [{"literal": "Research and Development, Consortium"}],
+    "year": "2025",
+    "version": "2.0",
+    "doi": "https://doi.org/10.5555/ackredit.fixture.software",
+    "url": "https://example.org/software/2.0"
+  },
+  {
+    "id": "dataset:2024",
+    "type": "dataset",
+    "title": "Datos de México: 50% coverage",
+    "authors": [{"literal": "Instituto de Investigación, México"}],
+    "year": "2024",
+    "version": "2024.1",
+    "doi": "10.5555/ackredit.fixture.dataset"
+  },
+  {
+    "id": "article:2023",
+    "type": "article",
+    "title": "Analysis of Órbita & datasets",
+    "authors": [{"family": "García", "given": "Ana"}],
+    "year": "2023",
+    "journal": "Methods & Data",
+    "volume": "12",
+    "number": "2",
+    "pages": "101--115",
+    "doi": "10.5555/ackredit.fixture.article"
+  },
+  {
+    "id": "edited:structured",
+    "type": "other",
+    "title": "Structured editor collection",
+    "editors": [
+      {"family": "García", "given": "Ana"},
+      {"literal": "Research and Development, Consortium"}
+    ],
+    "year": "2022",
+    "publisher": "Example Press"
+  }
+]

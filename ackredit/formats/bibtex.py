@@ -5,6 +5,7 @@ import re
 from typing import Iterable
 
 from ._latex import escape, is_latex_source
+from ._names import cff_names
 
 # The fields whose BibTeX name differs from Ackredit's, in the order a reader
 # expects them. Everything else the item carries follows, alphabetically.
@@ -18,9 +19,15 @@ _ORDERED = [
 ]
 
 # Ackredit's own keys, which are not bibliographic fields.
-_NOT_A_FIELD = {"id", "type", "title", "authors", "how_to_cite"} | {
-    fc_key for _, fc_key in _ORDERED
-}
+_NOT_A_FIELD = {
+    "id",
+    "type",
+    "title",
+    "authors",
+    "editor",
+    "editors",
+    "how_to_cite",
+} | {fc_key for _, fc_key in _ORDERED}
 
 
 def _bibtex_name(author: object, *, latex_source: bool = False) -> str:
@@ -67,6 +74,11 @@ def _bibtex_name(author: object, *, latex_source: bool = False) -> str:
 # fits: `Smith_2020`, `smith:2020a`, `10.1021/ct500000x`.
 _KEY = re.compile(r"^[A-Za-z0-9_:./+-]+$")
 _NOT_KEY = re.compile(r"[^A-Za-z0-9_:./+-]+")
+
+# A typed CFF preferred book/collection declares a work whose editors and
+# publisher plain.bst can render. Other CFF kinds retain the existing fallback;
+# an imported BibTeX entry always keeps its original type.
+_FROM_CFF = {"book": "book", "edited-work": "book"}
 
 
 def _digest(item_id: str) -> str:
@@ -163,7 +175,9 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
 
         fc_type = item.get("type", "other")
         # An item read from a .bib file is written back as the entry it was.
-        bib_type = item.get("_bibtex_type") or type_map.get(fc_type, "misc")
+        bib_type = item.get("_bibtex_type") or _FROM_CFF.get(
+            item.get("_cff_type", ""), type_map.get(fc_type, "misc")
+        )
 
         fields: list[str] = []
 
@@ -181,9 +195,11 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
             # braces are BibTeX syntax rather than content, and escaping them
             # would turn the protection into a literal pair of characters.
             if isinstance(val, list):
-                if fc_key == "authors":
+                if fc_key in {"authors", "editor", "editors"}:
+                    hint = "_cff_authors" if fc_key == "authors" else "_cff_editors"
+                    names = cff_names(val, item.get(hint)) or val
                     parts = [
-                        _bibtex_name(part, latex_source=latex_source) for part in val
+                        _bibtex_name(part, latex_source=latex_source) for part in names
                     ]
                 else:
                     parts = [
@@ -206,6 +222,11 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         for bib_key, fc_key in _ORDERED:
             add_field(bib_key, fc_key)
 
+        # CSL/CFF use plural "editors"; BibTeX styles read singular "editor".
+        # Keep the same explicit plural-first choice as the CSL renderer, while
+        # original string-valued BibTeX editor syntax passes through unchanged.
+        add_field("editor", "editors" if item.get("editors") else "editor")
+
         # Whatever else the item carries. A fixed list dropped the publisher of
         # a book, the pages of a conference paper and the school of a thesis,
         # although the parser had stored all three. A .bst style ignores a field
@@ -221,9 +242,12 @@ def render(used: dict[str, list[str]], items: dict[str, dict]) -> str:
         # citation key — so every discovered package printed as "(dis, 2020)".
         # BibTeX defines `key` for exactly this; the label is the work's name.
         # An entry read from a .bib file is left as its author wrote it.
-        if not latex_source and not any(
-            item.get(name) for name in ("authors", "editor", "editors", "key")
-        ):
+        # Classic misc styles do not use editor for sorting/labels. A retained
+        # editor is still metadata, but cannot supply that entry's label.
+        named = item.get("authors") or (
+            bib_type != "misc" and (item.get("editor") or item.get("editors"))
+        )
+        if not latex_source and not named and not item.get("key"):
             label = escape(str(item.get("title") or item_id))
             fields.append(f"  key = {{{label}}}")
 

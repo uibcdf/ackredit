@@ -76,8 +76,8 @@ def _cff_name(entry: dict) -> dict | None:
     return name
 
 
-def csl_names(authors: Any, *, cff: Any = None) -> list[dict]:
-    """Prefer matching CFF declarations; explicit list replacement still wins.
+def cff_names(authors: Any, cff: Any) -> list[dict] | None:
+    """Read matching detached CFF name declarations, without guessing identity.
 
     Source metadata is a hint about the original strings, not authority over a
     caller's current author/editor list. Generic names retain their old path.
@@ -98,6 +98,13 @@ def csl_names(authors: Any, *, cff: Any = None) -> list[dict]:
             names = [_cff_name(entry) for entry in entries]
             if all(names):
                 return names
+    return None
+
+
+def csl_names(authors: Any, *, cff: Any = None) -> list[dict]:
+    """Prefer matching CFF declarations; explicit list replacement still wins."""
+    if names := cff_names(authors, cff):
+        return names
     return [csl_name(author) for author in authors]
 
 

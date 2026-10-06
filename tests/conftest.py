@@ -26,6 +26,11 @@ from ackredit.core.session import current_session
 
 def pytest_addoption(parser):
     parser.addoption(
+        "--require-publication-tools",
+        action="store_true",
+        help="Fail rather than skip the optional real publication-tool receiving checks",
+    )
+    parser.addoption(
         "--require-scoped-providers",
         action="store_true",
         help="Fail rather than skip receiving checks when scoped provider APIs are absent",
