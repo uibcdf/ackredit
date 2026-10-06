@@ -16,7 +16,10 @@ This checkpoint also ships provisional function-provider observation, prepared
 contextual credits and the offline `workflow` report. See the
 [release notes](release_notes.md) for their scope and the additive self-citation
 repair. A client using only the released portable contract can retain its
-`ackredit>=0.9.0` minimum; the provisional APIs need their own review.
+`ackredit>=0.9.0` minimum. The stable-provider decision is accepted in source;
+0.11.0 is the candidate under [#107](https://github.com/uibcdf/ackredit/issues/107),
+with its exact-file qualification/public delivery still pending. Public 0.10.1
+retains its original provisional provider contract.
 
 ## Install from Conda
 

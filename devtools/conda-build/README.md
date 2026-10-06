@@ -27,7 +27,7 @@ promotion and independent public registry/index verification.
 
 1. Publish the reviewed source commit and pass its declared CI/policy gates.
 2. Dispatch `build_and_upload_conda_packages.yaml` with full `candidate_sha`
-   and the version in the plan (currently `0.10.1`). The plan supplies build 0. The provider freezes version
+   and the version in the plan (currently `0.11.0`, tracked in #107). The plan supplies build 0. The provider freezes version
    metadata only in its ephemeral checkout, builds once, tests and inspects the
    archive before uploading the exact file to staging.
 3. Retain its producer artifact/receipt. Dispatch `test_staged_conda_package.yaml`
@@ -40,11 +40,11 @@ promotion and independent public registry/index verification.
    through public channels; staging supplies only the Ackredit candidate.
 4. Record receiving-consumer compatibility separately. Development source/wheel
    evidence does not establish the first public consumer dependency closure.
-   For 0.10.0 and corrected 0.10.1, dispatch `function_provider_receiving.yaml` with the original
+   For 0.11.0, as for earlier 0.10.0/0.10.1, dispatch `function_provider_receiving.yaml` with the original
    `candidate_sha`, `conda_version`, `conda_filename` and `conda_sha256`. Its Conda
    profile builds only the pinned real producer and original 0.9.0 fallback as
    wheels. Shared operations install and verify the exact candidate before and
-   after science; all eight cells execute six mandatory real receiving tests.
+   after science; all eight cells execute nine mandatory real receiving tests.
    Require its successful aggregate before public promotion in addition to the
    full installed matrix. This scientific gate does not replace the installed
    matrix consumed by the shared promotion verifier.

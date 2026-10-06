@@ -1,6 +1,11 @@
 # Release notes
 
-## Development after 0.10.1
+## 0.11.0 — candidate under qualification
+
+The maintainer-authorized checkpoint is tracked in
+[Ackredit #107](https://github.com/uibcdf/ackredit/issues/107). It is not yet
+publicly delivered. The exact staged archive must pass full source/installed
+and real receiving matrices before promotion and clean public verification.
 
 - Typed CFF `preferred-citation` works retain their own work category and
   bibliography during import discovery, saved attribution and export. Preferred
@@ -23,6 +28,21 @@
   names retain their available meaning; explicit author/editor replacement
   remains authoritative. Detached source-name metadata survives offline reading
   (#98).
+- The CLI explicitly reads portable saved attribution/bundles/evidence and
+  exports a chosen report without mutating the input or importing producers (#101).
+- `AttributionBundle` / `compose_attributions` preserve independent original
+  results, share only equal bibliographic records and refuse conflicts. Workflow
+  graphs remain independent rather than becoming an invented combined pipeline (#102).
+- `explain_attribution` describes saved uses and available scope/origin/gaps;
+  unrecorded facts remain unknown, without a completeness score (#103).
+- Provisional `AttributionEvidence` retains explicitly supplied recorder evidence
+  separately from original attribution. `capture(record_evidence=True)` collects
+  actual function-provider origins, observation boundaries and diagnosed gaps;
+  other recorder origins remain unknown (#104/#105).
+- Explicit `evidence.report("workflow", include_evidence=True)` and the CLI
+  `--include-evidence` flag join those declarations with original references,
+  uses and graphs. Default reports/payloads stay unchanged and readers create
+  no new credits or replayed diagnostics (#106).
 
 These corrections are tracked in [Ackredit #95](https://github.com/uibcdf/ackredit/issues/95)
 and [#96](https://github.com/uibcdf/ackredit/issues/96); the writer optimization
@@ -37,8 +57,8 @@ Preparation remains inert; invocation credits the current session/captures and
 the host owns completion. Observation retains selected-export entry/awaited
 execution, context-local leases, restoration, documented exclusions and W019
 gaps. Incompatible declaration interpretations require a new schema identifier.
-The forward compatibility promise starts with the qualified release delivering
-this decision; **no new stable-provider public version is claimed yet**. See
+The forward compatibility promise is planned for verified public **0.11.0**;
+**no new stable-provider public version is claimed yet**. See
 [API stability](stability.md) and [function providers](../user_guide/function_providers.md).
 Newer evidence representation, opt-in collection and integrated reporting remain
 provisional pending their own explicit acceptance.

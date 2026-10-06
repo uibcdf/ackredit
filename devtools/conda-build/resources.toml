@@ -6,9 +6,12 @@ required_paths = [
   "site-packages/ackredit/_version.py",
   "site-packages/ackredit/CITATION.cff",
   "site-packages/ackredit/core/attribution.py",
+  "site-packages/ackredit/core/composition.py",
+  "site-packages/ackredit/core/evidence.py",
   "site-packages/ackredit/core/providers.py",
   "site-packages/ackredit/core/collector.py",
   "site-packages/ackredit/formats/workflow.py",
+  "site-packages/ackredit/formats/explanation.py",
   "site-packages/ackredit/formats/provenance.py",
   "site-packages/ackredit/cli.py",
 ]

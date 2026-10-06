@@ -2,7 +2,7 @@
 
 This is the **accepted provider contract**, owned by Ackredit #84/#87 and
 coordinated through MolSysSuite #97 and MOLI #46. Source promotion and public
-delivery are separate: the delivering release is not yet selected or qualified.
+delivery are separate: 0.11.0 is selected under #107 and awaits exact-file qualification.
 The receiving pilot belongs to PyUnitWizard #94.
 
 ## Accepted principal-maintainer decision (2026-10-06)
@@ -44,7 +44,9 @@ support the product review; they are not qualification of a new public candidate
 
 Record the superseding decision in #84/#87 and hand it to MolSysSuite #97/MOLI #46.
 Source classification, compatibility guidance, release notes and the canonical
-client guide implement this acceptance. Next select and qualify the delivering release.
+client guide implement this acceptance. The authorized 0.11.0 delivery is tracked
+under [Ackredit #107](https://github.com/uibcdf/ackredit/issues/107); qualification
+and public verification remain pending.
 Track guide synchronization and client adoption through their existing owners.
 Observation remains explicit and optional scientific hosts retain absence/failure
 behavior. Stable-provider acceptance imposes no mandatory adoption or automatic
@@ -228,8 +230,8 @@ stable provider-guide distribution waits for its separate review decision.
 The accepted decision updates Ackredit's API stability page, release notes and
 canonical integration guide around the reviewed boundary. Hand the decision and
 consumer delivery request to the existing owners through the central registry.
-Do not edit synchronized consumer copies locally. Select the next tag only
-when the maintainer chooses a release checkpoint.
+Do not edit synchronized consumer copies locally. The maintainer authorized the
+next release checkpoint on 2026-10-06; the selected version is 0.11.0 under #107.
 
 Build one exact candidate, retain its source/version/file SHA-256, complete
 staging and qualify that same file on Linux/macOS arm64 × Python 3.11–3.14,

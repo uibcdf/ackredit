@@ -1,0 +1,91 @@
+{
+  "base_commit": "4832f0e636ad7b6ee62973c12c90e7e2369e577f",
+  "candidate_artifact": null,
+  "changed_files_sha256": {
+    "CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+    "ackredit/CITATION.cff": "9ae2303f4993e7b2c1aa82ef07020bedeaf52e7cb910ca5fb55fea473eccbbf2",
+    "devguide/function_provider_contract_review.md": "44e67b505d1c0d9c122020f0fc26bfb8681042962ae5c7109c1f90237ec8ce69",
+    "devguide/pending_proposals/README.md": "c3d90781d08b189fa8f7f48178c60c4557c81ba015ba6f77e6a8cdfb3cb3abfb",
+    "devguide/pending_proposals/stable_provider_release_011.md": "053201c0fc786f5d8422e74c04cf968e0c305cc9d8652abcdd34aa4324da1df2",
+    "devtools/conda-build/README.md": "df708001210dfae047e2d39907c1ad609080c5af4ebf76bad1ac886e04d71135",
+    "devtools/conda-build/release_plan.toml": "65bd6e0ad12289ea9ebe02fb81d5207b771d9eee981aead9c3e3421d6069ac31",
+    "devtools/conda-build/resources.toml": "94691425272103e2c6b5035606fbf8183ecdf3654d5363f31a85cc164182c6ad",
+    "docs/content/about/installation.md": "988ce20cbea77901a610f74712d5cd2ae1dc5c0fbe012dd17f896c6a212f37b8",
+    "docs/content/about/release_notes.md": "e50dd7aec27b00ac4014f062c51fd0f30c2c9afd754fd8153d5d0c299ad38498"
+  },
+  "checked_at": "2026-10-06T07:15:58.697654+00:00",
+  "devguide_index": "passed",
+  "diff_check": "passed",
+  "environment": "molsyssuite@uibcdf_3.14",
+  "human_work": "All nine prior primary-worktree human files retain their original bytes; no sibling sources changed.",
+  "issue": "uibcdf/ackredit#107",
+  "next_gates": [
+    "exact-producer CI/full-source/policy controls",
+    "build once and stage",
+    "full eight-cell installed and real receiving matrices",
+    "same-file promotion and public verification"
+  ],
+  "public_delivery": "not claimed",
+  "pytest": {
+    "complete": true,
+    "integrity_valid": true,
+    "outcome": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 2078,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 2078,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 2078,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 50.73217545449734,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 70
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "241ea1824c8eef1e9edced7b6974ac0e8432a4f07a3a45ba275187edea0028f6",
+        "records": 6305
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "5a84160fd10944e481673f2f60001eb1",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "sha256": "d7b74b61efc30f6bc7466b63d1debae6673cb50c3c05afc01c3a0648c308939e"
+  },
+  "python": "3.14.7",
+  "recipe_inspection": {
+    "build_number": 0,
+    "package": "ackredit",
+    "route": "staged",
+    "version": "0.11.0"
+  },
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "schema": "ackredit.release-candidate-local@1",
+  "shared_recipe_verifier": "c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+  "strict_sphinx": "passed; fresh -E -n -W --keep-going build against complete candidate docs",
+  "test_scope": "complete tests/ suite, source contract under owned-worktree PYTHONPATH; not an installed public Conda qualification",
+  "version": "0.11.0"
+}
