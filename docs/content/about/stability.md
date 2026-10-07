@@ -33,6 +33,15 @@ The general decision preserves documented stable signatures and meanings through
 Existing public promises retain their original release boundaries; these
 decisions do not authorize a version/tag or publication.
 
+On 2026-10-07 the maintainer chose further pre-1.0 stabilization and habitual
+dogfooding under [Ackredit #126](https://github.com/uibcdf/ackredit/issues/126)
+before delivering the general 1.x commitment. Accepted source classifications
+and bounded public promises remain unchanged. Stable source intent and passing
+receiving tests do not by themselves establish a decision to release 1.0.
+Proactive feature development pauses when only stability remains, giving
+MolSysSuite/MOLI consumers time to adopt the provider and supply actual-use
+feedback. This does not waive compatibility rules or qualify another release.
+
 ## What the two levels mean
 
 **Stable.** We intend to keep the name, its meaning and its call signature across 1.x. It

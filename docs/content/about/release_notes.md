@@ -1,12 +1,20 @@
 # Release notes
 
-## Development after 0.11.0 — next delivery scope under review
+## Development after 0.11.0 — pre-1.0 stabilization and adoption pause
 
 [Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) consolidates the
-[next-release proposal](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md).
-It recommends 1.0.0 for review following #125's accepted general stability
-decision, with 0.12.0 as an alternative if that public commitment is deferred.
-This is not a version selection or qualified release announcement.
+[next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md).
+On 2026-10-07 the maintainer chose continued pre-1.0 stabilization and habitual
+dogfooding before the general 1.x public commitment. The initial 1.0.0 delivery
+recommendation is deferred; #114/#125's accepted source contracts and earlier
+bounded public promises remain unchanged. 0.12.0 is a possible next minor,
+without a last-pre-1.0 schedule. Actual-use feedback must remain distinct from
+automated receiving evidence. This is not a version selection or qualified
+release announcement. The maintainer also directed pausing proactive feature
+development when only stability remains, giving MolSysSuite and MOLI components
+time to adopt Ackredit. The completed source scope now enters that phase;
+consumer-owned feedback, demonstrated defects or an explicit maintainer request
+can resume focused work. No new dogfooding run or completed adoption is claimed.
 
 The proposed delivery combines the accepted evidence/validator promises below,
 the standalone validator and provider author example (#111–#113), faithful

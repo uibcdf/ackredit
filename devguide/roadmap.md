@@ -787,12 +787,19 @@ Prepare the next delivery from completed, reviewed work; it need not wait for
 every theme. Post-0.10.1 fidelity/performance and saved-result/evidence work is
 delivered in qualified public 0.11.0. Original development receipts remain
 distinct from that published artifact's qualification.
-The concrete [next-release scope](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md)
-under #126 recommends 1.0.0 for review now that theme F is accepted, with 0.12.0
-as an alternative if general stability delivery is deferred. It records
-included repairs/promises, unchanged compatibility boundaries and the required
-qualification sequence. This is a proposal; an operative version and release
-execution still need explicit authorization. Preserve the original producer
+The concrete [next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
+under #126 retains the included repairs/promises, compatibility boundaries and
+required qualification sequence. On 2026-10-07 the maintainer chose further
+pre-1.0 stabilization and habitual dogfooding before general 1.0 delivery.
+When only stability remains, pause proactive development to give MolSysSuite
+and MOLI components time to adopt Ackredit; the current source scope has reached
+that phase. Consumer owners choose their actual workflows and provide saved-reader
+evidence, observed cost/friction and owning feedback. Automated receiving stays
+separate evidence. Resume focused work for concrete feedback/defects or an explicit
+maintainer request. 0.12.0 is a possible future minor if a delivery is needed,
+without a last-pre-1.0 schedule or automatic publication. Theme F's acceptance and bounded
+promises remain unchanged. An operative version and release execution still
+need explicit authorization. Preserve the original producer
 and exact archive digest, and apply the existing source/installed/receiving/
 staging/promotion/public-verification gates. Source completion,
 API acceptance, canonical-guide synchronization and receiving-client release

@@ -244,6 +244,26 @@
     pre-1.0 and 1.x. Public 0.11.0 lacks the export; the version is not selected.
     The shared parser is unchanged, and empty roles remain unspecified.
 
+22. **Pre-1.0 stabilization and adoption pause (`uibcdf/ackredit#126`):**
+    On 2026-10-07 the maintainer chose further pre-1.0 releases because Ackredit
+    needs stabilization and habitual real use. The earlier 1.0.0 delivery
+    recommendation is deferred. Source acceptance under #114/#125 and existing
+    bounded public promises remain unchanged; pre-1.0 does not waive their
+    compatibility rules. The maintainer also directed a development pause when
+    only stability remains, giving MolSysSuite and MOLI components time to adopt
+    Ackredit. Finish the current checkpoint, then pause proactive feature work
+    on the completed source scope; consumer owners choose their adoption and
+    habitual workflows. Existing automated receiving tests are distinct from
+    dogfooding. Resume for concrete owning feedback, a demonstrated defect or
+    an explicit maintainer request. The
+    [archived disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
+    retains completed development, future delivery gates and an evidence outline.
+    Closing the planning issue does not complete adoption, dogfooding, pending
+    CI or a release. Public 0.11.0 remains available; later capabilities await
+    an explicitly authorized, qualified minor delivery when needed. There is
+    no last pre-1.0 release or arbitrary duration. Reconsider 1.0 from actual-use
+    evidence and a separate release decision.
+
 ## Pending Decisions
 
 The accepted evidence/validator promises await their delivering releases; the

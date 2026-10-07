@@ -69,17 +69,28 @@ working, a test or a reproducible command backs it.
   certification. Guarded by `tests/test_coverage_workflow.py`, with evidence in
   [the coverage record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/scoped_runtime_coverage.md).
 
-## Next delivery proposal
+## Pre-1.0 adoption pause
 
 [Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) prepares the
-[concrete next-release scope](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md)
-from completed post-0.11.0 development. It recommends 1.0.0 for review because
-the general stability decision and final validator promotion are accepted in
-source, while retaining 0.12.0 if the maintainer defers the general commitment's
-delivery. Included contracts, bibliography/DOI repairs, lazy imports and bounded
-receiving evidence have explicit limits and remaining exact-candidate gates.
-No operative version, new archive, staging, tag or public delivery is authorized
-by this proposal. The committed publisher plan still describes completed 0.11.0.
+[archived next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
+from completed post-0.11.0 development. On 2026-10-07 the maintainer chose further
+pre-1.0 stabilization and habitual dogfooding, deferring the initial 1.0.0
+recommendation. Existing accepted contracts and bounded public promises are
+retained. The maintainer also directed a development pause when only stability
+remains, giving MolSysSuite and MOLI consumers time to adopt Ackredit. Finish
+this checkpoint, then pause proactive feature work on the completed source
+scope. The bug queue is empty; optional #58 is not a priority. Consumers choose
+their real workflows and supply saved-reader evidence, cost/friction and owning
+feedback. No new habitual-use cycle or completed adoption is claimed here.
+Resume for concrete feedback, a demonstrated defect or an explicit maintainer
+request. Controlled receiving stays separate evidence. Bibliography/DOI repairs, lazy imports and bounded
+receiving studies remain available for a future minor delivery, with their
+explicit limits and remaining exact-candidate gates. 0.12.0 is a possible version.
+No operative version, new archive, staging, tag or public delivery follows from
+this decision. Public 0.11.0 remains available for its delivered contracts;
+later capabilities need their own qualified delivery when required by an owner.
+The committed publisher plan still describes completed 0.11.0. #126 closes the
+planning decision, retaining pending CI separately from adoption and delivery.
 
 ## Known defects
 

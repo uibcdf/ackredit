@@ -109,7 +109,7 @@ delivering release, while the general promise begins at qualified public 1.0.0.
 There are no provisional exports in the current source inventory. Neither source
 decision selects a version/tag or authorizes publication.
 
-1. **Retain theme N's accepted deferral and continue the remaining reviews.**
+1. **Retain completed source work and pause for consumer adoption.**
    The maintainer chose to postpone non-bibliographic acknowledgements until a
    real use case exists under #124. The
    [archived review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/acknowledgement_scope.md)
@@ -123,14 +123,24 @@ decision selects a version/tag or authorizes publication.
    their limits. K's platform/client decisions and the general 1.0 review keep
    their owners. F's [general stability review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
    is now accepted under #125, including the separate validator promotion.
-   [The next-release scope](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md)
-   is prepared under #126, recommending 1.0.0 for review and retaining 0.12.0
-   as the alternative if the maintainer defers the general 1.x delivery. It
-   maps accepted evidence/validator promises, runtime repairs and bounded
-   measurements to the exact-source, installed-file, receiving and public gates
-   still required. The next owner-local step is the explicit release decision;
-   no operative version, candidate execution or publication is authorized by
-   preparation. The current publisher plan retains completed 0.11.0 inputs.
+   [The next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
+   is prepared under #126. On 2026-10-07 the maintainer chose continued pre-1.0
+   stabilization and dogfooding, deferring the earlier 1.0.0 recommendation.
+   The maintainer also directed a development pause when only stability remains,
+   giving MolSysSuite and MOLI components time to adopt Ackredit. Finish this
+   checkpoint, then pause proactive feature work on the completed source scope.
+   The bug queue is empty and #58 is outside the priority scope. Consumer owners
+   choose adoption and habitual workflows; automated receiving is background
+   evidence, not proof of that new use. Resume for concrete owning feedback, a
+   demonstrated defect or an explicit maintainer request. Retain the completed
+   development scope and accepted evidence/validator promises for a future minor
+   delivery; 0.12.0 is a possible version, not an operative choice. No candidate
+   execution or publication follows from the planning decision. The current
+   publisher plan retains completed 0.11.0 inputs. Public 0.11.0 is available
+   for its delivered contracts; the new validator and later repairs/promises
+   await a separately qualified minor delivery if an owner needs them. #126
+   closes only the planning decision, not adoption or pending CI. No automatic
+   polling, fixed pause duration or last-pre-1.0 version is established.
    #58's optional dashboard is not a priority or a dependency.
 2. **Qualify the accepted promises when their release is authorized.**
    Select the version from a concrete scope and execute the exact-source,

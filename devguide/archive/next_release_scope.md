@@ -1,26 +1,30 @@
 ---
-summary: Review a bounded 1.0.0 delivery of completed post-0.11.0 development.
+summary: Defer 1.0 and pause feature development when stabilization depends on consumer adoption.
 issue: uibcdf/ackredit#126
-status: open
+status: resolved
 opened: 2026-10-06
-closed:
+closed: 2026-10-07
 severity: medium
 verification: inspected
 area: [release, api, packaging, documentation]
 guard:
-normative:
+normative: devguide/decisions.md
 blocked_by: []
 supersedes: []
 ---
 
-# Next release scope and version recommendation
+# Pre-1.0 stabilization and consumer-adoption pause
 
 ## What
 
-Prepare a concrete delivery decision from development completed after public
-0.11.0. Recommend **1.0.0**, subject to explicit maintainer authorization and
-successful exact-candidate qualification. This record is a proposal, not an
-operative version selection, release authorization or qualification receipt.
+On 2026-10-07 the maintainer chose to continue **pre-1.0 releases**, because
+Ackredit needs stabilization and dogfooding. The maintainer further specified
+that development should pause when only stability remains, to give the other
+MolSysSuite and MOLI components time to adopt Ackredit. Consumer owners supply
+actual-use experience before general 1.x delivery is reconsidered.
+The earlier 1.0.0 recommendation was not accepted. The completed post-0.11.0
+scope below remains available for a future minor delivery; **0.12.0 is a possible
+next version**, not an operative selection or publication authorization.
 
 The inspected preparation baseline is
 `535b2ae68a19b247f72f1064744af250a85cd14d`. It is not a frozen release producer;
@@ -33,7 +37,6 @@ self-citation. The current publisher plan still describes completed 0.11.0.
 
 | Delivery change | Owning evidence | Boundary to preserve |
 | --- | --- | --- |
-| General stable API signature/meaning commitment through 1.x | #125; [API stability](../../docs/content/about/stability.md), [accepted adoption review](../archive/general_stability_review.md) | Begins at qualified public 1.0.0. Incompatible removal or meaning changes require a major release after at least two minor releases carrying deprecation and replacement guidance. Private implementation remains outside this contract. |
 | Stable bounded recorder evidence, opt-in collection and explicitly requested workflow/CLI reporting | #114; [accepted evidence review](../recorder_evidence_contract_review.md) | Forward promise begins at the separately qualified delivering release; public 0.11.0 retains its original provisional classification. Unknown/empty declarations, diagnosed gaps and inert saved readers retain their meanings. |
 | Standalone `validate_provider(module) -> dict` and dependency-free provider author example | #111–#113/#125; [validator implementation](../archive/standalone_provider_validation.md), [author guide](../../docs/content/user_guide/provider_authors.md) | Trusted imported ordinary module, detached merged declaration, original metadata/role order, fresh reads and E012 refusal; no Ackredit credit, registration, wrapper or scientific call. Selected producer lazy-loader effects are producer-owned. Empty role lists remain valid unspecified use. |
 | Faithful BibTeX keys and shared deterministic fallback allocation | #109; [repair](../archive/bibtex_citation_keys.md) | Preserve valid original keys; resolve invalid/case-clashing/generated collisions without losing distinct citations or double-escaping imported LaTeX. |
@@ -44,25 +47,111 @@ self-citation. The current publisher plan still describes completed 0.11.0.
 
 Existing portable attribution, sessions/scopes, provider observation/prepared
 credits, composition/explanation, persistence, output/plugins and optional
-operations are included in the general documented stability boundary reviewed
-under #125. Their earlier public promises retain their original release floors.
-Documentation and release notes must describe those boundaries together without
-retroactively changing public 0.11.0.
+operations retain the source decisions reviewed under #125. Their earlier public
+promises retain their original release floors. The general 1.x signature/meaning
+commitment is accepted in source but its public delivery is deferred; it is not
+part of the next pre-1.0 delivery. Its existing major-change/two-minor deprecation
+policy remains documented in [API stability](../../docs/content/about/stability.md).
+Documentation and release notes must preserve these distinct boundaries without
+retroactively changing public 0.11.0 or weakening accepted bounded promises.
 
-### Version alternatives
+### Maintainer disposition — 2026-10-07
 
-**Recommended: 1.0.0.** Theme F is complete in source: every export has an
-explicit stable decision, no provisional export remains, and #125 accepts the
-general 1.x promise against actual adoption. Themes A–E have their recorded
-foundation evidence. The [roadmap](../roadmap.md) defines 1.0 by that commitment,
-not by completion of all future features or all clients. This proposal adds no
-API removal or schema migration to earn the major number.
+The preparation initially recommended 1.0.0 because theme F is complete in
+source and #125 accepts the general 1.x promise. The maintainer instead chose
+further stabilization and dogfooding before that delivery. Preserve #114/#125's
+accepted source classifications; accepted intent and tests do not establish
+sufficient habitual-use experience for the maintainer's release decision.
 
-**Alternative: 0.12.0.** Deliver the same completed repairs and the accepted
-bounded evidence/validator promises while postponing the general 1.x public
-commitment. This remains valid if the maintainer chooses further pre-1.0
-adoption. A new arbitrary feature or mandatory extra minor release is not
-needed by the current stability rule. The operative version remains undecided.
+Continue with bounded pre-1.0 cycles. Select each delivery version from its
+actual scope and qualification; do not declare a last pre-1.0 version, fixed
+number of minor releases or arbitrary time period. Revisit 1.0 explicitly after
+reviewing real-use evidence and feedback. Existing bounded compatibility promises
+remain in force during those cycles; pre-1.0 is not permission to break them.
+
+### Adoption pause and resumption
+
+Finish this documentation checkpoint, then pause proactive feature development
+on the current completed source scope. The inspected local bug queue is empty;
+the only other open product issue is optional dashboard #58, explicitly outside
+the priority scope. Source review/repairs are complete within their recorded
+limits. This makes consumer adoption and observed stability the next phase;
+it does not prove the absence of unknown defects or qualify a new release.
+
+Keep adoption with the existing MolSysSuite/MOLI and consumer owners, through
+#97/#46 and linked member issues. Do not start another Ackredit feature merely
+to occupy the adoption period, require every unrelated component to import it,
+or mandate a new workflow/owner on behalf of a consumer. The initial proposal
+to prioritize a new PyUnitWizard dogfooding cycle was not selected; no first
+habitual workflow has been claimed or executed under this decision.
+
+Public 0.11.0 is already available for its delivered portable/provider contracts.
+The standalone validator, later runtime repairs and accepted forward
+evidence/validator promises still await a separately qualified minor delivery.
+Consumers must not be told that those capabilities are in 0.11.0. If adoption
+requires them, use the retained scope/gates below for an explicitly authorized
+pre-1.0 delivery; source pins are separate development evidence, not public
+dependency closure. This delivery work does not justify new unrelated features.
+
+Resume focused Ackredit work for concrete owning adoption feedback, a
+demonstrated defect or an explicit maintainer request. Keep failures in owning
+issues with meaningful guards; revisit 1.0 with actual-use evidence and a new
+release decision. The pause creates no scheduled polling, arbitrary waiting
+period or claim that all consumers have adopted the provider. Pending CI stays
+recorded with its exact head, owning issue and recovery route.
+
+### Evidence for consumer-led dogfooding
+
+When a consumer adopts Ackredit, retain evidence from its **owned habitual
+workflow** rather than treating the existing receiving matrix as user adoption.
+PyUnitWizard and Sabueso are existing receiving clients; their owners choose
+the next actual workflow/input. The following outline is available for that
+feedback, not a newly authorized consumer task. Synthetic publication fixtures
+and automated scientific receiving cases remain useful guards, not a claim
+of habitual use.
+
+1. Identify the application/workflow owner, actual input and intended use of its
+   references, saved results and reports. Record the installed Ackredit identity,
+   exact file/digest or explicit editable revision, Python/platform and relevant
+   producer/dependency versions. Keep development and public identities distinct.
+2. Run the workflow in ordinary work, including repeat operations and the normal
+   session/capture lifecycle. Retain completed scientific results and original
+   references/roles/software versions. Observe unexpected citations, omissions,
+   diagnostics and user effort. Entry evidence does not prove successful science;
+   unrecorded use stays unknown. Do not manufacture failures in the habitual run
+   or change a user's environment just to complete a checklist.
+3. Save the actual detached result and inspect its intended workflow report and
+   bibliography in a fresh reader without the original producer. Record input
+   and saved-artifact hashes, expected versus observed references and whether
+   reading creates any new execution credit. Use the existing public API/CLI and
+   receiving tools, keeping original files intact. Inspect an actual publication
+   route when this workflow needs it; the fixture studies remain separately bounded.
+4. Compare cost and usability against the workflow's own baseline: startup,
+   warmed calls, capture/session lifetime and saved reporting where relevant.
+   Reuse owned `devtools/benchmark_lifecycle.py` or other applicable benchmark
+   operations for investigation; a synthetic benchmark alone does not measure
+   the application's full cost. Record sample/workload limits and scientific
+   invariants. Optional provider absence/failure belongs in controlled receiving
+   checks and must preserve the completed result.
+5. File observed defects or missing capabilities in their owning repository,
+   cross-link consumer evidence and add meaningful guards for the failure
+   mechanism. Recheck the actual workflow against the corrected candidate and
+   preserve both before/after identities. The workflow owner reviews remaining
+   gaps before selecting the next pre-1.0 delivery scope.
+
+| Evidence to retain in #126 or a linked owning issue | Current state |
+| --- | --- |
+| Real workflow owner, actual input and intended output/report route | Consumer-owned; no new first route selected here. |
+| Installed/source identity, dependency versions and environment boundary | Existing receipts are background; bind the actual dogfooding run separately. |
+| Completed scientific result and expected versus observed references/roles/versions | Not yet observed in the new habitual-use cycle. |
+| Actual saved result, fresh-reader report, original hashes and no-new-credit check | Existing automated guards are background; retain actual-run evidence. |
+| Workload cost, friction, owning feedback and corrected-run comparison | Collect observed facts; do not infer a successful cycle from green CI. |
+
+Before reconsidering 1.0, review those actual-use outcomes, resolved/remaining
+issues affecting the intended stable meanings, and any necessary changes within
+the accepted compatibility rules. A general release still requires its separate
+maintainer decision and all exact-candidate gates. This does not make every
+future feature, sibling issue or client release a new blanket prerequisite.
 
 ### Compatibility and delivery inputs
 
@@ -138,14 +227,17 @@ studies are preparatory evidence, not transferable release qualification.
 ## Why
 
 The work since 0.11.0 contains useful runtime repairs and a new accepted export,
-alongside source acceptance of the outstanding public promises. A concrete
-delivery can make those changes available without creating another feature
-cycle. Separating original development evidence from exact-file delivery keeps
-the general 1.0 decision meaningful and the published artifact immutable.
+alongside source acceptance of the outstanding public promises. Pre-1.0
+deliveries can make these changes available and receive real-use feedback before
+the general public stability commitment. Preserve the differences between source
+review, controlled receiving, habitual dogfooding and exact-file qualification.
 
 ## What was refuted
 
 Neither #114 nor #125 selected a release version or authorized publication.
+Completing the source stability inventory does not require immediate 1.0;
+the maintainer has chosen more actual-use evidence. Passing automated receiving
+tests does not prove that the library has been used in habitual work.
 Public SMonitor/ArgDigest availability does not require waiting for all sibling
 improvements, and their tested newer versions do not automatically change
 Ackredit's minimums. Theme M's bounded completed studies do not certify every
@@ -163,17 +255,19 @@ owners and explicit limits; they are not blanket prerequisites for this delivery
 
 ## Acceptance criteria
 
-- A reviewed inclusion map, version recommendation/alternative and compatibility
+- The maintainer's pre-1.0 direction, retained inclusion map and compatibility
   boundary are durable here and linked from current resumption guidance.
 - Each proposed public promise retains its source acceptance and delivery floor;
   exact-candidate gates, original-file identity and currently missing evidence
   are explicit. Preparation receives applicable reporting/link/documentation and
   exact-head development CI checks.
-- The maintainer records the operative version and release authorization before
-  changing candidate inputs or executing the qualification sequence. Keep #126
-  open for that decision; archive this proposal only after its disposition,
-  with a normative decision or successor delivery issue. Publication must be
-  explicitly covered by that authorization or separately approved.
+- The accepted pause condition and consumer-owned adoption route are recorded
+  in decision 22 and current guidance. Close #126 as a planning disposition,
+  not as completion of dogfooding, consumer adoption or a release.
+- Future real-use feedback is tracked by its owning issue and may reuse the
+  evidence outline above. The maintainer records the operative pre-1.0 version
+  and release authorization before candidate inputs or qualification change;
+  publication must be explicitly covered or separately approved.
 
 ## Preparation validation — 2026-10-06
 
@@ -191,3 +285,19 @@ These are preparation checks, not the complete source or installed release
 matrices. Exact-head development CI/policy run identities and outcomes belong
 in #126 after the documentation checkpoint is pushed. They do not substitute
 for any proposed candidate qualification or publication gate.
+
+## Disposition validation — 2026-10-07
+
+The accepted pre-1.0/adoption-pause documentation passes the same 262 selected
+tests with Pytest Receptor, without skips/warnings, plus Ruff lint/format,
+generated indexes, whitespace, nine relative archived-scope links and a fresh
+strict Sphinx build. Module-based local conformance passes against the available
+policy 1.0 checkout. These counts describe overlapping preparation checks on
+different documentation inputs, not additional scientific qualification.
+
+The prior documentation head `f9b77ea9952561b87c9d7bb7656048acd972f4a7` still has
+six successful CI jobs and queued macOS/Python 3.14 in run 37578322269 at this
+inspection; GH Run Receptor reports `PENDING` with native exit 3. Its policies
+had already passed. The final disposition head and its observed CI/policy
+outcomes are recorded in #126, including any missing evidence and recovery.
+Closing this planning record does not clear pending CI or qualify a candidate.
