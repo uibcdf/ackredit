@@ -1,5 +1,28 @@
 # Release notes
 
+## 0.12.0 — stabilization candidate (qualification in progress)
+
+The maintainer authorized this pre-1.0 delivery on 2026-10-07 under
+[Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), retaining the
+completed scope and adoption-pause decision in #126. Publication is conditional
+on exact-source, one-file installed/real receiving and public verification gates.
+
+- Deliver the bounded recorder-evidence contracts accepted under #114 and the
+  standalone validator accepted under #125. Their forward public promises start
+  only at verified public 0.12.0; the original 0.11.0 contracts are unchanged.
+- Add `validate_provider(module) -> dict` and a dependency-free provider author
+  example, preserving empty unspecified roles and producer-owned lazy effects.
+- Preserve original BibTeX keys and allocate collision-safe deterministic
+  fallbacks; retain bibliography editor/name and CFF book-kind fidelity.
+- Project supported DOI presentation while preserving original JSON/BibTeX,
+  same-ID conflict refusal and distinct reference/software-release identities.
+- Defer optional feature imports and preserve normal diagnostics and discovery.
+
+Python/platform support, dependency floors, optional host operation and schemas
+are unchanged. General public 1.x stability remains deferred. The accepted
+feature-development pause resumes after this delivery so consumers can adopt
+the qualified package and supply habitual-use feedback.
+
 ## Development after 0.11.0 — pre-1.0 stabilization and adoption pause
 
 [Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) consolidates the

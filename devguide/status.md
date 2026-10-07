@@ -71,6 +71,12 @@ working, a test or a reproducible command backs it.
 
 ## Pre-1.0 adoption pause
 
+On 2026-10-07 the maintainer subsequently authorized **0.12.0** delivery under
+[Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), using the completed
+scope below before the pause. Exact-source, installed-file, real receiving and
+public verification are in progress. Candidate inputs name 0.12.0; the current
+verified public package remains 0.11.0 until those gates pass.
+
 [Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) prepares the
 [archived next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
 from completed post-0.11.0 development. On 2026-10-07 the maintainer chose further

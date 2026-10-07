@@ -1,9 +1,22 @@
-# Development checkpoint — 2026-10-06
+# Development checkpoint — 2026-10-07
 
 Start here when resuming work. This is an operational handoff, not a new API
 contract or a replacement for the [roadmap](roadmap.md), [status](status.md),
 [decisions](decisions.md) and issue-backed queues. Refresh it when the working
 state or next steps change.
+
+## Authorized stabilization delivery in progress
+
+The maintainer explicitly authorized closing **0.12.0** under
+[Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), delivering completed
+post-0.11.0 development before the adoption pause. The
+[active delivery record](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/release_0120.md)
+owns exact-source, one-file installed/real receiving/publication checks and
+future public evidence. The reviewed plan/self-citation now names 0.12.0;
+it is not yet a qualified public package. Finish this authorized delivery, then
+resume the feature-development pause. General public 1.x stability stays deferred.
+The older planning disposition below did not authorize release execution;
+this subsequent explicit #127 instruction does. Original 0.11.0 is unchanged.
 
 ## Completed and verified
 

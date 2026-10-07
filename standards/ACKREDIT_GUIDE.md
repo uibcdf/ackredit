@@ -273,8 +273,10 @@ On 2026-10-06 the maintainer explicitly accepted `AttributionEvidence`, bounded
 `capture(record_evidence=True)` / `.evidence` provider-observer collection and
 explicit integrated workflow/CLI reporting under
 [Ackredit #114](https://github.com/uibcdf/ackredit/issues/114). Source classification
-is stable. Its bounded forward public promise starts at a separately selected,
-qualified future release delivering this decision; **public 0.11.0 retains its
+is stable. Its bounded forward public promise starts at a qualified public
+release delivering this decision. The maintainer selected 0.12.0 under #127;
+qualification/public verification is still in progress. Until that boundary,
+do not require 0.12.0 as a public dependency. **Public 0.11.0 retains its
 original provisional evidence classification**. Do not infer a stable-evidence
 minimum from the existing stable-provider minimum `>=0.11.0`.
 
@@ -333,7 +335,9 @@ producer-owned caching/import effects. Validation alone does not establish
 current-registry compatibility, citation truth or successful scientific use.
 
 The bounded public forward promise starts with the first separately qualified
-release delivering this acceptance; the version is not selected. Public 0.11.0
+release delivering this acceptance. Version 0.12.0 is selected under #127 and
+awaits qualification/public verification; it is not yet a delivered public
+minimum. Public 0.11.0
 lacks this standalone export and is not its version floor. Existing portable
 `>=0.9.0`, stable-provider `>=0.11.0` and recorder-evidence delivery boundaries
 remain distinct. Author validation is optional; hosts need not add it to normal

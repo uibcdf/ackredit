@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (120)
+### Resolved (121)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -44,6 +44,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`documented_api_does_not_exist.md`](documented_api_does_not_exist.md) — [#3](https://github.com/uibcdf/ackredit/issues/3) — Documentation taught imports that raise ImportError, and the integration guide's except clause hid it. *(resolved, reproduced)*
 - [`doi_cache_key_collides.md`](doi_cache_key_collides.md) — [#12](https://github.com/uibcdf/ackredit/issues/12) — Two DOIs could share one cache file, so one work's metadata was served for another. *(resolved, reproduced)*
 - [`doi_presentation_identity.md`](doi_presentation_identity.md) — [#121](https://github.com/uibcdf/ackredit/issues/121) — Project supported DOI wrappers for display while preserving original ID identity. *(resolved, reproduced)*
+- [`duecredit_absence_guard.md`](duecredit_absence_guard.md) — [#128](https://github.com/uibcdf/ackredit/issues/128) — Keep the optional DueCredit absence guard independent of installed packages. *(resolved, reproduced)*
 - [`dump_keeps_the_first_report.md`](dump_keeps_the_first_report.md) — [#65](https://github.com/uibcdf/ackredit/issues/65) — dump() wrote the first of several formats to a file and dropped the rest, ignored the file's name, and let two formats sharing an extension overwrite each other. *(resolved, reproduced)*
 - [`enrichment_stores_what_it_is_given.md`](enrichment_stores_what_it_is_given.md) — [#41](https://github.com/uibcdf/ackredit/issues/41) — Fetched metadata was applied unguarded, so entities became characters, a nameless creator became an author, and a record with no title ended the run. *(resolved, measured)*
 - [`example_host_libraries.md`](example_host_libraries.md) — [#23](https://github.com/uibcdf/ackredit/issues/23) — Two host libraries in the repository, integrated for real, used by the documentation and the tests. *(resolved, reproduced)*

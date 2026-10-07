@@ -6,8 +6,8 @@ Every other renderer reports one: `bibtex` emits a minimal `@misc`, `markdown`,
 library that dropped a tracked citation and said nothing, which the diagnostics
 policy does not allow.
 
-DueCredit is an optional dependency and is not installed here, so these run
-against a stand-in that records what it is given. That is enough: what is under
+DueCredit is an optional dependency, so these run against a stand-in that records
+what it is given regardless of whether the real package is installed. What is under
 test is which citations Ackredit hands over and in what shape, not what
 DueCredit does with them.
 """
@@ -163,19 +163,19 @@ def test_it_returns_nothing(duecredit):
 def test_the_only_error_it_raises_is_ours(monkeypatch, clean_registry):
     """With duecredit absent, `@dep_digest` raises Ackredit's own exception
     rather than letting an ImportError out."""
-    import sys
+    from depdigest.core.checker import is_installed
 
     from ackredit._private.smonitor.exceptions import AckreditError
 
+    # Keep the import/discovery sentinel in place through the public call;
+    # removing it would rediscover an installed optional package.
     monkeypatch.setitem(sys.modules, "duecredit", None)
-    from depdigest.core.checker import is_installed
-
     is_installed.cache_clear()
-    monkeypatch.delitem(sys.modules, "duecredit")
-    is_installed.cache_clear()
-
-    with pytest.raises(AckreditError):
-        ackredit.export_to_duecredit()
+    try:
+        with pytest.raises(AckreditError, match="duecredit"):
+            ackredit.export_to_duecredit()
+    finally:
+        is_installed.cache_clear()
 
 
 def test_a_failure_inside_duecredit_stays_a_warning(duecredit, clean_registry):

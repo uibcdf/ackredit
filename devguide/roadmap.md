@@ -806,6 +806,12 @@ API acceptance, canonical-guide synchronization and receiving-client release
 are separate outcomes. A stable guide update follows its accepted contract
 and central consumer synchronization, not a local repair of copied guides.
 
+The subsequent 2026-10-07 instruction explicitly authorizes **0.12.0** delivery
+under [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127) from that
+completed scope. Its staged candidate is being qualified; no public delivery
+is claimed yet. Finish the authorized minor delivery, then resume the adoption
+pause without extending feature scope or bringing the general 1.x promise forward.
+
 ---
 
 ## Not on this roadmap

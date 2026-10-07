@@ -301,3 +301,13 @@ inspection; GH Run Receptor reports `PENDING` with native exit 3. Its policies
 had already passed. The final disposition head and its observed CI/policy
 outcomes are recorded in #126, including any missing evidence and recovery.
 Closing this planning record does not clear pending CI or qualify a candidate.
+
+## Subsequent delivery authorization — 2026-10-07
+
+After reviewing the difference between completed source and public 0.11.0, the
+maintainer explicitly authorized closing **0.12.0** for stabilization under
+[Ackredit #127](https://github.com/uibcdf/ackredit/issues/127). This is a new
+delivery instruction following the planning decision above, not a rewrite of
+its original authorization boundary. The active release record owns candidate
+inputs, qualification and conditional publication. Finish that minor delivery,
+then resume the accepted feature-development pause for consumer adoption.

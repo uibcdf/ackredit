@@ -176,8 +176,9 @@ unknown/empty meanings, collector ownership, diagnostic/scientific failure
 boundaries and exclusions, supported by saved receiving data and lifecycle guards.
 
 Source classification is stable. The forward public promise begins with the
-first separately qualified release delivering this acceptance; its version has
-not been selected. Original public 0.11.0 retains its provisional evidence
+first separately qualified release delivering this acceptance. The maintainer
+selected 0.12.0 under #127; qualification/public verification is in progress,
+so the promise is not yet delivered by this candidate. Original public 0.11.0 retains its provisional evidence
 classification. From that future delivery, reviewed signatures and meanings
 remain compatible across later patch/minor releases, including remaining
 pre-1.0 and 1.x, under the deprecation/removal policy below. Later readers retain
@@ -203,8 +204,9 @@ preflight is not current-registry compatibility or scientific/citation validatio
 
 Source classification is stable. Its bounded forward promise begins with the
 first separately qualified public release delivering this acceptance, including
-later pre-1.0 and 1.x patch/minor releases under the policy below. The version is
-not selected. **Public 0.11.0 lacks this standalone export**; it is not a validator
+later pre-1.0 and 1.x patch/minor releases under the policy below. Version 0.12.0
+is selected under #127 and still awaits qualification/public verification.
+**Public 0.11.0 lacks this standalone export**; it is not a validator
 minimum. See [the provider contract](../user_guide/function_providers.md#validate-without-observing)
 and [the accepted review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md).
 

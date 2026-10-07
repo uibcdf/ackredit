@@ -110,7 +110,8 @@ does not roll back their side effects. Undeclared lazy exports are not resolved.
 Use trusted modules. The validator's accepted signature and result construction
 retain these bounds. From the first qualified delivering release, preserve their
 meaning across later patch/minor releases, including remaining pre-1.0 and 1.x,
-under the [deprecation policy](../about/stability.md). Its version is not selected;
+under the [deprecation policy](../about/stability.md). Version 0.12.0 is selected
+under #127 and still awaits public qualification;
 the accepted declaration protocol and observer keep their separate public
 0.11.0 boundary. Source promotion does not authorize publication or client adoption.
 

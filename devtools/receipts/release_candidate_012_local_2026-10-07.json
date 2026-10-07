@@ -1,0 +1,225 @@
+{
+  "schema": "ackredit.release-candidate-local@1",
+  "checked_at": "2026-10-07T06:54:14.782949+00:00",
+  "issue": "uibcdf/ackredit#127",
+  "version": "0.12.0",
+  "base_commit": "7c9c152e1c90a00d4199c4db03a0bc23436e1230",
+  "python": "3.14.8",
+  "environment": "/tmp/ackredit012-source from maintained development_env.yaml",
+  "providers": {
+    "smonitor": "0.19.0",
+    "depdigest": "0.13.0",
+    "argdigest": "0.15.0",
+    "pyyaml": "6.0.3",
+    "pytest": "9.1.1",
+    "pytest-receptor": "1.2.1",
+    "ruff": "0.16.5"
+  },
+  "pip_check": "passed in the isolated maintained environment; unrelated shared conflicts remain owned by MolSysSuite #82",
+  "pytest_runs": [
+    {
+      "path": "/tmp/ackredit012-local/source-events.jsonl",
+      "sha256": "daff6a4b5157b987245937deebc742b31411b25e811bb357513c4c1c493a38f4",
+      "complete": true,
+      "integrity_valid": true,
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 2279,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 2279,
+          "failed": 1,
+          "not_executed": 0,
+          "passed": 2277,
+          "reruns": 0,
+          "skipped": 1,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 155.68785116705112,
+        "exitstatus": 1,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 89
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "39e10b94ad4b5d52ce017fa34f2f7a926e5e4e5b310d3afe8da6a6daf5f9af36",
+          "records": 6927
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "FAIL",
+        "root_causes": 1,
+        "run_id": "24fdac3d160140c78c101503f3c068d1",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      }
+    },
+    {
+      "path": "/tmp/ackredit012-local/source-fixed-events.jsonl",
+      "sha256": "f8b3c2d4c9c7514af9ed8a8f667afc92aaffe2c1b236819f1858df3c872c46b3",
+      "complete": true,
+      "integrity_valid": true,
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 2279,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 2279,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 2277,
+          "reruns": 0,
+          "skipped": 2,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 157.73498821805697,
+        "exitstatus": 0,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 90
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "2c7647f91111afaedae4cfc6e6b7294b9c97752577a16a2f4b07b0165a2e6945",
+          "records": 6927
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "PASS",
+        "root_causes": 0,
+        "run_id": "0fa91c8c484e4e05a4259228afd932e2",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      }
+    },
+    {
+      "path": "/tmp/ackredit012-local/source-final-events.jsonl",
+      "sha256": "337f46e42809c5bf42ddba4897f40ad1f3a2a5408d302c33cd37fe4d9bbd4b9b",
+      "complete": true,
+      "integrity_valid": true,
+      "outcome": {
+        "artifact_policy": {
+          "dropped_records": 0,
+          "max_bytes": 52428800,
+          "truncated": false
+        },
+        "complete": true,
+        "counts": {
+          "collected": 2279,
+          "deselected": 0,
+          "errors": 0,
+          "executed": 2279,
+          "failed": 0,
+          "not_executed": 0,
+          "passed": 2278,
+          "reruns": 0,
+          "skipped": 1,
+          "subtests": {},
+          "warnings": 0,
+          "xfailed": 0,
+          "xpassed": 0
+        },
+        "duration": 134.30575324303936,
+        "exitstatus": 0,
+        "extensions": {
+          "dropped": 0,
+          "incomplete": false,
+          "recorded": 90
+        },
+        "integrity": {
+          "algorithm": "sha256",
+          "digest": "1dfd3d3e267fb94435ce1633d5f09f18e39627d273c6146409445903c48e2545",
+          "records": 6927
+        },
+        "invalid_selections": [],
+        "note": "",
+        "outcome": "PASS",
+        "root_causes": 0,
+        "run_id": "5c7665cd4d164f508fbbbbe91d7ebfa8",
+        "schema": "pytest-receptor.events@1",
+        "stop_reason": "",
+        "type": "session_finish"
+      }
+    }
+  ],
+  "test_scope": "Complete tests/ with required actual publication/BibLaTeX/JabRef/scoped-provider routes; source qualification, not public/archive proof",
+  "required_test_options": [
+    "--require-publication-tools",
+    "--require-biblatex-tools",
+    "--require-jabref-tools",
+    "--jabref-distribution=/tmp/ackredit123-manager/JabRef",
+    "--require-scoped-providers"
+  ],
+  "final_skip": "One independently conditional DueCredit-absence test skips with the real package installed. The repaired #128 public absence guard always executes.",
+  "recovery": "Original source failure traced to #128 test removing its absence sentinel. The subsequent sandboxed run passed but skipped isolated wheel build. Network-enabled final run executes the wheel and all designated real engines.",
+  "focused_final": "13 passed: bridge, reporting lifecycle and release self-citation; final import-format cleanup included",
+  "ruff_check": "passed",
+  "ruff_format": "passed (265 files)",
+  "devguide_index": "passed",
+  "diff_check": "passed",
+  "strict_sphinx": {
+    "state": "passed; fresh -E -n -W --keep-going",
+    "log_sha256": "fca8025c7f9a317e2425777b3a6d11830479ec8438a393e90f8e66f2f6c6b8ad",
+    "prior_offline_failure": "External Python intersphinx targets unavailable without network; no docs change needed"
+  },
+  "recipe_inspection": {
+    "build_number": 0,
+    "package": "ackredit",
+    "route": "staged",
+    "version": "0.12.0"
+  },
+  "shared_recipe_verifier": "c3e2b9b3dabf3d1c65349c389a23048957bea21a",
+  "changed_files_sha256": {
+    "CITATION.cff": "0ec95bb01358ddf66a79b0d0ea3dc191a5a743665f4e0d03574b3e92f05c9cee",
+    "ackredit/CITATION.cff": "0ec95bb01358ddf66a79b0d0ea3dc191a5a743665f4e0d03574b3e92f05c9cee",
+    "devguide/archive/README.md": "89d1610db92bcd6370878539da01655e80d84da0bd8009efd063bccd37e73567",
+    "devguide/archive/next_release_scope.md": "2a536a0b11652a53dafdd594e095eebadb63cdd1676d88a625a41b4e8f6b2da4",
+    "devguide/checkpoint.md": "095365873428886a6b4f832f1d2a024774564fb1b61898c9260184f08751aed7",
+    "devguide/pending_proposals/README.md": "220dce53c25b4dbd1165ab5acbfbc8e24712b552012ada60b295c2fd15a1bce4",
+    "devguide/roadmap.md": "8b810d7feb5628ab426d32f515ad9840264435a860ae75cb7581a87ffe13aa96",
+    "devguide/status.md": "bdf9382b40ffee621770fe1fa03caaa49ea138da84e7bae844ebc413b34a645b",
+    "devtools/conda-build/README.md": "82ebbbff757ccf34fbca1b79abd37f735fbf27a98eb73935c2e64adc8dc95cd3",
+    "devtools/conda-build/release_plan.toml": "9a27ac9d029bdd29f1637b72a8ffff55fda90bc8637fc93f548468eb207816b4",
+    "docs/content/about/release_notes.md": "82cd8d117e7b59428c2d684545dc8f9cdf47cb81ea01b133b2889d6f339b68a4",
+    "docs/content/about/stability.md": "8cb03677971889ceea831953f049a064fc596c7ee88b3b540b6ee3e2b3887e11",
+    "docs/content/user_guide/function_providers.md": "54d7dd5f694f5fac57405f14aec108573a6d972150d09cd693f1883337877945",
+    "docs/content/user_guide/index.md": "ffee1a30f09d9e2ca4bd6925f46c7c238f8dd889342b7928ab0310c34889956d",
+    "docs/content/user_guide/provider_authors.md": "b11506edac42b53b4bc6a4f7c1fe1bbb760177111147e994b68848fe61f2634d",
+    "examples/citation_provider/README.md": "463f6b500ec5dd9d6b0e9b1a6a4b528d8d4de8ab8cfc30950a89ffd09573400c",
+    "standards/ACKREDIT_GUIDE.md": "ae1631c1034e4818c269e2169d047b5525e644c43809ca695489e22659e5d9af",
+    "tests/test_duecredit_bridge.py": "2941cedc3ef51483865f98d54111ad1c3a8636ba796fd83922cf9ea3d78da379"
+  },
+  "candidate_artifact": null,
+  "public_delivery": "not claimed",
+  "next_gates": [
+    "mandatory exact-producer source/policies",
+    "build once and stage",
+    "full eight-cell installed and real receiving matrices",
+    "archive-installed example/validator and actual publication routes",
+    "same-file promotion and independent clean public verification"
+  ],
+  "human_work": "No sibling source or existing human environment changed; all release environments are fresh task-owned prefixes."
+}
