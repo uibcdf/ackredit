@@ -72,7 +72,7 @@ function declarations for the same export must agree. List lazy exports in
 
 ## Validate in your author environment
 
-With development Ackredit after public 0.11.0, use the accepted bounded source API:
+With `ackredit>=0.12.0`, use the bounded stable standalone API:
 
 ```python
 import ackredit
@@ -91,8 +91,8 @@ side effects are not rolled back. Validation does not detect conflicts with
 the caller's current bibliography registry. Public **0.11.0 lacks this API**
 and validates declarations when `observe_calls` is activated.
 Standalone validation was promoted under #125 on 2026-10-06; its forward public
-compatibility promise starts with a separately qualified delivering release,
-selected as 0.12.0 under #127 and still awaiting public qualification.
+compatibility promise is delivered in qualified public 0.12.0 under #127.
+See [installation](../about/installation.md) for the original archive and proof.
 See [API stability](../about/stability.md).
 
 ## Let the client observe actual calls

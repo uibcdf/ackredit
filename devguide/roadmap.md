@@ -281,7 +281,7 @@ maintainer accepted stable source contracts for `observe_calls`,
 `prepare_credit` and `ackredit.provider@1` on 2026-10-06 under #84/#87.
 Their bounded promise is delivered in public 0.11.0; consumer adoption remains separate.
 The newer evidence surfaces received their separate bounded source acceptance
-on 2026-10-06 under #114; their future public delivery remains pending. The
+on 2026-10-06 under #114; their bounded public promise is delivered in qualified 0.12.0 under #127. The
 [evidence-contract review](recorder_evidence_contract_review.md) under #114
 records explicit acceptance of representation, collection and requested
 presentation, supported by original receiving data and supplementary lifecycle
@@ -294,8 +294,7 @@ software/article versions, failure boundaries, saved readers and extensions
 against actual receiving workflows. The general stable signature/meaning promise
 begins with a future separately authorized, qualified public 1.0.0 under the
 existing major-removal/two-minor deprecation policy. `validate_provider` received
-its own bounded source promotion; its forward public promise begins with the
-first separately qualified delivering release. Public 0.11.0 lacks that export.
+its own bounded source promotion; its forward public promise is delivered in qualified public 0.12.0 under #127. Public 0.11.0 lacks that export.
 No version/tag or publication is authorized by these source decisions. Existing
 public promises retain their boundaries in
 [API stability](../docs/content/about/stability.md).
@@ -377,7 +376,7 @@ independently. Accepting the current bounded scope can be sufficient for a
 stable surface; broad observation or another scientific engine is not an added
 promotion gate. Standalone `validate_provider` was implemented provisionally in
 development under #111 and received bounded source promotion under #125.
-Its public promise awaits a separately qualified delivering release; public
+Its bounded public promise is delivered in qualified 0.12.0 under #127; public
 0.11.0 exposes activation-time validation only.
 
 ### Theme H — Faithful, compact workflow reports
@@ -549,7 +548,7 @@ The separate [J/F contract review](recorder_evidence_contract_review.md) under
 guarantees/exclusions and 149 selected source tests, including original hosted
 saved-reader and opted-in lifecycle guards. The maintainer explicitly accepted
 the bounded three-surface source promise on 2026-10-06. Forward public delivery
-awaits a separately qualified future release; public 0.11.0 retains its original
+is complete in qualified 0.12.0 under #127; public 0.11.0 retains its original
 provisional evidence classification. Wider unchecked J criteria remain visible.
 
 ### Theme K — Attribution at MOLI object boundaries
@@ -759,58 +758,33 @@ application/manuscript text is insufficient before accepting a new contract.
 
 ## Execution order and release checkpoints
 
-The [development checkpoint](checkpoint.md) records the current resumption order:
-retain #108's completed distribution-input guard and #113's provider author
-guide/installable example and #114's accepted bounded evidence contracts, then
-continue the wider roadmap and separately authorized release qualification.
-The 0.11.0 release is complete;
-central handoffs and the
-remaining product decisions below retain their own owners.
+The [development checkpoint](checkpoint.md) records completed public **0.12.0**
+delivery under [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127).
+It includes the retained #126 scope: accepted evidence/validator promises,
+provider author tooling, citation/DOI fidelity repairs and deferred feature
+imports. The [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) separates original exact-source/file
+qualification from earlier development studies and consumer adoption.
 
-The accepted continuation order is:
+The maintainer chose further pre-1.0 stabilization and habitual real use on
+2026-10-07. **Pause proactive feature development now** to give MolSysSuite and
+MOLI components time to adopt Ackredit. Owning consumers choose actual workflows
+and report saved-reader behavior, observed cost/friction and concrete defects
+through MolSysSuite #97/MOLI #46 and their component issues. Automated receiving
+does not establish habitual dogfooding or certify a client release.
 
-1. Theme I: portable saved-result CLI and exports, then the reviewed composition
-   operation. Each independently useful operation gets its own issue, contract
-   and meaningful receiving guards before implementation.
-2. Theme J: scope/origin/gap explanations, built on those preserved saved results.
-3. In parallel, resolve F/G's explicit provider stability decisions and K's
-   platform/member boundaries with their existing owners. The 2026-10-06
-   decision accepts the three provider surfaces; #114 separately accepts the
-   bounded evidence source contracts with future delivery pending. Public 0.11.0
-   completes stable-provider delivery and retains provisional evidence contracts.
-4. Run L's complete-cost measurements and M's publication-tool interoperability
-   against selected actual candidates; optimize or repair measured boundaries.
-5. Retain N's accepted deferral under #124; reopen scope review only when an owned
-   real acknowledgement use case satisfies its stated condition.
+Resume focused work for concrete owning feedback, a demonstrated defect or an
+explicit maintainer request. Theme N remains deferred under #124 until its real
+acknowledgement case exists; wider recorder integration, platform object
+contracts, cost measurements and new publication expectations retain their own
+owners and evidence requirements. Do not start them solely to fill the pause.
 
-Prepare the next delivery from completed, reviewed work; it need not wait for
-every theme. Post-0.10.1 fidelity/performance and saved-result/evidence work is
-delivered in qualified public 0.11.0. Original development receipts remain
-distinct from that published artifact's qualification.
-The concrete [next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
-under #126 retains the included repairs/promises, compatibility boundaries and
-required qualification sequence. On 2026-10-07 the maintainer chose further
-pre-1.0 stabilization and habitual dogfooding before general 1.0 delivery.
-When only stability remains, pause proactive development to give MolSysSuite
-and MOLI components time to adopt Ackredit; the current source scope has reached
-that phase. Consumer owners choose their actual workflows and provide saved-reader
-evidence, observed cost/friction and owning feedback. Automated receiving stays
-separate evidence. Resume focused work for concrete feedback/defects or an explicit
-maintainer request. 0.12.0 is a possible future minor if a delivery is needed,
-without a last-pre-1.0 schedule or automatic publication. Theme F's acceptance and bounded
-promises remain unchanged. An operative version and release execution still
-need explicit authorization. Preserve the original producer
-and exact archive digest, and apply the existing source/installed/receiving/
-staging/promotion/public-verification gates. Source completion,
-API acceptance, canonical-guide synchronization and receiving-client release
-are separate outcomes. A stable guide update follows its accepted contract
-and central consumer synchronization, not a local repair of copied guides.
-
-The subsequent 2026-10-07 instruction explicitly authorizes **0.12.0** delivery
-under [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127) from that
-completed scope. Its staged candidate is being qualified; no public delivery
-is claimed yet. Finish the authorized minor delivery, then resume the adoption
-pause without extending feature scope or bringing the general 1.x promise forward.
+Portable `>=0.9.0`, stable providers `>=0.11.0` and bounded evidence/standalone
+validation `>=0.12.0` retain separate public compatibility promises. General
+1.x delivery requires a later explicit, qualified 1.0 decision informed by use;
+there is no last-pre-1.0 schedule or arbitrary stabilization duration. Preserve
+original tags and archive digests. Later releases need their own applicable
+source/installed/receiving/public gates; consumer guide copies are synchronized
+by their owners through the central registry.
 
 ---
 

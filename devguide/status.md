@@ -14,7 +14,7 @@ working, a test or a reproducible command backs it.
 - **Scientific formats:** Markdown, plain text, BibTeX, CSL-JSON, JSON, provenance tree
   and LaTeX, plus contextual workflow Markdown, `dump()` to a directory and PDF
   compilation when `pdflatex` is present.
-  Development after public 0.11.0 preserves valid BibTeX citation keys and uses
+  Public 0.12.0 preserves valid BibTeX citation keys and uses
   a shared deterministic allocator for invalid/case-clashing IDs; generated
   authorless references have meaningful natbib labels (#109). Guarded by
   `tests/test_cite_keys.py`, including real compilation and forced collisions.
@@ -31,11 +31,11 @@ working, a test or a reproducible command backs it.
   persistence and a multi-session aggregator.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
-  by `tests/test_packaging.py`. Public Ackredit 0.11.0 is available from the `uibcdf`
+  by `tests/test_packaging.py`. Public Ackredit 0.12.0 is available from the `uibcdf`
   Conda channel as one verified noarch file. The same archive passed Linux/macOS
   arm64 × Python 3.11–3.14 installed qualification and a clean public Linux/Python
   3.14 receiving installation. See [installation](../docs/content/about/installation.md)
-  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json).
+  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json).
 - **Portable attribution:** `capture` observes per-calculation references without
   replacing the application session; `get_attribution` snapshots the workflow.
   `Attribution` preserves detached bibliography, contextual roles, original versions
@@ -71,32 +71,28 @@ working, a test or a reproducible command backs it.
 
 ## Pre-1.0 adoption pause
 
-On 2026-10-07 the maintainer subsequently authorized **0.12.0** delivery under
-[Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), using the completed
-scope below before the pause. Exact-source, installed-file, real receiving and
-public verification are in progress. Candidate inputs name 0.12.0; the current
-verified public package remains 0.11.0 until those gates pass.
+Qualified public **0.12.0** completes the subsequent delivery authorization in
+[Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), from #126's
+completed scope. The original archive passes all required source gates, eight
+full installed cells, 72 mandatory real receiving tests without skips, 158
+candidate-installed contracts and bounded real publication-tool checks.
+Same-file promotion, independent public registry/index verification and a fresh
+public Linux/Python 3.14 installation pass. The delivery receipt above retains
+the original producer, bytes, native evidence, warnings and limits.
 
-[Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) prepares the
-[archived next-release disposition](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/next_release_scope.md)
-from completed post-0.11.0 development. On 2026-10-07 the maintainer chose further
-pre-1.0 stabilization and habitual dogfooding, deferring the initial 1.0.0
-recommendation. Existing accepted contracts and bounded public promises are
-retained. The maintainer also directed a development pause when only stability
-remains, giving MolSysSuite and MOLI consumers time to adopt Ackredit. Finish
-this checkpoint, then pause proactive feature work on the completed source
-scope. The bug queue is empty; optional #58 is not a priority. Consumers choose
-their real workflows and supply saved-reader evidence, cost/friction and owning
-feedback. No new habitual-use cycle or completed adoption is claimed here.
-Resume for concrete feedback, a demonstrated defect or an explicit maintainer
-request. Controlled receiving stays separate evidence. Bibliography/DOI repairs, lazy imports and bounded
-receiving studies remain available for a future minor delivery, with their
-explicit limits and remaining exact-candidate gates. 0.12.0 is a possible version.
-No operative version, new archive, staging, tag or public delivery follows from
-this decision. Public 0.11.0 remains available for its delivered contracts;
-later capabilities need their own qualified delivery when required by an owner.
-The committed publisher plan still describes completed 0.11.0. #126 closes the
-planning decision, retaining pending CI separately from adoption and delivery.
+Recorder evidence and standalone validation now have their bounded public
+promise from `>=0.12.0`; portable `>=0.9.0` and providers `>=0.11.0` remain
+unchanged. The general public 1.x commitment awaits a separately qualified 1.0.
+
+**Pause proactive feature development for consumer adoption and habitual use.**
+MolSysSuite/MOLI consumers choose their workflows and supply saved-reader
+evidence, observed cost/friction and owning feedback through #97/#46 and their
+component issues. Controlled receiving is separate from habitual dogfooding;
+this release does not certify client releases or completed adoption. Resume for
+concrete feedback, a demonstrated defect or an explicit maintainer request.
+The bug queue is empty; optional #58 is not a priority. Acknowledgements remain
+deferred under #124 until an owned real case exists. No last-pre-1.0 schedule
+or arbitrary stabilization duration is imposed.
 
 ## Known defects
 
@@ -208,7 +204,8 @@ many land before 1.0.0 is an outcome rather than a plan.
   supported DOI resolver/label presentation without changing original JSON/BibTeX
   or the explicit ID identity rule: equal same-ID originals share, conflicts
   refuse, and distinct IDs/software releases remain distinct.
-  The repair is development work pending a separately qualified future release.
+  The DOI presentation repair is delivered in qualified public 0.12.0; the
+  original bounded studies below retain their separate candidate identities.
   Checkpoint #122 receives the same installed development wheel and originals
   in BibLaTeX 3.19 / Biber 2.19 with standard authoryear/numeric styles. Actual
   backend records retain distinct releases and editor/institution identity; both
@@ -235,8 +232,8 @@ many land before 1.0.0 is an outcome rather than a plan.
   verified public 0.11.0. Output formats are extensible through `register_format` and the
   `ackredit.formats` entry-point group. #125 separately promotes `validate_provider`
   with detached declaration/E012/side-effect bounds, leaving no provisional export
-  in the current source inventory. Its public promise awaits its first qualified
-  delivering release; public 0.11.0 lacks it. Source acceptance does not select a
+  in the current source inventory. Its bounded public promise is delivered in
+  qualified 0.12.0; public 0.11.0 lacks it. Source acceptance does not select a
   version or authorize publication, and future candidate qualification is separate.
 - **MolSysSuite membership:** granted in `uibcdf/molsyssuite#28`. Ackredit is a
   registered, incubating support library. Common policy and admission records
@@ -312,7 +309,7 @@ preserves original local source/file identity, receiving proofs and cost limits;
 the [separate hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
 retains the original hosted wheel/digest, eight cells and executed controls.
 These milestones are resolved development checkpoints. Other recorder origins,
-broader recorder coverage and provisional review remain open; public 0.11.0
+broader recorder coverage remains separately scoped; public 0.11.0
 delivers the implemented opt-in evidence surfaces without promoting them.
 
 The bounded presentation milestone #106 adds provisional
@@ -337,7 +334,7 @@ hosted companion is retained unmodified; two saved-reader guards and four
 opted-in lifecycle variants pass within 149 selected Python 3.14.7 cases.
 The maintainer approved all three surfaces on 2026-10-06. Source classification
 and canonical host guidance are stable within the reviewed limits; their forward
-public promise awaits a separately qualified future release. Public 0.11.0
+public promise is delivered in qualified public 0.12.0 under #127. Public 0.11.0
 retains its original provisional evidence classification, and the general 1.0
 review remains separate.
 

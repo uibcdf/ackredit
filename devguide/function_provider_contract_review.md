@@ -31,7 +31,7 @@ The newer `AttributionEvidence`, `capture(record_evidence=True)` / `.evidence`
 and integrated evidence-report extension stay outside this provider decision.
 Their separate bounded source acceptance was explicitly approved on 2026-10-06
 under [#114](recorder_evidence_contract_review.md); the forward public evidence
-promise awaits a separately qualified future release. Public 0.11.0 retains its
+promise is delivered in qualified public 0.12.0 under #127. Public 0.11.0 retains its
 original provisional evidence classification. Expanding to other recorders is
 not an automatic promotion prerequisite.
 
@@ -268,3 +268,12 @@ work with their own future contracts; evidence APIs await separate acceptance.
 Portable-only clients can retain `>=0.9.0`; clients requiring this provider
 promise use `>=0.11.0`. Guide synchronization and consumer release/adoption
 remain owner-local outcomes through MolSysSuite #97/MOLI #46.
+
+## Subsequent bounded delivery — 2026-10-07
+
+Qualified public 0.12.0 under #127 delivers the separately accepted evidence
+contracts (#114) and standalone validator (#125). Their minimum is `>=0.12.0`;
+portable `>=0.9.0` and stable-provider `>=0.11.0` stay distinct. The historical
+checkpoints above retain their original artifacts and classification at the time.
+[Installation](../docs/content/about/installation.md) links the independent delivery
+proof. General 1.x delivery and consumer synchronization/adoption remain separate.

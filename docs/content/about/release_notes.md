@@ -1,15 +1,22 @@
 # Release notes
 
-## 0.12.0 — stabilization candidate (qualification in progress)
+## 0.12.0 — pre-1.0 stabilization (2026-10-07)
 
 The maintainer authorized this pre-1.0 delivery on 2026-10-07 under
 [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), retaining the
-completed scope and adoption-pause decision in #126. Publication is conditional
-on exact-source, one-file installed/real receiving and public verification gates.
+completed scope and adoption-pause decision in #126. Delivery is complete:
+all required source gates, eight exact-file installed cells, 72 mandatory real
+receiving tests without skips, same-file promotion, independent public registry/
+index verification and a fresh public Linux/Python 3.14 installation pass.
+[Installation](installation.md) and the [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
+retain original producer, file digest, native evidence and limits. The same
+installed candidate passes 158 selected contracts without skips and bounded real
+BibTeX/Pandoc, two BibLaTeX/Biber styles and JabRef 5.15 receiving checks.
+The synthetic ISBN and manager key-store warnings are retained.
 
 - Deliver the bounded recorder-evidence contracts accepted under #114 and the
   standalone validator accepted under #125. Their forward public promises start
-  only at verified public 0.12.0; the original 0.11.0 contracts are unchanged.
+  at verified public 0.12.0; the original 0.11.0 contracts are unchanged.
 - Add `validate_provider(module) -> dict` and a dependency-free provider author
   example, preserving empty unspecified roles and producer-owned lazy effects.
 - Preserve original BibTeX keys and allocate collision-safe deterministic
@@ -20,7 +27,7 @@ on exact-source, one-file installed/real receiving and public verification gates
 
 Python/platform support, dependency floors, optional host operation and schemas
 are unchanged. General public 1.x stability remains deferred. The accepted
-feature-development pause resumes after this delivery so consumers can adopt
+feature-development pause now resumes so consumers can adopt
 the qualified package and supply habitual-use feedback.
 
 ## Development after 0.11.0 — pre-1.0 stabilization and adoption pause

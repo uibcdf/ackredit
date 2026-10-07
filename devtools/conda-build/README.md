@@ -13,6 +13,15 @@ promotion and a clean public Linux/Python 3.14 installation against the same
 original archive. Its [delivery receipt](receipts/ackredit_0.11.0_public_2026-10-06.json)
 keeps the original producer, immutable file/digest and separately bounded proofs.
 
+Public 0.12.0 delivers the separately accepted bounded evidence and standalone
+validator promises and retained post-0.11.0 improvements. All source gates,
+eight full installed cells, 72 mandatory real receiving tests without skips,
+candidate-installed publication/author checks and independent public verification
+pass for one original archive. The [public receipt](receipts/ackredit_0.12.0_public_2026-10-07.json)
+retains original producer/file/digest and the fresh public installation evidence.
+The canonical tag stays at the original producer; later closeout guidance does
+not authorize rebuilding or promoting that coordinate again.
+
 ## Committed candidate inputs
 
 `release_plan.toml` records staging, version/build, executed source gates and

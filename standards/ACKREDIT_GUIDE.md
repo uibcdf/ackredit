@@ -267,20 +267,20 @@ meaningful operations rather than instrumenting every scalar iteration.
 No additional recorder, automatic enrichment, hook, journal or reminder is
 required by provider promotion.
 
-## Recorder evidence (accepted source contract; public delivery pending)
+## Recorder evidence (stable from 0.12.0)
 
 On 2026-10-06 the maintainer explicitly accepted `AttributionEvidence`, bounded
 `capture(record_evidence=True)` / `.evidence` provider-observer collection and
 explicit integrated workflow/CLI reporting under
 [Ackredit #114](https://github.com/uibcdf/ackredit/issues/114). Source classification
-is stable. Its bounded forward public promise starts at a qualified public
-release delivering this decision. The maintainer selected 0.12.0 under #127;
-qualification/public verification is still in progress. Until that boundary,
-do not require 0.12.0 as a public dependency. **Public 0.11.0 retains its
+is stable. Qualified public **0.12.0** delivers its bounded forward promise
+under #127 after exact-source, same-file installed/real receiving and independent
+public verification. Use `ackredit>=0.12.0` when requiring these evidence
+contracts; the [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) retains the proof. **Public 0.11.0 retains its
 original provisional evidence classification**. Do not infer a stable-evidence
 minimum from the existing stable-provider minimum `>=0.11.0`.
 
-From that future delivery, retain reviewed signatures and meanings across later
+From public 0.12.0, retain reviewed signatures and meanings across later
 patch/minor releases, including remaining pre-1.0 and 1.x, under the existing
 deprecation/removal policy. Retain interpretation of
 `ackredit.attribution_evidence@1` and `ackredit.attribution_evidence_explanation@1`;
@@ -321,7 +321,7 @@ Clients decide whether to request these optional facts; this guide neither enabl
 observation automatically nor certifies a client release. Consumer guide copies
 are synchronized centrally and are never repaired locally.
 
-## Standalone validation (accepted source contract; public delivery pending)
+## Standalone validation (stable from 0.12.0)
 
 The maintainer promoted `validate_provider(module) -> dict` on 2026-10-06 under
 [Ackredit #125](https://github.com/uibcdf/ackredit/issues/125). Pass an already
@@ -334,10 +334,10 @@ change observer ownership or query DOIs. Selected lazy loaders retain their
 producer-owned caching/import effects. Validation alone does not establish
 current-registry compatibility, citation truth or successful scientific use.
 
-The bounded public forward promise starts with the first separately qualified
-release delivering this acceptance. Version 0.12.0 is selected under #127 and
-awaits qualification/public verification; it is not yet a delivered public
-minimum. Public 0.11.0
+Qualified public **0.12.0** delivers the bounded public forward promise under
+#127; use `ackredit>=0.12.0` for standalone validation. The same-file installed/
+receiving matrices, public verification and fresh installation are retained in
+the delivery receipt above. Public 0.11.0
 lacks this standalone export and is not its version floor. Existing portable
 `>=0.9.0`, stable-provider `>=0.11.0` and recorder-evidence delivery boundaries
 remain distinct. Author validation is optional; hosts need not add it to normal

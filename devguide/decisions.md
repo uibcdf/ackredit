@@ -264,9 +264,24 @@
     no last pre-1.0 release or arbitrary duration. Reconsider 1.0 from actual-use
     evidence and a separate release decision.
 
+23. **Public 0.12.0 stabilization delivery and adoption pause (`uibcdf/ackredit#127`):**
+    On 2026-10-07 the maintainer explicitly authorized and completed a qualified
+    pre-1.0 delivery of #126's retained scope. One original noarch archive passes
+    required source gates, eight full installed cells, 72 mandatory real receiving
+    tests without skips, candidate-installed publication/author checks, same-file
+    promotion, independent public verification and a clean public Python 3.14
+    installation. The [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) preserves identities,
+    original native evidence and bounds. The evidence contracts accepted under
+    #114 and standalone validator accepted under #125 now have their bounded
+    forward public promise from `>=0.12.0`. Portable `>=0.9.0` and stable-provider
+    `>=0.11.0` are unchanged; the general 1.x commitment remains deferred.
+    Pause proactive feature work for MolSysSuite/MOLI adoption and habitual use;
+    resume for concrete feedback/defects or an explicit maintainer request.
+    Consumer synchronization and release qualification remain separately owned.
+
 ## Pending Decisions
 
-The accepted evidence/validator promises await their delivering releases; the
+The accepted evidence/validator promises are delivered in qualified public 0.12.0; the
 general public 1.x commitment awaits qualified public 1.0.0. MOLI object
 boundaries, complete-cost measurements and additional publication-tool expectations
 retain their own decisions in [the roadmap](roadmap.md). Acknowledgement scope

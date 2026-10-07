@@ -1,8 +1,9 @@
 # Explicit recorder evidence
 
 `AttributionEvidence` has an **accepted bounded stable source contract** under
-Ackredit #114. Its forward public compatibility promise awaits a separately
-qualified future release; public 0.11.0 retains its original provisional evidence
+Ackredit #114, delivered in qualified public **0.12.0** under #127. Use
+`ackredit>=0.12.0` for its bounded forward public compatibility promise;
+public 0.11.0 retains its original provisional evidence
 classification. See [API stability](../about/stability.md) and the
 [accepted review](../developer_guide/recorder_evidence_contract_review.md).
 It saves explicit
@@ -93,7 +94,7 @@ embedded original-contract errors retain their own diagnostic identities.
 ## Collect provider-recorder evidence during a calculation
 
 The bounded provider-observer capture extension is accepted under the same
-source contract and separate future public-delivery boundary:
+contract delivered in public 0.12.0:
 
 ```python
 import ackredit
@@ -141,7 +142,7 @@ companion carrying these extra bounded facts.
 ## Include evidence in the workflow report
 
 Development under #106 adds an explicitly requested presentation, now accepted
-under #114 within the same bounded source contract and future delivery boundary:
+under #114 and delivered in public 0.12.0 within the same bounded contract:
 
 ```python
 # evidence is the saved companion or run.evidence from the calculation above.

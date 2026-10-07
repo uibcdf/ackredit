@@ -1,11 +1,11 @@
 ---
 summary: Deliver 0.12.0 with bounded evidence/validator promises for pre-1.0 stabilization.
 issue: uibcdf/ackredit#127
-status: active
+status: resolved
 opened: 2026-10-07
-closed:
+closed: 2026-10-07
 severity: medium
-verification: inspected
+verification: measured
 area: [release, packaging, integration, api]
 guard: tests/test_release_citation.py::test_self_citation_matches_committed_release_candidate
 normative:
@@ -120,3 +120,57 @@ archival. Resume the accepted feature-development pause after delivery.
   installation pass, including dependency closure and matching self-citation.
 - Retain a durable public receipt and original-producer version tag, truthful
   compatibility/install guidance, issue-backed closeout and consumer handoffs.
+
+## Completed public delivery — 2026-10-07
+
+Original producer and canonical `0.12.0` tag:
+`6f4dbf39996a7185b8aaff7c52b9daeb167a100a`.
+Original file `ackredit-0.12.0-py_0.tar.bz2`, SHA-256
+`160b452c2b9de3b44bc6c6e2f4bd8c47e44b1d2779b620f63048231708a1d4aa`.
+
+All required exact-source gates pass: ordinary CI 37584150664, full eight-cell
+source matrix 37584174516, suite policy 37584151372 and publication policy
+37584151107. Build/stage 37587733025 creates one inspected archive; full installed
+37588182382 passes all eight cells and required provenance/resource steps.
+Real receiving 37588186298 passes 72 mandatory tests without skips/deselections;
+original native ZIPs and the independently recomposed aggregate verify.
+
+The same locally installed archive passes 158 selected contracts without skips,
+the dependency-free author/standalone validator and empty-role path, original
+offline evidence/CLI reading and all four designated real publication routes.
+The original synthetic ISBN and manager key-store warnings remain documented.
+The [installed candidate receipt](../../devtools/receipts/release_candidate_012_installed_2026-10-07.json)
+retains before/after provenance, all 70 shipped file hashes, original probe
+payloads, engine/process evidence and the corrected manual smoke assertion.
+
+Promotion 37599450602 adds the public label to the same tested file,
+without rebuilding. Independent registry/solver-index verification and a fresh
+ordinary public Linux/Python 3.14 installation pass. Runtime/distribution/CFF
+identity, all 70 original package bytes, dependency closure, portable/provider/
+evidence/validator behavior, actual optional absence, fresh saved readers and CLI
+pass. The [public receipt](../../devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
+retains exact identities and independent original native evidence.
+
+The guard binds committed candidate self-citation to the selected release; the
+installed/public checks bind actual packaged citation to runtime/distribution.
+Earlier releases and tags remain unchanged. The bounded evidence and standalone
+validator public promises now begin at `>=0.12.0`; portable `>=0.9.0` and stable
+providers `>=0.11.0` retain their own boundaries. General 1.x stays deferred.
+
+Resume the accepted feature-development pause for consumer adoption and habitual
+use. Closeout-head controls and final guide/consumer notices are recorded in the
+owning issue separately from original-producer qualification. Client guide
+synchronization, client releases and actual-use cycles remain separately owned.
+
+## Documentation closeout validation
+
+The documentation/guide/receipt/lifecycle closeout passes 278 selected tests
+without skips with Pytest Receptor, Ruff lint/format, generated indexes, 212
+relative links, whitespace and fresh strict Sphinx. The five external synchronized
+guides remain byte-identical to the original producer. Applicable pinned policy
+`policy-v1.5.6` conformance passes; canonical-guide synchronization remains centrally
+owned. Production code, tests, metadata, recipe/resources, scientific inputs and
+original archive bytes are unchanged. The
+[local closeout receipt](../../devtools/receipts/release_closeout_012_local_2026-10-07.json)
+retains the network-limited initial wheel-build skip and complete final selection
+separately. These scoped checks do not substitute for the original release gates.

@@ -3,8 +3,9 @@
 This is the **accepted bounded recorder-evidence contract** under
 [Ackredit #114](https://github.com/uibcdf/ackredit/issues/114), reviewed and
 accepted on 2026-10-06 after #113. Coordination belongs to MolSysSuite #97 and
-MOLI #46. Source classification is stable; a separately qualified future release
-will deliver the forward public promise. Public 0.11.0 retains its original
+MOLI #46. Source classification is stable; qualified public **0.12.0** delivers
+the forward public promise under #127. [Installation](../docs/content/about/installation.md)
+and the [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) retain exact-file qualification. Public 0.11.0 retains its original
 provisional evidence classification.
 
 ## Accepted maintainer decision (2026-10-06)
@@ -153,7 +154,7 @@ comprehensive instrumentation, scientific equivalence across all engines,
 cryptographic authentication of declarations or full cost measurements. Current
 source and exact-head controls belong to #114, separately from prior release receipts.
 
-## Source acceptance and remaining delivery
+## Source acceptance, delivery and remaining adoption
 
 The accepted source change records the decision, stability classification,
 canonical host guidance and development release notes. The owning #114 issue
@@ -162,8 +163,9 @@ original receiving receipts above continue to identify their own runtime/files.
 
 1. Coordinate canonical-guide synchronization and actual consumer adoption
    through MolSysSuite #97/MOLI #46 and consumer owners; never repair copies.
-2. Select and qualify the future release delivering the promise. Its exact source,
-   installed file, real receiving and public delivery require their own applicable
-   gates. Public 0.11.0 keeps its original provisional evidence classification.
+2. Delivery is complete in public 0.12.0 under #127 with its own exact-source,
+   same-file installed/real receiving and independent public evidence. Preserve
+   those original receipts. Public 0.11.0 keeps its original provisional evidence
+   classification; later release qualification remains separately required.
 3. Keep general 1.0, broader recorders, platform object contracts, full cost work
    and publication/acknowledgement decisions independently visible in the roadmap.

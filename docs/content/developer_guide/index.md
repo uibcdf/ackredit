@@ -15,7 +15,7 @@ Welcome to the Ackredit developer documentation. This section contains the "Bibl
 *   **{ref}`Workflow and Standards <Dev_Contributing>`:** How to contribute, code standards, and validation.
 *   **{ref}`Installed Receiving Validation <Dev_ReceivingValidation>`:** Qualify the same Ackredit/PyUnitWizard files across platforms and interpreters.
 *   **{ref}`Function-provider Contract Review <Dev_FunctionProviderReview>`:** Accepted bounded guarantees, verified delivery and separate consumer adoption.
-*   **{ref}`Recorder-evidence Contract Review <Dev_RecorderEvidenceReview>`:** Accepted bounded representation, collection and reporting guarantees, with public delivery pending.
+*   **{ref}`Recorder-evidence Contract Review <Dev_RecorderEvidenceReview>`:** Accepted bounded representation, collection and reporting guarantees, delivered in public 0.12.0.
 
 ## Deep Dives
 *   {ref}`Architecture <Dev_Architecture>`

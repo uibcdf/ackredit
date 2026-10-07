@@ -36,12 +36,12 @@ with ackredit.observe_calls(citation_provider), ackredit.capture("example") as r
 print(run.attribution.report(format="bibtex"))
 ```
 
-Development Ackredit after 0.11.0 additionally provides
+Public Ackredit 0.12.0 additionally provides
 `ackredit.validate_provider(citation_provider)`. That offline validation records
 no credit and installs no observation wrappers. Public 0.11.0 validates at
 observer activation and does not include the standalone validator.
-Its bounded contract was accepted under #125; version 0.12.0 is selected for
-public delivery under #127 and is still being qualified.
+Its bounded contract was accepted under #125 and delivered in qualified public
+0.12.0 under #127; use `ackredit>=0.12.0` for standalone validation.
 
 See the [concise author guide](../../docs/content/user_guide/provider_authors.md)
 and [full protocol](../../docs/content/user_guide/function_providers.md).

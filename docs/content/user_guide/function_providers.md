@@ -73,10 +73,9 @@ as `executed_software`, `software_description`, `scientific_criterion` and
 
 ## Validate without observing
 
-Development after public 0.11.0 adds
-`ackredit.validate_provider(module) -> dict` under Ackredit #111. The maintainer
-accepted its bounded stable source contract under #125 on 2026-10-06; its forward
-public promise awaits a separately qualified delivering release. It is not
+Public **0.12.0** delivers `ackredit.validate_provider(module) -> dict`,
+implemented under #111 and accepted as a bounded stable source contract under
+#125 on 2026-10-06. Use `ackredit>=0.12.0` for its forward public promise. It is not
 available in public 0.11.0. Pass one already imported ordinary module:
 
 ```python
@@ -108,10 +107,10 @@ Declared lazy exports invoke the selected producer's loader, just as activation
 does. Such loaders may import code or populate the producer's cache; Ackredit
 does not roll back their side effects. Undeclared lazy exports are not resolved.
 Use trusted modules. The validator's accepted signature and result construction
-retain these bounds. From the first qualified delivering release, preserve their
+retain these bounds. From qualified public 0.12.0, preserve their
 meaning across later patch/minor releases, including remaining pre-1.0 and 1.x,
-under the [deprecation policy](../about/stability.md). Version 0.12.0 is selected
-under #127 and still awaits public qualification;
+under the [deprecation policy](../about/stability.md).
+[Installation](../about/installation.md) links #127's exact-file delivery proof;
 the accepted declaration protocol and observer keep their separate public
 0.11.0 boundary. Source promotion does not authorize publication or client adoption.
 

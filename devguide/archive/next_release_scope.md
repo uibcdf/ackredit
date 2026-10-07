@@ -311,3 +311,12 @@ delivery instruction following the planning decision above, not a rewrite of
 its original authorization boundary. The active release record owns candidate
 inputs, qualification and conditional publication. Finish that minor delivery,
 then resume the accepted feature-development pause for consumer adoption.
+
+## Subsequent completed delivery — 2026-10-07
+
+The separately authorized #127 delivery is complete in qualified public 0.12.0.
+Its [archived record](release_0120.md) and [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) preserve
+original producer/file, all required gates and public installation evidence.
+This completion does not rewrite the planning authorization above. Resume the
+accepted feature pause for consumer adoption and habitual use; general 1.x,
+client synchronization and client releases remain separate outcomes.

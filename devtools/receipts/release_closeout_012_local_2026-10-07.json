@@ -1,0 +1,136 @@
+{
+  "schema": "ackredit.release-closeout-local@1",
+  "issue": "uibcdf/ackredit#127",
+  "producer_source": "6f4dbf39996a7185b8aaff7c52b9daeb167a100a",
+  "scope": "Documentation, owned canonical guide, durable release receipts and reporting lifecycle only; production code, scientific inputs, recipe, metadata and original Conda bytes are unchanged.",
+  "pytest": {
+    "outcome": "PASS",
+    "complete": true,
+    "integrity_valid": true,
+    "final": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 278,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 278,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 278,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 3.9599677260266617,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "75a0752290830dad4165cf46bb87f1de65f18a6ceff534c83f140683dbaa5955",
+        "records": 835
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "9c7925c8b6a8425f945efad47a5458c1",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_sha256": "4b9c1e02a9f14ca367531278da241fdb9451c28742e672f38be470bc2d88fbe5",
+    "selection": [
+      "tests/test_reporting_protocol.py",
+      "tests/test_devguide_claims.py",
+      "tests/test_api_stability.py",
+      "tests/test_documented_api.py",
+      "tests/test_integration_guide.py",
+      "tests/test_installation_page.py",
+      "tests/test_release_citation.py",
+      "tests/test_self_citation.py",
+      "tests/test_docs_build.py"
+    ],
+    "recovery": "The network-restricted first selection passed 277 with one isolated-wheel-build skip; the same selection rerun with required build network access passed all 278 without skips.",
+    "initial_outcome": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 278,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 278,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 277,
+        "reruns": 0,
+        "skipped": 1,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 9.981350056943484,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "51f98fc15853b33d5c1c9516ea998603dbb48d2425d426a12ee90be8cc2beb50",
+        "records": 835
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "fbab2f1baa174bae8a9f56eaefcf9a15",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    }
+  },
+  "ruff_check": "passed",
+  "ruff_format": "passed (264 files)",
+  "devguide_index": "passed",
+  "strict_sphinx": {
+    "state": "passed",
+    "log_sha256": "006d27f7172832c454a498cca907dce3ee8a997377947232c9aadfebff6d8c0b"
+  },
+  "report_and_doc_relative_links": {
+    "checked": 212,
+    "missing": []
+  },
+  "synchronized_external_guides": {
+    "unchanged_from_original_producer": {
+      "MOLSYSSUITE_GUIDE.md": "6f1fa1fd809d70f0cdc569b58deec157c49c86591d7a67d2990b51610512217d",
+      "SMONITOR_GUIDE.md": "63caab98612155cd0c3346561110c0f4c4387e0123c3f03be62198c33a7c13a5",
+      "DEPDIGEST_GUIDE.md": "88f77daae7e0d618f54d59dc959a300c3cb1d95fc8e1c3f81b454391ada494d2",
+      "GH_RUN_RECEPTOR_GUIDE.md": "a3cf5c4d17c3dae3f9f419d1ddd9cf298017f9b4bca7e224e5d517b75cfc60f8",
+      "PYTEST_RECEPTOR_GUIDE.md": "edc16aef94ed06b7770b60e6bcda4fc5c2c468bf86a59ded93f41ec67dbce383"
+    }
+  },
+  "conformance": {
+    "state": "passed with --skip-guide-content at the applicable policy-v1.5.6",
+    "policy_source": "f663290e6bc5a1cac66f3a7b979b918a4233fc2b",
+    "limits": "Local check applies the member pinned policy. Live external guide synchronization remains centrally owned; unchanged copied bytes are verified separately."
+  },
+  "release_qualification": "Original-producer source/full-installed/real receiving/public delivery proofs remain valid for unchanged production inputs and are retained in the public receipt; these documentation checks are not new scientific qualification."
+}

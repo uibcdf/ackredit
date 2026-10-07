@@ -68,11 +68,11 @@ else links here, so they cannot drift apart.
 | `register_item` | stable | The declaration primitive. Its fields are the citation record every renderer reads. |
 | `Attribution` | stable | Detached bibliography and original use context; the versioned schema and saved-reader contract were reviewed with two real clients under `uibcdf/ackredit#75`. |
 | `AttributionBundle` | stable | Pre-1.0 stable intent chosen under `uibcdf/ackredit#102`: complete independent original results, conflict-checked shared bibliography and scoped graph reporting; its separate envelope is available in public 0.11.0 and distinct from the original released attribution-schema promise. |
-| `AttributionEvidence` | stable | Explicitly accepted on 2026-10-06 under `uibcdf/ackredit#114`: detached original-occurrence evidence, closed schema-1 meanings, unknown/empty declarations and inert readers. The bounded forward public promise awaits its separately qualified delivering release below. |
-| `validate_provider` | stable | Explicitly promoted on 2026-10-06 under `uibcdf/ackredit#125`: one trusted imported ordinary module, detached merged declaration, retained original metadata/role ordering and E012 refusal without credit or wrapping. Producer lazy-loader effects remain outside Ackredit's inertness guarantee; the bounded public promise awaits its separately qualified delivering release. |
+| `AttributionEvidence` | stable | Explicitly accepted on 2026-10-06 under `uibcdf/ackredit#114`: detached original-occurrence evidence, closed schema-1 meanings, unknown/empty declarations and inert readers. The bounded forward public promise is delivered in qualified public 0.12.0 below. |
+| `validate_provider` | stable | Explicitly promoted on 2026-10-06 under `uibcdf/ackredit#125`: one trusted imported ordinary module, detached merged declaration, retained original metadata/role ordering and E012 refusal without credit or wrapping. Producer lazy-loader effects remain outside Ackredit's inertness guarantee; the bounded public promise is delivered in qualified public 0.12.0. |
 | `compose_attributions` | stable | The explicit offline composition tool under `uibcdf/ackredit#102`; inputs remain detached, identical IDs share only equal records and independent graphs never become a fabricated combined pipeline. |
 | `explain_attribution` | stable | Pre-1.0 intent under `uibcdf/ackredit#103`: a detached descriptive view of recorded evidence, with unrecorded scope/origin/gaps kept unknown; neither a completeness score nor a replacement attribution payload. |
-| `capture` | stable | Observes reused calculation references without replacing the application session under `uibcdf/ackredit#75`. The bounded opt-in provider-observer `record_evidence` / `.evidence` extension is explicitly accepted under `uibcdf/ackredit#114`; its forward public promise awaits separate delivery. |
+| `capture` | stable | Observes reused calculation references without replacing the application session under `uibcdf/ackredit#75`. The bounded opt-in provider-observer `record_evidence` / `.evidence` extension is explicitly accepted under `uibcdf/ackredit#114`; its forward public promise is delivered in qualified public 0.12.0. |
 | `get_attribution` | stable | Detaches the enclosing workflow bibliography with original contextual uses; shares the reviewed portable contract under `uibcdf/ackredit#75`. |
 | `bind` | stable | Declares what a target may require. Decision 4: a declaration with an opt-in runtime effect, never automatic. |
 | `bound_items` | stable | The reader `bind` lacked when it was write-only dead state. Decision 4. |
@@ -165,7 +165,7 @@ delivery. Compatible additive options and internal optimizations remain possible
 Later readers retain the accepted `ackredit.provider@1` interpretation; incompatible
 schema/meaning changes require a new identifier and unknown identifiers are refused.
 
-## Accepted recorder evidence; public delivery pending
+## Recorder evidence compatibility: delivered in 0.12.0
 
 On 2026-10-06 the maintainer explicitly accepted `AttributionEvidence`, bounded
 `capture(record_evidence=True)` / `.evidence` provider-observer collection and
@@ -175,11 +175,12 @@ defines the exact schemas, positional original-occurrence association,
 unknown/empty meanings, collector ownership, diagnostic/scientific failure
 boundaries and exclusions, supported by saved receiving data and lifecycle guards.
 
-Source classification is stable. The forward public promise begins with the
-first separately qualified release delivering this acceptance. The maintainer
-selected 0.12.0 under #127; qualification/public verification is in progress,
-so the promise is not yet delivered by this candidate. Original public 0.11.0 retains its provisional evidence
-classification. From that future delivery, reviewed signatures and meanings
+Source classification is stable. Qualified public **0.12.0** delivers the
+forward promise under #127; use `ackredit>=0.12.0` for these bounded contracts.
+[Installation](installation.md) and the [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
+retain exact-source, same-file installed/receiving and public verification.
+Original public 0.11.0 retains its provisional evidence classification.
+From public 0.12.0, reviewed signatures and meanings
 remain compatible across later patch/minor releases, including remaining
 pre-1.0 and 1.x, under the deprecation/removal policy below. Later readers retain
 `ackredit.attribution_evidence@1` and `ackredit.attribution_evidence_explanation@1`
@@ -189,7 +190,7 @@ Client adoption, guide synchronization and client release qualification are
 separate owner decisions. Optional clients retain their absence/failure behavior;
 no client must enable observation automatically.
 
-## Accepted standalone validation; public delivery pending
+## Standalone validation compatibility: delivered in 0.12.0
 
 On 2026-10-06 the maintainer separately promoted
 `validate_provider(module: ModuleType) -> dict` under #125. It validates one
@@ -202,10 +203,10 @@ Ackredit credit, registration, wrappers, observer changes or DOI query occurs.
 Explicit lazy loaders retain producer-owned import/cache effects. Successful
 preflight is not current-registry compatibility or scientific/citation validation.
 
-Source classification is stable. Its bounded forward promise begins with the
-first separately qualified public release delivering this acceptance, including
-later pre-1.0 and 1.x patch/minor releases under the policy below. Version 0.12.0
-is selected under #127 and still awaits qualification/public verification.
+Source classification is stable. Qualified public **0.12.0** delivers its
+bounded forward promise under #127; use `ackredit>=0.12.0` for this operation.
+Later pre-1.0 and 1.x patch/minor releases preserve its reviewed signatures and
+meanings under the policy below. Exact-file delivery evidence is linked above.
 **Public 0.11.0 lacks this standalone export**; it is not a validator
 minimum. See [the provider contract](../user_guide/function_providers.md#validate-without-observing)
 and [the accepted review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md).
