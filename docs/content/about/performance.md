@@ -699,3 +699,9 @@ python devtools/benchmark.py
 ```
 
 It needs MolSysMT, which is not a dependency of Ackredit, and says so if it is absent.
+
+Each persistence repetition owns a managed temporary directory. Its writer closes
+before that directory is removed, on success and on failure; cleanup failures
+remain visible. Directory setup and writer closure/removal are outside the timed
+region. These lifecycle checks use synthetic test inputs and do not repeat the
+historical MolSysMT measurements ([Ackredit #130](https://github.com/uibcdf/ackredit/issues/130)).

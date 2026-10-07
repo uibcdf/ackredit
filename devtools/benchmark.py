@@ -36,36 +36,41 @@ WORKFLOW = """
     PATH = msm.systems["T4 lysozyme L99A"]["181l.pdb"]
     MODE = {mode!r}
 
-    if MODE != "bare":
-        ackredit.register_item(
-            id="molsysmt:software", type="software", title="MolSysMT",
-            authors=["Prada-Gracia, Diego", "Moreno-Vargas, Liliana M."],
-            doi="10.5281/zenodo.1298752",
-        )
-        ackredit.bind("molsysmt.convert", ["molsysmt:software"])
+    from contextlib import ExitStack
 
-    if MODE == "persist":
-        import tempfile
-        from pathlib import Path
-        ackredit.enable_persistence(Path(tempfile.mkdtemp()) / "session.json")
+    with ExitStack() as resources:
+        if MODE != "bare":
+            ackredit.register_item(
+                id="molsysmt:software", type="software", title="MolSysMT",
+                authors=["Prada-Gracia, Diego", "Moreno-Vargas, Liliana M."],
+                doi="10.5281/zenodo.1298752",
+            )
+            ackredit.bind("molsysmt.convert", ["molsysmt:software"])
 
-    def step(name, call):
-        if MODE == "bare":
-            return call()
-        with ackredit.scope(f"molsysmt.{{name}}", credit_bound=(name == "convert")):
-            ackredit.track_item("molsysmt:software")
-            return call()
+        if MODE == "persist":
+            import tempfile
+            from pathlib import Path
+            directory = resources.enter_context(
+                tempfile.TemporaryDirectory(prefix="ackredit-benchmark-")
+            )
+            resources.callback(ackredit.close_persistence)
+            ackredit.enable_persistence(Path(directory) / "session.json")
 
-    start = time.perf_counter()
-    molsys = step("convert", lambda: msm.convert(PATH, to_form="molsysmt.MolSys"))
-    step("get", lambda: msm.get(molsys, n_atoms=True))
-    step("select", lambda: msm.select(molsys, selection="atom_name=='CA'"))
-    step("info", lambda: msm.info(molsys))
-    step("convert", lambda: msm.convert(molsys, to_form="mdtraj.Trajectory"))
-    elapsed = time.perf_counter() - start
+        def step(name, call):
+            if MODE == "bare":
+                return call()
+            with ackredit.scope(f"molsysmt.{{name}}", credit_bound=(name == "convert")):
+                ackredit.track_item("molsysmt:software")
+                return call()
 
-    if MODE == "persist":
-        ackredit.close_persistence()
+        start = time.perf_counter()
+        molsys = step("convert", lambda: msm.convert(PATH, to_form="molsysmt.MolSys"))
+        step("get", lambda: msm.get(molsys, n_atoms=True))
+        step("select", lambda: msm.select(molsys, selection="atom_name=='CA'"))
+        step("info", lambda: msm.info(molsys))
+        step("convert", lambda: msm.convert(molsys, to_form="mdtraj.Trajectory"))
+        elapsed = time.perf_counter() - start
+
     print(elapsed)
 """
 

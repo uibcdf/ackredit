@@ -137,13 +137,17 @@ def test_the_session_file_contract_is_stated_and_true():
 
     from ackredit.core import session
 
-    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as handle:
-        json.dump(
-            {"used_items": {"a:1": ["run"]}, "used_targets": ["run"], "usage_tree": {}},
-            handle,
-        )
-        path = Path(handle.name)
+    with tempfile.TemporaryDirectory(prefix="ackredit-session-contract-") as directory:
+        path = Path(directory) / "session.json"
+        with path.open("w") as handle:
+            json.dump(
+                {
+                    "used_items": {"a:1": ["run"]},
+                    "used_targets": ["run"],
+                    "usage_tree": {},
+                },
+                handle,
+            )
 
-    state = session.read(path)
-    assert state["used_items"] == {"a:1": ["run"]}
-    path.unlink()
+        state = session.read(path)
+        assert state["used_items"] == {"a:1": ["run"]}
