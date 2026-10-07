@@ -29,6 +29,41 @@ Do not rebuild or promote this coordinate again. Original 0.11.0 and earlier
 receipts remain unchanged. Closeout-head CI and consumer notices are recorded in
 #127 separately from original-producer release qualification.
 
+## Documentation handoff and CI follow-up
+
+The release closeout is `887b81c525ff9b285150b2d801c557321b4d48fa`.
+Its [ordinary CI 37600532162](https://github.com/uibcdf/ackredit/actions/runs/37600532162)
+has six successful jobs and queued macOS/Python 3.14 at the 2026-10-07 review;
+GH Run Receptor reports `PENDING`/exit 3. Both
+[suite policy](https://github.com/uibcdf/ackredit/actions/runs/37600532896) and
+[publication policy](https://github.com/uibcdf/ackredit/actions/runs/37600532962)
+pass. Pending documentation-head CI is not a missing original-producer release
+gate and must not be described as completed. Record its terminal outcome in #127.
+
+This developer-guide review is owned by
+[Ackredit #129](https://github.com/uibcdf/ackredit/issues/129); its final commit,
+validation and any queued hosted checks are recorded there. Start a new session
+by inspecting the working tree and the exact current head, then use the run ID
+returned for the applicable workflow:
+
+```bash
+git status --short
+git log -1 --format='%H %s'
+gh run list --repo uibcdf/ackredit --commit "$(git rev-parse HEAD)" --limit 10
+gh run-receptor inspect 37600532162 --repo uibcdf/ackredit --receptor=llm
+```
+
+Inspect the current head's applicable CI with GH Run Receptor as well; the last
+command addresses the separately retained release-closeout run. Allow queued
+checks to finish. Diagnose only an observed failure in its owning issue, preserve
+human work, and do not rebuild or promote 0.12.0 to repair documentation CI.
+
+The delivered [canonical integration guide](https://github.com/uibcdf/ackredit/blob/887b81c525ff9b285150b2d801c557321b4d48fa/standards/ACKREDIT_GUIDE.md)
+has source `887b81c525ff9b285150b2d801c557321b4d48fa` and SHA-256
+`6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d`.
+Those bytes are unchanged by this review. Guide publication is separate from
+the original package producer/tag; consumer copies follow the central registry.
+
 ## Compatibility and adoption pause
 
 Portable-only clients retain `>=0.9.0`. Stable provider/prepared credit retains
@@ -44,17 +79,33 @@ this release does not certify client releases or completed adoption. Resume for
 concrete owning feedback, a demonstrated defect or an explicit maintainer request.
 No last-pre-1.0 schedule or arbitrary pause duration is imposed.
 
-MolSysSuite #97/MOLI #46 own coordination; PyUnitWizard #94/Sabueso #108 and other
-consumers own their integration, guide synchronization and release evidence.
+The delivered version/file/digest/guide identities have been handed off to:
+
+| Owner | Retained handoff | Next owner action |
+| --- | --- | --- |
+| MolSysSuite | [#97 notice](https://github.com/uibcdf/molsyssuite/issues/97#issuecomment-6035035826) | Coordinate registered-consumer adoption and canonical-guide synchronization. |
+| MOLI | [#46 notice](https://github.com/uibcdf/moli/issues/46#issuecomment-6035036721) | Own platform/result-boundary decisions and direct-component adoption. |
+| PyUnitWizard | [#94 notice](https://github.com/uibcdf/pyunitwizard/issues/94#issuecomment-6035037580) | Retain qualified pilot evidence; own actual adoption and released client closure. |
+| Sabueso | [#108 notice](https://github.com/uibcdf/sabueso/issues/108#issuecomment-6035038368) | Own its integration, guide adoption and release/actual-use evidence. |
+
+These notices do not establish completed synchronization or habitual adoption.
 The canonical `standards/ACKREDIT_GUIDE.md` publishes verified version boundaries;
 consumer copies are synchronized through the central registry, never repaired
-locally. Final guide source/hash is handed off in the owning issues.
+locally. Other consumers keep their own adoption issues.
 
 The local bug queue is empty after #128's installed-DueCredit absence-test repair.
 Optional dashboard #58 is not a priority. Acknowledgements stay deferred under
 #124 until an actual owned result/wording/reporting case exists. Broader recorders,
 MOLI object boundaries, additional cost studies and new publication expectations
 keep their separate scope and owners; do not initiate them just to fill the pause.
+
+For a useful adoption report, retain the consumer/version, real operation and
+attribution boundary, provider present/absent/failing behavior, original saved
+result and its fresh-reader report, expected/observed outcome, and any measured
+friction/cost. File defects or missing capabilities in the owning component and
+cross-link this provider when relevant. No arbitrary number of consumers or
+elapsed pause duration qualifies 1.0; reconsider it from actual-use evidence and
+a separate maintainer release decision.
 
 ## Retained limits
 

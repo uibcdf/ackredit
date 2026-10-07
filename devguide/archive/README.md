@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (122)
+### Resolved (123)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -38,6 +38,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`csl_json_does_not_carry_a_reference.md`](csl_json_does_not_carry_a_reference.md) — [#44](https://github.com/uibcdf/ackredit/issues/44) — CSL-JSON raised on a year Ackredit itself produces, and mapped a short fixed list so a book reached a reference manager unformattable. *(resolved, measured)*
 - [`csl_json_marks_every_author_as_literal.md`](csl_json_marks_every_author_as_literal.md) — [#38](https://github.com/uibcdf/ackredit/issues/38) — Every author reached a reference manager as a literal, declaring a name that could be decomposed to be indecomposable. *(resolved, measured)*
 - [`dependency_info_relays_a_promise.md`](dependency_info_relays_a_promise.md) — [#59](https://github.com/uibcdf/ackredit/issues/59) — dependency_info was promised by naming which of DepDigest's two shapes is the contract and verifying the version it relays. *(resolved, measured)*
+- [`devguide_pause_checkpoint_review.md`](devguide_pause_checkpoint_review.md) — [#129](https://github.com/uibcdf/ackredit/issues/129) — Reconcile developer guidance and complete the 0.12.0 adoption-pause checkpoint. *(resolved, measured)*
 - [`discovery_test_requires_numpy.md`](discovery_test_requires_numpy.md) — [#88](https://github.com/uibcdf/ackredit/issues/88) — A discovery guard imports undeclared NumPy in the minimal CI environment. *(resolved, reproduced)*
 - [`distribution_adoption_runtime_review.md`](distribution_adoption_runtime_review.md) — [#108](https://github.com/uibcdf/ackredit/issues/108) — Complete dependency-constraint and runtime-route review for member distribution adoption. *(resolved, measured)*
 - [`documentation_build_is_broken.md`](documentation_build_is_broken.md) — [#4](https://github.com/uibcdf/ackredit/issues/4) — The Sphinx build aborted on a missing linkify dependency, and four further defects hid behind it. *(resolved, reproduced)*

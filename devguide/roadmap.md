@@ -27,6 +27,10 @@ already fits. #100 owns this planning update, not every future implementation.
 
 ## Shipped
 
+The entries below retain their historical scope and counts. Current public
+contracts are defined in [API stability](../docs/content/about/stability.md);
+resume from [the checkpoint](checkpoint.md), not an old "next" milestone.
+
 ### 0.1.0 — Core consolidation
 Robust BibTeX generation, the optional-dependency pattern, the `scope` context manager.
 
@@ -121,13 +125,35 @@ the tag.
 
 Those were released as 0.6.0.
 
+### 0.10.0 / 0.10.1 — Provider and workflow capabilities
+
+Function observation, prepared credit and contextual workflow reporting first
+ship with provisional provider contracts. Corrected 0.10.1 binds packaged
+self-citation to its release; original 0.10.0 retains its recorded limitation.
+[Release notes](../docs/content/about/release_notes.md) retain the exact history.
+
+### 0.11.0 — Bounded stable providers and saved-result tools
+
+Qualified public 0.11.0 delivers the accepted provider/observer/prepared promise,
+portable CLI, composition, explanations and provisional opt-in evidence/reporting.
+Its [receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.11.0_public_2026-10-06.json)
+retains original installed/real receiving and public verification.
+
+### 0.12.0 — Stabilization and adoption pause
+
+Qualified public 0.12.0 delivers the separately accepted bounded evidence and
+standalone-validator promises, author tooling, faithful citation/name/DOI repairs
+and deferred feature imports. The [receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
+retains original qualification. Pause proactive features for consumer adoption
+and habitual use; general 1.x delivery stays deferred.
+
 ---
 
 ## Towards 1.0.0
 
 1.0.0 means one thing: **the public API is stable and we commit to not breaking it**.
-Theme F defines that exit. The completed foundation and remaining contract
-review make that commitment honest rather than optimistic. The product
+Theme F's source review is accepted; the maintainer deferred general public
+delivery for stabilization and habitual use. The product
 continuation in themes I–N can span multiple releases, including work after
 1.0; it does not make every proposed feature, client adoption or optional
 integration a prerequisite for 1.0. Resolve the scope of public promises before
@@ -337,9 +363,9 @@ measures portable capture separately from the historical plain tracking path.
       coordinated with MolSysSuite #97/MOLI #46, without requiring client adoption;
 - [x] qualify and publish 0.11.0 delivering the accepted stable-provider promise,
       retaining the original exact file and separate public verification under #107;
-- [x] implement a documented standalone declaration validator in development
-      under #111, with a chosen provisional
-      public/API stability boundary, that checks offline metadata without
+- [x] implement a documented standalone declaration validator under #111,
+      promoted within its bounded contract under #125 and delivered in qualified
+      public 0.12.0 under #127, that checks offline metadata without
       recording uses, installing wrappers, registering bibliography or querying
       a DOI; callers and tooling must reuse the provider-owned validation;
       source integration and public delivery remain separate from local evidence;
@@ -477,8 +503,9 @@ Coverage is bounded by instrumentation. Never invent an unobserved call, missing
 citation, success state or global coverage percentage. The client decides
 scientific completion; catalog diagnostics retain their own failure details.
 
-The next independent milestone [#104](https://github.com/uibcdf/ackredit/issues/104)
-implements a provisional `AttributionEvidence` companion around complete original
+At its original development checkpoint,
+[#104](https://github.com/uibcdf/ackredit/issues/104) implemented a provisional
+`AttributionEvidence` companion around complete original
 single/bundle results. Explicit recorder declarations are positional per original
 and distinguish null/unknown from empty lists. They retain metadata field sources,
 selected/unsupported/unobserved boundaries and owning gap diagnostics separately
@@ -492,8 +519,9 @@ and both policies, clearing earlier runner-acquisition cancellations through
 new executed controls. The original source/wheel identities remain unchanged;
 real collector qualification belongs to the separate milestone below.
 
-The next collector milestone [#105](https://github.com/uibcdf/ackredit/issues/105)
-adds provisional `capture(record_evidence=True)` / `.evidence` support. It collects
+The following historical collector checkpoint
+[#105](https://github.com/uibcdf/ackredit/issues/105) added provisional
+`capture(record_evidence=True)` / `.evidence` support. It collects
 actual overlapping observer selections, field sources for successfully credited
 provider items and owning recording diagnostics. Default captures and original
 portable records remain unchanged. Local Python 3.14 qualification passes 2,047
@@ -507,8 +535,9 @@ equals the hosted result. The
 [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/provider_evidence_hosted_105_2026-10-05.json)
 retains the original development wheel separately from the local build.
 At this historical checkpoint, broader requested presentation was still pending;
-#106 subsequently implements it. Other recorder origins and final
-provisional-contract review remain pending.
+#106 subsequently implements it. Other recorder origins remained separate;
+the final bounded source review was subsequently accepted under #114 and its
+promise delivered in public 0.12.0 under #127.
 
 Completed bounded J checkpoints are:
 
@@ -541,7 +570,8 @@ the hosted result. Head `30c622b` passes all seven CI jobs and both policies;
 the [hosted receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_recorder_evidence_hosted_106_2026-10-06.json)
 keeps the original hosted producer/wheel separate from the local build. This
 bounded presentation checkpoint is resolved and delivered in public 0.11.0 under
-#107; other recorders and final provisional review remain separate.
+#107. Other recorders remain separately scoped; the final bounded review is
+accepted under #114 and delivered in public 0.12.0 under #127.
 
 The separate [J/F contract review](recorder_evidence_contract_review.md) under
 #114 maps the existing representation, collection and presentation to concrete

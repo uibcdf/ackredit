@@ -122,7 +122,7 @@ Documentation corrections and runtime defects retain separate evidence there.
   credited and cannot reconstruct their original titles, authors, DOIs or contextual
   uses. A portable result instead saves the detached `Attribution` payload beside
   its scientific data and can render that bibliography in a fresh reader.
-  Development after public 0.10.1 (#101) adds the explicit CLI input mode:
+  Public 0.11.0 delivers #101's explicit CLI input mode:
   `ackredit report result.json --input-format attribution --format workflow`;
   `--output` exports a chosen format without modifying the saved input.
   Journal aggregation and portable attribution are separate contracts; see
@@ -131,11 +131,17 @@ Documentation corrections and runtime defects retain separate evidence there.
   degrades those entries rather than failing. Choosing a style or mapping the types is a
   separate question, noted in `devguide/archive/bibtex_does_not_escape_latex.md`.
 
-## Work in progress towards 1.0.0
+## Completed milestones and remaining strategic scope
 
 Organised as themes with exit criteria in [`roadmap.md`](roadmap.md), rather than as a
 fixed number of releases. The minor rises when behaviour a caller can see changes, so how
 many land before 1.0.0 is an outcome rather than a plan.
+
+The milestone receipts below describe their original development checkpoints.
+Current delivery is public 0.12.0; the adoption pause and version boundaries
+above govern resumption. Historical "provisional" wording does not override
+later bounded acceptance/delivery. Unchecked wider roadmap criteria are deferred
+opportunities, not an instruction to continue feature development during the pause.
 
 - **Distribution:** complete for public 0.9.0 under #22/#75/#80. The matching
   `0.9.0` Git tag identifies its original producer under #82. Later candidates
@@ -249,17 +255,17 @@ Existing public promises and release boundaries are unchanged. The review correc
 the author guide to retain the provider protocol's existing empty-role-list
 behavior without changing the parser or inferring an unspecified role.
 
-The maintainer-accepted continuation under Ackredit #100 is maintained in
+The maintainer-accepted product scope under Ackredit #100 is maintained in
 [roadmap themes I–N](roadmap.md): portable saved-result CLI and composition,
 scope/reference-origin/gap explanations, MOLI object-boundary decisions,
 complete lifecycle cost, real publication-tool interoperability and the scope
 of non-bibliographic acknowledgements. Theme G implements standalone declaration
 validation in development under #111 and the concise author guide/example under
-#113; #125 accepts the validator's bounded source promotion. Public delivery remains
-separate. The other themes retain planned
-implementations or decisions, not capabilities already shipped or implicit
-conditions for every client or the general 1.0 stability commitment. Portable
-CLI report/export is implemented in development under #101. #102 implements
+#113; #125 accepts the validator's bounded source promotion, delivered in public
+0.12.0 under #127. Wider recorder/platform/product decisions remain separately
+owned and deferred during the pause, not implicit conditions for every client or
+the general 1.0 commitment. Public 0.11.0 delivers portable CLI report/export
+under #101 and composition under #102. Its original development implementation uses
 saved-result composition with complete original members, shared bibliography
 and independent graphs through `AttributionBundle`/`compose_attributions`;
 its separate installed checkpoint passes all eight Linux/macOS arm64 × Python
@@ -272,7 +278,9 @@ The first bounded explanation tool/format is implemented in development under
 #103: describe saved evidence while scope/origin/diagnosed gaps remain unknown.
 Its bounded qualification is complete, with the original saved-reader receipt
 and subsequent executed hosted controls retained separately. Broader J work
-and provider/platform review remain open.
+remains separately scoped; the bounded provider/evidence/validator reviews are
+accepted and delivered at their stated public floors. Platform adoption remains
+owner-local.
 New implementations need focused owning issues.
 
 Theme N's [acknowledgement scope review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/acknowledgement_scope.md)
@@ -283,7 +291,8 @@ acknowledgement-labelled reports contain bibliography; no independent
 acknowledgement API/schema or receiving claim follows. Its implementation is
 conditional future work, separate from the current product and general 1.0 review.
 
-The next J representation milestone #104 implements a provisional explicit
+At its original development checkpoint, J representation milestone #104
+implemented a provisional explicit
 recorder-evidence companion. Source qualification passes 2,018 Python 3.14 tests
 without skips; a normal installed saved reader retains controlled declarations
 over eight prior real input cells and reconstructs sixteen original workflow

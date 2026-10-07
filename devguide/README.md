@@ -19,7 +19,7 @@ It links to the maintained records below rather than replacing them.
 2.  **[Project Status](status.md):** What is already working? What is work-in-progress? What is missing?
 3.  **[Roadmap](roadmap.md):** Where are we going and what are the next milestones?
 4.  **[Decision Log](decisions.md):** Why were things done this way? What decisions are still pending?
-5.  **[Function-provider Contract Review](function_provider_contract_review.md):** Accepted bounded guarantees, verified 0.11.0 delivery and separate consumer handoff.
+5.  **[Function-provider Contract Review](function_provider_contract_review.md):** Provider guarantees delivered in 0.11.0 and separate evidence/validator delivery in 0.12.0. The [recorder-evidence review](recorder_evidence_contract_review.md) defines the bounded evidence guarantees.
 6.  **[Workflow and Standards](workflow.md):** How to contribute, code standards, and validation.
 
 ## Reporting lifecycle
@@ -36,6 +36,10 @@ owning GitHub issue. Regenerate the indexes after any lifecycle change:
 python devtools/devguide_index.py
 python devtools/devguide_index.py --check
 ```
+
+The queues list active local records, not every deferred product idea or external
+adoption task. The checkpoint identifies consumer owners, deferred #58/#124 and
+any pending hosted validation. Empty queues do not imply completed adoption.
 
 ---
 *If you are new to the project, start with [Vision and Concept](vision.md).*

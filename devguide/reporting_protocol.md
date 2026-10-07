@@ -31,5 +31,5 @@ than rewriting their history.
 ```bash
 python devtools/devguide_index.py
 python devtools/devguide_index.py --check
-pytest tests/test_reporting_protocol.py
+pytest --receptor=llm tests/test_reporting_protocol.py
 ```

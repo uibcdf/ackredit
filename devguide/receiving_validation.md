@@ -1,7 +1,8 @@
 # Installed function-provider receiving validation
 
 Ackredit #84/#87 and PyUnitWizard #94 own this scientific qualification; Ackredit
-#93 owns the exact-file Conda release checkpoint. The
+#93 owns the historical 0.10.1 exact-file checkpoint; #107/#127 own the later
+qualified 0.11.0/0.12.0 deliveries. The
 workflow `function_provider_receiving.yaml` is manually dispatched for a fixed
 Ackredit revision. PyUnitWizard is pinned to
 `0e422d06b0af56e4dd2b43cafd00f059221eb405` following its resolved declaration-plan
@@ -115,7 +116,7 @@ package, a cumulative speedup measurement or API promotion.
 
 This gate qualifies development source candidates or the exact staged Conda
 file when the explicit Conda profile is selected. It does not publish a package,
-promote the provisional APIs, certify a client release or replace the full Ackredit
+decide API stability, certify a client release or replace the full Ackredit
 test suite. MolSysSuite #97 and MOLI #46 retain their review ownership. Each
 Conda candidate also needs its full exact-file installed and publication gates.
 
@@ -246,7 +247,7 @@ python -m pytest --receptor=llm \
 
 ## Provider evidence checkpoint (#105)
 
-The next development checkpoint adds a ninth test per cell. It runs actual Pint
+The original #105 development checkpoint added a ninth test per cell. It runs actual Pint
 unit conversion and Pint-to-unyt dispatch inside opted-in captures, checks the
 original PyUnitWizard declaration's retained field sources and recorder version,
 and preserves unknown origins for backend credits owned by another recorder.
@@ -294,3 +295,25 @@ portable readers, CLI and `pip check`. The
 retains original native artifacts and explicit limits. The accepted bounded
 provider promise now starts at `>=0.11.0`; evidence APIs remain provisional,
 portable-only clients retain `>=0.9.0` and consumer release/adoption is separate.
+
+## Stabilization delivery checkpoint (2026-10-07)
+
+Qualified public 0.12.0 under #127 uses original producer/tag
+`6f4dbf39996a7185b8aaff7c52b9daeb167a100a` and file
+`ackredit-0.12.0-py_0.tar.bz2`, SHA-256
+`160b452c2b9de3b44bc6c6e2f4bd8c47e44b1d2779b620f63048231708a1d4aa`.
+[Receiving 37588186298](https://github.com/uibcdf/ackredit/actions/runs/37588186298)
+passes the same nine mandatory cases in all eight cells: 72 tests without
+skips/deselections, native artifact verification and independently matching
+aggregation. [Installed 37588182382](https://github.com/uibcdf/ackredit/actions/runs/37588182382)
+passes the full exact-file matrix; [promotion 37599450602](https://github.com/uibcdf/ackredit/actions/runs/37599450602)
+and independent public verification/fresh installation retain the same bytes.
+The [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
+preserves original source, pinned producer/fallback, cell proofs and limits.
+
+This delivery gives the separately accepted bounded evidence and standalone
+validator contracts their public minimum `>=0.12.0`; portable `>=0.9.0` and stable
+providers `>=0.11.0` remain distinct. Historical checkpoints above retain their
+original classification and do not certify current consumer adoption or habitual
+use. Resume from [the checkpoint](checkpoint.md); additional receiving runs need
+an actual changed boundary or owned adoption question, not merely the pause.

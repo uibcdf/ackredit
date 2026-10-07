@@ -37,6 +37,14 @@ It reuses the same private prepared-reference writer as the function observer,
 but creates no scientific call scope or proof of entry. Per-call registry
 comparison and all current session/capture/journal writes remain in place.
 
+Public 0.12.0 delivers the bounded standalone
+`validate_provider(module) -> dict` contract. It validates a trusted imported
+ordinary module and returns an independent merged declaration through the
+observer's parser, without recording credit, registering bibliography, installing
+wrappers or executing scientific functions. Selected lazy loaders retain their
+producer-owned import/cache effects. Validation does not prove registry
+compatibility, bibliographic truth or scientific success.
+
 A software reference and its description articles are separate bibliographic
 works. Contextual uses carry roles and the executed software/version relationship;
 a single article may describe multiple releases. Original metadata and context
@@ -81,7 +89,7 @@ not reconstruct a portable bibliography that the journal never contained.
 Use detached attribution alongside scientific results when fresh readers need
 original records and versions; use journals for the documented session workflow.
 
-Development under #102 adds `compose_attributions` and `AttributionBundle`.
+Public 0.11.0 delivers `compose_attributions` and `AttributionBundle` under #102.
 The separate `ackredit.attribution_bundle@1` envelope retains complete original
 schema-1 members, validates bibliographic identity across them and shares equal
 records by ID. It never unions independent result graphs: equal target names
@@ -90,6 +98,16 @@ workflow/provenance views retain original result boundaries. The CLI's explicit
 `bundle` input mode delegates to that same reader. The released schema-1 meaning,
 scientific tracking path and journal aggregation remain unchanged; see
 [composition](../docs/content/user_guide/attribution_composition.md).
+
+`explain_attribution` describes recorded uses and missing facts without inventing
+completeness. `AttributionEvidence` keeps explicit recorder declarations beside
+complete original attribution/bundle members, associated by occurrence. Its
+bounded representation, opt-in provider-observer collection through
+`capture(record_evidence=True)` / `.evidence`, and explicitly requested workflow/
+CLI reporting have their public compatibility promise from 0.12.0. Unknown facts
+stay unknown; other recorder origins require separately owned work. Default
+reports and inert saved readers keep their existing behavior. See
+[the evidence contract](recorder_evidence_contract_review.md).
 
 ```text
 offline declarations --> process registry
@@ -108,7 +126,7 @@ saved Attribution --> validate/detach --> render bibliography
 
 `report` renders the current session; `Attribution.report` renders saved records
 through the same format machinery. Markdown, text, BibTeX, CSL-JSON, JSON,
-provenance and LaTeX are implemented. Development source also offers an explicit
+provenance and LaTeX are implemented. Public 0.10.0 first added an explicit
 `workflow` report joining numbered bibliography, contextual uses and graph.
 It preserves original versions/roles/context and distinguishes recorded uses
 from invocation counts or scientific success. Shared graph targets expand once
@@ -145,8 +163,10 @@ guide synchronization.
 The portable compatibility promise is bounded to the released schema and
 reviewed operations. Under #125 the maintainer accepted the general 1.x source
 commitment, whose public promise begins with a future qualified public 1.0.0,
-and separately promoted standalone validation with its own future delivery
-boundary. Source acceptance does not authorize publication. See
+and separately promoted standalone validation, delivered in qualified 0.12.0.
+Portable `>=0.9.0`, stable providers `>=0.11.0` and bounded evidence/validator
+`>=0.12.0` remain distinct. Source acceptance, public delivery, canonical-guide
+synchronization and consumer release/adoption are separate outcomes. See
 [API stability](../docs/content/about/stability.md), the
 [portable contract](../docs/content/user_guide/portable_attribution.md),
 [integration guide](https://github.com/uibcdf/ackredit/blob/main/standards/ACKREDIT_GUIDE.md)
