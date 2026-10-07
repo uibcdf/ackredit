@@ -1,5 +1,23 @@
 # Release notes
 
+## Development after 0.11.0 — next delivery scope under review
+
+[Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) consolidates the
+[next-release proposal](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md).
+It recommends 1.0.0 for review following #125's accepted general stability
+decision, with 0.12.0 as an alternative if that public commitment is deferred.
+This is not a version selection or qualified release announcement.
+
+The proposed delivery combines the accepted evidence/validator promises below,
+the standalone validator and provider author example (#111–#113), faithful
+BibTeX keys (#109), deferred feature imports (#116), bibliography editor/name
+and CFF book-kind fidelity (#120), and supported DOI presentation (#121).
+Separate #115–#119 measurements and #120–#123 real publication-tool studies
+retain their original candidate identities and limits. Python/dependency floors,
+optional host operation, schemas and immutable public 0.11.0 are unchanged.
+Exact-source, installed-file, real receiving and public verification remain
+required for an explicitly authorized future candidate.
+
 ## Development after 0.11.0 — accepted general stability and standalone validation
 
 On 2026-10-06 the maintainer accepted both bounded decisions in

@@ -787,9 +787,14 @@ Prepare the next delivery from completed, reviewed work; it need not wait for
 every theme. Post-0.10.1 fidelity/performance and saved-result/evidence work is
 delivered in qualified public 0.11.0. Original development receipts remain
 distinct from that published artifact's qualification.
-Select its version when the release scope is concrete, preserve the original
-producer and exact archive digest, and apply the existing source/installed/
-receiving/staging/promotion/public-verification gates. Source completion,
+The concrete [next-release scope](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md)
+under #126 recommends 1.0.0 for review now that theme F is accepted, with 0.12.0
+as an alternative if general stability delivery is deferred. It records
+included repairs/promises, unchanged compatibility boundaries and the required
+qualification sequence. This is a proposal; an operative version and release
+execution still need explicit authorization. Preserve the original producer
+and exact archive digest, and apply the existing source/installed/receiving/
+staging/promotion/public-verification gates. Source completion,
 API acceptance, canonical-guide synchronization and receiving-client release
 are separate outcomes. A stable guide update follows its accepted contract
 and central consumer synchronization, not a local repair of copied guides.

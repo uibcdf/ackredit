@@ -123,11 +123,15 @@ decision selects a version/tag or authorizes publication.
    their limits. K's platform/client decisions and the general 1.0 review keep
    their owners. F's [general stability review](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/general_stability_review.md)
    is now accepted under #125, including the separate validator promotion.
-   The next owner-local step is to prepare a concrete future delivery scope from
-   completed development, including accepted evidence/validator promises and
-   qualified runtime repairs. Version selection, exact-candidate execution and
-   publication require their own explicit release authorization. #58's optional
-   dashboard is not a priority or a dependency.
+   [The next-release scope](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md)
+   is prepared under #126, recommending 1.0.0 for review and retaining 0.12.0
+   as the alternative if the maintainer defers the general 1.x delivery. It
+   maps accepted evidence/validator promises, runtime repairs and bounded
+   measurements to the exact-source, installed-file, receiving and public gates
+   still required. The next owner-local step is the explicit release decision;
+   no operative version, candidate execution or publication is authorized by
+   preparation. The current publisher plan retains completed 0.11.0 inputs.
+   #58's optional dashboard is not a priority or a dependency.
 2. **Qualify the accepted promises when their release is authorized.**
    Select the version from a concrete scope and execute the exact-source,
    installed-file, real receiving and public gates. #114/#125's acceptance does not

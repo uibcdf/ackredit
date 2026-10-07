@@ -69,6 +69,18 @@ working, a test or a reproducible command backs it.
   certification. Guarded by `tests/test_coverage_workflow.py`, with evidence in
   [the coverage record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/scoped_runtime_coverage.md).
 
+## Next delivery proposal
+
+[Ackredit #126](https://github.com/uibcdf/ackredit/issues/126) prepares the
+[concrete next-release scope](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_proposals/next_release_scope.md)
+from completed post-0.11.0 development. It recommends 1.0.0 for review because
+the general stability decision and final validator promotion are accepted in
+source, while retaining 0.12.0 if the maintainer defers the general commitment's
+delivery. Included contracts, bibliography/DOI repairs, lazy imports and bounded
+receiving evidence have explicit limits and remaining exact-candidate gates.
+No operative version, new archive, staging, tag or public delivery is authorized
+by this proposal. The committed publisher plan still describes completed 0.11.0.
+
 ## Known defects
 
 Open reports live in [the maintained bug queue](https://github.com/uibcdf/ackredit/blob/main/devguide/pending_bugs/README.md).
