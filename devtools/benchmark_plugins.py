@@ -168,36 +168,40 @@ def operations(case: dict, memory=False) -> dict:
     if not packs:
         ackredit.register_item(id="control", title="No-plugin control")
         expected = {"control"}
-    stages = lifecycle.Stages(memory)
-    stages.call("citation_reload", ackredit.load_plugins)
-    formats = stages.call("format_discovery", ackredit.available_formats)
-    stages.call("format_discovery_repeat", ackredit.available_formats)
+    with lifecycle.Stages(memory) as stages:
+        stages.call("citation_reload", ackredit.load_plugins)
+        formats = stages.call("format_discovery", ackredit.available_formats)
+        stages.call("format_discovery_repeat", ackredit.available_formats)
 
-    def captures():
-        results = []
-        for label in ("first", "reused"):
-            with ackredit.capture(label) as run:
-                if packs:
-                    for pack in packs:
-                        assert pack.compute(3) == 9
-                else:
-                    ackredit.track_item("control")
-            results.append(run.attribution)
-        return results
+        def captures():
+            results = []
+            for label in ("first", "reused"):
+                with ackredit.capture(label) as run:
+                    if packs:
+                        for pack in packs:
+                            assert pack.compute(3) == 9
+                    else:
+                        ackredit.track_item("control")
+                results.append(run.attribution)
+            return results
 
-    results = stages.call("independent_captures", captures)
-    result = results[0]
-    requested = "pack0" if packs else "text"
-    rendered = stages.call("requested_report", lambda: result.report(format=requested))
-    repeated = stages.call("repeated_report", lambda: result.report(format=requested))
-    encoded = stages.call("detached_export", result.to_json)
-    restored = stages.call(
-        "detached_read", lambda: ackredit.Attribution.from_json(encoded)
-    )
-    workflow = stages.call(
-        "workflow_report", lambda: restored.report(format="workflow")
-    )
-    measurements = stages.finish()
+        results = stages.call("independent_captures", captures)
+        result = results[0]
+        requested = "pack0" if packs else "text"
+        rendered = stages.call(
+            "requested_report", lambda: result.report(format=requested)
+        )
+        repeated = stages.call(
+            "repeated_report", lambda: result.report(format=requested)
+        )
+        encoded = stages.call("detached_export", result.to_json)
+        restored = stages.call(
+            "detached_read", lambda: ackredit.Attribution.from_json(encoded)
+        )
+        workflow = stages.call(
+            "workflow_report", lambda: restored.report(format="workflow")
+        )
+        measurements = stages.finish()
     assert rendered == repeated
     assert restored.to_dict() == result.to_dict()
     for captured in results:

@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (124)
+### Resolved (125)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -99,6 +99,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`repeated_attribution_allocations.md`](repeated_attribution_allocations.md) — [#97](https://github.com/uibcdf/ackredit/issues/97) — Avoid redundant allocations when recording repeated attribution. *(resolved, reproduced)*
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#72](https://github.com/uibcdf/ackredit/issues/72) — Review Ackredit Python ecosystem policy adoption. *(resolved, measured)*
 - [`saved_attribution_composition.md`](saved_attribution_composition.md) — [#102](https://github.com/uibcdf/ackredit/issues/102) — Compose shared bibliography without conflating independent original result graphs. *(resolved, reproduced)*
+- [`scope_benchmark_tracing_ownership.md`](scope_benchmark_tracing_ownership.md) — [#131](https://github.com/uibcdf/ackredit/issues/131) — Scope developer benchmark tracing and preserve caller sessions. *(resolved, reproduced)*
 - [`scoped_runtime_coverage.md`](scoped_runtime_coverage.md) — [#76](https://github.com/uibcdf/ackredit/issues/76) — Measure installed runtime coverage and verify its public Codecov report. *(resolved, measured)*
 - [`serve_ui_removed.md`](serve_ui_removed.md) — [#57](https://github.com/uibcdf/ackredit/issues/57) — An unfinished HTTP server was removed rather than promised, and what a dashboard would need is recorded instead. *(resolved, measured)*
 - [`session_promises_its_whole_surface.md`](session_promises_its_whole_surface.md) — [#52](https://github.com/uibcdf/ackredit/issues/52) — Session exposed its writers and its lock alongside the mappings a caller wants, and its stated reason contradicted the same page. *(resolved, measured)*

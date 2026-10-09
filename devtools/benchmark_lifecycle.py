@@ -138,14 +138,22 @@ def identities() -> dict:
 
 
 class Stages:
-    """Retain named timings or separate traced allocation peaks, never both."""
+    """Scope named measurements, releasing only tracing started here."""
 
     def __init__(self, memory: bool):
         self.memory = memory
         self.values = {}
+        self._owns_tracing = memory and not tracemalloc.is_tracing()
         if memory:
             gc.collect()
-            tracemalloc.start()
+            if self._owns_tracing:
+                tracemalloc.start()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exception):
+        self.finish()
 
     def call(self, name, operation):
         if self.memory:
@@ -164,8 +172,9 @@ class Stages:
         return result
 
     def finish(self):
-        if self.memory:
+        if self._owns_tracing:
             tracemalloc.stop()
+            self._owns_tracing = False
         return self.values
 
 
@@ -222,13 +231,13 @@ def worker(case: dict, memory=False) -> dict:
             module = provider(size)
             original = module.compute_0
             observer = ackredit.observe_calls(module)
-            stages = Stages(memory)
-            stages.call("activation", observer.__enter__)
-            stages.call("first_observed_call", lambda: module.compute_0(3))
-            stages.call("deactivation", lambda: observer.__exit__(None, None, None))
-            assert module.compute_0 is original
-            facts["declared_references"] = size
-            facts["declared_functions"] = size
+            with Stages(memory) as stages:
+                stages.call("activation", observer.__enter__)
+                stages.call("first_observed_call", lambda: module.compute_0(3))
+                stages.call("deactivation", lambda: observer.__exit__(None, None, None))
+                assert module.compute_0 is original
+                facts["declared_references"] = size
+                facts["declared_functions"] = size
         elif kind == "science":
             facts, stages = scientific(case, memory)
         else:
@@ -236,86 +245,92 @@ def worker(case: dict, memory=False) -> dict:
                 ackredit.register_item(
                     id=f"lifecycle:{index}", title=f"Reference {index}"
                 )
-            stages = Stages(memory)
-            with ackredit.session("lifecycle"), ExitStack() as stack:
-                if kind == "results":
+            with Stages(memory) as stages:
+                with ackredit.session("lifecycle"), ExitStack() as stack:
+                    if kind == "results":
 
-                    def results():
-                        retained = []
-                        for index in range(size):
-                            with ackredit.capture(f"result-{index}") as run:
-                                ackredit.track_item("lifecycle:0", used_by="compute")
-                            retained.append(run.attribution)
-                        return retained
+                        def results():
+                            retained = []
+                            for index in range(size):
+                                with ackredit.capture(f"result-{index}") as run:
+                                    ackredit.track_item(
+                                        "lifecycle:0", used_by="compute"
+                                    )
+                                retained.append(run.attribution)
+                            return retained
 
-                    retained = stages.call("independent_results", results)
-                    assert all(len(r.to_dict()["items"]) == 1 for r in retained)
-                    facts["retained_results"] = len(retained)
-                else:
-                    runs = stages.call(
-                        "capture_entry",
-                        lambda: [
-                            stack.enter_context(ackredit.capture(f"capture-{index}"))
-                            for index in range(case.get("captures", 1))
-                        ],
-                    )
-                    journal = Path.cwd() / "journal.jsonl"
-                    if kind == "journal":
-                        stages.call(
-                            "journal_open", lambda: ackredit.enable_persistence(journal)
+                        retained = stages.call("independent_results", results)
+                        assert all(len(r.to_dict()["items"]) == 1 for r in retained)
+                        facts["retained_results"] = len(retained)
+                    else:
+                        runs = stages.call(
+                            "capture_entry",
+                            lambda: [
+                                stack.enter_context(
+                                    ackredit.capture(f"capture-{index}")
+                                )
+                                for index in range(case.get("captures", 1))
+                            ],
                         )
-                        stack.callback(ackredit.close_persistence)
-
-                    def track():
-                        for index in range(size):
-                            ackredit.track_target(f"node-{index}", parent="root")
-                            ackredit.track_item(
-                                f"lifecycle:{index}", used_by=f"node-{index}"
+                        journal = Path.cwd() / "journal.jsonl"
+                        if kind == "journal":
+                            stages.call(
+                                "journal_open",
+                                lambda: ackredit.enable_persistence(journal),
                             )
+                            stack.callback(ackredit.close_persistence)
 
-                    stages.call("unique_tracking", track)
-                    result = stages.call("snapshot", lambda: runs[0].attribution)
-                    encoded = stages.call("json_export", result.to_json)
-                    if case.get("separate_format_discovery"):
-                        facts["formats"] = stages.call(
-                            "format_discovery", ackredit.available_formats
-                        )
-                    rendered = stages.call(
-                        "workflow_report", lambda: result.report(format="workflow")
-                    )
-                    if case.get("repeat_report"):
-                        repeated = stages.call(
-                            "repeated_workflow_report",
-                            lambda: result.report(format="workflow"),
-                        )
-                        assert repeated == rendered
-                    bibtex = stages.call(
-                        "bibtex_report", lambda: result.report(format="bibtex")
-                    )
-                    if kind == "journal":
-                        stages.call("journal_close", ackredit.close_persistence)
-                        facts["journal_bytes"] = journal.stat().st_size
-                        from ackredit.core.session import read
+                        def track():
+                            for index in range(size):
+                                ackredit.track_target(f"node-{index}", parent="root")
+                                ackredit.track_item(
+                                    f"lifecycle:{index}", used_by=f"node-{index}"
+                                )
 
-                        assert len(read(journal)["used_items"]) == size
-                    stages.call("capture_exit", stack.close)
-                    data = result.to_dict()
-                    assert ackredit.Attribution.from_json(encoded).to_dict() == data
-                    assert all(
-                        len(r.attribution.to_dict()["items"]) == size for r in runs
-                    )
-                    facts.update(
-                        {
-                            "references": len(data["items"]),
-                            "nodes": len(data["usage_tree"]),
-                            "edges": sum(
-                                len(n["children"]) for n in data["usage_tree"].values()
-                            ),
-                            "json_bytes": len(encoded.encode()),
-                            "workflow_bytes": len(rendered.encode()),
-                            "bibtex_bytes": len(bibtex.encode()),
-                        }
-                    )
+                        stages.call("unique_tracking", track)
+                        result = stages.call("snapshot", lambda: runs[0].attribution)
+                        encoded = stages.call("json_export", result.to_json)
+                        if case.get("separate_format_discovery"):
+                            facts["formats"] = stages.call(
+                                "format_discovery", ackredit.available_formats
+                            )
+                        rendered = stages.call(
+                            "workflow_report", lambda: result.report(format="workflow")
+                        )
+                        if case.get("repeat_report"):
+                            repeated = stages.call(
+                                "repeated_workflow_report",
+                                lambda: result.report(format="workflow"),
+                            )
+                            assert repeated == rendered
+                        bibtex = stages.call(
+                            "bibtex_report", lambda: result.report(format="bibtex")
+                        )
+                        if kind == "journal":
+                            stages.call("journal_close", ackredit.close_persistence)
+                            facts["journal_bytes"] = journal.stat().st_size
+                            from ackredit.core.session import read
+
+                            assert len(read(journal)["used_items"]) == size
+                        stages.call("capture_exit", stack.close)
+                        data = result.to_dict()
+                        assert ackredit.Attribution.from_json(encoded).to_dict() == data
+                        assert all(
+                            len(r.attribution.to_dict()["items"]) == size for r in runs
+                        )
+                        facts.update(
+                            {
+                                "references": len(data["items"]),
+                                "nodes": len(data["usage_tree"]),
+                                "edges": sum(
+                                    len(n["children"])
+                                    for n in data["usage_tree"].values()
+                                ),
+                                "json_bytes": len(encoded.encode()),
+                                "workflow_bytes": len(rendered.encode()),
+                                "bibtex_bytes": len(bibtex.encode()),
+                            }
+                        )
     measurements = stages.finish()
     return {"measurements": measurements, "facts": facts, "identities": identities()}
 
@@ -358,15 +373,15 @@ def scientific(case, memory):
             return puw.convert(quantity, to_unit=target)
 
         convert()
-        stages = Stages(memory)
+        with Stages(memory) as stages:
 
-        def repeated():
-            for _ in range(case["iterations"]):
-                result = convert()
-            return result
+            def repeated():
+                for _ in range(case["iterations"]):
+                    result = convert()
+                return result
 
-        result = stages.call("conversions", repeated)
-        measured = stages.finish()
+            result = stages.call("conversions", repeated)
+            measured = stages.finish()
         actual = puw.get_value(result)
         np.testing.assert_array_equal(actual, values * 100)
         assert result.units == target
