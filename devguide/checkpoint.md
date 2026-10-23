@@ -1,4 +1,4 @@
-# Development checkpoint — 2026-10-07
+# Development checkpoint — 2026-10-22
 
 Start here when resuming work. This operational handoff points to the
 [roadmap](roadmap.md), [status](status.md), [decisions](decisions.md) and queues.
@@ -33,12 +33,14 @@ receipts remain unchanged. Closeout-head CI and consumer notices are recorded in
 
 The release closeout is `887b81c525ff9b285150b2d801c557321b4d48fa`.
 Its [ordinary CI 37600532162](https://github.com/uibcdf/ackredit/actions/runs/37600532162)
-has six successful jobs and queued macOS/Python 3.14 at the 2026-10-07 review;
-GH Run Receptor reports `PENDING`/exit 3. Both
+now passes all seven jobs. GH Run Receptor rechecked terminal success on
+2026-10-22, including the macOS/Python 3.14 job queued at the original review. Both
 [suite policy](https://github.com/uibcdf/ackredit/actions/runs/37600532896) and
 [publication policy](https://github.com/uibcdf/ackredit/actions/runs/37600532962)
-pass. Pending documentation-head CI is not a missing original-producer release
-gate and must not be described as completed. Record its terminal outcome in #127.
+pass. The separate #129 documentation-head
+[CI 37602750475](https://github.com/uibcdf/ackredit/actions/runs/37602750475)
+also passes all seven jobs on reinspection. These terminal results complete the
+previously retained hosted follow-up; original-producer release proofs are unchanged.
 
 This developer-guide review is owned by
 [Ackredit #129](https://github.com/uibcdf/ackredit/issues/129); its final commit,
@@ -54,8 +56,8 @@ gh run-receptor inspect 37600532162 --repo uibcdf/ackredit --receptor=llm
 ```
 
 Inspect the current head's applicable CI with GH Run Receptor as well; the last
-command addresses the separately retained release-closeout run. Allow queued
-checks to finish. Diagnose only an observed failure in its owning issue, preserve
+command addresses the separately retained release-closeout run. Diagnose only
+an observed failure in its owning issue, preserve
 human work, and do not rebuild or promote 0.12.0 to repair documentation CI.
 
 The delivered [canonical integration guide](https://github.com/uibcdf/ackredit/blob/887b81c525ff9b285150b2d801c557321b4d48fa/standards/ACKREDIT_GUIDE.md)
@@ -64,7 +66,28 @@ has source `887b81c525ff9b285150b2d801c557321b4d48fa` and SHA-256
 Those bytes are unchanged by this review. Guide publication is separate from
 the original package producer/tag; consumer copies follow the central registry.
 
-## Compatibility and adoption pause
+## Current resumption and compatibility
+
+The maintainer resumed work on 2026-10-22, with a possible later tag/release.
+The focused owner review is complete under [#132](https://github.com/uibcdf/ackredit/issues/132):
+remaining temporary-resource ownership, exceptional scratch cleanup, retained
+output and historical-path disposition. See the
+[maintained operation review](https://github.com/uibcdf/ackredit/blob/main/devguide/temporary_resources.md).
+It adds lifecycle guards and contributor evidence, not a runtime API change.
+Source inspection, executed cleanup and historical attribution remain separate.
+The selected local gate passes 214 tests without skips; the owning issue records
+the final published head and applicable hosted checks. Fifty-four historical
+paths are absent, the shared pytest root is preserved, and twelve stale worktree
+registrations were pruned after reachability checks. No old files/environments
+were deleted. The canonical client guide is unchanged.
+
+After that review, select focused product work from concrete consumer feedback
+or an explicitly chosen roadmap boundary. A possible release still needs its
+own scope/version decision and exact-source/installed/receiving/public gates;
+do not tag or rebuild an existing coordinate merely for maintenance evidence.
+If Ackredit changes its canonical client guide, publish it here and open an
+owning MolSysSuite issue for registered client synchronization. Do not change
+consumer copies from this checkout.
 
 Portable-only clients retain `>=0.9.0`. Stable provider/prepared credit retains
 `>=0.11.0`. Recorder evidence, opt-in collection/explicit reporting and standalone
@@ -72,12 +95,10 @@ validation have their bounded public promises from `>=0.12.0`. The general 1.x
 commitment still awaits an explicitly authorized, qualified 1.0.0. Review
 [API stability](../docs/content/about/stability.md) for precise exclusions.
 
-**Pause proactive feature development now**, as accepted under #126 and delivered
-through #127. Give MolSysSuite/MOLI consumers time to adopt Ackredit and use it
-in normal workflows. Automated receiving is separate from habitual dogfooding;
-this release does not certify client releases or completed adoption. Resume for
-concrete owning feedback, a demonstrated defect or an explicit maintainer request.
-No last-pre-1.0 schedule or arbitrary pause duration is imposed.
+The prior adoption pause was accepted under #126 and delivered through #127.
+The explicit resumption does not turn automated receiving into habitual
+dogfooding or certify consumer releases. No last-pre-1.0 schedule or arbitrary
+stabilization duration is imposed.
 
 The delivered version/file/digest/guide identities have been handed off to:
 
@@ -88,7 +109,13 @@ The delivered version/file/digest/guide identities have been handed off to:
 | PyUnitWizard | [#94 notice](https://github.com/uibcdf/pyunitwizard/issues/94#issuecomment-6035037580) | Retain qualified pilot evidence; own actual adoption and released client closure. |
 | Sabueso | [#108 notice](https://github.com/uibcdf/sabueso/issues/108#issuecomment-6035038368) | Own its integration, guide adoption and release/actual-use evidence. |
 
-These notices do not establish completed synchronization or habitual adoption.
+MolSysSuite #97 and MOLI #46 are now closed for their bounded central reviews.
+PyUnitWizard #94 records the 2026-10-08 registered six-client guide delivery,
+including commit `4e4eefad58f12778f31e9ec3f81f53193750d567` in PyUnitWizard.
+MOLI #46's 2026-10-21 review preserves Sabueso's required portable `>=0.9.0`
+profile and does not mandate later optional APIs. MolSysMT #292 remains open
+for its own portable-adapter implementation. These are owner records, not fresh
+execution against every current consumer source or habitual adoption evidence.
 The canonical `standards/ACKREDIT_GUIDE.md` publishes verified version boundaries;
 consumer copies are synchronized through the central registry, never repaired
 locally. Other consumers keep their own adoption issues.
@@ -97,7 +124,8 @@ The local bug queue is empty after #128's installed-DueCredit absence-test repai
 Optional dashboard #58 is not a priority. Acknowledgements stay deferred under
 #124 until an actual owned result/wording/reporting case exists. Broader recorders,
 MOLI object boundaries, additional cost studies and new publication expectations
-keep their separate scope and owners; do not initiate them just to fill the pause.
+keep their separate scope and owners; choose concrete work rather than implementing
+deferred features just to produce a tag.
 
 For a useful adoption report, retain the consumer/version, real operation and
 attribution boundary, provider present/absent/failing behavior, original saved

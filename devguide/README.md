@@ -21,6 +21,8 @@ It links to the maintained records below rather than replacing them.
 4.  **[Decision Log](decisions.md):** Why were things done this way? What decisions are still pending?
 5.  **[Function-provider Contract Review](function_provider_contract_review.md):** Provider guarantees delivered in 0.11.0 and separate evidence/validator delivery in 0.12.0. The [recorder-evidence review](recorder_evidence_contract_review.md) defines the bounded evidence guarantees.
 6.  **[Workflow and Standards](workflow.md):** How to contribute, code standards, and validation.
+    The [development resource review](temporary_resources.md) identifies actual
+    scratch/output owners, executed cleanup evidence and retained limits.
 
 ## Reporting lifecycle
 

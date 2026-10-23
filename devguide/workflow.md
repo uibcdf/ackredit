@@ -77,3 +77,13 @@ never reformat or edit it here.
     recovery; local administrative checks do not clear scientific backlog.
     External PRs, admission and publication require all mandatory executed gates
     for their exact candidate and required installed file.
+
+## Temporary resources
+
+Use the shared policy and the
+[component resource review](https://github.com/uibcdf/ackredit/blob/main/devguide/temporary_resources.md)
+for the actual tool/output owners. Keep requested evidence while useful, including
+in `/tmp`; remove task-owned scratch and retired outputs after their last use.
+Do not sweep shared test roots, environments or another task's paths. Disposable
+local validation can use a standard `TemporaryDirectory` around its own pytest
+base/build output; extract the required result before that context closes.

@@ -796,8 +796,12 @@ imports. The [public receipt](https://github.com/uibcdf/ackredit/blob/main/devto
 qualification from earlier development studies and consumer adoption.
 
 The maintainer chose further pre-1.0 stabilization and habitual real use on
-2026-10-07. **Pause proactive feature development now** to give MolSysSuite and
-MOLI components time to adopt Ackredit. Owning consumers choose actual workflows
+2026-10-07, pausing proactive features for adoption. Work explicitly resumed on
+2026-10-22 with #132's remaining temporary-resource owner review and a possible
+later tag/release. That maintenance review introduces no runtime feature or
+release qualification. Select the next product scope from concrete feedback or
+an explicitly chosen roadmap boundary; a release needs its own version decision
+and applicable gates. Owning consumers choose actual workflows
 and report saved-reader behavior, observed cost/friction and concrete defects
 through MolSysSuite #97/MOLI #46 and their component issues. Automated receiving
 does not establish habitual dogfooding or certify a client release.
@@ -806,7 +810,9 @@ Resume focused work for concrete owning feedback, a demonstrated defect or an
 explicit maintainer request. Theme N remains deferred under #124 until its real
 acknowledgement case exists; wider recorder integration, platform object
 contracts, cost measurements and new publication expectations retain their own
-owners and evidence requirements. Do not start them solely to fill the pause.
+owners and evidence requirements. Do not implement deferred capabilities solely
+to produce a new tag. Client-guide updates belong here; MolSysSuite owns any
+subsequent registered-copy synchronization through an owning issue.
 
 Portable `>=0.9.0`, stable providers `>=0.11.0` and bounded evidence/standalone
 validation `>=0.12.0` retain separate public compatibility promises. General

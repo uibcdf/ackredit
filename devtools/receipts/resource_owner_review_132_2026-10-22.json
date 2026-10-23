@@ -1,0 +1,446 @@
+{
+  "schema": "ackredit.resource-owner-review@1",
+  "issue": "uibcdf/ackredit#132",
+  "date": "2026-10-22",
+  "review_base": "b2af6c45296a3421c7a3f2f2ed7491021c0b77cf",
+  "input_sha256": {
+    "devguide/temporary_resources.md": "0e26054f08597b46046bea4af9d20b46ef03c7e22d13512d0147ea1ddf8591a6",
+    "devguide/checkpoint.md": "b212591fc888876d30a2c8c0149518119cb4ea180e4e3fbd3f0caa3c4a7d5dc9",
+    "devguide/roadmap.md": "dc1f6b3c1641bb23afb7970ea1895b2ec516e4181283e3394390f5288e3c8c36",
+    "devguide/status.md": "6f87006fa9d4b9c07096943a3619c42a13bc0ff9836897562622e30cbecdab94",
+    "devguide/workflow.md": "8f3c6cb84f9867b52a7e69a860e8767a753671ad6674a32d014ada9ef0fbb1dd",
+    "devguide/archive/temporary_resource_owner_review.md": "987099a466734cbd758b6c0692e76bc257e1fd4374c798f8efae54da66574cdd",
+    "tests/test_tool_resource_lifecycle.py": "ec4ee6974af025b5c331c2ef91edea1c58b5b5f4522ba18a4b44c33cac41374f"
+  },
+  "reviewed_operation_source_sha256": {
+    "devtools/benchmark.py": "a8513b7c58fa84f5a44045f1772bc7937abd8ea0a9a8a62af6506461a20668b2",
+    "devtools/benchmark_lifecycle.py": "c42470046b789e5633422f12a2b5f7cf94b88944cb3f7fc1ccee93652316b39f",
+    "devtools/benchmark_plugins.py": "e84be5d6c5d077bd5a1ec7f0bbace7268f5cddfb8e1e6a16eda879b563b06f6f",
+    "devtools/benchmark_portable.py": "e4de2a2f1207b188cb380ed3a4c7ed710c7d93eda21ca66fa6af76c063fe5f8a",
+    "devtools/benchmark_provenance.py": "6e100f0b861273d674728c1be3d16fec41ea734a7acf681771c510e2aff2baa8",
+    "devtools/benchmark_public_installation.py": "4eb4ad92feaf24ead949ae87e3fb7deaa687ffccc44cf998d76f0cdcaaf58413",
+    "devtools/check_biblatex.py": "7b705414dd76d729891120582b7505093d233fa2ccbb56ebe04ab35ad9d833b4",
+    "devtools/check_dependency_routes.py": "3b74137ee671fd1c0b7bb4e01633d9220e3f2e1804667a8466b5131f35834755",
+    "devtools/check_jabref.py": "b0b9e48173a760c25d4f59f40e88c3e5b36d522b47472e3f6003072e2ca0d0f4",
+    "devtools/check_publication_tools.py": "0b45be07730519f6d26a562f33b5c8deb660e2c03965f68c8dccd039812d3a19",
+    "devtools/ci_backlog.py": "04b060c3c4a77ffd89657de083addf498c2ad5c3f7a9ec76d574449d117d3d13",
+    "devtools/devguide_index.py": "85c00d4dc3afbff09f8adf8f96fb80d20c30354a83f6bed337be8c2ba0834e5e",
+    "devtools/devguide_reports.py": "bee0b8f3c6804646acdd5ba7d453dc01689cf136d1baf77fb25c533eec1062ec",
+    "devtools/installed_smoke.py": "551d13e5b13a52be1cedaef1312554b62c0fcee1a0d240ff428d4defe2a8a236",
+    "devtools/qualification_bundle.py": "925e13ae84be39d321d6f0c3cb48f81db25db746316e82124b14a7e88d1c4914",
+    "devtools/refresh_example_notebook.py": "0983a405d902ade17c578d2cab27fe154d06407d8b1114a801cfe960ac15f0e9",
+    "devtools/qualification/test_pyunitwizard.py": "6c61c1fa68f2aaf99a24c719206074434f5d9fe1ed8c353b2002b029390c63c8",
+    ".github/workflows/CI.yaml": "c49a45fe517771530fdedc5cc524f054d3ddc760701a1cb0c0ed596d56fec59c",
+    ".github/workflows/CI_full_matrix.yaml": "1fc420c4543ea247b0d666e171888950b201156d2a81af1b39fa481b9eee32ef",
+    ".github/workflows/build_and_upload_conda_packages.yaml": "d190d60cdeb90e54815215434b7d2333ecc7695e3e25800de4b799c487c0f11d",
+    ".github/workflows/coverage.yaml": "e0c8f442d16b219c8e736a828a77fdd9b2f297ff46d1d4c3a34323dc92641b51",
+    ".github/workflows/function_provider_receiving.yaml": "d67371a7d913cae5ac0dca7e619c6b2bfb5634bcdce3c5d4ad253798d9e42e42",
+    ".github/workflows/promote_conda_package.yaml": "c28ab80780e346d63d6ca659b10035c6b6e317aaef8e55e3100bb2353283a53f",
+    ".github/workflows/python314_feasibility.yaml": "42007325d71a419b309fd33885ee2a555f571d63b58d84c82dbb041b8ae994cb",
+    ".github/workflows/test_staged_conda_package.yaml": "58a730d2af9dbe56e6dfa95c21899cbb34812cda5361cb2bc98c1db8b7477221"
+  },
+  "validation": {
+    "command": [
+      "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/bin/python",
+      "-m",
+      "pytest",
+      "--receptor=llm",
+      "--basetemp",
+      "/tmp/ackredit132-validation-g57lve72/pytest",
+      "--receptor-events=/tmp/ackredit132-validation-g57lve72/events.jsonl",
+      "tests/test_tool_resource_lifecycle.py",
+      "tests/test_benchmark_resources.py",
+      "tests/test_lifecycle_tracing_resources.py",
+      "tests/test_reporting_protocol.py",
+      "tests/test_documented_api.py",
+      "tests/test_docs_build.py",
+      "tests/test_qualification_bundle.py",
+      "tests/test_biblatex_receiving.py::test_probe_refuses_to_overwrite_prior_evidence",
+      "tests/test_biblatex_receiving.py::test_engine_failure_propagates_with_retained_process_evidence",
+      "tests/test_biblatex_receiving.py::test_mixed_encoding_diagnostics_retain_exact_bytes_and_process_status",
+      "tests/test_jabref_receiving.py::test_existing_evidence_is_never_replaced",
+      "tests/test_jabref_receiving.py::test_broken_selected_launcher_preserves_failure_and_exact_command",
+      "tests/test_jabref_receiving.py::test_receiving_cannot_write_inside_the_distribution",
+      "tests/test_jabref_receiving.py::test_process_environment_override_is_child_local_and_explicit"
+    ],
+    "source_head": "b2af6c45296a3421c7a3f2f2ed7491021c0b77cf",
+    "source_state": "working candidate; source hashes retained at closeout",
+    "python": "3.14.7",
+    "result": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 214,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 214,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 214,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 21.06130124401534,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "fd381b4906a433a98a133cb2efacd04fcdeaf332332f12dec378d68906fdf356",
+        "records": 643
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "778eda7a7ace438186289deed16a7b4b",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_file_sha256": "0c1ae677de5e1ff206612653b9bddc4ab8ef4b0902e64dd270918f947cba3885",
+    "phase_call_nodeids": 214,
+    "strict_sphinx": {
+      "exit_code": 0,
+      "log_sha256": "02bd5ebde17180a02571aec21dddd3a2517299fc3a864ee5726a143ba292d83d",
+      "diagnostics": []
+    },
+    "task_root": "/tmp/ackredit132-validation-g57lve72",
+    "task_root_removed": true,
+    "initial_strict_sphinx": {
+      "exit_code": 1,
+      "log_sha256": "1fdf1e90d1fec96f4093044a82f239b90d9df083f3799ed75c6ecddbff465e8b"
+    },
+    "docs_root_removed": true,
+    "sphinx_attempts": [
+      {
+        "exit_code": 1,
+        "log_sha256": "174a5fdc6c6b26fb0cea78ab89f11b80eddf35593681be8125c02487540ef121",
+        "diagnostics": [
+          "WARNING: failed to reach any of the inventories with the following issues:"
+        ]
+      }
+    ]
+  },
+  "central_historical_inventory_sha256": "d575195709dda0f60ec7a6f4350b7f1b6ef471b295c9903e0aa97a1d614739f9",
+  "historical_observations": [
+    {
+      "path": "/tmp/ackredit-conda-repro",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/ackredit0100-public-cache",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/ackredit090-closure",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/ackredit090-qualified",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ackredit130",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ackredit130-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ackredit130-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ackredit130-report",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-final",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-ghr-cache",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-qualified",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-repro",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-review",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-depdigest-review-sdk",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-before-complete",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-capture-qualified",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-final",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-qualified",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-refresh-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-sdk",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-ghr-review-transport-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-guide-rollout",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pytest-receptor",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pytest40-fixtures-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pytest40-fixtures-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pyunitwizard115",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pyunitwizard115-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pyunitwizard115-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pyunitwizard115-integration",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pyunitwizard115-provider",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-pyunitwizard115-report",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-after-final",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-before-final",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-ghr-cache",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-qualified",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-repro",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-review",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-smonitor-review-sdk",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-viewer178",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-viewer178-after",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-viewer178-before",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-viewer178-before-unsandboxed",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-viewer178-integrated",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104-viewer178-report",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104_pytest40_after.log",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/molsyssuite104_pytest40_before.log",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/pytest-of-diego",
+      "exists_or_symlink": true,
+      "deleted_by_this_task": false
+    },
+    {
+      "path": "/tmp/pytest-of-liliana/pytest-516",
+      "exists_or_symlink": false,
+      "deleted_by_this_task": false
+    }
+  ],
+  "stale_worktree_registrations": {
+    "count": 12,
+    "all_paths_absent": true,
+    "all_commits_reachable_from_origin_main": true,
+    "dry_run_reviewed": true,
+    "command": [
+      "git",
+      "worktree",
+      "prune",
+      "--expire",
+      "now",
+      "--verbose"
+    ],
+    "remaining": "/home/diego/repos@uibcdf/ackredit b2af6c4 [main]",
+    "deleted_worktree_files": false,
+    "deleted_branches": false,
+    "previous_removal_attribution": "unknown"
+  },
+  "retained_shared_resources": [
+    "/tmp/pytest-of-diego",
+    "molsyssuite@uibcdf_3.14 and other caller-owned environments/caches"
+  ],
+  "canonical_guide_sha256": "6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d",
+  "canonical_guide_changed": false,
+  "implementation_exception": "none required for reviewed component-owned scope",
+  "limits": [
+    "inert callbacks verify scratch lifecycle, not scientific execution, installed plugin performance or third-party internals",
+    "hosted job and shared-provider routes were inspected, not universally executed or certified",
+    "explicit evidence/output directories remain owned by invoking tasks until no longer useful",
+    "shared environment retains seven unrelated pip-check conflicts in MolSysSuite #82",
+    "this is source maintenance evidence, not a new artifact or release qualification"
+  ]
+}

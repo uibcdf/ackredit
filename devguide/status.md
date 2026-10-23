@@ -69,7 +69,7 @@ working, a test or a reproducible command backs it.
   certification. Guarded by `tests/test_coverage_workflow.py`, with evidence in
   [the coverage record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/scoped_runtime_coverage.md).
 
-## Pre-1.0 adoption pause
+## Pre-1.0 stabilization and resumed work
 
 Qualified public **0.12.0** completes the subsequent delivery authorization in
 [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), from #126's
@@ -84,7 +84,12 @@ Recorder evidence and standalone validation now have their bounded public
 promise from `>=0.12.0`; portable `>=0.9.0` and providers `>=0.11.0` remain
 unchanged. The general public 1.x commitment awaits a separately qualified 1.0.
 
-**Pause proactive feature development for consumer adoption and habitual use.**
+The maintainer paused proactive features on 2026-10-07 for adoption, then
+explicitly resumed work on 2026-10-22. The first bounded review, #132, documents
+development-resource owners and adds exceptional cleanup guards; it changes no
+runtime API, client guide or original release artifact. The
+[checkpoint](checkpoint.md) records the current sequence and exact-head evidence.
+
 MolSysSuite/MOLI consumers choose their workflows and supply saved-reader
 evidence, observed cost/friction and owning feedback through #97/#46 and their
 component issues. Controlled receiving is separate from habitual dogfooding;
@@ -138,10 +143,10 @@ fixed number of releases. The minor rises when behaviour a caller can see change
 many land before 1.0.0 is an outcome rather than a plan.
 
 The milestone receipts below describe their original development checkpoints.
-Current delivery is public 0.12.0; the adoption pause and version boundaries
-above govern resumption. Historical "provisional" wording does not override
-later bounded acceptance/delivery. Unchecked wider roadmap criteria are deferred
-opportunities, not an instruction to continue feature development during the pause.
+Current delivery is public 0.12.0; the maintainer's explicit resumption and version
+boundaries above govern new work. Historical "provisional" wording does not
+override later bounded acceptance/delivery. Unchecked wider roadmap criteria
+need a selected owning scope; they are not all required before the next release.
 
 - **Distribution:** complete for public 0.9.0 under #22/#75/#80. The matching
   `0.9.0` Git tag identifies its original producer under #82. Later candidates

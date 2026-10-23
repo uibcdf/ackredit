@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (125)
+### Resolved (126)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -112,6 +112,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`startup_discovery_costs.md`](startup_discovery_costs.md) — [#116](https://github.com/uibcdf/ackredit/issues/116) — Separate startup discovery costs and defer unused network and PDF imports. *(resolved, measured)*
 - [`summary_shows_an_object_address.md`](summary_shows_an_object_address.md) — [#51](https://github.com/uibcdf/ackredit/issues/51) — summary() defined only _repr_html_, so printing it anywhere but a notebook gave the object's address in memory. *(resolved, measured)*
 - [`support_python_314.md`](support_python_314.md) — [#80](https://github.com/uibcdf/ackredit/issues/80) — Deliver normal public Python 3.14 installation and required consumer compatibility. *(resolved, reproduced)*
+- [`temporary_resource_owner_review.md`](temporary_resource_owner_review.md) — [#132](https://github.com/uibcdf/ackredit/issues/132) — Review remaining development-resource ownership and exceptional cleanup. *(resolved, reproduced)*
 - [`tests_share_tracking_state.md`](tests_share_tracking_state.md) — [#30](https://github.com/uibcdf/ackredit/issues/30) — The suite depended on the order its files ran in, so a test could pass for the reason of the test before it. *(resolved, measured)*
 - [`the_bibtex_parser_truncates_at_the_first_brace.md`](the_bibtex_parser_truncates_at_the_first_brace.md) — [#42](https://github.com/uibcdf/ackredit/issues/42) — A non-greedy regex cut every field at its first inner brace, so a loaded .bib file was re-emitted with braces that do not balance. *(resolved, measured)*
 - [`the_command_line_is_broken.md`](the_command_line_is_broken.md) — [#40](https://github.com/uibcdf/ackredit/issues/40) — Every subcommand was wrong in some way, and nothing in the test suite ran the program. *(resolved, measured)*
