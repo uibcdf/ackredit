@@ -1,12 +1,16 @@
 # Release notes
 
-## 0.12.1 — maintenance candidate (2026-10-22)
+## 0.12.1 — faithful workflow snapshot scaling (2026-10-22)
 
-Candidate qualification is tracked in
-[Ackredit #134](https://github.com/uibcdf/ackredit/issues/134); public delivery
-is not yet claimed. Recommended installation remains verified public 0.12.0
-until the exact new archive passes source, installed, real receiving and public
-verification gates.
+Delivery is complete under [Ackredit #134](https://github.com/uibcdf/ackredit/issues/134):
+all exact-source gates, eight full installed cells, 72 real PyUnitWizard tests
+without skips, same-file promotion and independent public registry/index
+verification pass. Fresh public Linux/Python 3.14.9 installation verifies all
+70 original package files, contracts, CLI, saved reader, actual optional absence
+and `pip check`. [Installation](installation.md), the
+[public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
+and [release](https://github.com/uibcdf/ackredit/releases/tag/0.12.1) retain
+original producer `28d3643e324da4c714a5c238701baba5ec64d306` and immutable file/digest.
 
 - Remove quadratic reconciliation in enclosing `get_attribution()` snapshots
   (#133), preserving contextual variants, original bibliography, use order,

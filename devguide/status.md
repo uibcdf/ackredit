@@ -31,11 +31,17 @@ working, a test or a reproducible command backs it.
   persistence and a multi-session aggregator.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
-  by `tests/test_packaging.py`. Public Ackredit 0.12.0 is available from the `uibcdf`
+  by `tests/test_packaging.py`. Public Ackredit 0.12.1 is available from the `uibcdf`
   Conda channel as one verified noarch file. The same archive passed Linux/macOS
   arm64 × Python 3.11–3.14 installed qualification and a clean public Linux/Python
   3.14 receiving installation. See [installation](../docs/content/about/installation.md)
-  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json).
+  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json).
+- **Enclosing workflow snapshots:** public 0.12.1 removes quadratic legacy-use
+  reconciliation without changing contextual variants, bibliography or use order
+  (#133). The paired source study preserves all corresponding payloads; installed
+  work-bound/fidelity guards and three 5,000-use payloads pass against the exact
+  public file. [Performance](../docs/content/about/performance.md) records raw
+  samples, small-case limits and the temporary-allocation tradeoff.
 - **Portable attribution:** `capture` observes per-calculation references without
   replacing the application session; `get_attribution` snapshots the workflow.
   `Attribution` preserves detached bibliography, contextual roles, original versions
@@ -70,6 +76,12 @@ working, a test or a reproducible command backs it.
   [the coverage record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/scoped_runtime_coverage.md).
 
 ## Pre-1.0 stabilization and resumed work
+
+Qualified public **0.12.1** completes #134's snapshot maintenance delivery.
+All exact-source, eight-cell installed, 72-test real receiving and same-file
+public verification gates pass. Its clean public Python 3.14.9 prefix passes
+contracts, all-file identity and dependency closure. Original 0.12.0 evidence
+and the accepted contract floors below are unchanged.
 
 Qualified public **0.12.0** completes the subsequent delivery authorization in
 [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127), from #126's
@@ -143,7 +155,7 @@ fixed number of releases. The minor rises when behaviour a caller can see change
 many land before 1.0.0 is an outcome rather than a plan.
 
 The milestone receipts below describe their original development checkpoints.
-Current delivery is public 0.12.0; the maintainer's explicit resumption and version
+Current delivery is public 0.12.1; the maintainer's explicit resumption and version
 boundaries above govern new work. Historical "provisional" wording does not
 override later bounded acceptance/delivery. Unchecked wider roadmap criteria
 need a selected owning scope; they are not all required before the next release.

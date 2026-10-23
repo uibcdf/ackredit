@@ -1,13 +1,13 @@
 ---
 summary: Qualify one exact maintenance artifact for faithful large-workflow snapshots.
 issue: uibcdf/ackredit#134
-status: active
+status: resolved
 opened: 2026-10-22
-closed:
+closed: 2026-10-22
 severity: medium
-verification: asserted
+verification: measured
 area: [distribution, release, performance]
-guard:
+guard: tests/test_release_citation.py::test_self_citation_matches_committed_release_candidate
 normative:
 blocked_by: []
 supersedes: []
@@ -79,3 +79,42 @@ not an all-tools execution claim. Strict Sphinx, Ruff and reporting indexes pass
 All test/build scratch is managed and removed after extracting normalized proof.
 The current shared environment's seven unrelated dependency conflicts remain
 MolSysSuite #82; fresh release dependency closure must be verified separately.
+
+## Verified delivery
+
+Public 0.12.1 is complete. Original producer/tag source is
+`28d3643e324da4c714a5c238701baba5ec64d306`; the annotated tag object is
+`239ca77e32efa8cba8b1dd0d1b02b86b8e2a44ee`. GitHub release title/name is
+exactly `0.12.1`, published at
+[the verified release URL](https://github.com/uibcdf/ackredit/releases/tag/0.12.1).
+
+Original `ackredit-0.12.1-py_0.tar.bz2` SHA-256:
+`46d505016f6d05d7000adfaedde5f1ce596e32eb70d5302fc7f112c1042a73cb`.
+All 17 required source jobs/steps pass; original staging run 39886772212,
+installed run 39887248843 and real receiving run 39887250554 bind the same source
+and file. All eight installed cells pass. All eight real receiving cells pass
+nine tests each without skips; ten native ZIP digests and source bindings verify,
+and independently reconstructed aggregate equals the hosted result.
+
+Promotion 39888619992 adds the public label to the original file without a
+rebuild. The shared public verifier and independent operator verify main label,
+solver index and digest. A fresh ordinary public-channel Linux/Python 3.14.9
+prefix, using a cache separate from staging, passes all 70 package files,
+runtime/distribution/CFF, provider/evidence/portable/CLI/fresh-reader contracts,
+actual optional absence and `pip check`. The installed candidate passes 43
+selected contracts and all three 5,000-use payloads agree with source originals.
+Compared with public 0.12.0, 67 files are identical; only the reviewed snapshot
+implementation, packaged citation and generated version differ. Both measured
+core files match the corresponding original public archives.
+
+The [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
+retains native effects, original identities, source/file bindings, all local
+and receiving proofs, limits and temporary-resource disposition. Tag conformance
+39889264082 passes. Final documentation-head checks are recorded in the owning
+issue separately; no later documentation commit replaces the producer/tag.
+The version/CFF guard protects release metadata identity; it is not a substitute
+for the independently retained installed/public file proofs.
+
+The canonical client guide is byte-identical, so no synchronization is required.
+General 1.x and Zenodo archival are not claimed. Existing license-table metadata
+warning is separately owned by #135; it is not a current build failure.

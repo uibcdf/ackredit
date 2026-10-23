@@ -1,154 +1,132 @@
 # Development checkpoint — 2026-10-22
 
-Start here when resuming work. This operational handoff points to the
-[roadmap](roadmap.md), [status](status.md), [decisions](decisions.md) and queues.
+Start here when resuming. The [roadmap](roadmap.md), [status](status.md),
+[decisions](decisions.md) and issue-backed queues retain their own scope.
 
-## Public stabilization release complete
+## Verified public maintenance delivery
 
-Qualified public **0.12.0** completes [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127).
-The immutable `0.12.0` tag identifies original producer
-`6f4dbf39996a7185b8aaff7c52b9daeb167a100a`; documentation closeout is separate.
-Original file `ackredit-0.12.0-py_0.tar.bz2` has SHA-256
-`160b452c2b9de3b44bc6c6e2f4bd8c47e44b1d2779b620f63048231708a1d4aa`.
+**0.12.1 is public and complete under
+[Ackredit #134](https://github.com/uibcdf/ackredit/issues/134).** The canonical tag
+and [GitHub release](https://github.com/uibcdf/ackredit/releases/tag/0.12.1) retain
+original producer `28d3643e324da4c714a5c238701baba5ec64d306`; the annotated tag
+object is `239ca77e32efa8cba8b1dd0d1b02b86b8e2a44ee`. Later documentation commits
+never replace that source or rebuild the coordinate.
 
-All required exact-source gates, eight Linux/macOS arm64 × Python 3.11–3.14 full
-installed cells, 72 real PyUnitWizard receiving tests without skips and independent
-aggregate verification pass. The same installed candidate also passes 158
-selected contracts without skips, the dependency-free author/validator example
-and real BibTeX/Pandoc, two BibLaTeX/Biber styles and JabRef 5.15 checks.
-Synthetic ISBN and manager key-store warnings remain in the receipts.
+Original file: `ackredit-0.12.1-py_0.tar.bz2`. SHA-256:
+`46d505016f6d05d7000adfaedde5f1ce596e32eb70d5302fc7f112c1042a73cb`.
 
-Same-file public promotion, independent labels/solver index and a fresh ordinary
-public Linux/Python 3.14 installation pass. All 70 installed package files match
-the original archive; runtime/distribution/CFF identity, detached readers/CLI,
-evidence, standalone validation, actual optional absence and dependency closure
-pass. [Installation](../docs/content/about/installation.md), the
-[archived release record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/release_0120.md)
-and [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) retain original evidence and limits.
-Do not rebuild or promote this coordinate again. Original 0.11.0 and earlier
-receipts remain unchanged. Closeout-head CI and consumer notices are recorded in
-#127 separately from original-producer release qualification.
+All 17 required source jobs and named steps pass, including eight full source
+Linux/macOS arm64 × Python 3.11–3.14 cells. Original staging
+[39886772212](https://github.com/uibcdf/ackredit/actions/runs/39886772212),
+eight-cell installed matrix
+[39887248843](https://github.com/uibcdf/ackredit/actions/runs/39887248843),
+72 real PyUnitWizard tests without skips
+[39887250554](https://github.com/uibcdf/ackredit/actions/runs/39887250554) and
+same-file promotion
+[39888619992](https://github.com/uibcdf/ackredit/actions/runs/39888619992) pass.
+Ten receiving ZIP digests/source bindings and the independently reconstructed
+aggregate verify. The shared operator verifies the full native installed matrix;
+public label/index verification is independent and read-only.
 
-## Documentation handoff and CI follow-up
+A fresh ordinary public-channel Linux/Python 3.14.9 prefix, with cache separate
+from staging, passes all 70 original package files, runtime/distribution/CFF,
+portable/provider/evidence/CLI/fresh-reader contracts, actual optional absence
+and `pip check`. Candidate-installed checks pass 43 selected contracts and all
+three 5,000-use payloads match the corresponding source originals. Compared
+with public 0.12.0, 67 package files are identical; only the reviewed snapshot
+implementation, packaged citation and generated version differ.
 
-The release closeout is `887b81c525ff9b285150b2d801c557321b4d48fa`.
-Its [ordinary CI 37600532162](https://github.com/uibcdf/ackredit/actions/runs/37600532162)
-now passes all seven jobs. GH Run Receptor rechecked terminal success on
-2026-10-22, including the macOS/Python 3.14 job queued at the original review. Both
-[suite policy](https://github.com/uibcdf/ackredit/actions/runs/37600532896) and
-[publication policy](https://github.com/uibcdf/ackredit/actions/runs/37600532962)
-pass. The separate #129 documentation-head
-[CI 37602750475](https://github.com/uibcdf/ackredit/actions/runs/37602750475)
-also passes all seven jobs on reinspection. These terminal results complete the
-previously retained hosted follow-up; original-producer release proofs are unchanged.
+[Installation](../docs/content/about/installation.md),
+[the archived release record](https://github.com/uibcdf/ackredit/blob/main/devguide/archive/release_0121.md)
+and [the public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
+retain original identities, native effects, proofs, cleanup and limits. Earlier
+0.12.0/0.11.0 and older tags, archives and receipts remain unchanged. Public
+Conda, GitHub release and tag do not establish Zenodo archival or a DOI.
 
-This developer-guide review is owned by
-[Ackredit #129](https://github.com/uibcdf/ackredit/issues/129); its final commit,
-validation and any queued hosted checks are recorded there. Start a new session
-by inspecting the working tree and the exact current head, then use the run ID
-returned for the applicable workflow:
+## Completed source and maintenance work
+
+- **#132:** remaining development-resource owners/lifetimes reviewed;
+  [maintained operation review](https://github.com/uibcdf/ackredit/blob/main/devguide/temporary_resources.md),
+  twelve new exceptional-cleanup cases and 214 selected passing tests without
+  skips. Fifty-four historical paths are absent; shared `/tmp/pytest-of-diego`
+  is preserved. Twelve absent worktree registrations were pruned after individual
+  path/commit checks. Prior removal attribution remains unknown. Disposition
+  delivered to [MolSysSuite #104](https://github.com/uibcdf/molsyssuite/issues/104#issuecomment-6355547940).
+- **#133:** `get_attribution()` replaces repeated full-use scans with one
+  snapshot-local pair index. Context variants, observed records, ordered legacy
+  fallback, unknown references and graph remain intact. Six deterministic
+  scaling guards fail before repair; the fidelity control passes on both sides.
+  Nine paired source cases retain 126 matching results for corresponding inputs.
+  At 5,000 uses source medians improve by 3.87–4.94 times, with 0.79–0.81 MiB
+  extra peak traced allocation. Small cases show no consistent speedup. This is
+  not RSS or a full scientific-pipeline/universal speed claim; see
+  [performance](../docs/content/about/performance.md).
+- **Old CI follow-up:** release-closeout 37600532162 and developer-guide
+  37602750475 now pass all seven jobs. Their terminal outcomes are recorded in
+  #127/#129; the original queued observations remain historical.
+- **Resource retirement:** both task-owned Conda prefixes, both temporary Git
+  worktrees, the release SDK/cache/evidence root and 18 task files are retired
+  after normalized proof was saved. Git/Conda handled their registrations;
+  shared environments, caches and pytest root were preserved. Necessary evidence
+  may remain in `/tmp` in future tasks; remove it when no longer useful.
+
+Final documentation-head CI is distinct from the original producer's completed
+release qualification. The owning #134 retains the final published head and its
+inspected applicable checks; do not rebuild/promote/tag again for prose changes.
+
+## Compatibility and consumer ownership
+
+Portable-only clients retain `>=0.9.0`; stable provider/prepared contracts retain
+`>=0.11.0`; bounded recorder evidence, opt-in collection/explicit reporting and
+standalone validation retain `>=0.12.0`. General 1.x needs a separate explicit,
+qualified decision. Maintenance 0.12.1 changes none of these floors or schemas.
+
+The canonical `standards/ACKREDIT_GUIDE.md` is unchanged, SHA-256
+`6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d`.
+No new synchronization or client dependency upgrade is required. If it changes
+in later work, publish the canonical bytes here and open an owning MolSysSuite
+issue for registered-client synchronization; never repair consumer copies locally.
+
+MolSysSuite #97 and MOLI #46 completed their bounded central reviews. The
+2026-10-08 six-consumer guide delivery is recorded in PyUnitWizard #94; MOLI's
+2026-10-21 direct-consumer review preserves Sabueso's required portable profile.
+Those notices and this pinned PyUnitWizard qualification do not certify every
+current consumer source or habitual adoption. MolSysMT owns its adapter work
+in #292. For siblings use owning issues; only PyUnitWizard has the separately
+authorized source-change route with its own required records.
+
+## Next work
+
+1. Triage [#135](https://github.com/uibcdf/ackredit/issues/135): Setuptools warns
+   about the existing license table and requests migration before 2027-02-18.
+   Current builds pass. Review backend-floor, recipe and shared template/checker
+   implications before a scoped metadata repair; do not silently raise floors.
+2. Review actual consumer feedback and select a bounded next product scope.
+   Wider roadmap L costs, J recorder coverage and K platform/result boundaries
+   retain their own owners/evidence. Do not implement them just to produce a tag.
+3. General 1.0 stays explicit and informed by real use. Optional dashboard #58
+   is not a priority; acknowledgement work remains deferred under #124 until an
+   owned real result/wording/reporting case exists.
+
+## Local resumption
+
+Use Python 3.14 in `molsyssuite@uibcdf_3.14`; install the primary checkout with
+`python -m pip install --no-deps --editable .`. Verify origin and matching
+runtime/distribution identity at or above 0.12.1 after tag/history changes.
+Development suffixes are separate from the exact published Conda installation.
+The shared development environment still has seven unrelated dependency
+conflicts tracked in MolSysSuite #82; clean release prefixes pass `pip check`.
+Do not downgrade shared dependencies or remove another task's resources.
+
+Inspect actual state first:
 
 ```bash
 git status --short
 git log -1 --format='%H %s'
-gh run list --repo uibcdf/ackredit --commit "$(git rev-parse HEAD)" --limit 10
-gh run-receptor inspect 37600532162 --repo uibcdf/ackredit --receptor=llm
+gh run list --repo uibcdf/ackredit --limit 10
+gh run-receptor inspect RUN_ID --repo uibcdf/ackredit --receptor=llm
 ```
 
-Inspect the current head's applicable CI with GH Run Receptor as well; the last
-command addresses the separately retained release-closeout run. Diagnose only
-an observed failure in its owning issue, preserve
-human work, and do not rebuild or promote 0.12.0 to repair documentation CI.
-
-The delivered [canonical integration guide](https://github.com/uibcdf/ackredit/blob/887b81c525ff9b285150b2d801c557321b4d48fa/standards/ACKREDIT_GUIDE.md)
-has source `887b81c525ff9b285150b2d801c557321b4d48fa` and SHA-256
-`6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d`.
-Those bytes are unchanged by this review. Guide publication is separate from
-the original package producer/tag; consumer copies follow the central registry.
-
-## Current resumption and compatibility
-
-The maintainer resumed work on 2026-10-22, with a possible later tag/release.
-The focused owner review is complete under [#132](https://github.com/uibcdf/ackredit/issues/132):
-remaining temporary-resource ownership, exceptional scratch cleanup, retained
-output and historical-path disposition. See the
-[maintained operation review](https://github.com/uibcdf/ackredit/blob/main/devguide/temporary_resources.md).
-It adds lifecycle guards and contributor evidence, not a runtime API change.
-Source inspection, executed cleanup and historical attribution remain separate.
-The selected local gate passes 214 tests without skips; the owning issue records
-the final published head and applicable hosted checks. Fifty-four historical
-paths are absent, the shared pytest root is preserved, and twelve stale worktree
-registrations were pruned after reachability checks. No old files/environments
-were deleted. The canonical client guide is unchanged.
-
-The next selected product boundary is roadmap L's enclosing-workflow snapshot
-scaling. [#133](https://github.com/uibcdf/ackredit/issues/133) repairs repeated
-full-use scans with a snapshot-local pair index. Six deterministic guards fail
-before repair; a fidelity control passes on both sides, and all 126 measured
-payload fingerprints agree. At 5,000 uses source medians improve by 3.87–4.94
-times with about 0.8 MiB extra peak traced allocation. This is editable-source
-evidence; small cases and whole scientific pipelines have no general speed claim.
-
-Maintenance candidate [#134](https://github.com/uibcdf/ackredit/issues/134) names
-0.12.1 in the staged plan and matching CFF. Public installation remains 0.12.0
-until the new original file has its own exact-source, installed, real receiving
-and public proofs. Do not tag, promote or claim completion from the source study.
-If Ackredit changes its canonical client guide, publish it here and open an
-owning MolSysSuite issue for registered client synchronization. Do not change
-consumer copies from this checkout.
-
-Portable-only clients retain `>=0.9.0`. Stable provider/prepared credit retains
-`>=0.11.0`. Recorder evidence, opt-in collection/explicit reporting and standalone
-validation have their bounded public promises from `>=0.12.0`. The general 1.x
-commitment still awaits an explicitly authorized, qualified 1.0.0. Review
-[API stability](../docs/content/about/stability.md) for precise exclusions.
-
-The prior adoption pause was accepted under #126 and delivered through #127.
-The explicit resumption does not turn automated receiving into habitual
-dogfooding or certify consumer releases. No last-pre-1.0 schedule or arbitrary
-stabilization duration is imposed.
-
-The delivered version/file/digest/guide identities have been handed off to:
-
-| Owner | Retained handoff | Next owner action |
-| --- | --- | --- |
-| MolSysSuite | [#97 notice](https://github.com/uibcdf/molsyssuite/issues/97#issuecomment-6035035826) | Coordinate registered-consumer adoption and canonical-guide synchronization. |
-| MOLI | [#46 notice](https://github.com/uibcdf/moli/issues/46#issuecomment-6035036721) | Own platform/result-boundary decisions and direct-component adoption. |
-| PyUnitWizard | [#94 notice](https://github.com/uibcdf/pyunitwizard/issues/94#issuecomment-6035037580) | Retain qualified pilot evidence; own actual adoption and released client closure. |
-| Sabueso | [#108 notice](https://github.com/uibcdf/sabueso/issues/108#issuecomment-6035038368) | Own its integration, guide adoption and release/actual-use evidence. |
-
-MolSysSuite #97 and MOLI #46 are now closed for their bounded central reviews.
-PyUnitWizard #94 records the 2026-10-08 registered six-client guide delivery,
-including commit `4e4eefad58f12778f31e9ec3f81f53193750d567` in PyUnitWizard.
-MOLI #46's 2026-10-21 review preserves Sabueso's required portable `>=0.9.0`
-profile and does not mandate later optional APIs. MolSysMT #292 remains open
-for its own portable-adapter implementation. These are owner records, not fresh
-execution against every current consumer source or habitual adoption evidence.
-The canonical `standards/ACKREDIT_GUIDE.md` publishes verified version boundaries;
-consumer copies are synchronized through the central registry, never repaired
-locally. Other consumers keep their own adoption issues.
-
-The local bug queue is empty after #128's installed-DueCredit absence-test repair.
-Optional dashboard #58 is not a priority. Acknowledgements stay deferred under
-#124 until an actual owned result/wording/reporting case exists. Broader recorders,
-MOLI object boundaries, additional cost studies and new publication expectations
-keep their separate scope and owners; choose concrete work rather than implementing
-deferred features just to produce a tag.
-
-For a useful adoption report, retain the consumer/version, real operation and
-attribution boundary, provider present/absent/failing behavior, original saved
-result and its fresh-reader report, expected/observed outcome, and any measured
-friction/cost. File defects or missing capabilities in the owning component and
-cross-link this provider when relevant. No arbitrary number of consumers or
-elapsed pause duration qualifies 1.0; reconsider it from actual-use evidence and
-a separate maintainer release decision.
-
-## Retained limits
-
-Publication tools qualify only the recorded fixtures, versions and two styles;
-they do not certify arbitrary managers, journals, Unicode, GUI or platforms.
-PyUnitWizard receiving uses its pinned original producer and released 0.9.0
-fallback; no consumer scientific release is inferred. Shared scientific
-environment conflicts remain MolSysSuite #82; fresh release environments do not
-repair or downgrade human environments. Sibling checkouts and synchronized
-external guides remain untouched. Zenodo/DOI archival has not been claimed.
+Root contributor/suite instructions govern scoped gates and authorized direct
+pushes. Empty local queues are not a claim that all GitHub ideas/adoption work
+are complete; incoming triage and deliberately deferred issues stay visible.

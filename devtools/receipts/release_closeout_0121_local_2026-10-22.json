@@ -1,0 +1,86 @@
+{
+  "issue": "uibcdf/ackredit#134",
+  "scope": "Public delivery documentation, report archival/indexes, maintained checkpoint and retained evidence; original producer/package/tag unchanged.",
+  "selected_tests": [
+    "tests/test_reporting_protocol.py",
+    "tests/test_documented_api.py",
+    "tests/test_devguide_claims.py",
+    "tests/test_installation_page.py",
+    "tests/test_release_citation.py",
+    "tests/test_versioning.py",
+    "tests/test_conda_release_route.py",
+    "tests/test_docs_build.py"
+  ],
+  "pytest": {
+    "artifact_policy": {
+      "dropped_records": 0,
+      "max_bytes": 52428800,
+      "truncated": false
+    },
+    "complete": true,
+    "counts": {
+      "collected": 179,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 179,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 179,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "duration": 1.4520993740297854,
+    "exitstatus": 0,
+    "extensions": {
+      "dropped": 0,
+      "incomplete": false,
+      "recorded": 0
+    },
+    "integrity": {
+      "algorithm": "sha256",
+      "digest": "1a60bd4fea585ab6e22bde299f421bc7814c4d035b1995d877176131bd05030d",
+      "records": 538
+    },
+    "invalid_selections": [],
+    "note": "",
+    "outcome": "PASS",
+    "root_causes": 0,
+    "run_id": "9192406f42f3473592d40da480ad4f44",
+    "schema": "pytest-receptor.events@1",
+    "stop_reason": "",
+    "type": "session_finish"
+  },
+  "events_file_sha256": "9d1190b8cdf1b28adb33605677e6fedbd9d60c9471e56738f2f136d8d3f6ee4b",
+  "python": "3.14.7",
+  "test_root_removed": true,
+  "strict_sphinx": {
+    "exit_code": 0,
+    "log_sha256": "ef82255a68271e7438f89b056798a836ad2332bd4fc3101a9079d5422234b058",
+    "diagnostics": [],
+    "root_removed": true
+  },
+  "local_markdown_targets": {
+    "checked": 88,
+    "all_exist": true,
+    "scope": "Changed maintained prose plus archive/packaging guide; external sibling links retain their owners."
+  },
+  "canonical_guide_sha256": "6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d",
+  "canonical_guide_changed": false,
+  "ruff_check": "PASS",
+  "ruff_format": "PASS",
+  "indexes": "PASS",
+  "input_sha256": {
+    "devguide/checkpoint.md": "e0f33e31ea37fd9c635ab2d7e1a22360905c032be9e573326af652e99ab58b82",
+    "devguide/roadmap.md": "a1b34f3ad80a4dd6014a236def8ebecb294f0e33325703e7baa1414b69e1cb22",
+    "devguide/status.md": "f8ebafb3cf4e66dac85dbaaf0f3e0b2adb856686a7e69f83a4ba253ea4140f5c",
+    "devguide/archive/release_0121.md": "be87954794d31745d32100e8b2f27736c9c7acfa71bfe1e0614782234de321cb",
+    "devtools/conda-build/README.md": "c5aebd502074b3ff09454af5d3666f948bbb8e907c8e835ec93fcfedd3643696",
+    "docs/content/about/installation.md": "81fac37e65cd5c87504c0116d31245c7ff24fe56ae71773e3a40a369836ed3e8",
+    "docs/content/about/release_notes.md": "52258b16150ba677ffe1ce9be120d3b6537f4fbdeb1a6bd7764dfd7901c16261",
+    "devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json": "bf8d5b037f89d53e33819d9be1f0cd48ae8bf378089070bfdc79ffc4289c0546"
+  }
+}

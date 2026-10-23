@@ -1,7 +1,7 @@
 # Conda packaging
 
-Ackredit builds one `noarch: python` artifact. Dependencies such as NumPy carry
-their own platform packages. Published 0.9.0 was qualified on Linux x86-64 and
+Ackredit builds one `noarch: python` artifact. Dependencies carry their own
+platform packages. Published 0.9.0 was qualified on Linux x86-64 and
 macOS arm64 on Python 3.11–3.14. Its exact public identity and qualification
 receipts are retained in [the delivery record](../../devguide/archive/ackredit_cannot_be_installed.md).
 Corrected public 0.10.1 repeats this matrix and adds exact-file real PyUnitWizard
@@ -22,6 +22,15 @@ retains original producer/file/digest and the fresh public installation evidence
 The canonical tag stays at the original producer; later closeout guidance does
 not authorize rebuilding or promoting that coordinate again.
 
+Public 0.12.1 delivers #133's enclosing-snapshot maintenance repair under #134.
+All exact-source gates, eight full installed cells and 72 mandatory real
+PyUnitWizard tests pass for one original file, followed by same-file promotion,
+independent registry/index checks and clean public Python 3.14.9 installation.
+The [receipt](receipts/ackredit_0.12.1_public_2026-10-22.json) retains original
+source/file/digest, tag/release and scope. The installed candidate also passes
+43 selected contracts, all 70 package files and three large-workflow payloads.
+No source/public contract floor or client-guide change is introduced.
+
 ## Committed candidate inputs
 
 `release_plan.toml` records staging, version/build, executed source gates and
@@ -41,7 +50,10 @@ promotion and independent public registry/index verification.
 
 1. Publish the reviewed source commit and pass its declared CI/policy gates.
 2. Dispatch `build_and_upload_conda_packages.yaml` with full `candidate_sha`
-   and the version in the plan (currently `0.12.0`, tracked in #127). The plan supplies build 0. The provider freezes version
+   and the version in the reviewed plan. The current `0.12.1` coordinate is already
+   delivered under #134: do not dispatch its build again. A future candidate
+   first needs its own plan/CFF/version decision and gates. The plan supplies
+   build 0. The provider freezes version
    metadata only in its ephemeral checkout, builds once, tests and inspects the
    archive before uploading the exact file to staging.
 3. Retain its producer artifact/receipt. Dispatch `test_staged_conda_package.yaml`

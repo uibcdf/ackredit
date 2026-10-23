@@ -147,6 +147,18 @@ and deferred feature imports. The [receipt](https://github.com/uibcdf/ackredit/b
 retains original qualification. Pause proactive features for consumer adoption
 and habitual use; general 1.x delivery stays deferred.
 
+### 0.12.1 — Faithful enclosing-workflow snapshot scaling
+
+Qualified maintenance delivery under #134 removes quadratic reconciliation in
+`get_attribution()` (#133), preserving original records, contextual variants,
+legacy fallback, use order and graph. It includes #132's development-resource
+review and guards. One original noarch file passes all source gates, eight full
+installed cells, 72 real receiving tests without skips, same-file promotion and
+clean public Python 3.14 installation. The
+[receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
+retains exact identities, allocation tradeoffs and bounded evidence. APIs,
+schemas, dependency floors and the canonical integration guide are unchanged.
+
 ---
 
 ## Towards 1.0.0
@@ -788,8 +800,10 @@ application/manuscript text is insufficient before accepting a new contract.
 
 ## Execution order and release checkpoints
 
-The [development checkpoint](checkpoint.md) records completed public **0.12.0**
-delivery under [Ackredit #127](https://github.com/uibcdf/ackredit/issues/127).
+The [development checkpoint](checkpoint.md) records completed public **0.12.1**
+maintenance delivery under [Ackredit #134](https://github.com/uibcdf/ackredit/issues/134).
+The original **0.12.0** delivery under [#127](https://github.com/uibcdf/ackredit/issues/127)
+retains its independent source/file and accepted-contract identities.
 It includes the retained #126 scope: accepted evidence/validator promises,
 provider author tooling, citation/DOI fidelity repairs and deferred feature
 imports. The [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json) separates original exact-source/file
@@ -797,9 +811,9 @@ qualification from earlier development studies and consumer adoption.
 
 The maintainer chose further pre-1.0 stabilization and habitual real use on
 2026-10-07, pausing proactive features for adoption. Work explicitly resumed on
-2026-10-22 with #132's remaining temporary-resource owner review and a possible
-later tag/release. That maintenance review introduces no runtime feature or
-release qualification. Select the next product scope from concrete feedback or
+2026-10-22 with #132's remaining temporary-resource owner review. Its separate
+#133 snapshot repair is now delivered in 0.12.1; the resource review alone
+introduces no runtime feature or release qualification. Select the next product scope from concrete feedback or
 an explicitly chosen roadmap boundary; a release needs its own version decision
 and applicable gates. Owning consumers choose actual workflows
 and report saved-reader behavior, observed cost/friction and concrete defects
