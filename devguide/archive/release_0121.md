@@ -118,3 +118,17 @@ for the independently retained installed/public file proofs.
 The canonical client guide is byte-identical, so no synchronization is required.
 General 1.x and Zenodo archival are not claimed. Existing license-table metadata
 warning is separately owned by #135; it is not a current build failure.
+
+## Post-release guide identification — 2026-10-22
+
+After delivery, the maintainer requested that the canonical client guide identify
+the new release. Its new release-reference section recommends public 0.12.1,
+links exact-file installation evidence and the bounded performance review, and
+preserves the accepted feature minimums and schemas. The original producer's
+guide remains unchanged; this later documentation update does not replace its
+source, artifact or qualification receipts. MolSysSuite receives a separate
+synchronization issue with the committed source and guide digest:
+[MolSysSuite #128](https://github.com/uibcdf/molsyssuite/issues/128), cross-linked
+from #134. Consumer copies, dependencies and scientific adapters are not edited here.
+The existing executed guide examples and absence/signature guards in
+`tests/test_integration_guide.py` validate the maintained integration contract.

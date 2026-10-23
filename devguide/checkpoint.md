@@ -81,11 +81,13 @@ Portable-only clients retain `>=0.9.0`; stable provider/prepared contracts retai
 standalone validation retain `>=0.12.0`. General 1.x needs a separate explicit,
 qualified decision. Maintenance 0.12.1 changes none of these floors or schemas.
 
-The canonical `standards/ACKREDIT_GUIDE.md` is unchanged, SHA-256
-`6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d`.
-No new synchronization or client dependency upgrade is required. If it changes
-in later work, publish the canonical bytes here and open an owning MolSysSuite
-issue for registered-client synchronization; never repair consumer copies locally.
+The canonical `standards/ACKREDIT_GUIDE.md` now identifies recommended public
+0.12.1 and its bounded snapshot improvement, preserving all feature minimums.
+This post-release documentation update is separate from the original producer.
+MolSysSuite owns registered-client synchronization in
+[MolSysSuite #128](https://github.com/uibcdf/molsyssuite/issues/128); never repair
+consumer copies locally. Synchronization does not impose a
+client dependency upgrade or qualify a consumer release.
 
 MolSysSuite #97 and MOLI #46 completed their bounded central reviews. The
 2026-10-08 six-consumer guide delivery is recorded in PyUnitWizard #94; MOLI's
@@ -96,6 +98,9 @@ in #292. For siblings use owning issues; only PyUnitWizard has the separately
 authorized source-change route with its own required records.
 
 ## Next work
+
+The guide handoff in MolSysSuite #128 remains pending central synchronization;
+Ackredit owns the canonical text, while MolSysSuite owns consumer publication.
 
 1. Triage [#135](https://github.com/uibcdf/ackredit/issues/135): Setuptools warns
    about the existing license table and requests migration before 2027-02-18.

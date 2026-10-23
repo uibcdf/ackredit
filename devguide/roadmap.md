@@ -157,7 +157,8 @@ installed cells, 72 real receiving tests without skips, same-file promotion and
 clean public Python 3.14 installation. The
 [receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
 retains exact identities, allocation tradeoffs and bounded evidence. APIs,
-schemas, dependency floors and the canonical integration guide are unchanged.
+schemas and dependency floors are unchanged. The post-release canonical guide
+identifies recommended 0.12.1; MolSysSuite owns client-copy synchronization.
 
 ---
 

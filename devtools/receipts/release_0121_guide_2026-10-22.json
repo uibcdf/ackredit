@@ -1,0 +1,35 @@
+{
+  "issue": "uibcdf/ackredit#134",
+  "synchronization_issue": "uibcdf/molsyssuite#128",
+  "scope": "Post-release canonical guide identification; original 0.12.1 producer/file/tag unchanged. Consumer synchronization pending central owner.",
+  "guide_sha256": "194b33b0187e85a61f30c13a0a365d99d22ecbd9b3ca1d796bf0e8520dd837e1",
+  "selected_tests": [
+    "tests/test_integration_guide.py",
+    "tests/test_reporting_protocol.py",
+    "tests/test_documented_api.py",
+    "tests/test_devguide_claims.py",
+    "tests/test_installation_page.py",
+    "tests/test_docs_build.py"
+  ],
+  "pytest": {
+    "exit_code": 0,
+    "passed": 175,
+    "skipped": 0
+  },
+  "strict_sphinx": {
+    "exit_code": 0,
+    "diagnostics": [],
+    "log_sha256": "3c6d8630e82090de2a469382fbad8d641645e317c820066abc24944be4307c19",
+    "temporary_output_removed_on_exit": true
+  },
+  "local_markdown_targets_checked": 47,
+  "ruff_check": "PASS",
+  "ruff_format": "PASS",
+  "indexes": "PASS",
+  "input_sha256": {
+    "standards/ACKREDIT_GUIDE.md": "194b33b0187e85a61f30c13a0a365d99d22ecbd9b3ca1d796bf0e8520dd837e1",
+    "devguide/checkpoint.md": "3c07593f2c4b2db3eb8af1a3fd3e656fe7a4317fd2e169077429896ddc4a31c6",
+    "devguide/roadmap.md": "ef6dc16252ef5e05ca6564eaad3752b56b33e750c920a05fdfd211ef9d79c405",
+    "devguide/archive/release_0121.md": "f67cfb1adf7e0fbcbfaaa923e08d028c39810a1f7ea19426ae557ca218ce473c"
+  }
+}
