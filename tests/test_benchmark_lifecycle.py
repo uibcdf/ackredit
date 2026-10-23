@@ -13,6 +13,23 @@ benchmark = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(benchmark)
 
 
+@pytest.mark.parametrize("mode", ["plain", "contextual", "mixed"])
+@pytest.mark.parametrize("memory", [False, True])
+def test_enclosing_workflow_snapshot_is_measured_separately(
+    clean_registry: object, mode: str, memory: bool
+) -> None:
+    result = benchmark.worker({"kind": "workflow", "size": 4, "mode": mode}, memory)
+    assert result["facts"]["references"] == result["facts"]["uses"] == 4
+    assert result["facts"]["nodes"] == 5
+    assert result["facts"]["edges"] == 4
+    assert len(result["facts"]["payload_sha256"]) == 64
+    assert set(result["measurements"]) == {"unique_tracking", "workflow_snapshot"}
+    for measurement in result["measurements"].values():
+        assert set(measurement) == (
+            {"retained_delta_bytes", "peak_extra_bytes"} if memory else {"elapsed_us"}
+        )
+
+
 def test_startup_separates_discovery_and_preserves_repeated_report():
     result = benchmark.study(
         {

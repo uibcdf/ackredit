@@ -1,0 +1,3845 @@
+{
+  "schema": "ackredit.workflow-snapshot-study@1",
+  "issue": "uibcdf/ackredit#133",
+  "date": "2026-10-22",
+  "baseline_core_source_commit": "afe763d",
+  "baseline_attribution_sha256": "527950fbd77b94828b9e45fb719c08ca098722e7439eb7b3babd15a7a5e1791d",
+  "candidate_attribution_sha256": "2262045f9efb36d412423a6ea36d86d9448769ead276a82ba0e7cb42e890c333",
+  "measured_tool_source": "\"\"\"Ackredit lifecycle study, not a release gate or a universal overhead promise.\n\nRun with the intended interpreter and dependencies. Every sample uses a fresh\nprocess outside the checkout. Timing and tracemalloc runs are separate; memory\nmeans Python allocations during the named stages, not RSS or dependency size.\nScientific cases require PyUnitWizard, NumPy, Pint and unyt; no import skips.\nExisting benchmark_portable.py remains the warmed repeated-credit tool.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport gc\nimport hashlib\nimport importlib\nimport importlib.metadata\nimport json\nimport platform\nimport statistics\nimport subprocess\nimport sys\nimport tempfile\nimport tracemalloc\nfrom contextlib import ExitStack\nfrom pathlib import Path\nfrom time import perf_counter_ns\nfrom types import ModuleType\n\n_COLD = \"\"\"\nimport sys, time\nmemory = sys.argv[2] == 'memory'\nif memory:\n    import gc, tracemalloc\n    gc.collect()\n    tracemalloc.start()\nmeasurements = {}\npreloaded = sorted(sys.modules)\ndef measure(name, operation):\n    if memory:\n        tracemalloc.reset_peak()\n        before = tracemalloc.get_traced_memory()[0]\n        result = operation()\n        current, peak = tracemalloc.get_traced_memory()\n        measurements[name] = dict(retained_delta_bytes=current-before, peak_extra_bytes=peak-before)\n    else:\n        start = time.perf_counter_ns()\n        result = operation()\n        measurements[name] = dict(elapsed_us=(time.perf_counter_ns()-start)/1000)\n    return result\nackredit = measure('import', lambda: __import__('ackredit'))\nroots = sorted({name.split('.')[0] for name in sys.modules})\nmeasure('first_registration', lambda: ackredit.register_item(id='lifecycle:first', title='First reference'))\nmeasure('first_credit', lambda: ackredit.track_item('lifecycle:first'))\nif memory:\n    tracemalloc.stop()\n# Import the benchmark machinery only after all measured stages have finished.\nimport runpy, json\ntools = runpy.run_path(sys.argv[1])\nprint(json.dumps(tools['cold_finished'](measurements, roots, preloaded)))\n\"\"\"\n\n\ndef cold_finished(measurements, roots, preloaded):\n    return {\n        \"measurements\": measurements,\n        \"facts\": {\n            \"loaded_roots_after_import\": roots,\n            \"modules_before_import\": preloaded,\n            \"plugins\": [\n                {\"name\": ep.name, \"value\": ep.value, \"distribution\": ep.dist.name}\n                for ep in importlib.metadata.entry_points(group=\"ackredit.citations\")\n            ],\n        },\n        \"identities\": identities(),\n    }\n\n\ndef child(command, **kwargs):\n    \"\"\"Preserve the failed process's evidence as well as its exit status.\"\"\"\n    try:\n        return subprocess.run(\n            command, text=True, capture_output=True, check=True, timeout=180, **kwargs\n        )\n    except subprocess.CalledProcessError as error:\n        print(error.stdout + error.stderr, file=sys.stderr, end=\"\")\n        raise\n\n\ndef identities() -> dict:\n    \"\"\"Fingerprint actual loaded code separately from distribution metadata.\"\"\"\n    result = {}\n    for name, distribution in (\n        (\"ackredit\", \"ackredit\"),\n        (\"smonitor\", \"smonitor\"),\n        (\"depdigest\", \"depdigest\"),\n        (\"argdigest\", \"argdigest\"),\n        (\"yaml\", \"PyYAML\"),\n        (\"numpy\", \"numpy\"),\n        (\"pyunitwizard\", \"pyunitwizard\"),\n        (\"pint\", \"pint\"),\n        (\"unyt\", \"unyt\"),\n    ):\n        module = sys.modules.get(name)\n        if module is None:\n            continue\n        origin = Path(module.__file__).resolve()\n        digest = hashlib.sha256()\n        paths = sorted(\n            p\n            for p in origin.parent.rglob(\"*\")\n            if p.is_file() and p.suffix in {\".py\", \".cff\", \".yaml\", \".toml\"}\n        )\n        for path in paths:\n            digest.update(path.relative_to(origin.parent).as_posix().encode() + b\"\\0\")\n            digest.update(hashlib.sha256(path.read_bytes()).digest())\n        metadata = importlib.metadata.distribution(distribution)\n        entry = {\n            \"origin\": str(origin),\n            \"runtime_version\": getattr(module, \"__version__\", None),\n            \"distribution_version\": metadata.version,\n            \"requirements\": metadata.requires or [],\n            \"source_tree_sha256\": digest.hexdigest(),\n            \"source_file_count\": len(paths),\n            \"direct_url\": json.loads(metadata.read_text(\"direct_url.json\") or \"null\"),\n        }\n        root = origin.parent.parent\n        if (root / \".git\").exists():\n            entry[\"checkout_head\"] = subprocess.check_output(\n                [\"git\", \"rev-parse\", \"HEAD\"], cwd=root, text=True\n            ).strip()\n            entry[\"checkout_dirty\"] = bool(\n                subprocess.check_output(\n                    [\"git\", \"status\", \"--porcelain\"], cwd=root, text=True\n                ).strip()\n            )\n        result[name] = entry\n    return result\n\n\nclass Stages:\n    \"\"\"Scope named measurements, releasing only tracing started here.\"\"\"\n\n    def __init__(self, memory: bool):\n        self.memory = memory\n        self.values = {}\n        self._owns_tracing = memory and not tracemalloc.is_tracing()\n        if memory:\n            gc.collect()\n            if self._owns_tracing:\n                tracemalloc.start()\n\n    def __enter__(self):\n        return self\n\n    def __exit__(self, *exception):\n        self.finish()\n\n    def call(self, name, operation):\n        if self.memory:\n            tracemalloc.reset_peak()\n            before = tracemalloc.get_traced_memory()[0]\n            result = operation()\n            current, peak = tracemalloc.get_traced_memory()\n            self.values[name] = {\n                \"retained_delta_bytes\": current - before,\n                \"peak_extra_bytes\": peak - before,\n            }\n        else:\n            start = perf_counter_ns()\n            result = operation()\n            self.values[name] = {\"elapsed_us\": (perf_counter_ns() - start) / 1000}\n        return result\n\n    def finish(self):\n        if self._owns_tracing:\n            tracemalloc.stop()\n            self._owns_tracing = False\n        return self.values\n\n\ndef provider(size):\n    \"\"\"Controlled declarations: one reference and one exported function per unit.\"\"\"\n    module = ModuleType(\"lifecycle_provider\")\n    items, functions = [], {}\n    for index in range(size):\n        name = f\"compute_{index}\"\n        setattr(module, name, lambda value: value * value)\n        item_id = f\"lifecycle:{index}\"\n        items.append({\"id\": item_id, \"title\": f\"Reference {index}\"})\n        functions[name] = [{\"item_id\": item_id, \"roles\": [\"software_description\"]}]\n    module.__ackredit__ = {\n        \"schema\": \"ackredit.provider@1\",\n        \"software\": {\"name\": module.__name__, \"version\": \"1\"},\n        \"items\": items,\n        \"functions\": functions,\n    }\n    return module\n\n\ndef worker(case: dict, memory=False) -> dict:\n    kind, size = case[\"kind\"], case.get(\"size\", 1)\n    if kind not in {\n        \"import\",\n        \"activation\",\n        \"science\",\n        \"results\",\n        \"references\",\n        \"journal\",\n        \"workflow\",\n    }:\n        raise ValueError(f\"Unknown lifecycle case: {kind}\")\n    if size < 1 or case.get(\"captures\", 1) < 1 or case.get(\"iterations\", 1) < 1:\n        raise ValueError(\"Case sizes, capture counts and iterations must be positive\")\n    facts = {}\n    if kind == \"import\":\n        response = child(\n            [\n                sys.executable,\n                \"-c\",\n                _COLD,\n                str(Path(__file__).resolve()),\n                \"memory\" if memory else \"timing\",\n            ],\n        )\n        if response.stderr:\n            print(response.stderr, file=sys.stderr, end=\"\")\n        return json.loads(response.stdout)\n    else:\n        import ackredit\n\n        if kind == \"activation\":\n            module = provider(size)\n            original = module.compute_0\n            observer = ackredit.observe_calls(module)\n            with Stages(memory) as stages:\n                stages.call(\"activation\", observer.__enter__)\n                stages.call(\"first_observed_call\", lambda: module.compute_0(3))\n                stages.call(\"deactivation\", lambda: observer.__exit__(None, None, None))\n                assert module.compute_0 is original\n                facts[\"declared_references\"] = size\n                facts[\"declared_functions\"] = size\n        elif kind == \"science\":\n            facts, stages = scientific(case, memory)\n        else:\n            for index in range(1 if kind == \"results\" else size):\n                ackredit.register_item(\n                    id=f\"lifecycle:{index}\", title=f\"Reference {index}\"\n                )\n            with Stages(memory) as stages:\n                with ackredit.session(\"lifecycle\"), ExitStack() as stack:\n                    if kind == \"workflow\":\n                        mode = case.get(\"mode\", \"plain\")\n                        if mode not in {\"plain\", \"contextual\", \"mixed\"}:\n                            raise ValueError(f\"Unknown workflow credit mode: {mode}\")\n\n                        def workflow_credits():\n                            for index in range(size):\n                                caller = f\"node-{index}\"\n                                ackredit.track_target(caller, parent=\"root\")\n                                options = (\n                                    {\"roles\": [\"method\"], \"context\": {\"version\": \"1\"}}\n                                    if mode == \"contextual\"\n                                    or (mode == \"mixed\" and index >= size // 2)\n                                    else {}\n                                )\n                                ackredit.track_item(\n                                    f\"lifecycle:{index}\", used_by=caller, **options\n                                )\n\n                        stages.call(\"unique_tracking\", workflow_credits)\n                        used_before = ackredit.get_used_items()\n                        result = stages.call(\n                            \"workflow_snapshot\", ackredit.get_attribution\n                        )\n                        encoded = result.to_json()\n                        data = result.to_dict()\n                        assert ackredit.get_used_items() == used_before\n                        assert len(data[\"items\"]) == len(data[\"uses\"]) == size\n                        assert len(data[\"usage_tree\"]) == size + 1\n                        assert len(data[\"usage_tree\"][\"root\"][\"children\"]) == size\n                        assert ackredit.Attribution.from_json(encoded).to_dict() == data\n                        facts.update(\n                            references=size,\n                            uses=len(data[\"uses\"]),\n                            nodes=len(data[\"usage_tree\"]),\n                            edges=size,\n                            payload_sha256=hashlib.sha256(encoded.encode()).hexdigest(),\n                        )\n                    elif kind == \"results\":\n\n                        def results():\n                            retained = []\n                            for index in range(size):\n                                with ackredit.capture(f\"result-{index}\") as run:\n                                    ackredit.track_item(\n                                        \"lifecycle:0\", used_by=\"compute\"\n                                    )\n                                retained.append(run.attribution)\n                            return retained\n\n                        retained = stages.call(\"independent_results\", results)\n                        assert all(len(r.to_dict()[\"items\"]) == 1 for r in retained)\n                        facts[\"retained_results\"] = len(retained)\n                    else:\n                        runs = stages.call(\n                            \"capture_entry\",\n                            lambda: [\n                                stack.enter_context(\n                                    ackredit.capture(f\"capture-{index}\")\n                                )\n                                for index in range(case.get(\"captures\", 1))\n                            ],\n                        )\n                        journal = Path.cwd() / \"journal.jsonl\"\n                        if kind == \"journal\":\n                            stages.call(\n                                \"journal_open\",\n                                lambda: ackredit.enable_persistence(journal),\n                            )\n                            stack.callback(ackredit.close_persistence)\n\n                        def track():\n                            for index in range(size):\n                                ackredit.track_target(f\"node-{index}\", parent=\"root\")\n                                ackredit.track_item(\n                                    f\"lifecycle:{index}\", used_by=f\"node-{index}\"\n                                )\n\n                        stages.call(\"unique_tracking\", track)\n                        result = stages.call(\"snapshot\", lambda: runs[0].attribution)\n                        encoded = stages.call(\"json_export\", result.to_json)\n                        if case.get(\"separate_format_discovery\"):\n                            facts[\"formats\"] = stages.call(\n                                \"format_discovery\", ackredit.available_formats\n                            )\n                        rendered = stages.call(\n                            \"workflow_report\", lambda: result.report(format=\"workflow\")\n                        )\n                        if case.get(\"repeat_report\"):\n                            repeated = stages.call(\n                                \"repeated_workflow_report\",\n                                lambda: result.report(format=\"workflow\"),\n                            )\n                            assert repeated == rendered\n                        bibtex = stages.call(\n                            \"bibtex_report\", lambda: result.report(format=\"bibtex\")\n                        )\n                        if kind == \"journal\":\n                            stages.call(\"journal_close\", ackredit.close_persistence)\n                            facts[\"journal_bytes\"] = journal.stat().st_size\n                            from ackredit.core.session import read\n\n                            assert len(read(journal)[\"used_items\"]) == size\n                        stages.call(\"capture_exit\", stack.close)\n                        data = result.to_dict()\n                        assert ackredit.Attribution.from_json(encoded).to_dict() == data\n                        assert all(\n                            len(r.attribution.to_dict()[\"items\"]) == size for r in runs\n                        )\n                        facts.update(\n                            {\n                                \"references\": len(data[\"items\"]),\n                                \"nodes\": len(data[\"usage_tree\"]),\n                                \"edges\": sum(\n                                    len(n[\"children\"])\n                                    for n in data[\"usage_tree\"].values()\n                                ),\n                                \"json_bytes\": len(encoded.encode()),\n                                \"workflow_bytes\": len(rendered.encode()),\n                                \"bibtex_bytes\": len(bibtex.encode()),\n                            }\n                        )\n    measurements = stages.finish()\n    return {\"measurements\": measurements, \"facts\": facts, \"identities\": identities()}\n\n\ndef scientific(case, memory):\n    \"\"\"Real dispatch; check values, units and references outside timed loops.\"\"\"\n    import numpy as np\n    import pyunitwizard as puw\n\n    import ackredit\n\n    puw.configure.reset()\n    puw.configure.load_library([\"pint\", \"unyt\"])\n    values = np.arange(case[\"size\"], dtype=float) + 1\n    quantity = puw.quantity(values, \"meter\", form=\"pint\")\n    target = quantity._REGISTRY.centimeter\n    mode = case[\"mode\"]\n    with ackredit.session(\"scientific control\"), ExitStack() as stack:\n        if case.get(\"metadata_only\", False):\n            import smonitor\n\n            stack.enter_context(\n                smonitor.diagnostic_scope(\n                    safe_extra={\"operation\": \"ackredit-lifecycle-benchmark\"}\n                )\n            )\n        if mode != \"ordinary\":\n            stack.enter_context(puw.attribution())\n        if mode in {\"observed\", \"capture\", \"evidence\"}:\n            stack.enter_context(ackredit.observe_calls(puw))\n        run = None\n        if mode in {\"capture\", \"evidence\"}:\n            run = stack.enter_context(\n                ackredit.capture(\n                    \"scientific result\", record_evidence=mode == \"evidence\"\n                )\n            )\n\n        def convert():\n            return puw.convert(quantity, to_unit=target)\n\n        convert()\n        with Stages(memory) as stages:\n\n            def repeated():\n                for _ in range(case[\"iterations\"]):\n                    result = convert()\n                return result\n\n            result = stages.call(\"conversions\", repeated)\n            measured = stages.finish()\n        actual = puw.get_value(result)\n        np.testing.assert_array_equal(actual, values * 100)\n        assert result.units == target\n        data = (run.attribution if run else ackredit.get_attribution()).to_dict()\n        software = sorted({u[\"context\"][\"software\"] for u in data[\"uses\"]})\n        expected_software = {\"ordinary\": [], \"backend\": [\"pint\"]}.get(\n            mode, [\"pint\", \"pyunitwizard\"]\n        )\n        assert software == expected_software, (mode, software)\n        for use in data[\"uses\"]:\n            version = importlib.metadata.version(use[\"context\"][\"software\"])\n            assert use[\"context\"][\"version\"] == version\n        evidence = run.evidence.to_dict() if mode == \"evidence\" else None\n        if evidence is not None:\n            assert run.evidence.attribution.to_dict() == data\n        stages.values = measured\n        return {\n            \"numerical_parity\": True,\n            \"unit\": str(result.units),\n            \"value_sha256\": hashlib.sha256(actual.tobytes()).hexdigest(),\n            \"software\": software,\n            \"references\": len(data[\"items\"]),\n            \"evidence_recorded\": evidence is not None,\n            \"metadata_only\": case.get(\"metadata_only\", False),\n        }, stages\n\n\ndef summarize(samples):\n    \"\"\"Summarize every raw numeric field without hiding variation.\"\"\"\n    return {\n        stage: {\n            field: {\n                \"median\": statistics.median(values),\n                \"minimum\": min(values),\n                \"maximum\": max(values),\n                \"spread\": max(values) - min(values),\n            }\n            for field in measurements\n            if (values := [sample[\"measurements\"][stage][field] for sample in samples])\n        }\n        for stage, measurements in samples[0][\"measurements\"].items()\n    }\n\n\ndef study(cases, samples, memory_samples):\n    \"\"\"Alternate scenario order; retain subprocess errors and actual identities.\"\"\"\n    results = {\n        name: {\"case\": case, \"timing_samples\": [], \"memory_samples\": []}\n        for name, case in cases.items()\n    }\n    identity_records = {}\n    script = str(Path(__file__).resolve())\n    with tempfile.TemporaryDirectory(prefix=\"ackredit-lifecycle-\") as directory:\n        for memory, count in ((False, samples), (True, memory_samples)):\n            for index in range(count):\n                ordered = list(cases.items())\n                if index % 2:\n                    ordered.reverse()\n                for name, case in ordered:\n                    sample_directory = Path(directory) / f\"{memory}-{index}-{name}\"\n                    sample_directory.mkdir()\n                    response = child(\n                        [\n                            sys.executable,\n                            script,\n                            \"--worker\",\n                            json.dumps(case),\n                            *([\"--memory\"] if memory else []),\n                        ],\n                        cwd=sample_directory,\n                    )\n                    sample = json.loads(response.stdout)\n                    packages = sample.pop(\"identities\")\n                    identity_id = hashlib.sha256(\n                        json.dumps(packages, sort_keys=True).encode()\n                    ).hexdigest()\n                    identity_records[identity_id] = packages\n                    sample[\"identity_id\"] = identity_id\n                    sample[\"stderr\"] = response.stderr\n                    results[name][\n                        \"memory_samples\" if memory else \"timing_samples\"\n                    ].append(sample)\n                print(\n                    f\"Completed {'allocation' if memory else 'timing'} sample {index + 1}/{count}\",\n                    file=sys.stderr,\n                )\n    for record in results.values():\n        for mode in (\"timing\", \"memory\"):\n            record[f\"{mode}_summary\"] = summarize(record[f\"{mode}_samples\"])\n    for name in {name for packages in identity_records.values() for name in packages}:\n        fingerprints = {\n            (\n                packages[name][\"source_tree_sha256\"],\n                packages[name][\"runtime_version\"],\n                packages[name][\"distribution_version\"],\n            )\n            for packages in identity_records.values()\n            if name in packages\n        }\n        if len(fingerprints) != 1:\n            raise RuntimeError(\n                f\"Loaded package changed during study: {name}; repeat with fixed sources\"\n            )\n    return {\"identities\": identity_records, \"results\": results}\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--worker\", help=argparse.SUPPRESS)\n    parser.add_argument(\"--memory\", action=\"store_true\", help=argparse.SUPPRESS)\n    parser.add_argument(\"--samples\", type=int, default=7)\n    parser.add_argument(\"--memory-samples\", type=int, default=3)\n    parser.add_argument(\n        \"--startup-only\",\n        action=\"store_true\",\n        help=\"Compare first reports with explicit format discovery and warm repeats\",\n    )\n    parser.add_argument(\n        \"--workflow-snapshots-only\",\n        action=\"store_true\",\n        help=\"Measure enclosing plain/contextual/mixed snapshots separately from capture snapshots\",\n    )\n    parser.add_argument(\n        \"--scientific\",\n        action=\"store_true\",\n        help=\"Require and measure real PyUnitWizard conversion\",\n    )\n    parser.add_argument(\n        \"--scoped-diagnostics\",\n        action=\"store_true\",\n        help=\"Also require and measure SMonitor's metadata-only scientific scopes\",\n    )\n    parser.add_argument(\"--output\", type=Path)\n    arguments = parser.parse_args()\n    if arguments.worker:\n        print(json.dumps(worker(json.loads(arguments.worker), arguments.memory)))\n        return\n    if arguments.samples < 2 or arguments.memory_samples < 2 or not arguments.output:\n        parser.error(\"output is required; timing and memory need at least two samples\")\n    if arguments.scoped_diagnostics and not arguments.scientific:\n        parser.error(\"scoped diagnostics require the scientific cases\")\n    if arguments.startup_only and arguments.scientific:\n        parser.error(\"startup-only excludes scientific cases\")\n    if arguments.workflow_snapshots_only and (\n        arguments.startup_only or arguments.scientific\n    ):\n        parser.error(\"workflow-snapshots-only excludes startup/scientific cases\")\n    cases = {\"cold_import\": {\"kind\": \"import\"}}\n    for size in (1, 100, 1000):\n        cases[f\"activation_{size}\"] = {\"kind\": \"activation\", \"size\": size}\n        cases[f\"references_{size}\"] = {\"kind\": \"references\", \"size\": size}\n    for size in (1, 10, 100):\n        cases[f\"results_{size}\"] = {\"kind\": \"results\", \"size\": size}\n    for count in (4, 16):\n        cases[f\"captures_{count}\"] = {\n            \"kind\": \"references\",\n            \"size\": 100,\n            \"captures\": count,\n        }\n    for size in (100, 1000):\n        cases[f\"journal_{size}\"] = {\"kind\": \"journal\", \"size\": size}\n    if arguments.startup_only:\n        cases = {\"cold_import\": {\"kind\": \"import\"}}\n        for size in (1, 1000):\n            for separated in (False, True):\n                cases[f\"report_{size}_{'separated' if separated else 'first'}\"] = {\n                    \"kind\": \"references\",\n                    \"size\": size,\n                    \"separate_format_discovery\": separated,\n                    \"repeat_report\": True,\n                }\n    if arguments.workflow_snapshots_only:\n        cases = {\n            f\"workflow_{size}_{mode}\": {\"kind\": \"workflow\", \"size\": size, \"mode\": mode}\n            for size in (100, 1000, 5000)\n            for mode in (\"plain\", \"contextual\", \"mixed\")\n        }\n    if arguments.scientific:\n        for size in (1, 100000):\n            for mode in (\"ordinary\", \"backend\", \"observed\", \"capture\", \"evidence\"):\n                cases[f\"science_{size}_{mode}\"] = {\n                    \"kind\": \"science\",\n                    \"size\": size,\n                    \"mode\": mode,\n                    \"iterations\": 1000 if size == 1 else 100,\n                }\n                if arguments.scoped_diagnostics:\n                    cases[f\"science_{size}_{mode}_metadata_only\"] = {\n                        **cases[f\"science_{size}_{mode}\"],\n                        \"metadata_only\": True,\n                    }\n    receipt = {\n        \"schema\": \"ackredit.lifecycle-benchmark@1\",\n        \"python\": platform.python_version(),\n        \"platform\": platform.platform(),\n        \"executable\": sys.executable,\n        \"benchmark_sha256\": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),\n        \"method\": \"Fresh interpreter per case/sample, alternating case order; timing without tracemalloc; separate Python allocation runs. Import includes automatic installed plugin loading. Warm science excludes activation/setup; synthetic scaling includes first unique credits. No release qualification or distribution-installation measurement.\",\n        **study(cases, arguments.samples, arguments.memory_samples),\n    }\n    arguments.output.write_text(json.dumps(receipt, indent=2) + \"\\n\")\n    print(f\"Recorded {len(cases)} cases in {arguments.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+  "final_tool_delta": "Return annotation only on workflow_credits; exact source replacement verified.",
+  "before": {
+    "schema": "ackredit.lifecycle-benchmark@1",
+    "python": "3.14.7",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "executable": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/bin/python",
+    "benchmark_sha256": "27903df44100022c9568b193882c682f33284a2eac498ea94a9cf0e54a0e9ead",
+    "method": "Fresh interpreter per case/sample, alternating case order; timing without tracemalloc; separate Python allocation runs. Import includes automatic installed plugin loading. Warm science excludes activation/setup; synthetic scaling includes first unique credits. No release qualification or distribution-installation measurement.",
+    "identities": {
+      "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c": {
+        "ackredit": {
+          "origin": "/home/diego/repos@uibcdf/ackredit/ackredit/__init__.py",
+          "runtime_version": "0.12.0+11.g74f865d",
+          "distribution_version": "0.12.0+11.g74f865d",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "source_tree_sha256": "70301dbca9dc417e4136f2755891b6157e045f41cae6cd53c4ff76676e0e3a71",
+          "source_file_count": 70,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/ackredit"
+          },
+          "checkout_head": "afe763da78c98cfcb71086f46067350709562e0b",
+          "checkout_dirty": true
+        },
+        "smonitor": {
+          "origin": "/home/diego/repos@uibcdf/smonitor/smonitor/__init__.py",
+          "runtime_version": "0.21.0+1.gd6b2394",
+          "distribution_version": "0.21.0+1.gd6b2394",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "source_tree_sha256": "674facfccb82bcc79843e89fccadd0e02e97a00fb70736b3901a301c5462fc00",
+          "source_file_count": 41,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/smonitor"
+          },
+          "checkout_head": "7df0118593a27126225bddb457644fc7764802c4",
+          "checkout_dirty": false
+        },
+        "depdigest": {
+          "origin": "/home/diego/repos@uibcdf/depdigest/depdigest/__init__.py",
+          "runtime_version": "0.15.1+3.ga27172b",
+          "distribution_version": "0.15.1+3.ga27172b",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "source_tree_sha256": "edfa9a6fc3fdb94f639e496197ae34d7921596c6f2388869cdc552ec50f5c748",
+          "source_file_count": 17,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/depdigest"
+          },
+          "checkout_head": "ef64111a1b6ce6c2452d86918e7ea7ee067116cc",
+          "checkout_dirty": false
+        },
+        "argdigest": {
+          "origin": "/home/diego/repos@uibcdf/argdigest/argdigest/__init__.py",
+          "runtime_version": "0.16.0+1.g6dabaf7",
+          "distribution_version": "0.16.0+1.g6dabaf7",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "source_tree_sha256": "3555779dc3cc670bbbe8773ae914066f8b1074ae566dfa75792eeecabd9df827",
+          "source_file_count": 39,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/argdigest"
+          },
+          "checkout_head": "7d1895d46ec4361e3f913cb2ed97b99a02449d12",
+          "checkout_dirty": false
+        }
+      }
+    },
+    "results": {
+      "workflow_100_plain": {
+        "case": {
+          "kind": "workflow",
+          "size": 100,
+          "mode": "plain"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 544.976
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 7275.21
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 552.025
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5613.067
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 539.92
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 6135.452
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 453.441
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5203.378
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 579.686
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 6048.465
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 129448,
+                "peak_extra_bytes": 129448
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 145905,
+                "peak_extra_bytes": 385686
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 129448,
+                "peak_extra_bytes": 129448
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 145905,
+                "peak_extra_bytes": 385686
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 544.976,
+              "minimum": 453.441,
+              "maximum": 579.686,
+              "spread": 126.24500000000006
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 6048.465,
+              "minimum": 5203.378,
+              "maximum": 7275.21,
+              "spread": 2071.8320000000003
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 129448.0,
+              "minimum": 129448,
+              "maximum": 129448,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 129448.0,
+              "minimum": 129448,
+              "maximum": 129448,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 145905.0,
+              "minimum": 145905,
+              "maximum": 145905,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 385686.0,
+              "minimum": 385686,
+              "maximum": 385686,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_100_contextual": {
+        "case": {
+          "kind": "workflow",
+          "size": 100,
+          "mode": "contextual"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 6196.463
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8174.266
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5939.148
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 9107.636
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5807.605
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8084.914
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5678.662
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8190.734
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5875.614
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8333.725
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 325275,
+                "peak_extra_bytes": 367422
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 163350,
+                "peak_extra_bytes": 424999
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 325275,
+                "peak_extra_bytes": 367422
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 163350,
+                "peak_extra_bytes": 424999
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 5875.614,
+              "minimum": 5678.662,
+              "maximum": 6196.463,
+              "spread": 517.8009999999995
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 8190.734,
+              "minimum": 8084.914,
+              "maximum": 9107.636,
+              "spread": 1022.7220000000007
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 325275.0,
+              "minimum": 325275,
+              "maximum": 325275,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 367422.0,
+              "minimum": 367422,
+              "maximum": 367422,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 163350.0,
+              "minimum": 163350,
+              "maximum": 163350,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 424999.0,
+              "minimum": 424999,
+              "maximum": 424999,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_100_mixed": {
+        "case": {
+          "kind": "workflow",
+          "size": 100,
+          "mode": "mixed"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 3250.467
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 6058.293
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 2976.371
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5252.721
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 3093.708
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5210.838
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 3324.187
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5279.979
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 2815.882
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5178.798
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 251005,
+                "peak_extra_bytes": 251053
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 129536,
+                "peak_extra_bytes": 379773
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 251005,
+                "peak_extra_bytes": 251053
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 129536,
+                "peak_extra_bytes": 379773
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 3093.708,
+              "minimum": 2815.882,
+              "maximum": 3324.187,
+              "spread": 508.30499999999984
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 5252.721,
+              "minimum": 5178.798,
+              "maximum": 6058.293,
+              "spread": 879.4949999999999
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 251005.0,
+              "minimum": 251005,
+              "maximum": 251005,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 251053.0,
+              "minimum": 251053,
+              "maximum": 251053,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 129536.0,
+              "minimum": 129536,
+              "maximum": 129536,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 379773.0,
+              "minimum": 379773,
+              "maximum": 379773,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_1000_plain": {
+        "case": {
+          "kind": "workflow",
+          "size": 1000,
+          "mode": "plain"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 8593.588
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 95608.622
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 8257.114
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 88976.214
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 9733.176
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 98505.193
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 8238.855
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 88477.053
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 7580.097
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 88231.731
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 1167444,
+                "peak_extra_bytes": 1167444
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1253517,
+                "peak_extra_bytes": 3682074
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 1167444,
+                "peak_extra_bytes": 1167444
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1253517,
+                "peak_extra_bytes": 3682074
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 8257.114,
+              "minimum": 7580.097,
+              "maximum": 9733.176,
+              "spread": 2153.0789999999997
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 88976.214,
+              "minimum": 88231.731,
+              "maximum": 98505.193,
+              "spread": 10273.462
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 1167444.0,
+              "minimum": 1167444,
+              "maximum": 1167444,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 1167444.0,
+              "minimum": 1167444,
+              "maximum": 1167444,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 1253517.0,
+              "minimum": 1253517,
+              "maximum": 1253517,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 3682074.0,
+              "minimum": 3682074,
+              "maximum": 3682074,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_1000_contextual": {
+        "case": {
+          "kind": "workflow",
+          "size": 1000,
+          "mode": "contextual"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 61899.853
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 91358.984
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 60986.229
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 92738.837
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 59833.687
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 93020.33
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 57628.45
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 92064.828
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 55547.592
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 89953.322
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2930307,
+                "peak_extra_bytes": 2936999
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1441630,
+                "peak_extra_bytes": 4076463
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2930307,
+                "peak_extra_bytes": 2936999
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1441630,
+                "peak_extra_bytes": 4076463
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 59833.687,
+              "minimum": 55547.592,
+              "maximum": 61899.853,
+              "spread": 6352.261000000006
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 92064.828,
+              "minimum": 89953.322,
+              "maximum": 93020.33,
+              "spread": 3067.0080000000016
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 2930307.0,
+              "minimum": 2930307,
+              "maximum": 2930307,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 2936999.0,
+              "minimum": 2936999,
+              "maximum": 2936999,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 1441630.0,
+              "minimum": 1441630,
+              "maximum": 1441630,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 4076463.0,
+              "minimum": 4076463,
+              "maximum": 4076463,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_1000_mixed": {
+        "case": {
+          "kind": "workflow",
+          "size": 1000,
+          "mode": "mixed"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 34390.594
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 93947.156
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 36511.984
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 93432.214
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 32628.399
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 94118.053
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 36229.109
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 92774.283
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 32265.322
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 89014.437
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2117887,
+                "peak_extra_bytes": 2117935
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1351250,
+                "peak_extra_bytes": 3882863
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2117887,
+                "peak_extra_bytes": 2117935
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1351250,
+                "peak_extra_bytes": 3882863
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 34390.594,
+              "minimum": 32265.322,
+              "maximum": 36511.984,
+              "spread": 4246.661999999997
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 93432.214,
+              "minimum": 89014.437,
+              "maximum": 94118.053,
+              "spread": 5103.6159999999945
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 2117887.0,
+              "minimum": 2117887,
+              "maximum": 2117887,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 2117935.0,
+              "minimum": 2117935,
+              "maximum": 2117935,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 1351250.0,
+              "minimum": 1351250,
+              "maximum": 1351250,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 3882863.0,
+              "minimum": 3882863,
+              "maximum": 3882863,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_5000_plain": {
+        "case": {
+          "kind": "workflow",
+          "size": 5000,
+          "mode": "plain"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 26595.774
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1280798.402
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 29098.485
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1200437.556
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 29263.398
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1211841.196
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 28001.2
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1191719.037
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 29236.68
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1175202.866
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 6483956,
+                "peak_extra_bytes": 6527360
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6174413,
+                "peak_extra_bytes": 19032378
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 6483956,
+                "peak_extra_bytes": 6527360
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6174413,
+                "peak_extra_bytes": 19032378
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 29098.485,
+              "minimum": 26595.774,
+              "maximum": 29263.398,
+              "spread": 2667.624
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 1200437.556,
+              "minimum": 1175202.866,
+              "maximum": 1280798.402,
+              "spread": 105595.53600000008
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 6483956.0,
+              "minimum": 6483956,
+              "maximum": 6483956,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 6527360.0,
+              "minimum": 6527360,
+              "maximum": 6527360,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 6174413.0,
+              "minimum": 6174413,
+              "maximum": 6174413,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 19032378.0,
+              "minimum": 19032378,
+              "maximum": 19032378,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_5000_contextual": {
+        "case": {
+          "kind": "workflow",
+          "size": 5000,
+          "mode": "contextual"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 314596.686
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1265575.274
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 306584.859
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1281801.082
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 322644.983
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1266222.029
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 277557.752
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1215596.817
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 287925.384
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1188192.007
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 15518371,
+                "peak_extra_bytes": 15518419
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 7165718,
+                "peak_extra_bytes": 21045959
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 15518371,
+                "peak_extra_bytes": 15518419
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 7165718,
+                "peak_extra_bytes": 21045959
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 306584.859,
+              "minimum": 277557.752,
+              "maximum": 322644.983,
+              "spread": 45087.23100000003
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 1265575.274,
+              "minimum": 1188192.007,
+              "maximum": 1281801.082,
+              "spread": 93609.07499999995
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 15518371.0,
+              "minimum": 15518371,
+              "maximum": 15518371,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 15518419.0,
+              "minimum": 15518419,
+              "maximum": 15518419,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 7165718.0,
+              "minimum": 7165718,
+              "maximum": 7165718,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 21045959.0,
+              "minimum": 21045959,
+              "maximum": 21045959,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_5000_mixed": {
+        "case": {
+          "kind": "workflow",
+          "size": 5000,
+          "mode": "mixed"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 161147.534
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1292255.869
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 158252.849
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1280841.298
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 167349.789
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1327530.54
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 158157.524
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1260849.83
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 159005.476
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 1197388.99
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 10923591,
+                "peak_extra_bytes": 10923639
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6670394,
+                "peak_extra_bytes": 20038415
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 10923591,
+                "peak_extra_bytes": 10923639
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6670394,
+                "peak_extra_bytes": 20038415
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "ee126ded70f88f8a76219b5df78810a23f70421c141f2fdec2a9aba4f2b2f65c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 159005.476,
+              "minimum": 158157.524,
+              "maximum": 167349.789,
+              "spread": 9192.264999999985
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 1280841.298,
+              "minimum": 1197388.99,
+              "maximum": 1327530.54,
+              "spread": 130141.55000000005
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 10923591.0,
+              "minimum": 10923591,
+              "maximum": 10923591,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 10923639.0,
+              "minimum": 10923639,
+              "maximum": 10923639,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 6670394.0,
+              "minimum": 6670394,
+              "maximum": 6670394,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 20038415.0,
+              "minimum": 20038415,
+              "maximum": 20038415,
+              "spread": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "after": {
+    "schema": "ackredit.lifecycle-benchmark@1",
+    "python": "3.14.7",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "executable": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/bin/python",
+    "benchmark_sha256": "27903df44100022c9568b193882c682f33284a2eac498ea94a9cf0e54a0e9ead",
+    "method": "Fresh interpreter per case/sample, alternating case order; timing without tracemalloc; separate Python allocation runs. Import includes automatic installed plugin loading. Warm science excludes activation/setup; synthetic scaling includes first unique credits. No release qualification or distribution-installation measurement.",
+    "identities": {
+      "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c": {
+        "ackredit": {
+          "origin": "/home/diego/repos@uibcdf/ackredit/ackredit/__init__.py",
+          "runtime_version": "0.12.0+11.g74f865d",
+          "distribution_version": "0.12.0+11.g74f865d",
+          "requirements": [
+            "smonitor>=0.16.0",
+            "depdigest>=0.11.0",
+            "argdigest>=0.13.0",
+            "pyyaml>=6",
+            "duecredit; extra == \"duecredit\"",
+            "duecredit; extra == \"full\"",
+            "pytest>=8; extra == \"test\"",
+            "ruff==0.16.5; extra == \"test\"",
+            "sphinx; extra == \"docs\"",
+            "pydata-sphinx-theme; extra == \"docs\"",
+            "sphinx-copybutton; extra == \"docs\"",
+            "sphinx-design; extra == \"docs\"",
+            "myst-nb; extra == \"docs\""
+          ],
+          "source_tree_sha256": "bc9ee5c2525763727c8306ff91efa523ae0bd8e250e541e02f6b6cb10bcc9720",
+          "source_file_count": 70,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/ackredit"
+          },
+          "checkout_head": "afe763da78c98cfcb71086f46067350709562e0b",
+          "checkout_dirty": true
+        },
+        "smonitor": {
+          "origin": "/home/diego/repos@uibcdf/smonitor/smonitor/__init__.py",
+          "runtime_version": "0.21.0+1.gd6b2394",
+          "distribution_version": "0.21.0+1.gd6b2394",
+          "requirements": [
+            "rich>=13; extra == \"rich\"",
+            "pytest<10,>=8; extra == \"pytest\"",
+            "pytest-receptor<2,>=1.2; extra == \"pytest\""
+          ],
+          "source_tree_sha256": "674facfccb82bcc79843e89fccadd0e02e97a00fb70736b3901a301c5462fc00",
+          "source_file_count": 41,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/smonitor"
+          },
+          "checkout_head": "7df0118593a27126225bddb457644fc7764802c4",
+          "checkout_dirty": false
+        },
+        "depdigest": {
+          "origin": "/home/diego/repos@uibcdf/depdigest/depdigest/__init__.py",
+          "runtime_version": "0.15.1+3.ga27172b",
+          "distribution_version": "0.15.1+3.ga27172b",
+          "requirements": [
+            "smonitor>=0.13.0"
+          ],
+          "source_tree_sha256": "edfa9a6fc3fdb94f639e496197ae34d7921596c6f2388869cdc552ec50f5c748",
+          "source_file_count": 17,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/depdigest"
+          },
+          "checkout_head": "ef64111a1b6ce6c2452d86918e7ea7ee067116cc",
+          "checkout_dirty": false
+        },
+        "argdigest": {
+          "origin": "/home/diego/repos@uibcdf/argdigest/argdigest/__init__.py",
+          "runtime_version": "0.16.0+1.g6dabaf7",
+          "distribution_version": "0.16.0+1.g6dabaf7",
+          "requirements": [
+            "depdigest>=0.11.0",
+            "smonitor>=0.16.0",
+            "numpy>=1.20.0; extra == \"science\"",
+            "beartype>=0.16.0; extra == \"beartype\"",
+            "pydantic>=2.0.0; extra == \"pydantic\"",
+            "pyunitwizard>=0.11.0; extra == \"pyunitwizard\"",
+            "numpy>=1.20.0; extra == \"pyunitwizard\"",
+            "beartype>=0.16.0; extra == \"all\"",
+            "pydantic>=2.0.0; extra == \"all\"",
+            "pyunitwizard>=0.11.0; extra == \"all\"",
+            "PyYAML>=6.0; extra == \"all\"",
+            "numpy>=1.20.0; extra == \"all\"",
+            "pandas>=2.0.0; extra == \"all\""
+          ],
+          "source_tree_sha256": "3555779dc3cc670bbbe8773ae914066f8b1074ae566dfa75792eeecabd9df827",
+          "source_file_count": 39,
+          "direct_url": {
+            "dir_info": {
+              "editable": true
+            },
+            "url": "file:///home/diego/repos%40uibcdf/argdigest"
+          },
+          "checkout_head": "7d1895d46ec4361e3f913cb2ed97b99a02449d12",
+          "checkout_dirty": false
+        }
+      }
+    },
+    "results": {
+      "workflow_100_plain": {
+        "case": {
+          "kind": "workflow",
+          "size": 100,
+          "mode": "plain"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 440.841
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5175.259
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 452.941
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5419.521
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 458.993
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5074.309
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 539.015
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5762.812
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 427.642
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 4393.048
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 129448,
+                "peak_extra_bytes": 129448
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 152305,
+                "peak_extra_bytes": 400414
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 129448,
+                "peak_extra_bytes": 129448
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 152305,
+                "peak_extra_bytes": 400414
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 452.941,
+              "minimum": 427.642,
+              "maximum": 539.015,
+              "spread": 111.37299999999999
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 5175.259,
+              "minimum": 4393.048,
+              "maximum": 5762.812,
+              "spread": 1369.7640000000001
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 129448.0,
+              "minimum": 129448,
+              "maximum": 129448,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 129448.0,
+              "minimum": 129448,
+              "maximum": 129448,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 152305.0,
+              "minimum": 152305,
+              "maximum": 152305,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 400414.0,
+              "minimum": 400414,
+              "maximum": 400414,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_100_contextual": {
+        "case": {
+          "kind": "workflow",
+          "size": 100,
+          "mode": "contextual"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5759.976
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8365.404
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5907.325
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8522.824
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 6689.103
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8938.478
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5832.64
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 7378.266
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 5656.924
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 9226.227
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 325275,
+                "peak_extra_bytes": 367422
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 163350,
+                "peak_extra_bytes": 433327
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 325275,
+                "peak_extra_bytes": 367422
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 163350,
+                "peak_extra_bytes": 433327
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 5832.64,
+              "minimum": 5656.924,
+              "maximum": 6689.103,
+              "spread": 1032.179
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 8522.824,
+              "minimum": 7378.266,
+              "maximum": 9226.227,
+              "spread": 1847.9610000000011
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 325275.0,
+              "minimum": 325275,
+              "maximum": 325275,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 367422.0,
+              "minimum": 367422,
+              "maximum": 367422,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 163350.0,
+              "minimum": 163350,
+              "maximum": 163350,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 433327.0,
+              "minimum": 433327,
+              "maximum": 433327,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_100_mixed": {
+        "case": {
+          "kind": "workflow",
+          "size": 100,
+          "mode": "mixed"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 3380.198
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5938.975
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 2812.528
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5352.158
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 3589.725
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 6045.72
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 3598.035
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 8557.699
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 2852.871
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 5264.512
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 251005,
+                "peak_extra_bytes": 251053
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 133760,
+                "peak_extra_bytes": 392325
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 251005,
+                "peak_extra_bytes": 251053
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 133760,
+                "peak_extra_bytes": 392325
+              }
+            },
+            "facts": {
+              "references": 100,
+              "uses": 100,
+              "nodes": 101,
+              "edges": 100,
+              "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 3380.198,
+              "minimum": 2812.528,
+              "maximum": 3598.035,
+              "spread": 785.5070000000001
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 5938.975,
+              "minimum": 5264.512,
+              "maximum": 8557.699,
+              "spread": 3293.187000000001
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 251005.0,
+              "minimum": 251005,
+              "maximum": 251005,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 251053.0,
+              "minimum": 251053,
+              "maximum": 251053,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 133760.0,
+              "minimum": 133760,
+              "maximum": 133760,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 392325.0,
+              "minimum": 392325,
+              "maximum": 392325,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_1000_plain": {
+        "case": {
+          "kind": "workflow",
+          "size": 1000,
+          "mode": "plain"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 7637.239
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 53636.396
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 8850.189
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 48593.735
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 8856.273
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 45857.904
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 8666.154
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 50796.994
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 7367.343
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 44888.741
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 1167444,
+                "peak_extra_bytes": 1167444
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1317517,
+                "peak_extra_bytes": 3778978
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 1167444,
+                "peak_extra_bytes": 1167444
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1317517,
+                "peak_extra_bytes": 3778978
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 8666.154,
+              "minimum": 7367.343,
+              "maximum": 8856.273,
+              "spread": 1488.9299999999994
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 48593.735,
+              "minimum": 44888.741,
+              "maximum": 53636.396,
+              "spread": 8747.654999999999
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 1167444.0,
+              "minimum": 1167444,
+              "maximum": 1167444,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 1167444.0,
+              "minimum": 1167444,
+              "maximum": 1167444,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 1317517.0,
+              "minimum": 1317517,
+              "maximum": 1317517,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 3778978.0,
+              "minimum": 3778978,
+              "maximum": 3778978,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_1000_contextual": {
+        "case": {
+          "kind": "workflow",
+          "size": 1000,
+          "mode": "contextual"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 59293.417
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 58185.212
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 61670.64
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 56337.712
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 61884.028
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 60442.017
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 57480.914
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 59456.263
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 57433.651
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 52501.479
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2930307,
+                "peak_extra_bytes": 2936999
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1490974,
+                "peak_extra_bytes": 4158711
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2930307,
+                "peak_extra_bytes": 2936999
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1490974,
+                "peak_extra_bytes": 4158711
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 59293.417,
+              "minimum": 57433.651,
+              "maximum": 61884.028,
+              "spread": 4450.377
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 58185.212,
+              "minimum": 52501.479,
+              "maximum": 60442.017,
+              "spread": 7940.5380000000005
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 2930307.0,
+              "minimum": 2930307,
+              "maximum": 2930307,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 2936999.0,
+              "minimum": 2936999,
+              "maximum": 2936999,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 1490974.0,
+              "minimum": 1490974,
+              "maximum": 1490974,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 4158711.0,
+              "minimum": 4158711,
+              "maximum": 4158711,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_1000_mixed": {
+        "case": {
+          "kind": "workflow",
+          "size": 1000,
+          "mode": "mixed"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 35507.725
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 55597.872
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 36049.584
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 51870.588
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 32960.372
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 53623.12
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 32303.461
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 48669.314
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 32123.61
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 47819.584
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2117887,
+                "peak_extra_bytes": 2117935
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1401042,
+                "peak_extra_bytes": 3965559
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 2117887,
+                "peak_extra_bytes": 2117935
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 1401042,
+                "peak_extra_bytes": 3965559
+              }
+            },
+            "facts": {
+              "references": 1000,
+              "uses": 1000,
+              "nodes": 1001,
+              "edges": 1000,
+              "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 32960.372,
+              "minimum": 32123.61,
+              "maximum": 36049.584,
+              "spread": 3925.974000000002
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 51870.588,
+              "minimum": 47819.584,
+              "maximum": 55597.872,
+              "spread": 7778.2880000000005
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 2117887.0,
+              "minimum": 2117887,
+              "maximum": 2117887,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 2117935.0,
+              "minimum": 2117935,
+              "maximum": 2117935,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 1401042.0,
+              "minimum": 1401042,
+              "maximum": 1401042,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 3965559.0,
+              "minimum": 3965559,
+              "maximum": 3965559,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_5000_plain": {
+        "case": {
+          "kind": "workflow",
+          "size": 5000,
+          "mode": "plain"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 29476.737
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 257517.675
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 27665.748
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 243148.575
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 26571.984
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 246570.921
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 27992.537
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 229948.436
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 27065.524
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 238702.518
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 6483956,
+                "peak_extra_bytes": 6527360
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6302093,
+                "peak_extra_bytes": 19876802
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 6483956,
+                "peak_extra_bytes": 6527360
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6302093,
+                "peak_extra_bytes": 19876802
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 27665.748,
+              "minimum": 26571.984,
+              "maximum": 29476.737,
+              "spread": 2904.7530000000006
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 243148.575,
+              "minimum": 229948.436,
+              "maximum": 257517.675,
+              "spread": 27569.239
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 6483956.0,
+              "minimum": 6483956,
+              "maximum": 6483956,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 6527360.0,
+              "minimum": 6527360,
+              "maximum": 6527360,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 6302093.0,
+              "minimum": 6302093,
+              "maximum": 6302093,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 19876802.0,
+              "minimum": 19876802,
+              "maximum": 19876802,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_5000_contextual": {
+        "case": {
+          "kind": "workflow",
+          "size": 5000,
+          "mode": "contextual"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 304251.181
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 343792.83
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 289621.683
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 327425.266
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 294119.888
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 332938.124
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 284238.839
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 322412.298
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 285681.19
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 307176.398
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 15518371,
+                "peak_extra_bytes": 15518419
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 7278678,
+                "peak_extra_bytes": 21875535
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 15518371,
+                "peak_extra_bytes": 15518419
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 7278678,
+                "peak_extra_bytes": 21875535
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 289621.683,
+              "minimum": 284238.839,
+              "maximum": 304251.181,
+              "spread": 20012.342000000004
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 327425.266,
+              "minimum": 307176.398,
+              "maximum": 343792.83,
+              "spread": 36616.43200000003
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 15518371.0,
+              "minimum": 15518371,
+              "maximum": 15518371,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 15518419.0,
+              "minimum": 15518419,
+              "maximum": 15518419,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 7278678.0,
+              "minimum": 7278678,
+              "maximum": 7278678,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 21875535.0,
+              "minimum": 21875535,
+              "maximum": 21875535,
+              "spread": 0
+            }
+          }
+        }
+      },
+      "workflow_5000_mixed": {
+        "case": {
+          "kind": "workflow",
+          "size": 5000,
+          "mode": "mixed"
+        },
+        "timing_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 163183.926
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 276365.201
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 168614.379
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 282154.276
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 154072.302
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 263008.902
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 166698.462
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 272465.564
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "elapsed_us": 154397.529
+              },
+              "workflow_snapshot": {
+                "elapsed_us": 251670.582
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "memory_samples": [
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 10923591,
+                "peak_extra_bytes": 10923639
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6783802,
+                "peak_extra_bytes": 20868567
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          },
+          {
+            "measurements": {
+              "unique_tracking": {
+                "retained_delta_bytes": 10923591,
+                "peak_extra_bytes": 10923639
+              },
+              "workflow_snapshot": {
+                "retained_delta_bytes": 6783802,
+                "peak_extra_bytes": 20868567
+              }
+            },
+            "facts": {
+              "references": 5000,
+              "uses": 5000,
+              "nodes": 5001,
+              "edges": 5000,
+              "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8"
+            },
+            "identity_id": "a88e3a4e7bf1dd3879e988f35a89ef766bfa76e54a307aba7ac3e3ee3673d27c",
+            "stderr": ""
+          }
+        ],
+        "timing_summary": {
+          "unique_tracking": {
+            "elapsed_us": {
+              "median": 163183.926,
+              "minimum": 154072.302,
+              "maximum": 168614.379,
+              "spread": 14542.07699999999
+            }
+          },
+          "workflow_snapshot": {
+            "elapsed_us": {
+              "median": 272465.564,
+              "minimum": 251670.582,
+              "maximum": 282154.276,
+              "spread": 30483.694000000018
+            }
+          }
+        },
+        "memory_summary": {
+          "unique_tracking": {
+            "retained_delta_bytes": {
+              "median": 10923591.0,
+              "minimum": 10923591,
+              "maximum": 10923591,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 10923639.0,
+              "minimum": 10923639,
+              "maximum": 10923639,
+              "spread": 0
+            }
+          },
+          "workflow_snapshot": {
+            "retained_delta_bytes": {
+              "median": 6783802.0,
+              "minimum": 6783802,
+              "maximum": 6783802,
+              "spread": 0
+            },
+            "peak_extra_bytes": {
+              "median": 20868567.0,
+              "minimum": 20868567,
+              "maximum": 20868567,
+              "spread": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "comparison": {
+    "workflow_100_plain": {
+      "payload_sha256": "eb47f0000a6eff8027398f4b0464b29e46ec66e05f83b995828b28e8a123c3aa",
+      "before_median_us": 6048.465,
+      "after_median_us": 5175.259,
+      "median_ratio": 1.1687270144354127,
+      "before_peak_traced_bytes": 385686.0,
+      "after_peak_traced_bytes": 400414.0
+    },
+    "workflow_100_contextual": {
+      "payload_sha256": "ccac638109b15d9f05147b0ce62d1da9a17e108d47e850f86729cb8751918eb9",
+      "before_median_us": 8190.734,
+      "after_median_us": 8522.824,
+      "median_ratio": 0.9610352155576602,
+      "before_peak_traced_bytes": 424999.0,
+      "after_peak_traced_bytes": 433327.0
+    },
+    "workflow_100_mixed": {
+      "payload_sha256": "ec9fc0b57d2f99cae70e76797a7b1783ee222be5c413bc3d1099db8f7f8b2679",
+      "before_median_us": 5252.721,
+      "after_median_us": 5938.975,
+      "median_ratio": 0.884449084227497,
+      "before_peak_traced_bytes": 379773.0,
+      "after_peak_traced_bytes": 392325.0
+    },
+    "workflow_1000_plain": {
+      "payload_sha256": "6f73fda9c0f2c6c827996ba87cbb22b852d5b9e8528e42e11fa7abca76321a64",
+      "before_median_us": 88976.214,
+      "after_median_us": 48593.735,
+      "median_ratio": 1.8310223324056076,
+      "before_peak_traced_bytes": 3682074.0,
+      "after_peak_traced_bytes": 3778978.0
+    },
+    "workflow_1000_contextual": {
+      "payload_sha256": "8e264c1386a64dea1585f4744581ad59e1bb88830d2d83cfd5829da8e4113f29",
+      "before_median_us": 92064.828,
+      "after_median_us": 58185.212,
+      "median_ratio": 1.582271935350171,
+      "before_peak_traced_bytes": 4076463.0,
+      "after_peak_traced_bytes": 4158711.0
+    },
+    "workflow_1000_mixed": {
+      "payload_sha256": "a9fb279a4e209929555c5924fd35cf13778f89ecb1eb8f938802612be65da830",
+      "before_median_us": 93432.214,
+      "after_median_us": 51870.588,
+      "median_ratio": 1.8012561183998916,
+      "before_peak_traced_bytes": 3882863.0,
+      "after_peak_traced_bytes": 3965559.0
+    },
+    "workflow_5000_plain": {
+      "payload_sha256": "9b0c3ef2591d2b89ffcc1f658ca4ccef7cb41fb25eb42884001bdacd7808e66d",
+      "before_median_us": 1200437.556,
+      "after_median_us": 243148.575,
+      "median_ratio": 4.937053634799217,
+      "before_peak_traced_bytes": 19032378.0,
+      "after_peak_traced_bytes": 19876802.0
+    },
+    "workflow_5000_contextual": {
+      "payload_sha256": "fc8982efbf8bcc70fbb296e5714f8a95fa760d55355b8e3a7727528a6100e815",
+      "before_median_us": 1265575.274,
+      "after_median_us": 327425.266,
+      "median_ratio": 3.8652340103771956,
+      "before_peak_traced_bytes": 21045959.0,
+      "after_peak_traced_bytes": 21875535.0
+    },
+    "workflow_5000_mixed": {
+      "payload_sha256": "3c8f1fd09363a1136c49fa5051007c05ed95d8bc9300320b1d1150a57010cfe8",
+      "before_median_us": 1280841.298,
+      "after_median_us": 272465.564,
+      "median_ratio": 4.700929097961164,
+      "before_peak_traced_bytes": 20038415.0,
+      "after_peak_traced_bytes": 20868567.0
+    }
+  },
+  "payload_comparisons": 126,
+  "limitations": [
+    "editable primary source and shared inherited dependencies; not installed artifact qualification",
+    "sequential sides, fresh interpreter per sample and alternating case order within each side",
+    "only get_attribution enclosing snapshot timing; registration/tracking/export/validation checks/import/reporting outside measured stage",
+    "separate traced Python allocation samples, not RSS",
+    "100-use timings do not show consistent speedup; extra pair index has a bounded allocation cost",
+    "public 0.12.0 remains unchanged; candidate release 0.12.1 is tracked separately in #134"
+  ]
+}

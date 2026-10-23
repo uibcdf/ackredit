@@ -206,6 +206,7 @@ def worker(case: dict, memory=False) -> dict:
         "results",
         "references",
         "journal",
+        "workflow",
     }:
         raise ValueError(f"Unknown lifecycle case: {kind}")
     if size < 1 or case.get("captures", 1) < 1 or case.get("iterations", 1) < 1:
@@ -247,7 +248,45 @@ def worker(case: dict, memory=False) -> dict:
                 )
             with Stages(memory) as stages:
                 with ackredit.session("lifecycle"), ExitStack() as stack:
-                    if kind == "results":
+                    if kind == "workflow":
+                        mode = case.get("mode", "plain")
+                        if mode not in {"plain", "contextual", "mixed"}:
+                            raise ValueError(f"Unknown workflow credit mode: {mode}")
+
+                        def workflow_credits() -> None:
+                            for index in range(size):
+                                caller = f"node-{index}"
+                                ackredit.track_target(caller, parent="root")
+                                options = (
+                                    {"roles": ["method"], "context": {"version": "1"}}
+                                    if mode == "contextual"
+                                    or (mode == "mixed" and index >= size // 2)
+                                    else {}
+                                )
+                                ackredit.track_item(
+                                    f"lifecycle:{index}", used_by=caller, **options
+                                )
+
+                        stages.call("unique_tracking", workflow_credits)
+                        used_before = ackredit.get_used_items()
+                        result = stages.call(
+                            "workflow_snapshot", ackredit.get_attribution
+                        )
+                        encoded = result.to_json()
+                        data = result.to_dict()
+                        assert ackredit.get_used_items() == used_before
+                        assert len(data["items"]) == len(data["uses"]) == size
+                        assert len(data["usage_tree"]) == size + 1
+                        assert len(data["usage_tree"]["root"]["children"]) == size
+                        assert ackredit.Attribution.from_json(encoded).to_dict() == data
+                        facts.update(
+                            references=size,
+                            uses=len(data["uses"]),
+                            nodes=len(data["usage_tree"]),
+                            edges=size,
+                            payload_sha256=hashlib.sha256(encoded.encode()).hexdigest(),
+                        )
+                    elif kind == "results":
 
                         def results():
                             retained = []
@@ -500,6 +539,11 @@ def main():
         help="Compare first reports with explicit format discovery and warm repeats",
     )
     parser.add_argument(
+        "--workflow-snapshots-only",
+        action="store_true",
+        help="Measure enclosing plain/contextual/mixed snapshots separately from capture snapshots",
+    )
+    parser.add_argument(
         "--scientific",
         action="store_true",
         help="Require and measure real PyUnitWizard conversion",
@@ -520,6 +564,10 @@ def main():
         parser.error("scoped diagnostics require the scientific cases")
     if arguments.startup_only and arguments.scientific:
         parser.error("startup-only excludes scientific cases")
+    if arguments.workflow_snapshots_only and (
+        arguments.startup_only or arguments.scientific
+    ):
+        parser.error("workflow-snapshots-only excludes startup/scientific cases")
     cases = {"cold_import": {"kind": "import"}}
     for size in (1, 100, 1000):
         cases[f"activation_{size}"] = {"kind": "activation", "size": size}
@@ -544,6 +592,12 @@ def main():
                     "separate_format_discovery": separated,
                     "repeat_report": True,
                 }
+    if arguments.workflow_snapshots_only:
+        cases = {
+            f"workflow_{size}_{mode}": {"kind": "workflow", "size": size, "mode": mode}
+            for size in (100, 1000, 5000)
+            for mode in ("plain", "contextual", "mixed")
+        }
     if arguments.scientific:
         for size in (1, 100000):
             for mode in ("ordinary", "backend", "observed", "capture", "evidence"):

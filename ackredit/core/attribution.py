@@ -445,15 +445,18 @@ def get_attribution() -> Attribution:
             if state._attribution_builder
             else _Builder()
         )
+        # Context variants are distinct uses, but legacy reconciliation only
+        # asks whether this item/caller pair is already represented. Build that
+        # local index once instead of rescanning every use for every pair.
+        covered = {(use["item_id"], use["used_by"]) for use in builder.uses}
         for item_id, callers in state.used_items.items():
             record = builder.records.get(
                 item_id, Registry.items.get(item_id, {"id": item_id, "title": item_id})
             )
             for caller in callers or [None]:
-                if not any(
-                    use["item_id"] == item_id and use["used_by"] == caller
-                    for use in builder.uses
-                ):
+                pair = (item_id, caller)
+                if pair not in covered:
                     builder.item(record, caller, [], {})
+                    covered.add(pair)
         builder.tree = deepcopy(state.usage_tree)
         return Attribution(builder.payload(state.name, {}))

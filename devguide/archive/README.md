@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (126)
+### Resolved (127)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -90,6 +90,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`public_surface_is_accidental.md`](public_surface_is_accidental.md) — [#14](https://github.com/uibcdf/ackredit/issues/14) — The public namespace exported names nobody chose, including one that answered the version question wrongly. *(resolved, reproduced)*
 - [`publication_tool_interoperability.md`](publication_tool_interoperability.md) — [#120](https://github.com/uibcdf/ackredit/issues/120) — Validate detached bibliography with BibTeX/plain and Pandoc/citeproc. *(resolved, reproduced)*
 - [`published_diagnostic_providers.md`](published_diagnostic_providers.md) — [#119](https://github.com/uibcdf/ackredit/issues/119) — Validate Ackredit with public SMonitor 0.19.0 and ArgDigest 0.15.0. *(resolved, measured)*
+- [`quadratic_workflow_snapshot.md`](quadratic_workflow_snapshot.md) — [#133](https://github.com/uibcdf/ackredit/issues/133) — Avoid repeated full-use scans when snapshotting enclosing workflows. *(resolved, reproduced)*
 - [`recorded_attribution_explanation.md`](recorded_attribution_explanation.md) — [#103](https://github.com/uibcdf/ackredit/issues/103) — Explain recorded evidence while preserving unknown instrumentation, metadata origins and diagnosed gaps. *(resolved, reproduced)*
 - [`recorder_evidence_contract_review.md`](recorder_evidence_contract_review.md) — [#114](https://github.com/uibcdf/ackredit/issues/114) — Review bounded recorder evidence guarantees for an explicit stability decision. *(resolved, measured)*
 - [`register_published_release_identity.md`](register_published_release_identity.md) — [#82](https://github.com/uibcdf/ackredit/issues/82) — Register the published 0.9.0 Git identity and restore compatible editable metadata. *(resolved, measured)*

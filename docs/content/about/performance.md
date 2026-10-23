@@ -7,6 +7,52 @@ Numbers below retain their own dates, sources and measurement boundaries.
 `devtools/benchmark_lifecycle.py` adds fresh-process stages and separate
 Python-allocation measurements. Each is runnable in the stated environment.
 
+## Enclosing workflow snapshots (2026-10-22)
+
+[#133](https://github.com/uibcdf/ackredit/issues/133) removes a quadratic presence
+scan in `get_attribution()`. This is the enclosing workflow snapshot; capture
+snapshots and report rendering are separate operations. The repair preserves
+context variants, original observed bibliography and ordered legacy fallback
+while using a temporary local pair index.
+
+The paired Linux/Python 3.14.7 editable-source probe records five timing and two
+separate Python-allocation samples per size/mode/side. Each sample runs in a
+fresh process; case order alternates within each side. Registration/tracking,
+JSON export, output checks, import and reporting are outside snapshot timing.
+All 126 complete payload fingerprints agree across the original and repaired
+implementations. This is source evidence for the 0.12.1 candidate, not an
+installed release or full scientific pipeline speed claim.
+
+| References / distinct uses | Credit mode | Original snapshot median, ms | Repaired median, ms |
+| --- | --- | --- | --- |
+| 1,000 | Plain | 88.98 | 48.59 |
+| 1,000 | Contextual | 92.06 | 58.19 |
+| 1,000 | Mixed | 93.43 | 51.87 |
+| 5,000 | Plain | 1,200.44 | 243.15 |
+| 5,000 | Contextual | 1,265.58 | 327.43 |
+| 5,000 | Mixed | 1,280.84 | 272.47 |
+
+The 5,000-use medians improve by 3.87–4.94 times. The index increases peak traced
+Python allocation by 0.79–0.81 MiB in those cases; it is discarded with the
+snapshot operation, not retained as a global cache. At 100 uses, medians are
+about 5–9 ms and do not show a consistent improvement. Raw ranges and allocation
+samples are in the
+[paired receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/receipts/workflow_snapshot_133_2026-10-22.json),
+including original sources, full payload fingerprints and the exact measured
+tool text. The final tool adds a return annotation without changing its measured
+operations. These samples are sequential before/after studies, not randomized
+side interleaving, RSS, other-platform evidence or an import/whole-pipeline claim.
+
+Reproduce with fixed sources/providers using the existing owned tool:
+
+```bash
+python devtools/benchmark_lifecycle.py --workflow-snapshots-only --samples 5 --memory-samples 2 --output /tmp/workflow-snapshot.json
+```
+
+The tool removes its per-study scratch on either exit. The invoking task owns
+the requested receipt and retires it when no longer needed. Deterministic
+comparison-count guards protect the repaired scaling without a timing threshold.
+
 (published-diagnostic-providers-2026-10-06)=
 ## Published diagnostic providers (2026-10-06)
 
