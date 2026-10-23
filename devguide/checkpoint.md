@@ -81,10 +81,18 @@ paths are absent, the shared pytest root is preserved, and twelve stale worktree
 registrations were pruned after reachability checks. No old files/environments
 were deleted. The canonical client guide is unchanged.
 
-After that review, select focused product work from concrete consumer feedback
-or an explicitly chosen roadmap boundary. A possible release still needs its
-own scope/version decision and exact-source/installed/receiving/public gates;
-do not tag or rebuild an existing coordinate merely for maintenance evidence.
+The next selected product boundary is roadmap L's enclosing-workflow snapshot
+scaling. [#133](https://github.com/uibcdf/ackredit/issues/133) repairs repeated
+full-use scans with a snapshot-local pair index. Six deterministic guards fail
+before repair; a fidelity control passes on both sides, and all 126 measured
+payload fingerprints agree. At 5,000 uses source medians improve by 3.87–4.94
+times with about 0.8 MiB extra peak traced allocation. This is editable-source
+evidence; small cases and whole scientific pipelines have no general speed claim.
+
+Maintenance candidate [#134](https://github.com/uibcdf/ackredit/issues/134) names
+0.12.1 in the staged plan and matching CFF. Public installation remains 0.12.0
+until the new original file has its own exact-source, installed, real receiving
+and public proofs. Do not tag, promote or claim completion from the source study.
 If Ackredit changes its canonical client guide, publish it here and open an
 owning MolSysSuite issue for registered client synchronization. Do not change
 consumer copies from this checkout.

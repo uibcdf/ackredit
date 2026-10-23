@@ -1,0 +1,277 @@
+{
+  "schema": "ackredit.release-local-qualification@1",
+  "issue": "uibcdf/ackredit#134",
+  "candidate_version": "0.12.1",
+  "date": "2026-10-22",
+  "scope": "Final maintenance candidate source and metadata; no installed/public file claim.",
+  "core_fix_commit": "5e50f89af7976ae26f3e06823707f2cf47ce3b1d",
+  "input_sha256": {
+    "CITATION.cff": "988b6d2c024495dd62695901288e9b4903ae7023c7f6c1d5420a93b891ceb043",
+    "ackredit/CITATION.cff": "988b6d2c024495dd62695901288e9b4903ae7023c7f6c1d5420a93b891ceb043",
+    "devtools/conda-build/release_plan.toml": "fe9a265f819b7765e948117c0c808fe3ec7397782c7c457e76aa047216ef3c78",
+    "devguide/pending_proposals/release_0121.md": "a98b38bb50c19e9aee1b9071e2420cde829115d8a80a053d0c8856561a59d8dc",
+    "devguide/checkpoint.md": "ef26078a39f8f01d1b447bb779c7e6881104fe0e5d4ea50e271e0c48132ca3e8",
+    "docs/content/about/release_notes.md": "d3b23eec5f46feca260629e6b03cd9fc64351cef0a3332d0ec2f08b277998b0b",
+    "docs/content/about/performance.md": "6ab44b8597c8b24c9213740f958b5304d486456006c95422b3b1d19b41aa6aa7",
+    "standards/ACKREDIT_GUIDE.md": "6353892d552eab79973cecec5f8e3c8c31e146416e1cb481786e21cd3fcbf99d"
+  },
+  "source_complete_attempt": {
+    "command": [
+      "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/bin/python",
+      "-m",
+      "pytest",
+      "--receptor=llm",
+      "--basetemp",
+      "/tmp/ackredit134-source-33g413_l/pytest",
+      "--receptor-events=/tmp/ackredit134-source-33g413_l/events.jsonl"
+    ],
+    "python": "3.14.7",
+    "result": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 6449,
+        "deselected": 0,
+        "errors": 4,
+        "executed": 6449,
+        "failed": 1,
+        "not_executed": 0,
+        "passed": 6435,
+        "reruns": 0,
+        "skipped": 9,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 117.08755916100927,
+      "exitstatus": 1,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 91
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "8c6e757e91f52ca308c21f05a75417d804c7232e5b8ec01a51e27bdc02bf18e4",
+        "records": 19429
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "FAIL",
+      "root_causes": 2,
+      "run_id": "0656cd0b7be5434faaeda85ad84ed176",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "phase_call_nodeids": 6437,
+    "events_file_sha256": "1e7a3b1635549449cf7631b7a806046b1f760a465a052a097b978a305016c781",
+    "nonpassing_phases": [
+      {
+        "nodeid": "tests/test_biblatex_receiving.py::test_real_biber_reader_and_biblatex_style_keep_distinct_releases[authoryear]",
+        "outcome": "skipped",
+        "reason": "BibLaTeX tools unavailable: biber"
+      },
+      {
+        "nodeid": "tests/test_biblatex_receiving.py::test_real_biber_reader_and_biblatex_style_keep_distinct_releases[numeric]",
+        "outcome": "skipped",
+        "reason": "BibLaTeX tools unavailable: biber"
+      },
+      {
+        "nodeid": "tests/test_function_providers.py::test_normally_installed_provider_and_reader_outside_checkout",
+        "outcome": "failed",
+        "reason": ""
+      },
+      {
+        "nodeid": "tests/test_installed_plugins.py::test_installed_failures_conflicts_and_reentry_preserve_neighbors",
+        "outcome": "failed",
+        "reason": ""
+      },
+      {
+        "nodeid": "tests/test_installed_plugins.py::test_late_installation_is_visible_to_first_format_demand_and_citation_reload",
+        "outcome": "failed",
+        "reason": ""
+      },
+      {
+        "nodeid": "tests/test_installed_plugins.py::test_installed_pack_measurements_and_plugin_free_reader",
+        "outcome": "failed",
+        "reason": ""
+      },
+      {
+        "nodeid": "tests/test_installed_plugins.py::test_fixture_computation_keeps_working_when_ackredit_is_absent",
+        "outcome": "failed",
+        "reason": ""
+      },
+      {
+        "nodeid": "tests/test_jabref_receiving.py::test_real_manager_import_and_fresh_preferences_reopen_preserve_originals[receiving]",
+        "outcome": "skipped",
+        "reason": "JabRef receiving tools unavailable: --jabref-distribution with a portable Linux launcher, pandoc"
+      },
+      {
+        "nodeid": "tests/test_jabref_receiving.py::test_real_manager_import_and_fresh_preferences_reopen_preserve_originals[receiving with spaces]",
+        "outcome": "skipped",
+        "reason": "JabRef receiving tools unavailable: --jabref-distribution with a portable Linux launcher, pandoc"
+      },
+      {
+        "nodeid": "tests/test_publication_tools.py::test_real_readers_retain_editor_identity_and_distinct_versions",
+        "outcome": "skipped",
+        "reason": "Publication tools unavailable: pandoc"
+      },
+      {
+        "nodeid": "tests/test_publication_tools.py::test_real_selected_styles_render_works_editors_and_compile",
+        "outcome": "skipped",
+        "reason": "Publication tools unavailable: pandoc"
+      },
+      {
+        "nodeid": "tests/test_publication_tools.py::test_imported_software_entry_is_retained_with_explicit_plain_style_limit",
+        "outcome": "skipped",
+        "reason": "Publication tools unavailable: pandoc"
+      },
+      {
+        "nodeid": "tests/test_publication_tools.py::test_probe_refuses_to_replace_prior_evidence",
+        "outcome": "skipped",
+        "reason": "Publication tools unavailable: pandoc"
+      },
+      {
+        "nodeid": "tests/test_self_citation.py::test_a_built_wheel_carries_the_citation_file",
+        "outcome": "skipped",
+        "reason": "wheel build unavailable: conda3/envs/molsyssuite@uibcdf_3.14/bin/python', '-m', 'pip', '--python', '/tmp/build-env-7qnluqye/bin/python', 'install', '--ignore-installed', '--use-pep517', '--no-warn-script-location', '--no-compile', '--no-input', '-r', '/tmp/build-requirements-0a4jm9zs.txt']' returned non-zero exit status 1."
+      }
+    ],
+    "source_sha256": {
+      "ackredit/core/attribution.py": "2262045f9efb36d412423a6ea36d86d9448769ead276a82ba0e7cb42e890c333",
+      "devtools/benchmark_lifecycle.py": "6dab3a74ac79d058acd74b9c8dac6b97b0fed1cecd6e39dd550a1ff2c6d9986f",
+      "tests/test_workflow_snapshot_scale.py": "d8bd7022cf8a0650ad1b72983a0e8ff6cdc7bd2bee04e0bf2aeb60696f7f7e68",
+      "tests/test_benchmark_lifecycle.py": "ecf32ea739341be0191251540b2c2b1aca439b40d2a6dc9e13f20433f6ef537d",
+      "devtools/conda-build/release_plan.toml": "fe9a265f819b7765e948117c0c808fe3ec7397782c7c457e76aa047216ef3c78",
+      "CITATION.cff": "988b6d2c024495dd62695901288e9b4903ae7023c7f6c1d5420a93b891ceb043",
+      "ackredit/CITATION.cff": "988b6d2c024495dd62695901288e9b4903ae7023c7f6c1d5420a93b891ceb043"
+    },
+    "task_root_removed": true
+  },
+  "network_build_recovery": {
+    "result": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 5,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 5,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 5,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 41.02554652898107,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "50c8aa8d9ca1f2d1f436e127c18d7e1335979a5a92007b850793ed3eeceb73de",
+        "records": 16
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "3a93155cdc6d48caaec50cfd9b559c53",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_file_sha256": "80dd129e78e706bc5c4161ff02e81566905877e8f1eb3b60f350f81815cdeda8",
+    "selectors": [
+      "tests/test_installed_plugins.py",
+      "tests/test_function_providers.py::test_normally_installed_provider_and_reader_outside_checkout"
+    ],
+    "reason": "Initial sandbox run could not resolve pypi.org for isolated setuptools build dependencies.",
+    "task_root_removed": true
+  },
+  "network_wheel_recovery": {
+    "result": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 1,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 1,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 1,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 2.3099790060077794,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "24d5fa5960e2e553d191adb15bfd6f9abd72308cb3ddb29812a757a5c90da3ec",
+        "records": 4
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "784b839dd0924e979bab44741a8d4a6d",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_file_sha256": "bfafa222a3237f504720acc04f9169b4369951ce3fb3ac682368b278427c7c1c",
+    "reason": "Initial sandbox run skipped isolated wheel build after dependency resolution could not reach PyPI.",
+    "task_root_removed": true
+  },
+  "combined_distinct_passing_cases": 6441,
+  "remaining_optional_publication_skips": 8,
+  "strict_sphinx": {
+    "exit_code": 0,
+    "log_sha256": "cd7a2c0ef242040333fbc2f7e39975d1e851b30083135f242beb5a24929c064f",
+    "diagnostics": [],
+    "task_root_removed": true
+  },
+  "ruff_check": "PASS",
+  "ruff_format_check": "PASS",
+  "reporting_indexes": "PASS",
+  "canonical_client_guide_changed": false,
+  "public_baseline": "0.12.0 remains the verified recommended installation until delivery.",
+  "limits": [
+    "Network failures/skipped wheel in first sandbox attempt were recovered by targeted executed retries with unchanged source.",
+    "Eight real publication-tool cases unexecuted locally for missing Pandoc/Biber/JabRef; no all-tools or new publication-style claim.",
+    "Required remote exact-source, full installed file, real receiving and public gates remain pending in #134.",
+    "Shared development environment still has unrelated dependency conflicts owned by MolSysSuite #82.",
+    "Every task-owned test/documentation root was removed; shared environments and pytest root were preserved."
+  ]
+}

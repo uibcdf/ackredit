@@ -1,5 +1,26 @@
 # Release notes
 
+## 0.12.1 — maintenance candidate (2026-10-22)
+
+Candidate qualification is tracked in
+[Ackredit #134](https://github.com/uibcdf/ackredit/issues/134); public delivery
+is not yet claimed. Recommended installation remains verified public 0.12.0
+until the exact new archive passes source, installed, real receiving and public
+verification gates.
+
+- Remove quadratic reconciliation in enclosing `get_attribution()` snapshots
+  (#133), preserving contextual variants, original bibliography, use order,
+  legacy fallback and saved schema. Deterministic work-bound guards and paired
+  full payload fingerprints protect fidelity. At 5,000 uses the bounded source
+  medians improve by 3.87–4.94 times with about 0.8 MiB extra traced allocation;
+  [performance](performance.md) records scope, raw samples and small-case limits.
+- Complete the temporary-resource owner review and exceptional cleanup guards
+  (#132), retaining the separate #130/#131 developer-tool repairs.
+
+Public APIs, schemas, dependencies, Python/platform support and accepted minimum
+versions are unchanged. The general 1.x decision and original 0.12.0 artifact
+remain separate and unchanged.
+
 ## 0.12.0 — pre-1.0 stabilization (2026-10-07)
 
 The maintainer authorized this pre-1.0 delivery on 2026-10-07 under
