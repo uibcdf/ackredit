@@ -4,6 +4,16 @@ Ackredit is pre-1.0. This document records what is verified to work, what is kno
 broken, and what is planned. Claims here must be checkable; if a feature is listed as
 working, a test or a reproducible command backs it.
 
+## Current maintenance candidate
+
+The 2026-11-11 owner review resolves #135/#138/#139 in source and prepares
+**0.12.2** under [#140](https://github.com/uibcdf/ackredit/issues/140).
+SPDX/notice metadata and compatible build tools, the corrected >=0.15.0 ArgDigest
+floor, qualified optional DueCredit >=0.10.2 and reviewed Conda v2.3.0 operations
+have local measured evidence. Exact-source/installed/public delivery is pending;
+0.12.1 remains the verified public baseline. [Runtime review](https://github.com/uibcdf/ackredit/blob/main/devguide/runtime_dependencies.md)
+and the archived owner records retain contracts, reproduced failures and limits.
+
 ## Verified working
 
 - **Hierarchical core:** Registry, Collector and the `scope` context manager, with nested

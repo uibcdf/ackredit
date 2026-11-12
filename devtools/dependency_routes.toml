@@ -74,8 +74,8 @@ reason = "Builds candidate/released Ackredit and pinned PyUnitWizard fixture whe
 
 [[workflows]]
 path = ".github/workflows/build_and_upload_conda_packages.yaml"
-sha256 = "d190d60cdeb90e54815215434b7d2333ecc7695e3e25800de4b799c487c0f11d"
-reason = "Manual wrapper pins the shared one-file noarch staging workflow. Its recipe host supplies build dependencies and its run requirements supply the artifact runtime."
+sha256 = "88d288dbc5f88bccca70fb3f4f341fc247c4e97a08526df2c5702c7aad3cf189"
+reason = "Owner-reviewed #139 wrapper pins shared v2.3.0 build/exact-upload delivery at MolSysSuite 95f693be. Recipe host supplies the #135 compatible backend and run requirements supply artifact runtime; source gates and inspect-before-upload remain."
 
 [[workflows]]
 path = ".github/workflows/test_staged_conda_package.yaml"
@@ -84,8 +84,8 @@ reason = "Manual wrapper pins shared exact-file installed qualification; artifac
 
 [[workflows]]
 path = ".github/workflows/promote_conda_package.yaml"
-sha256 = "c28ab80780e346d63d6ca659b10035c6b6e317aaef8e55e3100bb2353283a53f"
-reason = "Manual pinned exact-file promotion; no source rebuild or runtime replacement. Shared verifier checks installed/source receipts and public poststate."
+sha256 = "229226e3e1c8920800108dca92588f5f2e8c16dd3c1e7481d74d030ef7946071"
+reason = "Owner-reviewed #139 exact-file promotion at MolSysSuite 95f693be; no rebuild/runtime replacement. Separately retained c3e2b9b3 installed/operator profile binds original source, qualification and run; installed verification precedes promotion and independent public verification."
 
 [[workflows]]
 path = ".github/workflows/conda-publication-policy.yml"

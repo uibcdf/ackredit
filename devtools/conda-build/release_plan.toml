@@ -1,11 +1,11 @@
 schema = "molsyssuite.conda-plan@1"
-version = "0.12.1"
+version = "0.12.2"
 package = "ackredit"
 build_number = 0
 route = "staged"
 profile = "noarch-python"
-reason = "Prepare the #133 enclosing-workflow snapshot maintenance repair with identical output and unchanged APIs/schemas. Require complete exact-source and installed matrices, real PyUnitWizard receiving and installed snapshot guards against one original noarch archive before any promotion. Preserve the immutable 0.12.0 artifact and its original qualification."
-decision_by = "The maintainer resumed development toward a possible new tag/release on 2026-10-22. Ackredit #134 records the bounded 0.12.1 maintenance candidate and its exact-file release decision/gates; #132 owns the separate developer-resource review. Existing portable/provider/evidence/validator version floors are unchanged. General public 1.x remains deferred."
+reason = "Deliver reviewed SPDX/notice metadata, coherent build minimum, corrected lightweight ArgDigest runtime floor, qualified optional DueCredit floor and shared Conda v2.3.0 operations. Preserve APIs/schemas and all original 0.12.1 bytes; require exact-source, full installed and real receiving qualification for one new noarch file."
+decision_by = "The maintainer authorized attending issues then publishing a new version on 2026-11-11. Ackredit #135/#138/#139 own the reviewed changes; #140 owns staged 0.12.2 delivery and its complete candidate/file gates. MolSysSuite #192 owns the release notice and future guide/graph receiving."
 artifact_subdirs = ["noarch"]
 test_platforms = ["linux-64", "osx-arm64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]

@@ -27,3 +27,9 @@ required_steps = ["Install exact artifact", "Validate installed files", "Run ins
 [installed_tests]
 paths = ["tests"]
 pytest_args = ["--receptor=ci", "--color=yes"]
+# Qualification tools only; these ranges are not Ackredit runtime requirements.
+conda_dependencies = [
+  "python-build>=1.2,<2",
+  "setuptools>=77.0.3,<85",
+  "versioningit>=3,<4",
+]

@@ -53,7 +53,7 @@ def test_administrative_qualification_retains_explicit_original_producer_identit
     assert promoted["with"]["candidate_sha"] == "${{ inputs.candidate_sha }}"
     assert promoted["with"]["qualification_sha"] == "${{ inputs.qualification_sha }}"
     assert "qualification_sha" in promote["on"]["workflow_dispatch"]["inputs"]
-    assert (
-        installed["jobs"]["installed"]["uses"].split("@")[1]
-        == (promoted["uses"].split("@")[1])
-    )
+    # Installed qualification and promotion are independently reviewed operations.
+    # Bind evidence through explicit producer/qualification/run identities, not an
+    # unnecessary equality between their shared-tool revisions (#139).
+    assert promoted["with"]["installed_run_id"] == "${{ inputs.installed_run_id }}"

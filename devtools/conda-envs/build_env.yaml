@@ -7,3 +7,4 @@ dependencies:
   - conda-build
   - anaconda-client
   - versioningit
+  - setuptools >=77.0.3

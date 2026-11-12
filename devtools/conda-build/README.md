@@ -40,8 +40,9 @@ the final full source SHA and actual artifact digest; a commit cannot contain
 its own SHA. Changed inputs invalidate the gates that consumed them.
 
 The wrappers pin shared MolSysSuite operations independently: build/upload at
-`2fb344525ca0eea817dc24a518f4a6bf26e311cf`, installed qualification and promotion
-at `c3e2b9b3dabf3d1c65349c389a23048957bea21a`, and publication policy at
+`95f693be10c9205ab9b912cb53453710a207bf45` and promotion at that same reviewed
+delivery under #139. Installed qualification and receiving retain
+`c3e2b9b3dabf3d1c65349c389a23048957bea21a`; publication policy remains at
 `2a2a459cc3795bb92766fffa0fe28f4d80f01ad4`. The provider owns
 archive inspection, executed-gate acquisition, exact-file upload, label-only
 promotion and independent public registry/index verification.
@@ -50,9 +51,9 @@ promotion and independent public registry/index verification.
 
 1. Publish the reviewed source commit and pass its declared CI/policy gates.
 2. Dispatch `build_and_upload_conda_packages.yaml` with full `candidate_sha`
-   and the version in the reviewed plan. The current `0.12.1` coordinate is already
-   delivered under #134: do not dispatch its build again. A future candidate
-   first needs its own plan/CFF/version decision and gates. The plan supplies
+   and the version in the reviewed plan. The current `0.12.2` candidate is
+   owned by #140 and requires its complete source gates before dispatch.
+   The published `0.12.1` coordinate (#134) must never be built again. The plan supplies
    build 0. The provider freezes version
    metadata only in its ephemeral checkout, builds once, tests and inspects the
    archive before uploading the exact file to staging.

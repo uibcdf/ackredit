@@ -1,5 +1,28 @@
 # Release notes
 
+## 0.12.2 — packaging maintenance (candidate, 2026-11-11)
+
+Qualification is in progress under [Ackredit #140](https://github.com/uibcdf/ackredit/issues/140).
+This version is not yet a public installation recommendation; verified 0.12.1
+remains the current public baseline until same-file delivery is complete.
+
+- Preserve the original MIT notice while publishing SPDX and explicit license-file
+  metadata. Raise the build-only Setuptools minimum to 77.0.3 and align nonisolated
+  build/test routes; real wheel, sdist and rebuilt-wheel checks protect notice bytes.
+- Require ArgDigest >=0.15.0 for its corrected import without NumPy. The older
+  >=0.13.0 floor fails Ackredit's existing lightweight import guard. Other required
+  provider floors stay unchanged; no runtime ceiling is added.
+- Keep DueCredit optional and declare the exercised >=0.10.2 floor in its extra,
+  `full` union and development selection. Real 0.10.2/0.11.2 collectors receive
+  observed DOI/BibTeX references offline without crediting unused work.
+- Adopt reviewed shared Conda v2.3.0 build/exact-upload and promotion operations,
+  preserving independent source, installed, receiving and public-verification gates.
+
+Public APIs, schemas, Python/platform range and client contract floors are
+unchanged. This packaging release does not introduce a dashboard or a general
+1.x promise. All prior files, tags and qualification receipts remain immutable.
+
+
 ## 0.12.1 — faithful workflow snapshot scaling (2026-10-22)
 
 Delivery is complete under [Ackredit #134](https://github.com/uibcdf/ackredit/issues/134):

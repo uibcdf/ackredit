@@ -1,0 +1,433 @@
+{
+  "schema": "ackredit.owner-review@1",
+  "date": "2026-11-11",
+  "starting_source": "4beb850c8ba814e6103b4d303128a1a36eb57610",
+  "issues": [
+    "uibcdf/ackredit#135",
+    "uibcdf/ackredit#138",
+    "uibcdf/ackredit#139"
+  ],
+  "license": {
+    "license_before": {
+      "failed": 1,
+      "mechanism": "Wheel License-Expression absent"
+    },
+    "license_current": {
+      "setuptools": "84.0.0",
+      "versioningit": "3.3.0",
+      "passed": 1
+    },
+    "license_minimum": {
+      "setuptools": "77.0.3",
+      "versioningit": "3.0.0",
+      "passed": 1
+    },
+    "temporary_capacity_failure": {
+      "error": "Disk quota exceeded (errno 122)",
+      "duecredit_install_log_sha256": "08f6d00933e3ac674eb8966bcfb0fc912b14a4f3fdcec9a0788c7002908c50a4",
+      "disposition": "Retire exhausted task scratch; use ignored local build/ackredit0122 for new task-owned environments/cache."
+    }
+  },
+  "minimum_backend_current_metadata": {
+    "finish": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 1,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 1,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 1,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 7.002700102049857,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "5ceeeaf75d713f3dfef91eb845b7c9ba8e347d098821741cf0a5ce5d4b0f2159",
+        "records": 4
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "163b052f1ad341718aae80b28fe235f1",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_sha256": "bd59f17b8ee3e9edec9f94bd36d0f9e51f176951b73b73da88dab5427631cc29"
+  },
+  "selected_current_provider_tests": {
+    "finish": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 260,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 260,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 260,
+        "reruns": 0,
+        "skipped": 0,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 8.809718126896769,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 6
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "c4fe4cd38ce166e2ba794a7af3130806f93e07f657eb2d2a066b5c40b9c5b70e",
+        "records": 787
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "2f8f952b31e54ccd840b5c5ad242e02e",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_sha256": "19e5d52e8b43ed872c6cc19c950fba679402a2c8bef9a4ddf191e21caa4f1327"
+  },
+  "initial_minimum_run": {
+    "finish": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 12587,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 12587,
+        "failed": 2,
+        "not_executed": 0,
+        "passed": 12571,
+        "reruns": 0,
+        "skipped": 14,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 178.2407232041005,
+      "exitstatus": 1,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "84ce9dd054c8b2fef39a83b7f321b2b92ffb7eead457901e9c71f67ee08c1107",
+        "records": 37753
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "FAIL",
+      "root_causes": 2,
+      "run_id": "84d9b854b7164242a6ca6a3a6c4e93bb",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_sha256": "b25d9df16783f6b766fd1e0690e7526eb5088f1cec03a52edc5a84e66e2eab6d"
+  },
+  "repaired_minimum_run": {
+    "finish": {
+      "artifact_policy": {
+        "dropped_records": 0,
+        "max_bytes": 52428800,
+        "truncated": false
+      },
+      "complete": true,
+      "counts": {
+        "collected": 16548,
+        "deselected": 0,
+        "errors": 0,
+        "executed": 16548,
+        "failed": 0,
+        "not_executed": 0,
+        "passed": 16534,
+        "reruns": 0,
+        "skipped": 14,
+        "subtests": {},
+        "warnings": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "duration": 142.22289187903516,
+      "exitstatus": 0,
+      "extensions": {
+        "dropped": 0,
+        "incomplete": false,
+        "recorded": 0
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "81f8aa7b459ea887c27661ebad0c8bba658f5d024f2e7fbb5525d0207fd13775",
+        "records": 49634
+      },
+      "invalid_selections": [],
+      "note": "",
+      "outcome": "PASS",
+      "root_causes": 0,
+      "run_id": "ecb9d411897342428545137c278f647b",
+      "schema": "pytest-receptor.events@1",
+      "stop_reason": "",
+      "type": "session_finish"
+    },
+    "events_sha256": "f4e24f2c0ddf70b1a4e71dbc5ade010404f082f6098f77e02ace97064b250f51"
+  },
+  "runtime_minimum_versions": {
+    "python": "3.14.10",
+    "smonitor": "0.16.0",
+    "depdigest": "0.11.0",
+    "argdigest": "0.15.0",
+    "pyyaml": "6.0.3"
+  },
+  "pyyaml_exact_source_contract": {
+    "version": "6.0",
+    "source": "Official PyPI cp311 wheel, pure-Python loader used directly",
+    "passed": 92,
+    "scope": "CFF contracts on Python 3.14.7; not a native cp314 wheel installation"
+  },
+  "optional_duecredit": [
+    {
+      "version": "0.10.2",
+      "passed": 2,
+      "skipped": 0,
+      "collector": "real offline DueCreditCollector",
+      "cases": [
+        "DOI observed reference",
+        "BibTeX observed reference"
+      ],
+      "unobserved_reference_omitted": true
+    },
+    {
+      "version": "0.11.2",
+      "passed": 2,
+      "skipped": 0,
+      "collector": "real offline DueCreditCollector",
+      "cases": [
+        "DOI observed reference",
+        "BibTeX observed reference"
+      ],
+      "unobserved_reference_omitted": true
+    }
+  ],
+  "shared_sdk": {
+    "commit": "95f693be10c9205ab9b912cb53453710a207bf45",
+    "provider": "87c70b1443d5f22d738ee3ddf812bdbe0152f6c2",
+    "contract_tests_passed": 28,
+    "publication_contract": "PASS",
+    "noarch_recipe": "PASS",
+    "dependency_preflight": {
+      "package": "ackredit",
+      "routes": [
+        {
+          "kind": "shared-noarch",
+          "path": "devtools/conda-build/meta.yaml"
+        },
+        {
+          "kind": "runtime",
+          "path": "devtools/conda-envs/development_env.yaml"
+        },
+        {
+          "kind": "runtime",
+          "path": "devtools/conda-envs/test_env.yaml"
+        },
+        {
+          "kind": "runtime",
+          "path": "devtools/conda-envs/test_env_next.yaml"
+        },
+        {
+          "kind": "runtime",
+          "path": "devtools/conda-envs/docs_env.yaml"
+        },
+        {
+          "kind": "build-only",
+          "path": "devtools/conda-envs/build_env.yaml"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/CI.yaml",
+          "sha256": "c49a45fe517771530fdedc5cc524f054d3ddc760701a1cb0c0ed596d56fec59c"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/CI_full_matrix.yaml",
+          "sha256": "1fc420c4543ea247b0d666e171888950b201156d2a81af1b39fa481b9eee32ef"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/coverage.yaml",
+          "sha256": "e0c8f442d16b219c8e736a828a77fdd9b2f297ff46d1d4c3a34323dc92641b51"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/python314_feasibility.yaml",
+          "sha256": "42007325d71a419b309fd33885ee2a555f571d63b58d84c82dbb041b8ae994cb"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/function_provider_receiving.yaml",
+          "sha256": "d67371a7d913cae5ac0dca7e619c6b2bfb5634bcdce3c5d4ad253798d9e42e42"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/build_and_upload_conda_packages.yaml",
+          "sha256": "88d288dbc5f88bccca70fb3f4f341fc247c4e97a08526df2c5702c7aad3cf189"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/test_staged_conda_package.yaml",
+          "sha256": "58a730d2af9dbe56e6dfa95c21899cbb34812cda5361cb2bc98c1db8b7477221"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/promote_conda_package.yaml",
+          "sha256": "229226e3e1c8920800108dca92588f5f2e8c16dd3c1e7481d74d030ef7946071"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/conda-publication-policy.yml",
+          "sha256": "7b2660e305641cea839bbd692e2a24f03420400d8583e2bcbc1ea41c72c2fdd8"
+        },
+        {
+          "kind": "reviewed-workflow",
+          "path": ".github/workflows/molsyssuite-policy.yml",
+          "sha256": "4e378ccca06312cd6c0256e01773f515ea0446c4fcfa83be18c2b52fd0135a9d"
+        }
+      ],
+      "schema": "molsyssuite.dependency-routes@1",
+      "source_dependencies": []
+    },
+    "installed_and_receiving_pin_preserved": "c3e2b9b3dabf3d1c65349c389a23048957bea21a"
+  },
+  "stale_local_build": {
+    "path": "build/lib",
+    "reason": "Generated stale build/lib included removed contrib/web_ui.py in the local wheel; source lacks it. No active build remains.",
+    "files": {
+      "ackredit/CITATION.cff": "988b6d2c024495dd62695901288e9b4903ae7023c7f6c1d5420a93b891ceb043",
+      "ackredit/cli.py": "fa9af7c8c01b5120607db4a95ce7b10f024f315efbb6d8cc81a903ffbf1caf8e",
+      "ackredit/_argdigest.py": "eaa776aa242fc07f495d055d74857f661b80c26e538c722aaa6b19c8879fd1d3",
+      "ackredit/_smonitor.py": "dfc5f5e015ca062ec364599e6d230c3433c03411c463ac50b50df4dbf48e1ef8",
+      "ackredit/__init__.py": "43264d45f63ed941ac032aed67c882543a952bc6f58a3555e1a100a5d7b13533",
+      "ackredit/_depdigest.py": "e9eb4a868e08758f73d7892a801a2e5ff2c0b1eb161f67c272807ddbd9ba2201",
+      "ackredit/_version.py": "539204fa5aeb67ace683c608b6eff1d1f1e0aa0ffcb2cb5f99d3f606fdca9694",
+      "ackredit/formats/latex.py": "f25aff15888cfcb17a69d021196ee0421eba6a76883ab0bb6e0d1bda98dfb23c",
+      "ackredit/formats/_html.py": "af6326733d57462740a563c6efeb9f8bf2a94675fd76b94c10ea93f21b635472",
+      "ackredit/formats/jsonfmt.py": "05bf25adda78109d5354cafd49c01f5fe542a8b71b6cbf780b8026b58ae1548b",
+      "ackredit/formats/_links.py": "8480f05783e5eaa70b80fab52e9e320ac9f9a0df9c3b907df6d2788a2a83a7b0",
+      "ackredit/formats/_markdown.py": "b751beeddc61b6b3fa5b1e45de8e164c8d75c089d6f058cce85f2a83d62800a6",
+      "ackredit/formats/text.py": "dd8f2d4ca6eff518af8978d97b55ab4af1c89c6a6d4ce14637af3619ece2faaa",
+      "ackredit/formats/csl_json.py": "557dcf3be046f3582f6f3e4ea947e0e4ab4c4a8f9898be02cee48eeb5db01dc7",
+      "ackredit/formats/bibtex.py": "acafe9b163a0ce81f9999839a6c6520606de46e90a69365de5390ddcea2bd8e7",
+      "ackredit/formats/_names.py": "25176af1e308c08ed8ea03633e7b41ae041a79142d983531035010c785db4dea",
+      "ackredit/formats/explanation.py": "2d114f00d0d910179d7eb82b6e84969e5b9cbd9c3637c475cde5a319c4934f2d",
+      "ackredit/formats/__init__.py": "ab6a057cb393d9338654792772912a5ae66031fc563a43256e2d795e44128a13",
+      "ackredit/formats/_latex.py": "bbd98671010150ec8f59e34bfc2f5a7dfa5401e661ff4bb1a85481d223480f56",
+      "ackredit/formats/provenance.py": "27bc997930bcac7bdc455add9b4f3a273779455ddf1ba8d2d7af9d5dd1678f8a",
+      "ackredit/formats/workflow.py": "079cd7f0a9562ada18aa362ab6dbea0f7325269a932c3f7c30949ea1b441ec60",
+      "ackredit/formats/markdown.py": "cb283b3fa647a60cf8200fc3d3a724a17057d0c2ae51041086d8f4c4aa758e96",
+      "ackredit/contrib/jupyter.py": "36be2ab8cbe677b25e1a0a94444b4a51b2c3d33100209711bdcde00624a6d0c3",
+      "ackredit/contrib/web_ui.py": "f3c908e272b42c6f77afc666743587c101ad0aaaad2b0c378e5b66c968aaaa11",
+      "ackredit/contrib/duecredit_compat.py": "9143f42759defdcf5d76416d346ad8ef1a7f4f7b59b87c59ea8961a058b4daf0",
+      "ackredit/contrib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ackredit/core/providers.py": "bf90d47c118b2d29c982c466f637958452806bd87785934be8a017f3c4741348",
+      "ackredit/core/collector.py": "4beab98293a24919b3ffe26cd8fc062c5b1aa2f1d1aa24e47ee03a7451ef2139",
+      "ackredit/core/cff.py": "c1092d4c5c28ff970d5a9481d62c83e60ce7df07f26bc5ceb839224395f5d30a",
+      "ackredit/core/attribution.py": "2262045f9efb36d412423a6ea36d86d9448769ead276a82ba0e7cb42e890c333",
+      "ackredit/core/inspection.py": "b9efba1c647ffd510ef44321958e915b2e87f0f87a56a14a0f4c036cc28765c6",
+      "ackredit/core/injections.py": "85719e4da382861245eb7f268cc94b0f37638d73527a219db1c6743892104932",
+      "ackredit/core/evidence.py": "88d97a57f421e978c1cb9f3598fbd6afb2061ed585fd25b5a1211940f81e3e31",
+      "ackredit/core/composition.py": "69f3fc1601c1ad87bfec6feed2fadca9e23549af8a4d8aae15670c4d4a2ac389",
+      "ackredit/core/registry.py": "46c211d8ecda1b5357b6de8f6c73ebe55fb8c9c81649b11f92e649a1011b1f55",
+      "ackredit/core/explanation.py": "33cb35d8876af730566b3286ed86234de885475ff2c9c33e49d720552db8a27b",
+      "ackredit/core/__init__.py": "b2bb26103ec489f126a4f2a0598d9a5bb2ef49452508cd8ab10f724da1b7de97",
+      "ackredit/core/decorators.py": "0baa9f1279b7ae453dc8abedcf28d9c2a0e86a06791f1c5b56eb0c27c8d15e83",
+      "ackredit/core/standard_injections.py": "d61a165142d9f85a129505fab4c6e6d03236556a00fdb346eee98a1afa768b56",
+      "ackredit/core/context.py": "9827b133668f546783fabec66f90f7214c3cdebf7b568f5bc8c7a51e31d9ba5b",
+      "ackredit/core/report.py": "b89a4f8fcba2c5dc232411d6d8d7753984c80bc178131e18c5f6b4fbc7ac7ad6",
+      "ackredit/core/hooks.py": "58407a1f3605c1cce63dc8928a36411b77eeec6578a192f202c6dbd02c0cf975",
+      "ackredit/core/session.py": "456e3db08e36adb4adaa1bc9b397276e7c787a146752fd9ce69644e188f1aa07",
+      "ackredit/_private/dates.py": "52ec37aa067cfb20eaa9fe4365d3dad1760c02298d34a27bc11df8a0ea73e47d",
+      "ackredit/_private/__init__.py": "452139d5dcf653b77651a44e44f18fb906666a135f789709b14bc062dae1d0b6",
+      "ackredit/_private/smonitor/exceptions.py": "9eb0479eb759d5f052d5838809c47c376d65d77920332f3bce07f7acd05eee88",
+      "ackredit/_private/smonitor/catalog.py": "85e69c1a740dd82cae064a6f0510bbd0e990afe85fec18301233ee47bfe17e52",
+      "ackredit/_private/smonitor/meta.py": "63f4202183ce21b5ad3ea3f972f1f5a7b9acb46a07cf30a7101aeed3906418f7",
+      "ackredit/_private/smonitor/__init__.py": "dd94fb78fb113423ddacc2a380997bdc063523798df30b30b5c05d7ccf5b5eab",
+      "ackredit/_private/smonitor/warnings.py": "fab9ef05a9c9c8bbcba5e2bfb4a5d4e042a6897bdf87f76fb3d79fc6d209080a",
+      "ackredit/_private/smonitor/emitter.py": "e0eab9c9d44d59c656a0766808d87b5d076dac1a14983518d7a9a849f9442605",
+      "ackredit/_private/argdigest/__init__.py": "68817bbc727f44ff6d0d4cf15599363b1a5d9ac4f34b5027c662c24ef7564ae8",
+      "ackredit/_private/argdigest/digest.py": "97a3b1f77962094e33fe96388c337bc7eb118549e171f7b193527028e16f19b0",
+      "ackredit/_private/argdigest/domain/format_options.py": "3991ba1c7f49551011021a1eedbb0ea6ae169ec6d78178c73fa19735afc18172",
+      "ackredit/_private/argdigest/domain/citation_field.py": "c8ec2b0427e2c7c3626f985f4c8d7b800eae62be02b847ee8253b448858903b1",
+      "ackredit/_private/argdigest/domain/__init__.py": "56a90db8119c576465c831003446ce7587d8b0e96853d070947c130e19c80745",
+      "ackredit/_private/argdigest/normalization/__init__.py": "20185860374d7bff4f85ace7f3cc1fd8366a749d5421862be37070bdfe3f6b17",
+      "ackredit/_private/argdigest/function/register_item.py": "75b5f04f8de6fe9c834341651c079daceda9269a0409737602ded7b327b25529",
+      "ackredit/_private/argdigest/function/__init__.py": "17535577b86be582620d815110f43f5aecfa886676f07bc84f259d0bad1b94ac",
+      "ackredit/_private/argdigest/function/report.py": "48756217a14ebe89d1677975d84c609c6346b0c864bbf462dbe44df3457303f5",
+      "ackredit/_private/argdigest/argument/items.py": "6560421f413e7609bc8600318f34b9ae72a9ec9ca8842b49d2483d07e1f8c65d",
+      "ackredit/_private/argdigest/argument/formats.py": "65acfd7815d7276078db0458e358510c47593fad22ed948fc32932b29c6cf703",
+      "ackredit/_private/argdigest/argument/paths.py": "7ae2c6eb6b5b097745eb01d561be3347f358ce82164e93d67be96aac18e66585",
+      "ackredit/_private/argdigest/argument/file_path.py": "aefc9e60c024208596a62c60c33eee16180719df42c75a7b6d8332744d507e64",
+      "ackredit/_private/argdigest/argument/build_pdf.py": "cbbd71861212a98767adc1857a6fa34d3623a4fba0e723ae2eab716a686d1d8a",
+      "ackredit/_private/argdigest/argument/format.py": "a022143df6011badfe90a05cfe56d2dd7d19c927770f38f77d77f70a50d1beda",
+      "ackredit/_private/argdigest/argument/path.py": "f9fcf0358cf5787f291b38302dab0a8c19a210f22b586e5ca96d0624c4e5929f",
+      "ackredit/_private/argdigest/argument/directory.py": "8d9c264179d5ebecc349015ad4bf1af8bec014b5789c7df965109d44785e09c9",
+      "ackredit/_private/argdigest/argument/__init__.py": "59f7cc04925c937aca576b7426b5f86229383717e97e657cb93c4b571299f44b",
+      "ackredit/_private/argdigest/argument/target_module.py": "96236ee750f60d7bd0e97abf2f6407cf64b49e7daaee8159f017e7da73df3ef1",
+      "ackredit/_private/argdigest/argument/target.py": "618e5729e8056ddc7e619dacdaa9b0a917b1af41075c17eb08635dd93bdd1073"
+    }
+  },
+  "limits": [
+    "The local repository-wide example guards also scan generated files beneath ignored build/. This inflates administrative case counts; exact-source hosted gates use a clean checkout and retain their own actual counts.",
+    "Fourteen minimum-run skips: eight absent publication/manager tools, three optional newer diagnostic-provider APIs, two optional DueCredit cases and one missing Ruff-module probe. Primary Ruff checks and separate real DueCredit receiving pass. These source probes are not installed/public release evidence.",
+    "Newer shared-workspace providers are editable; the independent public Conda candidate/source matrix supplies separate published-provider evidence.",
+    "Old public artifacts/tags/receipts are unchanged."
+  ],
+  "input_sha256": {
+    "pyproject.toml": "088e5162b23df24e48f744175e87325458b167805584bc4fa9647ab79f33a913",
+    "devtools/conda-build/meta.yaml": "14b942b073d1641effaa609351669de1ca917fead0134a8dbab0dcef23ef28c0",
+    "devtools/conda-build/resources.toml": "57ed73d65b4653814bb32ec89f507ee7a0f8a9dba6e1e686014e5e4822c06872",
+    "devtools/dependency_routes.toml": "ac033772f947ba327e4ac3cd0c47cdbf93c226c0908b26e456df452315047594",
+    "tests/test_license_distribution.py": "0f273091d89b81b9d83735b4e95dfba8fbe58f8f62f65b6e960324198e4bff20",
+    "tests/test_duecredit_installed.py": "b7f5e1dccd8bf7c89f09f2f78e922dcf417672d9c6f59d6a8e812a19089800a4",
+    "tests/test_conda_release_route.py": "903a74f3cc7e014d952211d0120279eddb1b7046f905b98216836d0b34ff4ecc"
+  }
+}

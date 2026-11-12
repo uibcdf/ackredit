@@ -160,6 +160,15 @@ retains exact identities, allocation tradeoffs and bounded evidence. APIs,
 schemas and dependency floors are unchanged. The post-release canonical guide
 identifies recommended 0.12.1; MolSysSuite owns client-copy synchronization.
 
+### 0.12.2 — Packaging maintenance candidate
+
+The 2026-11-11 authorization addresses #135/#138/#139 and prepares #140:
+SPDX metadata/original notice preservation, coherent minimum build tools,
+lightweight ArgDigest >=0.15.0, qualified optional DueCredit >=0.10.2 and reviewed
+shared Conda v2.3.0 publication operations. Source and installed/public gates
+remain distinct; this is not yet a published release. General 1.x, new scientific
+features and the separate dashboard #58 remain deferred.
+
 ---
 
 ## Towards 1.0.0

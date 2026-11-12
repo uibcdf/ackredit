@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (128)
+### Resolved (131)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -35,6 +35,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`ci_runs_one_of_three_versions.md`](ci_runs_one_of_three_versions.md) — [#63](https://github.com/uibcdf/ackredit/issues/63) — CI ran Python 3.13 alone while the contract promised 3.11 to 3.13, so two of the three had never been executed. *(resolved, measured)*
 - [`combined_prepared_receiving.md`](combined_prepared_receiving.md) — [#99](https://github.com/uibcdf/ackredit/issues/99) — Qualify the combined writer and immutable producer declaration optimizations. *(resolved, reproduced)*
 - [`conceptual_documentation_after_public_delivery.md`](conceptual_documentation_after_public_delivery.md) — [#83](https://github.com/uibcdf/ackredit/issues/83) — Reconcile conceptual architecture and current status with public portable attribution. *(resolved, measured)*
+- [`conda_provider_adoption_139.md`](conda_provider_adoption_139.md) — [#139](https://github.com/uibcdf/ackredit/issues/139) — Adopt the reviewed shared v2.3.0 build/upload and promotion operations. *(resolved, measured)*
 - [`contextual_workflow_reports.md`](contextual_workflow_reports.md) — [#89](https://github.com/uibcdf/ackredit/issues/89) — Render original bibliography, contextual uses and pipeline graph together. *(resolved, reproduced)*
 - [`csl_json_does_not_carry_a_reference.md`](csl_json_does_not_carry_a_reference.md) — [#44](https://github.com/uibcdf/ackredit/issues/44) — CSL-JSON raised on a year Ackredit itself produces, and mapped a short fixed list so a book reached a reference manager unformattable. *(resolved, measured)*
 - [`csl_json_marks_every_author_as_literal.md`](csl_json_marks_every_author_as_literal.md) — [#38](https://github.com/uibcdf/ackredit/issues/38) — Every author reached a reference manager as a literal, declaring a name that could be decomposed to be indecomposable. *(resolved, measured)*
@@ -66,6 +67,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`isolated_workflow_reader_imports_other_checkout.md`](isolated_workflow_reader_imports_other_checkout.md) — [#77](https://github.com/uibcdf/ackredit/issues/77) — Workflow output guards can import an editable provider from another checkout. *(resolved, reproduced)*
 - [`jabref_receiving.md`](jabref_receiving.md) — [#123](https://github.com/uibcdf/ackredit/issues/123) — Qualify detached BibTeX import and fresh-process resave in JabRef's real CLI. *(resolved, reproduced)*
 - [`latex_escaping_guesses_instead_of_knowing.md`](latex_escaping_guesses_instead_of_knowing.md) — [#9](https://github.com/uibcdf/ackredit/issues/9) — Character-level guessing left two escaping holes and invented authors who do not exist. *(resolved, reproduced)*
+- [`license_metadata_135.md`](license_metadata_135.md) — [#135](https://github.com/uibcdf/ackredit/issues/135) — Migrate license metadata with real distribution and minimum-backend evidence. *(resolved, measured)*
 - [`lifecycle_cost_study.md`](lifecycle_cost_study.md) — [#115](https://github.com/uibcdf/ackredit/issues/115) — Measure lifecycle costs and scaling before selecting further optimizations. *(resolved, measured)*
 - [`load_plugins_asks_twice_and_is_asked_nothing.md`](load_plugins_asks_twice_and_is_asked_nothing.md) — [#54](https://github.com/uibcdf/ackredit/issues/54) — The citation plugin loader carried a branch for a Python the package cannot run on, and nothing exercised the promise it makes. *(resolved, measured)*
 - [`migrate_static_version_to_versioningit.md`](migrate_static_version_to_versioningit.md) — [#20](https://github.com/uibcdf/ackredit/issues/20) — Migrate Ackredit from a static package version to canonical Versioningit tags. *(resolved, reproduced)*
@@ -100,6 +102,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`release_self_citation_version.md`](release_self_citation_version.md) — [#94](https://github.com/uibcdf/ackredit/issues/94) — Release qualification misses stale packaged self-citation versions. *(resolved, reproduced)*
 - [`repeated_attribution_allocations.md`](repeated_attribution_allocations.md) — [#97](https://github.com/uibcdf/ackredit/issues/97) — Avoid redundant allocations when recording repeated attribution. *(resolved, reproduced)*
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#72](https://github.com/uibcdf/ackredit/issues/72) — Review Ackredit Python ecosystem policy adoption. *(resolved, measured)*
+- [`runtime_dependency_floors_138.md`](runtime_dependency_floors_138.md) — [#138](https://github.com/uibcdf/ackredit/issues/138) — Review required and optional runtime floors and align maintained acquisition routes. *(resolved, measured)*
 - [`saved_attribution_composition.md`](saved_attribution_composition.md) — [#102](https://github.com/uibcdf/ackredit/issues/102) — Compose shared bibliography without conflating independent original result graphs. *(resolved, reproduced)*
 - [`scope_benchmark_tracing_ownership.md`](scope_benchmark_tracing_ownership.md) — [#131](https://github.com/uibcdf/ackredit/issues/131) — Scope developer benchmark tracing and preserve caller sessions. *(resolved, reproduced)*
 - [`scoped_runtime_coverage.md`](scoped_runtime_coverage.md) — [#76](https://github.com/uibcdf/ackredit/issues/76) — Measure installed runtime coverage and verify its public Codecov report. *(resolved, measured)*

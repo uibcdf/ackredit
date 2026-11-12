@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "versioningit>=3.0"]
+requires = ["setuptools>=77.0.3", "versioningit>=3.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,8 @@ dynamic = ["version"]
 description = "Ackredit — trace what you used, cite what matters."
 readme = "README.md"
 requires-python = ">=3.11,<3.15"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 # These must agree with CITATION.cff, which is the authority a citing tool reads.
 # tests/test_self_citation.py asserts they do.
 authors = [
@@ -24,8 +25,9 @@ dependencies = [
   # Argument auditing. Adopted in uibcdf/ackredit#62: six public functions
   # accepted arguments that could not be right, and a string where a list was
   # expected was iterated character by character.
-  # Python 3.14 support begins with the public ArgDigest 0.13.0 release.
-  "argdigest>=0.13.0",
+  # Python 3.14 starts at 0.13.0; import without NumPy requires the published
+  # 0.15.0 correction (Ackredit #138, ArgDigest bc14d57).
+  "argdigest>=0.15.0",
   # CITATION.cff is YAML. Reading it with anything less produces confident
   # wrong answers on constructs the specification documents.
   "pyyaml>=6",
@@ -36,11 +38,14 @@ dependencies = [
 # here must be a library declared in ackredit/_depdigest.py, and every library
 # declared there must appear here, or `dependency_info()` reports a feature the
 # user was given no way to install. Guarded by tests/test_packaging.py.
-duecredit = ["duecredit"]
-full = ["duecredit"]
+duecredit = ["duecredit>=0.10.2"]
+full = ["duecredit>=0.10.2"]
 test = [
   "pytest>=8",
   "ruff==0.16.5",
+  "build>=1.2",
+  "setuptools>=77.0.3",
+  "versioningit>=3.0",
 ]
 docs = [
   "sphinx",
