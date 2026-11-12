@@ -6,13 +6,13 @@ Ackredit has four runtime dependencies: three MolSysSuite infrastructure compone
 distributed through the `uibcdf` conda channel and not through PyPI.
 Published ArgDigest 0.15.0 does not require NumPy for this core route; its scientific
 extras can add it. The tree still includes compiled components: PyYAML and libyaml.
-The clean Linux/Python 3.14 measurement adds six Conda packages, about 526 KiB of
+The separately recorded historical Linux/Python 3.14 measurement adds six Conda packages, about 526 KiB of
 compressed package payload and 2.59 MiB of recorded regular files to Python alone.
 These exclude channel metadata and are logical file lengths, not physical disk
 usage. See [the public installation measurement](performance.md#published-diagnostic-providers-2026-10-06)
 for exact versions, raw evidence and limits.
 
-Ackredit **0.12.1** is available from the public `uibcdf` Conda channel. It retains
+Ackredit **0.12.2** is available from the public `uibcdf` Conda channel. It retains
 `Attribution`, `capture`, `get_attribution` and the portable
 `ackredit.attribution@1` contract first published in 0.9.0. Its metadata requires
 Python 3.11–3.14. The same `noarch: python` archive was qualified on Linux x86-64
@@ -33,7 +33,7 @@ original provisional provider contracts.
 Create an environment with Ackredit and its runtime dependencies:
 
 ```bash
-conda create -n work --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 ackredit=0.12.1=py_0
+conda create -n work --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 ackredit=0.12.2=py_1
 conda activate work
 ```
 
@@ -42,7 +42,7 @@ from `uibcdf` and `conda-forge`; no source checkout or staging channel is needed
 For an existing environment, use:
 
 ```bash
-conda install --override-channels --strict-channel-priority -c uibcdf -c conda-forge ackredit=0.12.1=py_0
+conda install --override-channels --strict-channel-priority -c uibcdf -c conda-forge ackredit=0.12.2=py_1
 ```
 
 Check it arrived whole:
@@ -50,49 +50,57 @@ Check it arrived whole:
 ```python
 import ackredit
 
-ackredit.__version__  # '0.12.1'
+ackredit.__version__  # '0.12.2'
 ackredit.dependency_info()  # what optional features this environment supports
 ```
 
 The published file is
-[`ackredit-0.12.1-py_0.tar.bz2`](https://conda.anaconda.org/uibcdf/noarch/ackredit-0.12.1-py_0.tar.bz2),
+[`ackredit-0.12.2-py_1.tar.bz2`](https://conda.anaconda.org/uibcdf/noarch/ackredit-0.12.2-py_1.tar.bz2),
 with SHA-256:
 
 ```text
-46d505016f6d05d7000adfaedde5f1ce596e32eb70d5302fc7f112c1042a73cb
+ac3738d90d239a153d4f58221655e39bb793125091162e118428bdc0961bc510
 ```
 
-The [installed matrix](https://github.com/uibcdf/ackredit/actions/runs/39887248843)
-and [exact-file promotion](https://github.com/uibcdf/ackredit/actions/runs/39888619992)
-retain the original artifact identity. A separate clean public-channel
-installation on Linux/Python 3.14 verifies installed origins, packaged citation,
-portable attribution, reference reuse, saved readers, explicit evidence,
-standalone validation, the optional absence path, CLI and dependency closure.
-Candidate-installed checks additionally pass 43 snapshot/portable contracts without
-skips. All 70 package files match the original archive; 67 are byte-identical to
-public 0.12.0. Only the reviewed snapshot implementation, packaged citation and
-generated version differ. Three installed 5,000-use payloads match the corresponding
-original/repaired source fingerprints. See [performance](performance.md) for the
-bounded source measurements and allocation tradeoff.
-The [real PyUnitWizard matrix](https://github.com/uibcdf/ackredit/actions/runs/39887250554)
-passes 72 mandatory tests without skips against the same Conda file across all
-eight cells. These gates do not certify a consumer's own release. The
-[delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
-retains independently verified native artifacts, original identities and limits.
-The original [0.12.0 receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
+The [installed matrix](https://github.com/uibcdf/ackredit/actions/runs/43142531629)
+and [same-file promotion](https://github.com/uibcdf/ackredit/actions/runs/43143253907)
+retain the original producer and archive identity. A fresh ordinary public-channel
+Linux/Python 3.14.10 installation, with cache separate from staging and no Ackredit
+before the solve, verifies origins, all 70 package files, SPDX and exact original
+MIT notice, portable/provider/evidence contracts, reused references, saved readers,
+actual optional absence, CLI and `pip check`. The code files are byte-identical
+to public 0.12.1; only packaged self-citation and generated version differ.
+
+The [real PyUnitWizard matrix](https://github.com/uibcdf/ackredit/actions/runs/43142535560)
+passes 72 mandatory cases without skips across eight cells. All ten native
+artifact digests/source bindings verify and the independently reconstructed
+aggregate matches the hosted result. These gates do not certify every consumer
+release. The [delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.2_public_2026-11-11.json)
+retains actual versions, original identities, executed checks and limits.
+The [GitHub release](https://github.com/uibcdf/ackredit/releases/tag/0.12.2) and tag
+point to original producer `52e05baecef89043cc4220623fadc1ce1bd1f2f6`.
+
+Build 1 is the qualified public file. The earlier staged `py_0` failed a test
+that compared installed identity with pre-release checkout tags; it remains
+immutable and unqualified. The correction retains rejection of stale packages
+and repeats every source/installed/receiving gate for the new producer.
+
+The [0.12.1 receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json)
+retains its snapshot-scaling proof and original file. The
+[0.12.0 receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.0_public_2026-10-07.json)
 retains its separate BibTeX/Pandoc, two BibLaTeX/Biber styles and JabRef 5.15
-qualification with fixture/tool warnings; no new manager/style claim follows
-from this snapshot maintenance release. The
-[GitHub release](https://github.com/uibcdf/ackredit/releases/tag/0.12.1) and tag
-retain original producer `28d3643e324da4c714a5c238701baba5ec64d306`.
+qualification with fixture/tool warnings. This packaging maintenance release
+makes no new manager/style or performance claim; see [performance](performance.md)
+for the bounded historical measurements.
 The [previous 0.10.1 receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.10.1_public_2026-10-05.json)
 keeps its historical public Sabueso evidence separately.
 
 ## For working on Ackredit itself
 
 Routine development uses Python 3.14. Maintained environments, package metadata,
-the recipe and required full CI agree on Python 3.11–3.14. ArgDigest 0.13.0 is
-the minimum dependency release carrying Python 3.14 support. Older immutable
+the recipe and required full CI agree on Python 3.11–3.14. Ackredit now requires
+ArgDigest >=0.15.0 for its corrected import without NumPy. Source builds require
+Setuptools >=77.0.3; maintained build/test environments declare it explicitly. Older immutable
 Ackredit tags keep their original range.
 
 ```bash

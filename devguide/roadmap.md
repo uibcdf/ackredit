@@ -160,14 +160,17 @@ retains exact identities, allocation tradeoffs and bounded evidence. APIs,
 schemas and dependency floors are unchanged. The post-release canonical guide
 identifies recommended 0.12.1; MolSysSuite owns client-copy synchronization.
 
-### 0.12.2 — Packaging maintenance candidate
+### 0.12.2 — Packaging maintenance delivered
 
-The 2026-11-11 authorization addresses #135/#138/#139 and prepares #140:
-SPDX metadata/original notice preservation, coherent minimum build tools,
-lightweight ArgDigest >=0.15.0, qualified optional DueCredit >=0.10.2 and reviewed
-shared Conda v2.3.0 publication operations. Source and installed/public gates
-remain distinct; this is not yet a published release. General 1.x, new scientific
-features and the separate dashboard #58 remain deferred.
+The 2026-11-11 authorization completes #135/#138/#139 and #141 under #140:
+SPDX metadata/original notice preservation, coherent build tools, lightweight
+ArgDigest >=0.15.0, qualified optional DueCredit >=0.10.2 and reviewed shared
+Conda v2.3.0 operations. Additive build 1 passes all exact-source gates, eight
+full installed cells, 72 real receiving cases without skips, same-file promotion,
+independent public checks and clean public installation. Failed staged build 0
+and old public files remain immutable. General 1.x, new scientific features and
+the separate dashboard #58 remain deferred; central guide/graph receiving is
+MolSysSuite #192. The public receipt retains original identities and limits.
 
 ---
 

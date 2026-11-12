@@ -4,7 +4,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 
 <!-- generated: devguide_index -->
 
-### Resolved (132)
+### Resolved (133)
 
 - [`a_bib_file_does_not_survive_a_round_trip.md`](a_bib_file_does_not_survive_a_round_trip.md) — [#43](https://github.com/uibcdf/ackredit/issues/43) — Loading a .bib file and writing it back flattened its entry types and dropped every field outside a list chosen in advance. *(resolved, measured)*
 - [`a_cached_answer_never_goes_stale.md`](a_cached_answer_never_goes_stale.md) — [#50](https://github.com/uibcdf/ackredit/issues/50) — A cached DOI answer had no age, so a record cached while it was in press stayed that way for ever. *(resolved, measured)*
@@ -100,6 +100,7 @@ Permanent resolved, withdrawn and superseded records. Archive, never delete.
 - [`release_0100.md`](release_0100.md) — [#93](https://github.com/uibcdf/ackredit/issues/93) — Deliver the corrected 0.10.1 checkpoint with exact Conda qualification. *(resolved, reproduced)*
 - [`release_0120.md`](release_0120.md) — [#127](https://github.com/uibcdf/ackredit/issues/127) — Deliver 0.12.0 with bounded evidence/validator promises for pre-1.0 stabilization. *(resolved, measured)*
 - [`release_0121.md`](release_0121.md) — [#134](https://github.com/uibcdf/ackredit/issues/134) — Qualify one exact maintenance artifact for faithful large-workflow snapshots. *(resolved, measured)*
+- [`release_0122.md`](release_0122.md) — [#140](https://github.com/uibcdf/ackredit/issues/140) — Qualify and publish one 0.12.2 packaging maintenance artifact. *(resolved, measured)*
 - [`release_self_citation_version.md`](release_self_citation_version.md) — [#94](https://github.com/uibcdf/ackredit/issues/94) — Release qualification misses stale packaged self-citation versions. *(resolved, reproduced)*
 - [`repeated_attribution_allocations.md`](repeated_attribution_allocations.md) — [#97](https://github.com/uibcdf/ackredit/issues/97) — Avoid redundant allocations when recording repeated attribution. *(resolved, reproduced)*
 - [`review_python_ecosystem_policy_adoption.md`](review_python_ecosystem_policy_adoption.md) — [#72](https://github.com/uibcdf/ackredit/issues/72) — Review Ackredit Python ecosystem policy adoption. *(resolved, measured)*

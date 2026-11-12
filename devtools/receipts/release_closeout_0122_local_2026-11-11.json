@@ -1,0 +1,141 @@
+{
+  "issue": "uibcdf/ackredit#140",
+  "scope": "Post-publication documentation, canonical client guide, receipt, archive/indexes and checkpoint; original producer/package/tag unchanged.",
+  "pytest": {
+    "artifact_policy": {
+      "dropped_records": 0,
+      "max_bytes": 52428800,
+      "truncated": false
+    },
+    "complete": true,
+    "counts": {
+      "collected": 200,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 200,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 200,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "duration": 1.2818334000185132,
+    "exitstatus": 0,
+    "extensions": {
+      "dropped": 0,
+      "incomplete": false,
+      "recorded": 0
+    },
+    "integrity": {
+      "algorithm": "sha256",
+      "digest": "abc9a5147bd6e8cbbaa24e8dff8119c8db8c1d4589c707110b16f88ed6f8d500",
+      "records": 601
+    },
+    "invalid_selections": [],
+    "note": "",
+    "outcome": "PASS",
+    "root_causes": 0,
+    "run_id": "09cde40e8317434d9f27ec58b13313a9",
+    "schema": "pytest-receptor.events@1",
+    "stop_reason": "",
+    "type": "session_finish"
+  },
+  "events_sha256": "02371976de3abbafdfb319e3070bd3aae982718b8b5fd5ff4b42f84f192026ff",
+  "strict_sphinx": {
+    "exit_code": 0,
+    "warnings": 0,
+    "log_sha256": "e4f4adf855a1792e6280ffc5072e01d6259e202ea7b7f7d7058b8df45645c2c5"
+  },
+  "local_markdown_targets": {
+    "checked": 105,
+    "all_exist": true,
+    "scope": [
+      "standards/ACKREDIT_GUIDE.md",
+      "devguide/checkpoint.md",
+      "devguide/status.md",
+      "devguide/roadmap.md",
+      "devguide/archive/release_0122.md",
+      "devtools/conda-build/README.md",
+      "docs/content/about/installation.md",
+      "docs/content/about/release_notes.md"
+    ]
+  },
+  "canonical_guide_sha256": "b7206aa1d8627a53f57f816cf99359f31de203b1d49fe9195785695ce8411464",
+  "central_handoff": "uibcdf/molsyssuite#192",
+  "ruff_check": "PASS",
+  "ruff_format": "PASS",
+  "indexes": "PASS",
+  "temporary_resources": {
+    "all_listed_task_roots_absent": true,
+    "conda_prefix_removal_and_registration_verified": true,
+    "final_published_tool_venv_and_test_root_removed": true
+  },
+  "pre_retirement_pytest": {
+    "artifact_policy": {
+      "dropped_records": 0,
+      "max_bytes": 52428800,
+      "truncated": false
+    },
+    "complete": true,
+    "counts": {
+      "collected": 204,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 204,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 204,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "duration": 1.9443423990160227,
+    "exitstatus": 0,
+    "extensions": {
+      "dropped": 0,
+      "incomplete": false,
+      "recorded": 0
+    },
+    "integrity": {
+      "algorithm": "sha256",
+      "digest": "20f0050b0d49cb43bbee0bc2df4821f94231d4ce5d9ebab508a3dcfdeb021894",
+      "records": 613
+    },
+    "invalid_selections": [],
+    "note": "",
+    "outcome": "PASS",
+    "root_causes": 0,
+    "run_id": "191eef179a8a4f60b03cf52f9c3ef5f7",
+    "schema": "pytest-receptor.events@1",
+    "stop_reason": "",
+    "type": "session_finish"
+  },
+  "final_published_receptor": {
+    "version": "1.2.1",
+    "profile": "llm",
+    "python": "3.14.7",
+    "environment": "Task-owned temporary tool venv over the unchanged primary development prefix",
+    "origin_verified_in_temporary_venv": true,
+    "global_tool_installation_unchanged": true
+  },
+  "input_sha256": {
+    "devguide/archive/README.md": "6a2e7360cf2b03b185738387d7a8c61f92fb215fc785624f9e0e56058c22a46f",
+    "devguide/checkpoint.md": "807078abdbe415bc00ef840c7fe91680f9c7cfafb905b41b404de33afd84f213",
+    "devguide/pending_proposals/README.md": "3ffbe4727666950299c59e58d93ad4a6e4681f6f728c54d86001d09ce87c5435",
+    "devguide/roadmap.md": "ce72c9dd4cbf37066d3b57c5a82fbf5bf5732aa58b8dcb3eda699337667f52fb",
+    "devguide/status.md": "497fdda94e8dc16f77b095e262322ce07b4df7b26f68e3727cd7485787c8a1b2",
+    "devtools/conda-build/README.md": "4f36b9bd90a9b18d24e89da8ecd69dd3fce061071ea67ddbe72f188b3f56d233",
+    "docs/content/about/installation.md": "5c9c02354323763d630e2f19f6cda213d2975e66d866892cd5fabbf9ddf1c30a",
+    "docs/content/about/release_notes.md": "c337c778a44e45845d22395ddf9deb3df8c0a01969f9192e8888f9cc7ae05072",
+    "standards/ACKREDIT_GUIDE.md": "b7206aa1d8627a53f57f816cf99359f31de203b1d49fe9195785695ce8411464",
+    "devguide/archive/release_0122.md": "f1f02225ca0c6a13682145797aab3ff8418c90ef26c5f2636c0bd8dab45bca6a",
+    "devtools/conda-build/receipts/ackredit_0.12.2_public_2026-11-11.json": "9f3a3a8a6514c88c096bc6dcb6bad42391914d65d4ccf324f48b0e9cbca0f383"
+  }
+}

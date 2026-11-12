@@ -1,13 +1,18 @@
 # Release notes
 
-## 0.12.2 — packaging maintenance (candidate, 2026-11-11)
+## 0.12.2 — packaging maintenance (2026-11-11)
 
-Qualification is in progress under [Ackredit #140](https://github.com/uibcdf/ackredit/issues/140).
-The selected candidate is additive build 1 after #141 corrects an installed
-version test that wrongly used pre-release checkout tags. Build 0 remains an
-immutable staged, unqualified file; it is not promoted or overwritten.
-This version is not yet a public installation recommendation; verified 0.12.1
-remains the current public baseline until same-file delivery is complete.
+Delivery is complete under [Ackredit #140](https://github.com/uibcdf/ackredit/issues/140).
+Public `ackredit-0.12.2-py_1.tar.bz2` retains original producer
+`52e05baecef89043cc4220623fadc1ce1bd1f2f6`: all exact-source gates, eight full
+installed cells, 72 mandatory real PyUnitWizard cases without skips, same-file
+promotion and independent public label/index checks pass. A fresh ordinary
+public-channel Linux/Python 3.14.10 prefix, with cache separate from staging,
+passes all 70 package files, contracts, original notice/SPDX, CLI, fresh saved
+reader, actual optional absence and `pip check`.
+[Installation](installation.md) and the [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.2_public_2026-11-11.json)
+retain original identities and limits. Build 1 follows #141's installed/source
+version-test correction; failed staged build 0 stays immutable and unqualified.
 
 - Preserve the original MIT notice while publishing SPDX and explicit license-file
   metadata. Raise the build-only Setuptools minimum to 77.0.3 and align nonisolated

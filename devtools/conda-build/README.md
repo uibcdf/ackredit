@@ -31,6 +31,17 @@ source/file/digest, tag/release and scope. The installed candidate also passes
 43 selected contracts, all 70 package files and three large-workflow payloads.
 No source/public contract floor or client-guide change is introduced.
 
+Public 0.12.2/build 1 completes #135/#138/#139 and #141 under #140.
+Original producer `52e05baecef89043cc4220623fadc1ce1bd1f2f6`, file
+`ackredit-0.12.2-py_1.tar.bz2`, SHA-256
+`ac3738d90d239a153d4f58221655e39bb793125091162e118428bdc0961bc510`
+pass all source/installed/real receiving/public gates. The
+[receipt](receipts/ackredit_0.12.2_public_2026-11-11.json) retains exact proof and
+clean public Python 3.14.10 installation. The earlier py_0 stays staged and
+unqualified after its installed source-tag assumption failed; it is never
+promoted or overwritten. All 70 package files agree between builds. Runtime
+implementation bytes agree with public 0.12.1; self-citation/version differ.
+
 ## Committed candidate inputs
 
 `release_plan.toml` records staging, version/build, executed source gates and
@@ -51,10 +62,10 @@ promotion and independent public registry/index verification.
 
 1. Publish the reviewed source commit and pass its declared CI/policy gates.
 2. Dispatch `build_and_upload_conda_packages.yaml` with full `candidate_sha`
-   and the version in the reviewed plan. The current `0.12.2` candidate is
-   owned by #140 and requires its complete source gates before dispatch.
-   The published `0.12.1` coordinate (#134) must never be built again. The plan supplies
-   build 0. The provider freezes version
+   and the version in a new reviewed plan. Current `0.12.2/py_1` (#140) is
+   already public and must not be built or promoted again. Earlier staged py_0
+   is unqualified and immutable. A future coordinate first needs its own plan,
+   version/build decision and complete source gates. The provider freezes version
    metadata only in its ephemeral checkout, builds once, tests and inspects the
    archive before uploading the exact file to staging.
 3. Retain its producer artifact/receipt. Dispatch `test_staged_conda_package.yaml`

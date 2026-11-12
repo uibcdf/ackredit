@@ -4,15 +4,19 @@ Ackredit is pre-1.0. This document records what is verified to work, what is kno
 broken, and what is planned. Claims here must be checkable; if a feature is listed as
 working, a test or a reproducible command backs it.
 
-## Current maintenance candidate
+## Current maintenance delivery
 
-The 2026-11-11 owner review resolves #135/#138/#139 in source and prepares
-**0.12.2** under [#140](https://github.com/uibcdf/ackredit/issues/140).
-SPDX/notice metadata and compatible build tools, the corrected >=0.15.0 ArgDigest
-floor, qualified optional DueCredit >=0.10.2 and reviewed Conda v2.3.0 operations
-have local measured evidence. Exact-source/installed/public delivery is pending;
-0.12.1 remains the verified public baseline. [Runtime review](https://github.com/uibcdf/ackredit/blob/main/devguide/runtime_dependencies.md)
-and the archived owner records retain contracts, reproduced failures and limits.
+Public **0.12.2/build 1** completes [#140](https://github.com/uibcdf/ackredit/issues/140).
+Owner #135/#138/#139 reviews and #141's installed/source identity correction are
+resolved. All exact-source gates, eight full installed cells and 72 mandatory
+real receiving tests without skips pass for one original `py_1` file; same-file
+promotion, independent public verification and a fresh public Linux/Python
+3.14.10 installation pass. [Installation](../docs/content/about/installation.md),
+the [public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.2_public_2026-11-11.json)
+and [runtime review](https://github.com/uibcdf/ackredit/blob/main/devguide/runtime_dependencies.md)
+retain actual source/file identities, consumed APIs and limits. Failed staged
+build 0 remains immutable/unqualified. MolSysSuite #192 owns canonical-guide
+synchronization and dependency-graph receiving; consumer copies are not edited here.
 
 ## Verified working
 
@@ -41,11 +45,11 @@ and the archived owner records retain contracts, reproduced failures and limits.
   persistence and a multi-session aggregator.
 - **Developer tools:** command-line interface and a Jupyter HTML summary.
 - **Distribution:** an installed wheel imports and works outside the source tree, guarded
-  by `tests/test_packaging.py`. Public Ackredit 0.12.1 is available from the `uibcdf`
+  by `tests/test_packaging.py`. Public Ackredit 0.12.2 is available from the `uibcdf`
   Conda channel as one verified noarch file. The same archive passed Linux/macOS
   arm64 × Python 3.11–3.14 installed qualification and a clean public Linux/Python
   3.14 receiving installation. See [installation](../docs/content/about/installation.md)
-  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.1_public_2026-10-22.json).
+  and the [public delivery receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.2_public_2026-11-11.json).
 - **Enclosing workflow snapshots:** public 0.12.1 removes quadratic legacy-use
   reconciliation without changing contextual variants, bibliography or use order
   (#133). The paired source study preserves all corresponding payloads; installed
@@ -165,7 +169,7 @@ fixed number of releases. The minor rises when behaviour a caller can see change
 many land before 1.0.0 is an outcome rather than a plan.
 
 The milestone receipts below describe their original development checkpoints.
-Current delivery is public 0.12.1; the maintainer's explicit resumption and version
+Current delivery is public 0.12.2; the maintainer's explicit resumption and version
 boundaries above govern new work. Historical "provisional" wording does not
 override later bounded acceptance/delivery. Unchecked wider roadmap criteria
 need a selected owning scope; they are not all required before the next release.

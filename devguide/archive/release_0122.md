@@ -1,13 +1,13 @@
 ---
 summary: Qualify and publish one 0.12.2 packaging maintenance artifact.
 issue: uibcdf/ackredit#140
-status: active
+status: resolved
 opened: 2026-11-11
-closed:
+closed: 2026-11-11
 severity: medium
-verification: asserted
+verification: measured
 area: [distribution, release]
-guard:
+guard: tests/test_release_citation.py::test_self_citation_matches_committed_release_candidate
 normative:
 blocked_by: []
 supersedes: []
@@ -80,3 +80,36 @@ installed and real receiving gates. The receiving-bundle tool accepts canonical
 nonnegative build numbers and binds the exact filename to the source plan,
 preserving old build-0 records and all existing digest/after-science checks.
 Neither build 0 nor old public 0.12.1 is overwritten, rebuilt or withdrawn.
+
+## Verified public build 1
+
+Original producer/tag source `52e05baecef89043cc4220623fadc1ce1bd1f2f6`,
+annotated tag object `92693ec0486f78a3687187954a245f1a1bcd1a9a`, canonical
+GitHub Release title/name/tag 0.12.2, published 2026-11-12T02:48:34Z.
+`ackredit-0.12.2-py_1.tar.bz2` SHA-256:
+`ac3738d90d239a153d4f58221655e39bb793125091162e118428bdc0961bc510`.
+
+All 17 required source jobs/named steps pass. Original staging 43141837615,
+eight-cell installed matrix 43142531629, real receiving 43142535560 and same-file
+promotion 43143253907 pass. All 72 mandatory real receiving cases execute without
+skips; all ten native ZIP digests bind the source and independent reconstruction
+equals the hosted aggregate. Original producer/promotion receipts also verify
+against native ZIP digests. The shared operator verifies the complete installed
+matrix and independent public label/index/file identity without another write.
+
+A fresh ordinary public-channel Linux/Python 3.14.10 prefix starts without
+Ackredit and has a cache separate from staging. Installation by name/build
+passes all 70 original files, runtime/distribution/CFF, original MIT notice/SPDX,
+portable/provider/evidence/CLI/fresh-reader/actual absence and `pip check`.
+All transitive Conda records use ordinary public channels and the new public
+cache archive digest matches the original producer. No editable source or staged
+URL supplies that installation. All 70 package bytes equal build 0; compared
+with public 0.12.1 only self-citation and generated version differ.
+
+[The public receipt](https://github.com/uibcdf/ackredit/blob/main/devtools/conda-build/receipts/ackredit_0.12.2_public_2026-11-11.json)
+retains actual identities, checks, failed-build disposition, source/byte bindings,
+qualified tool versions and limits. The guard protects release/citation alignment;
+it does not replace the independently retained installed/public file evidence.
+Canonical guide/installation and checkpoint are updated after delivery;
+MolSysSuite #192 receives exact committed guide bytes/digest for central copying.
+Consumer runtime adoption, general 1.x and Zenodo remain separate/unclaimed.
