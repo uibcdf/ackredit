@@ -51,7 +51,7 @@ def wheel_record(wheel: Path, *, package: str, source_commit: str) -> dict:
     }
 
 
-def validate_conda_record(record: dict) -> None:
+def validate_conda_record(record: dict, *, plan: dict | None = None) -> None:
     """Validate receiving identity; archive/provenance inspection belongs to MolSysSuite."""
     assert set(record) == {
         "kind",
@@ -65,7 +65,18 @@ def validate_conda_record(record: dict) -> None:
     assert re.fullmatch(r"[0-9a-f]{40}", record["source_commit"]), record
     assert re.fullmatch(r"[0-9a-f]{64}", record["sha256"]), record
     assert re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", record["version"]), record
-    assert record["filename"] == f"ackredit-{record['version']}-py_0.tar.bz2", record
+    assert re.fullmatch(
+        re.escape(f"ackredit-{record['version']}-py_") + r"(0|[1-9][0-9]*)\.tar\.bz2",
+        record["filename"],
+    ), record
+    if plan is not None:
+        assert (
+            record["version"] == plan["version"]
+            and type(plan["build_number"]) is int
+            and plan["build_number"] >= 0
+            and record["filename"]
+            == f"ackredit-{plan['version']}-py_{plan['build_number']}.tar.bz2"
+        ), (record, plan)
 
 
 def build_bundle(
@@ -91,7 +102,7 @@ def build_bundle(
             plan = tomllib.loads(
                 (source / "devtools/conda-build/release_plan.toml").read_text()
             )
-            assert record["version"] == plan["version"] and plan["build_number"] == 0
+            validate_conda_record(record, plan=plan)
             records[role] = record
             continue
         directory = destination / role

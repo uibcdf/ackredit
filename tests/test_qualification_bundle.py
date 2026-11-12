@@ -294,3 +294,27 @@ def test_conda_receiving_refuses_a_wheel_identity(conda_matrix):
     (directory / "bundle.json").write_text(json.dumps(manifest))
     with pytest.raises(AssertionError):
         bundle.verify_bundle(directory)
+
+
+@pytest.mark.parametrize("build", [0, 1, 12])
+def test_conda_receiving_binds_canonical_additive_build_to_plan(conda_matrix, build):
+    _, directory, _ = conda_matrix
+    record = json.loads((directory / "bundle.json").read_text())["packages"][
+        "candidate"
+    ]
+    record["filename"] = f"ackredit-{record['version']}-py_{build}.tar.bz2"
+    plan = {"version": record["version"], "build_number": build}
+    bundle.validate_conda_record(record, plan=plan)
+    with pytest.raises(AssertionError):
+        bundle.validate_conda_record(record, plan=dict(plan, build_number=build + 1))
+
+
+@pytest.mark.parametrize("build", ["-1", "01", "1.0", "one"])
+def test_conda_receiving_refuses_noncanonical_builds(conda_matrix, build):
+    _, directory, _ = conda_matrix
+    record = json.loads((directory / "bundle.json").read_text())["packages"][
+        "candidate"
+    ]
+    record["filename"] = f"ackredit-{record['version']}-py_{build}.tar.bz2"
+    with pytest.raises(AssertionError):
+        bundle.validate_conda_record(record)

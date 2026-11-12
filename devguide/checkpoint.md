@@ -13,7 +13,13 @@ impact/release notice, subsequent canonical-guide synchronization and dependency
 graph receiving. Final producer/archive/digest and hosted run IDs must be recorded
 before promotion/tag/release. Never rebuild an existing public coordinate.
 
-The committed plan/CFF select 0.12.2/build 0. Required gates: exact ordinary CI,
+The committed plan/CFF select **0.12.2/build 1** after #141 corrects an
+installed version guard. Original build 0 (`045b33d`, staging 43137946395,
+SHA-256 `bbbb545e24ae3a8871c9431603ee1a4c2e4090ad86ad8f648a3a18f294fed29c`)
+stays immutable and unqualified. Installed run 43138505283 fails the old
+source-tag comparison; real receiving 43138509159 passes 72 cases. The shared
+workflow freezes producer tests, so use a new additive producer and repeat
+all source/installed/receiving gates; do not substitute tests or overwrite bytes. Required gates: exact ordinary CI,
 eight full Linux/macOS arm64 × Python 3.11–3.14 source cells and both policies;
 one inspected noarch producer; eight exact-file installed cells; mandatory
 pinned real PyUnitWizard receiving; same-file promotion; independent public

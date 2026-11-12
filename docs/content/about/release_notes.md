@@ -3,6 +3,9 @@
 ## 0.12.2 — packaging maintenance (candidate, 2026-11-11)
 
 Qualification is in progress under [Ackredit #140](https://github.com/uibcdf/ackredit/issues/140).
+The selected candidate is additive build 1 after #141 corrects an installed
+version test that wrongly used pre-release checkout tags. Build 0 remains an
+immutable staged, unqualified file; it is not promoted or overwritten.
 This version is not yet a public installation recommendation; verified 0.12.1
 remains the current public baseline until same-file delivery is complete.
 

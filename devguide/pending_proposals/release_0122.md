@@ -56,3 +56,27 @@ All required source/installed/receiving/public gates execute against original
 identities; retain producer/file/digest, actual checks and limits. Update owning
 issues and checkpoint. Review and retire task resources after their last use,
 preserving other sessions and shared environments.
+
+## Build 0 qualification failure and additive repair — 2026-11-11
+
+Original build 0 producer `045b33df72c83ad5663a9a35c6cfdbafd925f6ae`, staging
+43137946395, filename `ackredit-0.12.2-py_0.tar.bz2`, SHA-256
+`bbbb545e24ae3a8871c9431603ee1a4c2e4090ad86ad8f648a3a18f294fed29c` remain
+immutable and unqualified for public delivery. Real receiving 43138509159
+passes 72 cases. Local external-prefix smoke passes all 70 package files,
+SPDX/original notice, portable/provider/evidence/CLI/fresh-reader/absence and
+`pip check`. Installed matrix 43138505283 fails all eight cells at one legacy
+version guard: runtime 0.12.2 versus checkout Git fallback 0.0.0. New explicit
+build tools activate that formerly skipped assumption. GHR exposes the failed
+step; one targeted native job log supplies the omitted exception.
+
+#141 owns the correction: exact installed runtime/distribution identity binds
+the committed candidate version, while source/development identity keeps Git
+derivation. Stale packages and mismatched distribution metadata remain rejected;
+no manufactured tags, version override or waived installed assertion. The shared
+workflow intentionally freezes tests at the original producer. Select additive
+build 1 with a new producer after the correction, repeating all exact-source,
+installed and real receiving gates. The receiving-bundle tool accepts canonical
+nonnegative build numbers and binds the exact filename to the source plan,
+preserving old build-0 records and all existing digest/after-science checks.
+Neither build 0 nor old public 0.12.1 is overwritten, rebuilt or withdrawn.

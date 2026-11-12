@@ -1,0 +1,164 @@
+{
+  "issue": "uibcdf/ackredit#140",
+  "repair_issue": "uibcdf/ackredit#141",
+  "version": "0.12.2",
+  "build_number": 1,
+  "scope": "Additive source candidate after test-only installed/source identity correction; full mandatory qualification pending for a new original file.",
+  "pytest": {
+    "artifact_policy": {
+      "dropped_records": 0,
+      "max_bytes": 52428800,
+      "truncated": false
+    },
+    "complete": true,
+    "counts": {
+      "collected": 222,
+      "deselected": 0,
+      "errors": 0,
+      "executed": 222,
+      "failed": 0,
+      "not_executed": 0,
+      "passed": 222,
+      "reruns": 0,
+      "skipped": 0,
+      "subtests": {},
+      "warnings": 0,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "duration": 14.191754338797182,
+    "exitstatus": 0,
+    "extensions": {
+      "dropped": 0,
+      "incomplete": false,
+      "recorded": 0
+    },
+    "integrity": {
+      "algorithm": "sha256",
+      "digest": "a14937aca59f49ac77db45ec6b72d97ded474d6e9981b166f75e1175bdfa51ed",
+      "records": 667
+    },
+    "invalid_selections": [],
+    "note": "",
+    "outcome": "PASS",
+    "root_causes": 0,
+    "run_id": "dc9d1906dd5c424a9f3b1acceec58ffd",
+    "schema": "pytest-receptor.events@1",
+    "stop_reason": "",
+    "type": "session_finish"
+  },
+  "events_sha256": "4426896425bbc67d5ae84721822ffcdb6a0343fff9e64bfb15743acfb293238e",
+  "strict_sphinx": {
+    "exit_code": 0,
+    "warnings": 0,
+    "log_sha256": "a9d38801a90fcc5baa9b9f367a9f109a52fe0d834d206503a730e0f0d420cd86"
+  },
+  "ruff_check": "PASS",
+  "ruff_format": "PASS",
+  "indexes": "PASS",
+  "noarch_recipe": "PASS",
+  "publication_contract": "PASS",
+  "dependency_preflight": {
+    "package": "ackredit",
+    "routes": [
+      {
+        "kind": "shared-noarch",
+        "path": "devtools/conda-build/meta.yaml"
+      },
+      {
+        "kind": "runtime",
+        "path": "devtools/conda-envs/development_env.yaml"
+      },
+      {
+        "kind": "runtime",
+        "path": "devtools/conda-envs/test_env.yaml"
+      },
+      {
+        "kind": "runtime",
+        "path": "devtools/conda-envs/test_env_next.yaml"
+      },
+      {
+        "kind": "runtime",
+        "path": "devtools/conda-envs/docs_env.yaml"
+      },
+      {
+        "kind": "build-only",
+        "path": "devtools/conda-envs/build_env.yaml"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/CI.yaml",
+        "sha256": "c49a45fe517771530fdedc5cc524f054d3ddc760701a1cb0c0ed596d56fec59c"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/CI_full_matrix.yaml",
+        "sha256": "1fc420c4543ea247b0d666e171888950b201156d2a81af1b39fa481b9eee32ef"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/coverage.yaml",
+        "sha256": "e0c8f442d16b219c8e736a828a77fdd9b2f297ff46d1d4c3a34323dc92641b51"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/python314_feasibility.yaml",
+        "sha256": "42007325d71a419b309fd33885ee2a555f571d63b58d84c82dbb041b8ae994cb"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/function_provider_receiving.yaml",
+        "sha256": "d67371a7d913cae5ac0dca7e619c6b2bfb5634bcdce3c5d4ad253798d9e42e42"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/build_and_upload_conda_packages.yaml",
+        "sha256": "88d288dbc5f88bccca70fb3f4f341fc247c4e97a08526df2c5702c7aad3cf189"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/test_staged_conda_package.yaml",
+        "sha256": "58a730d2af9dbe56e6dfa95c21899cbb34812cda5361cb2bc98c1db8b7477221"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/promote_conda_package.yaml",
+        "sha256": "229226e3e1c8920800108dca92588f5f2e8c16dd3c1e7481d74d030ef7946071"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/conda-publication-policy.yml",
+        "sha256": "7b2660e305641cea839bbd692e2a24f03420400d8583e2bcbc1ea41c72c2fdd8"
+      },
+      {
+        "kind": "reviewed-workflow",
+        "path": ".github/workflows/molsyssuite-policy.yml",
+        "sha256": "4e378ccca06312cd6c0256e01773f515ea0446c4fcfa83be18c2b52fd0135a9d"
+      }
+    ],
+    "schema": "molsyssuite.dependency-routes@1",
+    "source_dependencies": []
+  },
+  "immutable_failed_build0": {
+    "candidate": "045b33df72c83ad5663a9a35c6cfdbafd925f6ae",
+    "stage": 43137946395,
+    "file": "ackredit-0.12.2-py_0.tar.bz2",
+    "sha256": "bbbb545e24ae3a8871c9431603ee1a4c2e4090ad86ad8f648a3a18f294fed29c",
+    "installed": 43138505283,
+    "receiving": 43138509159,
+    "installed_status": "failure: source-tag-only version guard",
+    "receiving_status": "success",
+    "local_smoke": "stage-local-smoke.json",
+    "archive_inspection": "archive-inspection.json"
+  },
+  "input_sha256": {
+    "devguide/archive/README.md": "6084ecdbd46f1e6fe6986029c06183f4aaa696db660fd1f82a7bbf7e0bcf12e2",
+    "devguide/checkpoint.md": "02d22d2ced2836d793ce7f45ac09858c864e126664e9c351ee56a1dbcde5f755",
+    "devguide/pending_proposals/release_0122.md": "9ca1899048c1076af8c3bd424dc05c33b1dde292c3ece8f4b1ae4c6d6a7f5d6b",
+    "devtools/conda-build/release_plan.toml": "0de8149122781e2c2edbd2f1ba3e316b3240e3bc0c1dd45a749292d0cc86087a",
+    "devtools/qualification_bundle.py": "00db55130a0e36b33ecbd23f126d8e7b14c5daa408b4e7460e94290844be6dd4",
+    "docs/content/about/release_notes.md": "1f2c400659da96107b65e8edf7f4704bc84bcd7677f7e7f8617195384fa9eb6c",
+    "tests/test_qualification_bundle.py": "a47d22a3f8c3a2b23afdebc044e8fa827648ec4d2c494f85e2bf4d0aa0e98338",
+    "tests/test_versioning.py": "870bea98a8f9cc435c42a6785c2dccaeafc0cd535f4aec992764a995bd53aa31"
+  }
+}

@@ -89,6 +89,22 @@ def test_the_public_version_comes_from_the_tag():
     which changes with every commit in a checkout, so asserting the whole string
     would fail on the next commit and teach everyone to ignore this file.
     """
+    origin = Path(ackredit.__file__).resolve()
+    if (
+        re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", ackredit.__version__)
+        and origin.is_relative_to(Path(sys.prefix).resolve())
+        and not origin.is_relative_to(ROOT / "ackredit")
+    ):
+        # Installed qualification precedes the public tag and uses a separate
+        # source checkout. Its Git fallback is not the artifact's identity.
+        # Keep a real rejection of stale/mismatched packages rather than skipping
+        # the guard or manufacturing tags/version overrides (#141).
+        assert ackredit.__version__ == version("ackredit"), "distribution mismatch"
+        candidate = tomllib.loads(
+            (ROOT / "devtools/conda-build/release_plan.toml").read_text()
+        )["version"]
+        assert ackredit.__version__ == candidate, "installed candidate mismatch"
+        return
     result = subprocess.run(
         [sys.executable, "-m", "versioningit", str(ROOT)],
         capture_output=True,
@@ -103,6 +119,45 @@ def test_the_public_version_comes_from_the_tag():
         f"the package reports {ackredit.__version__} while the tag derives "
         f"{derived}; the release identifier has drifted from the tag"
     )
+
+
+@pytest.mark.parametrize(
+    "runtime,distribution,accepted",
+    [
+        ("0.12.2", "0.12.2", True),
+        ("0.12.1", "0.12.1", False),
+        ("0.12.2", "0.12.1", False),
+    ],
+)
+def test_installed_candidate_identity_does_not_depend_on_checkout_tags(
+    tmp_path, monkeypatch, runtime, distribution, accepted
+):
+    from types import SimpleNamespace
+
+    root = tmp_path / "checkout"
+    plan = root / "devtools/conda-build/release_plan.toml"
+    plan.parent.mkdir(parents=True)
+    plan.write_text('version = "0.12.2"\n')
+    monkeypatch.setattr(sys.modules[__name__], "ROOT", root)
+    monkeypatch.setattr(ackredit, "__version__", runtime)
+    monkeypatch.setattr(
+        ackredit,
+        "__file__",
+        str(Path(sys.prefix) / "lib/site-packages/ackredit/__init__.py"),
+    )
+    monkeypatch.setattr(sys.modules[__name__], "version", lambda _: distribution)
+    # A shallow pre-release checkout has no release tag; it is not the authority
+    # for the separately inspected installed archive's canonical identity.
+    monkeypatch.setattr(
+        subprocess,
+        "run",
+        lambda *a, **k: SimpleNamespace(returncode=0, stdout="0.0.0", stderr=""),
+    )
+    if accepted:
+        test_the_public_version_comes_from_the_tag()
+    else:
+        with pytest.raises(AssertionError, match="candidate|distribution"):
+            test_the_public_version_comes_from_the_tag()
 
 
 def test_a_development_version_is_marked_as_one():
